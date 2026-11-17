@@ -165,5 +165,5 @@ accelerate merge-weights pytorch_model_fsdp_0/ output_path
 为了获得更多控制，用户可以利用`FullyShardedDataParallelPlugin`。创建此类的实例后，用户可以将其传递给 Accelerator 类实例化。
 有关这些选项的更多信息，请参阅 PyTorch [FullyShardedDataParallel](https://github.com/pytorch/pytorch/blob/0df2e863fbd5993a7b9e652910792bd21a516ff3/torch/distributed/fsdp/fully_sharded_data_parallel.py#L236) 代码。
 
-    对 FSDP 和 DeepSpeed 的异同感兴趣的朋友，请查看[concept guide here](../concept_guides/fsdp_and_deepspeed)！### 分布式推理
-https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/distributed_inference.md
+    对 FSDP 和 DeepSpeed 的异同感兴趣的朋友，请查看[concept guide here](../concept_guides/fsdp_and_deepspeed)！### Intel CPU 训练
+https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/intel_cpu.md

@@ -65,16 +65,16 @@ for batch in dataloader:
 ```
 
 > [!警告]
-> 这个上下文管理器必须在每个训练步骤中重新创建，如上例所示。这样做至关重要。这可能会将您的上下文大小扩展到 1M+ 序列长度。下面，我们展示了高达 256k 上下文大小的上下文并行的速度和内存使用情况。我们可以看到，当我们将上下文大小和 GPU 数量加倍时，我们可以实现一致的内存使用，从而有可能实现无限的上下文长度缩放。
+> 必须在每个训练步骤中重新创建此上下文管理器，如上例所示。这样做至关重要。这可能会将您的上下文大小扩展到 1M+ 序列长度。下面，我们展示了高达 256k 上下文大小的上下文并行的速度和内存使用情况。我们可以看到，当我们将上下文大小和 GPU 数量加倍时，我们可以实现一致的内存使用，从而有可能实现无限的上下文长度缩放。
 
   
   
   图 1：高达 256k 上下文大小的内存使用情况和上下文并行速度。
 
 > [!提示]
-> 这些示例是使用您可以找到的脚本创建的 [in the examples folder](https://github.com/huggingface/accelerate/blob/main/examples/fsdp2/nd_parallel.py)。要在 8 个 H100 GPU（128k 序列长度）上运行该示例，您可以使用以下命令：
+> 这些示例是使用您可以找到的脚本创建的 [in the examples folder](https://github.com/huggingface/accelerate/blob/main/examples/torch_native_parallelism/nd_parallel.py)。要在 8 个 H100 GPU（128k 序列长度）上运行该示例，您可以使用以下命令：
 > ```bash
-> accelerate launch --use-fsdp --fsdp-activation-checkpointing=TRUE examples/fsdp2/nd_parallel.py --cp-size=8 --sequence-length=128000
+> accelerate launch --use-fsdp --fsdp-activation-checkpointing=TRUE examples/torch_native_parallelism/nd_parallel.py --cp-size=8 --sequence-length=128000
 > ```
 
 ## 加速的界面
@@ -86,7 +86,7 @@ for batch in dataloader:
 > 上下文并行性与 `labels` 不兼容，`input_ids` 是 `input_ids` 的副本，🤗 Transformer 中的模型可以转变以启用因果语言建模本身。
 > 想象一下这个案例：
 > 标签 = [l1, l2, l3, l4, ... li]
-> 如果我们应用上下文并行性，每个排名最终都会有一部分标签，例如：
+> 如果我们应用上下文并行性，每个排名最终都会有一部分标签，如下所示：
 > labels_rank_0 = [l1, l2], labels_rank_1 = [l3, l4], ...
 > 在 Transformers 建模代码移动标签之后，最终会得到：
 > labels_rank_0 = [l2, PAD], labels_rank_1 = [l3, PAD], ...
@@ -99,7 +99,7 @@ Accelerate 仅提供一个选项来配置上下文并行性（`cp_size` 除外�
 - `cp_comm_strategy`：分片使用的旋转方法。我们强烈建议将其保留为`"allgather"`，因为在大多数情况下它很可能会优于`"alltoall"`。上下文并行大小是不言自明的，它是输入要分片的等级数。
 上下文并行分片轮换定义了输入分片如何跨等级轮换。我们将在下一节中更详细地介绍这两个选项。
 
-您可以在 [ND parallel example](https://github.com/huggingface/accelerate/blob/main/examples/fsdp2/nd_parallel.py) 文件中看到一个端到端示例，其中您可以在单个 8xH100 节点上训练具有高达 128k 上下文长度的 8B 模型。使用多节点训练，您可以在多个 GPU 上将其扩展到 1M+ 序列长度。您还可以将其与其他并行策略无缝结合，以满足您的需求。
+您可以在 [ND parallel example](https://github.com/huggingface/accelerate/blob/main/examples/torch_native_parallelism/nd_parallel.py) 文件中看到一个端到端示例，其中您可以在单个 8xH100 节点上训练具有高达 128k 上下文长度的 8B 模型。使用多节点训练，您可以在多个 GPU 上将其扩展到 1M+ 序列长度。您还可以将其与其他并行策略无缝结合，以满足您的需求。
 
 ## 技术细节
 
@@ -157,5 +157,5 @@ All-to-all（有时称为`ring-rotation`）采用环形通信模式。完成`att
 ... and so on.
 ```
 
-### 低精度训练方法
-https://huggingface.co/docs/accelerate/v1.15.0/concept_guides/low_ precision_training.md
+### 梯度同步
+https://huggingface.co/docs/accelerate/v1.16.0/concept_guides/gradient_synchronization.md

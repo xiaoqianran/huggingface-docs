@@ -2,7 +2,7 @@
 
 # 安装
 
-在开始之前，您需要设置环境、安装适当的软件包并配置 Accelerate。加速在 **Python 3.8+** 上进行了测试。
+在开始之前，您需要设置环境、安装适当的软件包并配置 Accelerate。加速在 **Python 3.11+** 上进行了测试。
 
 Accelerate 可在 pypi 和 conda 以及 GitHub 上使用。每个安装的详细信息如下：
 
@@ -31,7 +31,7 @@ conda install -c conda-forge accelerate
 pip install git+https://github.com/huggingface/accelerate
 ```
 
-如果您正在为库做出贡献或希望使用源代码并查看实时内容 
+如果您正在为库做出贡献或希望使用源代码并观看实时演示 
 当您运行代码时，可以从本地克隆版本安装可编辑版本 
 存储库：
 
@@ -96,6 +96,3 @@ accelerate env
         - tpu_use_sudo: False
         - tpu_env: []
 ```
-
-### TPU 训练
-https://huggingface.co/docs/accelerate/v1.15.0/basic_tutorials/tpu.md

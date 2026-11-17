@@ -2,7 +2,7 @@
 
 # 在 Mac 上加速 PyTorch 训练
 
-随着 PyTorch v1.12 版本的发布，开发人员和研究人员可以利用 Apple 芯片 GPU 显着加快模型训练速度。 
+随着 PyTorch v1.12 版本的发布，开发人员和研究人员可以利用 Apple 硅 GPU 显着加快模型训练速度。 
 这解锁了在 Mac 上本地执行机器学习工作流程（例如原型设计和微调）的能力。
 Apple 的 Metal Performance Shaders (MPS) 作为 PyTorch 的后端实现了这一点，并且可以通过新的 `"mps"` 设备使用。 
 这将在 MPS Graph 框架和 MPS 提供的调整内核上映射计算图和原语。
@@ -34,5 +34,5 @@ accelerate launch /examples/cv_example.py --data_dir images
 最后，请记住，`Accelerate`仅集成了MPS后端，因此如果您
 对 MPS 后端使用有任何问题或疑问，请通过 [PyTorch GitHub](https://github.com/pytorch/pytorch/issues) 提出问题。
 
-### 从这里开始！
-https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/explore.md
+### 实验追踪器
+https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/tracking.md

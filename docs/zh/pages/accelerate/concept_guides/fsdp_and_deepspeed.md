@@ -30,9 +30,9 @@ Accelerate 通过集成两个极其强大的分布式训练工具，即[Pytorch 
     要访问其他 DeepSpeed 配置，例如混合精度设置， 
     你需要传入一个`--deepspeed_config_file`，参见[documentation](../usage_guides/deepspeed#deepspeed-config-file)。  
 
-    DeepSpeed也可以通过[DeepSpeedPlugin](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.DeepSpeedPlugin)进行配置，例如`DeepSpeedPlugin.zero_stage`相当于`--zero_stage`，`DeepSpeedPlugin.hf_ds_config`可用于传递`--deepeed_config_file.`
+    DeepSpeed也可以通过[DeepSpeedPlugin](/docs/accelerate/v1.16.0/en/package_reference/deepspeed#accelerate.DeepSpeedPlugin)进行配置，例如`DeepSpeedPlugin.zero_stage`相当于`--zero_stage`，`DeepSpeedPlugin.hf_ds_config`可用于传递`--deepeed_config_file.`
 
-    FSDP 也可以通过 [FullyShardedDataParallelPlugin](/docs/accelerate/v1.15.0/en/package_reference/fsdp#accelerate.FullyShardedDataParallelPlugin) 配置，例如 `FullyShardedDataParallelPlugin.sharding_strategy` 相当于 `--fsdp_sharding_strategy`。
+    FSDP 也可以通过 [FullyShardedDataParallelPlugin](/docs/accelerate/v1.16.0/en/package_reference/fsdp#accelerate.FullyShardedDataParallelPlugin) 配置，例如 `FullyShardedDataParallelPlugin.sharding_strategy` 相当于 `--fsdp_sharding_strategy`。
     
 
 ### 检查点请注意，虽然 FSDP 可以通过 `--fsdp_state_dict_type` 配置来保存完整/分片检查点。
@@ -75,16 +75,16 @@ FSDP 需要一个显式的 `--fsdp_auto_wrap_policy` 算法来决定如何调度
 
 Deepspeed 需要显式的 `--gradient_accumulation_steps` 和 `--gradient_clipping` 标志。对于 FSDP，这对用户来说是透明的。
 
-    使用 DeepSpeed 时，设置 `gradient_accumulation_steps: "auto"` 和 `gradient_clipping: "auto"` 自动获取 [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator) 或 `TrainingArguments` 中设置的值（如果使用 `transformers`）。## 关于数据精度处理的差异
+    使用 DeepSpeed 时，设置 `gradient_accumulation_steps: "auto"` 和 `gradient_clipping: "auto"` 自动获取 [Accelerator](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator) 或 `TrainingArguments` 中设置的值（如果使用 `transformers`）。## 关于数据精度处理的差异
 
 为了讨论 FSDP 和 Deepspeed 中如何处理数据精度，首先概述一下这些框架中如何处理模型参数是有启发性的。在将模型/优化器参数分布到 GPU 上之前，需要进行参数准备，首先将它们“展平”为一维[⟦T80⟧](https://pytorch.org/docs/stable/tensors.html#torch-tensor)。 FSDP / DeepSpeed 的实现在存储这些“扁平”参数的`dtype`方面有所不同，并且对于[⟦T82⟧](https://pytorch.org/docs/stable/optim.html#module-torch.optim)如何分配其`dtype`也存在影响。下表概述了两个框架的流程； “本地”列表示在每个 GPU 级别发生的进程，因此向上转换产生的任何内存开销应理解为按所使用的 GPU 数量进行摊销。
 
-    根据经验，为了实现自动混合精度的稳定训练，所有可训练参数都必须位于 `torch.float32` 中。流程|本地|框架|详情
+    根据经验，为了具有自动混合精度的稳定训练，所有可训练参数都必须位于 `torch.float32` 中。流程|本地|框架|详情
 --|--|--|--
 正在加载，即`AutoModel.from_pretrained(..., torch_dtype=torch_dtype)`|  
 准备工作，即创建“平面参数” | ✅ | FSDP 深度速度 |创建于`torch_dtype`。忽略在 `float32` 创建的 `torch_dtype`。
 优化器初始化| ✅ | FSDP 深度速度 |在 `torch_dtype` 中创建参数 在 `float32` 中创建参数
-训练步骤，即向前、向后、减少| | FSDP 深度速度 |遵循 [⟦T91⟧](https://pytorch.org/docs/stable/fsdp.html#torch.distributed.fsdp.MixedPrecision) 遵循 `deepspeed_config_file` 混合精度设置。
+训练步骤，即向前、向后、减少 | | FSDP 深度速度 |遵循 [⟦T91⟧](https://pytorch.org/docs/stable/fsdp.html#torch.distributed.fsdp.MixedPrecision) 遵循 `deepspeed_config_file` 混合精度设置。
 优化器（前置步骤）| ✅ | FSDP 深度速度 |向上转换（如果有）到`torch_dtype`向上转换到`float32`
 优化器（实际步骤）| ✅ | FSDP 深度速度 |发生在`torch_dtype` 发生在`float32`。
 
@@ -101,4 +101,4 @@ FSDP | BF16 | BF16 | FP32 | BF16 | FP32
 深速| BF16 | BF16 | FP32 | BF16 | FP32
 
 ### 🤗`accelerate` 中的序列并行
-https://huggingface.co/docs/accelerate/v1.15.0/concept_guides/sequence_parallelism.md
+https://huggingface.co/docs/accelerate/v1.16.0/concept_guides/sequence_parallelism.md

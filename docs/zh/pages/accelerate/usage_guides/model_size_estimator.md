@@ -48,7 +48,7 @@ accelerate estimate-memory bert-base-cased
 加载`bert-base-cased`的内存使用情况：
 
 |数据类型 |最大层|总尺寸|使用 Adam 进行训练 |
-|--------|-------------|------------|----------|
+|--------|-------------|------------|--------------------|
 |浮动32 | 84.95 MB | 418.18 MB | 1.61 GB | 1.61 GB
 |浮动16 | 42.47 MB​​ | 206.59 MB | 826.36 MB |
 | int8 | 21.24 MB | 103.29 MB | 413.18 MB |
@@ -66,7 +66,7 @@ accelerate estimate-memory HuggingFaceM4/idefics-80b-instruct --library_name tra
 加载`HuggingFaceM4/idefics-80b-instruct`的内存使用情况：
 
 |数据类型 |最大层|总尺寸|使用 Adam 进行训练 |
-|--------|-------------|------------|----------|
+|--------|-------------|------------|--------------------|
 |浮动32 | 3.02 GB | 3.02 GB 297.12 GB | 297.12 GB 1.16TB |
 |浮动16 | 1.51 GB | 1.51 GB 148.56 GB | 148.56 GB 594.24GB|
 | int8 | 772.52 MB | 74.28 GB | 297.12 GB | 297.12 GB
@@ -79,7 +79,7 @@ accelerate estimate-memory timm/resnet50.a1_in1k --library_name timm
 加载`timm/resnet50.a1_in1k`的内存使用情况：
 
 |数据类型 |最大层|总尺寸|使用 Adam 进行训练 |
-|--------|-------------|------------|----------|
+|--------|-------------|------------|--------------------|
 |浮动32 | 9.0 MB | 97.7 MB | 390.78 MB |
 |浮动16 | 4.5 MB | 48.85 MB | 195.39 MB |
 | int8 | 2.25 MB | 24.42 MB | 97.7 MB |
@@ -96,7 +96,7 @@ accelerate estimate-memory bert-base-cased --dtypes float32 float16
 加载`bert-base-cased`的内存使用情况：
 
 |数据类型 |最大层|总尺寸|使用 Adam 进行训练 |
-|--------|-------------|------------|----------|
+|--------|-------------|------------|--------------------|
 |浮动32 | 84.95 MB | 413.18 MB | 1.61 GB | 1.61 GB
 |浮动16 | 42.47 MB​​ | 206.59 MB | 826.36 MB |
 
@@ -107,7 +107,5 @@ accelerate estimate-memory bert-base-cased --dtypes float32 float16
 此计算的精确度在实际值的百分之几内，因此可以很好地了解它将占用多少内存。例如，当以全精度加载到 CUDA 上时，加载 `bert-base-cased` 实际上需要 `413.68 MB`，并且计算器会估计 `413.18 MB`。
 
 执行推理时，您预计会额外增加 20%，如[EleutherAI](https://blog.eleuther.ai/transformer-math/) 所示。我们将进行研究，寻找对这些值的更准确的估计，并将更新 
-这个计算器一旦完成。
-
-### Mac 上的加速 PyTorch 训练
-https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/mps.md
+这个计算器一旦完成。### 分布式推理
+https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/distributed_inference.md

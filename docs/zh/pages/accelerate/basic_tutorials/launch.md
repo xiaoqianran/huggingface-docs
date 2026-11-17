@@ -2,7 +2,7 @@
 
 # 启动加速脚本
 
-在上一教程中，向您介绍了如何修改当前的训练脚本以使用 Accelerate。
+在上一篇教程中，我们向您介绍了如何修改当前的训练脚本以使用 Accelerate。
 该代码的最终版本如下所示：
 
 ```python
@@ -137,7 +137,7 @@ accelerate launch --cpu {script_name.py} {--arg1} {--arg2}
 为什么它有用到你应该**总是**运行`accelerate config`？ 
 
 还记得之前对 `accelerate launch` 和 `torchrun` 的调用吗？
-配置后，要使用所需部分运行该脚本，您只需直接使用 `accelerate launch` ，无需传递任何其他内容：
+配置后，要使用所需部分运行该脚本，您只需要直接使用 `accelerate launch`，无需传递任何其他内容：
 
 ```bash
 accelerate launch {script_name.py} {--arg1} {--arg2} ...
@@ -187,5 +187,5 @@ accelerate launch --config_file {path/to/config/my_config_file.yaml} {script_nam
 
 要更好地了解多节点训练，请查看我们的 [multi-node training with FSDP](https://huggingface.co/blog/ram-efficient-pytorch-fsdp) 示例。
 
-### 概述
-https://huggingface.co/docs/accelerate/v1.15.0/basic_tutorials/overview.md
+### TPU 训练
+https://huggingface.co/docs/accelerate/v1.16.0/basic_tutorials/tpu.md

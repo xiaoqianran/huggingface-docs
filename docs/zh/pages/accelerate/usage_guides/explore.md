@@ -34,5 +34,5 @@ for batch in dataloader:
         height="1600"
     >
 
-### 低精度训练方法
-https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/low_ precision_training.md
+### 大模型推理
+https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/big_modeling.md

@@ -282,5 +282,5 @@ for data, targets in data_loader:
     optimizer.zero_grad()
 ```
 
-有关更高级的用法和附加挂钩，请参阅[PyTorch DDP Communication Hooks documentation](https://pytorch.org/docs/stable/ddp_comm_hooks.html)。### 威震天-LM
-https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/megatron_lm.md
+有关更高级的用法和附加挂钩，请参阅[PyTorch DDP Communication Hooks documentation](https://pytorch.org/docs/stable/ddp_comm_hooks.html)。### 动物园示例
+https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/training_zoo.md

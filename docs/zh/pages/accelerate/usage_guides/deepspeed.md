@@ -8,7 +8,7 @@
 2.梯度划分（ZeRO阶段2）
 3.参数划分（ZeRO阶段3）
 4. 定制混合精准训练操控
-5.一系列基于 CUDA 扩展的快速优化器
+5. 一系列基于 CUDA 扩展的快速优化器
 6. 零卸载到 CPU 和磁盘/NVMe
 7.模型参数的层次划分（ZeRO++）
 
@@ -394,7 +394,7 @@ accelerate launch examples/by_feature/deepspeed_with_config_support.py \
    ```
    b.自定义 Optim + 自定义调度程序：DeepSpeed 配置文件中缺少 `optimizer` 和 `scheduler` 键的情况。
    在这种情况下，用户无需更改代码，通过 DeepSpeed 插件使用集成时就是这种情况。
-   在上面的示例中，我们可以看到，如果 DeepSpeed 配置文件中不存在 `optimizer` 和 `scheduler` 键，则代码保持不变。
+   在上面的示例中，我们可以看到，如果 DeepSpeed 配置文件中缺少 `optimizer` 和 `scheduler` 键，则代码保持不变。
 
    c.自定义 Optim + DS Scheduler：DeepSpeed 配置文件中仅存在 `scheduler` 密钥的情况。
    在这种情况下，用户必须使用 `accelerate.utils.DummyScheduler` 来替换代码中的 PyTorch/Custom 调度程序。
@@ -678,7 +678,7 @@ model, eval_dataloader = accelerator.prepare(model, eval_dataloader)
 ## 多节点 DeepSpeed
 DeepSpeed 支持通过各种不同的启动器进行多节点推理和训练。您可以通过在 CLI 或 DeepSpeed 配置文件中设置 `deepspeed_multinode_launcher` 配置来指定不同的启动器。
 
-目前，加速支持传递以下 DeepSpeed 多节点启动器的配置：`pdsh`（默认）、`standard`、`openmpi`、`mvapich`、`mpich`、`slurm`、`nossh`（需要 DeepSpeed >= 0.14.5）。请阅读[DeepSpeed documentation](https://www.deepspeed.ai/getting-started/#resource-configuration-multi-node)以获取有关不同启动器的更多信息。默认情况下，DeepSpeed 将尝试使用无密码 SSH 从主机节点到其他节点来执行启动器命令。在此配置中，只需在主节点上运行加速启动命令。如果使用 `nossh` 启动器，您将需要使用复制的配置在每个节点上运行加速启动命令。 
+目前，加速支持传递以下 DeepSpeed 多节点启动器的配置：`pdsh`（默认）、`standard`、`openmpi`、`mvapich`、`mpich`、`slurm`、`nossh`（需要 DeepSpeed >= 0.14.5）。请阅读[DeepSpeed documentation](https://www.deepspeed.ai/getting-started/#resource-configuration-multi-node)以获取有关不同启动器的更多信息。默认情况下，DeepSpeed 将尝试使用从主机节点到其他节点的无密码 SSH 来执行启动器命令。在此配置中，只需在主节点上运行加速启动命令。如果使用 `nossh` 启动器，您将需要使用复制的配置在每个节点上运行加速启动命令。 
 
 ## DeepSpeed 资源
 
@@ -701,5 +701,5 @@ DeepSpeed 支持通过各种不同的启动器进行多节点推理和训练。�
 
     对 FSDP 和 DeepSpeed 的异同感兴趣的朋友，请查看[concept guide here](../concept_guides/fsdp_and_deepspeed)！
 
-### 编译
-https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/compilation.md
+### Mac 上的加速 PyTorch 训练
+https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/mps.md

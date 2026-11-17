@@ -92,7 +92,7 @@
 
 ### 科尼亚
 
-- [Fine-tuning vision models with Kornia's Trainer](https://kornia.readthedocs.io/en/latest/get-started/training.html)
+- [Fine-tuning vision models with Kornia's Trainer](https://kornia.readthedocs.io/en/latest/)
 
 ### PyTorch 加速 
 
@@ -157,5 +157,5 @@
 * Minh-Long Luu、Zeyi Huang、Eric P. Xing、Yong Jae Lee、Haohan Wang：“通过随机梯度阈值快速显着性引导混合”，2022 年； [arXiv:2212.04875](http://huggingface.co/papers/2212.04875)。
 * 刘俊豪、颜汉书、周大全、冯嘉世：“MagicMix：扩散模型的语义混合”，2022； [arXiv:2210.16056](http://huggingface.co/papers/2210.16056)。* Yaqing Wang、Subhabrata Mukherjee、Xiaodong Liu、Jing Gau、Ahmed Hassan Awadallah、Jianfeng Taka：“LiST：Lite Prompted Self-training Makes Parameter-Efficient Few-shot Learners”，2021； [arXiv:2110.06274](http://huggingface.co/papers/2110.06274)。
 
-### DDP 通信挂钩
-https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/ddp_comm_hook.md
+### 将本地 SGD 与 Accelerate 结合使用
+https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/local_sgd.md

@@ -21,7 +21,7 @@
 - Ulysses SP 的通信开销相对较低，但受到 Attention Head 数量的限制，因此对网络拓扑有一定的要求（对于单个副本来说，Attention Head 的数量必须能被参与 GPU 的数量整除）。多对多通信对延迟很敏感，并且需要 Deepspeed。
 - FSDP CP Ring-Attention的P2P环通信没有前述的可分性要求，但通信量较高。
 
-最后，应该可以按照论文[USP: A Unified Sequence Parallelism Approach for Long Context Generative AI](https://arxiv.org/abs/2405.07719)中的说明结合 SP + CP 以支持更长的序列长度，尽管这尚未集成到🤗`accelerate`中。
+最后，应该可以按照论文 [USP: A Unified Sequence Parallelism Approach for Long Context Generative AI](https://arxiv.org/abs/2405.07719) 中的说明结合 SP + CP 以支持更长的序列长度，尽管这尚未集成到 🤗`accelerate` 中。
 
 ## 支持的序列并行后端
 
@@ -89,13 +89,18 @@ accelerator = Accelerator(
 ```- `sp_backend`：此处设置为`deepspeed`
 - `sp_size` 是序列并行度 - 在上面的示例中为 4，因此将使用 4 个 GPU 来处理单个批次（同时在同一 GPU 上执行 DP=4）
 - `sp_seq_length`和`sp_seq_length_is_variable`用于处理序列长度。如果`sp_seq_length_is_variable=True`后端将使用可能在批次之间变化的序列长度，在这种情况下，`sp_seq_length`值可以设置为可被序列并行度整除的任何值或根本不设置。在这种情况下，在每个`forward`上，序列变量将从输入中导出。如果`False`，则`seq_length`需要匹配批次的序列长度维度，然后必须对其进行填充以使其始终相同。默认为`True`。
-- `sp_attn_implementation` 是 `sdpa`、`flash_attention_2` 或 `flash_attention_3` 之一。此序列并行实现使用`position_ids`而不是`attention_mask`，因此，`eager`不能在这里工作，直到它支持与`position_ids`一起使用。另请注意，`sdpa` 无法正确处理多个样本合并为一个的情况；它将把整个样本作为一个整体来处理。如果未合并样本，`sdpa` 将正常工作。因此，Flash Attention 应该是理想的选择，因为它始终有效。您也可以使用环境变量来完成相同的操作，而不是在 `DeepSpeedSequenceParallelConfig` 对象中设置这些值 - 这里它们对应于上面列表的末尾。
+- `sp_attn_implementation` 是 `sdpa`、`flash_attention_2` 或 `flash_attention_3` 之一。此序列并行实现使用`position_ids`而不是`attention_mask`，因此，`eager`不能在这里工作，直到它支持与`position_ids`一起使用。另请注意，`sdpa` 无法正确处理多个样本合并为一个的情况；它将把整个样本作为一个整体来处理。如果未合并样本，`sdpa` 将正常工作。因此，Flash Attention 应该是理想的选择，因为它始终有效。- `sp_allow_recurrent_layers`：默认情况下会拒绝具有线性注意层（例如门控 DeltaNet）的模型，因为这些层沿着每个等级将从零重新开始的序列携带循环状态。仅当模型跨序列并行排名本身交换该状态时，才将其设置为`True`。默认为`False`。
+- `sp_disable_in_eval`：如果`True`，则在评估模式下关闭序列并行性，并且每个等级运行整个序列。将其设置为`False`以在长评估序列中保持打开状态；然后，评估数据加载器必须像火车数据加载器一样进行分片。默认为`True`。
+
+您还可以使用环境变量来完成相同的操作，而不是在 `DeepSpeedSequenceParallelConfig` 对象中设置这些值 - 这里它们对应于上面列表的末尾。
 - `PARALLELISM_CONFIG_SP_BACKEND`
 - `PARALLELISM_CONFIG_SP_SEQ_LENGTH`
 - `PARALLELISM_CONFIG_SP_SEQ_LENGTH_IS_VARIABLE`
 - `PARALLELISM_CONFIG_SP_ATTN_IMPLEMENTATION`
+- `PARALLELISM_CONFIG_SP_ALLOW_RECURRENT_LAYERS`
+- `PARALLELISM_CONFIG_SP_DISABLE_IN_EVAL`
 
-如果未在代码中传递，则可以通过 `--parallelism_config_sp_size` CLI 参数设置`sp_size`。其他参数也一样。您还可以进行加速配置文件样式配置，例如，对于 2 个 GPU：
+如果未在代码中传递，则可以通过 CLI 参数 `--parallelism_config_sp_size` 设置`sp_size`。其他参数也一样。您还可以进行加速配置文件样式配置，例如，对于 2 个 GPU：
 
 ```yaml
 distributed_type: DEEPSPEED
@@ -112,9 +117,7 @@ parallelism_config:
   parallelism_config_sp_seq_length_is_variable: true
   parallelism_config_sp_attn_implementation: sdpa
 
-```
-
-如前所述，Ulysses 序列并行性通常与数据并行性重叠 - 相同的等级用于馈送唯一的数据流并执行 Ulysses 序列并行性。但您也可以像这样创建副本：
+```如前所述，Ulysses 序列并行性通常与数据并行性重叠 - 相同的等级用于馈送唯一的数据流并执行 Ulysses 序列并行性。但您也可以像这样创建副本：
 
 ```python
 # Example: 4 GPUs with 2D parallelism (SP=2, DP=2)
@@ -129,7 +132,9 @@ parallelism_config = ParallelismConfig(
 ```
 这里我们使用 4 个 GPU，带有 2 个序列并行副本。 Deepspeed-ZeRO 是驱动数据并行性的因素。
 
-请注意，[UlyssesSPDataLoaderAdapter](https://github.com/deepspeedai/DeepSpeed/blob/64c0052fa08438b4ecf4cae30af15091a92d2108/deepspeed/runtime/sequence_parallel/ulysses_sp.py#L442)内部隐藏着很多魔法。它在幕后使用，包装您的原始 DataLoader 对象，但如果您遇到任何问题，您应该意识到它。在批次在参与的队列中进行分片之前，它还会自动将正确的`shift_labels`注入批次字典中。现在，开始使用 ALST/UlyssesSP 的唯一剩余部分是使用可微的 `all_gather` 来汇总各个等级的损失，以获得正确的梯度。下面的代码可以做到这一点，同时还排除任何用 `-100` 标记屏蔽的内容，以获得正确的平均值：
+请注意，[UlyssesSPDataLoaderAdapter](https://github.com/deepspeedai/DeepSpeed/blob/64c0052fa08438b4ecf4cae30af15091a92d2108/deepspeed/runtime/sequence_parallel/ulysses_sp.py#L442)内部隐藏着很多魔法。它在幕后使用，包装您的原始 DataLoader 对象，但如果您遇到任何问题，您应该意识到它。在批次在参与的队列中进行分片之前，它还会自动将正确的`shift_labels`注入批次字典中。
+
+现在，开始使用 ALST/UlyssesSP 的唯一剩余部分是使用可微的 `all_gather` 来汇总各个等级的损失，以获得正确的梯度。以下代码执行此操作，同时还排除任何用 `-100` 标记屏蔽的内容，以获得正确的平均值：
 
 ```python
 sp_size = parallelism_config.sp_size if parallelism_config is not None else 1
@@ -171,16 +176,14 @@ for iter, batch in enumerate(dl):
 
     accelerator.backward(loss)
     optimizer.step()
-```
-
-请注意，当批次中存在 `shift_labels` 时，模型会自动处理它。模型的前向传递通过 `**kwargs` 接收 `shift_labels` 并将其传递给损失函数，该函数正确计算序列并行性的损失。如果您使用[Liger Kernel](https://github.com/linkedin/Liger-Kernel)，它还可以无缝处理`shift_labels`，并以非常节省内存的方式计算损失。对于长序列长度，强烈建议使用 Liger，因为它通过使用融合操作（例如，永远不会在内存中实现完整 Logits 张量的融合 Logit 损失计算）来释放 GPU 内存。
+```请注意，当批次中存在 `shift_labels` 时，模型会自动处理它。模型的前向传递通过 `**kwargs` 接收 `shift_labels` 并将其传递给损失函数，该函数正确计算序列并行性的损失。如果您使用[Liger Kernel](https://github.com/linkedin/Liger-Kernel)，它还可以无缝处理`shift_labels`，并以非常节省内存的方式计算损失。对于长序列长度，强烈建议使用 Liger，因为它通过使用融合操作（例如，永远不会在内存中实现完整 Logits 张量的融合 Logit 损失计算）来释放 GPU 内存。
 
 如果您想了解 HF Accelerate 在幕后做了什么，请阅读[this full integration tutorial](https://www.deepspeed.ai/tutorials/ulysses-alst-sequence-parallelism/)。
 
 有关启用 ALST/UlyssesSP 的加速训练循环的示例，请参阅[examples/alst_ulysses_sequence_parallelism](https://github.com/huggingface/accelerate/blob/main/examples/alst_ulysses_sequence_parallelism)。
 
 [！警告]
-> 这个 API 相当新，仍处于实验阶段。虽然我们努力提供稳定的 API，但公共 API 的一些小部分将来可能会发生变化。由于这是 Deepspeed 后端，因此应用通常的 Deepspeed 配置，因此您可以将序列并行性与优化器状态和/或权重卸载相结合，以释放更多 GPU 内存并实现更长的序列长度。该技术已经过测试，可与 DeepSpeed ZeRO 第 2 阶段和第 3 阶段配合使用。
+> 这个 API 相当新，仍处于实验阶段。虽然我们努力提供稳定的 API，但公共 API 的一些小部分将来可能会发生变化。
 
-###加速内部机制
-https://huggingface.co/docs/accelerate/v1.15.0/concept_guides/internal_mechanism.md
+由于这是 Deepspeed 后端，因此应用通常的 Deepspeed 配置，因此您可以将序列并行性与优化器状态和/或权重卸载相结合，以释放更多 GPU 内存并实现更长的序列长度。该技术已经过测试，可与 DeepSpeed ZeRO 第 2 阶段和第 3 阶段配合使用。### 🤗`accelerate` 中的上下文并行
+https://huggingface.co/docs/accelerate/v1.16.0/concept_guides/context_parallelism.md

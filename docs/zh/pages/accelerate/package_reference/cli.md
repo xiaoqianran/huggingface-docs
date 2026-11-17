@@ -108,7 +108,7 @@ accelerate launch [arguments] {training_script} --{training_script-argument-1} -
 * `-m`、`--module` (`bool`) -- 更改每个进程以将启动脚本解释为 Python 模块，并以与“python -m”相同的行为执行。
 * `--no_python` (`bool`) -- 跳过在训练脚本前添加“python” - 直接执行即可。当脚本不是 Python 脚本时很有用。
 * `--debug` (`bool`) -- 当出现故障时是否打印 torch.distributed 堆栈跟踪。
-* `-q`、`--quiet` (`bool`) -- 沉默启动堆栈跟踪中的子进程错误，仅显示相关的回溯。 （仅适用于 DeepSpeed 和单进程配置）。
+* `-q`、`--quiet` (`bool`) -- 即使使用`--debug`，也可以在没有启动器回溯的情况下显示训练错误。适用于单进程、多 GPU 和 DeepSpeed 启动。
 
 其余参数通过 `accelerate config` 配置，并从指定的 `--config_file`（或默认配置）中读取 
 价值观。它们也可以手动传入。
@@ -142,7 +142,7 @@ accelerate launch [arguments] {training_script} --{training_script-argument-1} -
 * `--machine_rank` (`int`) -- 启动此脚本的机器的等级。
 * `--main_process_ip` (`str`) -- 等级0的机器的IP地址。
 * `--main_process_port` (`int`) -- 用于与 0 级机器通信的端口。
-* `-t`、`--tee` (`str`) -- Tee std 流到日志文件以及控制台。
+* `-t`、`--tee` (`str`) -- Tee std 流到日志文件和控制台。
 * `--log_dir` (`str`) -- 使用 torchrun/torch.distributed.run 作为启动器时用于日志文件的基本目录。与 --tee 一起使用来重定向 std 流信息日志文件。
 * `--role` (`str`) -- 用户定义的工人角色。
 * `--rdzv_backend` (`str`) -- 使用的集合方法，例如 'static' （默认）或 'c10d'* `--rdzv_conf` (`str`) -- 附加集合点配置 (=,=,...)。
@@ -151,7 +151,7 @@ accelerate launch [arguments] {training_script} --{training_script-argument-1} -
 
 **TPU 参数**：
 
-以下参数仅在传递`tpu`或通过`accelerate config`配置TPU训练时才有用： 
+以下参数仅在通过`tpu`或通过`accelerate config`配置TPU训练时才有用： 
 
 * `--tpu_cluster` (`bool`) -- 是否使用 GCP TPU pod 进行训练。
 * `--tpu_use_sudo` (`bool`) -- 在每个 Pod 中运行 TPU 训练脚本时是否使用`sudo`。
@@ -167,7 +167,7 @@ accelerate launch [arguments] {training_script} --{training_script-argument-1} -
 * `--offload_optimizer_device` (`str`) -- 决定在何处 (none|cpu|nvme) 卸载优化器状态。
 * `--offload_param_device` (`str`) -- 决定在何处 (none|cpu|nvme) 卸载参数。
 * `--offload_optimizer_nvme_path` (`str`) -- 决定卸载优化器状态的 Nvme 路径。
-* `--gradient_accumulation_steps` (`int`) -- 训练脚本中使用的gradient_accumulation_steps 数量。
+* `--gradient_accumulation_steps` (`int`) -- 训练脚本中没有使用gradient_accumulation_steps。
 * `--gradient_clipping` (`float`) -- 训练脚本中使用的梯度裁剪值。
 * `--zero3_init_flag` (`str`) -- 决定是否(true|false)启用`deepspeed.zero.Init`来构建海量模型。仅适用于 DeepSpeed ZeRO Stage-3。
 * `--zero3_save_16bit_model` (`str`) -- 决定在使用 ZeRO Stage-3 时是否保存 16 位模型权重（true|false）。仅适用于 DeepSpeed ZeRO Stage-3。
@@ -190,7 +190,7 @@ accelerate launch [arguments] {training_script} --{training_script-argument-1} -
 * `--fsdp_forward_prefetch` (`str`) -- FSDP 前向预取。
 * `--fsdp_use_orig_params` (`str`) -- 如果为 True，则允许在 FSDP 单元中混合非均匀 `requires_grad`。
 * `--fsdp_cpu_ram_efficient_loading` (`str`) -- 如果为 true，则只有第一个进程加载预训练模型检查点，而所有其他进程都具有空权重。使用此功能时，`--fsdp_sync_module_states` 需要为 True。
-* `--fsdp_sync_module_states` (`str`) -- 如果为 true，则每个单独包装的 FSDP 单元将从 0 级开始广播模块参数。* `--fsdp_activation_checkpointing` (`bool`) -- 决定前向传递过程中是否释放中间激活，并留下一个检查点作为占位符
+* `--fsdp_sync_module_states` (`str`) -- 如果为 true，则每个独立包装的 FSDP 单元将从 0 级开始广播模块参数。* `--fsdp_activation_checkpointing` (`bool`) -- 决定前向传递过程中是否释放中间激活，并留下一个检查点作为占位符
 
 **威震天-LM 参数**：
 
@@ -198,28 +198,27 @@ accelerate launch [arguments] {training_script} --{training_script-argument-1} -
 
 * `--megatron_lm_tp_degree` (``) -- Megatron-LM 的张量并行度 (TP)。
 * `--megatron_lm_pp_degree` (``) -- Megatron-LM 的管道并行度 (PP)。
-* `--megatron_lm_num_micro_batches` (``) -- PP 度 > 1 时威震天-LM 的微批次数量。
+* `--megatron_lm_num_micro_batches` (``) -- 当 PP 度 > 1 时，Megatron-LM 的微批次数量。
 * `--megatron_lm_sequence_parallelism` (``) -- 决定当 TP 度 > 1 时是否启用序列并行性 (true|false)。
 * `--megatron_lm_recompute_activations` (``) -- 决定是否（true|false）启用选择性激活重新计算。
 * `--megatron_lm_use_distributed_optimizer` (``) -- 决定是否（true|false）使用分布式优化器，该优化器在数据并行 (DP) 级别上分片优化器状态和梯度。
 * `--megatron_lm_gradient_clipping` (``) -- Megatron-LM 基于全局 L2 Norm 的梯度裁剪值（0 表示禁用）。
 
-**FP8 参数**：* `--fp8_backend` (`str`) -- 选择一个后端来使用 FP8 进行训练（`te` 或 `msamp`）
-* `--fp8_use_autocast_during_eval` (`bool`) -- 在eval模式下是否使用FP8自动转换（仅当`--fp8_backend=te`通过时有用）。通常，如果未通过此标准，则会找到更好的指标。
+**FP8 参数**：* `--fp8_backend` (`str`) -- 选择一个后端来使用 FP8 进行训练（`ao` 或 `te`）
+* `--fp8_use_autocast_during_eval` (`bool`) -- 是否在eval模式下使用FP8自动转换（仅当`--fp8_backend=te`通过时有用）。通常，如果未通过此标准，则会找到更好的指标。
 * `--fp8_margin` (`int`) -- 用于梯度缩放的边距（仅在传递 `--fp8_backend=te` 时有用）。
 * `--fp8_interval` (`int`) -- 重新计算缩放因子的频率的间隔（仅在传递 `--fp8_backend=te` 时有用）。
 * `--fp8_format` (`str`) -- 用于 FP8 配方的格式（仅在传递 `--fp8_backend=te` 时有用）。
-* `--fp8_amax_history_len` (`int`) -- 用于缩放因子计算的历史记录的长度（仅在传递`--fp8_backend=te`时有用）。
+* `--fp8_amax_history_len` (`int`) -- 用于缩放因子计算的历史长度（仅在传递`--fp8_backend=te`时有用）。
 * `--fp8_amax_compute_algo` (`str`) -- 用于计算缩放因子的算法。 （仅当`--fp8_backend=te`通过时才有用）。
 * `--fp8_override_linear_precision` (`Tuple[bool, bool, bool]`) -- 是否以更高精度执行`fprop`、`dgrad`、`wgrad` GEMMS。
-* `--fp8_opt_level` (`str`) -- MS-AMP 应该使用什么级别的 8 位集体通信（仅当`--fp8_backend=msamp` 通过时才有用）
 
 **AWS SageMaker 参数**：
 
-以下参数仅在 SageMaker 中训练时有用* `--aws_access_key_id AWS_ACCESS_KEY_ID` (`str`) -- 用于启动 Amazon SageMaker 训练作业的 AWS_ACCESS_KEY_ID
-* `--aws_secret_access_key AWS_SECRET_ACCESS_KEY` (`str`) -- 用于启动 Amazon SageMaker 训练作业的 AWS_SECRET_ACCESS_KEY
+以下参数仅在 SageMaker 中训练时有用
 
-## 加速估计内存
+* `--aws_access_key_id AWS_ACCESS_KEY_ID` (`str`) -- 用于启动 Amazon SageMaker 训练作业的 AWS_ACCESS_KEY_ID
+* `--aws_secret_access_key AWS_SECRET_ACCESS_KEY` (`str`) -- 用于启动 Amazon SageMaker 训练作业的 AWS_SECRET_ACCESS_KEY## 加速估计内存
 
 **命令**：
 
@@ -239,7 +238,9 @@ accelerate estimate-memory {MODEL_NAME} --library_name {LIBRARY_NAME} --dtypes {
 
 * `MODEL_NAME` (`str`)-- Hugging Face Hub 上的型号名称
 
-**可选参数**：* `--library_name {timm,transformers}` (`str`) -- 与模型集成的库，例如 `transformers`，仅当此信息未存储在 Hub 上时才需要
+**可选参数**：
+
+* `--library_name {timm,transformers}` (`str`) -- 与模型集成的库，例如`transformers`，仅当此信息未存储在 Hub 上时才需要
 * `--dtypes {float32,float16,int8,int4}` (`[{float32,float16,int8,int4} ...]`) -- 用于模型的数据类型，必须是 `float32`、`float16`、`int8` 和 `int4` 中的一种（或多种）
 * `--trust_remote_code` (`bool`) -- 是否允许在 Hub 上定义自己的建模文件中的自定义模型。仅应为您信任且已在其中读取代码的存储库传递此选项，因为它将执行本地计算机上的集线器上存在的代码。
 
@@ -251,10 +252,8 @@ accelerate estimate-memory {MODEL_NAME} --library_name {LIBRARY_NAME} --dtypes {
 
 ```bash
 accelerate tpu-config [arguments]
-```
-
-**可选参数**：
-* `-h`, `--help` (`bool`) -- 显示帮助消息并退出
+```**可选参数**：
+* `-h`, `--help` (`bool`) -- 显示帮助信息并退出
 
 **配置参数**：
 
@@ -266,7 +265,9 @@ accelerate tpu-config [arguments]
 
 **TPU 参数**：
 
-选项参数在 TPU 内部运行。* `--command_file` (`str`) -- 包含启动时在 Pod 上运行的命令的文件的路径。
+选项参数在 TPU 内部运行。
+
+* `--command_file` (`str`) -- 包含启动时在 Pod 上运行的命令的文件的路径。
 * `--command` (`str`) -- 在 pod 上运行的命令。可以多次通过。
 * `--install_accelerate` (`bool`) -- 是否在 Pod 上安装加速。默认为 False。
 * `--accelerate_version` (`str`) -- 安装在 Pod 上的加速版本。如果未指定，将使用最新的 pypi 版本。指定“dev”以从 GitHub 安装。
@@ -282,11 +283,11 @@ accelerate tpu-config [arguments]
 
 ```bash
 accelerate test [arguments]
-```
-
-**可选参数**：
+```**可选参数**：
 * `--config_file CONFIG_FILE` (`str`) -- 用于存储配置文件的路径。会默认在缓存位置有一个名为default_config.yaml的文件，这是内容
                         环境`HF_HOME`后缀为“accelerate”，或者如果你没有这样的环境变量，则为你的缓存目录
                         （`~/.cache`或`XDG_CACHE_HOME`的内容）后缀为`huggingface`。
-* `-h`, `--help` (`bool`) -- 显示帮助信息并退出### FP8
-https://huggingface.co/docs/accelerate/v1.15.0/package_reference/fp8.md
+* `-h`, `--help` (`bool`) -- 显示帮助信息并退出
+
+### 有状态类
+https://huggingface.co/docs/accelerate/v1.16.0/package_reference/state.md

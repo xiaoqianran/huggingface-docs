@@ -7,7 +7,7 @@
 
 在本教程中，您将了解如何快速设置 Local SGD Accelerate。与标准 Accelerate 设置相比，这仅需要两行额外的代码。
 
-此示例将使用一个非常简单的 PyTorch 训练循环，每两批执行一次梯度累积：
+此示例将使用一个非常简单的 PyTorch 训练循环，每两个批次执行一次梯度累积：
 
 ```python
 device = "cuda"
@@ -77,7 +77,7 @@ for index, batch in enumerate(training_dataloader):
 
 ## 限制
 
-当前的实现仅适用于基本的多 GPU（或多 CPU）训练，没有 [DeepSpeed.](https://github.com/deepspeedai/DeepSpeed) 等。
+当前的实现仅适用于基本的多 GPU（或多 CPU）训练，没有例如[DeepSpeed.](https://github.com/deepspeedai/DeepSpeed)。
 
 ## 参考文献
 
@@ -92,5 +92,5 @@ for index, batch in enumerate(training_dataloader):
     斯蒂奇，塞巴斯蒂安·厄本。 ["Local SGD Converges Fast and Communicates Little." ICLR 2019-International Conference on
     Learning Representations. No. CONF. 2019.](https://huggingface.co/papers/1805.09767)
 
-### 模型量化
-https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/quantization.md
+### 完全分片数据并行
+https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/fsdp.md

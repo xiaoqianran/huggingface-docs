@@ -10,7 +10,7 @@
 accelerate.utils.enable_fsdp_ram_efficient_loading()
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/fsdp_utils.py#L40)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/fsdp_utils.py#L40)
 
 支持环境中 FSDP 的 Hugging Face 模型的 RAM 高效加载。
 
@@ -22,7 +22,7 @@ accelerate.utils.enable_fsdp_ram_efficient_loading()
 accelerate.utils.disable_fsdp_ram_efficient_loading()
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/fsdp_utils.py#L50)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/fsdp_utils.py#L50)
 
 禁用环境中 FSDP 的 Hugging Face 模型的 RAM 高效加载。
 
@@ -34,7 +34,7 @@ accelerate.utils.disable_fsdp_ram_efficient_loading()
 accelerate.utils.merge_fsdp_weights(checkpoint_dir: str, output_path: str, safe_serialization: bool = True, remove_checkpoint_dir: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/fsdp_utils.py#L473)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/fsdp_utils.py#L486)
 
 **参数：**
 
@@ -55,10 +55,10 @@ safe_serialization (`bool`，*可选*，默认为`True`)：是否使用安全张
 ####加速.FullyShardedDataParallelPlugin[[accelerate.FullyShardedDataParallelPlugin]]
 
 ```python
-accelerate.FullyShardedDataParallelPlugin(fsdp_version: int = None, sharding_strategy: typing.Union[str, ForwardRef('torch.distributed.fsdp.ShardingStrategy')] = None, reshard_after_forward: typing.Union[str, ForwardRef('torch.distributed.fsdp.ShardingStrategy'), bool] = None, backward_prefetch: typing.Union[str, ForwardRef('torch.distributed.fsdp.BackwardPrefetch'), NoneType] = None, mixed_precision_policy: typing.Union[dict, str, ForwardRef('torch.distributed.fsdp.MixedPrecision'), ForwardRef('torch.distributed.fsdp.MixedPrecisionPolicy'), NoneType] = None, auto_wrap_policy: typing.Union[typing.Callable, typing.Literal['transformer_based_wrap', 'size_based_wrap', 'no_wrap'], NoneType] = None, cpu_offload: typing.Union[bool, ForwardRef('torch.distributed.fsdp.CPUOffload'), ForwardRef('torch.distributed.fsdp.CPUOffloadPolicy')] = None, ignored_modules: typing.Union[collections.abc.Iterable[torch.nn.Module], str, NoneType] = None, state_dict_type: typing.Union[str, ForwardRef('torch.distributed.fsdp.StateDictType')] = None, state_dict_config: typing.Union[ForwardRef('torch.distributed.fsdp.FullStateDictConfig'), ForwardRef('torch.distributed.fsdp.ShardedStateDictConfig'), NoneType] = None, optim_state_dict_config: typing.Union[ForwardRef('torch.distributed.fsdp.FullOptimStateDictConfig'), ForwardRef('torch.distributed.fsdp.ShardedOptimStateDictConfig'), NoneType] = None, limit_all_gathers: bool = True, use_orig_params: typing.Optional[bool] = None, param_init_fn: typing.Optional[typing.Callable[[torch.nn.Module], NoneType]] = None, sync_module_states: typing.Optional[bool] = None, forward_prefetch: bool = None, activation_checkpointing: bool = None, activation_checkpointing_offload: bool = None, cpu_ram_efficient_loading: bool = None, transformer_cls_names_to_wrap: typing.Optional[list[str]] = None, min_num_params: typing.Optional[int] = None)
+accelerate.FullyShardedDataParallelPlugin(fsdp_version: int = None, sharding_strategy: str | ForwardRef('torch.distributed.fsdp.ShardingStrategy') = None, reshard_after_forward: str | ForwardRef('torch.distributed.fsdp.ShardingStrategy') | bool = None, backward_prefetch: str | ForwardRef('torch.distributed.fsdp.BackwardPrefetch') | None = None, mixed_precision_policy: dict | str | ForwardRef('torch.distributed.fsdp.MixedPrecision') | ForwardRef('torch.distributed.fsdp.MixedPrecisionPolicy') | None = None, auto_wrap_policy: typing.Callable | typing.Literal['transformer_based_wrap', 'size_based_wrap', 'no_wrap'] | None = None, cpu_offload: bool | ForwardRef('torch.distributed.fsdp.CPUOffload') | ForwardRef('torch.distributed.fsdp.CPUOffloadPolicy') = None, ignored_modules: collections.abc.Iterable[torch.nn.Module] | str | None = None, state_dict_type: str | ForwardRef('torch.distributed.fsdp.StateDictType') = None, state_dict_config: ForwardRef('torch.distributed.fsdp.FullStateDictConfig') | ForwardRef('torch.distributed.fsdp.ShardedStateDictConfig') | None = None, optim_state_dict_config: ForwardRef('torch.distributed.fsdp.FullOptimStateDictConfig') | ForwardRef('torch.distributed.fsdp.ShardedOptimStateDictConfig') | None = None, limit_all_gathers: bool = True, use_orig_params: bool | None = None, param_init_fn: typing.Callable[[torch.nn.Module], NoneType] | None = None, sync_module_states: bool | None = None, forward_prefetch: bool = None, activation_checkpointing: bool = None, activation_checkpointing_offload: bool = None, cpu_ram_efficient_loading: bool = None, transformer_cls_names_to_wrap: list[str] | None = None, min_num_params: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L1586)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L1465)
 
 **参数：**
 
@@ -104,7 +104,7 @@ min_num_params（`Optional[int]`，默认为`None`）：模块必须包装的最
 set_auto_wrap_policy(model)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L2075)给定`model`，根据传入的策略创建一个`auto_wrap_policy`，如果我们可以使用
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L1941)给定`model`，根据传入的策略创建一个`auto_wrap_policy`，如果我们可以使用
 `transformer_cls_to_wrap`
 
 #### set_mixed_ precision[[accelerate.FullyShardedDataParallelPlugin.set_mixed_ precision]]
@@ -113,7 +113,7 @@ set_auto_wrap_policy(model)
 set_mixed_precision(mixed_precision, buffer_autocast = False, override = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L2109)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L1981)
 
 设置 FSDP 的混合精度策略
 
@@ -123,7 +123,7 @@ set_mixed_precision(mixed_precision, buffer_autocast = False, override = False)
 set_state_dict_type(state_dict_type = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L2030)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L1896)
 
 根据`StateDictType`设置状态字典配置。
 
@@ -133,7 +133,7 @@ set_state_dict_type(state_dict_type = None)
 validate_mixed_precision_policy()
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L2161)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L2029)
 
 验证混合精度策略，将其抽象出来，以便在不需要时不引入导入。
 
@@ -145,7 +145,7 @@ validate_mixed_precision_policy()
 accelerate.utils.fsdp2_load_full_state_dict(accelerator, model: Module, full_sd: dict, cpu_offload: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/fsdp_utils.py#L574)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/fsdp_utils.py#L584)
 
 **参数：**
 
@@ -153,7 +153,7 @@ Accelerator (`Accelerator`) : 加速器实例
 
 model (`torch.nn.Module`) ：将状态字典加载到的模型，预计位于元设备上，否则可能会出现 VRAM 尖峰
 
-full_sd (`dict`) : 要加载的完整状态字典，只能位于 0 级cpu_offload (`bool`, 默认为`False`) : 如果为True，分配后将分片参数移至CPU。启用 FSDP CPU 卸载时需要。
+full_sd (`dict`) : 要加载的完整状态字典，只能位于 0 级cpu_offload (`bool`, 默认为`False`) : 如果为True，分配后将分片参数移至CPU。启用 FSDP CPU 卸载时需要。缓冲区和忽略的参数保留在加速器设备上。
 
 将完整状态字典（可能仅位于等级 0）加载到分片模型中。这是通过广播来完成的
 从等级 0 到所有其他等级的参数。该函数就地修改模型。
@@ -166,13 +166,13 @@ full_sd (`dict`) : 要加载的完整状态字典，只能位于 0 级cpu_offloa
 accelerate.utils.fsdp2_switch_optimizer_parameters(optimizer: Optimizer, mapping: dict)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/fsdp_utils.py#L670)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/fsdp_utils.py#L658)
 
 **参数：**
 
 Optimizer (`torch.optim.Optimizer`) ：包含原始模型参数的优化器实例
 
-映射 (`dict`) ：从原始参数（`data_ptr`指定）映射到分片参数
+映射（`dict`）：从原始参数的数据指针（或元参数的标识）映射到分片参数。
 
 **加薪：** ``KeyError``
 
@@ -190,7 +190,7 @@ Optimizer (`torch.optim.Optimizer`) ：包含原始模型参数的优化器实�
 accelerate.utils.fsdp2_prepare_model(accelerator, model: Module)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/fsdp_utils.py#L751)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/fsdp_utils.py#L740)
 
 **参数：**
 
@@ -206,5 +206,5 @@ model (`torch.nn.Module`) : 准备的模型
 
 ## fsdp2_prepare_auto_wrap_policy
 
-### 使用大型模型
-https://huggingface.co/docs/accelerate/v1.15.0/package_reference/big_modeling.md
+### FP8
+https://huggingface.co/docs/accelerate/v1.16.0/package_reference/fp8.md

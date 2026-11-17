@@ -2,7 +2,7 @@
 
 # 分析器
 
-Profiler 是一个允许在训练和推理期间收集性能指标的工具。 Profiler 的上下文管理器 API 可用于更好地了解哪些模型运算符最昂贵、检查其输入形状和堆栈跟踪、研究设备内核活动以及可视化执行跟踪。它提供了对模型性能的深入了解，使您能够优化和改进模型。
+Profiler 是一个允许在训练和推理期间收集性能指标的工具。 Profiler 的上下文管理器 API 可用于更好地了解哪些模型运算符最昂贵、检查其输入形状和堆栈跟踪、研究设备内核活动以及可视化执行跟踪。它可以深入了解模型的性能，使您能够优化和改进模型。
 
 本指南介绍了如何使用 PyTorch Profiler 来测量模型运算符的时间和内存消耗以及如何将其与 Accelerate 集成。我们将介绍各种用例并为每个用例提供示例。
 
@@ -10,7 +10,7 @@ Profiler 是一个允许在训练和推理期间收集性能指标的工具。 P
 
 Profiler 允许检查在执行由探查器上下文管理器包装的代码范围期间调用了哪些运算符。
 
-让我们看看如何使用分析器来分析执行时间：
+让我们看看如何使用 profiler 来分析执行时间：
 
 ```python
 import torch
@@ -201,7 +201,7 @@ with accelerator.profile() as prof:
 
 ## 使用 Profiler 分析长时间运行的作业
 
-Profiler 提供了一个额外的 API 来处理长时间运行的作业（例如训练循环）。跟踪所有执行可能会很慢并导致跟踪文件非常大。为了避免这种情况，请使用可选参数：- `schedule_option`：计划选项允许您控制分析何时处于活动状态。这对于长时间运行的作业非常有用，可以避免收集太多数据。可用的键有 `wait`、`warmup`、`active`、`repeat` 和 `skip_first`。分析器将跳过前 `skip_first` 步骤，然后等待 `wait` 步骤，然后为接下来的 `warmup` 步骤进行预热，然后为接下来的 `active` 步骤进行活动记录，然后从 `wait` 步骤开始重复循环。可选的周期数由`repeat`参数指定，零值意味着周期将继续，直到分析完成。
+Profiler 提供了一个额外的 API 来处理长时间运行的作业（例如训练循环）。跟踪所有执行可能会很慢并且会产生非常大的跟踪文件。为了避免这种情况，请使用可选参数：- `schedule_option`：计划选项允许您控制分析何时处于活动状态。这对于长时间运行的作业非常有用，可以避免收集太多数据。可用的键有 `wait`、`warmup`、`active`、`repeat` 和 `skip_first`。分析器将跳过前 `skip_first` 步骤，然后等待 `wait` 步骤，然后为接下来的 `warmup` 步骤进行预热，然后为接下来的 `active` 步骤进行活动记录，然后从 `wait` 步骤开始重复循环。可选的周期数由`repeat`参数指定，零值意味着周期将继续，直到分析完成。
 - `on_trace_ready`：指定一个函数，它将对探查器的引用作为输入，并在每次新跟踪准备就绪时由探查器调用。
 
 为了说明 API 的工作原理，请考虑以下示例：
@@ -308,5 +308,5 @@ Self CUDA time total: 4.165ms
 
 更详细的信息请参阅[PyTorch Profiler documentation](https://pytorch.org/docs/stable/profiler.html)。
 
-### 将大模型加载到内存中
-https://huggingface.co/docs/accelerate/v1.15.0/concept_guides/big_model_inference.md
+### 通过 DeepSpeed 使用多个模型
+https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/deepspeed_multiple_model.md

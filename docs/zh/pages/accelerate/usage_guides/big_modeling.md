@@ -28,7 +28,7 @@ with init_empty_weights():
 
 接下来，将权重加载到模型中进行推理。
 
-[load_checkpoint_and_dispatch()](/docs/accelerate/v1.15.0/en/package_reference/big_modeling#accelerate.load_checkpoint_and_dispatch) 方法在空模型中加载一个检查点，并在所有可用设备上分配每一层的权重，首先从最快的设备（GPU、MPS、XPU、NPU、MLU、SDAA、MUSA）开始，然后再转移到较慢的设备（CPU 和硬盘驱动器）。
+[load_checkpoint_and_dispatch()](/docs/accelerate/v1.16.0/en/package_reference/big_modeling#accelerate.load_checkpoint_and_dispatch) 方法在空模型中加载一个检查点，并在所有可用设备上分配每一层的权重，首先从最快的设备（GPU、MPS、XPU、NPU、MLU、SDAA、MUSA）开始，然后再转移到较慢的设备（CPU 和硬盘驱动器）。
 
 设置 `device_map="auto"` 会首先自动填充 GPU 上的所有可用空间，然后是 CPU，最后是硬盘驱动器（绝对最慢的选项）（如果内存仍然不足）。> [!提示]
 > 有关如何设计自己的设备映射的更多详细信息，请参阅[Designing a device map](../concept_guides/big_model_inference#designing-a-device-map)指南。
@@ -56,8 +56,7 @@ output = model(input)
 
 每次输入通过一个层时，它都会从 CPU 发送到 GPU（或从磁盘到 CPU 再到 GPU），计算输出，然后从 GPU 中删除该层，然后返回。虽然这会增加一些推理开销，但只要最大的层适合您的 GPU，您就可以在系统上运行任何大小的模型。
 
-可以利用多个 GPU 或“模型并行性”，但在任何给定时刻只有一个 GPU 处于活动状态。这会强制 GPU 等待前一个 GPU 向其发送输出。您应该使用 Python 正常启动脚本，而不是使用 torchrun 和加速启动等其他工具。> [!提示]
-> 您可能还对“管道并行性”感兴趣，它一次利用所有可用的 GPU，而不是一次只有一个 GPU 处于活动状态。但这种方法不太灵活。欲了解更多详情，请参阅[Memory-efficient pipeline parallelism](./distributed_inference#memory-efficient-pipeline-parallelism-experimental)指南。
+可以利用多个 GPU 或“模型并行性”，但在任何给定时刻只有一个 GPU 处于活动状态。这会强制 GPU 等待前一个 GPU 向其发送输出。您应该使用 Python 正常启动脚本，而不是使用 torchrun 和加速启动等其他工具。
 
 请看下面的大模型推理的完整示例。
 
@@ -78,11 +77,9 @@ input = input.to(device_type)
 output = model(input)
 ```
 
-## Hugging Face 生态系统
+## Hugging Face 生态系统Hugging Face 生态系统中的其他库（例如 Transformers 或 Diffusers）在其 [from_pretrained](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) 构造函数中支持大模型推理。
 
-Hugging Face 生态系统中的其他库（例如 Transformers 或 Diffusers）在其 [from_pretrained](https://huggingface.co/docs/transformers/v5.16.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) 构造函数中支持大模型推理。
-
-您只需在[from_pretrained](https://huggingface.co/docs/transformers/v5.16.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained)中添加`device_map="auto"`即可启用大模型推理。
+您只需在[from_pretrained](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained)中添加`device_map="auto"`即可启用大模型推理。
 
 例如，使用大模型推理加载 Big Sciences T0pp 110 亿参数模型。
 
@@ -104,5 +101,5 @@ model = AutoModelForSeq2SeqLM.from_pretrained("bigscience/T0pp", device_map="aut
 
 有关大模型推理的更详细说明，请务必查看[conceptual guide](../concept_guides/big_model_inference)！
 
-### Intel CPU 训练
-https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/intel_cpu.md
+### 亚马逊 SageMaker
+https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/sagemaker.md

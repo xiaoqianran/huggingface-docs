@@ -133,5 +133,5 @@ export MASTER_ADDR=xxx.xxx.xxx.xxx #node0 ip
 mpirun -f hostfile -n 16 -ppn 4 accelerate launch examples/nlp_example.py
 ```
 
-### 使用 Accelerate 执行梯度累积
-https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/gradient_accumulation.md
+### 深速
+https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/deepspeed.md

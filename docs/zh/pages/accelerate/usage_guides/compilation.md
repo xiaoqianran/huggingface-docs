@@ -63,7 +63,7 @@ model = accelerator.prepare(model)
 
 ### 区域编译的好处
 
-我们使用 PyTorch 中的 `torch.compile` 功能进行了广泛的基准测试，比较完整编译和区域编译。完整结果可在 [accelerate repository](https://github.com/huggingface/accelerate/tree/main/benchmarks/torch.compile/regional_compilation) 中找到。我们的基准测试的主要发现是：1. **可比较的性能**：区域编译可提供与完整编译类似的性能加速，特别是对于较大的模型。
+我们使用 PyTorch 中的 `torch.compile` 功能进行了广泛的基准测试，比较完整编译和区域编译。完整结果可在 [accelerate repository](https://github.com/huggingface/accelerate/tree/main/benchmarks/torch.compile) 中找到。我们的基准测试的主要发现是：1. **可比较的性能**：区域编译可提供与完整编译类似的性能加速，特别是对于较大的模型。
 2. **更快的编译**：区域编译显着减少了编译模型所需的时间，使其成为更高效的部署选择。
 3. **批大小影响**：编译策略之间的性能差异随着批大小的增大而减小，表明在这些情况下编译开销的影响较小。
 4. **模型大小考虑**：区域编译的好处在较大的模型中更为明显，可以节省大量的编译时间。
@@ -71,7 +71,5 @@ model = accelerator.prepare(model)
 
 ## 结论
 
-完整编译和区域编译都可以显着加快模型速度。区域编译在编译时间和运行时性能之间提供了实际的平衡，特别是对于训练具有大量批量大小的大型模型。
-
-### 分析器
-https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/profiler.md
+完整编译和区域编译都可以显着加快模型速度。区域编译在编译时间和运行时性能之间提供了实际的平衡，特别是对于训练具有大量批量大小的大型模型。### DDP 通信挂钩
+https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/ddp_comm_hook.md

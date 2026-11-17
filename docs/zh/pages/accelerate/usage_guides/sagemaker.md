@@ -51,7 +51,7 @@ Accelerate 将完成有关您的 Amazon SageMaker 设置的调查问卷，并创
 ```
 
     SageMaker 不支持 argparse 操作。例如，如果您想使用布尔超参数，则需要
-    在脚本中将类型指定为 bool 并为此超参数提供明确的 True 或 False 值。 [[参考]](https://sagemaker.readthedocs.io/en/stable/frameworks/pytorch/using_pytorch.html#prepare-a-pytorch-training-script)。
+    在脚本中将类型指定为 bool 并为此超参数提供明确的 True 或 False 值。 [[参考]](https://sagemaker.readthedocs.io/en/v2/frameworks/pytorch/using_pytorch.html#prepare-a-pytorch-training-script)。
 
 ### 启动培训
 
@@ -143,7 +143,7 @@ ec2_instance_type: local
 
 ### 高级配置
 
-该配置允许您覆盖 [Estimator](https://sagemaker.readthedocs.io/en/stable/api/training/estimators.html) 的参数。
+该配置允许您覆盖 [Estimator](https://sagemaker.readthedocs.io/en/v2/api/training/estimators.html) 的参数。
 这些设置必须应用在配置文件中，并且不是`accelerate config`的一部分。您可以控制训练作业的许多其他方面，例如使用 Spot 实例、启用网络隔离等等。
 
 ```yaml
@@ -152,7 +152,7 @@ additional_args:
   enable_network_isolation: True
 ```
 
-您可以找到所有可用的配置[here](https://sagemaker.readthedocs.io/en/stable/api/training/estimators.html)。
+您可以找到所有可用的配置[here](https://sagemaker.readthedocs.io/en/v2/api/training/estimators.html)。
 
 ### 使用 Spot 实例
 
@@ -170,4 +170,4 @@ additional_args:
 *尚未决定是否需要该功能。如果您需要此功能，请联系我们。*
 
 ### 检查点
-https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/checkpoint.md
+https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/checkpoint.md

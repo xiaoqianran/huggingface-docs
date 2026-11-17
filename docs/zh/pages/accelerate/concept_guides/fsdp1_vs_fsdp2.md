@@ -75,7 +75,7 @@ accelerator = Accelerator(fsdp_plugin=fsdp_plugin)
 accelerate to-fsdp2 --config_file config.yaml --output_file new_config.yaml
 ```
 
-这将自动将所有 FSDP1 设置转换为其 FSDP2 等效设置。使用 `--overwrite` 更新现有文件而不是创建新文件。
+这将自动将所有 FSDP1 设置转换为其 FSDP2 等效项。使用 `--overwrite` 更新现有文件而不是创建新文件。
 
-### 比较分布式设置的性能
-https://huggingface.co/docs/accelerate/v1.15.0/concept_guides/performance.md
+### FSDP 与 DeepSpeed
+https://huggingface.co/docs/accelerate/v1.16.0/concept_guides/fsdp_and_deepspeed.md

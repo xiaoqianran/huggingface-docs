@@ -9,10 +9,10 @@
 ####加速.init_empty_weights[[accelerate.init_empty_weights]]
 
 ```python
-accelerate.init_empty_weights(include_buffers: typing.Optional[bool] = None)
+accelerate.init_empty_weights(include_buffers: bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/big_modeling.py#L61)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/big_modeling.py#L57)
 
 **参数：**
 
@@ -33,8 +33,8 @@ with init_empty_weights():
 ```
 
 在此上下文管理器下创建的任何模型都没有权重。因此你不能做类似的事情
-`model.to(some_device)` 有了它。要在空模型中加载权重，请参阅[load_checkpoint_and_dispatch()](/docs/accelerate/v1.15.0/en/package_reference/big_modeling#accelerate.load_checkpoint_and_dispatch)。
-确保覆盖[load_checkpoint_and_dispatch()](/docs/accelerate/v1.15.0/en/package_reference/big_modeling#accelerate.load_checkpoint_and_dispatch)的默认device_map参数，否则无法调度
+`model.to(some_device)` 有了它。要在空模型中加载权重，请参阅[load_checkpoint_and_dispatch()](/docs/accelerate/v1.16.0/en/package_reference/big_modeling#accelerate.load_checkpoint_and_dispatch)。
+确保覆盖[load_checkpoint_and_dispatch()](/docs/accelerate/v1.16.0/en/package_reference/big_modeling#accelerate.load_checkpoint_and_dispatch)的默认device_map参数，否则无法调度
 叫。
 
 ### cpu_offload[[accelerate.cpu_offload]]
@@ -42,10 +42,10 @@ with init_empty_weights():
 ####加速.cpu_offload[[加速.cpu_offload]]
 
 ```python
-accelerate.cpu_offload(model: Module, execution_device: typing.Optional[torch.device] = None, offload_buffers: bool = False, state_dict: typing.Optional[dict[str, torch.Tensor]] = None, preload_module_classes: typing.Optional[list[str]] = None)
+accelerate.cpu_offload(model: Module, execution_device: torch.device | None = None, offload_buffers: bool = False, state_dict: dict[str, torch.Tensor] | None = None, preload_module_classes: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/big_modeling.py#L179)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/big_modeling.py#L175)
 
 **参数：**
 
@@ -66,10 +66,10 @@ preload_module_classes (`List[str]`, *可选*) ：类的列表，其实例应在
 ####加速.cpu_offload_with_hook[[accelerate.cpu_offload_with_hook]]
 
 ```python
-accelerate.cpu_offload_with_hook(model: Module, execution_device: typing.Union[int, str, torch.device, NoneType] = None, prev_module_hook: typing.Optional[accelerate.hooks.UserCpuOffloadHook] = None)
+accelerate.cpu_offload_with_hook(model: Module, execution_device: int | str | torch.device | None = None, prev_module_hook: accelerate.hooks.UserCpuOffloadHook | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/big_modeling.py#L225)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/big_modeling.py#L221)
 
 **参数：**
 
@@ -78,7 +78,7 @@ model (`torch.nn.Module`) ：要卸载的模型。execution_device(`str`, `int` 
 prev_module_hook (`UserCpuOffloadHook`, *可选*) ：此函数为您正在运行的管道中的先前模型发送回的钩子。如果通过，它的 offload 方法将在该钩子所附加的模型的转发之前被调用。
 
 将模型卸载到 CPU 上，并在执行时将其放回执行设备。与的区别
-[cpu_offload()](/docs/accelerate/v1.15.0/en/package_reference/big_modeling#accelerate.cpu_offload) 是模型在转发后保留在执行设备上，仅在以下情况下再次卸载：
+[cpu_offload()](/docs/accelerate/v1.16.0/en/package_reference/big_modeling#accelerate.cpu_offload) 是模型在转发后保留在执行设备上，仅在以下情况下再次卸载：
 调用返回的 `hook` 的 `offload` 方法。对于循环运行模型的管道很有用。
 
 示例：
@@ -104,10 +104,10 @@ hook_3.offload()
 ####加速.disk_offload[[加速.disk_offload]]
 
 ```python
-accelerate.disk_offload(model: Module, offload_dir: typing.Union[str, os.PathLike], execution_device: typing.Optional[torch.device] = None, offload_buffers: bool = False, preload_module_classes: typing.Optional[list[str]] = None)
+accelerate.disk_offload(model: Module, offload_dir: str | os.PathLike, execution_device: torch.device | None = None, offload_buffers: bool = False, preload_module_classes: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/big_modeling.py#L269)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/big_modeling.py#L265)
 
 **参数：**
 
@@ -128,10 +128,10 @@ preload_module_classes (`List[str]`, *可选*) ：类的列表，其实例应在
 ####加速.dispatch_model[[accelerate.dispatch_model]]
 
 ```python
-accelerate.dispatch_model(model: Module, device_map: dict, main_device: typing.Optional[torch.device] = None, state_dict: typing.Optional[dict[str, torch.Tensor]] = None, offload_dir: typing.Union[str, os.PathLike, NoneType] = None, offload_index: typing.Optional[dict[str, str]] = None, offload_buffers: bool = False, skip_keys: typing.Union[str, list[str], NoneType] = None, preload_module_classes: typing.Optional[list[str]] = None, force_hooks: bool = False)
+accelerate.dispatch_model(model: Module, device_map: dict[str, str | int | torch.device], main_device: torch.device | None = None, state_dict: dict[str, torch.Tensor] | None = None, offload_dir: str | os.PathLike | None = None, offload_index: dict[str, str] | None = None, offload_buffers: bool = False, skip_keys: str | list[str] | None = None, preload_module_classes: list[str] | None = None, force_hooks: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/big_modeling.py#L315)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/big_modeling.py#L311)
 
 **参数：**model (`torch.nn.Module`) ：要调度的模型。
 
@@ -159,16 +159,16 @@ CPU 甚至磁盘。
 ####加速.load_checkpoint_and_dispatch[[accelerate.load_checkpoint_and_dispatch]]
 
 ```python
-accelerate.load_checkpoint_and_dispatch(model: Module, checkpoint: typing.Union[str, os.PathLike], device_map: typing.Union[str, dict[str, typing.Union[int, str, torch.device]], NoneType] = None, max_memory: typing.Optional[dict[typing.Union[int, str], typing.Union[int, str]]] = None, no_split_module_classes: typing.Optional[list[str]] = None, offload_folder: typing.Union[str, os.PathLike, NoneType] = None, offload_buffers: bool = False, dtype: typing.Union[str, torch.dtype, NoneType] = None, offload_state_dict: typing.Optional[bool] = None, skip_keys: typing.Union[str, list[str], NoneType] = None, preload_module_classes: typing.Optional[list[str]] = None, force_hooks: bool = False, strict: bool = False, full_state_dict: bool = True, broadcast_from_rank0: bool = False)
+accelerate.load_checkpoint_and_dispatch(model: Module, checkpoint: str | os.PathLike, device_map: str | dict[str, int | str | torch.device] | None = None, max_memory: dict[int | str, int | str] | None = None, no_split_module_classes: list[str] | None = None, offload_folder: str | os.PathLike | None = None, offload_buffers: bool = False, dtype: str | torch.dtype | None = None, offload_state_dict: bool | None = None, skip_keys: str | list[str] | None = None, preload_module_classes: list[str] | None = None, force_hooks: bool = False, strict: bool = False, full_state_dict: bool = True, broadcast_from_rank0: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/big_modeling.py#L520)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/big_modeling.py#L500)
 
 **参数：**
 
 model (`torch.nn.Module`) ：我们要在其中加载检查点的模型。检查点（`str` 或 `os.PathLike`）：要加载的文件夹检查点。它可以是： - 包含整个模型状态字典的文件的路径 - 包含分片检查点索引的 `.json` 文件的路径 - 包含唯一 `.index.json` 文件和检查点分片的文件夹的路径。
 
-device_map (`Dict[str, Union[int, str, torch.device]]`, *可选*) ：指定每个子模块应该去哪里的映射。它不需要细化到每个参数/缓冲区名称，一旦给定的模块名称在里面，它的每个子模块都会被发送到同一个设备。  要让 Accelerate 自动计算最优化的 `device_map`，请设置 `device_map="auto"`。有关每个选项的更多信息，请参阅[here](../concept_guides/big_model_inference#designing-a-device-map)。默认为None，这意味着[dispatch_model()](/docs/accelerate/v1.15.0/en/package_reference/big_modeling#accelerate.dispatch_model)不会被调用。
+device_map (`Dict[str, Union[int, str, torch.device]]`, *可选*) ：指定每个子模块应该去哪里的映射。它不需要细化到每个参数/缓冲区名称，一旦给定的模块名称在里面，它的每个子模块都会被发送到同一个设备。  要让 Accelerate 自动计算最优化的 `device_map`，请设置 `device_map="auto"`。有关每个选项的更多信息，请参阅[here](../concept_guides/big_model_inference#designing-a-device-map)。默认为None，这意味着[dispatch_model()](/docs/accelerate/v1.16.0/en/package_reference/big_modeling#accelerate.dispatch_model)不会被调用。
 
 max_memory (`Dict`, *可选*) ：最大内存的字典设备标识符。如果未设置，将默认为每个 GPU 可用的最大内存和可用 CPU RAM。
 
@@ -218,10 +218,10 @@ Broadcast_from_rank0（`False`，*可选*，默认为`False`）：当选项为`T
 ####加速.load_checkpoint_in_model[[accelerate.load_checkpoint_in_model]]
 
 ```python
-accelerate.load_checkpoint_in_model(model: Module, checkpoint: typing.Union[str, os.PathLike], device_map: typing.Optional[dict[str, typing.Union[int, str, torch.device]]] = None, offload_folder: typing.Union[str, os.PathLike, NoneType] = None, dtype: typing.Union[str, torch.dtype, NoneType] = None, offload_state_dict: bool = False, offload_buffers: bool = False, keep_in_fp32_modules: typing.Optional[list[str]] = None, offload_8bit_bnb: bool = False, strict: bool = False, full_state_dict: bool = True, broadcast_from_rank0: bool = False)
+accelerate.load_checkpoint_in_model(model: Module, checkpoint: str | os.PathLike, device_map: dict[str, int | str | torch.device] | None = None, offload_folder: str | os.PathLike | None = None, dtype: str | torch.dtype | None = None, offload_state_dict: bool = False, offload_buffers: bool = False, keep_in_fp32_modules: list[str] | None = None, offload_8bit_bnb: bool = False, strict: bool = False, full_state_dict: bool = True, broadcast_from_rank0: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/modeling.py#L1817)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/modeling.py#L1786)
 
 **参数：**
 
@@ -248,18 +248,18 @@ full_state_dict（`bool`，*可选*，默认为`True`）：如果设置为`True`
 在模型内加载（可能分片的）检查点，可能将权重按原样发送到给定设备
 已加载。
 
-一旦跨设备加载，您仍然需要在模型上调用[dispatch_model()](/docs/accelerate/v1.15.0/en/package_reference/big_modeling#accelerate.dispatch_model)以使其能够运行。至
-将检查点加载和调度分组到一个调用中，使用[load_checkpoint_and_dispatch()](/docs/accelerate/v1.15.0/en/package_reference/big_modeling#accelerate.load_checkpoint_and_dispatch)。
+一旦跨设备加载，您仍然需要在模型上调用[dispatch_model()](/docs/accelerate/v1.16.0/en/package_reference/big_modeling#accelerate.dispatch_model)以使其能够运行。至
+将检查点加载和调度分组到一个调用中，使用[load_checkpoint_and_dispatch()](/docs/accelerate/v1.16.0/en/package_reference/big_modeling#accelerate.load_checkpoint_and_dispatch)。
 
 ### infer_auto_device_map[[accelerate.infer_auto_device_map]]
 
 ####加速.infer_auto_device_map[[accelerate.infer_auto_device_map]]
 
 ```python
-accelerate.infer_auto_device_map(model: Module, max_memory: typing.Optional[dict[typing.Union[int, str], typing.Union[int, str]]] = None, no_split_module_classes: typing.Optional[list[str]] = None, dtype: typing.Union[str, torch.dtype, NoneType] = None, special_dtypes: typing.Optional[dict[str, typing.Union[str, torch.dtype]]] = None, verbose: bool = False, clean_result: bool = True, offload_buffers: bool = False, fallback_allocation: bool = False)
+accelerate.infer_auto_device_map(model: Module, max_memory: dict[int | str, int | str] | None = None, no_split_module_classes: list[str] | None = None, dtype: str | torch.dtype | None = None, special_dtypes: dict[str, str | torch.dtype] | None = None, verbose: bool = False, clean_result: bool = True, offload_buffers: bool = False, fallback_allocation: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/modeling.py#L1307)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/modeling.py#L1278)
 
 **参数：**
 
@@ -299,7 +299,7 @@ Fallback_allocation (`bool`，*可选*，默认为`False`)：当常规分配失�
 accelerate.hooks.ModelHook()
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/hooks.py#L58)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/hooks.py#L51)
 
 一个钩子，包含在模型的前向方法之前和之后执行的回调。区别
 PyTorch 现有的钩子是它们沿着 kwargs 传递。类属性：
@@ -312,7 +312,7 @@ PyTorch 现有的钩子是它们沿着 kwargs 传递。类属性：
 detach_hook(module)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/hooks.py#L106)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/hooks.py#L99)
 
 **参数：**
 
@@ -326,7 +326,7 @@ module (`torch.nn.Module`) ：从该钩子上分离的模块。
 init_hook(module)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/hooks.py#L70)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/hooks.py#L63)
 
 **参数：**
 
@@ -340,11 +340,11 @@ module (`torch.nn.Module`) ：连接到此钩子的模块。
 post_forward(module, output)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/hooks.py#L93)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/hooks.py#L86)
 
 **参数：**
 
-module (`torch.nn.Module`) ：在此事件之前执行前向传播的模块。
+module (`torch.nn.Module`) ：在此事件之前执行前向传递的模块。
 
 输出（`Any`）：模块的输出。
 
@@ -360,11 +360,11 @@ module (`torch.nn.Module`) ：在此事件之前执行前向传播的模块。
 pre_forward(module, *args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/hooks.py#L79)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/hooks.py#L72)
 
 **参数：**
 
-module (`torch.nn.Module`) : 在此事件之后将执行前向传递的模块。
+module (`torch.nn.Module`) : 在此事件之后将执行前向传播的模块。
 
 args (`Tuple[Any]`) ：传递给模块的位置参数。kwargs (`Dict[Str, Any]`) ：传递给模块的关键字参数。
 
@@ -379,10 +379,10 @@ args (`Tuple[Any]`) ：传递给模块的位置参数。kwargs (`Dict[Str, Any]`
 ####加速.hooks.AlignDevicesHook[[accelerate.hooks.AlignDevicesHook]]
 
 ```python
-accelerate.hooks.AlignDevicesHook(execution_device: typing.Union[int, str, torch.device, NoneType] = None, offload: bool = False, io_same_device: bool = False, weights_map: typing.Optional[collections.abc.Mapping] = None, offload_buffers: bool = False, place_submodules: bool = False, skip_keys: typing.Union[str, list[str], NoneType] = None, tied_params_map: typing.Optional[dict[int, dict[torch.device, torch.Tensor]]] = None)
+accelerate.hooks.AlignDevicesHook(execution_device: int | str | torch.device | None = None, offload: bool = False, io_same_device: bool = False, weights_map: collections.abc.Mapping | None = None, offload_buffers: bool = False, place_submodules: bool = False, skip_keys: str | list[str] | None = None, tied_params_map: dict[int, dict[torch.device, torch.Tensor]] | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/hooks.py#L242)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/hooks.py#L238)
 
 **参数：**
 
@@ -407,7 +407,7 @@ place_submodules (`bool`, *可选*, 默认为`False`) : 是否在`init_hook`事�
 accelerate.hooks.SequentialHook(*hooks)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/hooks.py#L116)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/hooks.py#L109)
 
 一个钩子可以包含多个钩子并在每个事件中迭代它们。
 
@@ -419,7 +419,7 @@ accelerate.hooks.SequentialHook(*hooks)
 accelerate.hooks.LayerwiseCastingHook(storage_dtype: dtype, compute_dtype: dtype, non_blocking: bool)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/hooks.py#L784)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/hooks.py#L781)
 
 一个钩子，将模块的权重转换为高精度数据类型以进行计算，并转换为低精度数据类型
 用于存储。此过程可能会导致输出质量下降，但会显着减少内存
@@ -435,7 +435,7 @@ accelerate.hooks.LayerwiseCastingHook(storage_dtype: dtype, compute_dtype: dtype
 accelerate.hooks.add_hook_to_module(module: Module, hook: ModelHook, append: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/hooks.py#L147)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/hooks.py#L140)
 
 **参数：**
 
@@ -459,10 +459,10 @@ module (`torch.nn.Module`) ：要附加钩子的模块。
 ####加速.hooks.attach_execution_device_hook[[accelerate.hooks.attach_execution_device_hook]]
 
 ```python
-accelerate.hooks.attach_execution_device_hook(module: Module, execution_device: typing.Union[int, str, torch.device], skip_keys: typing.Union[str, list[str], NoneType] = None, preload_module_classes: typing.Optional[list[str]] = None, tied_params_map: typing.Optional[dict[int, dict[torch.device, torch.Tensor]]] = None)
+accelerate.hooks.attach_execution_device_hook(module: Module, execution_device: int | str | torch.device, skip_keys: str | list[str] | None = None, preload_module_classes: list[str] | None = None, tied_params_map: dict[int, dict[torch.device, torch.Tensor]] | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/hooks.py#L443)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/hooks.py#L440)
 
 **参数：**
 
@@ -482,8 +482,8 @@ tie_params_map (可选[Dict[int, Dict[torch.device, torch.Tensor]]], *可选*, �
 ####加速.hooks.attach_align_device_hook[[accelerate.hooks.attach_align_device_hook]]
 
 ```python
-accelerate.hooks.attach_align_device_hook(module: Module, execution_device: typing.Optional[torch.device] = None, offload: bool = False, weights_map: typing.Optional[collections.abc.Mapping] = None, offload_buffers: bool = False, module_name: str = '', skip_keys: typing.Union[str, list[str], NoneType] = None, preload_module_classes: typing.Optional[list[str]] = None, tied_params_map: typing.Optional[dict[int, dict[torch.device, torch.Tensor]]] = None)
-```[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/hooks.py#L491)
+accelerate.hooks.attach_align_device_hook(module: Module, execution_device: torch.device | None = None, offload: bool = False, weights_map: collections.abc.Mapping | None = None, offload_buffers: bool = False, module_name: str = '', skip_keys: str | list[str] | None = None, preload_module_classes: list[str] | None = None, tied_params_map: dict[int, dict[torch.device, torch.Tensor]] | None = None)
+```[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/hooks.py#L488)
 
 **参数：**
 
@@ -511,10 +511,10 @@ tie_params_map (可选[Dict[int, Dict[torch.device, torch.Tensor]]], *可选*, �
 ####加速.hooks.attach_align_device_hook_on_blocks[[accelerate.hooks.attach_align_device_hook_on_blocks]]
 
 ```python
-accelerate.hooks.attach_align_device_hook_on_blocks(module: Module, execution_device: typing.Union[torch.device, dict[str, torch.device], NoneType] = None, offload: typing.Union[bool, dict[str, bool]] = False, weights_map: typing.Optional[collections.abc.Mapping] = None, offload_buffers: bool = False, module_name: str = '', skip_keys: typing.Union[str, list[str], NoneType] = None, preload_module_classes: typing.Optional[list[str]] = None, tied_params_map: typing.Optional[dict[int, dict[torch.device, torch.Tensor]]] = None)
+accelerate.hooks.attach_align_device_hook_on_blocks(module: Module, execution_device: torch.device | dict[str, torch.device] | None = None, offload: bool | dict[str, bool] = False, weights_map: collections.abc.Mapping | None = None, offload_buffers: bool = False, module_name: str = '', skip_keys: str | list[str] | None = None, preload_module_classes: list[str] | None = None, tied_params_map: dict[int, dict[torch.device, torch.Tensor]] | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/hooks.py#L586)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/hooks.py#L583)
 
 **参数：**module (`torch.nn.Module`) ：我们要附加钩子的模块。
 
@@ -539,10 +539,10 @@ tie_params_map (可选[Dict[int, Dict[torch.device, torch.Tensor]]], *可选*, �
 ####加速.big_modeling.attach_layerwise_casting_hooks[[accelerate.big_modeling.attach_layerwise_casting_hooks]]
 
 ```python
-accelerate.big_modeling.attach_layerwise_casting_hooks(module: Module, storage_dtype: dtype, compute_dtype: dtype, skip_modules_pattern: typing.Union[str, tuple[str, ...], NoneType] = None, skip_modules_classes: typing.Optional[tuple[type[torch.nn.Module], ...]] = None, non_blocking: bool = False)
+accelerate.big_modeling.attach_layerwise_casting_hooks(module: Module, storage_dtype: dtype, compute_dtype: dtype, skip_modules_pattern: str | tuple[str, ...] | None = None, skip_modules_classes: tuple[type[torch.nn.Module], ...] | None = None, non_blocking: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/big_modeling.py#L661)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/big_modeling.py#L641)
 
 **参数：**module (`torch.nn.Module`) ：该模块的叶子模块将被转换为高精度 dtype 以进行计算，并转换为低精度 dtype 以进行存储。
 
@@ -594,7 +594,7 @@ non_blocking (`bool`，默认为`False`)：如果`True`，则权重铸造操作�
 accelerate.hooks.remove_hook_from_module(module: Module, recurse = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/hooks.py#L205)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/hooks.py#L198)
 
 **参数：**
 
@@ -617,7 +617,7 @@ recurse (`bool`, **可选**) : 是否递归移除钩子
 accelerate.hooks.remove_hook_from_submodules(module: Module)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/hooks.py#L574)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/hooks.py#L571)
 
 **参数：**module (`torch.nn.Module`) ：要删除其上所有钩子的模块。
 
@@ -633,7 +633,7 @@ accelerate.hooks.remove_hook_from_submodules(module: Module)
 accelerate.utils.has_offloaded_params(module: Module)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/modeling.py#L2162)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/modeling.py#L2119)
 
 **参数：**
 
@@ -651,10 +651,10 @@ module (`torch.nn.Module`) ：检查卸载挂钩的模块。
 ####加速.utils.align_module_device[[accelerate.utils.align_module_device]]
 
 ```python
-accelerate.utils.align_module_device(module: Module, execution_device: typing.Optional[torch.device] = None)
+accelerate.utils.align_module_device(module: Module, execution_device: torch.device | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/modeling.py#L2178)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/modeling.py#L2135)
 
 **参数：**
 
@@ -662,5 +662,5 @@ module (`torch.nn.Module`) ：带有要对齐的参数的模块。
 
 execution_device (`torch.device`, *可选*) ：如果提供，则覆盖上下文中模块的执行设备。否则，使用钩子执行器或通过
 
-将模块的参数移动到指定执行设备的上下文管理器。### 启动器
-https://huggingface.co/docs/accelerate/v1.15.0/package_reference/launchers.md
+将模块的参数移动到指定执行设备的上下文管理器。### Kwargs 处理程序
+https://huggingface.co/docs/accelerate/v1.16.0/package_reference/kwargs.md

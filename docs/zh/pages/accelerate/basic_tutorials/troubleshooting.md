@@ -40,7 +40,7 @@ logger.debug("thing_to_log", main_process_only=False, in_order=True)
 
 张量形状不匹配是一个常见问题，可能会导致您的代码在分布式设置上挂起很长时间。
 
-在分布式设置中运行脚本时，需要使用 [Accelerator.gather()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.gather) 和 [Accelerator.reduce()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.reduce) 等函数来跨设备获取张量以共同对它们执行操作。这些（和其他）函数依赖于 `torch.distributed` 来执行 `gather` 操作，这要求张量在所有进程中具有**完全相同的形状**。当张量形状不匹配时，您的代码将挂起，最终会遇到超时异常。
+在分布式设置中运行脚本时，需要使用 [Accelerator.gather()](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator.gather) 和 [Accelerator.reduce()](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator.reduce) 等函数来跨设备获取张量以共同对它们执行操作。这些（和其他）函数依赖于 `torch.distributed` 来执行 `gather` 操作，这要求张量在所有进程中具有**完全相同的形状**。当张量形状不匹配时，您的代码将挂起，最终会遇到超时异常。
 
 您可以使用 Accelerate 的操作调试模式立即捕获此问题。我们建议在 `accelerate config` 设置期间启用此模式，但您也可以从 CLI、作为环境变量或通过手动编辑 `config.yaml` 文件来启用它。
 
@@ -98,7 +98,7 @@ if accelerator.check_trigger():
 
 ### Linux 上的低内核版本
 
-在内核版本 < 5.5 的 Linux 上，已报告挂起进程。要避免此问题，请将系统升级到更高的内核版本。
+在内核版本 < 5.5 的 Linux 上，已报告挂起进程。为了避免此问题，请将系统升级到更高的内核版本。
 
 ### MPI
 
@@ -115,14 +115,14 @@ mpirun -f hostfile -n {number of nodes} -ppn 1 hostname
 
 ## 内存不足运行训练脚本时最令人沮丧的错误之一是在 CUDA、XPU 或 CPU 等设备上遇到“内存不足”。整个脚本需要重新启动，任何进度都会丢失。
 
-为了解决这个问题，Accelerate 提供了很大程度上基于 [toma](https://github.com/BlackHC/toma) 的[find_executable_batch_size()](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.find_executable_batch_size) 实用程序。
+为了解决这个问题，Accelerate 提供了很大程度上基于 [toma](https://github.com/BlackHC/toma) 的[find_executable_batch_size()](/docs/accelerate/v1.16.0/en/package_reference/utilities#accelerate.find_executable_batch_size) 实用程序。
 该实用程序会重试因 OOM（内存不足）情况而失败的代码，并自动降低批处理大小。对于每个 OOM 条件，算法会将批大小减少一半并重试代码，直到成功。
 
-要使用 [find_executable_batch_size()](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.find_executable_batch_size)，请重构您的训练函数以包含带有 `find_executable_batch_size` 的内部函数，并在其中构建数据加载器。至少，这只需要 4 行新代码。
+要使用 [find_executable_batch_size()](/docs/accelerate/v1.16.0/en/package_reference/utilities#accelerate.find_executable_batch_size)，请重构您的训练函数以包含带有 `find_executable_batch_size` 的内部函数，并在其中构建数据加载器。至少，这只需要 4 行新代码。
 
  
 
-内部函数**必须**将批量大小作为第一个参数，但我们在调用时不会向它传递一个参数。包装器将为您处理这个问题。任何消耗设备内存并传递给 [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator) 的对象（模型、优化器）也**必须**在内部函数内声明。
+内部函数**必须**将批量大小作为第一个参数，但我们在调用时不会向它传递一个参数。包装器将为您处理这个问题。任何消耗设备内存并传递给 [Accelerator](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator) 的对象（模型、优化器）也**必须**在内部函数内声明。
 
 ```diff
 def training_function(args):
@@ -172,4 +172,4 @@ def training_function(args):
 - 在[Discord](http://hf.co/join/discord)上发布问题，让团队和社区帮助您。
 
 - 如果您认为发现了与该库相关的错误，请在 Accelerate [GitHub repository](https://github.com/huggingface/accelerate/issues) 上创建问题。包括有关错误的上下文和有关分布式设置的详细信息，以帮助我们更好地找出问题所在以及如何修复它。### 启动加速脚本
-https://huggingface.co/docs/accelerate/v1.15.0/basic_tutorials/launch.md
+https://huggingface.co/docs/accelerate/v1.16.0/basic_tutorials/launch.md

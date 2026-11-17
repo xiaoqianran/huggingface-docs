@@ -12,7 +12,7 @@
 accelerate.utils.get_active_deepspeed_plugin(state)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/deepspeed.py#L100)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/deepspeed.py#L100)
 
 **加薪：** ``ValueError``
 
@@ -23,10 +23,10 @@ accelerate.utils.get_active_deepspeed_plugin(state)
 ####加速.DeepSpeedPlugin[[加速.DeepSpeedPlugin]]
 
 ```python
-accelerate.DeepSpeedPlugin(hf_ds_config: typing.Any = None, gradient_accumulation_steps: int = None, gradient_clipping: float = None, zero_stage: int = None, is_train_batch_min: bool = True, offload_optimizer_device: str = None, offload_param_device: str = None, offload_optimizer_nvme_path: str = None, offload_param_nvme_path: str = None, zero3_init_flag: bool = None, zero3_save_16bit_model: bool = None, transformer_moe_cls_names: str = None, enable_msamp: bool = None, msamp_opt_level: typing.Optional[typing.Literal['O1', 'O2']] = None)
+accelerate.DeepSpeedPlugin(hf_ds_config: Any = None, gradient_accumulation_steps: int = None, gradient_clipping: float = None, zero_stage: int = None, is_train_batch_min: bool = True, offload_optimizer_device: str = None, offload_param_device: str = None, offload_optimizer_nvme_path: str = None, offload_param_nvme_path: str = None, zero3_init_flag: bool = None, zero3_save_16bit_model: bool = None, transformer_moe_cls_names: str = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L1122)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L1042)
 
 **参数：**
 
@@ -52,8 +52,6 @@ Zero3_save_16bit_model（`bool`，默认为`None`）：指示是否保存16位�
 
 Transformer_moe_cls_names（`str`，默认为`None`）：以逗号分隔的 Transformers MoE 层类名称列表（区分大小写）。例如`MixtralSparseMoeBlock`、`Qwen2MoeSparseMoeBlock`、`JetMoEAttention`、`JetMoEBlock`等。
 
-enable_msamp (`bool`，默认为`None`) ：指示是否启用 MS-AMP 后端进行 FP8 训练的标志。msamp_opt_level（`Optional[Literal["O1", "O2"]]`，默认为`None`）：MS-AMP 的优化级别（默认为“O1”）。仅当 `enable_msamp` 为 True 时才适用。应为 ['O1' 或 'O2'] 之一。
-
 该插件用于集成 DeepSpeed。
 
 #### deepspeed_config_process[[accelerate.DeepSpeedPlugin.deepspeed_config_process]]
@@ -62,17 +60,15 @@ enable_msamp (`bool`，默认为`None`) ：指示是否启用 MS-AMP 后端进�
 deepspeed_config_process(prefix = '', mismatches = None, config = None, must_match = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L1392)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L1278)
 
-使用 kwargs 中的值处理 DeepSpeed 配置。
-
-#### 选择[[accelerate.DeepSpeedPlugin.select]]
+使用 kwargs 中的值处理 DeepSpeed 配置。#### 选择[[accelerate.DeepSpeedPlugin.select]]
 
 ```python
 select(_from_accelerator_state: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/dataclasses.py#L1554)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/dataclasses.py#L1433)
 
 设置 HfDeepSpeedWeakref 以使用当前的 deepspeed 插件配置
 
@@ -82,7 +78,7 @@ select(_from_accelerator_state: bool = False)
 accelerate.utils.DummyScheduler(optimizer, total_num_steps = None, warmup_num_steps = 0, lr_scheduler_callable = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/deepspeed.py#L362)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/deepspeed.py#L362)
 
 **参数：**
 
@@ -97,7 +93,9 @@ lr_scheduler_callable（可调用，*可选*）：创建 LR 调度程序的可�
 - **kwargs**（附加关键字参数，*可选*）：其他参数。
 
 虚拟调度程序呈现模型参数或参数组，这主要用于遵循常规训练
-当在 deepspeed 配置文件中指定调度程序配置时循环。## DeepSpeedEnginerWrapper[[accelerate.utils.DeepSpeedEngineWrapper]]
+当在 deepspeed 配置文件中指定调度程序配置时循环。
+
+## DeepSpeedEnginerWrapper[[accelerate.utils.DeepSpeedEngineWrapper]]
 
 ####加速.utils.DeepSpeedEngineWrapper[[accelerate.utils.DeepSpeedEngineWrapper]]
 
@@ -105,21 +103,19 @@ lr_scheduler_callable（可调用，*可选*）：创建 LR 调度程序的可�
 accelerate.utils.DeepSpeedEngineWrapper(engine)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/deepspeed.py#L253)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/deepspeed.py#L253)
 
 **参数：**
 
 引擎 (deepspeed.runtime.engine.DeepSpeedEngine) : 要包装的 Deepspeed 引擎
 
-deepspeed.runtime.engine.DeepSpeedEngine 的内部包装器。这用于遵循传统的训练循环。
-
-#### get_global_grad_norm[[accelerate.utils.DeepSpeedEngineWrapper.get_global_grad_norm]]
+deepspeed.runtime.engine.DeepSpeedEngine 的内部包装器。这用于遵循传统的训练循环。#### get_global_grad_norm[[accelerate.utils.DeepSpeedEngineWrapper.get_global_grad_norm]]
 
 ```python
 get_global_grad_norm()
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/deepspeed.py#L286)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/deepspeed.py#L286)
 
 从 DeepSpeed 引擎获取全局梯度范数。
 
@@ -131,7 +127,7 @@ get_global_grad_norm()
 accelerate.utils.DeepSpeedOptimizerWrapper(optimizer)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/deepspeed.py#L295)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/deepspeed.py#L295)
 
 **参数：**
 
@@ -147,7 +143,7 @@ deepspeed 优化器的内部包装器。
 accelerate.utils.DeepSpeedSchedulerWrapper(scheduler, optimizers)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/deepspeed.py#L322)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/deepspeed.py#L322)
 
 **参数：**
 
@@ -155,7 +151,9 @@ accelerate.utils.DeepSpeedSchedulerWrapper(scheduler, optimizers)
 
 优化器（一个或一系列`torch.optim.Optimizer`）--
 
-deepspeed 调度程序的内部包装器。## DummyOptim[[accelerate.utils.DummyOptim]]
+deepspeed 调度程序的内部包装器。
+
+## DummyOptim[[accelerate.utils.DummyOptim]]
 
 ####加速.utils.DummyOptim[[accelerate.utils.DummyOptim]]
 
@@ -163,7 +161,7 @@ deepspeed 调度程序的内部包装器。## DummyOptim[[accelerate.utils.Dummy
 accelerate.utils.DummyOptim(params, lr = 0.001, weight_decay = 0, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/deepspeed.py#L339)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/deepspeed.py#L339)
 
 **参数：**
 
@@ -173,12 +171,10 @@ params (iterable) ：可迭代的参数以优化或定义参数组
 
 Weight_decay (float) ：权重衰减。
 
-- **kwargs**（附加关键字参数，*可选*）：其他参数。
-
-虚拟优化器呈现模型参数或参数组，这主要用于遵循常规训练
+- **kwargs**（附加关键字参数，*可选*）：其他参数。虚拟优化器呈现模型参数或参数组，这主要用于遵循常规训练
 当在 deepspeed 配置文件中指定优化器配置时循环。
 
 ## 虚拟调度程序
 
-### 实用函数和类
-https://huggingface.co/docs/accelerate/v1.15.0/package_reference/utilities.md
+### 日志记录[[accelerate.logging.get_logger]]
+https://huggingface.co/docs/accelerate/v1.16.0/package_reference/logging.md

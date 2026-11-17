@@ -40,7 +40,7 @@ accelerator.init_trackers("my_project", config=hps)
 accelerator.log({"train_loss": 1.12, "valid_loss": 0.8}, step=1)
 ```
 
-完成训练后，请确保运行[Accelerator.end_training()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.end_training)，以便所有跟踪器都可以运行其完成功能（如果有）。
+完成训练后，请确保运行[Accelerator.end_training()](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator.end_training)，以便所有跟踪器都可以运行其完成功能（如果有）。
 ```python
 accelerator.end_training()
 ```
@@ -75,7 +75,7 @@ for iteration in range(config["num_iterations"]):
         accelerator.log({"training_loss": loss}, step=step)
 accelerator.end_training()
 ```如果跟踪器需要一个目录来保存数据，例如`TensorBoard`，则将目录路径传递给`project_dir`。 `project_dir`参数很有用 
-当[ProjectConfiguration](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.utils.ProjectConfiguration)数据类中有其他配置需要组合时。例如，如果记录器仅应在主进程上执行，您可以将 TensorBoard 数据保存到 `project_dir`，其他所有内容都可以记录在 [⟦T26⟧: 
+当[ProjectConfiguration](/docs/accelerate/v1.16.0/en/package_reference/utilities#accelerate.utils.ProjectConfiguration)数据类中有其他配置需要组合时。例如，如果记录器仅应在主进程上执行，您可以将 TensorBoard 数据保存到 `project_dir`，其他所有内容都可以记录在 [⟦T26⟧: 
 
 ⟦T5⟧
 
@@ -100,7 +100,7 @@ Every tracker must implement three functions and have three properties:
     - This should be implemented as a ⟦T44⟧ function 
     - Should return the internal tracking mechanism the library uses, such as the ⟦T45⟧ object for ⟦T46⟧.
 
-Each method should also utilize the [state.PartialState](/docs/accelerate/v1.15.0/en/package_reference/state#accelerate.PartialState) 类的 `logging_dir` 参数中。
+Each method should also utilize the [state.PartialState](/docs/accelerate/v1.16.0/en/package_reference/state#accelerate.PartialState) 类的 `logging_dir` 参数中。
 
 下面是一个与权重和偏差集成的简短示例，仅包含相关信息并仅记录 
 主要流程：
@@ -165,7 +165,7 @@ accelerator = Accelerator(log_with="my_tracker")
 ```
 
 ## 访问内部跟踪器如果可能需要直接与跟踪器进行一些自定义交互，您可以使用 
-[Accelerator.get_tracker()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.get_tracker)方法。只需传入与跟踪器的`.name`属性对应的字符串即可 
+[Accelerator.get_tracker()](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator.get_tracker)方法。只需传入与跟踪器的`.name`属性对应的字符串即可 
 它将在主进程上返回该跟踪器。
 
 此示例展示了使用 wandb 执行此操作：
@@ -222,5 +222,5 @@ if accelerator.is_main_process:
 +             run["logs/training/batch/loss"].log(loss)
 ```
 
-### 深速
-https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/deepspeed.md
+### 模型量化
+https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/quantization.md

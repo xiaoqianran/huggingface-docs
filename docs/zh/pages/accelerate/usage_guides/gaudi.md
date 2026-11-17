@@ -22,5 +22,5 @@ accelerate launch /examples/cv_example.py --data_dir images
 - `minimize_memory`，用于 fp8 训练，能够在前向和后向传递之间将 fp8 权重保留在内存中，从而以额外的 fp8 转换为代价减少内存占用。
 - `context_parallel_size`，用于上下文/序列并行（CP/SP），并沿序列维度对网络输入和激活进行分区，以减少内存占用并提高吞吐量。
 
-### 实验追踪器
-https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/tracking.md
+### 数据加载器、优化器和调度器
+https://huggingface.co/docs/accelerate/v1.16.0/package_reference/torch_wrappers.md

@@ -16,7 +16,7 @@
 
 ## 设置种子 
 
-虽然这个问题还没有出现那么多，但请确保使用[utils.set_seed()](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.utils.set_seed)在所有分布式情况下完全设置种子，以便训练可以重现：
+虽然这个问题还没有出现那么多，但请确保使用[utils.set_seed()](/docs/accelerate/v1.16.0/en/package_reference/utilities#accelerate.utils.set_seed)在所有分布式情况下完全设置种子，以便训练可以重现：
 
 ```python
 from accelerate.utils import set_seed
@@ -47,7 +47,7 @@ TPU 也是如此。下表可用作尝试不同批量大小的快速参考：
 在此示例中，有两个用于“多 GPU”的 GPU 和一个具有 8 个工作线程的 TPU pod
 
 |单 GPU 批量大小 |多 GPU 等效批量大小 | TPU 等效批量大小 |
-|------------------------|------------------------------------------------|----------------------------------------|
+|------------------------|------------------------------------------------|------------------------------------|
 | 256 | 256 128 | 128 32 | 32
 | 128 | 128 64 | 64 16 | 16
 | 64 | 64 32 | 32 8 |
@@ -78,5 +78,5 @@ optimizer = AdamW(params=model.parameters(), lr=learning_rate)
 预计性能会有所下降。在比较不同计算之间的批量损失时，可以清楚地看到这一点 
 设置。然而，训练结束时的总体损失、指标和总体表现应该大致相同。
 
-### FSDP 与 DeepSpeed
-https://huggingface.co/docs/accelerate/v1.15.0/concept_guides/fsdp_and_deepspeed.md
+###加速内部机制
+https://huggingface.co/docs/accelerate/v1.16.0/concept_guides/internal_mechanism.md

@@ -49,7 +49,7 @@ h. **支持索引数据集**：用于大规模训练的高效数据集二进制�
 
 我。 **检查点重塑和互操作性**：用于重塑变量 Megatron-LM 检查点的实用程序 
 张量和管道并行大小与深受喜爱的 Transformers 分片检查点相同，因为它拥有大量工具的大力支持
-例如 Accelerate Big Model Inference、Megatron-DeepSpeed Inference 等。 
+例如加速大模型推理、威震天-DeepSpeed 推理等。 
 还支持将 Transformers 分片检查点转换为可变张量和管道并行大小的 Megatron-LM 检查点
 用于大规模训练。  
 
@@ -353,7 +353,7 @@ Accelerate 是灵活且可扩展的。所需的更改如下。
 
 一个。对于 Megatron-LM 索引数据集，我们需要使用 `MegatronLMDummyDataLoader` 
 并将所需的数据集参数传递给它，例如 `data_path`、`seq_length` 等。 
-有关可用参数的列表，请参阅[here](https://github.com/NVIDIA/Megatron-LM/blob/main/megatron/arguments.py#L804)。 
+有关可用参数的列表，请参阅[here](https://github.com/NVIDIA/Megatron-LM/blob/main/megatron/training/arguments.py)。 
     
 ```python
 from accelerate.utils import MegatronLMDummyDataLoader
@@ -378,7 +378,7 @@ model, optimizer, lr_scheduler, train_dataloader, eval_dataloader, _ = accelerat
 ```c.训练和评估循环的更改，因为数据加载器仅适用于张量并行等级 0
 因此，只有当数据加载器不是 `None` 时我们才需要迭代，否则提供空字典
 因此，我们使用 `while` 循环进行循环，并在 `completed_steps` 等于 `args.max_train_steps` 时中断
-这类似于 Megatron-LM 设置，其中用户在使用 Megaton-LM 索引数据集时必须提供 `max_train_steps`。
+这类似于 Megatron-LM 设置，其中用户在使用 Megaton-LM 索引数据集时必须提供`max_train_steps`。
 这显示了 Accelerate 的灵活性和可扩展性。
 
 ```python
@@ -402,7 +402,7 @@ while completed_steps < args.max_train_steps:
     
 ## 检查点重塑和互操作性实用程序
 
-1. 这些脚本存在于相应模型下的 Transformers 库中。 
+1. 这些脚本位于相应模型下的 Transformers 库中。 
 目前支持GPT型号[checkpoint_reshaping_and_interoperability.py](https://github.com/huggingface/transformers/blob/main/src/transformers/models/megatron_gpt2/checkpoint_reshaping_and_interoperability.py)
 
 2. 下面是检查点从 Megatron-LM 转换为通用 Transformers 分片检查点的示例。
@@ -508,7 +508,7 @@ accelerator.print(decoded_preds)
 3. 使用 `megatron_generate` 方法用于 Megatron-LM GPT 模型的端到端示例位于
 [megatron_gpt2_generation.py](https://github.com/pacman100/accelerate-megatron-test/blob/main/src/inference/megatron_gpt2_generation.py) 与 
 配置文件[megatron_lm_gpt_generate_config.yaml](https://github.com/pacman100/accelerate-megatron-test/blob/main/src/Configs/megatron_lm_gpt_generate_config.yaml).
-带有加速启动命令的 bash 脚本可在 [megatron_lm_gpt_generate.sh](https://github.com/pacman100/accelerate-megatron-test/blob/main/megatron_lm_gpt_generate.sh) 获取。
+带有加速启动命令的 bash 脚本可在 [megatron_lm_gpt_generate.sh](https://github.com/pacman100/accelerate-megatron-test/blob/main/megatron_lm_gpt_generate.sh) 获得。
 脚本的输出日志可在[megatron_lm_gpt_generate.log](https://github.com/pacman100/accelerate-megatron-test/blob/main/output_logs/megatron_lm_gpt_generate.log)获得。
 
 ## 支持 ROPE 和 ALiBi 位置嵌入和多查询注意力
@@ -539,7 +539,7 @@ megatron_lm_plugin = MegatronLMPlugin(other_megatron_args=other_megatron_args)
 绩效指标。 
 
 3. 主要过程是最后一个等级，因为损失/logits 在管道的最后阶段可用。
-使用时，`accelerator.is_main_process`和`accelerator.is_local_main_process`返回最后排名`True` 
+使用时`accelerator.is_main_process`和`accelerator.is_local_main_process`返回最后排名`True` 
 威震天-LM 集成。4. 在`accelerator.prepare`调用中，创建与给定 Transformers 模型对应的 Megatron-LM 模型
 具有随机权重。请使用`accelerator.load_state`加载具有匹配TP、PP和DP分区的Megatron-LM检查点。
 
@@ -554,18 +554,18 @@ megatron_lm_plugin = MegatronLMPlugin(other_megatron_args=other_megatron_args)
 8. 下面是从 Megatron-LM 模型架构到等效 Transformer 模型架构的映射。
 仅支持这些 Transformer 模型架构。
 
-一个。威震天-LM [BertModel](https://github.com/NVIDIA/Megatron-LM/blob/main/megatron/model/bert_model.py) : 
+一个。威震天-LM [BertModel](https://github.com/NVIDIA/Megatron-LM/blob/main/megatron/core/models/bert/bert_model.py) : 
 配置模型类型中带有`megatron-bert`的变压器模型，例如， 
 [MegatronBERT](https://huggingface.co/docs/transformers/model_doc/megatron-bert)
     
-b.威震天-LM [GPTModel](https://github.com/NVIDIA/Megatron-LM/blob/main/megatron/model/gpt_model.py) : 
+b.威震天-LM [GPTModel](https://github.com/NVIDIA/Megatron-LM/blob/main/megatron/core/models/gpt/gpt_model.py) : 
 配置模型类型中带有`gpt2`的变压器模型，例如， 
 [OpenAI GPT2](https://huggingface.co/docs/transformers/model_doc/gpt2)
    
-c.威震天-LM [T5Model](https://github.com/NVIDIA/Megatron-LM/blob/main/megatron/model/t5_model.py) : 
+c.威震天-LM [T5Model](https://github.com/NVIDIA/Megatron-LM/blob/main/megatron/core/models/T5/t5_model.py) : 
 配置模型类型中带有`t5`的变压器模型，例如， 
 [T5](https://huggingface.co/docs/transformers/model_doc/t5) 和 
 [MT5](https://huggingface.co/docs/transformers/model_doc/mt5)
 
-### 通过 DeepSpeed 使用多个模型
-https://huggingface.co/docs/accelerate/v1.15.0/usage_guides/deepspeed_multiple_model.md
+### 编译
+https://huggingface.co/docs/accelerate/v1.16.0/usage_guides/compilation.md

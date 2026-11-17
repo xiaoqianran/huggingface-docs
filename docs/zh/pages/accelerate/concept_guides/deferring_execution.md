@@ -19,13 +19,13 @@ accelerator.wait_for_everyone()
 
 下面列出了何时使用此实用程序的一些示例：
 
-    其中一些与[main_process_first()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.main_process_first)上下文管理器一起使用，它利用[wait_for_everyone()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.wait_for_everyone)来 
+    其中一些与[main_process_first()](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator.main_process_first)上下文管理器一起使用，它利用[wait_for_everyone()](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator.wait_for_everyone)来 
     在触发和启动其他进程之前，预先在主进程上运行一组特定的代码
 
 ## 下载数据集下载数据集时，应先在主进程中下载，然后再加载缓存的数据集
 
     `load_dataset` 将在后台执行锁定以阻止同时发生多个下载，但如果您正在下载某些内容 
-    不使用这个库，你应该使用这个方法。
+    不使用这个库你应该使用这个方法。
     
 
 ```python
@@ -90,7 +90,7 @@ with accelerator.main_process_first():
 ## 应用提前停止等检查要对特定进程设置的标志进行检查，应使用 `set_trigger` 和 `check_trigger` API。有用的例子
 为此，可以包括使用提前停止和监控损失等情况（因为每个过程中的每个损失都略有不同）。
 
-当满足条件时调用[Accelerator.set_trigger()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.set_trigger)，并在检查任何过程中是否满足该条件时调用[Accelerator.check_trigger()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.check_trigger)：
+当满足条件时调用[Accelerator.set_trigger()](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator.set_trigger)，并在检查任何过程中是否满足该条件时调用[Accelerator.check_trigger()](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator.check_trigger)：
 
 ```python
 for (x,y) in data_loader:
@@ -104,3 +104,6 @@ for (x,y) in data_loader:
     if accelerator.check_trigger():
         break
 ```
+
+### 比较分布式设置的性能
+https://huggingface.co/docs/accelerate/v1.16.0/concept_guides/performance.md

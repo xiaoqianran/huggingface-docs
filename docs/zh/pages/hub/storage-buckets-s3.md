@@ -5,7 +5,7 @@
 存储桶可以通过 **S3 兼容的 API** 进行访问，让您可以针对存储桶使用现有的 S3 工具（AWS CLI、`boto3`、`s5cmd` 和大多数其他 S3 SDK），而无需更改代码。 
 请求通过位于 `https://s3.hf.co` 的网关服务，该网关服务还以其自己的主机名 `https://<namespace>.s3.hf.co` 为每个命名空间提供服务。
 
-S3 API 是访问存储桶数据的多种方法之一 - 对于无需单独的 S3 凭据的 Hugging Face 原生访问（`hf` CLI、`hf://` 路径和文件系统挂载），请参阅[Access Patterns](./storage-buckets-access)。
+S3 API 是访问存储桶数据的多种方法之一 - 对于无需单独的 S3 凭据的 Hugging Face-native 访问（`hf` CLI、`hf://` 路径和文件系统挂载），请参阅[Access Patterns](./storage-buckets-access)。
 
 > [!注意]
 > S3 API 仅适用于 [Storage Buckets](./storage-buckets)。它不公开其他 Hugging Face 存储库类型（模型、数据集、空间）。
@@ -84,7 +84,7 @@ aws --endpoint-url https://my-org.s3.hf.co s3api get-object \
   --bucket my-bucket --key some/object.txt ./object.txt
 ```
 
-命名空间也可以放在端点的路径中，如 `https://s3.hf.co/<namespace>`。两种形式的行为相同，但我们建议使用主机名：某些客户端拒绝包含路径的端点 URL。其中包括基于 [MinIO Go client](https://github.com/minio/minio-go) 构建的工具，例如 Restic、Milvus 和 Weaviate。命名空间主机名不区分大小写，因此 `https://my-org.s3.hf.co` 也会到达名为 `My-Org` 的组织。
+命名空间也可以放在端点的路径中，如 `https://s3.hf.co/<namespace>`。两种形式的行为相同，但我们建议使用主机名：某些客户端拒绝包含路径的端点 URL。其中包括基于 [MinIO Go client](https://github.com/minio/minio-go) 构建的工具，例如 [restic](#back-up-with-restic-or-kopia)、Milvus 和 Weaviate。命名空间主机名不区分大小写，因此 `https://my-org.s3.hf.co` 也会到达名为 `My-Org` 的组织。
 
 > [!注意]
 > 即使使用名称空间主机名，客户端也必须使用路径样式寻址（请参阅[Configuring a Client](#configuring-a-client)）。存储桶不作为自己的子域（`my-bucket.my-org.s3.hf.co`）。
@@ -133,7 +133,7 @@ aws --endpoint-url https://s3.hf.co s3api get-object \
 
 ### 使用`boto3`读写
 
-[⟦T78⟧](https://docs.aws.amazon.com/boto3/latest/) 与上面的[client settings](#configuring-a-client) 网关配合使用。将 `<namespace>` 替换为您的用户名或组织：
+[⟦T79⟧](https://docs.aws.amazon.com/boto3/latest/) 与上面的[client settings](#configuring-a-client) 网关配合使用。将 `<namespace>` 替换为您的用户名或组织：
 
 ```python
 import boto3
@@ -181,10 +181,10 @@ SELECT * FROM read_parquet('s3://my-bucket/data.parquet');
 
 ### 使用`rclone`导入数据
 
-[⟦T88⟧](https://rclone.org/) 是在两个 S3 兼容存储之间复制数据的便捷方法，因此它非常适合将现有 AWS S3 存储桶（或任何 S3 兼容源）移动到存储桶中。
+[⟦T89⟧](https://rclone.org/) 是在两个 S3 兼容存储之间复制数据的便捷方法，因此非常适合将现有 AWS S3 存储桶（或任何 S3 兼容源）移动到存储桶中。
 
 > [!提示]
-> 移动大型数据集？安装源并运行 `hf sync` 在客户端上进行重复数据删除，因此它通常上传的字节数比 rclone 少。请参阅[Migration Guide](./storage-buckets-migration)。
+> 移动大型数据集？安装源并运行 `hf sync` 会在客户端进行重复数据删除，因此它通常上传的字节数比 rclone 少。请参阅[Migration Guide](./storage-buckets-migration)。
 
 这个想法是声明两个遥控器 - 您的源存储桶和 Hugging Face 网关 - 并让 `rclone` 在它们之间传输对象。将两个遥控器添加到`~/.config/rclone/rclone.conf`。第一个点指向您现有的 S3 存储桶；调整它以匹配您的源（此处为普通 AWS S3）：
 
@@ -253,6 +253,17 @@ dvc push
 
 > [!注意]
 > 在 `endpointurl` 中使用您的 [namespace](#addressing-buckets) 并在 `s3://` URL 中使用裸存储桶名称。
+
+### 使用 Restic 或 kopia 进行备份
+
+基于 [MinIO Go client](https://github.com/minio/minio-go) 构建的备份工具需要 [namespace hostname](#addressing-buckets) 作为端点。例如，对于 `AWS_ACCESS_KEY_ID` 和 `AWS_SECRET_ACCESS_KEY` 中的 [restic](https://restic.net/) 和 [S3 credentials](#generating-s3-credentials)：
+
+```bash
+restic -r s3:https://<namespace>.s3.hf.co/my-bucket/restic init
+restic -r s3:https://<namespace>.s3.hf.co/my-bucket/restic backup ~/data
+```
+
+[kopia](https://kopia.io/) (`--endpoint <namespace>.s3.hf.co`) 和[Weaviate's ⟦T111⟧ module](https://docs.weaviate.io/deploy/configuration/backups) (`BACKUP_S3_ENDPOINT=<namespace>.s3.hf.co`) 的工作方式相同。
 
 ### 门控数据集
 https://huggingface.co/docs/hub/datasets-gate.md

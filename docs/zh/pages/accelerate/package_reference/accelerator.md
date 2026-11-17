@@ -2,17 +2,17 @@
 
 # 加速器
 
-[Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator) 是用于在任何类型的训练设置上启用分布式训练的主要类。阅读 [Add Accelerator to your code](../basic_tutorials/migration) 教程，了解有关如何将 [Accelerator](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator) 添加到脚本的更多信息。
+[Accelerator](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator) 是用于在任何类型的训练设置上启用分布式训练的主要类。阅读 [Add Accelerator to your code](../basic_tutorials/migration) 教程，了解有关如何将 [Accelerator](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator) 添加到脚本的更多信息。
 
 ## 加速器[[api]][[accelerate.Accelerator]]
 
 ####加速.加速器[[加速.加速器]]
 
 ```python
-accelerate.Accelerator(device_placement: bool = True, split_batches: bool = <object object at 0x7f64e184a270>, mixed_precision: PrecisionType | str | None = None, gradient_accumulation_steps: int = 1, cpu: bool = False, dataloader_config: DataLoaderConfiguration | None = None, deepspeed_plugin: DeepSpeedPlugin | dict[str, DeepSpeedPlugin] | None = None, fsdp_plugin: FullyShardedDataParallelPlugin | None = None, torch_tp_plugin: TorchTensorParallelPlugin | None = None, megatron_lm_plugin: MegatronLMPlugin | None = None, rng_types: list[str | RNGType] | None = None, log_with: str | LoggerType | GeneralTracker | list[str | LoggerType | GeneralTracker] | None = None, project_dir: str | os.PathLike | None = None, project_config: ProjectConfiguration | None = None, gradient_accumulation_plugin: GradientAccumulationPlugin | None = None, step_scheduler_with_optimizer: bool = True, kwargs_handlers: list[KwargsHandler] | None = None, dynamo_backend: DynamoBackend | str | None = None, dynamo_plugin: TorchDynamoPlugin | None = None, deepspeed_plugins: DeepSpeedPlugin | dict[str, DeepSpeedPlugin] | None = None, parallelism_config: ParallelismConfig | None = None)
+accelerate.Accelerator(device_placement: bool = True, split_batches: bool = <object object at 0x7f7bf6a755a0>, mixed_precision: PrecisionType | str | None = None, gradient_accumulation_steps: int = 1, cpu: bool = False, dataloader_config: DataLoaderConfiguration | None = None, deepspeed_plugin: DeepSpeedPlugin | dict[str, DeepSpeedPlugin] | None = None, fsdp_plugin: FullyShardedDataParallelPlugin | None = None, torch_tp_plugin: TorchTensorParallelPlugin | None = None, megatron_lm_plugin: MegatronLMPlugin | None = None, rng_types: list[str | RNGType] | None = None, log_with: str | LoggerType | GeneralTracker | list[str | LoggerType | GeneralTracker] | None = None, project_dir: str | os.PathLike | None = None, project_config: ProjectConfiguration | None = None, gradient_accumulation_plugin: GradientAccumulationPlugin | None = None, step_scheduler_with_optimizer: bool = True, kwargs_handlers: list[KwargsHandler] | None = None, dynamo_backend: DynamoBackend | str | None = None, dynamo_plugin: TorchDynamoPlugin | None = None, deepspeed_plugins: DeepSpeedPlugin | dict[str, DeepSpeedPlugin] | None = None, parallelism_config: ParallelismConfig | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L185)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L178)
 
 **参数：**
 
@@ -24,32 +24,32 @@ gradient_accumulation_steps (`int`，*可选*，默认为 1) ：累积梯度之�
 
 dataloader_config（`DataLoaderConfiguration`，*可选*）：有关如何在分布式场景中处理数据加载器的配置。
 
-deepspeed_plugin（[DeepSpeedPlugin](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.DeepSpeedPlugin) 或 `str` 的字典：[DeepSpeedPlugin](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.DeepSpeedPlugin)，*可选*）：使用此参数调整与 DeepSpeed 相关的参数。该参数是可选的，可以使用 *accelerate config* 直接配置。如果使用多个插件，请使用每个插件配置的 `key` 属性从 `accelerator.state.get_deepspeed_plugin(key)` 访问它们。 `deepspeed_plugins` 的别名。
+deepspeed_plugin（[DeepSpeedPlugin](/docs/accelerate/v1.16.0/en/package_reference/deepspeed#accelerate.DeepSpeedPlugin) 或 `str` 的字典：[DeepSpeedPlugin](/docs/accelerate/v1.16.0/en/package_reference/deepspeed#accelerate.DeepSpeedPlugin)，*可选*）：使用此参数调整与 DeepSpeed 相关的参数。该参数是可选的，可以使用 *accelerate config* 直接配置。如果使用多个插件，请使用每个插件配置的 `key` 属性从 `accelerator.state.get_deepspeed_plugin(key)` 访问它们。 `deepspeed_plugins` 的别名。
 
-fsdp_plugin ([FullyShardedDataParallelPlugin](/docs/accelerate/v1.15.0/en/package_reference/fsdp#accelerate.FullyShardedDataParallelPlugin), *可选*) ：使用此参数调整 FSDP 相关参数。该参数是可选的，可以使用 *accelerate config* 直接配置
+fsdp_plugin ([FullyShardedDataParallelPlugin](/docs/accelerate/v1.16.0/en/package_reference/fsdp#accelerate.FullyShardedDataParallelPlugin), *可选*) ：使用此参数调整 FSDP 相关参数。该参数是可选的，可以使用 *accelerate config* 直接配置
 
 torch_tp_plugin (`TorchTensorParallelPlugin`, *可选*) ：已弃用：使用 `parallelism_config` 和 `tp_size` 代替。
 
-megatron_lm_plugin ([MegatronLMPlugin](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.utils.MegatronLMPlugin), *可选*) ：使用此参数调整与 MegatronLM 相关的参数。该参数是可选的，可以使用 *accelerate config* 直接配置rng_types（`str`或[RNGType](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.utils.RNGType)列表）：在准备好的数据加载器中每次迭代开始时同步的随机数生成器列表。应该是以下一项或多项： - `"torch"`：基本 Torch 随机数生成器 - `"cuda"`：CUDA 随机数生成器（仅限 GPU） - `"xla"`：XLA 随机数生成器（仅限 TPU） - `"generator"`：采样器（或批量采样器，如果您的采样器中没有采样器）的 `torch.Generator` dataloader）或可迭代数据集（如果存在）的数据集（如果底层数据集属于该类型）。  对于 PyTorch 版本 <=1.5.1 and ⟦T122⟧ for PyTorch versions >= 1.6，默认为 `["torch"]`。
+megatron_lm_plugin ([MegatronLMPlugin](/docs/accelerate/v1.16.0/en/package_reference/megatron_lm#accelerate.utils.MegatronLMPlugin), *可选*) ：使用此参数调整与 MegatronLM 相关的参数。该参数是可选的，可以使用 *accelerate config* 直接配置rng_types（`str`或[RNGType](/docs/accelerate/v1.16.0/en/package_reference/utilities#accelerate.utils.RNGType)列表）：在准备好的数据加载器中每次迭代开始时同步的随机数生成器列表。应该是以下一项或多项： - `"torch"`：基本 Torch 随机数生成器 - `"cuda"`：CUDA 随机数生成器（仅限 GPU） - 任何注册的 PyTorch 加速器的设备类型：其设备随机数生成器。 - `"xla"`：XLA 随机数生成器（仅限 TPU） - `"generator"`：采样器（如果数据加载器中没有采样器，则为批量采样器）或可迭代数据集（如果存在）的 `torch.Generator`（如果基础数据集属于该类型）。  对于 PyTorch 版本 <=1.5.1 and ⟦T122⟧ for PyTorch versions >= 1.6，默认为 `["torch"]`。
 
-log_with（`str`、[LoggerType](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.utils.LoggerType)或[GeneralTracker](/docs/accelerate/v1.15.0/en/package_reference/tracking#accelerate.tracking.GeneralTracker)的列表，*可选*）：要设置用于实验跟踪的记录器列表。应为以下一项或多项： - `"all"` - `"tensorboard"` - `"wandb"` - `"trackio"` - `"aim"` - `"comet_ml"` - `"mlflow"` - `"dvclive"` - `"swanlab"` 如果选择`"all"`，将拾取环境中所有可用的跟踪器并初始化它们。还可以接受自定义跟踪器的 `GeneralTracker` 实现，并且可以与 `"all"` 组合。
+log_with（`str`、[LoggerType](/docs/accelerate/v1.16.0/en/package_reference/utilities#accelerate.utils.LoggerType)或[GeneralTracker](/docs/accelerate/v1.16.0/en/package_reference/tracking#accelerate.tracking.GeneralTracker)的列表，*可选*）：要设置用于实验跟踪的记录器列表。应为以下一项或多项： - `"all"` - `"tensorboard"` - `"wandb"` - `"trackio"` - `"aim"` - `"comet_ml"` - `"mlflow"` - `"dvclive"` - `"swanlab"` 如果选择`"all"`，将拾取环境中所有可用的跟踪器并初始化它们。还可以接受自定义跟踪器的 `GeneralTracker` 实现，并且可以与 `"all"` 组合。
 
-project_config ([ProjectConfiguration](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.utils.ProjectConfiguration), *可选*) ：如何处理保存状态的配置。project_dir (`str`, `os.PathLike`, *可选*) ：用于存储数据的目录路径，例如本地兼容记录器的日志和可能保存的检查点。
+project_config ([ProjectConfiguration](/docs/accelerate/v1.16.0/en/package_reference/utilities#accelerate.utils.ProjectConfiguration), *可选*) ：如何处理保存状态的配置。project_dir (`str`, `os.PathLike`, *可选*) ：用于存储数据的目录路径，例如本地兼容记录器的日志和可能保存的检查点。
 
 step_scheduler_with_optimizer (`bool`，*可选*，默认为`True`)：如果学习率调度程序与优化器同时步进，则设置`True`，如果仅在某些情况下执行（例如在每个时期结束时），则设置`False`。
 
-kwargs_handlers（[KwargsHandler](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.utils.KwargsHandler)​​列表，*可选*）：[KwargsHandler](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.utils.KwargsHandler)列表，用于自定义如何创建与分布式训练、分析或混合精度相关的对象。请参阅[kwargs](kwargs)了解更多信息。
+kwargs_handlers（[KwargsHandler](/docs/accelerate/v1.16.0/en/package_reference/kwargs#accelerate.utils.KwargsHandler)​​列表，*可选*）：[KwargsHandler](/docs/accelerate/v1.16.0/en/package_reference/kwargs#accelerate.utils.KwargsHandler)列表，用于自定义如何创建与分布式训练、分析或混合精度相关的对象。请参阅[kwargs](kwargs)了解更多信息。
 
-dynamo_backend（`str`或[DynamoBackend](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.utils.DynamoBackend)，*可选*，默认为`"no"`）：设置为可能的发电机后端之一，以优化您使用火炬发电机的训练。
+dynamo_backend（`str`或[DynamoBackend](/docs/accelerate/v1.16.0/en/package_reference/utilities#accelerate.utils.DynamoBackend)，*可选*，默认为`"no"`）：设置为可能的发电机后端之一，以优化您使用火炬发电机的训练。
 
-dynamo_plugin（[TorchDynamoPlugin](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.utils.TorchDynamoPlugin)，*可选*）：如果需要比`backend`或`mode`更多的调整，则应如何处理火炬发电机的配置。
+dynamo_plugin（[TorchDynamoPlugin](/docs/accelerate/v1.16.0/en/package_reference/utilities#accelerate.utils.TorchDynamoPlugin)，*可选*）：如果需要比`backend`或`mode`更多的调整，则应如何处理火炬发电机的配置。
 
-gradient_accumulation_plugin（[GradientAccumulationPlugin](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.utils.GradientAccumulationPlugin)，*可选*）：如果需要比`gradient_accumulation_steps`更多的调整，则应如何处理梯度累积的配置。
+gradient_accumulation_plugin（[GradientAccumulationPlugin](/docs/accelerate/v1.16.0/en/package_reference/utilities#accelerate.utils.GradientAccumulationPlugin)，*可选*）：如果需要比`gradient_accumulation_steps`更多的调整，则应如何处理梯度累积的配置。
 
 创建用于分布式训练或混合精度训练的加速器实例。**可用属性：**
 
 - **设备** (`torch.device`) -- 要使用的设备。
-- **distributed_type** ([DistributedType](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.DistributedType)) -- 分布式训练配置。
+- **distributed_type** ([DistributedType](/docs/accelerate/v1.16.0/en/package_reference/utilities#accelerate.DistributedType)) -- 分布式训练配置。
 - **local_process_index** (`int`) -- 当前机器上的进程索引。
 - **mixed_ precision** (`str`) -- 配置的混合精度模式。
 - **num_processes** (`int`) -- 用于训练的进程总数。
@@ -57,7 +57,7 @@ gradient_accumulation_plugin（[GradientAccumulationPlugin](/docs/accelerate/v1.
   混合精度的梯度溢出），其中
 在这种情况下，学习率不应改变。
 - **process_index** (`int`) -- 当前进程在所有进程中的总体索引。
-- **状态** ([AcceleratorState](/docs/accelerate/v1.15.0/en/package_reference/state#accelerate.state.AcceleratorState)) -- 分布式设置状态。
+- **状态** ([AcceleratorState](/docs/accelerate/v1.16.0/en/package_reference/state#accelerate.state.AcceleratorState)) -- 分布式设置状态。
 - **sync_gradients** (`bool`) -- 渐变当前是否在所有进程之间同步。
 - **use_distributed** (`bool`) -- 当前配置是否用于分布式训练。
 
@@ -67,11 +67,11 @@ gradient_accumulation_plugin（[GradientAccumulationPlugin](/docs/accelerate/v1.
 accumulate(*models)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L1255)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L1215)
 
 **参数：**
 
-- ***模型**（`torch.nn.Module`列表）：使用`Accelerator.prepare`准备的PyTorch模块。传递到`accumulate()`的模型将在分布式训练中向后传递期间跳过梯度同步一个上下文管理器，可以轻松地环绕并自动执行梯度累积
+- ***模型**（`torch.nn.Module`列表）：使用`Accelerator.prepare`准备的PyTorch模块。传递到`accumulate()`的模型将在分布式训练中向后传递期间跳过梯度同步一个上下文管理器，将轻轻环绕并自动执行梯度累积
 
 示例：
 
@@ -97,7 +97,7 @@ accumulate(*models)
 autocast(autocast_handler: AutocastKwargs = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L4218)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L4091)
 
 如果启用的话，将在此上下文管理器内的块内应用自动混合精度。什么都没有
 否则会发生不同的情况。
@@ -121,7 +121,7 @@ autocast(autocast_handler: AutocastKwargs = None)
 backward(loss, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L2829)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L2735)
 
 根据 `GradientAccumulationPlugin` 缩放梯度并调用正确的 `backward()`
 关于配置。
@@ -145,9 +145,9 @@ backward(loss, **kwargs)
 check_trigger()
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L2889)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L2795)
 
-检查内部触发张量是否已在任何进程中设置为 1。如果是这样，将返回`True`并且
+检查任何进程中内部触发张量是否已设置为 1。如果是这样，将返回`True`并且
 将触发张量重置为 0。
 
 注意：
@@ -175,7 +175,7 @@ check_trigger()
 clear(*objects)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L3972)`Accelerate.free_memory`的别名，释放对存储的内部对象的所有引用并调用
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L3864)`Accelerate.free_memory`的别名，释放对存储的内部对象的所有引用并调用
 垃圾收集器。您应该在使用不同模型/优化器的两次训练之间调用此方法。
 
 示例：
@@ -195,7 +195,7 @@ clear(*objects)
 clip_grad_norm_(parameters, max_norm, norm_type = 2)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L2989)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L2892)
 
 **返回：** `torch.Tensor`
 
@@ -227,7 +227,7 @@ clip_grad_norm_(parameters, max_norm, norm_type = 2)
 clip_grad_value_(parameters, clip_value)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L3050)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L2953)
 
 应该用来代替`torch.nn.utils.clip_grad_value_`。
 
@@ -255,7 +255,7 @@ clip_grad_value_(parameters, clip_value)
 deepspeed_ulysses_dl_adapter(dl, model)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L2497)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L2461)
 
 这通常作为`prepare`的一部分被调用，但是当数据加载器与模型分开准备时（对于外部加速器.prepare调用），需要在prepare(model)之后进行这个额外的调用（请参阅HF Trainer作为用例）
 
@@ -265,7 +265,7 @@ deepspeed_ulysses_dl_adapter(dl, model)
 end_training()
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L3429)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L3334)
 
 运行任何特殊的最终训练行为，例如仅在主进程上停止跟踪器或销毁
 进程组。如果使用实验跟踪，则应始终在脚本末尾调用。
@@ -285,7 +285,7 @@ end_training()
 free_memory(*objects)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L3943)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L3835)
 
 将释放对存储的内部对象的所有引用并调用垃圾收集器。你应该这样称呼
 使用不同模型/优化器的两次训练之间的方法。还将`Accelerator.step`重置为0。
@@ -307,7 +307,7 @@ free_memory(*objects)
 gather(tensor)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L3077)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L2982)
 
 **参数：**
 
@@ -344,7 +344,7 @@ tensor([0, 1, 2, 3])
 gather_for_metrics(input_data, use_gather_object = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L3109)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L3014)
 
 **参数：**input_data（`torch.Tensor`，`object`，`torch.Tensor`的嵌套元组/列表/字典，或`object`的嵌套元组/列表/字典）：用于计算所有进程的度量的张量或对象
 
@@ -375,17 +375,17 @@ use_gather_object(`bool`) ：是否强制使用gather_object而不是gather（�
 get_state_dict(model, unwrap = True)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L4043)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L3916)
 
 **参数：**
 
-model (`torch.nn.Module`) : 通过[Accelerator.prepare()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.prepare)发送的PyTorch模型
+model (`torch.nn.Module`) : 通过[Accelerator.prepare()](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator.prepare)发送的PyTorch模型
 
 unwrap (`bool`, *可选*, 默认为`True`) : 是否返回`model`的原始底层state_dict或返回包装后的state_dict
 
 **返回：** `dict`
 
-模型的状态字典可能没有完全精度。返回通过 [Accelerator.prepare()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.prepare) 发送的模型的状态字典，可能没有完整的
+模型的状态字典可能没有完全精度。返回通过 [Accelerator.prepare()](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator.prepare) 发送的模型的状态字典，可能没有完整的
 精度。
 
 示例：
@@ -406,7 +406,7 @@ unwrap (`bool`, *可选*, 默认为`True`) : 是否返回`model`的原始底层s
 get_tracker(name: str, unwrap: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L3365)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L3270)
 
 **参数：**
 
@@ -436,13 +436,13 @@ unwrap (`bool`) ：是否返回内部跟踪机制或返回包装的跟踪器（�
 join_uneven_inputs(joinables, even_batches = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L1300)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L1260)
 
 **参数：**
 
 joinables (`list[torch.distributed.algorithms.Joinable]`)：子类`torch.distributed.algorithms.Joinable`的模型或优化器列表。最常见的是使用 `Accelerator.prepare` 准备的 PyTorch 模块，用于分布式数据并行训练。
 
-Even_batches (`bool`, *可选*) ：如果设置，这将覆盖`Accelerator`中设置的`even_batches`的值。如果未提供，将使用默认的 `Accelerator` 值。上下文管理器，有助于对不均匀输入进行分布式训练或评估，充当包装器
+Even_batches (`bool`, *可选*) ：如果设置，这将覆盖`Accelerator`中设置的`even_batches`的值。如果未提供，将使用默认的 `Accelerator` 值。上下文管理器，有助于对不均匀输入进行分布式培训或评估，充当包装器
 `torch.distributed.algorithms.join` 左右。当总批量大小不能均匀划分时，这很有用
 数据集的长度。
 
@@ -474,7 +474,7 @@ Even_batches (`bool`, *可选*) ：如果设置，这将覆盖`Accelerator`中�
 load_state(input_dir: str | None = None, load_kwargs: dict | None = None, **load_model_func_kwargs)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L3791)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L3696)
 
 **参数：**
 
@@ -484,7 +484,7 @@ load_kwargs (`dict`, *可选*) ：底层 `load` 函数的附加关键字参数�
 
 load_model_func_kwargs (`dict`, *可选*) ：用于加载模型的附加关键字参数，可以传递给底层加载函数，例如 DeepSpeed 的 `load_checkpoint` 函数的可选参数或用于加载模型和优化器的 `map_location`。加载模型、优化器、缩放器、RNG 生成器和注册对象的当前状态。
 
-只能与 [Accelerator.save_state()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.save_state) 一起使用。如果文件未注册
+只能与 [Accelerator.save_state()](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator.save_state) 一起使用。如果文件未注册
 检查点，如果存储在目录中，则不会加载。
 
 示例：
@@ -504,7 +504,7 @@ load_model_func_kwargs (`dict`, *可选*) ：用于加载模型的附加关键�
 local_main_process_first()
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L1110)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L1070)
 
 让本地主进程进入 with 块。
 
@@ -528,7 +528,7 @@ local_main_process_first()
 lomo_backward(loss: torch.Tensor, learning_rate: float)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L4361)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L4234)
 
 在 LOMO 优化器上运行反向传递。
 
@@ -538,7 +538,7 @@ lomo_backward(loss: torch.Tensor, learning_rate: float)
 main_process_first()
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L1088)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L1048)
 
 让主进程首先进入 with 块。
 
@@ -562,7 +562,7 @@ main_process_first()
 maybe_context_parallel(buffers: list[torch.Tensor] | None = None, buffer_seq_dims: list[int] | None = None, no_restore_buffers: set[torch.Tensor] | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L4151)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L4024)
 
 **参数：**buffers (`list[torch.Tensor]`, `optional`) ：缓冲区，将沿着序列维度进行分片。常见的例子是输入、标签或位置嵌入缓冲区。该上下文管理器将就地修改这些缓冲区，退出上下文后，缓冲区将恢复到原始状态。为了避免不必要的恢复，您可以使用`no_restore_buffers`来指定哪些缓冲区不需要恢复。
 
@@ -597,11 +597,11 @@ no_restore_buffers (`set[torch.Tensor]`, `optional`) ：该集合必须是`buffe
 no_sync(model)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L1132)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L1092)
 
 **参数：**model (`torch.nn.Module`) : 使用`Accelerator.prepare`准备的PyTorch模块
 
-上下文管理器，通过调用禁用跨 DDP 进程的梯度同步
+上下文管理器通过调用禁用跨 DDP 进程的梯度同步
 `torch.nn.parallel.DistributedDataParallel.no_sync`。
 
 如果 `model` 不在 DDP 中，则该上下文管理器不执行任何操作
@@ -634,7 +634,7 @@ no_sync(model)
 on_last_process(function: Callable[..., Any])
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L956)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L916)
 
 **参数：**
 
@@ -664,7 +664,7 @@ print_something()
 on_local_main_process(function: Callable[..., Any] | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L914)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L874)
 
 **参数：**
 
@@ -697,7 +697,7 @@ print_something()
 on_local_process(function: Callable[..., Any] | None = None, local_process_index: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L1040)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L1000)
 
 **参数：**
 
@@ -730,7 +730,7 @@ print_something()
 on_main_process(function: Callable[..., Any] | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L875)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L835)
 
 **参数：**
 
@@ -760,7 +760,7 @@ function (`Callable`) ：要装饰的函数。
 on_process(function: Callable[..., Any] | None = None, process_index: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L995)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L955)
 
 **参数：**
 
@@ -792,7 +792,7 @@ print_something()
 pad_across_processes(tensor, dim = 0, pad_index = 0, pad_first = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L3219)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L3124)
 
 **参数：**
 
@@ -829,7 +829,7 @@ torch.Size([2])
 prepare(*args, device_placement = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L1415)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L1375)
 
 **参数：**
 
@@ -870,16 +870,16 @@ device_placement (`list[bool]`, *可选*) ：用于自定义是否应对每个�
 prepare_data_loader(data_loader: torch.utils.data.DataLoader, device_placement = None, slice_fn_for_dispatch = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L2685)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L2594)
 
 **参数：**data_loader (`torch.utils.data.DataLoader`)：准备一个普通的 PyTorch DataLoader
 
 device_placement (`bool`, *可选*) ：是否将批次放置在准备好的数据加载器中的正确设备上。默认为`self.device_placement`。
 
-slice_fn_for_dispatch (`Callable`, *可选*`) : If passed, this function will be used to slice tensors across `num_processes`. Will default to [slice_tensors()](/docs/accelerate/v1.15.0/en/package_reference/utilities#accelerate.utils.slice_tensors). This argument is used only when `dispatch_batches` is set to `True`，否则将被忽略。
+slice_fn_for_dispatch (`Callable`, *可选*`) : If passed, this function will be used to slice tensors across `num_processes`. Will default to [slice_tensors()](/docs/accelerate/v1.16.0/en/package_reference/utilities#accelerate.utils.slice_tensors). This argument is used only when `dispatch_batches` is set to `True`，否则将被忽略。
 
 准备 PyTorch DataLoader 以在任何分布式设置中进行训练。推荐使用
-[Accelerator.prepare()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.prepare) 代替。
+[Accelerator.prepare()](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator.prepare) 代替。
 
 示例：
 
@@ -898,7 +898,7 @@ slice_fn_for_dispatch (`Callable`, *可选*`) : If passed, this function will be
 prepare_model(model: torch.nn.Module, device_placement: bool | None = None, evaluation_mode: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L1770)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L1737)
 
 **参数：**
 
@@ -909,7 +909,7 @@ device_placement (`bool`, *可选*) ：是否将模型放置在正确的设备�
 评估模式（`bool`，*可选*，默认为`False`）：是否仅通过应用混合精度和`torch.compile`（如果在`Accelerator`对象中配置）来设置模型仅用于评估。
 
 准备 PyTorch 模型以在任何分布式设置中进行训练。推荐使用
-[Accelerator.prepare()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.prepare) 代替。
+[Accelerator.prepare()](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator.prepare) 代替。
 
 示例：
 
@@ -925,7 +925,7 @@ device_placement (`bool`, *可选*) ：是否将模型放置在正确的设备�
 prepare_optimizer(optimizer: torch.optim.Optimizer, device_placement = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L2744)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L2653)
 
 **参数：**
 
@@ -934,7 +934,7 @@ prepare_optimizer(optimizer: torch.optim.Optimizer, device_placement = None)
 device_placement (`bool`, *可选*) ：是否将优化器放置在正确的设备上。默认为`self.device_placement`。
 
 准备 PyTorch 优化器以在任何分布式设置中进行训练。推荐使用
-[Accelerator.prepare()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.prepare) 代替。
+[Accelerator.prepare()](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator.prepare) 代替。
 
 示例：
 
@@ -953,14 +953,14 @@ device_placement (`bool`, *可选*) ：是否将优化器放置在正确的设�
 prepare_scheduler(scheduler: LRScheduler)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L2788)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L2694)
 
 **参数：**
 
 调度程序（`torch.optim.lr_scheduler.LRScheduler`）：一个普通的 PyTorch 调度程序来准备
 
 准备 PyTorch Scheduler 以在任何分布式设置中进行训练。推荐使用
-[Accelerator.prepare()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.prepare) 代替。
+[Accelerator.prepare()](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator.prepare) 代替。
 
 示例：
 
@@ -980,7 +980,7 @@ prepare_scheduler(scheduler: LRScheduler)
 print(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L1383)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L1343)
 
 替换`print()`，每个服务器仅打印一次。
 
@@ -999,13 +999,13 @@ print(*args, **kwargs)
 profile(profile_handler: ProfileKwargs | None = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L4243)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L4116)
 
 **参数：**
 
 profile_handler (`ProfileKwargs`, *可选*) ：用于此上下文管理器的配置文件处理程序。如果不通过，将使用`Accelerator`对象中设置的一组。
 
-将分析上下文管理器内的代码。如果满足以下条件，配置文件将保存到 Chrome 跟踪文件中：
+将分析上下文管理器内的代码。如果出现以下情况，配置文件将保存到 Chrome 跟踪文件中：
 `profile_handler.output_trace_dir` 已设置。可以传入不同的 `profile_handler` 来覆盖 `Accelerator` 对象中设置的一组。
 
 示例：
@@ -1044,7 +1044,7 @@ with accelerator.profile():
 reduce(tensor, reduction = 'sum', scale = 1.0)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L3182)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L3087)
 
 **参数：**
 
@@ -1084,7 +1084,7 @@ tensor([4, 6])
 register_for_checkpointing(*objects)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L4115)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L3988)
 
 记下`objects`，并将在`save_state`或`load_state`期间保存或加载它们。
 
@@ -1109,27 +1109,27 @@ register_for_checkpointing(*objects)
 register_load_state_pre_hook(hook: Callable[..., None])
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L3760)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L3665)
 
 **参数：**
 
-hook (`Callable`) ：在 [Accelerator.load_state()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.load_state) `load_checkpoint` 之前调用的函数。
+hook (`Callable`) ：在 [Accelerator.load_state()](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator.load_state) `load_checkpoint` 之前调用的函数。
 
 **返回：** `torch.utils.hooks.RemovableHandle`
 
 一个句柄，可用于通过调用删除添加的钩子
 `handle.remove()`
 
-注册一个要在 [Accelerator.load_state()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.load_state) 中调用 `load_checkpoint` 之前运行的预挂钩。
+注册一个要在 [Accelerator.load_state()](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator.load_state) 中调用 `load_checkpoint` 之前运行的预挂钩。
 
 该钩子应具有以下签名：
 
 `hook(models: list[torch.nn.Module], input_dir: str) -> None`
 
 `models`参数是在`accelerator._models`下加速器状态下保存的模型，并且
-`input_dir` 参数是传递给 [Accelerator.load_state()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.load_state) 的 `input_dir` 参数。
+`input_dir` 参数是传递给 [Accelerator.load_state()](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator.load_state) 的 `input_dir` 参数。
 
-只能与 [Accelerator.register_save_state_pre_hook()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.register_save_state_pre_hook) 一起使用。加载可能有用
+只能与 [Accelerator.register_save_state_pre_hook()](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator.register_save_state_pre_hook) 一起使用。加载可能有用
 除了模型重量之外的配置。还可以用于使用自定义覆盖模型加载
 方法。在这种情况下，请确保从模型列表中删除已加载的模型。
 
@@ -1139,26 +1139,26 @@ hook (`Callable`) ：在 [Accelerator.load_state()](/docs/accelerate/v1.15.0/en/
 register_save_state_pre_hook(hook: Callable[..., None])
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L3593)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L3498)
 
 **参数：**
 
-hook (`Callable`) ：在 [Accelerator.save_state()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.save_state) `save_checkpoint` 之前调用的函数。
+hook (`Callable`) ：在 [Accelerator.save_state()](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator.save_state) `save_checkpoint` 之前调用的函数。
 
 **返回：** `torch.utils.hooks.RemovableHandle`
 
 一个句柄，可用于通过调用删除添加的钩子
 `handle.remove()`
 
-注册一个预钩子，在 [Accelerator.save_state()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.save_state) 中调用 `save_checkpoint` 之前运行。该钩子应具有以下签名：
+注册一个预钩子，在 [Accelerator.save_state()](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator.save_state) 中调用 `save_checkpoint` 之前运行。该钩子应具有以下签名：
 
 `hook(models: list[torch.nn.Module], weights: list[dict[str, torch.Tensor]], input_dir: str) -> None`
 
 `models`参数是在`accelerator._models`、`weights`下加速器状态下保存的模型
 参数是`models`的状态字典，`input_dir`参数是传递的`input_dir`参数
-至[Accelerator.load_state()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.load_state)。
+至[Accelerator.load_state()](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator.load_state)。
 
-只能与 [Accelerator.register_load_state_pre_hook()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.register_load_state_pre_hook) 一起使用。保存起来很有用
+只能与 [Accelerator.register_load_state_pre_hook()](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator.register_load_state_pre_hook) 一起使用。保存起来很有用
 除了模型重量之外的配置。也可用于使用自定义覆盖模型保存
 方法。在这种情况下，请确保从权重列表中删除已加载的权重。
 
@@ -1168,7 +1168,7 @@ hook (`Callable`) ：在 [Accelerator.save_state()](/docs/accelerate/v1.15.0/en/
 save(obj, f, safe_serialization = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L3450)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L3355)
 
 **参数：**
 
@@ -1200,7 +1200,7 @@ safe_serialization (`bool`, *可选*, 默认为`False`) : 是否使用`safetenso
 save_model(model: torch.nn.Module, save_directory: Union[str, os.PathLike], max_shard_size: Union[int, str] = '10GB', safe_serialization: bool = True)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L3480)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L3385)
 
 **参数：**
 
@@ -1228,7 +1228,7 @@ safe_serialization（`bool`，*可选*，默认为`True`）：是否使用`safet
 save_state(output_dir: str | None = None, safe_serialization: bool = True, **save_model_func_kwargs)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L3625)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L3530)
 
 **参数：**
 
@@ -1265,7 +1265,7 @@ safe_serialization（`bool`，*可选*，默认为`True`）：是否使用`safet
 set_trigger()
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L2863)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L2769)
 
 将当前进程的内部触发张量设置为 1。后面的检查应该使用这个
 将检查所有进程。
@@ -1295,7 +1295,7 @@ set_trigger()
 skip_first_batches(dataloader, num_batches: int = 0)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L4314)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L4187)
 
 **参数：**
 
@@ -1331,13 +1331,13 @@ dataloader (`torch.utils.data.DataLoader`) ：要跳过批次的数据加载器�
 split_between_processes(inputs: list | tuple | dict | torch.Tensor, apply_padding: bool = False)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L833)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L793)
 
 **参数：**
 
 输入（`list`、`tuple`、`torch.Tensor` 或 `list`/`tuple`/`torch.Tensor`）：要在进程之间拆分的输入。
 
-apply_padding (`bool`, `optional`, 默认为`False`) : 是否通过重复输入的最后一个元素来应用填充，以便所有进程具有相同数量的元素。当尝试在输出上执行诸如 `Accelerator.gather()` 之类的操作或传入比进程少的输入时很有用。如果是这样，请记住随后删除填充的元素。
+apply_padding (`bool`, `optional`, 默认为`False`) : 是否通过重复输入的最后一个元素来应用填充，以便所有进程具有相同数量的元素。当尝试在输出上执行诸如`Accelerator.gather()`之类的操作或传递比进程少的输入时很有用。如果是这样，请记住随后删除填充的元素。
 
 在 `self.num_processes` 之间快速拆分 `input`，然后可以在该流程中使用。做的时候有用
 分布式推理，例如使用不同的提示。
@@ -1372,14 +1372,14 @@ with accelerator.split_between_processes(["A", "B", "C"], apply_padding=True) as
 trigger_sync_in_backward(model)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L1181)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L1141)
 
 **参数：**
 
 model (`torch.nn.Module`) ：触发梯度同步的模型。在多次前向传递后，在模型的下一次反向传递中触发梯度同步
 `Accelerator.no_sync`（仅适用于多GPU场景）。
 
-如果脚本不是以分布式模式启动的，则此上下文管理器不执行任何操作。
+如果脚本不是以分布式模式启动，则此上下文管理器不执行任何操作。
 
 示例：
 
@@ -1405,15 +1405,15 @@ model (`torch.nn.Module`) ：触发梯度同步的模型。在多次前向传递
 unscale_gradients(optimizer = None)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L2922)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L2828)
 
 **参数：**
 
-优化器（`torch.optim.Optimizer`或`list[torch.optim.Optimizer]`，*可选*）：取消缩放梯度的优化器。如果未设置，将取消传递到 [prepare()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.prepare) 的所有优化器上的梯度。
+优化器（`torch.optim.Optimizer`或`list[torch.optim.Optimizer]`，*可选*）：取消缩放梯度的优化器。如果未设置，将取消传递到 [prepare()](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator.prepare) 的所有优化器上的梯度。
 
 使用 AMP 取消缩放混合精度训练中的梯度。这在所有其他设置中都是无用的。
 
-可能应该通过 [Accelerator.clip_grad_norm_()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.clip_grad_norm_) 或 [Accelerator.clip_grad_value_()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.clip_grad_value_) 调用
+可能应该通过 [Accelerator.clip_grad_norm_()](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator.clip_grad_norm_) 或 [Accelerator.clip_grad_value_()](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator.clip_grad_value_) 调用
 
 示例：
 
@@ -1434,7 +1434,7 @@ unscale_gradients(optimizer = None)
 unwrap_model(model, keep_fp32_wrapper: bool = True, keep_torch_compile: bool = True)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L3254)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L3159)
 
 **参数：**
 
@@ -1446,7 +1446,7 @@ keep_torch_compile (`bool`，*可选*，默认为`True`)：如果编译，是否
 
 **返回：** `torch.nn.Module`
 
-未包装的模型。从 [prepare()](/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.prepare) 可能添加的附加层中解开 `model`。保存前有用
+未包装的模型。从 [prepare()](/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator.prepare) 可能添加的附加层中解开 `model`。保存前有用
 模型。
 
 示例：
@@ -1472,7 +1472,7 @@ MyModel
 verify_device_map(model: torch.nn.Module)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L4350)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L4223)
 
 验证 `model` 尚未准备好使用类似于 `auto` 的设备映射的大模型推理。
 
@@ -1482,7 +1482,7 @@ verify_device_map(model: torch.nn.Module)
 wait_for_everyone()
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/accelerator.py#L3288)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/accelerator.py#L3193)
 
 将停止当前进程的执行，直到所有其他进程都到达该点（所以这
 当脚本仅在一个进程中运行时什么也没有）。在保存模型之前执行此操作很有用。
@@ -1509,10 +1509,10 @@ wait_for_everyone()
 ####加速.utils.gather_object[[accelerate.utils.gather_object]]
 
 ```python
-accelerate.utils.gather_object(object: typing.Any)
+accelerate.utils.gather_object(object: Any)
 ```
 
-[Source](https://github.com/huggingface/accelerate/blob/v1.15.0/src/accelerate/utils/operations.py#L505)
+[Source](https://github.com/huggingface/accelerate/blob/v1.16.0/src/accelerate/utils/operations.py#L495)
 
 **参数：**
 
@@ -1524,5 +1524,5 @@ object（可挑选对象的嵌套列表/元组/字典）：要收集的数据。
 
 从所有设备递归地将对象收集到对象的嵌套列表/元组/字典中。
 
-### Kwargs 处理程序
-https://huggingface.co/docs/accelerate/v1.15.0/package_reference/kwargs.md
+### DeepSpeed 实用程序
+https://huggingface.co/docs/accelerate/v1.16.0/package_reference/deepspeed.md
