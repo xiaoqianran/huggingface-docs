@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-17T16:49:37.774641+00:00",
+  "fetchedAt": "2026-11-18T16:21:11.868377+00:00",
   "method": "llms-full-split",
   "ok": 2327,
   "failed": 0,
@@ -8796,7 +8796,7 @@
     },
     {
       "rel": "kernels/cli-info.md",
-      "bytes": 1768,
+      "bytes": 3369,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/cli-info.md",
       "track": "Kernels",
@@ -21028,7 +21028,7 @@
       "toc": 41,
       "found": 41,
       "written": 41,
-      "full_bytes": 256982
+      "full_bytes": 258583
     },
     {
       "pkg": "lerobot",
