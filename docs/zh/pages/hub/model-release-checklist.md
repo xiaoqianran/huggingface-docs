@@ -18,7 +18,7 @@
    为同一架构的每个变体创建单独的存储库。这使您可以将它们分组到 [collection](https://huggingface.co/docs/hub/en/collections) 中，这比目录列表更容易导航。它还提高了可见性，因为每个模型都有自己的 URL (`hf.co/org/model-name`)，使搜索更容易，并提供每个模型的下载计数。一个很好的例子是最近的 [Qwen3-VL collection](https://huggingface.co/collections/Qwen/qwen3-vl)，它具有 VL 架构的各种变体。
 
 - **对于权重序列化，优先使用 [⟦T13⟧](https://huggingface.co/docs/safetensors/en/index) 而不是 `pickle`。**：
-   `safetensors` 比 Python 的 `pickle` 或 `pth` 更安全、更快。如果您有 `.bin` pickle 文件，请使用 [weight conversion tool](https://huggingface.co/docs/safetensors/en/convert-weights) 对其进行转换。###写一张综合模型卡
+   `safetensors` 比 Python 的 `pickle` 或 `pth` 更安全、更快。如果您有 `.bin` pickle 文件，请使用 [weight conversion tool](https://huggingface.co/docs/safetensors/en/convert-weights) 进行转换。###写一张综合模型卡
 
 精心制作的模型卡（存储库中的`README.md`）对于可发现性、可重复性和有效共享至关重要。确保覆盖：
 
@@ -119,7 +119,7 @@
    如果您要发布多个相关模型或变体，请将它们组织到 [collection](https://huggingface.co/docs/hub/collections) 中。集合帮助用户发现相关模型并理解跨版本的关系。
 
 5. **演示**：
-   创建带有交互式演示的 [Hugging Face Space](https://huggingface.co/docs/hub/spaces)。这使用户无需编写代码即可尝试您的模型。您还可以从空间中选择[link the model](https://huggingface.co/docs/hub/spaces-config-reference)，使其出现在模型页面 UI 上。```markdown
+   创建带有交互式演示的 [Hugging Face Space](https://huggingface.co/docs/hub/spaces)。这使用户无需编写代码即可尝试您的模型。您还可以从空间中点击[link the model](https://huggingface.co/docs/hub/spaces-config-reference)，使其出现在模型页面 UI 上。```markdown
    ## Demo
    
    Try this model directly in your browser: [Space Demo](https://huggingface.co/spaces/username/model-demo)
@@ -193,7 +193,7 @@
 
 ## 🏁 发布模型后
 
-成功的模型发布超出了最初的发布范围。为了保持质量并最大化影响：
+成功的模型发布不仅仅限于最初的发布。为了保持质量并最大化影响：
 
 ### 维护和社区参与
 
@@ -211,7 +211,7 @@
    ```2. **分享分享分享**：
    大多数用户通过社交媒体、聊天渠道（例如 Slack 或 Discord）或时事通讯发现模型。在这些空间中共享您的模型链接，并将它们添加到您的网站或 GitHub 存储库。
    
-   您的模特获得的访问量和点赞越多，它在[Hugging Face Trending section](https://huggingface.co/models?sort=trending)上的排名就越高，带来更高的曝光度
+   您的模特收到的访问量和点赞越多，它在[Hugging Face Trending section](https://huggingface.co/models?sort=trending)上的排名就越高，带来更高的曝光度
 
 3. **社区互动**：
    使用“社区”选项卡可以回答问题、处理反馈并及时解决问题。澄清困惑，接受有用的建议，并关闭偏离主题的话题以保持讨论的重点。
@@ -261,6 +261,9 @@
 
 5. **组织博客文章**：
    企业组织现在可以[publish blog articles directly on Hugging Face](https://huggingface.co/blog/huggingface/blog-articles-for-orgs)。这使您可以与更广泛的社区共享模型发布、研究更新和公告，所有这些都来自您组织的个人资料。
+
+6. **预发布模型页面**：
+   企业计划或以上计划的组织可以在其权重公开之前通过[pre-release page](./models-release-announcements)宣布模型。将 `release_date` 添加到私人模特的模特卡上，向访问者显示倒计时和**发布时点赞和通知**按钮，然后在模型公开后向订阅者发送电子邮件。
 
 通过遵循这些指南和示例，您将使 Hugging Face 上的模型发布清晰、有用且具有影响力。这有助于您的工作惠及更多人，加强人工智能社区，并提高模型的可见性。
 

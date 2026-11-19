@@ -6,7 +6,7 @@ PEFT 方法训练尽可能少的参数，同时追求与完全微调相当的性
 
 为训练大型模型提供一般建议很困难，但对于生成模型，尤其是语言模型，您可以按照以下步骤操作：
 
-1. 使用提示（例如提示中的少数示例）来查看模型是否已经能够胜任该任务。如果该模型解决了您的问题，那就太好了！您现在可以使用[Prompt-based methods](#prompt-based-methods)来学习提示并节省宝贵的代币。
+1. 使用提示（例如提示中的少量示例）来查看模型是否已经能够胜任该任务。如果该模型解决了您的问题，那就太好了！您现在可以使用[Prompt-based methods](#prompt-based-methods)来学习提示并节省宝贵的代币。
 2. 如果基于提示的方法不够，您可以使用[layer tuning](#layer-tuning)和[adapter methods](#adapter-methods)。这些方法通常比基于提示的方法更具表现力，并且更接近完全微调。
 3. 确保衡量已学知识的保留情况，因为每个微调步骤都可能会忘记过去的知识。
 
@@ -40,4 +40,4 @@ PEFT 库支持多种类型的提示方法（p 调优、前缀调优、提示调�
 > LoRA 是最流行的 PEFT 方法之一，如果您刚刚开始使用 PEFT，这是一个很好的起点。它最初是为大型语言模型开发的，但由于其效率和有效性，它是扩散模型的一种非常流行的训练方法。低阶适配器只是一种可能的适配器配方，PEFT 还实现了许多其他类型的适配器。例如，正交微调方法（[OFT](../package_reference/oft)，[BOFT](../package_reference/boft)，...）使用适配器权重的正交分解来实现小尺寸。像[MiSS](../package_reference/miss)这样的方法对矩阵进行分片并共享这些分片以节省内存。 [IA3](../package_reference/ia3) 引入了重新调整键、值和前馈激活的学习向量。
 
 ### 完全分片数据并行
-https://huggingface.co/docs/peft/v0.21.0/accelerate/fsdp.md
+https://huggingface.co/docs/peft/v0.22.0/accelerate/fsdp.md

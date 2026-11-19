@@ -129,6 +129,10 @@ inspect view
 
 详情请参阅[Inspect's eval logs guide](https://inspect.aisi.org.uk/eval-logs.html#sec-hugging-face-storage-buckets)。
 
+## 开放路由器
+
+[OpenRouter Broadcast](https://openrouter.ai/docs/guides/features/broadcast/hugging-face) 可以使用 [S3 credentials](./storage-buckets-s3#generating-s3-credentials) 将通过 OpenRouter 路由的请求跟踪发送到存储桶，每个请求都保存为单独的 JSON 文件。跟踪包含完整的提示和工具输出，因此请使用私有存储桶。请参阅 [OpenRouter Broadcast traces](./agent-traces#openrouter-broadcast-traces) 了解 Hub 如何显示它们。
+
 ## 天空飞行员
 
 [SkyPilot](https://docs.skypilot.co/) 跨 20 多个云、Kubernetes 和本地运行 AI 工作负载，并且可以使用 Hugging Face 存储作为后端 - 因此可以从每个云读取一个存储桶，而无需每个云复制。在 `file_mounts` 条目上设置 `store: hf` 以将存储桶挂载为可读写或将存储库挂载为只读：
@@ -162,9 +166,9 @@ run: |
 pip install "skypilot[huggingface]"
 hf auth login                              # or: export HF_TOKEN=REDACTED
 sky launch qwen-sft.yaml
-```
+```如果您自己的 `run` 代码拉取门控存储库，请将 `--secret HF_TOKEN` 添加到启动命令中，以将令牌公开为环境变量。
 
-如果您自己的 `run` 代码拉取门控存储库，请将 `--secret HF_TOKEN` 添加到启动命令中，以将令牌公开为环境变量。> [!提示]
+> [!提示]
 > `MOUNT` 和 `MOUNT_CACHED` 与 `hf` 的行为相同，并使用 [hf-mount](https://github.com/huggingface/hf-mount) FUSE 后端，该后端需要 glibc ≥ 2.34 和 `/dev/fuse` 的基础映像。裸虚拟机云同时提供这两种功能。 SkyPilot 的默认 Kubernetes 映像附带较旧的 glibc，因此设置较新的 `image_id`（例如 `docker:mirror.gcr.io/ubuntu:22.04`）。当前环境要求请参见[SkyPilot storage docs](https://docs.skypilot.co/en/latest/reference/storage.html)。
 
 请参阅 [SkyPilot + Hugging Face storage blog post](https://huggingface.co/blog/skypilot-hf-storage) 了解基准测试和完整演练。

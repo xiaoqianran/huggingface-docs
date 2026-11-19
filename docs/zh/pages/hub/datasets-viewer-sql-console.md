@@ -144,5 +144,5 @@ Leakage detection is the process of identifying whether data in a dataset is pre
         其他 0
     END AS 重叠百分比
 FROM 重叠行数、总唯一行数；
-````### 代理库
-https://huggingface.co/docs/hub/agents-libraries.md
+````### 预发布模型页面
+https://huggingface.co/docs/hub/models-release-announcements.md

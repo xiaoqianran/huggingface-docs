@@ -2,7 +2,7 @@
 
 # 安装
 
-在开始之前，您需要设置环境、安装适当的软件包并配置 🤗 PEFT。 🤗 PEFT 在 **Python 3.9+** 上进行了测试。
+在开始之前，您需要设置环境、安装适当的软件包并配置 🤗 PEFT。 🤗 PEFT 在 **Python 3.11+** 上进行了测试。
 
 🤗 PEFT 可在 PyPI 和 GitHub 上使用：
 
@@ -48,5 +48,5 @@ cd peft
 pip install -e ".[test]"
 ```如果您打算为 PEFT 做出贡献，请遵循 [contributing guide](developer_guides/contributing#installation)，其中还涵盖了分叉、添加上游远程以及创建工作分支。
 
-### PEFT
-https://huggingface.co/docs/peft/v0.21.0/index.md
+### PEFT 集成
+https://huggingface.co/docs/peft/v0.22.0/guides/peft_integrations.md

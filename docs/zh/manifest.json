@@ -29,8 +29,8 @@
       "translatedAt": "2026-10-29T14:05:58.275Z"
     },
     "hub/agent-traces.md": {
-      "hash": "531cb636f97433c6dfafc9b7b5ac3d6334ed7e5a",
-      "translatedAt": "2026-10-29T14:05:58.016Z"
+      "hash": "ea10a659c373aba95bfab187a54e3ec8467b1760",
+      "translatedAt": "2026-11-19T16:29:34.396Z"
     },
     "hub/index.md": {
       "hash": "f3ebde60692c5fea0143fbe5e79a4ffe2e5ccd1a",
@@ -281,16 +281,16 @@
       "translatedAt": "2026-11-09T17:22:36.350Z"
     },
     "hub/datasets-viewer-sql-console.md": {
-      "hash": "4de09bb327481fb46fd0a4bdc37708913aaae750",
-      "translatedAt": "2026-10-29T14:07:11.638Z"
+      "hash": "4267dd8c69918ba3e0a9df71be78ee9baafe3ff4",
+      "translatedAt": "2026-11-19T16:29:35.306Z"
     },
     "hub/doi.md": {
       "hash": "6209806269d7bd0236cae16cff52f58e1b5c4ed3",
       "translatedAt": "2026-10-29T14:07:13.998Z"
     },
     "hub/download-analytics.md": {
-      "hash": "992464c0443e5791a08436627fc7276aeecb4065",
-      "translatedAt": "2026-10-29T14:07:17.160Z"
+      "hash": "87bc773f97714ba5bfc553a75f151b5083c61220",
+      "translatedAt": "2026-11-19T16:29:32.644Z"
     },
     "hub/diffusers.md": {
       "hash": "87761d39057e2161f9d64a5922cb3bb22d9f42d0",
@@ -489,12 +489,12 @@
       "translatedAt": "2026-10-29T14:08:33.400Z"
     },
     "hub/model-cards.md": {
-      "hash": "318b6a9885173193e3c85e7a2d90032fed642367",
-      "translatedAt": "2026-11-09T17:22:45.655Z"
+      "hash": "33469c0177d0aba74bfa644cabb6ad12d4fb0475",
+      "translatedAt": "2026-11-19T16:29:42.088Z"
     },
     "hub/model-release-checklist.md": {
-      "hash": "a3046b209a6a80a15dbfddd2e0ed7e531b951e61",
-      "translatedAt": "2026-11-09T17:22:45.238Z"
+      "hash": "e646cf1b6a9ad65785821474afdc163950d1beb6",
+      "translatedAt": "2026-11-19T16:29:39.451Z"
     },
     "hub/models-advanced.md": {
       "hash": "9e3d82a9df2e4f99ad90e27e74f63728771ceea9",
@@ -997,8 +997,8 @@
       "translatedAt": "2026-10-29T14:10:52.707Z"
     },
     "hub/storage-buckets-integrations.md": {
-      "hash": "711c515f3d2e99749a122e8ded906342a015c8ab",
-      "translatedAt": "2026-11-04T15:19:40.883Z"
+      "hash": "5c68770909451268fafc5ea76896484b75b0a27d",
+      "translatedAt": "2026-11-19T16:29:41.338Z"
     },
     "hub/storage-buckets-security.md": {
       "hash": "03f5a2ee6155e191ee4f65ebd8aec40c6843b5b2",
@@ -1513,40 +1513,40 @@
       "translatedAt": "2026-11-17T16:50:55.339Z"
     },
     "peft/index.md": {
-      "hash": "fba3a689e8e6f6ed0ee9ba4437cf5f1999b8872c",
-      "translatedAt": "2026-09-15T12:36:55.491Z"
+      "hash": "bec82d3b9fb14fc0be441c96263c55c10431b207",
+      "translatedAt": "2026-11-19T16:29:41.473Z"
     },
     "accelerate/usage_guides/training_zoo.md": {
       "hash": "bb64f6d348db904a91602f8f58e2d838d88a9225",
       "translatedAt": "2026-11-17T16:50:57.112Z"
     },
     "peft/install.md": {
-      "hash": "176ca09b624c26fc9e53652c34ad13fe46dfefa3",
-      "translatedAt": "2026-09-15T12:36:55.470Z"
+      "hash": "5267f9ec399b8ed145dedea5eaf81af37085c79b",
+      "translatedAt": "2026-11-19T16:29:42.771Z"
     },
     "peft/methods/overview.md": {
-      "hash": "15d26a4dcb2888075df9d09fb2b2a670fc94a5e7",
-      "translatedAt": "2026-09-15T12:36:58.299Z"
+      "hash": "e97b6e78756f49f2f139b4c63654dc16300ef3d8",
+      "translatedAt": "2026-11-19T16:29:45.866Z"
     },
     "peft/quicktour.md": {
-      "hash": "96385f24799c390c78e47ca929dee23f3798a49b",
-      "translatedAt": "2026-09-15T12:36:58.653Z"
+      "hash": "f091534de118592cfd7813c910ead863494119ad",
+      "translatedAt": "2026-11-19T16:29:47.638Z"
     },
     "peft/accelerate/fsdp.md": {
-      "hash": "d10a9b54c8c8f8bd853e532f9231cd58d6a520bb",
-      "translatedAt": "2026-09-15T12:37:01.360Z"
+      "hash": "fc55f5b1f974d08e74be7e7e21c11299749f1aef",
+      "translatedAt": "2026-11-19T16:29:51.483Z"
     },
     "peft/accelerate/deepspeed.md": {
-      "hash": "7f5e93a6cdb717985324755919fe92a073c3e0eb",
-      "translatedAt": "2026-09-15T12:37:01.846Z"
+      "hash": "a9555f4e8fe54b6b8dd0b89ede5c194f366e874d",
+      "translatedAt": "2026-11-19T16:29:48.102Z"
     },
     "accelerate/package_reference/utilities.md": {
       "hash": "c4f6cd586f36a9548c74824257ce286ed2e938d3",
       "translatedAt": "2026-11-17T16:50:53.842Z"
     },
     "peft/developer_guides/checkpoint.md": {
-      "hash": "ecb901db4d9f9c01911a1d9c4dc9f09f1db0dc7f",
-      "translatedAt": "2026-09-15T12:37:03.582Z"
+      "hash": "edbf758de61ffc196d3127ecd506a386d999e59e",
+      "translatedAt": "2026-11-19T16:29:51.207Z"
     },
     "peft/developer_guides/contributing.md": {
       "hash": "4318bc0b200414fa60484db96f7a6aad85c81b3d",
@@ -2051,12 +2051,16 @@
     "hub/security-removing-sensitive-data.md": {
       "hash": "cb6a850871a6ce505712bccd37ac6c8d2b4052ee",
       "translatedAt": "2026-11-11T15:02:31.316Z"
+    },
+    "hub/models-release-announcements.md": {
+      "hash": "97dddef2d6106b42cd26f2b582233d28be8d62db",
+      "translatedAt": "2026-11-19T16:29:39.854Z"
     }
   },
-  "updatedAt": "2026-11-18T16:21:12.058Z",
+  "updatedAt": "2026-11-19T16:29:51.483Z",
   "stats": {
-    "translated": 0,
-    "skipped": 400,
+    "translated": 14,
+    "skipped": 386,
     "failed": 0,
     "total": 400
   }
