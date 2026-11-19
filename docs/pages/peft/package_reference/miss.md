@@ -70,7 +70,7 @@ config = MissConfig(
 # )
 
 model = get_peft_model(model, config)
-model.print_trainable_parameters()
+model.print_healthcheck()
 ```
 
 For a full fine-tuning example including training and inference, see the [MiSS fine-tuning example](https://github.com/huggingface/peft/tree/main/examples/miss_finetuning).
@@ -85,7 +85,7 @@ For a full fine-tuning example including training and inference, see the [MiSS f
 peft.MissConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, r: int = 64, miss_dropout: float = 0.0, mini_r: int = 1, target_modules: Optional[Union[list[str], str]] = None, exclude_modules: Optional[Union[list[str], str]] = None, init_weights: bool | Literal['bat', 'mini'] = True, layers_to_transform: Optional[Union[list[int], int]] = None, layers_pattern: Optional[str] = None, bias: str = 'none', modules_to_save: Optional[list[str]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/miss/config.py#L25)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/miss/config.py#L25)
 
 **Parameters:**
 
@@ -109,7 +109,7 @@ bias (`str`) : Bias type for MiSS. Can be `'none'`, `'all'` or `'MiSS_only'`.
 
 modules_to_save (`List[str]`) : List of modules apart from adapter layers to be set as trainable and saved in the final checkpoint.
 
-This is the configuration class to store the configuration of a [MissModel](/docs/peft/v0.21.0/en/package_reference/miss#peft.MissModel).
+This is the configuration class to store the configuration of a [MissModel](/docs/peft/v0.22.0/en/package_reference/miss#peft.MissModel).
 
 ## MissModel[[peft.MissModel]]
 
@@ -119,13 +119,13 @@ This is the configuration class to store the configuration of a [MissModel](/doc
 peft.MissModel(model, peft_config: Union[PeftConfig, dict[str, PeftConfig]], adapter_name: str, low_cpu_mem_usage: bool = False, state_dict: Optional[dict[str, torch.Tensor]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/miss/model.py#L38)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/miss/model.py#L38)
 
 **Parameters:**
 
 model (`torch.nn.Module`) : The model to which the adapter tuner layers will be attached.
 
-config ([MissConfig](/docs/peft/v0.21.0/en/package_reference/miss#peft.MissConfig)) : The configuration of the MiSS model.
+config ([MissConfig](/docs/peft/v0.22.0/en/package_reference/miss#peft.MissConfig)) : The configuration of the MiSS model.
 
 adapter_name (`str`) : The name of the adapter, defaults to `"default"`.
 
@@ -135,42 +135,22 @@ low_cpu_mem_usage (`bool`, `optional`, defaults to `False`) : Create empty adapt
 
 The MiSS model.
 
-Creates Householder reflection adaptation (MiSS) model from a pretrained model. The method is described in
+Creates Matrix Shard Sharing (MiSS) model from a pretrained model. The method is described in
 https://huggingface.co/papers/2409.15371
 
 Example:
 ```py
->>> from diffusers import StableDiffusionPipeline
->>> from peft import MissModel, MissConfig
+>>> from transformers import AutoModelForCausalLM
+>>> from peft import MissConfig, get_peft_model
 
->>> config_te = MissConfig(
-...     r=8,
-...     target_modules=["k_proj", "q_proj", "v_proj", "out_proj", "fc1", "fc2"],
-...     init_weights=True,
-... )
->>> config_unet = MissConfig(
-...     r=8,
-...     target_modules=[
-...         "proj_in",
-...         "proj_out",
-...         "to_k",
-...         "to_q",
-...         "to_v",
-...         "to_out.0",
-...         "ff.net.0.proj",
-...         "ff.net.2",
-...     ],
-...     init_weights=True,
-... )
-
->>> model = StableDiffusionPipeline.from_pretrained("runwayml/stable-diffusion-v1-5")
->>> model.text_encoder = MissModel(model.text_encoder, config_te, "default")
->>> model.unet = MissModel(model.unet, config_unet, "default")
+>>> base_model = AutoModelForCausalLM.from_pretrained("facebook/opt-125m")
+>>> config = MissConfig(r=64)
+>>> model = get_peft_model(base_model, config)
 ```
 
 **Attributes**:
 - **model** (`~torch.nn.Module`) -- The model to be adapted.
-- **peft_config** ([MissConfig](/docs/peft/v0.21.0/en/package_reference/miss#peft.MissConfig)): The configuration of the MiSS model.
+- **peft_config** ([MissConfig](/docs/peft/v0.22.0/en/package_reference/miss#peft.MissConfig)): The configuration of the MiSS model.
 
-### LayerNorm Tuning
-https://huggingface.co/docs/peft/v0.21.0/package_reference/layernorm_tuning.md
+### UniLoRA
+https://huggingface.co/docs/peft/v0.22.0/package_reference/unilora.md

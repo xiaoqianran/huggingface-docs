@@ -124,7 +124,7 @@ Notice that we are using LoRA with  rank=8, alpha=16 and targeting all linear la
 
 Let's dive a little deeper into the script so you can see what's going on, and understand how it works.
 
-The first thing to know is that the script uses DeepSpeed for distributed training as the DeepSpeed config has been passed. The [SFTTrainer](https://huggingface.co/docs/trl/v1.13.0/en/sft_trainer#trl.SFTTrainer) class handles all the heavy lifting of creating the PEFT model using the peft config that is passed. After that, when you call `trainer.train()`, [SFTTrainer](https://huggingface.co/docs/trl/v1.13.0/en/sft_trainer#trl.SFTTrainer) internally uses 🤗 Accelerate to prepare the model, optimizer and trainer using the DeepSpeed config to create DeepSpeed engine which is then trained. The main code snippet is below:
+The first thing to know is that the script uses DeepSpeed for distributed training as the DeepSpeed config has been passed. The [SFTTrainer](https://huggingface.co/docs/trl/v1.18.1/en/sft_trainer#trl.SFTTrainer) class handles all the heavy lifting of creating the PEFT model using the peft config that is passed. After that, when you call `trainer.train()`, [SFTTrainer](https://huggingface.co/docs/trl/v1.18.1/en/sft_trainer#trl.SFTTrainer) internally uses 🤗 Accelerate to prepare the model, optimizer and trainer using the DeepSpeed config to create DeepSpeed engine which is then trained. The main code snippet is below:
 
 ```python
 # trainer
@@ -327,12 +327,12 @@ use_cpu: false
 
 Let's dive a little deeper into the script so you can see what's going on, and understand how it works.
 
-Within the [`main`](https://github.com/huggingface/peft/blob/2822398fbe896f25d4dac5e468624dc5fd65a51b/examples/conditional_generation/peft_lora_seq2seq_accelerate_ds_zero3_offload.py#L103) function, the script creates an [Accelerator](https://huggingface.co/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator) class to initialize all the necessary requirements for distributed training.
+Within the [`main`](https://github.com/huggingface/peft/blob/2822398fbe896f25d4dac5e468624dc5fd65a51b/examples/conditional_generation/peft_lora_seq2seq_accelerate_ds_zero3_offload.py#L103) function, the script creates an [Accelerator](https://huggingface.co/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator) class to initialize all the necessary requirements for distributed training.
 
 > [!TIP]
 > 💡 Feel free to change the model and dataset inside the `main` function. If your dataset format is different from the one in the script, you may also need to write your own preprocessing function.
 
-The script also creates a configuration for the 🤗 PEFT method you're using, which in this case, is LoRA. The [LoraConfig](/docs/peft/v0.21.0/en/package_reference/lora#peft.LoraConfig) specifies the task type and important parameters such as the dimension of the low-rank matrices, the matrices scaling factor, and the dropout probability of the LoRA layers. If you want to use a different 🤗 PEFT method, make sure you replace `LoraConfig` with the appropriate [class](../package_reference/tuners).
+The script also creates a configuration for the 🤗 PEFT method you're using, which in this case, is LoRA. The [LoraConfig](/docs/peft/v0.22.0/en/package_reference/lora#peft.LoraConfig) specifies the task type and important parameters such as the dimension of the low-rank matrices, the matrices scaling factor, and the dropout probability of the LoRA layers. If you want to use a different 🤗 PEFT method, make sure you replace `LoraConfig` with the appropriate [class](../package_reference/tuners).
 
 ```diff
  def main():
@@ -344,16 +344,16 @@ The script also creates a configuration for the 🤗 PEFT method you're using, w
      )
 ```
 
-Throughout the script, you'll see the [main_process_first](https://huggingface.co/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.main_process_first) and [wait_for_everyone](https://huggingface.co/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.wait_for_everyone) functions which help control and synchronize when processes are executed.
+Throughout the script, you'll see the [main_process_first](https://huggingface.co/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator.main_process_first) and [wait_for_everyone](https://huggingface.co/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator.wait_for_everyone) functions which help control and synchronize when processes are executed.
 
-The [get_peft_model()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.get_peft_model) function takes a base model and the `peft_config` you prepared earlier to create a [PeftModel](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel):
+The [get_peft_model()](/docs/peft/v0.22.0/en/package_reference/peft_model#peft.get_peft_model) function takes a base model and the `peft_config` you prepared earlier to create a [PeftModel](/docs/peft/v0.22.0/en/package_reference/peft_model#peft.PeftModel):
 
 ```diff
   model = AutoModelForSeq2SeqLM.from_pretrained(model_name_or_path)
 + model = get_peft_model(model, peft_config)
 ```
 
-Pass all the relevant training objects to 🤗 Accelerate's [prepare](https://huggingface.co/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.prepare) which makes sure everything is ready for training:
+Pass all the relevant training objects to 🤗 Accelerate's [prepare](https://huggingface.co/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator.prepare) which makes sure everything is ready for training:
 
 ```py
 model, train_dataloader, eval_dataloader, test_dataloader, optimizer, lr_scheduler = accelerator.prepare(
@@ -369,7 +369,7 @@ if getattr(accelerator.state, "deepspeed_plugin", None):
     is_ds_zero_3 = accelerator.state.deepspeed_plugin.zero_stage == 3
 ```
 
-Inside the training loop, the usual `loss.backward()` is replaced by 🤗 Accelerate's [backward](https://huggingface.co/docs/accelerate/v1.15.0/en/package_reference/accelerator#accelerate.Accelerator.backward) which uses the correct `backward()` method based on your configuration:
+Inside the training loop, the usual `loss.backward()` is replaced by 🤗 Accelerate's [backward](https://huggingface.co/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator.backward) which uses the correct `backward()` method based on your configuration:
 
 ```diff
   for epoch in range(num_epochs):
@@ -441,3 +441,6 @@ dataset['train'][label_column][:10]=['no complaint', 'no complaint', 'complaint'
 >     ...
 >     model.unmerge_adapter()
 > ```
+
+### Adapter injection
+https://huggingface.co/docs/peft/v0.22.0/developer_guides/low_level_api.md

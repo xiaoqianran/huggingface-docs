@@ -2,13 +2,13 @@
 
 #### peft.PeftError[[peft.PeftError]]
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/utils/error.py#L16)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/utils/error.py#L16)
 
 Base PEFT error
 
 #### peft.NoMatchingPeftModuleError[[peft.NoMatchingPeftModuleError]]
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/utils/error.py#L20)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/utils/error.py#L20)
 
 The adapter being injected matched no module or parameter of the base model.
 
@@ -17,5 +17,5 @@ misconfiguration. It subclasses `ValueError` for backwards compatibility with co
 error raised previously. Code that adds such an adapter intentionally can catch this error (or `PeftError`) and
 proceed.
 
-### RandLora: Full-rank parameter-efficient fine-tuning of large models
-https://huggingface.co/docs/peft/v0.21.0/package_reference/randlora.md
+### Models
+https://huggingface.co/docs/peft/v0.22.0/package_reference/peft_model.md

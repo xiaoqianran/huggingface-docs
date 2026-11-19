@@ -7,14 +7,14 @@
 - [Dataset Viewer](https://huggingface.co/docs/dataset-viewer) — 26 pages
 - [Datasets](https://huggingface.co/docs/datasets) — 62 pages
 - [Diffusers](https://huggingface.co/docs/diffusers) — 382 pages
-- [Hub](https://huggingface.co/docs/hub) — 280 pages
+- [Hub](https://huggingface.co/docs/hub) — 281 pages
 - [Hub Client](https://huggingface.co/docs/huggingface_hub) — 53 pages
 - [Inference Endpoints](https://huggingface.co/docs/inference-endpoints) — 25 pages
 - [Inference Providers](https://huggingface.co/docs/inference-providers) — 31 pages
 - [Kernels](https://huggingface.co/docs/kernels) — 41 pages
 - [LeRobot](https://huggingface.co/docs/lerobot) — 119 pages
 - [Optimum](https://huggingface.co/docs/optimum) — 16 pages
-- [PEFT](https://huggingface.co/docs/peft) — 79 pages
+- [PEFT](https://huggingface.co/docs/peft) — 80 pages
 - [Safetensors](https://huggingface.co/docs/safetensors) — 10 pages
 - [Smolagents](https://huggingface.co/docs/smolagents) — 22 pages
 - [TEI](https://huggingface.co/docs/text-embeddings-inference) — 14 pages

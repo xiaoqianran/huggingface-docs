@@ -28,7 +28,7 @@ Compared to LoRA-style methods, ShadowPEFT adds more parameters and compute (it 
 
 ShadowPEFT supports incremental decoding with a **dual** KV cache: one for the frozen base model and one for the
 shadow backbone. Inject/update are token-local, so a new token only needs its own shadow state `s`; causality keeps
-prefix base keys/values (computed under injection) valid. The paired object is a [ShadowCache](/docs/peft/v0.21.0/en/package_reference/shadow#peft.tuners.shadow.ShadowCache),
+prefix base keys/values (computed under injection) valid. The paired object is a [ShadowCache](/docs/peft/v0.22.0/en/package_reference/shadow#peft.tuners.shadow.ShadowCache),
 returned as `past_key_values` when `use_cache=True`. You can pass `use_cache=True` to `generate()` as usual.
 
 ```py
@@ -48,7 +48,7 @@ from peft import ShadowConfig, get_peft_model
 model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen3-0.6B")
 config = ShadowConfig(r=8, shadow_num_hidden_layers=1, task_type="CAUSAL_LM")
 model = get_peft_model(model, config)
-model.print_trainable_parameters()
+model.print_healthcheck()
 
 out = model.generate(input_ids, max_new_tokens=32)
 ```
@@ -89,6 +89,15 @@ shadow = model.base_model.unload_shadow(copy=True)
 shadow.save_pretrained("standalone-shadow")
 ```
 
+## Benchmark overview
+
+<iframe
+	src="https://peft-internal-testing-peft-method-comparison-embed.hf.space/?highlight[type]=SHADOW"
+	frameborder="0"
+	width="850"
+	height="1000"
+>
+
 # API
 
 ## ShadowConfig[[peft.ShadowConfig]]
@@ -96,10 +105,10 @@ shadow.save_pretrained("standalone-shadow")
 #### peft.ShadowConfig[[peft.ShadowConfig]]
 
 ```python
-peft.ShadowConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, target_modules: typing.Union[str, list[str], NoneType] = None, exclude_modules: typing.Union[str, list[str], NoneType] = None, r: int = 8, shadow_alpha: float = 0.1, shadow_dropout: float = 0.2, init_weights: bool = True, shadow_model: str = 'mirror', shadow_num_hidden_layers: typing.Optional[int] = None, shadow_hidden_size: typing.Optional[int] = None, shadow_num_attention_heads: typing.Optional[int] = None, shadow_intermediate_size: typing.Optional[int] = None, share_embeddings: bool = True, update_hidden_size: typing.Optional[int] = None, auxiliary_loss_weight: float = 0.05, layers_to_transform: typing.Union[list[int], int, NoneType] = None, layers_pattern: typing.Union[str, list[str], NoneType] = None, modules_to_save: typing.Optional[list[str]] = None)
+peft.ShadowConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, target_modules: list[str] | str | None = None, exclude_modules: list[str] | str | None = None, r: int = 8, shadow_alpha: float = 0.1, shadow_dropout: float = 0.2, init_weights: bool = True, shadow_model: str = 'mirror', shadow_num_hidden_layers: int | None = None, shadow_hidden_size: int | None = None, shadow_num_attention_heads: int | None = None, shadow_intermediate_size: int | None = None, share_embeddings: bool = True, update_hidden_size: int | None = None, auxiliary_loss_weight: float = 0.05, layers_to_transform: list[int] | int | None = None, layers_pattern: list[str] | str | None = None, modules_to_save: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/shadow/config.py#L23)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/shadow/config.py#L23)
 
 **Parameters:**
 
@@ -137,7 +146,7 @@ layers_pattern (`Optional[Union[list[str], str]]`) : The layer pattern name, use
 
 modules_to_save (`Optional[list[str]]`) : The extra modules to set as trainable and save in the final checkpoint (e.g. `"lm_head"` or a classifier head). Defaults to `None`.
 
-Configuration class for [ShadowModel](/docs/peft/v0.21.0/en/package_reference/shadow#peft.ShadowModel) (ShadowPEFT).
+Configuration class for [ShadowModel](/docs/peft/v0.22.0/en/package_reference/shadow#peft.ShadowModel) (ShadowPEFT).
 
 ShadowPEFT augments a frozen base decoder-only model with a small, trainable parallel *shadow* network. A shadow
 backbone produces an initial shadow state `s^(0)` that then rides the base model's decoder loop: at every targeted
@@ -154,25 +163,25 @@ in layer space rather than a static weight delta, ShadowPEFT cannot be merged in
 peft.ShadowModel(model, peft_config: Union[PeftConfig, dict[str, PeftConfig]], adapter_name: str, low_cpu_mem_usage: bool = False, state_dict: Optional[dict[str, torch.Tensor]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/shadow/model.py#L232)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/shadow/model.py#L233)
 
 Creates a ShadowPEFT model from a pretrained transformers model.
 
 ShadowPEFT augments a frozen base decoder-only model with a small, trainable parallel *shadow* network. A shadow
 backbone produces an initial shadow state that rides the base decoder loop; at every targeted block the discrepancy
 between the base hidden states and the shadow state is injected into the block, and the shadow state is advanced by
-a gated residual update. Only the shadow components are trained. See [ShadowConfig](/docs/peft/v0.21.0/en/package_reference/shadow#peft.ShadowConfig) for the configuration.
+a gated residual update. Only the shadow components are trained. See [ShadowConfig](/docs/peft/v0.22.0/en/package_reference/shadow#peft.ShadowConfig) for the configuration.
 
 The method cannot be merged into the base weights (the adaptation is an input-dependent trajectory, not a static
-weight delta); use [ShadowModel.unload_shadow()](/docs/peft/v0.21.0/en/package_reference/shadow#peft.ShadowModel.unload_shadow) to obtain the standalone shadow network instead.
+weight delta); use [ShadowModel.unload_shadow()](/docs/peft/v0.22.0/en/package_reference/shadow#peft.ShadowModel.unload_shadow) to obtain the standalone shadow network instead.
 
 #### shadow_auxiliary_loss[[peft.ShadowModel.shadow_auxiliary_loss]]
 
 ```python
-shadow_auxiliary_loss(labels: Tensor, attention_mask: typing.Optional[torch.Tensor] = None)
+shadow_auxiliary_loss(labels: Tensor, attention_mask: torch.Tensor | None = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/shadow/model.py#L792)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/shadow/model.py#L796)
 
 The shadow path's own task loss, `CE(shadow_head(s^(0)), labels)` (unweighted; `forward` applies the weight).
 
@@ -184,10 +193,10 @@ model's per-layer outputs and does not exist standalone) would leave the detache
 #### unload_shadow[[peft.ShadowModel.unload_shadow]]
 
 ```python
-unload_shadow(adapter_name: typing.Optional[str] = None, copy: bool = False)
+unload_shadow(adapter_name: str | None = None, copy: bool = False)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/shadow/model.py#L875)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/shadow/model.py#L879)
 
 **Parameters:**
 
@@ -216,10 +225,10 @@ re-attaches a private copy and saves a complete checkpoint.
 #### peft.tuners.shadow.ShadowCache[[peft.tuners.shadow.ShadowCache]]
 
 ```python
-peft.tuners.shadow.ShadowCache(base: typing.Any = None, shadow: typing.Any = None)
+peft.tuners.shadow.ShadowCache(base: Any = None, shadow: Any = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/shadow/layers.py#L59)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/shadow/layers.py#L60)
 
 Paired KV caches for incremental ShadowPEFT decoding.
 
@@ -231,7 +240,7 @@ for compatibility with architecture-specific cache implementations.
 
 The wrapper is intentionally not compileable because the two caches can have different layer layouts and hidden
 sizes. Legacy tuple conversion is not supported, since a single legacy tuple cannot represent both paths. The
-shadow half is unpacked before the base forward and re-packed on the way out -- see [ShadowModel](/docs/peft/v0.21.0/en/package_reference/shadow#peft.ShadowModel) hooks.
+shadow half is unpacked before the base forward and re-packed on the way out -- see [ShadowModel](/docs/peft/v0.22.0/en/package_reference/shadow#peft.ShadowModel) hooks.
 
-### Multitask prompt tuning
-https://huggingface.co/docs/peft/v0.21.0/package_reference/multitask_prompt_tuning.md
+### X-LoRA
+https://huggingface.co/docs/peft/v0.22.0/package_reference/xlora.md

@@ -34,7 +34,7 @@ The abstract from the paper is:
 peft.PveraConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, r: int = 256, target_modules: Optional[Union[list[str], str]] = None, projection_prng_key: int = 0, save_projection: bool = True, pvera_dropout: float = 0.0, d_initial: float = 0.1, fan_in_fan_out: bool = False, bias: str = 'none', modules_to_save: Optional[list[str]] = None, init_weights: bool = True, layers_to_transform: Optional[Union[list[int], int]] = None, layers_pattern: Optional[Union[list[str], str]] = None, sample_at_inference: bool = False, generator_seed: Optional[int] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/pvera/config.py#L25)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/pvera/config.py#L25)
 
 **Parameters:**
 
@@ -66,7 +66,7 @@ sample_at_inference (`bool`, defaults to `False`) : Whether to sample from the l
 
 generator_seed (`int`, defaults to None) : Random seed for the generator used to sample from the learned distribution.
 
-This is the configuration class to store the configuration of a [PveraModel](/docs/peft/v0.21.0/en/package_reference/pvera#peft.PveraModel).
+This is the configuration class to store the configuration of a [PveraModel](/docs/peft/v0.22.0/en/package_reference/pvera#peft.PveraModel).
 
 Paper: https://www.arxiv.org/abs/2512.07703.
 
@@ -78,13 +78,13 @@ Paper: https://www.arxiv.org/abs/2512.07703.
 peft.PveraModel(model, peft_config: Union[PeftConfig, dict[str, PeftConfig]], adapter_name: str, low_cpu_mem_usage: bool = False, state_dict: Optional[dict[str, torch.Tensor]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/pvera/model.py#L35)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/pvera/model.py#L35)
 
 **Parameters:**
 
-model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) : The model to be adapted.
+model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel)) : The model to be adapted.
 
-config ([PveraConfig](/docs/peft/v0.21.0/en/package_reference/pvera#peft.PveraConfig)) : The configuration of the PVeRA model.
+config ([PveraConfig](/docs/peft/v0.22.0/en/package_reference/pvera#peft.PveraConfig)) : The configuration of the PVeRA model.
 
 adapter_name (`str`) : The name of the adapter, defaults to `"default"`.
 
@@ -108,8 +108,8 @@ Example:
 ```
 
 **Attributes**:
-- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
-- **peft_config** ([PveraConfig](/docs/peft/v0.21.0/en/package_reference/pvera#peft.PveraConfig)): The configuration of the PVeRA model.
+- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
+- **peft_config** ([PveraConfig](/docs/peft/v0.22.0/en/package_reference/pvera#peft.PveraConfig)): The configuration of the PVeRA model.
 
-### BEFT: Bias-Efficient Fine-Tuning of Language Models in Low-Data Regimes
-https://huggingface.co/docs/peft/v0.21.0/package_reference/beft.md
+### LoRA conversion
+https://huggingface.co/docs/peft/v0.22.0/package_reference/lora_conversion.md

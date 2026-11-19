@@ -1,6 +1,6 @@
 # Installation
 
-Before you start, you will need to setup your environment, install the appropriate packages, and configure 🤗 PEFT. 🤗 PEFT is tested on **Python 3.9+**.
+Before you start, you will need to setup your environment, install the appropriate packages, and configure 🤗 PEFT. 🤗 PEFT is tested on **Python 3.11+**.
 
 🤗 PEFT is available on PyPI, as well as GitHub:
 
@@ -48,5 +48,5 @@ pip install -e ".[test]"
 
 If you're planning to contribute to PEFT, follow the [contributing guide](developer_guides/contributing#installation) instead, which also covers forking, adding the upstream remote, and creating a working branch.
 
-### PEFT
-https://huggingface.co/docs/peft/v0.21.0/index.md
+### PEFT integrations
+https://huggingface.co/docs/peft/v0.22.0/guides/peft_integrations.md

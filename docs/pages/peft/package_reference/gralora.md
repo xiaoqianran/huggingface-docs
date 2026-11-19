@@ -46,10 +46,10 @@ settings, making GraLoRA a scalable and robust solution for PEFT.*
 #### peft.GraloraConfig[[peft.GraloraConfig]]
 
 ```python
-peft.GraloraConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, r: int = 32, hybrid_r: int = 0, target_modules: typing.Union[str, list[str], NoneType] = None, alpha: int = 64, gralora_dropout: float = 0.0, gralora_k: int = 2, fan_in_fan_out: bool = False, bias: str = 'none', modules_to_save: typing.Optional[list[str]] = None, init_weights: bool = True, layers_to_transform: typing.Union[list[int], int, NoneType] = None, layers_pattern: typing.Optional[str] = None)
+peft.GraloraConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, r: int = 32, hybrid_r: int = 0, target_modules: list[str] | str | None = None, alpha: int = 64, gralora_dropout: float = 0.0, gralora_k: int = 2, fan_in_fan_out: bool = False, bias: str = 'none', modules_to_save: list[str] | None = None, init_weights: bool = True, layers_to_transform: list[int] | int | None = None, layers_pattern: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/gralora/config.py#L23)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/gralora/config.py#L23)
 
 **Parameters:**
 
@@ -77,7 +77,7 @@ layers_to_transform (`Union[List[int], int]`) : The layer indexes to transform, 
 
 layers_pattern (`Optional[Union[List[str], str]]`) : The layer pattern name, used only if `layers_to_transform` is different to None and if the layer pattern is not in the common layers pattern. This only works when target_modules is a list of str. This should target the `nn.ModuleList` of the model, which is often called `'layers'` or `'h'`.
 
-This is the configuration class to store the configuration of a [GraloraModel](/docs/peft/v0.21.0/en/package_reference/gralora#peft.GraloraModel).
+This is the configuration class to store the configuration of a [GraloraModel](/docs/peft/v0.22.0/en/package_reference/gralora#peft.GraloraModel).
 
 ## GraloraModel[[peft.GraloraModel]]
 
@@ -87,13 +87,13 @@ This is the configuration class to store the configuration of a [GraloraModel](/
 peft.GraloraModel(model, peft_config: Union[PeftConfig, dict[str, PeftConfig]], adapter_name: str, low_cpu_mem_usage: bool = False, state_dict: Optional[dict[str, torch.Tensor]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/gralora/model.py#L28)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/gralora/model.py#L28)
 
 **Parameters:**
 
-model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) : The model to be adapted.
+model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel)) : The model to be adapted.
 
-config ([GraloraConfig](/docs/peft/v0.21.0/en/package_reference/gralora#peft.GraloraConfig)) : The configuration of the Gralora model.
+config ([GraloraConfig](/docs/peft/v0.22.0/en/package_reference/gralora#peft.GraloraConfig)) : The configuration of the Gralora model.
 
 adapter_name (`str`) : The name of the adapter, defaults to `"default"`.
 
@@ -115,8 +115,8 @@ Example:
 ```
 
 **Attributes**:
-- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
-- **peft_config** ([GraloraConfig](/docs/peft/v0.21.0/en/package_reference/gralora#peft.GraloraConfig)): The configuration of the Gralora model.
+- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
+- **peft_config** ([GraloraConfig](/docs/peft/v0.22.0/en/package_reference/gralora#peft.GraloraConfig)): The configuration of the Gralora model.
 
-### Errors[[peft.PeftError]]
-https://huggingface.co/docs/peft/v0.21.0/package_reference/errors.md
+### AutoPeftModels
+https://huggingface.co/docs/peft/v0.22.0/package_reference/auto_class.md

@@ -1,16 +1,16 @@
 # PEFT types
 
-[PeftType](/docs/peft/v0.21.0/en/package_reference/peft_types#peft.PeftType) includes the supported adapters in PEFT, and [TaskType](/docs/peft/v0.21.0/en/package_reference/peft_types#peft.TaskType) includes PEFT-supported tasks.
+[PeftType](/docs/peft/v0.22.0/en/package_reference/peft_types#peft.PeftType) includes the supported adapters in PEFT, and [TaskType](/docs/peft/v0.22.0/en/package_reference/peft_types#peft.TaskType) includes PEFT-supported tasks.
 
 ## PeftType[[peft.PeftType]]
 
 #### peft.PeftType[[peft.PeftType]]
 
 ```python
-peft.PeftType(value, names = None, module = None, qualname = None, type = None, start = 1)
+peft.PeftType(*values)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/utils/peft_types.py#L19)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/utils/peft_types.py#L19)
 
 Enum class for the different types of adapters in PEFT.
 
@@ -39,6 +39,7 @@ Supported PEFT types:
 - MISS
 - RANDLORA
 - SHIRA
+- PACA
 - C3A
 - ROAD
 - WAVEFT
@@ -54,10 +55,10 @@ Supported PEFT types:
 #### peft.TaskType[[peft.TaskType]]
 
 ```python
-peft.TaskType(value, names = None, module = None, qualname = None, type = None, start = 1)
+peft.TaskType(*values)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/utils/peft_types.py#L106)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/utils/peft_types.py#L108)
 
 Enum class for the different types of tasks supported by PEFT.
 
@@ -70,5 +71,5 @@ Overview of the supported task types:
 - FEATURE_EXTRACTION: Feature extraction. Provides the hidden states which can be used as embeddings or features
   for downstream tasks.
 
-### HiRA
-https://huggingface.co/docs/peft/v0.21.0/package_reference/hira.md
+### DeLoRA: Decoupled Low-rank Adaptation
+https://huggingface.co/docs/peft/v0.22.0/package_reference/delora.md

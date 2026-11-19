@@ -10,6 +10,22 @@ The abstract from the paper is:
 
 *We present LLaMA-Adapter, a lightweight adaption method to efficiently fine-tune LLaMA into an instruction-following model. Using 52K self-instruct demonstrations, LLaMA-Adapter only introduces 1.2M learnable parameters upon the frozen LLaMA 7B model, and costs less than one hour for fine-tuning on 8 A100 GPUs. Specifically, we adopt a set of learnable adaption prompts, and prepend them to the input text tokens at higher transformer layers. Then, a zero-init attention mechanism with zero gating is proposed, which adaptively injects the new instructional cues into LLaMA, while effectively preserves its pre-trained knowledge. With efficient training, LLaMA-Adapter generates high-quality responses, comparable to Alpaca with fully fine-tuned 7B parameters. Furthermore, our approach can be simply extended to multi-modal input, e.g., images, for image-conditioned LLaMA, which achieves superior reasoning capacity on ScienceQA. We release our code at https://github.com/ZrrSkywalker/LLaMA-Adapter*.
 
+## When to use Llama-Adapter
+
+Llama-Adapter is a good choice when:
+
+- You want a very small checkpoint. Only the adaption prompts and their gates are trained and saved, which amounts to `adapter_layers * (adapter_len * hidden_size + 1)` parameters.
+- You are instruction-tuning a supported model (Llama, Mistral, or GPT-2), the use case the paper focuses on.
+- You want to keep several task-specific adapters for the same base model and switch between them with `set_adapter`.
+
+## When not to use Llama-Adapter
+
+Llama-Adapter may not be the best choice when:
+
+- Your model is not a Llama, Mistral, or GPT-2 model. Other architectures raise a `ValueError`. Consider [LoRA](./lora) instead.
+- You need zero inference overhead. The adapter cannot be merged into the base weights (`merge_and_unload()` is not supported), so each adapted layer attends over `adapter_len` additional tokens at inference time.
+- You want several adapters to be active at the same time. Only one adapter can be active, and adaption prompts cannot be stacked on the same attention module.
+
 ## Benchmark overview
 
 <iframe
@@ -29,9 +45,9 @@ The abstract from the paper is:
 peft.AdaptionPromptConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, target_modules: str = None, adapter_len: int = None, adapter_layers: int = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/adaption_prompt/config.py#L25)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/adaption_prompt/config.py#L25)
 
-Stores the configuration of an [AdaptionPromptModel](/docs/peft/v0.21.0/en/package_reference/llama_adapter#peft.AdaptionPromptModel).
+Stores the configuration of an [AdaptionPromptModel](/docs/peft/v0.22.0/en/package_reference/llama_adapter#peft.AdaptionPromptModel).
 
 ## AdaptionPromptModel[[peft.AdaptionPromptModel]]
 
@@ -41,7 +57,7 @@ Stores the configuration of an [AdaptionPromptModel](/docs/peft/v0.21.0/en/packa
 peft.AdaptionPromptModel(model, configs: dict, adapter_name: str)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/adaption_prompt/model.py#L27)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/adaption_prompt/model.py#L27)
 
 Implements adaption prompts as described in https://huggingface.co/papers/2303.16199.
 
@@ -63,7 +79,7 @@ Notes on the multi-adapter pattern:
 add_adapter(adapter_name: str, config: AdaptionPromptConfig)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/adaption_prompt/model.py#L62)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/adaption_prompt/model.py#L62)
 
 Add an adapter with the given name and config.
 
@@ -73,7 +89,7 @@ Add an adapter with the given name and config.
 delete_adapter(adapter_name: str)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/adaption_prompt/model.py#L107)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/adaption_prompt/model.py#L104)
 
 Delete an adapter with the given name.
 
@@ -83,7 +99,7 @@ Delete an adapter with the given name.
 disable_adapter_layers()
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/adaption_prompt/model.py#L171)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/adaption_prompt/model.py#L168)
 
 Disable adapter layers by swapping out AdaptedAttention modules.
 
@@ -93,7 +109,7 @@ Disable adapter layers by swapping out AdaptedAttention modules.
 enable_adapter_layers()
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/adaption_prompt/model.py#L166)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/adaption_prompt/model.py#L163)
 
 Enable adapter layers by swapping in cached AdaptedAttention modules.
 
@@ -103,9 +119,9 @@ Enable adapter layers by swapping in cached AdaptedAttention modules.
 set_adapter(adapter_name: str, inference_mode: bool = False)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/adaption_prompt/model.py#L151)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/adaption_prompt/model.py#L148)
 
 Set the model to use the adapter with the given name.
 
-### Models
-https://huggingface.co/docs/peft/v0.21.0/package_reference/peft_model.md
+### PaCA: Partial Connection Adaptation
+https://huggingface.co/docs/peft/v0.22.0/package_reference/paca.md

@@ -29,7 +29,7 @@ The abstract from the paper is:
 peft.WaveFTConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, n_frequency: int = 2592, scaling: float = 25.0, wavelet_family: str = 'db1', use_idwt: bool = True, random_loc_seed: int = 777, fan_in_fan_out: bool = False, target_modules: Optional[Union[list[str], str]] = None, exclude_modules: Optional[Union[list[str], str]] = None, bias: str = 'none', modules_to_save: Optional[list[str]] = None, layers_to_transform: Optional[Union[list[int], int]] = None, layers_pattern: Optional[Union[list[str], str]] = None, n_frequency_pattern: Optional[dict] = <factory>, proportional_parameters: bool = False, init_weights: bool = True)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/waveft/config.py#L27)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/waveft/config.py#L27)
 
 **Parameters:**
 
@@ -63,7 +63,7 @@ init_weights (`bool`) : Initialization strategy for the learnable wavelet coeffi
 
 proportional_parameters (`bool`) : If `True`, `n_frequency` is allocated proportionally to each layer's `input_dim * output_dim`. Default is `False`. Note: This option is included for experimental thoroughness to allow researchers to reproduce paper results, rather than for practical utility, as no beneficial scenarios have been identified.
 
-This is the configuration class to store the configuration of a [WaveFTModel](/docs/peft/v0.21.0/en/package_reference/waveft#peft.WaveFTModel). It is used to define the
+This is the configuration class to store the configuration of a [WaveFTModel](/docs/peft/v0.22.0/en/package_reference/waveft#peft.WaveFTModel). It is used to define the
 parameters for Wavelet-based Fine-Tuning (WaveFT), an approach that leverages the sparsity of wavelet transforms
 for parameter-efficient fine-tuning of pretrained models.
 
@@ -75,7 +75,46 @@ for parameter-efficient fine-tuning of pretrained models.
 peft.WaveFTModel(model, peft_config: Union[PeftConfig, dict[str, PeftConfig]], adapter_name: str, low_cpu_mem_usage: bool = False, state_dict: Optional[dict[str, torch.Tensor]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/waveft/model.py#L30)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/waveft/model.py#L30)
 
-### Model merge[[peft.utils.merge_utils.prune]]
-https://huggingface.co/docs/peft/v0.21.0/package_reference/merge_utils.md
+### VeLoRA
+https://huggingface.co/docs/peft/v0.22.0/package_reference/lora_variant_velora.md
+
+### VeLoRA
+
+> [!NOTE]
+> This is a variant of LoRA and therefore everything that is possible with LoRA is valid for this method except otherwise stated on this page.
+
+[VeLoRA](https://huggingface.co/papers/2405.17991) is a LoRA variant that reduces training memory by compressing the activations saved for the LoRA in the forward pass and then reconstructing them in the backwards pass to implement the update rules. In PEFT, VeLoRA is configured as a LoRA variant through the `velora_config` argument on [LoraConfig](/docs/peft/v0.22.0/en/package_reference/lora#peft.LoraConfig).
+
+```py
+from peft import LoraConfig, VeloraConfig
+
+config = LoraConfig(
+    target_modules=["q_proj", "v_proj"],
+    velora_config=VeloraConfig(
+        num_groups=64,
+        scale=0.2,
+        init_type="batch_average",
+    ),
+)
+```
+
+VeLoRA is applied to every LoRA layer selected by `target_modules`. `num_groups` controls how the input activation depth is split before compression. If the activation depth is not evenly divisible by `num_groups`, VeLoRA pads the grouped representation internally and removes the padding after reconstruction. `scale` rescales the reconstructed activations during the backward pass, and `init_type` chooses how the projection is initialized.
+
+Use `batch_average_once` to initialize the projection from the first training batch, `batch_average` to update it from every training forward pass, or `random` to initialize it immediately from a random normalized vector.
+
+Below are some results with the [MetaMathQA benchmark](https://github.com/huggingface/peft/tree/main/method_comparison/MetaMathQA).
+
+| Variant | Training Loss | Max Memory (GiB) | Tokens/sec |
+|---|---:|---:|---:|
+| LoRA | 0.5427 | 27.69 | 2366.2 |
+| LoRA + GC | 0.5426 | 13.17 | 1671.8 |
+| LoRA+VeLoRA | 0.5427 | 19.94 | 2057.6 |
+
+#### Caveats
+
+- VeLoRA is currently supported on standard LoRA linear layers only.
+
+### LoRA
+https://huggingface.co/docs/peft/v0.22.0/package_reference/lora.md

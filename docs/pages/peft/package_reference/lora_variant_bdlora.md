@@ -20,7 +20,7 @@ BD-LoRA achieves similar performance to LoRA (see image below, or the `method_co
 peft.BdLoraConfig(target_modules_bd_a: Optional[list[str]] = None, target_modules_bd_b: Optional[list[str]] = None, nblocks: int = 1, match_strict: bool = True)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/lora/config.py#L189)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/lora/config.py#L189)
 
 **Parameters:**
 
@@ -47,5 +47,5 @@ To determine which LoRA factors should be set as block-diagonal, follow these gu
 For other modules and/or architectures, look into the code of your target inference engine. Modules that are
 row-sharded should have LoRA-A block-diagonal, modules that are column-sharded should have LoRA-B block-diagonal.
 
-### MiSS
-https://huggingface.co/docs/peft/v0.21.0/package_reference/miss.md
+### ShadowPEFT
+https://huggingface.co/docs/peft/v0.22.0/package_reference/shadow.md

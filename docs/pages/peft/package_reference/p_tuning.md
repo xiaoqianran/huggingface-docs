@@ -20,15 +20,14 @@ The paper's results suggest that P-tuning is more efficient than manually crafti
 
 ## Usage
 
-Create a [PromptEncoderConfig](/docs/peft/v0.21.0/en/package_reference/p_tuning#peft.PromptEncoderConfig) with the task type, the number of virtual tokens to add and learn, and the hidden size of the encoder for learning the prompt parameters.
+Create a [PromptEncoderConfig](/docs/peft/v0.22.0/en/package_reference/p_tuning#peft.PromptEncoderConfig) with the task type, the number of virtual tokens to add and learn, and the hidden size of the encoder for learning the prompt parameters.
 
 ```py
 from peft import PromptEncoderConfig, get_peft_model
 
 peft_config = PromptEncoderConfig(task_type="CAUSAL_LM", num_virtual_tokens=20, encoder_hidden_size=128)
 model = get_peft_model(model, peft_config)
-model.print_trainable_parameters()
-"trainable params: 300,288 || all params: 559,514,880 || trainable%: 0.05366935013417338"
+model.print_healthcheck()
 ```
 
 ## Benchmark overview
@@ -47,10 +46,10 @@ model.print_trainable_parameters()
 #### peft.PromptEncoderConfig[[peft.PromptEncoderConfig]]
 
 ```python
-peft.PromptEncoderConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, num_virtual_tokens: int = None, token_dim: int = None, num_transformer_submodules: Optional[int] = None, num_attention_heads: Optional[int] = None, num_layers: Optional[int] = None, modules_to_save: Optional[list[str]] = None, encoder_reparameterization_type: typing.Union[str, peft.tuners.p_tuning.config.PromptEncoderReparameterizationType] = <PromptEncoderReparameterizationType.MLP: 'MLP'>, encoder_hidden_size: int = None, encoder_num_layers: int = 2, encoder_dropout: float = 0.0)
+peft.PromptEncoderConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, num_virtual_tokens: int = None, token_dim: int = None, num_transformer_submodules: Optional[int] = None, num_attention_heads: Optional[int] = None, num_layers: Optional[int] = None, modules_to_save: Optional[list[str]] = None, encoder_reparameterization_type: str | peft.tuners.p_tuning.config.PromptEncoderReparameterizationType = <PromptEncoderReparameterizationType.MLP: 'MLP'>, encoder_hidden_size: int = None, encoder_num_layers: int = 2, encoder_dropout: float = 0.0)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/p_tuning/config.py#L29)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/p_tuning/config.py#L29)
 
 **Parameters:**
 
@@ -62,7 +61,7 @@ encoder_num_layers (`int`) : The number of layers of the prompt encoder.
 
 encoder_dropout (`float`) : The dropout probability of the prompt encoder.
 
-This is the configuration class to store the configuration of a [PromptEncoder](/docs/peft/v0.21.0/en/package_reference/p_tuning#peft.PromptEncoder).
+This is the configuration class to store the configuration of a [PromptEncoder](/docs/peft/v0.22.0/en/package_reference/p_tuning#peft.PromptEncoder).
 
 ## PromptEncoder[[peft.PromptEncoder]]
 
@@ -72,11 +71,11 @@ This is the configuration class to store the configuration of a [PromptEncoder](
 peft.PromptEncoder(config)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/p_tuning/model.py#L26)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/p_tuning/model.py#L26)
 
 **Parameters:**
 
-config ([PromptEncoderConfig](/docs/peft/v0.21.0/en/package_reference/p_tuning#peft.PromptEncoderConfig)) : The configuration of the prompt encoder.
+config ([PromptEncoderConfig](/docs/peft/v0.22.0/en/package_reference/p_tuning#peft.PromptEncoderConfig)) : The configuration of the prompt encoder.
 
 The prompt encoder network that is used to generate the virtual token embeddings for p-tuning.
 
@@ -118,5 +117,5 @@ Input shape: (`batch_size`, `total_virtual_tokens`)
 
 Output shape: (`batch_size`, `total_virtual_tokens`, `token_dim`)
 
-### LoRA
-https://huggingface.co/docs/peft/v0.21.0/package_reference/lora.md
+### HiRA
+https://huggingface.co/docs/peft/v0.22.0/package_reference/hira.md

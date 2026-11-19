@@ -148,5 +148,5 @@ SELECT
 FROM overlapping_rows, total_unique_rows;
 ```
 
-### Agent Libraries
-https://huggingface.co/docs/hub/agents-libraries.md
+### Pre-Release Model Pages
+https://huggingface.co/docs/hub/models-release-announcements.md

@@ -33,8 +33,7 @@ hira_config = HiraConfig(
 )
 peft_model = get_peft_model(base_model, hira_config)
 
-peft_model.print_trainable_parameters()
-# trainable params: 4,718,592 || all params: 129,957,888 || trainable%: 3.6309
+peft_model.print_healthcheck()
 ```
 
 ## Benchmark overview
@@ -70,7 +69,7 @@ url={https://openreview.net/forum?id=TwJrTz9cRS}
 peft.HiraConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, r: int = 32, target_modules: Optional[Union[list[str], str]] = None, exclude_modules: Optional[Union[list[str], str]] = None, hira_dropout: float = 0.0, fan_in_fan_out: bool = False, modules_to_save: Optional[list[str]] = None, init_weights: bool | Literal['gaussian'] | None = True, layers_to_transform: Optional[Union[list[int], int]] = None, layers_pattern: Optional[Union[list[str], str]] = None, rank_pattern: Optional[dict] = <factory>)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/hira/config.py#L25)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/hira/config.py#L25)
 
 **Parameters:**
 
@@ -94,7 +93,7 @@ layers_pattern (`Optional[Union[List[str], str]]`) : The layer pattern name, use
 
 rank_pattern (`dict`) : The mapping from layer names or regexp expression to ranks which are different from the default r specified by `r`. For example, `{'^model.decoder.layers.0.encoder_attn.k_proj': 16}`.
 
-This is the configuration class to store the configuration of a [HiraModel](/docs/peft/v0.21.0/en/package_reference/hira#peft.HiraModel).
+This is the configuration class to store the configuration of a [HiraModel](/docs/peft/v0.22.0/en/package_reference/hira#peft.HiraModel).
 
 ## HiraModel[[peft.HiraModel]]
 
@@ -104,13 +103,13 @@ This is the configuration class to store the configuration of a [HiraModel](/doc
 peft.HiraModel(model, peft_config: Union[PeftConfig, dict[str, PeftConfig]], adapter_name: str, low_cpu_mem_usage: bool = False, state_dict: Optional[dict[str, torch.Tensor]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/hira/model.py#L49)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/hira/model.py#L49)
 
 **Parameters:**
 
 model (`torch.nn.Module`) : The model to be adapted.
 
-config ([HiraConfig](/docs/peft/v0.21.0/en/package_reference/hira#peft.HiraConfig)) : The configuration of the HiRA model.
+config ([HiraConfig](/docs/peft/v0.22.0/en/package_reference/hira#peft.HiraConfig)) : The configuration of the HiRA model.
 
 adapter_name (`str`) : The name of the adapter, defaults to `"default"`.
 
@@ -174,8 +173,8 @@ Example:
 ```
 
 **Attributes**:
-- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
-- **peft_config** ([HiraConfig](/docs/peft/v0.21.0/en/package_reference/hira#peft.HiraConfig)): The configuration of the HiRA model.
+- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
+- **peft_config** ([HiraConfig](/docs/peft/v0.22.0/en/package_reference/hira#peft.HiraConfig)): The configuration of the HiRA model.
 
 ## Core Layers
 
@@ -187,7 +186,7 @@ Example:
 peft.tuners.hira.HiraLayer(base_layer: nn.Module, ephemeral_gpu_offload: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/hira/layer.py#L31)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/hira/layer.py#L31)
 
 ### Linear Adapter[[peft.tuners.hira.Linear]]
 
@@ -197,7 +196,7 @@ peft.tuners.hira.HiraLayer(base_layer: nn.Module, ephemeral_gpu_offload: bool = 
 peft.tuners.hira.Linear(base_layer, adapter_name: str, config: HiraConfig, r: int = 0, fan_in_fan_out: bool = False, is_target_conv_1d_layer: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/hira/layer.py#L168)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/hira/layer.py#L172)
 
 #### get_delta_weight[[peft.tuners.hira.Linear.get_delta_weight]]
 
@@ -205,7 +204,7 @@ peft.tuners.hira.Linear(base_layer, adapter_name: str, config: HiraConfig, r: in
 get_delta_weight(adapter)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/hira/layer.py#L213)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/hira/layer.py#L217)
 
 **Parameters:**
 
@@ -219,7 +218,7 @@ Compute the delta weight for the given adapter.
 merge(safe_merge: bool = False, adapter_names: Optional[list[str]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/hira/layer.py#L188)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/hira/layer.py#L192)
 
 **Parameters:**
 
@@ -235,7 +234,7 @@ Merge the active adapter weights into the base weights
 unmerge()
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/hira/layer.py#L207)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/hira/layer.py#L211)
 
 This method unmerges all merged adapter layers from the base weights.
 
@@ -247,7 +246,7 @@ This method unmerges all merged adapter layers from the base weights.
 peft.tuners.hira.Embedding(base_layer: nn.Module, adapter_name: str, config: HiraConfig, r: int = 0, fan_in_fan_out: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/hira/layer.py#L289)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/hira/layer.py#L284)
 
 #### forward[[peft.tuners.hira.Embedding.forward]]
 
@@ -255,7 +254,7 @@ peft.tuners.hira.Embedding(base_layer: nn.Module, adapter_name: str, config: Hir
 forward(x: torch.Tensor, *args: Any, **kwargs: Any)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/hira/layer.py#L403)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/hira/layer.py#L398)
 
 HiRA forward for Embedding layer. Supports mixed adapters per batch or single adapter.
 
@@ -265,7 +264,7 @@ HiRA forward for Embedding layer. Supports mixed adapters per batch or single ad
 get_delta_weight(adapter)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/hira/layer.py#L358)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/hira/layer.py#L353)
 
 **Parameters:**
 
@@ -279,7 +278,7 @@ Compute the delta weight for the given adapter.
 merge(safe_merge: bool = False, adapter_names: Optional[list[str]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/hira/layer.py#L333)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/hira/layer.py#L328)
 
 **Parameters:**
 
@@ -295,7 +294,7 @@ Merge the active adapter weights into the base weights
 unmerge()
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/hira/layer.py#L352)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/hira/layer.py#L347)
 
 This method unmerges all merged adapter layers from the base weights.
 
@@ -303,5 +302,5 @@ This method unmerges all merged adapter layers from the base weights.
 
 [[autodoc]] tuners.hira.layer.Conv1d [[autodoc]] tuners.hira.layer.Conv2d [[autodoc]] tuners.hira.layer.ConvNd
 
-### LoHa
-https://huggingface.co/docs/peft/v0.21.0/package_reference/loha.md
+### AdaLoRA
+https://huggingface.co/docs/peft/v0.22.0/package_reference/adalora.md

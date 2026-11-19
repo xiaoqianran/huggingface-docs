@@ -1,6 +1,6 @@
 # Models
 
-[PeftModel](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel) is the base model class for specifying the base Transformer model and configuration to apply a PEFT method to. The base `PeftModel` contains methods for loading and saving models from the Hub.
+[PeftModel](/docs/peft/v0.22.0/en/package_reference/peft_model#peft.PeftModel) is the base model class for specifying the base Transformer model and configuration to apply a PEFT method to. The base `PeftModel` contains methods for loading and saving models from the Hub.
 
 ## PeftModel[[peft.PeftModel]]
 
@@ -10,13 +10,13 @@
 peft.PeftModel(model: torch.nn.Module, peft_config: PeftConfig, adapter_name: str = 'default', autocast_adapter_dtype: bool = True, low_cpu_mem_usage: bool = False)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/peft_model.py#L120)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/peft_model.py#L179)
 
 **Parameters:**
 
 model (`torch.nn.Module`) : The base model to be adapted, typically a Transformers model.
 
-peft_config ([PeftConfig](/docs/peft/v0.21.0/en/package_reference/config#peft.PeftConfig)) : The configuration of the Peft model.
+peft_config ([PeftConfig](/docs/peft/v0.22.0/en/package_reference/config#peft.PeftConfig)) : The configuration of the Peft model.
 
 adapter_name (`str`,  *optional*) : The name of the adapter, defaults to `"default"`.
 
@@ -28,17 +28,17 @@ Base model encompassing various Peft methods.
 
 **Attributes**:
 - **base_model** (`torch.nn.Module`) -- The base transformer model used for Peft.
-- **peft_config** ([PeftConfig](/docs/peft/v0.21.0/en/package_reference/config#peft.PeftConfig)) -- The configuration of the Peft model.
+- **peft_config** ([PeftConfig](/docs/peft/v0.22.0/en/package_reference/config#peft.PeftConfig)) -- The configuration of the Peft model.
 - **modules_to_save** (`list` of `str`) -- The list of sub-module names to save when
   saving the model.
-- **prompt_encoder** ([PromptEncoder](/docs/peft/v0.21.0/en/package_reference/p_tuning#peft.PromptEncoder)) -- The prompt encoder used for Peft if
-  using [PromptLearningConfig](/docs/peft/v0.21.0/en/package_reference/config#peft.PromptLearningConfig).
+- **prompt_encoder** ([PromptEncoder](/docs/peft/v0.22.0/en/package_reference/p_tuning#peft.PromptEncoder)) -- The prompt encoder used for Peft if
+  using [PromptLearningConfig](/docs/peft/v0.22.0/en/package_reference/config#peft.PromptLearningConfig).
 - **prompt_tokens** (`torch.Tensor`) -- The virtual prompt tokens used for Peft if
-  using [PromptLearningConfig](/docs/peft/v0.21.0/en/package_reference/config#peft.PromptLearningConfig).
+  using [PromptLearningConfig](/docs/peft/v0.22.0/en/package_reference/config#peft.PromptLearningConfig).
 - **transformer_backbone_name** (`str`) -- The name of the transformer
-  backbone in the base model if using [PromptLearningConfig](/docs/peft/v0.21.0/en/package_reference/config#peft.PromptLearningConfig).
+  backbone in the base model if using [PromptLearningConfig](/docs/peft/v0.22.0/en/package_reference/config#peft.PromptLearningConfig).
 - **word_embeddings** (`torch.nn.Embedding`) -- The word embeddings of the transformer backbone
-  in the base model if using [PromptLearningConfig](/docs/peft/v0.21.0/en/package_reference/config#peft.PromptLearningConfig).
+  in the base model if using [PromptLearningConfig](/docs/peft/v0.22.0/en/package_reference/config#peft.PromptLearningConfig).
 
 #### add_adapter[[peft.PeftModel.add_adapter]]
 
@@ -46,13 +46,13 @@ Base model encompassing various Peft methods.
 add_adapter(adapter_name: str, peft_config: PeftConfig, low_cpu_mem_usage: bool = False, autocast_adapter_dtype: bool = True)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/peft_model.py#L1085)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/peft_model.py#L1144)
 
 **Parameters:**
 
 adapter_name (`str`) : The name of the adapter to be added.
 
-peft_config ([PeftConfig](/docs/peft/v0.21.0/en/package_reference/config#peft.PeftConfig)) : The configuration of the adapter to be added.
+peft_config ([PeftConfig](/docs/peft/v0.22.0/en/package_reference/config#peft.PeftConfig)) : The configuration of the adapter to be added.
 
 low_cpu_mem_usage (`bool`, `optional`, defaults to `False`) : Create empty adapter weights on meta device. Useful to speed up the process when loading saved adapters. Don't use this option when creating a new PEFT adapter for training.
 
@@ -60,11 +60,11 @@ autocast_adapter_dtype (`bool`, *optional*, defaults to `True`) : Whether to aut
 
 Add an adapter to the model based on the passed configuration.
 
-This adapter is not trained. To load a trained adapter, check out [PeftModel.load_adapter()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel.load_adapter).
+This adapter is not trained. To load a trained adapter, check out [PeftModel.load_adapter()](/docs/peft/v0.22.0/en/package_reference/peft_model#peft.PeftModel.load_adapter).
 
 The name for the new adapter should be unique.
 
-The new adapter is not automatically set as the active adapter. Use [PeftModel.set_adapter()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel.set_adapter) to set the active
+The new adapter is not automatically set as the active adapter. Use [PeftModel.set_adapter()](/docs/peft/v0.22.0/en/package_reference/peft_model#peft.PeftModel.set_adapter) to set the active
 adapter.
 
 #### create_or_update_model_card[[peft.PeftModel.create_or_update_model_card]]
@@ -73,7 +73,7 @@ adapter.
 create_or_update_model_card(output_dir: str)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/peft_model.py#L1702)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/peft_model.py#L2018)
 
 Updates or create model card to include information about peft:
 1. Adds `peft` library tag
@@ -87,7 +87,7 @@ Updates or create model card to include information about peft:
 delete_adapter(adapter_name: str)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/peft_model.py#L1166)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/peft_model.py#L1225)
 
 **Parameters:**
 
@@ -101,7 +101,7 @@ Deletes an existing adapter.
 disable_adapter()
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/peft_model.py#L1022)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/peft_model.py#L1068)
 
 Context manager that disables the adapter module. Use this to run inference on the base model.
 
@@ -118,21 +118,21 @@ Example:
 forward(*args: Any, **kwargs: Any)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/peft_model.py#L1001)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/peft_model.py#L1047)
 
 Forward pass of the model.
 
 #### from_pretrained[[peft.PeftModel.from_pretrained]]
 
 ```python
-from_pretrained(model: torch.nn.Module, model_id: Union[str, os.PathLike], adapter_name: str = 'default', is_trainable: bool = False, config: Optional[PeftConfig] = None, autocast_adapter_dtype: bool = True, ephemeral_gpu_offload: bool = False, low_cpu_mem_usage: bool = False, key_mapping: Optional[dict[str, str]] = None, **kwargs: Any)
+from_pretrained(model: torch.nn.Module, model_id: Union[str, os.PathLike], adapter_name: str = 'default', is_trainable: bool = False, config: Optional[PeftConfig] = None, autocast_adapter_dtype: bool = True, ephemeral_gpu_offload: bool = False, low_cpu_mem_usage: bool = False, key_mapping: Optional[dict[str, str]] = None, strict_adapter_check: Literal['warn', 'error', 'ignore'] = 'warn', **kwargs: Any)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/peft_model.py#L417)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/peft_model.py#L481)
 
 **Parameters:**
 
-model (`torch.nn.Module`) : The model to be adapted. For 🤗 Transformers models, the model should be initialized with the [from_pretrained](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained).
+model (`torch.nn.Module`) : The model to be adapted. For 🤗 Transformers models, the model should be initialized with the [from_pretrained](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained).
 
 model_id (`str` or `os.PathLike`) : The name of the PEFT configuration to use. Can be either: - A string, the `model id` of a PEFT configuration hosted inside a model repo on the Hugging Face Hub. - A path to a directory containing a PEFT configuration file saved using the `save_pretrained` method (`./my_peft_config_directory/`).
 
@@ -140,7 +140,7 @@ adapter_name (`str`, *optional*, defaults to `"default"`) : The name of the adap
 
 is_trainable (`bool`, *optional*, defaults to `False`) : Whether the adapter should be trainable or not. If `False`, the adapter will be frozen and can only be used for inference.
 
-config ([PeftConfig](/docs/peft/v0.21.0/en/package_reference/config#peft.PeftConfig), *optional*) : The configuration object to use instead of an automatically loaded configuration. This configuration object is mutually exclusive with `model_id` and `kwargs`. This is useful when configuration is already loaded before calling `from_pretrained`.
+config ([PeftConfig](/docs/peft/v0.22.0/en/package_reference/config#peft.PeftConfig), *optional*) : The configuration object to use instead of an automatically loaded configuration. This configuration object is mutually exclusive with `model_id` and `kwargs`. This is useful when configuration is already loaded before calling `from_pretrained`.
 
 autocast_adapter_dtype (`bool`, *optional*, defaults to `True`) : Whether to autocast the adapter dtype. Defaults to `True`. Right now, this will only cast adapter weights using float16 and bfloat16 to float32, as this is typically required for stable training, and only affect select PEFT tuners. If set to `False`, the dtypes will stay the same as those of the corresponding layer.
 
@@ -149,6 +149,8 @@ ephemeral_gpu_offload (`bool`, *optional*) : Whether to use ephemeral GPU offloa
 low_cpu_mem_usage (`bool`, `optional`, defaults to `False`) : Create empty adapter weights on meta device before loading the saved weights. Useful to speed up the process.
 
 key_mapping (dict, *optional*, defaults to None) : Extra mapping of PEFT `state_dict` keys applied before loading the `state_dict`. When this mapping is applied, the PEFT-specific `"base_model.model"` prefix is removed beforehand and the adapter name (e.g. `"default"`) is not inserted yet. Only pass this argument if you know what you're doing.
+
+strict_adapter_check (`Literal["warn", "error", "ignore"]`, *optional*, defaults to `"warn"`) : What to do if the checkpoint has adapter keys that are missing from, or unexpected for, the model, after accounting for keys that are expected to differ for structural reasons (shared parameters, the prompt encoder path, etc.). `"warn"` emits a warning, `"error"` raises a `RuntimeError` and `"ignore"` does nothing. This is not the same check as `torch.nn.Module.load_state_dict`'s `strict`: PEFT adapters always coexist with a frozen base model, so this only concerns adapter-specific keys, never the base model's own parameters.
 
 kwargs : (`optional`): Additional keyword arguments passed along to the specific PEFT configuration class. This includes `torch_device` (`str`, *optional*): the device to load the adapter on (forwarded to `load_adapter`[PeftModel.load_adapter]); if `None`, the device will be inferred.
 
@@ -162,7 +164,7 @@ Note that the passed `model` may be modified inplace.
 get_base_model()
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/peft_model.py#L1079)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/peft_model.py#L1138)
 
 Returns the base model.
 
@@ -172,7 +174,7 @@ Returns the base model.
 get_layer_status()
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/peft_model.py#L1220)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/peft_model.py#L1279)
 
 **Returns:** list`peft.peft_model.TunerLayerStatus`
 
@@ -204,7 +206,7 @@ attributes:
 get_model_status()
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/peft_model.py#L1248)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/peft_model.py#L1307)
 
 **Returns:** `peft.peft_model.TunerModelStatus`
 
@@ -247,7 +249,7 @@ This method returns a `TunerModelStatus` dataclass instance, which contains the 
 get_nb_trainable_parameters()
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/peft_model.py#L932)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/peft_model.py#L978)
 
 Returns the number of trainable parameters and the number of all parameters in the model.
 
@@ -257,7 +259,7 @@ Returns the number of trainable parameters and the number of all parameters in t
 get_prompt(batch_size: int, task_ids: Optional[torch.Tensor] = None, max_cache_len: Optional[int] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/peft_model.py#L765)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/peft_model.py#L811)
 
 Returns the virtual prompts to use for Peft. Only applicable when using a prompt learning method.
 
@@ -267,18 +269,52 @@ Returns the virtual prompts to use for Peft. Only applicable when using a prompt
 get_prompt_embedding_to_save(adapter_name: str)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/peft_model.py#L744)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/peft_model.py#L790)
 
 Returns the prompt embedding to save when saving the model. Only applicable when using a prompt learning
 method.
 
+#### healthcheck[[peft.PeftModel.healthcheck]]
+
+```python
+healthcheck(min_trainable_params: int = 1, max_trainable_params_percent = 50)
+```
+
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/peft_model.py#L1346)
+
+**Parameters:**
+
+min_trainable_params (`int`, *optional*, default=`1`) : Minimum expected number of parameters. If less than those are found, this is reported as an error.
+
+max_trainable_params_percent (`int`, *optional*, default=`50`) : The maximum percentage of parameters that should be trainable. If more than those are found, this is reported as a warning.
+
+**Returns:**
+
+result
+Dictionary containing the different findings. The returned dictionary is JSON-serializable.
+
+Check this model for adapter states that are suspicious before training.
+
+This function summarizes the model and layer status APIs, and includes findings for inconsistent adapter state,
+merged adapters, and implausible numbers of trainable parameters. It does not validate the training loop,
+optimizer, or dataset. A status will be reported as `"irregular"` if inconsistencies are found in the model,
+e.g. when for the same adapter, some layers are enabled and some layers are disabled. This almost always means
+that something went wrong and that you should check that you didn't accidentally change some attributes on the
+model incorrectly.
+
+For prompt learning and adaption prompt, the report includes model information and parameter counts without
+layer-specific status, which these methods do not support.
+
+If the check found something suspicious, it will be reported in the `"findings"` field. An empty `"findings""`
+list means that no suspicious adapter state was detected, not that a training run is guaranteed to succeed.
+
 #### load_adapter[[peft.PeftModel.load_adapter]]
 
 ```python
-load_adapter(model_id: Union[str, os.PathLike], adapter_name: str, is_trainable: bool = False, torch_device: Optional[str] = None, autocast_adapter_dtype: bool = True, ephemeral_gpu_offload: bool = False, low_cpu_mem_usage: bool = False, key_mapping: Optional[dict[str, str]] = None, **kwargs: Any)
+load_adapter(model_id: Union[str, os.PathLike], adapter_name: str, is_trainable: bool = False, torch_device: Optional[str] = None, autocast_adapter_dtype: bool = True, ephemeral_gpu_offload: bool = False, low_cpu_mem_usage: bool = False, key_mapping: Optional[dict[str, str]] = None, strict_adapter_check: Literal['warn', 'error', 'ignore'] = 'warn', **kwargs: Any)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/peft_model.py#L1417)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/peft_model.py#L1553)
 
 **Parameters:**
 
@@ -298,14 +334,40 @@ low_cpu_mem_usage (`bool`, `optional`, defaults to `False`) : Create empty adapt
 
 key_mapping (dict, *optional*, defaults to None) : Extra mapping of PEFT `state_dict` keys applied before loading the `state_dict`. When this mapping is applied, the PEFT-specific `"base_model.model"` prefix is removed beforehand and the adapter name (e.g. `"default"`) is not inserted yet. Only pass this argument if you know what you're doing.
 
+strict_adapter_check (`Literal["warn", "error", "ignore"]`, *optional*, defaults to `"warn"`) : What to do if the checkpoint has adapter keys that are missing from, or unexpected for, the model, after accounting for keys that are expected to differ for structural reasons (shared parameters, the prompt encoder path, etc.). `"warn"` emits a warning, `"error"` raises a `RuntimeError` and `"ignore"` does nothing. This is not the same check as `torch.nn.Module.load_state_dict`'s `strict`: PEFT adapters always coexist with a frozen base model, so this only concerns adapter-specific keys, never the base model's own parameters.
+
 kwargs : (`optional`): Additional arguments to modify the way the adapter is loaded, e.g. the token for Hugging Face Hub.
 
 Load a trained adapter into the model.
 
 The name for the new adapter should be unique.
 
-The new adapter is not automatically set as the active adapter. Use [PeftModel.set_adapter()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel.set_adapter) to set the active
+The new adapter is not automatically set as the active adapter. Use [PeftModel.set_adapter()](/docs/peft/v0.22.0/en/package_reference/peft_model#peft.PeftModel.set_adapter) to set the active
 adapter.
+
+#### merge_adapter[[peft.PeftModel.merge_adapter]]
+
+```python
+merge_adapter(adapter_names: Optional[list[str]] = None, safe_merge: bool = False, **kwargs: Any)
+```
+
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/peft_model.py#L1913)
+
+**Parameters:**
+
+adapter_names (`list[str]`, *optional*) : The list of adapter names that should be merged. If `None`, all active adapters will be merged. Defaults to `None`.
+
+safe_merge (`bool`, *optional*) : If `True`, the merge operation will be performed in a copy of the original weights and check for NaNs before merging the weights. This is useful if you want to check if the merge operation will produce NaNs. Defaults to `False`.
+
+Merge the active adapters into the base model.
+
+Merging is supported by most PEFT methods that add weights to the base model, like LoRA, IA³, or OFT. For
+prompt learning methods (e.g. prompt tuning) and for adaption prompt, merging is not supported and a
+`TypeError` is raised.
+
+Note: Even PEFT methods that generally support merging can raise an error for certain model or layer
+configurations, e.g. a `ValueError` for gptq-quantized models, a `NotImplementedError` for LoRA on `_ConvNd`
+layers with `groups > 1`, or an `AttributeError` for LoRA on Eetq layers.
 
 #### prepare_model_for_gradient_checkpointing[[peft.PeftModel.prepare_model_for_gradient_checkpointing]]
 
@@ -313,9 +375,41 @@ adapter.
 prepare_model_for_gradient_checkpointing(model: PreTrainedModel)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/peft_model.py#L722)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/peft_model.py#L764)
 
 Prepares the model for gradient checkpointing if necessary
+
+Note: In newer Transformers versions, this is called 'activation checkpointing'.
+
+#### print_healthcheck[[peft.PeftModel.print_healthcheck]]
+
+```python
+print_healthcheck(sink = <built-in function print>, min_trainable_params: int = 1, max_trainable_params_percent = 50, **kwargs)
+```
+
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/peft_model.py#L1379)
+
+**Parameters:**
+
+sink (`callable`, *optional*, default=`print`) : Function which is called to print the output. By default, just the builtin `print` function, but can also be something else like `logger.info`.
+
+min_trainable_params (`int`, *optional*, default=`1`) : Minimum expected number of parameters. If less than those are found, this is reported as an error.
+
+max_trainable_params_percent (`int`, *optional*, default=`50`) : The maximum percentage of parameters that should be trainable. If more than those are found, this is reported as a warning.
+
+kwargs : Further keyword arguments are passed along to `format_healthcheck`.
+
+Print a compact, human-readable healthcheck report.
+
+The output summarizes the state of your PEFT model and includes findings for inconsistent adapter state, merged
+adapters, and implausible numbers of trainable parameters. It does not validate the training loop, optimizer,
+or dataset. A status will be reported as `"irregular"` if inconsistencies are found in the model, e.g. when for
+the same adapter, some layers are enabled and some layers are disabled. This almost always means that something
+went wrong and that you should check that you didn't accidentally change some attributes on the model
+incorrectly.
+
+If issues were detected, they will be shown in the last section under "findings". If no issues were detected,
+it does mean that a training run is guaranteed to succeed.
 
 #### print_trainable_parameters[[peft.PeftModel.print_trainable_parameters]]
 
@@ -323,7 +417,7 @@ Prepares the model for gradient checkpointing if necessary
 print_trainable_parameters()
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/peft_model.py#L962)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/peft_model.py#L1008)
 
 Prints the number of trainable parameters in the model.
 
@@ -340,7 +434,7 @@ of trainable parameters of the backbone transformer model which can be different
 save_pretrained(save_directory: str, safe_serialization: bool = True, selected_adapters: Optional[list[str]] = None, save_embedding_layers: Union[str, bool] = 'auto', is_main_process: bool = True, path_initial_model_for_weight_conversion: Optional[str] = None, **kwargs: Any)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/peft_model.py#L238)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/peft_model.py#L297)
 
 **Parameters:**
 
@@ -354,13 +448,17 @@ save_embedding_layers (`Union[bool, str]`, *optional*, defaults to `"auto"`) : I
 
 is_main_process (`bool`, *optional*) : Whether the process calling this is the main process or not. Will default to `True`. Will not save the checkpoint if not on the main process, which is important for multi device setups (e.g. DDP).
 
-path_initial_model_for_weight_conversion (`str`, *optional*) : The path to the initialized adapter, which is obtained after initializing the model with PiSSA/CorDA/OLoRA and before performing any training. When `path_initial_model_for_weight_conversion` is not None, the difference in adapter before and after fine-tuning is calculated. This difference can be represented as the parameters of a standard LoRA adapter. In contrast to PiSSA and friends, using this converted adapter does not require changes to the base model, thus conveniently allowing the use of multiple PiSSA/CorDA/OLoRA adapters with LoRA adapters, and the activation or deactivation of any adapters. Note that this conversion is not supported if `rslora` is used in combination with `rank_pattern` or `alpha_pattern`. See [peft.tuners.lora.LoraModel.subtract_mutated_init()](/docs/peft/v0.21.0/en/package_reference/lora#peft.LoraModel.subtract_mutated_init) for more information.
+path_initial_model_for_weight_conversion (`str`, *optional*) : The path to the initialized adapter, which is obtained after initializing the model with PiSSA/CorDA/OLoRA and before performing any training. When `path_initial_model_for_weight_conversion` is not None, the difference in adapter before and after fine-tuning is calculated. This difference can be represented as the parameters of a standard LoRA adapter. In contrast to PiSSA and friends, using this converted adapter does not require changes to the base model, thus conveniently allowing the use of multiple PiSSA/CorDA/OLoRA adapters with LoRA adapters, and the activation or deactivation of any adapters. Note that this conversion is not supported if `rslora` is used in combination with `rank_pattern` or `alpha_pattern`. See [peft.tuners.lora.LoraModel.subtract_mutated_init()](/docs/peft/v0.22.0/en/package_reference/lora#peft.LoraModel.subtract_mutated_init) for more information.
 
 kwargs (additional keyword arguments, *optional*) : Additional keyword arguments passed along to the `push_to_hub` method.
 
 This function saves the adapter model and the adapter configuration files to a directory, so that it can be
-reloaded using the [PeftModel.from_pretrained()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel.from_pretrained) class method, and also used by the `PeftModel.push_to_hub()`
+reloaded using the [PeftModel.from_pretrained()](/docs/peft/v0.22.0/en/package_reference/peft_model#peft.PeftModel.from_pretrained) class method, and also used by the `PeftModel.push_to_hub()`
 method.
+
+If the selected adapter weights contain distributed tensors (e.g. FSDP2/HSDP), all participating ranks must
+call this method because gathering the weights is a collective operation. Set `is_main_process=True` only on
+the rank writing the checkpoint. Calling this method on only one rank can cause the process group to time out.
 
 #### set_adapter[[peft.PeftModel.set_adapter]]
 
@@ -368,7 +466,7 @@ method.
 set_adapter(adapter_name: str, inference_mode: bool = False)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/peft_model.py#L1607)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/peft_model.py#L1774)
 
 **Parameters:**
 
@@ -378,7 +476,8 @@ inference_mode (`bool`, optional) : Whether the activated adapter should be froz
 
 Sets the active adapter.
 
-Only one adapter can be active at a time.
+Only one adapter can be active at a time because not all PEFT methods support multiple active adapters. To
+activate multiple adapters for supported methods, use `model.base_model.set_adapter(adapter_names)`.
 
 Additionally, this function will set the specified adapter to trainable (i.e., requires_grad=True) unless
 inference_mode is True.
@@ -389,7 +488,7 @@ inference_mode is True.
 set_requires_grad(adapter_names: str | Sequence[str], requires_grad: bool = True)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/peft_model.py#L1632)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/peft_model.py#L1820)
 
 **Parameters:**
 
@@ -407,11 +506,32 @@ Note: Not supported for prompt learning methods like prompt tuning.
 supports_lora_conversion(adapter_name: str = 'default')
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/peft_model.py#L1767)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/peft_model.py#L2083)
 
 Whether it is possible for the adapter of this model to be converted to LoRA.
 
 Normally, this works if the PEFT method is additive, i.e. W' = W_base + delta_weight.
+
+#### unmerge_adapter[[peft.PeftModel.unmerge_adapter]]
+
+```python
+unmerge_adapter(force_reshard: bool = False, **kwargs: Any)
+```
+
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/peft_model.py#L1944)
+
+**Parameters:**
+
+force_reshard (`bool`, *optional*) : Whether to reshard the FSDP2 modules even if no merged adapter layer was detected. This can be used to avoid scanning the whole model for merged layers when the caller has already established that there is at least one. Defaults to `False`.
+
+Unmerge the adapters from the base model.
+
+Unmerging is supported by most PEFT methods that add weights to the base model, like LoRA, IA³, or OFT. For
+prompt learning methods (e.g. prompt tuning) and for adaption prompt, unmerging is not supported and a
+`TypeError` is raised.
+
+Note: Even PEFT methods that generally support unmerging can raise an error for certain layer types, e.g. an
+`AttributeError` for LoRA on Eetq layers or a `NotImplementedError` for unmerging LoRA from INC layers.
 
 ## PeftModelForSequenceClassification[[peft.PeftModelForSequenceClassification]]
 
@@ -423,13 +543,13 @@ A `PeftModel` for sequence classification tasks.
 peft.PeftModelForSequenceClassification(model: torch.nn.Module, peft_config: PeftConfig, adapter_name: str = 'default', **kwargs)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/peft_model.py#L1783)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/peft_model.py#L2099)
 
 **Parameters:**
 
-model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) : Base transformer model.
+model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel)) : Base transformer model.
 
-peft_config ([PeftConfig](/docs/peft/v0.21.0/en/package_reference/config#peft.PeftConfig)) : Peft config.
+peft_config ([PeftConfig](/docs/peft/v0.22.0/en/package_reference/config#peft.PeftConfig)) : Peft config.
 
 adapter_name (`str`,  *optional*) : The name of the adapter, defaults to `"default"`.
 
@@ -477,13 +597,13 @@ A `PeftModel` for token classification tasks.
 peft.PeftModelForTokenClassification(model: torch.nn.Module, peft_config: PeftConfig = None, adapter_name: str = 'default', **kwargs)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/peft_model.py#L2643)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/peft_model.py#L2953)
 
 **Parameters:**
 
-model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) : Base transformer model.
+model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel)) : Base transformer model.
 
-peft_config ([PeftConfig](/docs/peft/v0.21.0/en/package_reference/config#peft.PeftConfig)) : Peft config.
+peft_config ([PeftConfig](/docs/peft/v0.22.0/en/package_reference/config#peft.PeftConfig)) : Peft config.
 
 adapter_name (`str`,  *optional*) : The name of the adapter, defaults to `"default"`.
 
@@ -527,13 +647,13 @@ trainable params: 370178 || all params: 108680450 || trainable%: 0.3406113979101
 add_adapter(adapter_name: str, peft_config: PeftConfig, low_cpu_mem_usage: bool = False, autocast_adapter_dtype: bool = True)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/peft_model.py#L2712)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/peft_model.py#L3018)
 
 **Parameters:**
 
 adapter_name (`str`) : The name of the adapter to be added.
 
-peft_config ([PeftConfig](/docs/peft/v0.21.0/en/package_reference/config#peft.PeftConfig)) : The configuration of the adapter to be added.
+peft_config ([PeftConfig](/docs/peft/v0.22.0/en/package_reference/config#peft.PeftConfig)) : The configuration of the adapter to be added.
 
 low_cpu_mem_usage (`bool`, `optional`, defaults to `False`) : Create empty adapter weights on meta device. Useful to speed up the process when loading saved adapters. Don't use this option when creating a new PEFT adapter for training.
 
@@ -541,11 +661,11 @@ autocast_adapter_dtype (`bool`, *optional*, defaults to `True`) : Whether to aut
 
 Add an adapter to the model based on the passed configuration.
 
-This adapter is not trained. To load a trained adapter, check out [PeftModel.load_adapter()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel.load_adapter).
+This adapter is not trained. To load a trained adapter, check out [PeftModel.load_adapter()](/docs/peft/v0.22.0/en/package_reference/peft_model#peft.PeftModel.load_adapter).
 
 The name for the new adapter should be unique.
 
-The new adapter is not automatically set as the active adapter. Use [PeftModel.set_adapter()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel.set_adapter) to set the active
+The new adapter is not automatically set as the active adapter. Use [PeftModel.set_adapter()](/docs/peft/v0.22.0/en/package_reference/peft_model#peft.PeftModel.set_adapter) to set the active
 adapter.
 
 ## PeftModelForCausalLM[[peft.PeftModelForCausalLM]]
@@ -558,13 +678,13 @@ A `PeftModel` for causal language modeling.
 peft.PeftModelForCausalLM(model: torch.nn.Module, peft_config: PeftConfig, adapter_name: str = 'default', **kwargs)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/peft_model.py#L2039)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/peft_model.py#L2344)
 
 **Parameters:**
 
-model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) : Base transformer model.
+model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel)) : Base transformer model.
 
-peft_config ([PeftConfig](/docs/peft/v0.21.0/en/package_reference/config#peft.PeftConfig)) : Peft config.
+peft_config ([PeftConfig](/docs/peft/v0.22.0/en/package_reference/config#peft.PeftConfig)) : Peft config.
 
 adapter_name (`str`,  *optional*) : The name of the adapter, defaults to `"default"`.
 
@@ -611,13 +731,13 @@ Note: this will automatically generate decoder input tokens by shifting the inpu
 peft.PeftModelForSeq2SeqLM(model: torch.nn.Module, peft_config: PeftConfig, adapter_name: str = 'default', **kwargs)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/peft_model.py#L2380)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/peft_model.py#L2701)
 
 **Parameters:**
 
-model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) : Base transformer model.
+model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel)) : Base transformer model.
 
-peft_config ([PeftConfig](/docs/peft/v0.21.0/en/package_reference/config#peft.PeftConfig)) : Peft config.
+peft_config ([PeftConfig](/docs/peft/v0.22.0/en/package_reference/config#peft.PeftConfig)) : Peft config.
 
 adapter_name (`str`,  *optional*) : The name of the adapter, defaults to `"default"`.
 
@@ -660,13 +780,13 @@ A `PeftModel` for question answering.
 peft.PeftModelForQuestionAnswering(model: torch.nn.Module, peft_config: PeftConfig, adapter_name: str = 'default', **kwargs)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/peft_model.py#L2879)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/peft_model.py#L3179)
 
 **Parameters:**
 
-model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) : Base transformer model.
+model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel)) : Base transformer model.
 
-peft_config ([PeftConfig](/docs/peft/v0.21.0/en/package_reference/config#peft.PeftConfig)) : Peft config.
+peft_config ([PeftConfig](/docs/peft/v0.22.0/en/package_reference/config#peft.PeftConfig)) : Peft config.
 
 adapter_name (`str`,  *optional*) : The name of the adapter, defaults to `"default"`.
 
@@ -709,13 +829,13 @@ trainable params: 592900 || all params: 108312580 || trainable%: 0.5473971721475
 add_adapter(adapter_name: str, peft_config: PeftConfig, low_cpu_mem_usage: bool = False, autocast_adapter_dtype: bool = True)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/peft_model.py#L2947)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/peft_model.py#L3244)
 
 **Parameters:**
 
 adapter_name (`str`) : The name of the adapter to be added.
 
-peft_config ([PeftConfig](/docs/peft/v0.21.0/en/package_reference/config#peft.PeftConfig)) : The configuration of the adapter to be added.
+peft_config ([PeftConfig](/docs/peft/v0.22.0/en/package_reference/config#peft.PeftConfig)) : The configuration of the adapter to be added.
 
 low_cpu_mem_usage (`bool`, `optional`, defaults to `False`) : Create empty adapter weights on meta device. Useful to speed up the process when loading saved adapters. Don't use this option when creating a new PEFT adapter for training.
 
@@ -723,11 +843,11 @@ autocast_adapter_dtype (`bool`, *optional*, defaults to `True`) : Whether to aut
 
 Add an adapter to the model based on the passed configuration.
 
-This adapter is not trained. To load a trained adapter, check out [PeftModel.load_adapter()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel.load_adapter).
+This adapter is not trained. To load a trained adapter, check out [PeftModel.load_adapter()](/docs/peft/v0.22.0/en/package_reference/peft_model#peft.PeftModel.load_adapter).
 
 The name for the new adapter should be unique.
 
-The new adapter is not automatically set as the active adapter. Use [PeftModel.set_adapter()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel.set_adapter) to set the active
+The new adapter is not automatically set as the active adapter. Use [PeftModel.set_adapter()](/docs/peft/v0.22.0/en/package_reference/peft_model#peft.PeftModel.set_adapter) to set the active
 adapter.
 
 ## PeftModelForFeatureExtraction[[peft.PeftModelForFeatureExtraction]]
@@ -740,13 +860,13 @@ A `PeftModel` for getting extracting features/embeddings from transformer models
 peft.PeftModelForFeatureExtraction(model: torch.nn.Module, peft_config: PeftConfig, adapter_name: str = 'default', **kwargs)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/peft_model.py#L3137)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/peft_model.py#L3429)
 
 **Parameters:**
 
-model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) : Base transformer model.
+model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel)) : Base transformer model.
 
-peft_config ([PeftConfig](/docs/peft/v0.21.0/en/package_reference/config#peft.PeftConfig)) : Peft config.
+peft_config ([PeftConfig](/docs/peft/v0.22.0/en/package_reference/config#peft.PeftConfig)) : Peft config.
 
 adapter_name (`str`,  *optional*) : The name of the adapter, defaults to `"default"`.
 
@@ -790,7 +910,7 @@ A `PeftModel` for mixing different adapter types (e.g. LoRA and LoHa).
 peft.PeftMixedModel(model: nn.Module, peft_config: PeftConfig, adapter_name: str = 'default')
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/mixed_model.py#L67)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/mixed_model.py#L72)
 
 **Parameters:**
 
@@ -826,13 +946,13 @@ Example:
 add_adapter(adapter_name: str, peft_config: PeftConfig, low_cpu_mem_usage: bool = False, autocast_adapter_dtype: bool = True)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/mixed_model.py#L203)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/mixed_model.py#L220)
 
 **Parameters:**
 
 adapter_name (`str`) : The name of the adapter to be added.
 
-peft_config ([PeftConfig](/docs/peft/v0.21.0/en/package_reference/config#peft.PeftConfig)) : The configuration of the adapter to be added.
+peft_config ([PeftConfig](/docs/peft/v0.22.0/en/package_reference/config#peft.PeftConfig)) : The configuration of the adapter to be added.
 
 low_cpu_mem_usage (`bool`, `optional`, defaults to `False`) : Create empty adapter weights on meta device. Useful to speed up the process when loading saved adapters.  > [!TIP] > Don't use `low_cpu_mem_usage=True` when creating a new PEFT adapter for training (training is untested > and discouraged for PeftMixedModel in general).
 
@@ -840,11 +960,11 @@ autocast_adapter_dtype (`bool`, *optional*, defaults to `True`) : Whether to aut
 
 Add an adapter to the model based on the passed configuration.
 
-This adapter is not trained. To load a trained adapter, check out [PeftModel.load_adapter()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel.load_adapter).
+This adapter is not trained. To load a trained adapter, check out [PeftModel.load_adapter()](/docs/peft/v0.22.0/en/package_reference/peft_model#peft.PeftModel.load_adapter).
 
 The name for the new adapter should be unique.
 
-The new adapter is not automatically set as the active adapter. Use [PeftModel.set_adapter()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel.set_adapter) to set the active
+The new adapter is not automatically set as the active adapter. Use [PeftModel.set_adapter()](/docs/peft/v0.22.0/en/package_reference/peft_model#peft.PeftModel.set_adapter) to set the active
 adapter.
 
 #### disable_adapter[[peft.PeftMixedModel.disable_adapter]]
@@ -853,7 +973,7 @@ adapter.
 disable_adapter()
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/mixed_model.py#L192)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/mixed_model.py#L197)
 
 Disables the adapter module.
 
@@ -863,7 +983,7 @@ Disables the adapter module.
 forward(*args: Any, **kwargs: Any)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/mixed_model.py#L180)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/mixed_model.py#L185)
 
 Forward pass of the model.
 
@@ -873,7 +993,7 @@ Forward pass of the model.
 from_pretrained(model: nn.Module, model_id: str | os.PathLike, adapter_name: str = 'default', is_trainable: bool = False, config: Optional[PeftConfig] = None, **kwargs: Any)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/mixed_model.py#L397)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/mixed_model.py#L422)
 
 **Parameters:**
 
@@ -885,7 +1005,7 @@ adapter_name (`str`, *optional*, defaults to `"default"`) : The name of the adap
 
 is_trainable (`bool`, *optional*, defaults to `False`) : Whether the adapter should be trainable or not. If `False`, the adapter will be frozen and use for inference
 
-config ([PeftConfig](/docs/peft/v0.21.0/en/package_reference/config#peft.PeftConfig), *optional*) : The configuration object to use instead of an automatically loaded configuration. This configuration object is mutually exclusive with `model_id` and `kwargs`. This is useful when configuration is already loaded before calling `from_pretrained`.
+config ([PeftConfig](/docs/peft/v0.22.0/en/package_reference/config#peft.PeftConfig), *optional*) : The configuration object to use instead of an automatically loaded configuration. This configuration object is mutually exclusive with `model_id` and `kwargs`. This is useful when configuration is already loaded before calling `from_pretrained`.
 
 low_cpu_mem_usage (`bool`, `optional`, defaults to `False`) : Create empty adapter weights on meta device before loading the saved weights. Useful to speed up the process.
 
@@ -901,7 +1021,7 @@ Note that the passed `model` may be modified inplace.
 generate(*args: Any, **kwargs: Any)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/mixed_model.py#L186)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/mixed_model.py#L191)
 
 Generate output.
 
@@ -911,7 +1031,7 @@ Generate output.
 get_nb_trainable_parameters()
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/mixed_model.py#L126)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/mixed_model.py#L131)
 
 Returns the number of trainable parameters and number of all parameters in the model.
 
@@ -921,13 +1041,13 @@ Returns the number of trainable parameters and number of all parameters in the m
 load_adapter(model_id: str, adapter_name: str, *args: Any, **kwargs: Any)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/mixed_model.py#L348)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/mixed_model.py#L365)
 
 **Parameters:**
 
 adapter_name (`str`) : The name of the adapter to be added.
 
-peft_config ([PeftConfig](/docs/peft/v0.21.0/en/package_reference/config#peft.PeftConfig)) : The configuration of the adapter to be added.
+peft_config ([PeftConfig](/docs/peft/v0.22.0/en/package_reference/config#peft.PeftConfig)) : The configuration of the adapter to be added.
 
 is_trainable (`bool`, *optional*, defaults to `False`) : Whether the adapter should be trainable or not. If `False`, the adapter will be frozen and can only be used for inference.
 
@@ -945,7 +1065,7 @@ Load a trained adapter into the model.
 
 The name for the new adapter should be unique.
 
-The new adapter is not automatically set as the active adapter. Use [PeftModel.set_adapter()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel.set_adapter) to set the active
+The new adapter is not automatically set as the active adapter. Use [PeftModel.set_adapter()](/docs/peft/v0.22.0/en/package_reference/peft_model#peft.PeftModel.set_adapter) to set the active
 adapter.
 
 #### merge_and_unload[[peft.PeftMixedModel.merge_and_unload]]
@@ -954,7 +1074,7 @@ adapter.
 merge_and_unload(*args: Any, **kwargs: Any)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/mixed_model.py#L311)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/mixed_model.py#L328)
 
 **Parameters:**
 
@@ -973,7 +1093,7 @@ model as a standalone model.
 print_trainable_parameters()
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/mixed_model.py#L151)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/mixed_model.py#L156)
 
 Prints the number of trainable parameters in the model.
 
@@ -990,7 +1110,7 @@ of trainable parameters of the backbone transformer model which can be different
 set_adapter(adapter_name: Union[str, list[str]], inference_mode: bool = False)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/mixed_model.py#L269)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/mixed_model.py#L286)
 
 **Parameters:**
 
@@ -1014,7 +1134,7 @@ inference_mode is True.
 unload(*args: Any, **kwargs: Any)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/mixed_model.py#L328)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/mixed_model.py#L345)
 
 Gets back the base model by removing all the adapter modules without merging. This gives back the original base
 model.
@@ -1027,7 +1147,7 @@ model.
 peft.cast_mixed_precision_params(model: torch.nn.Module, dtype: torch.dtype)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/utils/other.py#L1461)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/utils/other.py#L1562)
 
 **Parameters:**
 
@@ -1049,13 +1169,13 @@ automatic mixed-precision training.
 peft.get_peft_model(model: nn.Module, peft_config: PeftConfig, adapter_name: str = 'default', mixed: bool = False, autocast_adapter_dtype: bool = True, revision: Optional[str] = None, low_cpu_mem_usage: bool = False)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/mapping_func.py#L105)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/mapping_func.py#L105)
 
 **Parameters:**
 
 model (`torch.nn.Module`) : Model to be wrapped. Typically this is a Transformers model but any `nn.Module` can work, with the caveat that task-specific features (`peft_config.task_type`) require the model to follow Transformers conventions.
 
-peft_config ([PeftConfig](/docs/peft/v0.21.0/en/package_reference/config#peft.PeftConfig)) : Configuration object containing the parameters of the Peft model.
+peft_config ([PeftConfig](/docs/peft/v0.22.0/en/package_reference/config#peft.PeftConfig)) : Configuration object containing the parameters of the Peft model.
 
 adapter_name (`str`, `optional`, defaults to `"default"`) : The name of the adapter to be injected, if not provided, the default adapter name is used ("default").
 
@@ -1075,7 +1195,7 @@ Returns a Peft model object from a model and a config, where the model will be m
 peft.inject_adapter_in_model(peft_config: PeftConfig, model: torch.nn.Module, adapter_name: str = 'default', low_cpu_mem_usage: bool = False, state_dict: Optional[dict[str, torch.Tensor]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/mapping.py#L47)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/mapping.py#L47)
 
 **Parameters:**
 
@@ -1092,9 +1212,9 @@ state_dict (`dict`, *optional*, defaults to `None`) : If a `state_dict` is passe
 Create PEFT layers and inject them into the model in-place.
 
 Currently the API does not support prompt learning methods, adaption prompt, or tuners that keep adapter state
-shared between multiple target layers. Use [get_peft_model()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.get_peft_model) for the latter.
+shared between multiple target layers. Use [get_peft_model()](/docs/peft/v0.22.0/en/package_reference/peft_model#peft.get_peft_model) for the latter.
 
-This function is similar to [get_peft_model()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.get_peft_model) but it does not return a [PeftModel](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel) instance. Instead, it returns
+This function is similar to [get_peft_model()](/docs/peft/v0.22.0/en/package_reference/peft_model#peft.get_peft_model) but it does not return a [PeftModel](/docs/peft/v0.22.0/en/package_reference/peft_model#peft.PeftModel) instance. Instead, it returns
 the original, mutated instance of the passed model.
 
 #### peft.get_peft_model_state_dict[[peft.get_peft_model_state_dict]]
@@ -1103,11 +1223,11 @@ the original, mutated instance of the passed model.
 peft.get_peft_model_state_dict(model, state_dict = None, adapter_name: str = 'default', unwrap_compiled: bool = False, save_embedding_layers: bool | Literal['auto'] = 'auto')
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/utils/save_and_load.py#L148)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/utils/save_and_load.py#L202)
 
 **Parameters:**
 
-model ([PeftModel](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel)) : The Peft model. When using torch.nn.DistributedDataParallel, DeepSpeed or FSDP, the model should be the underlying model/unwrapped model (i.e. model.module).
+model ([PeftModel](/docs/peft/v0.22.0/en/package_reference/peft_model#peft.PeftModel)) : The Peft model. When using torch.nn.DistributedDataParallel, DeepSpeed or FSDP, the model should be the underlying model/unwrapped model (i.e. model.module).
 
 state_dict (`dict`, *optional*, defaults to `None`) : The state dict of the model. If not provided, the state dict of the passed model will be used.
 
@@ -1122,18 +1242,22 @@ Get the state dict of the given adapter of the PEFT model.
 This only includes the PEFT parameters, not the parameters of the base model. Thus the returned `state_dict` is
 generally small compared to the full model size. To retrieve the full `state_dict`, just call `model.state_dict()`.
 
+If the selected entries contain distributed tensors (e.g. FSDP2 or DTensor TP), all participating ranks must call
+this function: gathering those entries into full tensors is a collective. Unselected base model weights remain
+sharded.
+
 Note that the adapter name is removed from the `state_dict`, as this is just an arbitrary name that can be changed
 when loading the adapter. So e.g. if the adapter name is `'default'` and the original key is
 `'model.q_proj.lora_A.default.weight'`, the returned key will be `'model.q_proj.lora_A.weight'`. Use this function
-in conjunction with [set_peft_model_state_dict()](/docs/peft/v0.21.0/en/package_reference/functional#peft.set_peft_model_state_dict) to take care of the adapter name when loading weights.
+in conjunction with [set_peft_model_state_dict()](/docs/peft/v0.22.0/en/package_reference/functional#peft.set_peft_model_state_dict) to take care of the adapter name when loading weights.
 
 #### peft.prepare_model_for_kbit_training[[peft.prepare_model_for_kbit_training]]
 
 ```python
-peft.prepare_model_for_kbit_training(model, use_gradient_checkpointing = True, gradient_checkpointing_kwargs = None, auto_clear_cache = True)
+peft.prepare_model_for_kbit_training(model, use_gradient_checkpointing = True, activation_checkpointing_kwargs = None, auto_clear_cache = True, gradient_checkpointing_kwargs = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/utils/other.py#L158)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/utils/other.py#L165)
 
 **Parameters:**
 
@@ -1141,9 +1265,11 @@ model (`transformers.PreTrainedModel`) : The loaded model from `transformers`
 
 use_gradient_checkpointing (`bool`, *optional*, defaults to `True`) : If True, use gradient checkpointing to save memory at the expense of slower backward pass.
 
-gradient_checkpointing_kwargs (`dict`, *optional*, defaults to `None`) : Keyword arguments to pass to the gradient checkpointing function, please refer to the documentation of `torch.utils.checkpoint.checkpoint` for more details about the arguments that you can pass to that method. Note this is only available in the latest transformers versions (> 4.34.1).
+activation_checkpointing_kwargs (`dict`, *optional*, defaults to `None`) : Keyword arguments to pass to the activation checkpointing function, please refer to the documentation of `torch.utils.checkpoint.checkpoint` for more details about the arguments that you can pass to that method. Note this is only available in the transformers versions (> 4.34.1).
 
 auto_clear_cache (`bool`, *optional*, defaults to `True`) : Whether to empty the accelerator cache after upcasting parameters to fp32. This releases memory held by the caching allocator, which is especially helpful on devices that share host and accelerator memory. Set to `False` to skip this step.
+
+gradient_checkpointing_kwargs (`dict`, *optional*, defaults to `None`) : Keyword arguments to pass to the activation checkpointing function. This argument exists only for backwards compatiblity and is deprecated, please use `activation_checkpointing_kwargs` instead. It will be removed in PEFT v1.2.
 
 Note this method only works for `transformers` models.
 
@@ -1157,7 +1283,7 @@ head to fp32 4- Freezing the base model layers to ensure they are not updated du
 peft.get_layer_status(model: torch.nn.Module)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/peft_model.py#L3252)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/peft_model.py#L3544)
 
 **Parameters:**
 
@@ -1199,7 +1325,7 @@ attributes:
 peft.get_model_status(model: torch.nn.Module)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/peft_model.py#L3386)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/peft_model.py#L3678)
 
 **Parameters:**
 
@@ -1246,5 +1372,5 @@ This function returns a `TunerModelStatus` dataclass instance, which contains th
   The name of the quantization backend, e.g. `"bnb 4bit"`, or `None` if not quantized. If the backend is not
   consistent across all layers, this will be `"irregular"`.
 
-### Context-aware Prompt Tuning: Advancing In-Context Learning with Adversarial Methods
-https://huggingface.co/docs/peft/v0.21.0/package_reference/cpt.md
+### Polytropon
+https://huggingface.co/docs/peft/v0.22.0/package_reference/poly.md

@@ -147,6 +147,7 @@
 - [Streamlit Spaces](https://huggingface.co/docs/hub/spaces-sdks-streamlit.md)
 - [3D Dataset](https://huggingface.co/docs/hub/datasets-3d.md)
 - [SQL Console: Query Hugging Face datasets in your browser](https://huggingface.co/docs/hub/datasets-viewer-sql-console.md)
+- [Pre-Release Model Pages](https://huggingface.co/docs/hub/models-release-announcements.md)
 - [Agent Libraries](https://huggingface.co/docs/hub/agents-libraries.md)
 - [User Management](https://huggingface.co/docs/hub/security-sso-user-management.md)
 - [Collections](https://huggingface.co/docs/hub/collections.md)

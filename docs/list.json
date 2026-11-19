@@ -1,7 +1,7 @@
 {
-  "fetchedAt": "2026-11-18T16:21:11.868377+00:00",
+  "fetchedAt": "2026-11-19T16:29:31.768837+00:00",
   "method": "llms-full-split",
-  "ok": 2327,
+  "ok": 2329,
   "failed": 0,
   "pages": [
     {
@@ -5214,7 +5214,7 @@
     },
     {
       "rel": "hub/download-analytics.md",
-      "bytes": 2061,
+      "bytes": 2017,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/download-analytics.md",
       "track": "Hub",
@@ -5718,7 +5718,7 @@
     },
     {
       "rel": "hub/model-cards.md",
-      "bytes": 14864,
+      "bytes": 15487,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/model-cards.md",
       "track": "Hub",
@@ -5889,7 +5889,7 @@
     },
     {
       "rel": "hub/storage-buckets-integrations.md",
-      "bytes": 7781,
+      "bytes": 8252,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/storage-buckets-integrations.md",
       "track": "Hub",
@@ -6015,7 +6015,7 @@
     },
     {
       "rel": "hub/model-release-checklist.md",
-      "bytes": 15207,
+      "bytes": 15585,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/model-release-checklist.md",
       "track": "Hub",
@@ -6456,12 +6456,21 @@
     },
     {
       "rel": "hub/datasets-viewer-sql-console.md",
-      "bytes": 5363,
+      "bytes": 5383,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/datasets-viewer-sql-console.md",
       "track": "Hub",
       "package": "hub",
       "title": "SQL Console: Query Hugging Face datasets in your browser"
+    },
+    {
+      "rel": "hub/models-release-announcements.md",
+      "bytes": 6385,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/models-release-announcements.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Pre-Release Model Pages"
     },
     {
       "rel": "hub/agents-libraries.md",
@@ -6834,7 +6843,7 @@
     },
     {
       "rel": "hub/agent-traces.md",
-      "bytes": 3633,
+      "bytes": 6391,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/agent-traces.md",
       "track": "Hub",
@@ -8904,7 +8913,7 @@
     },
     {
       "rel": "kernels/api/kernels.md",
-      "bytes": 12454,
+      "bytes": 12555,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/api/kernels.md",
       "track": "Kernels",
@@ -8985,7 +8994,7 @@
     },
     {
       "rel": "kernels/builder/triton-autotune.md",
-      "bytes": 7031,
+      "bytes": 7168,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/builder/triton-autotune.md",
       "track": "Kernels",
@@ -9003,7 +9012,7 @@
     },
     {
       "rel": "kernels/builder/writing-kernels.md",
-      "bytes": 23380,
+      "bytes": 24978,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/builder/writing-kernels.md",
       "track": "Kernels",
@@ -10244,715 +10253,724 @@
       "title": "Optimization"
     },
     {
-      "rel": "peft/quicktour.md",
-      "bytes": 12175,
+      "rel": "peft/index.md",
+      "bytes": 1658,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/quicktour.md",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/index.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "PEFT"
+    },
+    {
+      "rel": "peft/quicktour.md",
+      "bytes": 13290,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/quicktour.md",
       "track": "PEFT",
       "package": "peft",
       "title": "Quicktour"
     },
     {
       "rel": "peft/install.md",
-      "bytes": 1641,
+      "bytes": 1674,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/install.md",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/install.md",
       "track": "PEFT",
       "package": "peft",
       "title": "Installation"
     },
     {
-      "rel": "peft/index.md",
-      "bytes": 3670,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/index.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "PEFT"
-    },
-    {
-      "rel": "peft/package_reference/peft_types.md",
-      "bytes": 1680,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/peft_types.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "PEFT types"
-    },
-    {
-      "rel": "peft/package_reference/hira.md",
-      "bytes": 13745,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/hira.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "HiRA"
-    },
-    {
-      "rel": "peft/package_reference/loha.md",
-      "bytes": 10434,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/loha.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "LoHa"
-    },
-    {
-      "rel": "peft/package_reference/glora.md",
-      "bytes": 7649,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/glora.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "GLoRA"
-    },
-    {
-      "rel": "peft/package_reference/helpers.md",
-      "bytes": 7204,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/helpers.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "Helper methods"
-    },
-    {
-      "rel": "peft/package_reference/fourierft.md",
-      "bytes": 8624,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/fourierft.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "FourierFT: Discrete Fourier Transformation Fine-Tuning"
-    },
-    {
-      "rel": "peft/package_reference/lily.md",
-      "bytes": 10262,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/lily.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "Lily: Low-Rank Interconnected Adaptation across Layers"
-    },
-    {
-      "rel": "peft/package_reference/c3a.md",
-      "bytes": 6272,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/c3a.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "C3A: Parameter-Efficient Fine-Tuning via Circular Convolution"
-    },
-    {
-      "rel": "peft/package_reference/hotswap.md",
-      "bytes": 6833,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/hotswap.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "Hotswapping adapters"
-    },
-    {
-      "rel": "peft/package_reference/llama_adapter.md",
-      "bytes": 5220,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/llama_adapter.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "Llama-Adapter"
-    },
-    {
-      "rel": "peft/package_reference/peft_model.md",
-      "bytes": 62184,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/peft_model.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "Models"
-    },
-    {
-      "rel": "peft/package_reference/cpt.md",
-      "bytes": 6727,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/cpt.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "Context-aware Prompt Tuning: Advancing In-Context Learning with Adversarial Methods"
-    },
-    {
-      "rel": "peft/package_reference/road.md",
-      "bytes": 5315,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/road.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "RoAd"
-    },
-    {
-      "rel": "peft/package_reference/delora.md",
-      "bytes": 8036,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/delora.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "DeLoRA: Decoupled Low-rank Adaptation"
-    },
-    {
-      "rel": "peft/package_reference/cartridges.md",
-      "bytes": 8064,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/cartridges.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "Cartridges"
-    },
-    {
-      "rel": "peft/package_reference/trainable_tokens.md",
-      "bytes": 5214,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/trainable_tokens.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "Trainable Tokens"
-    },
-    {
-      "rel": "peft/package_reference/lora_variant_monteclora.md",
-      "bytes": 6086,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/lora_variant_monteclora.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "MonteCLoRA (Monte Carlo Low-Rank Adaptation)"
-    },
-    {
-      "rel": "peft/package_reference/lora_conversion.md",
-      "bytes": 19957,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/lora_conversion.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "LoRA conversion"
-    },
-    {
-      "rel": "peft/package_reference/warnings.md",
-      "bytes": 279,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/warnings.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "PeftWarning[[peft.PeftWarning]]"
-    },
-    {
-      "rel": "peft/package_reference/auto_class.md",
-      "bytes": 3899,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/auto_class.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "AutoPeftModels"
-    },
-    {
-      "rel": "peft/package_reference/peanut.md",
-      "bytes": 7936,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/peanut.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "PEANuT: Parameter-Efficient Adaptation with Weight-aware Neural Tweakers"
-    },
-    {
-      "rel": "peft/package_reference/vblora.md",
-      "bytes": 10309,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/vblora.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "VB-LoRA: Extreme Parameter Efficient Fine-Tuning with Vector Banks"
-    },
-    {
-      "rel": "peft/package_reference/adamss.md",
-      "bytes": 13128,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/adamss.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "AdaMSS"
-    },
-    {
-      "rel": "peft/package_reference/tuners.md",
-      "bytes": 14569,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/tuners.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "Tuners"
-    },
-    {
-      "rel": "peft/package_reference/frod.md",
-      "bytes": 7137,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/frod.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "FRoD: Full-Rank Efficient Fine-Tuning with Rotational Degrees"
-    },
-    {
-      "rel": "peft/package_reference/config.md",
-      "bytes": 7468,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/config.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "Configuration"
-    },
-    {
-      "rel": "peft/package_reference/ia3.md",
-      "bytes": 10522,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/ia3.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "IA3"
-    },
-    {
-      "rel": "peft/package_reference/gralora.md",
-      "bytes": 9018,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/gralora.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "GraLoRA"
-    },
-    {
-      "rel": "peft/package_reference/errors.md",
-      "bytes": 889,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/errors.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "Errors[[peft.PeftError]]"
-    },
-    {
-      "rel": "peft/package_reference/randlora.md",
-      "bytes": 12106,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/randlora.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "RandLora: Full-rank parameter-efficient fine-tuning of large models"
-    },
-    {
-      "rel": "peft/package_reference/pvera.md",
-      "bytes": 9163,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/pvera.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "PVeRA: Probabilistic Vector-Based Random Matrix Adaptation"
-    },
-    {
-      "rel": "peft/package_reference/beft.md",
-      "bytes": 5657,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/beft.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "BEFT: Bias-Efficient Fine-Tuning of Language Models in Low-Data Regimes"
-    },
-    {
-      "rel": "peft/package_reference/prefix_tuning.md",
-      "bytes": 8810,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/prefix_tuning.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "Prefix tuning"
-    },
-    {
-      "rel": "peft/package_reference/adalora.md",
-      "bytes": 12537,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/adalora.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "AdaLoRA"
-    },
-    {
-      "rel": "peft/package_reference/oft.md",
-      "bytes": 15842,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/oft.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "OFT"
-    },
-    {
-      "rel": "peft/package_reference/prompt_tuning.md",
-      "bytes": 6713,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/prompt_tuning.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "Prompt tuning"
-    },
-    {
-      "rel": "peft/package_reference/hra.md",
-      "bytes": 8005,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/hra.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "Bridging The Gap between Low-rank and Orthogonal Adaptation via Householder Reflection Adaptation (HRA)"
-    },
-    {
-      "rel": "peft/package_reference/p_tuning.md",
-      "bytes": 6477,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/p_tuning.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "P-tuning"
-    },
-    {
-      "rel": "peft/package_reference/lora.md",
-      "bytes": 110399,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/lora.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "LoRA"
-    },
-    {
-      "rel": "peft/package_reference/adapter_utils.md",
-      "bytes": 3405,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/adapter_utils.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "LyCORIS"
-    },
-    {
-      "rel": "peft/package_reference/unilora.md",
-      "bytes": 7579,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/unilora.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "UniLoRA"
-    },
-    {
-      "rel": "peft/package_reference/supertuning.md",
-      "bytes": 8015,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/supertuning.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "Super-Tuning"
-    },
-    {
-      "rel": "peft/package_reference/functional.md",
-      "bytes": 10454,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/functional.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "Functions for PEFT integration"
-    },
-    {
-      "rel": "peft/package_reference/lokr.md",
-      "bytes": 9405,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/lokr.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "LoKr"
-    },
-    {
-      "rel": "peft/package_reference/poly.md",
-      "bytes": 6392,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/poly.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "Polytropon"
-    },
-    {
-      "rel": "peft/package_reference/lora_variant_bdlora.md",
-      "bytes": 3947,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/lora_variant_bdlora.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "Block-Diagonal LoRA for Eliminating Communication Overhead in Tensor Parallel LoRA Serving"
-    },
-    {
-      "rel": "peft/package_reference/miss.md",
-      "bytes": 9873,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/miss.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "MiSS"
-    },
-    {
-      "rel": "peft/package_reference/layernorm_tuning.md",
-      "bytes": 5868,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/layernorm_tuning.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "LayerNorm Tuning"
-    },
-    {
-      "rel": "peft/package_reference/waveft.md",
-      "bytes": 7783,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/waveft.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "WaveFT: Wavelet Fine-Tuning"
-    },
-    {
-      "rel": "peft/package_reference/merge_utils.md",
-      "bytes": 4887,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/merge_utils.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "Model merge[[peft.utils.merge_utils.prune]]"
-    },
-    {
-      "rel": "peft/package_reference/shira.md",
-      "bytes": 7030,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/shira.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "Sparse High Rank Adapters"
-    },
-    {
-      "rel": "peft/package_reference/tinylora.md",
-      "bytes": 9902,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/tinylora.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "TinyLoRA: Learning to Reason in 13 Parameters"
-    },
-    {
-      "rel": "peft/package_reference/lora_variant_dora.md",
-      "bytes": 3606,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/lora_variant_dora.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "Weight-Decomposed Low-Rank Adaptation (DoRA)"
-    },
-    {
-      "rel": "peft/package_reference/osf.md",
-      "bytes": 12544,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/osf.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "OSF (Orthogonal Subspace Fine-tuning)"
-    },
-    {
-      "rel": "peft/package_reference/shadow.md",
-      "bytes": 18577,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/shadow.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "ShadowPEFT"
-    },
-    {
-      "rel": "peft/package_reference/multitask_prompt_tuning.md",
-      "bytes": 4061,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/multitask_prompt_tuning.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "Multitask prompt tuning"
-    },
-    {
-      "rel": "peft/package_reference/boft.md",
-      "bytes": 11735,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/boft.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "BOFT"
-    },
-    {
-      "rel": "peft/package_reference/vera.md",
-      "bytes": 10644,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/vera.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "VeRA: Vector-based Random Matrix Adaptation"
-    },
-    {
-      "rel": "peft/package_reference/deft.md",
-      "bytes": 10806,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/deft.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "DEFT: Decompositional Efficient Fine-Tuning for Text-to-Image Models"
-    },
-    {
-      "rel": "peft/package_reference/xlora.md",
-      "bytes": 14111,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/xlora.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "X-LoRA"
-    },
-    {
-      "rel": "peft/package_reference/psoft.md",
-      "bytes": 13839,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/package_reference/psoft.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "PSOFT"
-    },
-    {
       "rel": "peft/guides/peft_integrations.md",
       "bytes": 6809,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/guides/peft_integrations.md",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/guides/peft_integrations.md",
       "track": "PEFT",
       "package": "peft",
       "title": "PEFT integrations"
     },
     {
       "rel": "peft/guides/peft_model_config.md",
-      "bytes": 8828,
+      "bytes": 8741,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/guides/peft_model_config.md",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/guides/peft_model_config.md",
       "track": "PEFT",
       "package": "peft",
       "title": "PEFT configurations and models"
     },
     {
-      "rel": "peft/developer_guides/torch_compile.md",
-      "bytes": 2943,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/developer_guides/torch_compile.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "torch.compile"
-    },
-    {
-      "rel": "peft/developer_guides/low_level_api.md",
-      "bytes": 8910,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/developer_guides/low_level_api.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "Adapter injection"
-    },
-    {
-      "rel": "peft/developer_guides/memory_efficient_training.md",
-      "bytes": 4867,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/developer_guides/memory_efficient_training.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "Memory Efficient Training"
-    },
-    {
-      "rel": "peft/developer_guides/custom_models.md",
-      "bytes": 15173,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/developer_guides/custom_models.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "Custom models"
-    },
-    {
-      "rel": "peft/developer_guides/checkpoint.md",
-      "bytes": 13525,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/developer_guides/checkpoint.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "PEFT checkpoint format"
-    },
-    {
-      "rel": "peft/developer_guides/contributing.md",
-      "bytes": 13585,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/developer_guides/contributing.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "Contribute to PEFT"
-    },
-    {
-      "rel": "peft/developer_guides/troubleshooting.md",
-      "bytes": 29201,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/developer_guides/troubleshooting.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "Troubleshooting"
-    },
-    {
-      "rel": "peft/developer_guides/mixed_models.md",
-      "bytes": 2697,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/developer_guides/mixed_models.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "Mixed adapter types"
-    },
-    {
-      "rel": "peft/developer_guides/quantization.md",
-      "bytes": 17430,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/developer_guides/quantization.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "Quantization"
-    },
-    {
-      "rel": "peft/developer_guides/model_merging.md",
-      "bytes": 7948,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/developer_guides/model_merging.md",
-      "track": "PEFT",
-      "package": "peft",
-      "title": "Model merging"
-    },
-    {
       "rel": "peft/methods/overview.md",
       "bytes": 6690,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/methods/overview.md",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/methods/overview.md",
       "track": "PEFT",
       "package": "peft",
       "title": "Parameter efficient fine-tuning methods"
     },
     {
       "rel": "peft/accelerate/fsdp.md",
-      "bytes": 13026,
+      "bytes": 18007,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/accelerate/fsdp.md",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/accelerate/fsdp.md",
       "track": "PEFT",
       "package": "peft",
       "title": "Fully Sharded Data Parallel"
     },
     {
       "rel": "peft/accelerate/deepspeed.md",
-      "bytes": 23269,
+      "bytes": 23367,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/peft/v0.21.0/accelerate/deepspeed.md",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/accelerate/deepspeed.md",
       "track": "PEFT",
       "package": "peft",
       "title": "DeepSpeed"
+    },
+    {
+      "rel": "peft/developer_guides/low_level_api.md",
+      "bytes": 8890,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/developer_guides/low_level_api.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "Adapter injection"
+    },
+    {
+      "rel": "peft/developer_guides/contributing.md",
+      "bytes": 13864,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/developer_guides/contributing.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "Contribute to PEFT"
+    },
+    {
+      "rel": "peft/developer_guides/mixed_models.md",
+      "bytes": 2699,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/developer_guides/mixed_models.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "Mixed adapter types"
+    },
+    {
+      "rel": "peft/developer_guides/torch_compile.md",
+      "bytes": 2939,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/developer_guides/torch_compile.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "torch.compile"
+    },
+    {
+      "rel": "peft/developer_guides/custom_models.md",
+      "bytes": 14948,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/developer_guides/custom_models.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "Custom models"
+    },
+    {
+      "rel": "peft/developer_guides/troubleshooting.md",
+      "bytes": 35549,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/developer_guides/troubleshooting.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "Troubleshooting"
+    },
+    {
+      "rel": "peft/developer_guides/quantization.md",
+      "bytes": 20234,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/developer_guides/quantization.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "Quantization"
+    },
+    {
+      "rel": "peft/developer_guides/model_merging.md",
+      "bytes": 7960,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/developer_guides/model_merging.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "Model merging"
+    },
+    {
+      "rel": "peft/developer_guides/memory_efficient_training.md",
+      "bytes": 4873,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/developer_guides/memory_efficient_training.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "Memory Efficient Training"
+    },
+    {
+      "rel": "peft/developer_guides/checkpoint.md",
+      "bytes": 13504,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/developer_guides/checkpoint.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "PEFT checkpoint format"
+    },
+    {
+      "rel": "peft/package_reference/boft.md",
+      "bytes": 11751,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/boft.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "BOFT"
+    },
+    {
+      "rel": "peft/package_reference/fourierft.md",
+      "bytes": 9531,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/fourierft.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "FourierFT: Discrete Fourier Transformation Fine-Tuning"
+    },
+    {
+      "rel": "peft/package_reference/gralora.md",
+      "bytes": 8960,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/gralora.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "GraLoRA"
+    },
+    {
+      "rel": "peft/package_reference/auto_class.md",
+      "bytes": 3860,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/auto_class.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "AutoPeftModels"
+    },
+    {
+      "rel": "peft/package_reference/warnings.md",
+      "bytes": 261,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/warnings.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "PeftWarning[[peft.PeftWarning]]"
+    },
+    {
+      "rel": "peft/package_reference/ia3.md",
+      "bytes": 10564,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/ia3.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "IA3"
+    },
+    {
+      "rel": "peft/package_reference/frod.md",
+      "bytes": 7172,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/frod.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "FRoD: Full-Rank Efficient Fine-Tuning with Rotational Degrees"
+    },
+    {
+      "rel": "peft/package_reference/pvera.md",
+      "bytes": 9118,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/pvera.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "PVeRA: Probabilistic Vector-Based Random Matrix Adaptation"
+    },
+    {
+      "rel": "peft/package_reference/lora_conversion.md",
+      "bytes": 20416,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/lora_conversion.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "LoRA conversion"
+    },
+    {
+      "rel": "peft/package_reference/prompt_tuning.md",
+      "bytes": 6473,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/prompt_tuning.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "Prompt tuning"
+    },
+    {
+      "rel": "peft/package_reference/lokr.md",
+      "bytes": 9296,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/lokr.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "LoKr"
+    },
+    {
+      "rel": "peft/package_reference/cartridges.md",
+      "bytes": 8086,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/cartridges.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "Cartridges"
+    },
+    {
+      "rel": "peft/package_reference/merge_utils.md",
+      "bytes": 4915,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/merge_utils.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "Model merge[[peft.utils.merge_utils.prune]]"
+    },
+    {
+      "rel": "peft/package_reference/lily.md",
+      "bytes": 10265,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/lily.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "Lily: Low-Rank Interconnected Adaptation across Layers"
+    },
+    {
+      "rel": "peft/package_reference/lora_variant_monteclora.md",
+      "bytes": 6083,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/lora_variant_monteclora.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "MonteCLoRA (Monte Carlo Low-Rank Adaptation)"
+    },
+    {
+      "rel": "peft/package_reference/hotswap.md",
+      "bytes": 14226,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/hotswap.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "Hotswapping adapters"
+    },
+    {
+      "rel": "peft/package_reference/randlora.md",
+      "bytes": 12001,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/randlora.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "RandLora: Full-rank parameter-efficient fine-tuning of large models"
+    },
+    {
+      "rel": "peft/package_reference/psoft.md",
+      "bytes": 13842,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/psoft.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "PSOFT"
+    },
+    {
+      "rel": "peft/package_reference/llama_adapter.md",
+      "bytes": 6307,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/llama_adapter.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "Llama-Adapter"
+    },
+    {
+      "rel": "peft/package_reference/paca.md",
+      "bytes": 13048,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/paca.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "PaCA: Partial Connection Adaptation"
+    },
+    {
+      "rel": "peft/package_reference/multitask_prompt_tuning.md",
+      "bytes": 3978,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/multitask_prompt_tuning.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "Multitask prompt tuning"
+    },
+    {
+      "rel": "peft/package_reference/miss.md",
+      "bytes": 9312,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/miss.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "MiSS"
+    },
+    {
+      "rel": "peft/package_reference/unilora.md",
+      "bytes": 7499,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/unilora.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "UniLoRA"
+    },
+    {
+      "rel": "peft/package_reference/glora.md",
+      "bytes": 7601,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/glora.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "GLoRA"
+    },
+    {
+      "rel": "peft/package_reference/road.md",
+      "bytes": 5291,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/road.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "RoAd"
+    },
+    {
+      "rel": "peft/package_reference/config.md",
+      "bytes": 7473,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/config.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "Configuration"
+    },
+    {
+      "rel": "peft/package_reference/adamss.md",
+      "bytes": 13169,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/adamss.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "AdaMSS"
+    },
+    {
+      "rel": "peft/package_reference/tinylora.md",
+      "bytes": 9913,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/tinylora.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "TinyLoRA: Learning to Reason in 13 Parameters"
+    },
+    {
+      "rel": "peft/package_reference/deft.md",
+      "bytes": 10842,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/deft.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "DEFT: Decompositional Efficient Fine-Tuning for Text-to-Image Models"
+    },
+    {
+      "rel": "peft/package_reference/vera.md",
+      "bytes": 10604,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/vera.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "VeRA: Vector-based Random Matrix Adaptation"
+    },
+    {
+      "rel": "peft/package_reference/trainable_tokens.md",
+      "bytes": 5187,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/trainable_tokens.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "Trainable Tokens"
+    },
+    {
+      "rel": "peft/package_reference/osf.md",
+      "bytes": 12677,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/osf.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "OSF (Orthogonal Subspace Fine-tuning)"
+    },
+    {
+      "rel": "peft/package_reference/peanut.md",
+      "bytes": 7904,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/peanut.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "PEANuT: Parameter-Efficient Adaptation with Weight-aware Neural Tweakers"
+    },
+    {
+      "rel": "peft/package_reference/functional.md",
+      "bytes": 11491,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/functional.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "Functions for PEFT integration"
+    },
+    {
+      "rel": "peft/package_reference/layernorm_tuning.md",
+      "bytes": 5868,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/layernorm_tuning.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "LayerNorm Tuning"
+    },
+    {
+      "rel": "peft/package_reference/waveft.md",
+      "bytes": 9729,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/waveft.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "WaveFT: Wavelet Fine-Tuning"
+    },
+    {
+      "rel": "peft/package_reference/lora.md",
+      "bytes": 122124,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/lora.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "LoRA"
+    },
+    {
+      "rel": "peft/package_reference/tuners.md",
+      "bytes": 16976,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/tuners.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "Tuners"
+    },
+    {
+      "rel": "peft/package_reference/helpers.md",
+      "bytes": 9921,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/helpers.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "Helper methods"
+    },
+    {
+      "rel": "peft/package_reference/vblora.md",
+      "bytes": 10305,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/vblora.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "VB-LoRA: Extreme Parameter Efficient Fine-Tuning with Vector Banks"
+    },
+    {
+      "rel": "peft/package_reference/loha.md",
+      "bytes": 10421,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/loha.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "LoHa"
+    },
+    {
+      "rel": "peft/package_reference/supertuning.md",
+      "bytes": 8005,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/supertuning.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "Super-Tuning"
+    },
+    {
+      "rel": "peft/package_reference/errors.md",
+      "bytes": 830,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/errors.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "Errors[[peft.PeftError]]"
+    },
+    {
+      "rel": "peft/package_reference/peft_model.md",
+      "bytes": 70373,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/peft_model.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "Models"
+    },
+    {
+      "rel": "peft/package_reference/poly.md",
+      "bytes": 6299,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/poly.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "Polytropon"
+    },
+    {
+      "rel": "peft/package_reference/p_tuning.md",
+      "bytes": 6365,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/p_tuning.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "P-tuning"
+    },
+    {
+      "rel": "peft/package_reference/hira.md",
+      "bytes": 13663,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/hira.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "HiRA"
+    },
+    {
+      "rel": "peft/package_reference/adalora.md",
+      "bytes": 12539,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/adalora.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "AdaLoRA"
+    },
+    {
+      "rel": "peft/package_reference/c3a.md",
+      "bytes": 6265,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/c3a.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "C3A: Parameter-Efficient Fine-Tuning via Circular Convolution"
+    },
+    {
+      "rel": "peft/package_reference/adapter_utils.md",
+      "bytes": 3500,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/adapter_utils.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "LyCORIS"
+    },
+    {
+      "rel": "peft/package_reference/lora_variant_bdlora.md",
+      "bytes": 3955,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/lora_variant_bdlora.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "Block-Diagonal LoRA for Eliminating Communication Overhead in Tensor Parallel LoRA Serving"
+    },
+    {
+      "rel": "peft/package_reference/shadow.md",
+      "bytes": 18553,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/shadow.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "ShadowPEFT"
+    },
+    {
+      "rel": "peft/package_reference/xlora.md",
+      "bytes": 14187,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/xlora.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "X-LoRA"
+    },
+    {
+      "rel": "peft/package_reference/cpt.md",
+      "bytes": 13756,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/cpt.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "Context-aware Prompt Tuning: Advancing In-Context Learning with Adversarial Methods"
+    },
+    {
+      "rel": "peft/package_reference/lora_variant_dora.md",
+      "bytes": 3572,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/lora_variant_dora.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "Weight-Decomposed Low-Rank Adaptation (DoRA)"
+    },
+    {
+      "rel": "peft/package_reference/oft.md",
+      "bytes": 12432,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/oft.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "OFT"
+    },
+    {
+      "rel": "peft/package_reference/shira.md",
+      "bytes": 6997,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/shira.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "Sparse High Rank Adapters"
+    },
+    {
+      "rel": "peft/package_reference/peft_types.md",
+      "bytes": 1586,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/peft_types.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "PEFT types"
+    },
+    {
+      "rel": "peft/package_reference/delora.md",
+      "bytes": 8091,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/delora.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "DeLoRA: Decoupled Low-rank Adaptation"
+    },
+    {
+      "rel": "peft/package_reference/beft.md",
+      "bytes": 5737,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/beft.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "BEFT: Bias-Efficient Fine-Tuning of Language Models in Low-Data Regimes"
+    },
+    {
+      "rel": "peft/package_reference/hra.md",
+      "bytes": 8011,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/hra.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "Bridging The Gap between Low-rank and Orthogonal Adaptation via Householder Reflection Adaptation (HRA)"
+    },
+    {
+      "rel": "peft/package_reference/prefix_tuning.md",
+      "bytes": 8619,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/peft/v0.22.0/package_reference/prefix_tuning.md",
+      "track": "PEFT",
+      "package": "peft",
+      "title": "Prefix tuning"
     },
     {
       "rel": "safetensors/index.md",
@@ -11037,7 +11055,7 @@
     },
     {
       "rel": "safetensors/api/numpy.md",
-      "bytes": 3655,
+      "bytes": 3656,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/safetensors/main/api/numpy.md",
       "track": "Safetensors",
@@ -20997,10 +21015,10 @@
     },
     {
       "pkg": "hub",
-      "toc": 281,
-      "found": 280,
-      "written": 280,
-      "full_bytes": 1626477
+      "toc": 282,
+      "found": 281,
+      "written": 281,
+      "full_bytes": 1637148
     },
     {
       "pkg": "huggingface_hub",
@@ -21028,7 +21046,7 @@
       "toc": 41,
       "found": 41,
       "written": 41,
-      "full_bytes": 258583
+      "full_bytes": 260419
     },
     {
       "pkg": "lerobot",
@@ -21046,17 +21064,17 @@
     },
     {
       "pkg": "peft",
-      "toc": 81,
-      "found": 79,
-      "written": 79,
-      "full_bytes": 874983
+      "toc": 82,
+      "found": 80,
+      "written": 80,
+      "full_bytes": 941358
     },
     {
       "pkg": "safetensors",
       "toc": 10,
       "found": 10,
       "written": 10,
-      "full_bytes": 42209
+      "full_bytes": 42210
     },
     {
       "pkg": "smolagents",

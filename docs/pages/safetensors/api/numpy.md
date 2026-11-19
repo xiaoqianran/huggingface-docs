@@ -6,7 +6,7 @@
 safetensors.numpy.load_file(filename: typing.Union[str, os.PathLike], backend: str = 'mmap')
 ```
 
-[Source](https://github.com/huggingface/safetensors/blob/main/bindings/python/py_src/safetensors/numpy.py#L125)
+[Source](https://github.com/huggingface/safetensors/blob/main/bindings/python/py_src/safetensors/numpy.py#L128)
 
 **Parameters:**
 
@@ -35,7 +35,7 @@ loaded = load_file(file_path)
 safetensors.numpy.load(data: bytes)
 ```
 
-[Source](https://github.com/huggingface/safetensors/blob/main/bindings/python/py_src/safetensors/numpy.py#L98)
+[Source](https://github.com/huggingface/safetensors/blob/main/bindings/python/py_src/safetensors/numpy.py#L101)
 
 **Parameters:**
 
@@ -65,7 +65,7 @@ loaded = load(data)
 safetensors.numpy.save_file(tensor_dict: typing.Dict[str, numpy.ndarray], filename: typing.Union[str, os.PathLike], metadata: typing.Optional[typing.Dict[str, str]] = None)
 ```
 
-[Source](https://github.com/huggingface/safetensors/blob/main/bindings/python/py_src/safetensors/numpy.py#L61)
+[Source](https://github.com/huggingface/safetensors/blob/main/bindings/python/py_src/safetensors/numpy.py#L64)
 
 **Parameters:**
 
@@ -95,7 +95,7 @@ save_file(tensors, "model.safetensors")
 safetensors.numpy.save(tensor_dict: typing.Dict[str, numpy.ndarray], metadata: typing.Optional[typing.Dict[str, str]] = None)
 ```
 
-[Source](https://github.com/huggingface/safetensors/blob/main/bindings/python/py_src/safetensors/numpy.py#L28)
+[Source](https://github.com/huggingface/safetensors/blob/main/bindings/python/py_src/safetensors/numpy.py#L31)
 
 **Parameters:**
 

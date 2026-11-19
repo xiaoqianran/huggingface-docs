@@ -1,6 +1,6 @@
 # Configuration
 
-`PeftConfigMixin` is the base configuration class for storing the adapter configuration of a [PeftModel](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel), and [PromptLearningConfig](/docs/peft/v0.21.0/en/package_reference/config#peft.PromptLearningConfig) is the base configuration class for soft prompt methods (p-tuning, prefix tuning, and prompt tuning). These base classes contain methods for saving and loading model configurations from the Hub, specifying the PEFT method to use, type of task to perform, and model configurations like number of layers and number of attention heads.
+`PeftConfigMixin` is the base configuration class for storing the adapter configuration of a [PeftModel](/docs/peft/v0.22.0/en/package_reference/peft_model#peft.PeftModel), and [PromptLearningConfig](/docs/peft/v0.22.0/en/package_reference/config#peft.PromptLearningConfig) is the base configuration class for soft prompt methods (p-tuning, prefix tuning, and prompt tuning). These base classes contain methods for saving and loading model configurations from the Hub, specifying the PEFT method to use, type of task to perform, and model configurations like number of layers and number of attention heads.
 
 ## PeftConfigMixin[[peft.config.PeftConfigMixin]]
 
@@ -10,14 +10,14 @@
 peft.config.PeftConfigMixin(task_type: Optional[TaskType] = None, peft_type: Optional[PeftType] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/config.py#L77)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/config.py#L97)
 
 **Parameters:**
 
 peft_type (Union[`~peft.utils.config.PeftType`, `str`]) : The type of Peft method to use.
 
 This is the base configuration class for PEFT adapter models. It contains all the methods that are common to all
-PEFT adapter models. This class inherits from [PushToHubMixin](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.utils.PushToHubMixin) which contains the methods to
+PEFT adapter models. This class inherits from [PushToHubMixin](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/model#transformers.utils.PushToHubMixin) which contains the methods to
 push your model to the Hub. The method `save_pretrained` will save the configuration of your adapter model in a
 directory. The method `from_pretrained` will load the configuration of your adapter model from a directory.
 
@@ -27,7 +27,7 @@ directory. The method `from_pretrained` will load the configuration of your adap
 check_kwargs(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/config.py#L332)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/config.py#L369)
 
 Check kwargs before initializing the config instance.
 
@@ -39,7 +39,7 @@ Subclasses can override this method to add specific checks.
 from_json_file(path_json_file: str, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/config.py#L270)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/config.py#L304)
 
 **Parameters:**
 
@@ -53,7 +53,7 @@ Loads a configuration file from a json file.
 from_peft_type(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/config.py#L165)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/config.py#L194)
 
 **Parameters:**
 
@@ -70,7 +70,7 @@ the calling class type is instantiated.
 from_pretrained(pretrained_model_name_or_path: str, subfolder: Optional[str] = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/config.py#L230)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/config.py#L259)
 
 **Parameters:**
 
@@ -78,7 +78,7 @@ pretrained_model_name_or_path (`str`) : The directory or the Hub repository id w
 
 subfolder (`str`, *optional*) : An optional subfolder under `pretrained_model_name_or_path`.
 
-kwargs (additional keyword arguments, *optional*) : Keyword arguments forwarded to [huggingface_hub.hf_hub_download](https://huggingface.co/docs/huggingface_hub/v1.32.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) (for example `token`, `revision`, `cache_dir`). PEFT config-specific arguments, such as `task_type` or `r`, cannot be passed as overrides. To change attributes, set them on the returned config after loading.
+kwargs (additional keyword arguments, *optional*) : Keyword arguments forwarded to [huggingface_hub.hf_hub_download](https://huggingface.co/docs/huggingface_hub/v2.4.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) (for example `token`, `revision`, `cache_dir`). PEFT config-specific arguments, such as `task_type` or `r`, cannot be passed as overrides. To change attributes, set them on the returned config after loading.
 
 This method loads the configuration of your adapter model from a directory.
 
@@ -88,13 +88,13 @@ This method loads the configuration of your adapter model from a directory.
 save_pretrained(save_directory: str, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/config.py#L132)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/config.py#L160)
 
 **Parameters:**
 
 save_directory (`str`) : The directory where the configuration will be saved.
 
-kwargs (additional keyword arguments, *optional*) : Additional keyword arguments passed along to the [push_to_hub](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) method.
+kwargs (additional keyword arguments, *optional*) : Additional keyword arguments passed along to the [push_to_hub](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) method.
 
 This method saves the configuration of your adapter model in a directory.
 
@@ -104,7 +104,7 @@ This method saves the configuration of your adapter model in a directory.
 to_dict()
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/config.py#L126)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/config.py#L154)
 
 Returns the configuration for your adapter model as a dictionary.
 
@@ -116,7 +116,7 @@ Returns the configuration for your adapter model as a dictionary.
 peft.PeftConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/config.py#L355)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/config.py#L392)
 
 **Parameters:**
 
@@ -126,7 +126,7 @@ task_type (Union[`~peft.utils.config.TaskType`, `str`]) : The type of task to pe
 
 inference_mode (`bool`, defaults to `False`) : Whether to use the Peft model in inference mode.
 
-This is the base configuration class to store the configuration of a [PeftModel](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel).
+This is the base configuration class to store the configuration of a [PeftModel](/docs/peft/v0.22.0/en/package_reference/peft_model#peft.PeftModel).
 
 ## PromptLearningConfig[[peft.PromptLearningConfig]]
 
@@ -136,7 +136,7 @@ This is the base configuration class to store the configuration of a [PeftModel]
 peft.PromptLearningConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, num_virtual_tokens: int = None, token_dim: int = None, num_transformer_submodules: Optional[int] = None, num_attention_heads: Optional[int] = None, num_layers: Optional[int] = None, modules_to_save: Optional[list[str]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/config.py#L375)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/config.py#L412)
 
 **Parameters:**
 
@@ -150,7 +150,7 @@ num_attention_heads (`int`) : The number of attention heads in the base transfor
 
 num_layers (`int`) : The number of layers in the base transformer model.
 
-This is the base configuration class to store the configuration of `PrefixTuning`, [PromptEncoder](/docs/peft/v0.21.0/en/package_reference/p_tuning#peft.PromptEncoder), or
+This is the base configuration class to store the configuration of `PrefixTuning`, [PromptEncoder](/docs/peft/v0.22.0/en/package_reference/p_tuning#peft.PromptEncoder), or
 `PromptTuning`.
 
 ## get_peft_config[[peft.get_peft_config]]
@@ -161,7 +161,7 @@ This is the base configuration class to store the configuration of `PrefixTuning
 peft.get_peft_config(config_dict: dict[str, Any])
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/mapping.py#L36)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/mapping.py#L36)
 
 **Parameters:**
 
@@ -169,5 +169,5 @@ config_dict (`Dict[str, Any]`) : Dictionary containing the configuration paramet
 
 Returns a Peft config object from a dictionary.
 
-### IA3
-https://huggingface.co/docs/peft/v0.21.0/package_reference/ia3.md
+### AdaMSS
+https://huggingface.co/docs/peft/v0.22.0/package_reference/adamss.md

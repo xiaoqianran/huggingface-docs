@@ -50,7 +50,7 @@ model = get_peft_model(base_model, config)
 peft.SupertuningConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, target_modules: Optional[Union[list[str], str]] = None, modules_to_save: Optional[list[str]] = None, sparsity: float = 0.99, select_top: bool = True, r: Optional[int] = None, lora_alpha: Optional[float] = None, lora_dropout: float = 0.0, init_weights: bool = True, save_precomputed_indices: bool = True)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/supertuning/config.py#L26)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/supertuning/config.py#L26)
 
 **Parameters:**
 
@@ -72,7 +72,7 @@ init_weights (`bool`) : When `True` (default), the sparse `values` are zero-init
 
 save_precomputed_indices (`bool`) : Whether to save the sparse-support indices in the state dict. Defaults to `True`. Set to `False` to trim checkpoint size — indices will be reconstructed deterministically from the base weight magnitudes at load time. Reconstruction assumes the base model weights are identical to those used at training time; small numerical drift can cause topk tie-breaks to differ.
 
-Configuration class for [SupertuningModel](/docs/peft/v0.21.0/en/package_reference/supertuning#peft.SupertuningModel).
+Configuration class for [SupertuningModel](/docs/peft/v0.22.0/en/package_reference/supertuning#peft.SupertuningModel).
 
 Super-Tuning (arXiv:2607.09287) freezes the base weight and trains only a sparse support of scalar entries,
 selected by weight magnitude. Setting `r` additionally allocates a LoRA-style low-rank adapter on top of the sparse
@@ -92,13 +92,13 @@ Paper: https://arxiv.org/abs/2607.09287
 peft.SupertuningModel(model, peft_config: Union[PeftConfig, dict[str, PeftConfig]], adapter_name: str, low_cpu_mem_usage: bool = False, state_dict: Optional[dict[str, torch.Tensor]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/supertuning/model.py#L25)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/supertuning/model.py#L25)
 
 **Parameters:**
 
-model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) : The base model to adapt.
+model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel)) : The base model to adapt.
 
-config ([SupertuningConfig](/docs/peft/v0.21.0/en/package_reference/supertuning#peft.SupertuningConfig)) : The Supertuning configuration.
+config ([SupertuningConfig](/docs/peft/v0.22.0/en/package_reference/supertuning#peft.SupertuningConfig)) : The Supertuning configuration.
 
 adapter_name (`str`) : The adapter name. Defaults to `"default"`.
 
@@ -139,5 +139,5 @@ Example (Supra hybrid):
 
 Paper: https://arxiv.org/abs/2607.09287
 
-### Functions for PEFT integration
-https://huggingface.co/docs/peft/v0.21.0/package_reference/functional.md
+### Errors[[peft.PeftError]]
+https://huggingface.co/docs/peft/v0.22.0/package_reference/errors.md

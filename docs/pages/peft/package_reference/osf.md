@@ -28,13 +28,13 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 from peft import OSFConfig, get_peft_model
 
 # Load base model
-model = AutoModelForCausalLM.from_pretrained("gpt2")
+model = AutoModelForCausalLM.from_pretrained("facebook/opt-125m")
 
 # Configure OSF
 config = OSFConfig(
-    target_modules=["c_attn", "c_proj"],  # Target attention layers
+    target_modules=["q_proj", "v_proj"],  # Target attention layers
     effective_rank=8,                     # Default rank for decomposition
-    rank_pattern={"c_attn": 16}          # Override rank for specific modules
+    rank_pattern={"q_proj": 16}           # Override rank for specific modules
 )
 
 # Apply OSF
@@ -43,8 +43,7 @@ model = get_peft_model(model, config)
 # Train as usual
 optimizer = torch.optim.AdamW(model.parameters(), lr=3e-4)
 
-tokenizer = AutoTokenizer.from_pretrained("gpt2")
-tokenizer.pad_token = tokenizer.eos_token
+tokenizer = AutoTokenizer.from_pretrained("facebook/opt-125m")
 
 inputs = tokenizer("Hello world", return_tensors="pt", padding=True)
 loss = model(**inputs, labels=inputs.input_ids).loss
@@ -195,7 +194,8 @@ OSF can be combined with other techniques:
 
 ```python
 # Use with gradient checkpointing for memory efficiency
-model.gradient_checkpointing_enable()
+# note: use `model.gradient_checkpointing_enable()` for older Transformers versions
+model.activation_checkpointing_enable()
 
 # Apply weight decay selectively (regularizes low-rank factors to limit drift/overfitting in continual updates; keep small)
 optimizer = torch.optim.AdamW([
@@ -224,7 +224,7 @@ optimizer = torch.optim.AdamW([
 peft.OSFConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, effective_rank: Optional[Union[int, float]] = None, target_modules: Optional[Union[list[str], str]] = None, rank_pattern: Optional[dict[str, Union[int, float]]] = None, init_weights: Optional[bool] = True, modules_to_save: Optional[list[str]] = None, target_svd_config: Optional[dict[str, int]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/osf/config.py#L11)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/osf/config.py#L11)
 
 **Parameters:**
 
@@ -244,7 +244,7 @@ Configuration for Orthogonal Subspace Fine-tuning (OSF).
 peft.OSFModel(model, config, adapter_name, low_cpu_mem_usage: bool = False, state_dict: dict[str, torch.Tensor] | None = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/osf/model.py#L14)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/osf/model.py#L14)
 
 A minimal tuner implementing Orthogonal Subspace Fine-tuning.
 
@@ -258,7 +258,7 @@ A minimal tuner implementing Orthogonal Subspace Fine-tuning.
 peft.tuners.osf.utils.decompose_weight_matrix(weight: torch.Tensor, top_k: int)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/osf/utils.py#L41)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/osf/utils.py#L41)
 
 Perform an SVD of `weight` and split it into frozen and trainable parts.
 
@@ -270,9 +270,9 @@ Perform an SVD of `weight` and split it into frozen and trainable parts.
 peft.tuners.osf.utils.project_gradient_to_orthogonal_space(svd_dict: dict[str, Any])
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/osf/utils.py#L61)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/osf/utils.py#L61)
 
 Project gradients of `U_low` and `V_low` to be orthogonal to the high rank space.
 
-### ShadowPEFT
-https://huggingface.co/docs/peft/v0.21.0/package_reference/shadow.md
+### PEANuT: Parameter-Efficient Adaptation with Weight-aware Neural Tweakers
+https://huggingface.co/docs/peft/v0.22.0/package_reference/peanut.md

@@ -62,7 +62,7 @@ A complete working example is available at [`examples/monteclora_finetuning`](ht
 peft.MontecloraConfig(num_samples: int = 8, use_entropy: bool = False, dirichlet_prior: float = 0.1, sample_scaler: float = 0.0001, kl_loss_weight: float = 1e-05, buffer_size: int = 150)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/lora/config.py#L1177)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/lora/config.py#L1283)
 
 **Parameters:**
 
@@ -85,5 +85,5 @@ In practice you can think of Monteclora as adding stochastic, learned perturbati
 obtain a better-calibrated and better-regularized adapter. The arguments below let you trade off stability,
 regularization strength, and compute cost.
 
-### LoRA conversion
-https://huggingface.co/docs/peft/v0.21.0/package_reference/lora_conversion.md
+### Hotswapping adapters
+https://huggingface.co/docs/peft/v0.22.0/package_reference/hotswap.md

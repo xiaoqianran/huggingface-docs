@@ -76,7 +76,7 @@ To concatenate independently trained cartridges into a single adapter, use `comp
 peft.CartridgeConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, num_virtual_tokens: int = None, token_dim: int = None, num_transformer_submodules: Optional[int] = None, num_attention_heads: Optional[int] = None, num_layers: Optional[int] = None, modules_to_save: Optional[list[str]] = None, num_frozen_tokens: int = 1)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/cartridge/config.py#L22)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/cartridge/config.py#L22)
 
 **Parameters:**
 
@@ -112,7 +112,7 @@ from constructing the adapter config:
 peft.CartridgeEncoder(config)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/cartridge/model.py#L22)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/cartridge/model.py#L22)
 
 A parameterized prefix KV cache.
 
@@ -129,7 +129,7 @@ and the remaining tokens are trainable.
 load_prompt_embeddings(prompt_embeddings: torch.Tensor)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/cartridge/model.py#L91)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/cartridge/model.py#L91)
 
 Load the flattened prompt embeddings saved by PEFT (`prompt_embeddings`).
 
@@ -144,7 +144,7 @@ into frozen and trainable segments according to `self.num_frozen_tokens`.
 peft.initialize_kv_prefix_from_past_key_values(model, adapter_name: Optional[str] = None, past_key_values: Any, num_virtual_tokens: Optional[int] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/cartridge/utils.py#L100)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/cartridge/utils.py#L101)
 
 Initialize a KV-prefix prompt-learning adapter from an existing cached prefix (`past_key_values`).
 
@@ -158,12 +158,12 @@ Returns the prompt embeddings tensor that was loaded into the adapter.
 peft.prompt_embeddings_from_past_key_values(past_key_values: Any, num_virtual_tokens: int)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/cartridge/utils.py#L48)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/cartridge/utils.py#L49)
 
 Convert a (legacy) `past_key_values` cache into the flattened prompt embeddings tensor saved by PEFT.
 
 The output matches the layout expected by `PeftModel.get_prompt()` for prefix-style prompt learning: shape
 `[num_virtual_tokens, num_layers * 2 * token_dim]`.
 
-### Trainable Tokens
-https://huggingface.co/docs/peft/v0.21.0/package_reference/trainable_tokens.md
+### Model merge[[peft.utils.merge_utils.prune]]
+https://huggingface.co/docs/peft/v0.22.0/package_reference/merge_utils.md

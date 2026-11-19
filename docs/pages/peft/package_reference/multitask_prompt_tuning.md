@@ -32,10 +32,10 @@ configuration but make sure to first create an issue
 #### peft.MultitaskPromptTuningConfig[[peft.MultitaskPromptTuningConfig]]
 
 ```python
-peft.MultitaskPromptTuningConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, num_virtual_tokens: int = None, token_dim: int = None, num_transformer_submodules: Optional[int] = None, num_attention_heads: Optional[int] = None, num_layers: Optional[int] = None, modules_to_save: Optional[list[str]] = None, prompt_tuning_init: typing.Union[peft.tuners.multitask_prompt_tuning.config.MultitaskPromptTuningInit, str] = <MultitaskPromptTuningInit.RANDOM: 'RANDOM'>, prompt_tuning_init_text: typing.Optional[str] = None, tokenizer_name_or_path: typing.Optional[str] = None, tokenizer_kwargs: typing.Optional[dict] = None, prompt_tuning_init_state_dict_path: typing.Optional[str] = None, prompt_tuning_init_task: typing.Optional[int] = 0, num_ranks: typing.Optional[int] = 1, num_tasks: typing.Optional[int] = 1)
+peft.MultitaskPromptTuningConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, num_virtual_tokens: int = None, token_dim: int = None, num_transformer_submodules: Optional[int] = None, num_attention_heads: Optional[int] = None, num_layers: Optional[int] = None, modules_to_save: Optional[list[str]] = None, prompt_tuning_init: peft.tuners.multitask_prompt_tuning.config.MultitaskPromptTuningInit | str = <MultitaskPromptTuningInit.RANDOM: 'RANDOM'>, prompt_tuning_init_text: str | None = None, tokenizer_name_or_path: str | None = None, tokenizer_kwargs: dict | None = None, prompt_tuning_init_state_dict_path: str | None = None, prompt_tuning_init_task: int | None = 0, num_ranks: int | None = 1, num_tasks: int | None = 1)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/multitask_prompt_tuning/config.py#L37)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/multitask_prompt_tuning/config.py#L37)
 
 ## MultitaskPromptEmbedding[[peft.tuners.MultitaskPromptEmbedding]]
 
@@ -45,7 +45,7 @@ peft.MultitaskPromptTuningConfig(task_type: Optional[Union[str, TaskType]] = Non
 peft.tuners.MultitaskPromptEmbedding(config: MultitaskPromptTuningConfig, word_embeddings)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/multitask_prompt_tuning/model.py#L28)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/multitask_prompt_tuning/model.py#L28)
 
-### BOFT
-https://huggingface.co/docs/peft/v0.21.0/package_reference/boft.md
+### MiSS
+https://huggingface.co/docs/peft/v0.22.0/package_reference/miss.md

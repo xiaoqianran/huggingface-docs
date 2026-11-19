@@ -22,7 +22,7 @@ The abstract from the paper is:
 peft.HRAConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, r: int = 8, apply_GS: bool = False, target_modules: Optional[Union[list[str], str]] = None, exclude_modules: Optional[Union[list[str], str]] = None, init_weights: bool = True, layers_to_transform: Optional[Union[list[int], int]] = None, layers_pattern: Optional[Union[list[str], str]] = None, bias: str = 'none', modules_to_save: Optional[list[str]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/hra/config.py#L25)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/hra/config.py#L25)
 
 **Parameters:**
 
@@ -44,7 +44,7 @@ bias (`str`) : Bias type for HRA. Can be `'none'`, `'all'` or `'hra_only'`.
 
 modules_to_save (`List[str]`) : List of modules apart from adapter layers to be set as trainable and saved in the final checkpoint.
 
-This is the configuration class to store the configuration of a [HRAModel](/docs/peft/v0.21.0/en/package_reference/hra#peft.HRAModel).
+This is the configuration class to store the configuration of a [HRAModel](/docs/peft/v0.22.0/en/package_reference/hra#peft.HRAModel).
 
 ## HRAModel[[peft.HRAModel]]
 
@@ -54,13 +54,13 @@ This is the configuration class to store the configuration of a [HRAModel](/docs
 peft.HRAModel(model, peft_config: Union[PeftConfig, dict[str, PeftConfig]], adapter_name: str, low_cpu_mem_usage: bool = False, state_dict: Optional[dict[str, torch.Tensor]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/hra/model.py#L24)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/hra/model.py#L24)
 
 **Parameters:**
 
 model (`torch.nn.Module`) : The model to which the adapter tuner layers will be attached.
 
-config ([HRAConfig](/docs/peft/v0.21.0/en/package_reference/hra#peft.HRAConfig)) : The configuration of the HRA model.
+config ([HRAConfig](/docs/peft/v0.22.0/en/package_reference/hra#peft.HRAConfig)) : The configuration of the HRA model.
 
 adapter_name (`str`) : The name of the adapter, defaults to `"default"`.
 
@@ -76,7 +76,7 @@ https://huggingface.co/papers/2405.17484
 Example:
 ```py
 >>> from diffusers import StableDiffusionPipeline
->>> from peft import HRAModel, HRAConfig
+>>> from peft import HRAConfig, get_peft_model
 
 >>> config_te = HRAConfig(
 ...     r=8,
@@ -99,13 +99,13 @@ Example:
 ... )
 
 >>> model = StableDiffusionPipeline.from_pretrained("runwayml/stable-diffusion-v1-5")
->>> model.text_encoder = HRAModel(model.text_encoder, config_te, "default")
->>> model.unet = HRAModel(model.unet, config_unet, "default")
+>>> model.text_encoder = get_peft_model(model.text_encoder, config_te)
+>>> model.unet = get_peft_model(model.unet, config_unet)
 ```
 
 **Attributes**:
 - **model** (`~torch.nn.Module`) -- The model to be adapted.
-- **peft_config** ([HRAConfig](/docs/peft/v0.21.0/en/package_reference/hra#peft.HRAConfig)): The configuration of the HRA model.
+- **peft_config** ([HRAConfig](/docs/peft/v0.22.0/en/package_reference/hra#peft.HRAConfig)): The configuration of the HRA model.
 
-### P-tuning
-https://huggingface.co/docs/peft/v0.21.0/package_reference/p_tuning.md
+### Prefix tuning
+https://huggingface.co/docs/peft/v0.22.0/package_reference/prefix_tuning.md

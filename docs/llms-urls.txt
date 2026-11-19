@@ -706,6 +706,7 @@ https://huggingface.co/docs/hub/models-faq.md
 https://huggingface.co/docs/hub/models-gated.md
 https://huggingface.co/docs/hub/models-inference.md
 https://huggingface.co/docs/hub/models-libraries.md
+https://huggingface.co/docs/hub/models-release-announcements.md
 https://huggingface.co/docs/hub/models-tasks.md
 https://huggingface.co/docs/hub/models-the-hub.md
 https://huggingface.co/docs/hub/models-uploading.md
@@ -1190,6 +1191,7 @@ https://huggingface.co/docs/peft/package_reference/multitask_prompt_tuning.md
 https://huggingface.co/docs/peft/package_reference/oft.md
 https://huggingface.co/docs/peft/package_reference/osf.md
 https://huggingface.co/docs/peft/package_reference/p_tuning.md
+https://huggingface.co/docs/peft/package_reference/paca.md
 https://huggingface.co/docs/peft/package_reference/peanut.md
 https://huggingface.co/docs/peft/package_reference/peft_model.md
 https://huggingface.co/docs/peft/package_reference/peft_types.md

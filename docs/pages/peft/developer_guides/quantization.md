@@ -13,7 +13,7 @@ In this guide, you'll see how to quantize a model to 4-bits and train it with Lo
 
 ## Quantize a model
 
-[bitsandbytes](https://github.com/TimDettmers/bitsandbytes) is a quantization library with a Transformers integration. With this integration, you can quantize a model to 8 or 4-bits and enable many other options by configuring the [BitsAndBytesConfig](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/quantization#transformers.BitsAndBytesConfig) class. For example, you can:
+[bitsandbytes](https://github.com/TimDettmers/bitsandbytes) is a quantization library with a Transformers integration. With this integration, you can quantize a model to 8 or 4-bits and enable many other options by configuring the [BitsAndBytesConfig](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/quantization#transformers.BitsAndBytesConfig) class. For example, you can:
 
 * set `load_in_4bit=True` to quantize the model to 4-bits when you load it
 * set `bnb_4bit_quant_type="nf4"` to use a special 4-bit data type for weights initialized from a normal distribution
@@ -32,7 +32,7 @@ config = BitsAndBytesConfig(
 )
 ```
 
-Pass the `config` to the [from_pretrained](https://huggingface.co/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained) method.
+Pass the `config` to the [from_pretrained](https://huggingface.co/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained) method.
 
 ```py
 from transformers import AutoModelForCausalLM
@@ -40,7 +40,7 @@ from transformers import AutoModelForCausalLM
 model = AutoModelForCausalLM.from_pretrained("mistralai/Mistral-7B-v0.1", quantization_config=config)
 ```
 
-Next, you should call the [prepare_model_for_kbit_training()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.prepare_model_for_kbit_training) function to preprocess the quantized model for training.
+Next, you should call the [prepare_model_for_kbit_training()](/docs/peft/v0.22.0/en/package_reference/peft_model#peft.prepare_model_for_kbit_training) function to preprocess the quantized model for training.
 
 ```py
 from peft import prepare_model_for_kbit_training
@@ -52,7 +52,7 @@ Now that the quantized model is ready, let's set up a configuration.
 
 ## LoraConfig
 
-Create a [LoraConfig](/docs/peft/v0.21.0/en/package_reference/lora#peft.LoraConfig) with the following parameters (or choose your own):
+Create a [LoraConfig](/docs/peft/v0.22.0/en/package_reference/lora#peft.LoraConfig) with the following parameters (or choose your own):
 
 ```py
 from peft import LoraConfig
@@ -67,7 +67,7 @@ config = LoraConfig(
 )
 ```
 
-Then use the [get_peft_model()](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.get_peft_model) function to create a [PeftModel](/docs/peft/v0.21.0/en/package_reference/peft_model#peft.PeftModel) from the quantized model and configuration.
+Then use the [get_peft_model()](/docs/peft/v0.22.0/en/package_reference/peft_model#peft.get_peft_model) function to create a [PeftModel](/docs/peft/v0.22.0/en/package_reference/peft_model#peft.PeftModel) from the quantized model and configuration.
 
 ```py
 from peft import get_peft_model
@@ -80,6 +80,8 @@ You're all set for training with whichever training method you prefer!
 ### LoftQ initialization
 
 [LoftQ](https://hf.co/papers/2310.08659) initializes LoRA weights such that the quantization error is minimized, and it can improve performance when training quantized models. To get started, follow [these instructions](https://github.com/huggingface/peft/tree/main/examples/loftq_finetuning).
+
+LoftQ is only applied to linear layers, including those targeted via `target_parameters`. Embedding and convolutional layers are not supported and use the default LoRA initialization instead. `nn.MultiheadAttention` layers are not supported and raise an error.
 
 In general, for LoftQ to work best, it is recommended to target as many layers with LoRA as possible, since those not targeted cannot have LoftQ applied. This means that passing `LoraConfig(..., target_modules="all-linear")` will most likely give the best results. Also, you should use `nf4` as quant type in your quantization config when using 4bit quantization, i.e. `BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_quant_type="nf4")`.
 
@@ -118,6 +120,34 @@ At the moment, `replace_lora_weights_loftq` has these additional limitations:
 
 - Model files must be stored as a `safetensors` file.
 - Only bitsandbytes 4bit quantization is supported.
+
+### PiSSA initialization
+
+[PiSSA](https://hf.co/papers/2404.02948) cannot be applied to quantized weights. It is normally applied to the non-quantized base model, then the resulting residual is saved and loaded with quantization, which requires the whole non-quantized model to fit into memory.
+
+As an alternative, `replace_lora_weights_pissa` takes a quantized PEFT model and streams the weights of the non-quantized model from the weights file, one layer at a time. Each layer's LoRA weights are initialized with PiSSA and its base weight is replaced by the re-quantized residual.
+
+```python
+from peft import replace_lora_weights_pissa
+from transformers import BitsAndBytesConfig
+
+bnb_config = BitsAndBytesConfig(load_in_4bit=True, ...)
+base_model = AutoModelForCausalLM.from_pretrained(..., quantization_config=bnb_config)
+# note: don't pass init_lora_weights="pissa" here!
+lora_config = LoraConfig(task_type="CAUSAL_LM")
+peft_model = get_peft_model(base_model, lora_config)
+replace_lora_weights_pissa(peft_model, init_lora_weights="pissa_niter_4")
+```
+
+Both `"pissa"` and `"pissa_niter_[number of iters]"` are supported.
+
+Since the base weights are modified, saving only the adapter is not enough to restore the model. As for other PiSSA initializations, either save the base model as well or convert the trained adapter using the `path_initial_model_for_weight_conversion` argument of [save_pretrained()](/docs/peft/v0.22.0/en/package_reference/peft_model#peft.PeftModel.save_pretrained).
+
+At the moment, `replace_lora_weights_pissa` has these additional limitations:
+
+- Model files must be stored as a `safetensors` file.
+- Only bitsandbytes 4bit quantization is supported.
+- LoRA variants such as DoRA are not supported.
 
 ### QLoRA-style training
 
@@ -185,7 +215,7 @@ from transformers import EetqConfig
 config = EetqConfig("int8")
 ```
 
-Pass the `config` to the [from_pretrained](https://huggingface.co/docs/transformers/v5.17.0/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained) method.
+Pass the `config` to the [from_pretrained](https://huggingface.co/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained) method.
 
 ```py
 from transformers import AutoModelForCausalLM
@@ -331,6 +361,10 @@ When Transformer Engine is installed, PEFT automatically dispatches matching lay
 
 A complete ESM2 token-classification example is available under `examples/lora_finetuning_transformer_engine/`.
 
+## Merging adapters into quantized weights
+
+For any quantization method that supports it, [merge_adapter()](/docs/peft/v0.22.0/en/package_reference/tuners#peft.tuners.tuners_utils.BaseTuner.merge_adapter) dequantizes the base weight, adds the adapter weights, and quantizes the result again. [unmerge_adapter()](/docs/peft/v0.22.0/en/package_reference/tuners#peft.tuners.tuners_utils.BaseTuner.unmerge_adapter) does the same in reverse, so it does not restore the original quantized weights, and repeated merge and unmerge cycles can accumulate rounding error. To get the original weights back, reload the base model. To switch between the base model and the adapter without merging, use the [disable_adapter()](/docs/peft/v0.22.0/en/package_reference/peft_model#peft.PeftModel.disable_adapter) context manager.
+
 ## Next steps
 
 If you're interested in learning more about quantization, the following may be helpful:
@@ -339,4 +373,4 @@ If you're interested in learning more about quantization, the following may be h
 * Read more about different quantization schemes in the Transformers [Quantization](https://hf.co/docs/transformers/main/quantization) guide.
 
 ### Model merging
-https://huggingface.co/docs/peft/v0.21.0/developer_guides/model_merging.md
+https://huggingface.co/docs/peft/v0.22.0/developer_guides/model_merging.md

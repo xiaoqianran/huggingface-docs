@@ -10,7 +10,7 @@ A collection of helper functions for PEFT.
 peft.helpers.check_if_peft_model(model_name_or_path: str)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/helpers.py#L149)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/helpers.py#L145)
 
 **Parameters:**
 
@@ -27,10 +27,10 @@ Check if the model is a PEFT model.
 #### peft.helpers.rescale_adapter_scale[[peft.helpers.rescale_adapter_scale]]
 
 ```python
-peft.helpers.rescale_adapter_scale(model: Module, multiplier: typing.Union[float, int])
+peft.helpers.rescale_adapter_scale(model: Module, multiplier: float | int)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/helpers.py#L170)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/helpers.py#L166)
 
 **Parameters:**
 
@@ -74,7 +74,7 @@ Example:
 peft.helpers.disable_input_dtype_casting(model: Module, active: bool = True)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/helpers.py#L231)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/helpers.py#L227)
 
 **Parameters:**
 
@@ -92,7 +92,7 @@ Context manager disables input dtype casting to the dtype of the weight.
 peft.helpers.DoraCaching(enabled: bool = True)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/helpers.py#L351)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/helpers.py#L347)
 
 Context manager to enable DoRA caching, which improves speed of DoRA inference at the expense of memory.
 
@@ -119,6 +119,59 @@ Example:
 >>> output = model(inputs)
 ```
 
+## Creating a dummy LoRA configuration for hotswapping[[peft.helpers.create_dummy_lora_config]]
+
+See [starting with a dummy adapter](hotswap#starting-with-a-dummy-adapter) for the workflow and command-line script.
+
+#### peft.helpers.create_dummy_lora_config[[peft.helpers.create_dummy_lora_config]]
+
+```python
+peft.helpers.create_dummy_lora_config(configs: Sequence)
+```
+
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/helpers.py#L570)
+
+**Parameters:**
+
+configs (`Sequence[LoraConfig]`) : Nonempty sequence of compatible LoRA configurations for the same base model. Each must have explicit, nonempty `target_modules`; strings (including regexes and `"all-linear"`) and inferred targets are not supported. Standard LoRA and rsLoRA are supported, without extra saved modules, biases, or parameters.
+
+**Returns:** `LoraConfig`
+
+A configuration with zero-output initialization and a uniform maximum rank.
+
+**Raises:** ``TypeError`` or ``ValueError``
+
+- ``TypeError`` -- 
+  If any configuration is not a LoRA configuration.
+- ``ValueError`` -- 
+  If no configurations are supplied, or their settings are unsupported or incompatible.
+
+Create a no-op LoRA configuration that reserves capacity for hotswapping.
+
+The purpose of this helper function is to create a dummy LoRA config which can be used to initialze a LoRA model
+before hotswapping different LoRA adapters (see
+https://huggingface.co/docs/peft/main/en/package_reference/hotswap). One issue with hotswapping is that the first
+LoRA adapter that is loaded needs to install LoRA weights on all layers that the later, hotswapped LoRAs will
+target. If these LoRAs target disjunct layers, none of them can serve as the first LoRA. This helper function
+creates a dummy LoRA that targets the union of the layers of all the individual LoRAs. It also pre-allocates LoRA
+weights with a sufficiently large rank.
+
+The generated LoRA config is not intended to be used for further training.
+
+No base model or adapter weights are loaded. Layer filters and exclusions are removed to cover every adapter, which
+can over-allocate LoRA weights on additional layers.
+
+Instantiate the result with `get_peft_model`, then call `prepare_model_for_compiled_hotswap` before compiling. The
+dummy adapter is initialized such that it is a no-op, i.e. it does not need to be disabled to run inference on the
+base model.
+
+Note that some `LoraConfig` arguments are not supported and will result in an error. This is because it would not
+be possible to combine those configs into one dummy config.
+
+There is a helper script in the PEFT repository to create the dummy LoRA config from the command line:
+
+`python scripts/create-dummy-lora-for-hotswap.py adapter0 adapter1 [...] --output-dir dummy-lora`
+
 ## KappaTune target selection[[peft.helpers.KappaTuneSelector]]
 
 `KappaTuneSelector` and `find_kappa_target_modules` implement a general target selection process from the [KappaTune paper](https://arxiv.org/abs/2506.16289). 
@@ -130,10 +183,10 @@ These properties make the selected modules good candidates for mitigating catast
 #### peft.helpers.KappaTuneSelector[[peft.helpers.KappaTuneSelector]]
 
 ```python
-peft.helpers.KappaTuneSelector(model: Module, max_dim_size_to_analyze: int = 16384, moe_param_suffixes: typing.Optional[tuple[str, ...]] = None, show_progress: bool = True)
+peft.helpers.KappaTuneSelector(model: Module, max_dim_size_to_analyze: int = 16384, moe_param_suffixes: tuple[str, ...] | None = None, show_progress: bool = True)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/helpers.py#L395)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/helpers.py#L391)
 
 Lightweight utility to compute per-module / per-parameter condition numbers and return the best LoRA targets.
 
@@ -149,10 +202,10 @@ bar can be shown/disabled via `show_progress`.
 #### peft.find_kappa_target_modules[[peft.find_kappa_target_modules]]
 
 ```python
-peft.find_kappa_target_modules(model: Module, top_p: float = 0.2, max_dim_size_to_analyze: int = 16384, moe_param_suffixes: typing.Optional[tuple[str, ...]] = None, show_progress: bool = True)
+peft.find_kappa_target_modules(model: Module, top_p: float = 0.2, max_dim_size_to_analyze: int = 16384, moe_param_suffixes: tuple[str, ...] | None = None, show_progress: bool = True)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/helpers.py#L539)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/helpers.py#L526)
 
 **Parameters:**
 
@@ -168,5 +221,5 @@ show_progress (bool, optional) : Whether to display a progress bar while computi
 
 One-liner convenience function for KappaTune target selection. Returns both target_modules and target_parameters.
 
-### FourierFT: Discrete Fourier Transformation Fine-Tuning
-https://huggingface.co/docs/peft/v0.21.0/package_reference/fourierft.md
+### VB-LoRA: Extreme Parameter Efficient Fine-Tuning with Vector Banks
+https://huggingface.co/docs/peft/v0.22.0/package_reference/vblora.md

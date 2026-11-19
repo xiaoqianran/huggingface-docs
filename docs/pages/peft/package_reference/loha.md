@@ -50,7 +50,7 @@ config_unet = LoHaConfig(
 
 pipeline = StableDiffusionPipeline.from_pretrained("runwayml/stable-diffusion-v1-5")
 pipeline.unet = get_peft_model(pipeline.unet, config_unet)
-pipeline.unet.print_trainable_parameters()
+pipeline.unet.print_healthcheck()
 ```
 
 ## Benchmark overview
@@ -72,7 +72,7 @@ pipeline.unet.print_trainable_parameters()
 peft.LoHaConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, rank_pattern: Optional[dict] = <factory>, alpha_pattern: Optional[dict] = <factory>, r: int = 8, alpha: int = 8, rank_dropout: float = 0.0, module_dropout: float = 0.0, use_effective_conv2d: bool = False, target_modules: Optional[Union[list[str], str]] = None, exclude_modules: Optional[Union[list[str], str]] = None, init_weights: bool = True, layers_to_transform: Optional[Union[list[int], int]] = None, layers_pattern: Optional[Union[list[str], str]] = None, modules_to_save: Optional[list[str]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/loha/config.py#L24)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/loha/config.py#L24)
 
 **Parameters:**
 
@@ -102,7 +102,7 @@ alpha_pattern (`dict`) : The mapping from layer names or regexp expression to al
 
 modules_to_save (`Optional[List[str]]`) : List of modules apart from adapter layers to be set as trainable and saved in the final checkpoint.
 
-This is the configuration class to store the configuration of a [LoHaModel](/docs/peft/v0.21.0/en/package_reference/loha#peft.LoHaModel).
+This is the configuration class to store the configuration of a [LoHaModel](/docs/peft/v0.22.0/en/package_reference/loha#peft.LoHaModel).
 
 ## LoHaModel[[peft.LoHaModel]]
 
@@ -112,13 +112,13 @@ This is the configuration class to store the configuration of a [LoHaModel](/doc
 peft.LoHaModel(model, peft_config: Union[PeftConfig, dict[str, PeftConfig]], adapter_name: str, low_cpu_mem_usage: bool = False, state_dict: Optional[dict[str, torch.Tensor]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/loha/model.py#L27)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/loha/model.py#L27)
 
 **Parameters:**
 
 model (`torch.nn.Module`) : The model to which the adapter tuner layers will be attached.
 
-config ([LoHaConfig](/docs/peft/v0.21.0/en/package_reference/loha#peft.LoHaConfig)) : The configuration of the LoHa model.
+config ([LoHaConfig](/docs/peft/v0.22.0/en/package_reference/loha#peft.LoHaConfig)) : The configuration of the LoHa model.
 
 adapter_name (`str`) : The name of the adapter, defaults to `"default"`.
 
@@ -135,11 +135,11 @@ https://github.com/KohakuBlueleaf/LyCORIS/blob/eb460098187f752a5d66406d3affade6f
 Example:
 ```py
 >>> from diffusers import StableDiffusionPipeline
->>> from peft import LoHaModel, LoHaConfig
+>>> from peft import LoHaConfig, get_peft_model
 
 >>> config_te = LoHaConfig(
 ...     r=8,
-...     lora_alpha=32,
+...     alpha=32,
 ...     target_modules=["k_proj", "q_proj", "v_proj", "out_proj", "fc1", "fc2"],
 ...     rank_dropout=0.0,
 ...     module_dropout=0.0,
@@ -147,7 +147,7 @@ Example:
 ... )
 >>> config_unet = LoHaConfig(
 ...     r=8,
-...     lora_alpha=32,
+...     alpha=32,
 ...     target_modules=[
 ...         "proj_in",
 ...         "proj_out",
@@ -165,13 +165,13 @@ Example:
 ... )
 
 >>> model = StableDiffusionPipeline.from_pretrained("runwayml/stable-diffusion-v1-5")
->>> model.text_encoder = LoHaModel(model.text_encoder, config_te, "default")
->>> model.unet = LoHaModel(model.unet, config_unet, "default")
+>>> model.text_encoder = get_peft_model(model.text_encoder, config_te)
+>>> model.unet = get_peft_model(model.unet, config_unet)
 ```
 
 **Attributes**:
 - **model** (`~torch.nn.Module`) -- The model to be adapted.
-- **peft_config** ([LoHaConfig](/docs/peft/v0.21.0/en/package_reference/loha#peft.LoHaConfig)): The configuration of the LoHa model.
+- **peft_config** ([LoHaConfig](/docs/peft/v0.22.0/en/package_reference/loha#peft.LoHaConfig)): The configuration of the LoHa model.
 
-### GLoRA
-https://huggingface.co/docs/peft/v0.21.0/package_reference/glora.md
+### Super-Tuning
+https://huggingface.co/docs/peft/v0.22.0/package_reference/supertuning.md

@@ -9,6 +9,14 @@ FourierFT currently has the following constraints:
 
 If these constraints don't work for your use case, consider other methods instead.
 
+## When to use FourierFT vs. LoRA
+
+LoRA represents a weight update with two low-rank matrices. FourierFT instead learns selected coefficients in the Fourier domain and uses an inverse discrete Fourier transform to reconstruct the update.
+
+FourierFT may be useful when reducing the number of trainable adapter parameters or the adapter's storage size is a priority. Its `n_frequency` setting controls the number of learned coefficients for each adapted layer. Higher values typically require more GPU memory and may improve accuracy, so the right setting depends on the task and model.
+
+The FourierFT paper reports comparable or better results than LoRA in its evaluated language-understanding, text-generation, instruction-tuning, and image-classification experiments, with fewer trainable parameters in those configurations. These results are task-specific; they do not guarantee that FourierFT will outperform LoRA on a different model or dataset.
+
 The abstract from the paper is:
 
 > Low-rank adaptation (LoRA) has recently gained much interest in fine-tuning foundation models. It effectively reduces the number of trainable parameters by incorporating low-rank matrices A and B to represent the weight change, i.e., Delta W=BA. Despite LoRA's progress, it faces storage challenges when handling extensive customization adaptations or larger base models. In this work, we aim to further compress trainable parameters by enjoying the powerful expressiveness of the Fourier transform. Specifically, we introduce FourierFT, which treats Delta W as a matrix in the spatial domain and learns only a small fraction of its spectral coefficients. With the trained spectral coefficients, we implement the inverse discrete Fourier transform to recover Delta W. Empirically, our FourierFT method shows comparable or better performance with fewer parameters than LoRA on various tasks, including natural language understanding, natural language generation, instruction tuning, and image classification. For example, when performing instruction tuning on the LLaMA2-7B model, FourierFT surpasses LoRA with only 0.064M trainable parameters, compared to LoRA's 33.5M.
@@ -32,7 +40,7 @@ The abstract from the paper is:
 peft.FourierFTConfig(task_type: Optional[Union[str, TaskType]] = None, peft_type: Optional[Union[str, PeftType]] = None, auto_mapping: Optional[dict] = None, peft_version: Optional[str] = None, base_model_name_or_path: Optional[str] = None, revision: Optional[str] = None, inference_mode: bool = False, n_frequency: int = 1000, scaling: float = 150.0, random_loc_seed: Optional[int] = 777, fan_in_fan_out: bool = False, target_modules: Optional[Union[list[str], str]] = None, exclude_modules: Optional[Union[list[str], str]] = None, bias: str = 'none', modules_to_save: Optional[list[str]] = None, layers_to_transform: Optional[Union[list[int], int]] = None, layers_pattern: Optional[Union[list[str], str]] = None, n_frequency_pattern: Optional[dict] = <factory>, init_weights: bool = False)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/fourierft/config.py#L25)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/fourierft/config.py#L25)
 
 **Parameters:**
 
@@ -60,7 +68,7 @@ n_frequency_pattern (`dict`) : The mapping from layer names or regexp expression
 
 init_weights (`bool`) : The initialization of the Fourier weights. Set this to False (the default) if the spectrum are initialized to a standard normal distribution. Set this to True if the spectrum are initialized to zeros.
 
-This is the configuration class to store the configuration of a [FourierFTModel](/docs/peft/v0.21.0/en/package_reference/fourierft#peft.FourierFTModel).
+This is the configuration class to store the configuration of a [FourierFTModel](/docs/peft/v0.22.0/en/package_reference/fourierft#peft.FourierFTModel).
 
 ## FourierFTModel[[peft.FourierFTModel]]
 
@@ -70,13 +78,13 @@ This is the configuration class to store the configuration of a [FourierFTModel]
 peft.FourierFTModel(model, peft_config: Union[PeftConfig, dict[str, PeftConfig]], adapter_name: str, low_cpu_mem_usage: bool = False, state_dict: Optional[dict[str, torch.Tensor]] = None)
 ```
 
-[Source](https://github.com/huggingface/peft/blob/v0.21.0/src/peft/tuners/fourierft/model.py#L31)
+[Source](https://github.com/huggingface/peft/blob/v0.22.0/src/peft/tuners/fourierft/model.py#L31)
 
 **Parameters:**
 
 model (`torch.nn.Module`) : The model to be adapted.
 
-config ([FourierFTConfig](/docs/peft/v0.21.0/en/package_reference/fourierft#peft.FourierFTConfig)) : The configuration of the FourierFT model.
+config ([FourierFTConfig](/docs/peft/v0.22.0/en/package_reference/fourierft#peft.FourierFTConfig)) : The configuration of the FourierFT model.
 
 adapter_name (`str`) : The name of the adapter, defaults to `"default"`.
 
@@ -91,8 +99,8 @@ Creates FourierFT model from a pretrained transformers model.
 The method is described in detail in https://huggingface.co/papers/2405.03003.
 
 **Attributes**:
-- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.17.0/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
-- **peft_config** ([FourierFTConfig](/docs/peft/v0.21.0/en/package_reference/fourierft#peft.FourierFTConfig)): The configuration of the Fourier model.
+- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel)) -- The model to be adapted.
+- **peft_config** ([FourierFTConfig](/docs/peft/v0.22.0/en/package_reference/fourierft#peft.FourierFTConfig)): The configuration of the Fourier model.
 
-### Lily: Low-Rank Interconnected Adaptation across Layers
-https://huggingface.co/docs/peft/v0.21.0/package_reference/lily.md
+### GraLoRA
+https://huggingface.co/docs/peft/v0.22.0/package_reference/gralora.md
