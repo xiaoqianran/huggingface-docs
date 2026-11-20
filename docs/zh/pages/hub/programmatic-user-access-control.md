@@ -31,7 +31,7 @@
   ```http
   Authorization: Bearer <your_access_token>
   ```
-  创建一个细粒度令牌，其“写入组织设置/成员管理的访问权限”权限范围为您的组织（[https://huggingface.co/settings/tokens](https://huggingface.co/settings/tokens)）。
+  创建一个细粒度令牌，其“对组织设置/成员管理的写入访问权限”权限范围为您的组织（[https://huggingface.co/settings/tokens](https://huggingface.co/settings/tokens)）。
 
 ### 更改成员角色端点
 
@@ -403,7 +403,7 @@ for rg in list_resource_groups(org_name):
 ### 重要提示1. **仅限用户名** — API 接受 Hugging Face **用户名**，而不接受电子邮件。在调用 API 之前，您需要从电子邮件→用户名（例如，从您的目录或组织成员列表）的映射。
 2. **用户必须位于组织中** — 请求中的每个用户必须已经是组织的成员。否则，请求将返回 `403` 并显示某些用户不在组织中的消息。
 3. **幂等性** — 如果用户已在资源组中，则后端可能会针对该请求返回 `403`。如果您首先获取组的 `users` 列表，您的脚本可以捕获错误并继续，或者跳过组中已有的用户。
-4. **速率限制** — 对于大批量，请考虑在请求之间添加较短的延迟（例如 0.5-1 秒），以避免达到速率限制。
+4. **速率限制** — 对于大批量，请考虑在请求之间添加较短的延迟（例如 0.5-1 秒）以避免达到速率限制。
 5. **令牌范围** — 访问令牌必须对组织具有足够的权限（通常至少是“对组织设置/成员管理的写入访问权限”）。安全地创建和存储令牌；不要将其提交给版本控制。
 
 ---
@@ -506,11 +506,9 @@ curl -s -X PATCH \
 
 ## 通过 API 邀请外部协作者
 
-[External invitations](./security-resource-groups#external-invitations) 让资源组管理员邀请组织外部的用户加入资源组。受邀者以 `no_access` 组织角色作为外部协作者加入。它们确实计入您组织中的付费席位数量。
+组织管理员可以邀请组织外部的用户加入资源组。要让资源组管理员也邀请他们，请打开 [external invitations](./security-resource-groups#external-invitations)。受邀者以 `no_access` 组织角色作为外部协作者加入。它们确实计入您组织中的付费席位数量。
 
-**启用外部邀请**
-
-组织管理员可以通过以下方式启用该设置：
+**启用外部邀请**组织管理员可以通过以下方式启用该设置：
 
 ```http
 POST /api/organizations/{org_name}/resource-groups/settings
@@ -520,13 +518,15 @@ Content-Type: application/json
 {
   "allowExternalInvites": true
 }
-```- **身体**
+```
+
+- **身体**
   - `allowExternalInvites`（可选）：资源组管理员是否可以邀请组织外部的用户。
   - `minRoleToCreate`（可选）：[create Resource Groups](./security-resource-groups#who-can-create-resource-groups) 所需的最低组织角色。
 
 省略的字段保持不变。使用`GET /api/organizations/{org_name}/resource-groups/settings`读取当前设置。
 
-**Invite a user**
+**邀请用户**
 
 ```http
 POST /api/organizations/{org_name}/resource-groups/{resource_group_id}/invite
@@ -550,15 +550,15 @@ Content-Type: application/json
 
 **管理待处理的邀请**
 
-- **List:** `GET /api/organizations/{org_name}/resource-groups/{resource_group_id}/invitations`
-- **Resend:** `POST /api/organizations/{org_name}/resource-groups/{resource_group_id}/invitation/{invitation_id}/resend`
+- **列表：** `GET /api/organizations/{org_name}/resource-groups/{resource_group_id}/invitations`
+- **重新发送：** `POST /api/organizations/{org_name}/resource-groups/{resource_group_id}/invitation/{invitation_id}/resend`
 - **撤销：** `DELETE /api/organizations/{org_name}/resource-groups/{resource_group_id}/invitation/{invitation_id}`
 
 您还可以[check out the full OpenAPI specification](https://huggingface.co/spaces/huggingface/openapi#tag/resource-groups)
 
 **典型错误：**
 
-- `403` — 组织未启用外部邀请。
+- `403` — 组织未启用外部邀请，并且呼叫者不是组织管理员。
 - `409` — 用户已经是组织的成员，或者已经有待处理的邀请。
 
 ## 通过API更改会员账户类型将组织成员转变为 [external collaborator](./security-sso-user-management#external-collaborators)（无需 SSO），或将其转换回成员。需要付费计划和组织的**写入**（或管理员）权限。不适用于拥有托管用户、通过 SCIM 配置成员的组织。

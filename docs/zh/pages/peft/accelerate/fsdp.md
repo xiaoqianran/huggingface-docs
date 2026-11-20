@@ -8,7 +8,7 @@ PEFT 支持 FSDP1 和 [PyTorch FSDP2](https://docs.pytorch.org/tutorials/interme
 
 ## FSDP2 与变形金刚
 
-使用 PyTorch 2.6 或更新版本和当前版本的 Transformers、Accelerate、TRL 和 PEFT。 [SFT example](https://github.com/huggingface/peft/tree/main/examples/sft) 使用[SFTTrainer](https://huggingface.co/docs/trl/v1.18.1/en/sft_trainer#trl.SFTTrainer)。以下是典型的 FSDP2 配置：
+使用 PyTorch 2.6 或更新版本和当前版本的 Transformers、Accelerate、TRL 和 PEFT。 [SFT example](https://github.com/huggingface/peft/tree/main/examples/sft) 使用[SFTTrainer](https://huggingface.co/docs/trl/v1.18.2/en/sft_trainer#trl.SFTTrainer)。以下是典型的 FSDP2 配置：
 
 ```json
 {
@@ -174,7 +174,7 @@ accelerate launch --config_file "configs/fsdp_config.yaml"  train.py \
 
 ### 重要部分
 
-让我们更深入地研究一下脚本，以便您可以了解发生了什么，并了解它是如何工作的。首先要知道的是，该脚本使用 FSDP 进行分布式训练，因为 FSDP 配置已通过。 [SFTTrainer](https://huggingface.co/docs/trl/v1.18.1/en/sft_trainer#trl.SFTTrainer) 类处理使用传递的 peft 配置创建 PEFT 模型的所有繁重工作。之后，当您调用 `trainer.train()` 时，Trainer 在内部使用 🤗 Accelerate 准备模型，优化器和训练器使用 FSDP 配置创建 FSDP 包装模型，然后进行训练。主要代码片段如下：
+让我们更深入地研究一下脚本，以便您可以了解发生了什么，并了解它是如何工作的。首先要知道的是，该脚本使用 FSDP 进行分布式训练，因为 FSDP 配置已通过。 [SFTTrainer](https://huggingface.co/docs/trl/v1.18.2/en/sft_trainer#trl.SFTTrainer) 类处理使用传递的 peft 配置创建 PEFT 模型的所有繁重工作。之后，当您调用 `trainer.train()` 时，Trainer 在内部使用 🤗 Accelerate 准备模型，优化器和训练器使用 FSDP 配置创建 FSDP 包装模型，然后进行训练。主要代码片段如下：
 
 ```python
 # trainer

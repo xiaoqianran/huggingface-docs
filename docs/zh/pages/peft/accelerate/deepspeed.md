@@ -122,7 +122,7 @@ accelerate launch --config_file "configs/deepspeed_config.yaml"  train.py \
 
 让我们更深入地研究一下脚本，以便您可以了解发生了什么，并了解它是如何工作的。
 
-首先要知道的是，该脚本使用 DeepSpeed 进行分布式训练，因为 DeepSpeed 配置已通过。 [SFTTrainer](https://huggingface.co/docs/trl/v1.18.1/en/sft_trainer#trl.SFTTrainer) 类处理使用传递的 peft 配置创建 PEFT 模型的所有繁重工作。之后，当您调用 `trainer.train()` 时，[SFTTrainer](https://huggingface.co/docs/trl/v1.18.1/en/sft_trainer#trl.SFTTrainer) 内部使用 🤗 Accelerate 准备模型、优化器和训练器，使用 DeepSpeed 配置创建 DeepSpeed 引擎，然后对其进行训练。主要代码片段如下：
+首先要知道的是，该脚本使用 DeepSpeed 进行分布式训练，因为 DeepSpeed 配置已通过。 [SFTTrainer](https://huggingface.co/docs/trl/v1.18.2/en/sft_trainer#trl.SFTTrainer) 类处理使用传递的 peft 配置创建 PEFT 模型的所有繁重工作。之后，当您调用 `trainer.train()` 时，[SFTTrainer](https://huggingface.co/docs/trl/v1.18.2/en/sft_trainer#trl.SFTTrainer) 内部使用 🤗 Accelerate 准备模型、优化器和训练器，使用 DeepSpeed 配置创建 DeepSpeed 引擎，然后对其进行训练。主要代码片段如下：
 
 ```python
 # trainer
@@ -343,7 +343,7 @@ use_cpu: false
 + model = get_peft_model(model, peft_config)
 ```
 
-将所有相关的训练对象传递给 🤗 Accelerate 的 [prepare](https://huggingface.co/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator.prepare)，以确保一切都准备好进行训练：
+将所有相关训练对象传递给 🤗 Accelerate 的 [prepare](https://huggingface.co/docs/accelerate/v1.16.0/en/package_reference/accelerator#accelerate.Accelerator.prepare)，以确保一切都准备好进行训练：
 
 ```py
 model, train_dataloader, eval_dataloader, test_dataloader, optimizer, lr_scheduler = accelerator.prepare(

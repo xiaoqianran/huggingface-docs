@@ -99,9 +99,9 @@ hf jobs uv run --flavor t4-small -- script.py --early-stopping-patience 3
 |变量|描述 |
 |----------|-------------|
 | `JOB_ID` |当前作业的唯一标识符（例如，`699d874f1aad19adb8aaeadc`）。这与 UI 和作业 URL 中显示的 ID 相同。 |
-| `ACCELERATOR` |可用加速器的类型（例如，`t4-medium`、`a10g-small`、`a100x4`）或`none`（适用于仅 CPU 作业）。 |
+| `ACCELERATOR` |设备类型：`cpu` 适用于 CPU 类型，`gpu` 适用于 GPU 类型。 |
 | `CPU_CORES` |分配给作业的 CPU 核心数。 |
-| `MEMORY` |分配给作业的内存量（例如，`8Gi`）。 |
+| `MEMORY` |分配给作业的内存量（例如，`16.0G`）。 |
 | `HF_NETWORK_GROUP_HOSTNAME` |解析作业的 [network group](#network-groups) 中每个作业的主机名。仅在作业声明一项时设置。 |
 | `HF_NETWORK_GROUP_PREFIX` |用于添加别名的前缀，以获取声明该别名的组成员的主机名（例如，`${HF_NETWORK_GROUP_PREFIX}master`）。仅当作业声明网络组时设置。 |您可以使用这些变量来跟踪输出，使代码适应可用资源，或以编程方式引用当前作业：
 
@@ -153,8 +153,8 @@ hf jobs uv run --flavor t4-small -- script.py --early-stopping-patience 3
 |模型仓库 | `-v hf://openai/gpt-oss-120b:/model` |
 |数据集存储库 | `-v hf://datasets/stanfordnlp/imdb:/data` |
 |储物桶| `-v hf://buckets/username/my-bucket:/mnt` |
-|子文件夹 | `-v hf://datasets/org/my-dataset/train:/data` |
-|本地目录 | `-v ./training-data:/data` |然后使用已安装的卷作为容器内的本地目录：
+|子文件夹| `-v hf://datasets/org/my-dataset/train:/data` |
+|本地目录| `-v ./training-data:/data` |然后使用已安装的卷作为容器内的本地目录：
 
 ```bash
 # Mount a dataset and query it with DuckDB
@@ -181,15 +181,15 @@ hf jobs uv run --flavor t4-small -- script.py --early-stopping-patience 3
 
 ### 本地目录
 
-在作业启动之前，传递本地目录作为源，将其同步到您的私有`jobs-artifacts`[Storage Bucket](./storage-buckets)（自动创建），然后将其安装到容器中。本地目录默认挂载为**只读**；使用 `:rw` 写入输出：
+传递本地目录作为源，在作业启动之前将其同步到您的私有`jobs-artifacts`[Storage Bucket](./storage-buckets)（自动创建），然后将其安装到容器中。本地目录默认挂载为**只读**；使用 `:rw` 写入输出：
 
 ```bash
 >>> hf jobs uv run -v ./pdfs:/input -v ./md-out:/output:rw ocr.py
 ```
 
-重新同步同一目录只会上传新的或修改的文件。要检索作业写入读写卷的文件，请在作业结束后同步其存储桶文件夹 — CLI 在作业启动时打印确切的 `hf buckets sync` 命令。计划作业也可以工作：创建计划时目录会同步一次，并且每个触发器都会安装相同的文件夹。在Python中，使用[⟦T118⟧](https://huggingface.co/docs/huggingface_hub/guides/jobs#mount-local-data)。
+重新同步同一目录只会上传新的或修改的文件。要检索作业写入读写卷的文件，请在作业结束后同步其存储桶文件夹 — CLI 在作业启动时打印确切的 `hf buckets sync` 命令。计划作业也可以工作：创建计划时目录会同步一次，并且每个触发器都会安装相同的文件夹。在Python中，使用[⟦T116⟧](https://huggingface.co/docs/huggingface_hub/guides/jobs#mount-local-data)。
 
-在 Python 中，使用 [⟦T119⟧](https://huggingface.co/docs/huggingface_hub/package_reference/jobs#huggingface_hub.Volume) 类：
+在 Python 中，使用 [⟦T117⟧](https://huggingface.co/docs/huggingface_hub/package_reference/jobs#huggingface_hub.Volume) 类：
 
 ```python
 from huggingface_hub import Volume, run_job
@@ -298,7 +298,7 @@ Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
 
 ### 更改正在运行的作业的端口
 
-使用 `hf jobs expose` 更改公开的端口，而无需重新启动作业：
+使用 `hf jobs expose` 更改暴露的端口，而无需重新启动作业：
 
 ```bash
 # Expose port 8000 (requires an HF token)
@@ -317,7 +317,7 @@ Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
 
 您可以在正在运行的作业中打开交互式 SSH 会话，以直接在容器内进行调试、检查或工作。在创建作业时使用 `--ssh` (CLI) 或 `ssh=True` (Python API) 启用它，然后使用 `hf jobs ssh <job_id>` 连接。
 
-仅允许对作业的命名空间具有写入权限的用户（即作业创建者或具有写入权限的所有者组织的成员）。通过在[https://huggingface.co/settings/keys](https://huggingface.co/settings/keys)注册的SSH公钥执行身份验证。SSH 在 `hf jobs run` 和 `hf jobs uv run` 上可用。计划作业不支持它。
+仅允许对作业的命名空间具有写入权限的用户（即作业创建者或具有写入权限的所有者组织的成员）。通过在[https://huggingface.co/settings/keys](https://huggingface.co/settings/keys)注册的SSH公钥进行身份验证。SSH 在 `hf jobs run` 和 `hf jobs uv run` 上可用。计划作业不支持它。
 
 ### 命令行界面
 
@@ -470,7 +470,7 @@ ssh 6a2bd1f1871c005b5352ad31@ssh.hf.jobs
 >>> hf jobs uv run --namespace my-org-name --token hf_xxx python -c "print('Running in an org account')"
 ```
 
-## 标签向作业添加一个或多个标签，以添加一些带有`-l`或`--label`的元数据。
+## 标签向作业添加一个或多个标签，以添加一些带有 `-l` 或 `--label` 的元数据。
 您可以稍后使用此类元数据来过滤网站上或 CLI 中的作业。
 
 添加带有 `--label my-label` 的标签或带有 `--label key=value` 的键值标签。键和值可以包含字母、数字、`-` 和 `_`。
@@ -480,7 +480,7 @@ ssh 6a2bd1f1871c005b5352ad31@ssh.hf.jobs
 hf jobs uv run --label fine-tuning --label model=Qwen3-06B --label dataset=Capybara ...
 ```
 
-请注意，多次使用相同的 `key` 会导致最后一个 `key=value` 覆盖并丢弃任何先前带有 `key` 的标签。
+请注意，多次使用相同的`key`会导致最后一个`key=value`覆盖并丢弃任何先前带有`key`的标签。
 
 ### 命名一个工作
 
@@ -490,7 +490,7 @@ hf jobs uv run --label fine-tuning --label model=Qwen3-06B --label dataset=Capyb
 hf jobs run --name daily-report python:3.12 python report.py
 ```
 
-如果您未通过 `--name`，作业将以其 Docker 映像或脚本加上命令的简短哈希值来命名，因此同一命令的重新运行共享一个名称，而不同的命令将获得不同的名称（例如，`python-3-12-6b9d662c` 表示在 `python:3.12` 上运行的作业）。
+如果您不通过 `--name`，作业将以其 Docker 映像或脚本加上命令的简短哈希值命名，因此同一命令的重新运行共享一个名称，而不同的命令会获得不同的名称（例如，`python-3-12-6b9d662c` 表示在 `python:3.12` 上运行的作业）。
 
 ### 更新标签
 

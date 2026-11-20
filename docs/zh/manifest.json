@@ -393,8 +393,8 @@
       "translatedAt": "2026-10-29T14:07:49.795Z"
     },
     "hub/jobs-configuration.md": {
-      "hash": "42fc2e96124d615f348ab0f62d648e56342034ef",
-      "translatedAt": "2026-10-29T14:07:53.732Z"
+      "hash": "cf62c96ea30edb52ccfc1bd19d2462555ff723a3",
+      "translatedAt": "2026-11-20T16:01:02.455Z"
     },
     "hub/jobs-overview.md": {
       "hash": "08b2bddbf7d5a8fbc3f3a50d496f276206a93f9d",
@@ -633,8 +633,8 @@
       "translatedAt": "2026-10-29T14:09:22.432Z"
     },
     "hub/programmatic-user-access-control.md": {
-      "hash": "2be4cec29c22f6ef1faa7686b867cc6f19a63d2e",
-      "translatedAt": "2026-10-29T14:09:29.207Z"
+      "hash": "f5f3f7ae60fecf81a3eed481daa0fcb698956a4a",
+      "translatedAt": "2026-11-20T16:01:04.011Z"
     },
     "hub/repositories-next-steps.md": {
       "hash": "bbbf76b5cfc939bea7df98ddc35ba3758f98d4b9",
@@ -721,8 +721,8 @@
       "translatedAt": "2026-10-29T14:09:49.380Z"
     },
     "hub/security-resource-groups.md": {
-      "hash": "23c568702720d4de926359828ca90f7cb097e347",
-      "translatedAt": "2026-10-29T14:09:53.798Z"
+      "hash": "bb81aebdabbfaf38a50017d8186351af89468cec",
+      "translatedAt": "2026-11-20T16:01:07.381Z"
     },
     "hub/security-sso-okta-oidc.md": {
       "hash": "3f527d928afbe805c6131ecf5fd9fdd31e54dc8e",
@@ -749,8 +749,8 @@
       "translatedAt": "2026-10-29T14:09:58.165Z"
     },
     "hub/security-sso-user-management.md": {
-      "hash": "fee6a7397f0e63a2084c149400b350a1515bddc1",
-      "translatedAt": "2026-10-29T14:09:57.540Z"
+      "hash": "92a7c197cf873967438855f842e402b2cc5894a4",
+      "translatedAt": "2026-11-20T16:01:08.034Z"
     },
     "hub/sentence-transformers.md": {
       "hash": "5c674e819e84e294e56e32659c1b247f5bc19081",
@@ -1533,12 +1533,12 @@
       "translatedAt": "2026-11-19T16:29:47.638Z"
     },
     "peft/accelerate/fsdp.md": {
-      "hash": "fc55f5b1f974d08e74be7e7e21c11299749f1aef",
-      "translatedAt": "2026-11-19T16:29:51.483Z"
+      "hash": "cb3363da7923f62e1d3e660f60adf669ebe522b2",
+      "translatedAt": "2026-11-20T16:01:12.660Z"
     },
     "peft/accelerate/deepspeed.md": {
-      "hash": "a9555f4e8fe54b6b8dd0b89ede5c194f366e874d",
-      "translatedAt": "2026-11-19T16:29:48.102Z"
+      "hash": "c6e383a555072125eaa467b9de701e01c03afae7",
+      "translatedAt": "2026-11-20T16:01:09.801Z"
     },
     "accelerate/package_reference/utilities.md": {
       "hash": "c4f6cd586f36a9548c74824257ce286ed2e938d3",
@@ -2057,10 +2057,10 @@
       "translatedAt": "2026-11-19T16:29:39.854Z"
     }
   },
-  "updatedAt": "2026-11-19T16:29:51.483Z",
+  "updatedAt": "2026-11-20T16:01:12.660Z",
   "stats": {
-    "translated": 14,
-    "skipped": 386,
+    "translated": 6,
+    "skipped": 394,
     "failed": 0,
     "total": 400
   }
