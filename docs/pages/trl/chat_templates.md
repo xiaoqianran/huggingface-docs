@@ -173,6 +173,10 @@ Patched Mistral Medium 3.5 template. Diff vs `mistral_medium_3_5.jinja`: the ori
 
 Patched Muse Glimmer template. Diff vs `muse_glimmer.jinja`: wrap the whole assistant branch — every ATEM channel of the turn — with `{% generation %}` / `{% endgeneration %}` so that `return_assistant_tokens_mask=True` produces correct masks for SFT assistant-only loss. The `<|start|>assistant` that opens the turn stays outside the markers, since the generation prompt already ends with it.
 
+### `muse_glimmer_v2_training.jinja`
+
+Patched Muse Glimmer template. Same diff as `muse_glimmer_training.jinja`, applied to `muse_glimmer_v2.jinja`.
+
 ### `muse_spark_training.jinja`
 
 Patched Muse Spark Open template. Diff vs `muse_spark.jinja`: the original's `{% generation %}` markers also cover the `<|start|>assistant` that opens the turn, which the generation prompt already ends with. The training template emits it before the markers, so that `return_assistant_tokens_mask=True` doesn't train it. The rendered text is unchanged.
@@ -260,7 +264,7 @@ Patched SmolVLM2 template. Same diff as `smolvlm_training.jinja`, applied to `sm
 
 ## Related utilities
 
-See [Chat Template Utilities](chat_template_utils) for the helper functions ([clone_chat_template()](/docs/trl/v1.18.1/en/chat_template_utils#trl.clone_chat_template), `is_chat_template_prefix_preserving`, [get_training_chat_template()](/docs/trl/v1.18.1/en/chat_template_utils#trl.get_training_chat_template)) that operate on these templates.
+See [Chat Template Utilities](chat_template_utils) for the helper functions ([clone_chat_template()](/docs/trl/v1.18.2/en/chat_template_utils#trl.clone_chat_template), `is_chat_template_prefix_preserving`, [get_training_chat_template()](/docs/trl/v1.18.2/en/chat_template_utils#trl.get_training_chat_template)) that operate on these templates.
 
 ### Training on AWS Trainium
-https://huggingface.co/docs/trl/v1.18.1/aws_trainium.md
+https://huggingface.co/docs/trl/v1.18.2/aws_trainium.md

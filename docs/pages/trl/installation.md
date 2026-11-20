@@ -33,4 +33,4 @@ pip install -e ".[dev]"
 ```
 
 ### Training with Jobs
-https://huggingface.co/docs/trl/v1.18.1/jobs_training.md
+https://huggingface.co/docs/trl/v1.18.2/jobs_training.md

@@ -1,6 +1,6 @@
 # Installation
 
-🤗 Tokenizers is tested on Python 3.10+.
+🤗 Tokenizers is tested on Python 3.11+.
 We highly recommend using `uv` for virtual environment installs.
 
 ## Installation with pip
@@ -71,4 +71,4 @@ npm install tokenizers
 See the [Node page](node) for what the binding exposes and how to use it.
 
 ### Components
-https://huggingface.co/docs/tokenizers/v1.0.0-rc.4/components.md
+https://huggingface.co/docs/tokenizers/v1.0.0-rc.5/components.md

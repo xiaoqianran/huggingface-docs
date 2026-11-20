@@ -125,4 +125,4 @@ tokenizer.train_from_iterator(gzip_iterator(), trainer=trainer)
 And voilà!
 
 ### Installation
-https://huggingface.co/docs/tokenizers/v1.0.0-rc.4/installation.md
+https://huggingface.co/docs/tokenizers/v1.0.0-rc.5/installation.md

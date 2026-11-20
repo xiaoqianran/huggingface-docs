@@ -10,7 +10,7 @@
 kernels.use_kernel_forward_from_hub(layer_name: str, condition: Callable[['nn.Module'], bool] | None = None)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L394)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/_internals/layer/layer.py#L394)
 
 **Parameters:**
 
@@ -86,7 +86,7 @@ class LayerUsingIdentity(nn.Module):
 kernels.use_kernel_func_from_hub(func_name: str)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/func.py#L231)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/_internals/layer/func.py#L231)
 
 **Parameters:**
 
@@ -145,7 +145,7 @@ model = MyModel()
 kernels.use_kernelized_func(*args: Callable)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L524)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/_internals/layer/layer.py#L524)
 
 **Parameters:**
 
@@ -201,7 +201,7 @@ model = LayerUsingIdentity()
 kernels.replace_kernel_forward_from_hub(layer_name: str, condition: Callable[['nn.Module'], bool] | None = None)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L362)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/_internals/layer/layer.py#L362)
 
 **Parameters:**
 
@@ -234,7 +234,7 @@ replace_kernel_forward_from_hub(nn.LayerNorm, "LayerNorm")
 kernels.use_kernel_mapping(mapping: dict[str, dict[Device | str, RepositoryProtocol | dict[Mode, RepositoryProtocol]]], inherit_mapping: bool = True)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/kernelize.py#L20)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/_internals/layer/kernelize.py#L20)
 
 **Parameters:**
 
@@ -296,7 +296,7 @@ with use_kernel_mapping(mapping):
 kernels.register_kernel_mapping(mapping: dict[str, dict[Device | str, RepositoryProtocol | dict[Mode, RepositoryProtocol]]], inherit_mapping: bool = True)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/kernelize.py#L100)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/_internals/layer/kernelize.py#L100)
 
 **Parameters:**
 
@@ -355,7 +355,7 @@ register_kernel_mapping(advanced_mapping)
 kernels.kernelize(model: 'nn.Module', mode: Mode, device: str | 'torch.device' | None = None, use_fallback: bool | KernelizeFallback = True)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/kernelize.py#L178)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/_internals/layer/kernelize.py#L178)
 
 **Parameters:**
 
@@ -419,7 +419,7 @@ with use_kernel_mapping(mapping):
 kernels.get_kernelized_layers(model: 'nn.Module')
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/inspect.py#L64)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/_internals/layer/inspect.py#L64)
 
 **Parameters:**
 
@@ -484,10 +484,10 @@ print(kernelized.funcs)
 #### kernels.Device[[kernels.Device]]
 
 ```python
-kernels.Device(type: str, properties: kernels.layer.device.CUDAProperties | kernels.layer.device.ROCMProperties | None = None)
+kernels.Device(type: str, properties: kernels._internals.layer.device.CUDAProperties | kernels._internals.layer.device.ROCMProperties | None = None)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/device.py#L106)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/_internals/layer/device.py#L106)
 
 **Parameters:**
 
@@ -541,7 +541,7 @@ Run class validators on the instance.
 kernels.CUDAProperties(min_capability: int, max_capability: int)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/device.py#L8)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/_internals/layer/device.py#L8)
 
 **Parameters:**
 
@@ -587,7 +587,7 @@ Run class validators on the instance.
 kernels.ROCMProperties(min_capability: int, max_capability: int)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/device.py#L57)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/_internals/layer/device.py#L57)
 
 **Parameters:**
 
@@ -633,7 +633,7 @@ Run class validators on the instance.
 kernels.Mode(value, names = None, module = None, qualname = None, type = None, start = 1)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/mode.py#L4)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/_internals/layer/mode.py#L4)
 
 **Parameters:**
 
@@ -662,7 +662,7 @@ are used for inference *with* `torch.compile`.
 kernels.KernelizedLayers(layers: dict[str, KernelizedLayer] = <factory>, funcs: dict[tuple[str, str], KernelizedFunc] = <factory>)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/inspect.py#L45)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/_internals/layer/inspect.py#L45)
 
 **Parameters:**
 
@@ -681,7 +681,7 @@ The kernels that are in use by a kernelized model, as returned by
 kernels.KernelizedLayer(module: nn.Module, repo: RepositoryProtocol)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/inspect.py#L13)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/_internals/layer/inspect.py#L13)
 
 **Parameters:**
 
@@ -699,7 +699,7 @@ A kernelized layer and the repository that its kernel was retrieved from.
 kernels.KernelizedFunc(module: nn.Module, repo: RepositoryProtocol)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/inspect.py#L29)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/_internals/layer/inspect.py#L29)
 
 **Parameters:**
 
@@ -717,7 +717,7 @@ A kernelized function and the repository that its kernel was retrieved from.
 kernels.FuncRepository(repo_id: str, func_name: str, revision: str | None = None, version: int | None = None, trust_remote_code: bool | list[str] = False, check_arch: bool = True)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/func.py#L47)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/_internals/layer/func.py#L47)
 
 **Parameters:**
 
@@ -764,7 +764,7 @@ layer_repo_versioned = FuncRepository(
 kernels.LayerRepository(repo_id: str, layer_name: str, revision: str | None = None, version: int | None = None, trust_remote_code: bool | list[str] = False, user_agent: str | dict | None = None, check_arch: bool = True)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L79)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/_internals/layer/layer.py#L79)
 
 **Parameters:**
 
@@ -804,7 +804,7 @@ layer_repo = LayerRepository(
 kernels.LocalFuncRepository(repo_path: Path, func_name: str, check_arch: bool = True)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/func.py#L164)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/_internals/layer/func.py#L164)
 
 **Parameters:**
 
@@ -841,7 +841,7 @@ layer_repo = LocalFuncRepository(
 kernels.LocalLayerRepository(repo_path: Path, layer_name: str, check_arch: bool = True)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L190)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/_internals/layer/layer.py#L190)
 
 **Parameters:**
 
@@ -874,7 +874,7 @@ layer_repo = LocalLayerRepository(
 kernels.LockedFuncRepository(repo_id: str, lockfile: pathlib.Path | None = None, func_name: str, trust_remote_code: bool | list[str] = False, check_arch: bool = True)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/func.py#L289)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/_internals/layer/func.py#L289)
 
 **Parameters:**
 
@@ -905,7 +905,7 @@ are locked inside a project.
 kernels.LockedLayerRepository(repo_id: str, lockfile: Path | None = None, layer_name: str, trust_remote_code: bool | list[str] = False, check_arch: bool = True)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/layer/layer.py#L248)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/_internals/layer/layer.py#L248)
 
 Repository and name of a layer.
 

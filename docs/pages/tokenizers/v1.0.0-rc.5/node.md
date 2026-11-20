@@ -1,0 +1,123 @@
+# Node
+
+The Node binding loads a `tokenizer.json`, encodes text into token ids and
+decodes ids back into text. It does not build, edit, save or train tokenizers.
+
+## Installation
+
+```bash
+npm install tokenizers
+```
+
+## Loading a tokenizer
+
+```js
+const { Tokenizer } = require('tokenizers')
+
+const tokenizer = Tokenizer.fromFile('tokenizer.json')
+```
+
+The file is put through the legacy `1.0` → canonical `2.0` upgrade on the way in,
+so tokenizers already on disk keep loading.
+
+## Encoding
+
+`encode` takes a text, or a pair of texts given as a two-item array, and returns
+an `Encoding`. The post-processor joins a pair, for example as
+`[CLS] A [SEP] B [SEP]`.
+
+```js
+const encoding = tokenizer.encode("Hello, y'all! How are you 😁 ?")
+const pair = tokenizer.encode(["Hello, y'all!", 'How are you 😁 ?'])
+```
+
+| Property | Description |
+| --- | --- |
+| `ids` | The id of each token. |
+| `typeIds` | The type id of each token: 0 for the first text of a pair, 1 for the second. |
+| `attentionMask` | 1 for each token, 0 for each padding token. |
+
+Each property is a `Uint32Array` rather than a JS `Array`: an `Array` costs one
+napi value per token, which on token-dense input is 13x the encode itself.
+
+`encodeBatch` encodes a batch of texts and pairs in one call, and returns the
+encodings in input order. Batch padding pads every item to the longest one.
+
+```js
+const batch = tokenizer.encodeBatch(["Hello, y'all!", ["Hello, y'all!", 'How are you 😁 ?']], { padding: {} })
+```
+
+`tokenize` returns the token of each id, special tokens included. It is
+`decodeTokens(encode(input, options).ids)`.
+
+```js
+const tokens = tokenizer.tokenize("Hello, y'all!")
+```
+
+For a tight loop, `encodeBytesInto` encodes one text and writes its ids into a
+`Uint32Array` you own. That drops two per-call costs: the JS string → UTF-8 copy,
+and a fresh `ArrayBuffer` for every call. It returns how many ids it wrote:
+
+```js
+const out = new Uint32Array(512)
+const n = tokenizer.encodeBytesInto(Buffer.from("Hello, y'all!"), out)
+// out.subarray(0, n) holds the ids
+```
+
+## Decoding
+
+`decode` turns ids back into text and skips special tokens unless its second
+argument is `false`. `decodeTokens` gives the token of each id without running the
+decoder, so a byte-level BPE token reads `Ġworld`, not ` world`. It keeps special
+tokens unless its second argument is `true`.
+
+```js
+const text = tokenizer.decode(encoding.ids)
+const tokens = tokenizer.decodeTokens(encoding.ids)
+```
+
+## Options
+
+Every encode method takes an optional last argument. A field left out keeps the
+tokenizer's own behaviour.
+
+```js
+const encoding = tokenizer.encode("Hello, y'all!", {
+  addSpecialTokens: true,
+  encodeSpecialTokens: false,
+  padding: { padId: 0, padToken: '[PAD]', length: 16 },
+  truncation: { maxLength: 512 },
+})
+```
+
+| Option | Default | Description |
+| --- | --- | --- |
+| `addSpecialTokens` | `true` | Whether the post-processor adds its special tokens, such as `[CLS]` and `[SEP]`. |
+| `encodeSpecialTokens` | `false` | Whether a special token written in the text goes through the model (`true`) or becomes its added-vocabulary id. |
+| `padding` | configured | Padding for this call, replacing the tokenizer's configured padding. `false` disables it. |
+| `truncation` | configured | Truncation for this call, replacing the tokenizer's configured truncation. `false` disables it. |
+
+### `padding`
+
+Replaces the configured padding as a whole, so a field left out takes the default
+below, not the configured value.
+
+| Field | Default | Description |
+| --- | --- | --- |
+| `direction` | `right` | Whether pad tokens are appended right or prepended left. |
+| `padId` | `0` | The id of the padding token. |
+| `padTypeId` | `0` | The type id of the padding token. |
+| `padToken` | `[PAD]` | The text of the padding token. |
+| `length` | batch longest | Pads every encoding to exactly this many tokens. |
+| `padToMultipleOf` | none | Rounds the padded length up to a multiple of this. |
+
+### `truncation`
+
+| Field | Default | Description |
+| --- | --- | --- |
+| `maxLength` | required | The maximum number of tokens, including special tokens, to keep. |
+| `strategy` | `longest_first` | Which sequence of a pair is truncated: `longest_first`, `only_first` or `only_second`. |
+| `direction` | `right` | Whether to truncate at the end of the sequence or at its beginning. |
+
+### The tokenization pipeline
+https://huggingface.co/docs/tokenizers/v1.0.0-rc.5/pipeline.md

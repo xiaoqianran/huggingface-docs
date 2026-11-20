@@ -26,7 +26,7 @@ training_args = SFTConfig(..., deepspeed="<DEEPSPEED_CONFIG_FILE.json>")
 torchrun --nproc_per_node 8 train.py
 ```
 
-Scripts that parse their arguments with [TrlParser](/docs/trl/v1.18.1/en/script_utils#trl.TrlParser), such as the ones behind the `trl` CLI, take it from the command line:
+Scripts that parse their arguments with [TrlParser](/docs/trl/v1.18.2/en/script_utils#trl.TrlParser), such as the ones behind the `trl` CLI, take it from the command line:
 
 ```bash
 trl sft ... --deepspeed <DEEPSPEED_CONFIG_FILE.json>
@@ -45,4 +45,4 @@ Values set to `"auto"` in these files (batch size, gradient accumulation, precis
 Consult the 🤗 Transformers [DeepSpeed documentation](https://huggingface.co/docs/transformers/deepspeed) for more information about the DeepSpeed integration.
 
 ### Kernels Hub Integration and Usage
-https://huggingface.co/docs/trl/v1.18.1/kernels_hub.md
+https://huggingface.co/docs/trl/v1.18.2/kernels_hub.md

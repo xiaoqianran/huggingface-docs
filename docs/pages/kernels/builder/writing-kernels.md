@@ -245,6 +245,7 @@ frameworks are:
 - AOT-compiled Torch kernel (`torch`).
 - AOT-compiled TVM-FFI kernel (`tvm-ffi`).
 - JIT-compiled or not-compiled Torch kernel (`torch-noarch`, experimental).
+- JIT-compiled or not-compiled MLX kernel (`mlx-noarch`, experimental).
 
 ### `torch`
 
@@ -312,6 +313,20 @@ by e.g. the Hugging Face Hub.
   kernel supports (e.g. `["9.0", "10.0"]`).
 - `rocm-archs` (optional): a list of ROCm architectures the kernel supports
   (e.g. `["gfx942"]`).
+
+### `mlx-noarch`
+
+It is similar to `torch-noarch` but it caters to the [MLX
+framework](https://github.com/ml-explore/mlx).
+
+Metal is the only supported backend, so set
+`backends = ["metal"]` in `[general]`. Place the Python
+package in `mlx-ext/<name>/`, replacing hyphens in the kernel
+name with underscores. For example, `relu-mlx` would use
+`mlx-ext/relu_mlx/`.
+
+- `pyext` (optional) lists the file extensions to include
+from the package directory.
 
 ### `kernel.<name>`
 

@@ -466,4 +466,4 @@ hf download hf://google-bert/bert-base-uncased/vocab.txt
 ```
 
 ### Pre-tokenizers
-https://huggingface.co/docs/tokenizers/v1.0.0-rc.4/api/pre-tokenizers.md
+https://huggingface.co/docs/tokenizers/v1.0.0-rc.5/api/pre-tokenizers.md

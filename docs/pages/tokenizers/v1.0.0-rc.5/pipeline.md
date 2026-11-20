@@ -420,4 +420,4 @@ let decoded = bert_tokenizer.decode(output.get_ids(), true)?;
 ```
 
 ### Training from memory
-https://huggingface.co/docs/tokenizers/v1.0.0-rc.4/training_from_memory.md
+https://huggingface.co/docs/tokenizers/v1.0.0-rc.5/training_from_memory.md

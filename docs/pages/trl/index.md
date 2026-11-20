@@ -5,7 +5,7 @@ The library is integrated with 🤗 [transformers](https://github.com/huggingfac
 
 ## 🎉 What's New
 
-**⚡ AsyncGRPOTrainer is now stable:** [AsyncGRPOTrainer](/docs/trl/v1.18.1/en/async_grpo_trainer#trl.AsyncGRPOTrainer) graduates to the stable API. It runs GRPO much faster by decoupling generation from training: a vLLM server streams rollouts while the trainer updates the model.
+**⚡ AsyncGRPOTrainer is now stable:** [AsyncGRPOTrainer](/docs/trl/v1.18.2/en/async_grpo_trainer#trl.AsyncGRPOTrainer) graduates to the stable API. It runs GRPO much faster by decoupling generation from training: a vLLM server streams rollouts while the trainer updates the model.
 
 ## Taxonomy
 
@@ -170,4 +170,4 @@ The documentation is organized into the following sections:
       Fine tuning with TRL
 
 ### A2PO
-https://huggingface.co/docs/trl/v1.18.1/a2po_trainer.md
+https://huggingface.co/docs/trl/v1.18.2/a2po_trainer.md

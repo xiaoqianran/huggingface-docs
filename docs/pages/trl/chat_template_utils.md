@@ -10,7 +10,7 @@ For an overview of the chat templates bundled with TRL and the rationale behind 
 trl.clone_chat_template(model: PreTrainedModel, tokenizer: PreTrainedTokenizerBase, source_tokenizer_path: str, resize_to_multiple_of: int | None = 64)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.18.1/trl/chat_template_utils.py#L54)
+[Source](https://github.com/huggingface/trl/blob/v1.18.2/trl/chat_template_utils.py#L54)
 
 **Parameters:**
 
@@ -58,7 +58,7 @@ Example:
 trl.chat_template_utils.is_chat_template_prefix_preserving(processing_class: transformers.tokenization_utils_base.PreTrainedTokenizerBase | transformers.processing_utils.ProcessorMixin)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.18.1/trl/chat_template_utils.py#L1040)
+[Source](https://github.com/huggingface/trl/blob/v1.18.2/trl/chat_template_utils.py#L1042)
 
 **Parameters:**
 
@@ -82,7 +82,7 @@ tokenizations with and without tool messages appended.
 trl.get_training_chat_template(processing_class: transformers.tokenization_utils_base.PreTrainedTokenizerBase | transformers.processing_utils.ProcessorMixin | None = None, tokenizer: transformers.tokenization_utils_base.PreTrainedTokenizerBase | None = None, require_prefix_preservation: bool = True)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.18.1/trl/chat_template_utils.py#L1285)
+[Source](https://github.com/huggingface/trl/blob/v1.18.2/trl/chat_template_utils.py#L1291)
 
 **Parameters:**
 
@@ -137,4 +137,4 @@ Example:
 ```
 
 ### Chat Templates
-https://huggingface.co/docs/trl/v1.18.1/chat_templates.md
+https://huggingface.co/docs/trl/v1.18.2/chat_templates.md
