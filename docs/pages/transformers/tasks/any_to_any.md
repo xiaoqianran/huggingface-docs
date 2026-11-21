@@ -13,15 +13,14 @@ pip install -q transformers accelerate flash_attn
 Let's initialize the model and the processor.
 
 ```python
-from transformers import AutoProcessor, AutoModelForMultimodalLM, infer_device
+from transformers import AutoProcessor, AutoModelForMultimodalLM
 import torch
 
-device = torch.device(infer_device())
 model = AutoModelForMultimodalLM.from_pretrained(
     "Qwen/Qwen2.5-Omni-3B",
-    dtype=torch.bfloat16,
+    device_map="auto",
     attn_implementation="flash_attention_2",
-).to(device)
+)
 
 processor = AutoProcessor.from_pretrained("Qwen/Qwen2.5-Omni-3B")
 ```
@@ -42,7 +41,7 @@ messages = [
 ]
 ```
 
-We will now call the processors' [apply_chat_template()](/docs/transformers/v5.23.0/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) method to preprocess its output along with the image inputs.
+We will now call the processors' [apply_chat_template()](/docs/transformers/v5.24.0/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) method to preprocess its output along with the image inputs.
 
 ```python
 inputs = processor.apply_chat_template(
@@ -51,21 +50,21 @@ inputs = processor.apply_chat_template(
     return_dict=True,
     return_tensors="pt",
     add_generation_prompt=True,
-)
+).to(model.device)
 ```
 
 We can now pass the preprocessed inputs to the model.
 
 ```python
 with torch.no_grad():
-    generated_ids = model.generate(**inputs, max_new_tokens=100)
+    generated_ids = model.generate(**inputs, max_new_tokens=100, generation_mode="text")
 generated_texts = processor.batch_decode(generated_ids, skip_special_tokens=True)
 print(generated_texts)
 ```
 
 ## Pipeline
 
-The fastest way to get started is to use the [Pipeline](/docs/transformers/v5.23.0/en/main_classes/pipelines#transformers.Pipeline) API. Specify the `"any-to-any"` task and the model you want to use.
+The fastest way to get started is to use the [Pipeline](/docs/transformers/v5.24.0/en/main_classes/pipelines#transformers.Pipeline) API. Specify the `"any-to-any"` task and the model you want to use.
 
 ```python
 from transformers import pipeline
@@ -89,7 +88,7 @@ messages = [
  ]
 ```
 
-Pass the chat template formatted text and image to [Pipeline](/docs/transformers/v5.23.0/en/main_classes/pipelines#transformers.Pipeline) and set `return_full_text=False` to remove the input from the generated output.
+Pass the chat template formatted text and image to [Pipeline](/docs/transformers/v5.24.0/en/main_classes/pipelines#transformers.Pipeline) and set `return_full_text=False` to remove the input from the generated output.
 
 ```python
 outputs = pipe(text=messages, max_new_tokens=20, return_full_text=False)
@@ -115,4 +114,4 @@ sf.write("generated_audio.wav", out[0]["generated_audio"])
 ```
 
 ### Instance segmentation
-https://huggingface.co/docs/transformers/v5.23.0/tasks/instance_segmentation.md
+https://huggingface.co/docs/transformers/v5.24.0/tasks/instance_segmentation.md

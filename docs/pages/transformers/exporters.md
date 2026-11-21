@@ -1,6 +1,6 @@
 # Exporters
 
-Export any [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel) to ONNX, ExecuTorch, or a standalone PyTorch program, regardless of the target runtime.
+Export any [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel) to ONNX, ExecuTorch, or a standalone PyTorch program, regardless of the target runtime.
 
 ```python
 exporter = DynamoExporter()  # or OnnxExporter, ExecutorchExporter
@@ -29,7 +29,7 @@ component, so its program is directly `exported.program`. `~ExportedModel.save_p
 file per component, an `export.json` manifest with each component's file and metadata, and the model config.
 
 `~ExportedModel.from_pretrained` loads it back, from a local directory or a Hub repo, with the same download kwargs
-as [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). Pass `subfolder` for an export kept next to the model's weights; only the
+as [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). Pass `subfolder` for an export kept next to the model's weights; only the
 export's own files are downloaded. Dynamo, ONNX, and OpenVINO
 programs load as the type the export returned. A loaded ONNX graph leaves its weights in `model.onnx.data` until they
 are read. An ExecuTorch `.pte` loads as an
@@ -40,8 +40,13 @@ from transformers.exporters import ExportedModel
 
 exported.program  # the backend's program
 exported.save_pretrained("exported-model")  # model.<suffix>, export.json, config.json
-loaded = ExportedModel.from_pretrained("exported-model")
+loaded = ExportedModel.from_pretrained("exported-model", trust_remote_code=True)  # a Dynamo .pt2, see below
 ```
+
+> [!WARNING]
+> A Dynamo `.pt2` is a pickle, so loading one runs code from it. `~ExportedModel.from_pretrained` refuses it, from
+> the Hub or a local directory, unless you pass `trust_remote_code=True`. Only pass it for an export you trust, as
+> you would for a model with custom code. ONNX, OpenVINO and ExecuTorch programs load without it.
 
 A directory holds one export, since `export.json` and `config.json` have fixed names. Keep exports to several
 formats in their own subfolders (`onnx/`, `openvino/`) and load them with `subfolder="onnx"`.
@@ -102,7 +107,7 @@ pip install transformers "torch==2.12.0" "openvino==2026.3.1"
 
 ## Export a model
 
-All exporters share the same interface. Create an exporter with a config, and call [export()](/docs/transformers/v5.23.0/en/main_classes/exporters#transformers.exporters.HfExporter.export).
+All exporters share the same interface. Create an exporter with a config, and call [export()](/docs/transformers/v5.24.0/en/main_classes/exporters#transformers.exporters.HfExporter.export).
 
 Switch between runtimes by swapping the exporter class.
 
@@ -142,7 +147,7 @@ from transformers.exporters import ExportedModel
 outputs = ExportedModel.from_pretrained("qwen3-onnx")(**inputs)
 ```
 
-[backend](/docs/transformers/v5.23.0/en/main_classes/exporters#transformers.exporters.ExecutorchConfig.backend) selects the target: `xnnpack` (the default) for CPU,
+[backend](/docs/transformers/v5.24.0/en/main_classes/exporters#transformers.exporters.ExecutorchConfig.backend) selects the target: `xnnpack` (the default) for CPU,
 `mlx` for Apple Silicon GPU, or `cuda` for a CUDA-enabled GPU. Choose the corresponding
 [installation option](#installation). MLX execution requires the MLX delegate and its Metal libraries;
 requesting CUDA without a CUDA-enabled environment raises a `RuntimeError`.
@@ -189,7 +194,7 @@ outputs = exported.to("cpu")(**inputs)
 ## Run an export
 
 An `ExportedModel` runs an export on its backend's runtime (`torch.export`'s module, ONNX Runtime, OpenVINO, or the
-ExecuTorch runtime) and is called like the model it came from: same kwargs, same [ModelOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.utils.ModelOutput) class. The
+ExecuTorch runtime) and is called like the model it came from: same kwargs, same [ModelOutput](/docs/transformers/v5.24.0/en/main_classes/output#transformers.utils.ModelOutput) class. The
 compute runs in the backend, which is often faster than eager PyTorch (OpenVINO on CPU, ONNX Runtime on CUDA), and
 quantized exports run the same way. Inputs the export wasn't traced with are dropped, so a processor's whole output
 can be passed.
@@ -325,8 +330,8 @@ expose `~HfExporter.export_for_generation`, which splits both stages and exports
 
 For multi-modal generative models, the prefill additionally splits into an image or audio
 encoder, the language model, and `lm_head`. Encoder and language-model discovery uses
-[get_encoder()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.get_encoder) (`modality="image"` or `"audio"`) and
-[get_decoder()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.get_decoder) accessors, so any new architecture using these
+[get_encoder()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.get_encoder) (`modality="image"` or `"audio"`) and
+[get_decoder()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.get_decoder) accessors, so any new architecture using these
 work out of the box.
 
 A projector component appears only when the model exposes one
@@ -413,7 +418,7 @@ the manifest, the model config, and the generation config passed to `export_for_
 
 ### How `export_for_generation` works
 
-[decompose_for_generation()](/docs/transformers/v5.23.0/en/main_classes/exporters#transformers.exporters.utils.decompose_for_generation) runs `model.generate(**inputs, max_new_tokens=2)`
+[decompose_for_generation()](/docs/transformers/v5.24.0/en/main_classes/exporters#transformers.exporters.utils.decompose_for_generation) runs `model.generate(**inputs, max_new_tokens=2)`
 once and hooks `model.forward` to capture the real prefill and decode kwargs (and the
 per-submodule kwargs via hooks on each encoder/projector/language model if the model is
 multi-modal). That's why it works for any architecture, including decoder-only, SSM,
@@ -444,7 +449,7 @@ for name, (submodel, subinputs) in components.items():
 
 By default the `decode` component is a **single-token** step — one query token against the KV cache —
 so `torch.export` specializes its query-sequence axis to 1. Pass `multi_token_decode=True` to capture
-`decode` as a **multi-token** decode instead: [decompose_for_generation()](/docs/transformers/v5.23.0/en/main_classes/exporters#transformers.exporters.utils.decompose_for_generation) merges two
+`decode` as a **multi-token** decode instead: [decompose_for_generation()](/docs/transformers/v5.24.0/en/main_classes/exporters#transformers.exporters.utils.decompose_for_generation) merges two
 consecutive decode steps (it captures with `max_new_tokens=3`) into one forward, so that axis stays
 symbolic. A single graph then serves every query length — one token (ordinary decoding), many tokens
 at once (continuation-from-past, e.g. accepting a chunk of speculative tokens), and a plain prefill
@@ -597,8 +602,8 @@ decode = exported.runners["decode"]
 
 # the program carries an initialized StaticCache template — reuse it (reset to empty)
 _, example_kwargs = exported.components["decode"].program.example_inputs
-past_key_values = copy.deepcopy(example_kwargs["past_key_values"])
-past_key_values.reset()
+cache = copy.deepcopy(example_kwargs["cache"])
+cache.reset()
 
 def causal_mask(positions, cache_len):   # [1, 1, len(positions), cache_len]
     return (torch.arange(cache_len, device="cuda")[None, :] <= positions[:, None])[None, None]
@@ -606,7 +611,7 @@ def causal_mask(positions, cache_len):   # [1, 1, len(positions), cache_len]
 # prefill: the whole prompt in one call
 positions = torch.arange(prompt_len, device="cuda")
 logits = decode(input_ids=prompt_ids, attention_mask=causal_mask(positions, max_cache_len),
-                position_ids=positions[None], past_key_values=past_key_values).logits
+                position_ids=positions[None], cache=cache).logits
 next_token = logits[:, -1:].argmax(-1)
 
 # decode: query=1 buffers reused in place
@@ -619,7 +624,7 @@ for position in range(prompt_len, max_cache_len):
     position_ids.fill_(position)
     attention_mask[0, 0, 0].copy_(slots <= position)
     logits = decode(input_ids=input_ids, attention_mask=attention_mask,
-                    position_ids=position_ids, past_key_values=past_key_values).logits
+                    position_ids=position_ids, cache=cache).logits
     next_token = logits[:, -1:].argmax(-1)
 ```
 
@@ -780,7 +785,7 @@ The fused ops aren't standard ONNX, so other ONNX consumers such as TensorRT or 
 is `ort_fusions=None`, which keeps the graph standard. If you need the model on several runtimes, export it once for
 each.
 
-The fusions run before [OnnxRuntimeQuantizer](/docs/transformers/v5.23.0/en/main_classes/exporters#transformers.exporters.OnnxRuntimeQuantizer) quantizes the graph, as ONNX Runtime recommends. They're
+The fusions run before [OnnxRuntimeQuantizer](/docs/transformers/v5.24.0/en/main_classes/exporters#transformers.exporters.OnnxRuntimeQuantizer) quantizes the graph, as ONNX Runtime recommends. They're
 skipped when the model is quantized before export, and they require `optimize=True` (the default). The `"cuda"` fusions
 need onnxruntime 1.28 or later.
 
@@ -812,4 +817,4 @@ For `ExecutorchExporter` with either XNNPACK or MLX, the exporter swaps MoE expe
 - Quantize an export, or add a quantizer, in [Quantizing exports](./exporters_quantization).
 
 ### AWS Trainium
-https://huggingface.co/docs/transformers/v5.23.0/aws_trainium.md
+https://huggingface.co/docs/transformers/v5.24.0/aws_trainium.md

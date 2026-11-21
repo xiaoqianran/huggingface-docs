@@ -5,12 +5,12 @@
 Granite Speech Plus is a variant of [Granite Speech](./granite_speech) whose projector consumes the concatenation of
 the encoder's final hidden states with an arbitrary subset of its intermediate hidden states (along the feature
 dimension). The selected intermediate layers are controlled by the `cat_hidden_layers` config field on
-[GraniteSpeechPlusEncoderConfig](/docs/transformers/v5.23.0/en/model_doc/granite_speech_plus#transformers.GraniteSpeechPlusEncoderConfig); when it is `None`, the model behaves identically to Granite Speech. When it is set, the
+[GraniteSpeechPlusEncoderConfig](/docs/transformers/v5.24.0/en/model_doc/granite_speech_plus#transformers.GraniteSpeechPlusEncoderConfig); when it is `None`, the model behaves identically to Granite Speech. When it is set, the
 projector's `encoder_hidden_size` must equal `encoder_config.hidden_dim * (len(cat_hidden_layers) + 1)`.
 
 The rest of the architecture — speech encoder, query transformer projector, language model, and optional LoRA adapter
 — is inherited unchanged from Granite Speech. See the [Granite Speech documentation](./granite_speech) for usage
-examples; the same [GraniteSpeechProcessor](/docs/transformers/v5.23.0/en/model_doc/granite_speech#transformers.GraniteSpeechProcessor) and [GraniteSpeechFeatureExtractor](/docs/transformers/v5.23.0/en/model_doc/granite_speech#transformers.GraniteSpeechFeatureExtractor) are used here.
+examples; the same [GraniteSpeechProcessor](/docs/transformers/v5.24.0/en/model_doc/granite_speech#transformers.GraniteSpeechProcessor) and [GraniteSpeechFeatureExtractor](/docs/transformers/v5.24.0/en/model_doc/granite_speech#transformers.GraniteSpeechFeatureExtractor) are used here.
 
 ## Usage
 
@@ -124,7 +124,7 @@ for k in range(NUM_SEGMENTS):
 transformers.GraniteSpeechPlusConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, encoder_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, projector_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, audio_token_index: int = 49155, initializer_range: float = 0.02, has_lora_adapter: bool = True, downsample_rate: int = 5, window_size: int = 15, tie_word_embeddings: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/granite_speech_plus/configuration_granite_speech_plus.py#L95)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/granite_speech_plus/configuration_granite_speech_plus.py#L95)
 
 **Parameters:**
 
@@ -150,8 +150,8 @@ This is the configuration class to store the configuration of a GraniteSpeechPlu
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [ibm-granite/granite-speech-4.1-2b-plus](https://huggingface.co/ibm-granite/granite-speech-4.1-2b-plus)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -176,7 +176,7 @@ Example:
 transformers.GraniteSpeechPlusEncoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, input_dim: int = 160, num_layers: int = 10, hidden_dim: int = 1024, feedforward_mult: int = 4, num_heads: int = 8, dim_head: int | None = None, output_dim: int = 42, context_size: int = 200, max_pos_emb: int = 512, dropout: float | int = 0.1, conv_kernel_size: int = 15, conv_expansion_factor: int = 2, cat_hidden_layers: list[int] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/granite_speech_plus/configuration_granite_speech_plus.py#L29)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/granite_speech_plus/configuration_granite_speech_plus.py#L29)
 
 **Parameters:**
 
@@ -236,16 +236,16 @@ Example:
 transformers.GraniteSpeechPlusModel(config: GraniteSpeechPlusConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/granite_speech_plus/modeling_granite_speech_plus.py#L131)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/granite_speech_plus/modeling_granite_speech_plus.py#L131)
 
 **Parameters:**
 
-config ([GraniteSpeechPlusConfig](/docs/transformers/v5.23.0/en/model_doc/granite_speech_plus#transformers.GraniteSpeechPlusConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([GraniteSpeechPlusConfig](/docs/transformers/v5.24.0/en/model_doc/granite_speech_plus#transformers.GraniteSpeechPlusConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Granite Speech model, which consists of an audio encoder, projector, and language model,
 without a language modeling head.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -256,16 +256,16 @@ and behavior.
 #### forward[[transformers.GraniteSpeechPlusModel.forward]]
 
 ```python
-forward(input_ids: typing.Optional[torch.LongTensor] = None, input_features: typing.Optional[torch.Tensor] = None, input_features_mask: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, use_cache: bool | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(input_ids: typing.Optional[torch.LongTensor] = None, input_features: typing.Optional[torch.Tensor] = None, input_features_mask: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, cache: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, use_cache: bool | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/granite_speech_plus/modeling_granite_speech_plus.py#L204)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/granite_speech_plus/modeling_granite_speech_plus.py#L204)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-input_features (`torch.Tensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using [GraniteSpeechFeatureExtractor](/docs/transformers/v5.23.0/en/model_doc/granite_speech#transformers.GraniteSpeechFeatureExtractor). See `GraniteSpeechFeatureExtractor.__call__()` for details ([GraniteSpeechProcessor](/docs/transformers/v5.23.0/en/model_doc/granite_speech#transformers.GraniteSpeechProcessor) uses [GraniteSpeechFeatureExtractor](/docs/transformers/v5.23.0/en/model_doc/granite_speech#transformers.GraniteSpeechFeatureExtractor) for processing audios).
+input_features (`torch.Tensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using `feature_extractor_class`. See `feature_extractor_class.__call__` for details (`processor_class` uses `feature_extractor_class` for processing audios).
 
 input_features_mask (`torch.Tensor`, *optional*) : Mask to be applied to audio features prior to scattering into the language embeddings.
 
@@ -273,19 +273,19 @@ attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *option
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
-use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
+use_cache (`bool`, *optional*) : If set to `True`, `cache` key value states are returned and can be used to speed up decoding (see `cache`).
 
 **Returns:** `GraniteSpeechPlusModelOutputWithPast` or `tuple(torch.Tensor)`
 
 A `GraniteSpeechPlusModelOutputWithPast` or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([GraniteSpeechPlusConfig](/docs/transformers/v5.23.0/en/model_doc/granite_speech_plus#transformers.GraniteSpeechPlusConfig)) and inputs.
+elements depending on the configuration (`None`) and inputs.
 
-The [GraniteSpeechPlusModel](/docs/transformers/v5.23.0/en/model_doc/granite_speech_plus#transformers.GraniteSpeechPlusModel) forward method, overrides the `__call__` special method.
+The [GraniteSpeechPlusModel](/docs/transformers/v5.24.0/en/model_doc/granite_speech_plus#transformers.GraniteSpeechPlusModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -293,12 +293,12 @@ the latter silently ignores them.
 
 - **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 
-  If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
+  If `cache` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
-  `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `past_key_values`
+  `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `cache`
   input) to speed up sequential decoding.
 - **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
@@ -319,16 +319,16 @@ the latter silently ignores them.
 transformers.GraniteSpeechPlusForConditionalGeneration(config: GraniteSpeechPlusConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/granite_speech_plus/modeling_granite_speech_plus.py#L517)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/granite_speech_plus/modeling_granite_speech_plus.py#L518)
 
 **Parameters:**
 
-config ([GraniteSpeechPlusConfig](/docs/transformers/v5.23.0/en/model_doc/granite_speech_plus#transformers.GraniteSpeechPlusConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([GraniteSpeechPlusConfig](/docs/transformers/v5.24.0/en/model_doc/granite_speech_plus#transformers.GraniteSpeechPlusConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Granite Speech Plus model, a Granite Speech variant whose projector consumes the concatenation of the
 encoder's final hidden states with an arbitrary subset of its intermediate hidden states.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -339,16 +339,16 @@ and behavior.
 #### forward[[transformers.GraniteSpeechPlusForConditionalGeneration.forward]]
 
 ```python
-forward(input_ids: typing.Optional[torch.LongTensor] = None, input_features: typing.Optional[torch.Tensor] = None, input_features_mask: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, **kwargs)
+forward(input_ids: typing.Optional[torch.LongTensor] = None, input_features: typing.Optional[torch.Tensor] = None, input_features_mask: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, cache: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/granite_speech_plus/modeling_granite_speech_plus.py#L539)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/granite_speech_plus/modeling_granite_speech_plus.py#L540)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-input_features (`torch.Tensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using [GraniteSpeechFeatureExtractor](/docs/transformers/v5.23.0/en/model_doc/granite_speech#transformers.GraniteSpeechFeatureExtractor). See `GraniteSpeechFeatureExtractor.__call__()` for details ([GraniteSpeechProcessor](/docs/transformers/v5.23.0/en/model_doc/granite_speech#transformers.GraniteSpeechProcessor) uses [GraniteSpeechFeatureExtractor](/docs/transformers/v5.23.0/en/model_doc/granite_speech#transformers.GraniteSpeechFeatureExtractor) for processing audios).
+input_features (`torch.Tensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using `feature_extractor_class`. See `feature_extractor_class.__call__` for details (`processor_class` uses `feature_extractor_class` for processing audios).
 
 input_features_mask (`torch.Tensor`, *optional*) : Mask to be applied to audio features prior to scattering into the language embeddings.
 
@@ -356,13 +356,13 @@ attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *option
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
 labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should either be in `[0, ..., config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
 
-use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
+use_cache (`bool`, *optional*) : If set to `True`, `cache` key value states are returned and can be used to speed up decoding (see `cache`).
 
 logits_to_keep (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) : If an `int`, compute logits for the last `logits_to_keep` tokens. If `0`, calculate logits for all `input_ids` (special case). Only last token logits are needed for generation, and calculating them only for that token can save memory, which becomes pretty significant for long sequences or large vocabulary size. If a `torch.Tensor`, must be 1D corresponding to the indices to keep in the sequence length dimension. This is useful when using packed tensor format (single dimension for batch and sequence length).
 
@@ -370,9 +370,9 @@ logits_to_keep (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) : If an
 
 A `GraniteSpeechPlusCausalLMOutputWithPast` or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([GraniteSpeechPlusConfig](/docs/transformers/v5.23.0/en/model_doc/granite_speech_plus#transformers.GraniteSpeechPlusConfig)) and inputs.
+elements depending on the configuration (`None`) and inputs.
 
-The [GraniteSpeechPlusForConditionalGeneration](/docs/transformers/v5.23.0/en/model_doc/granite_speech_plus#transformers.GraniteSpeechPlusForConditionalGeneration) forward method, overrides the `__call__` special method.
+The [GraniteSpeechPlusForConditionalGeneration](/docs/transformers/v5.24.0/en/model_doc/granite_speech_plus#transformers.GraniteSpeechPlusForConditionalGeneration) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -380,10 +380,10 @@ the latter silently ignores them.
 
 - **loss** (`torch.Tensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
 - **logits** (`torch.Tensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
-  `past_key_values` input) to speed up sequential decoding.
+  `cache` input) to speed up sequential decoding.
 - **hidden_states** (`tuple[torch.Tensor]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
@@ -395,46 +395,13 @@ the latter silently ignores them.
   heads.
 - **audio_hidden_states** (`torch.Tensor`, *optional*) -- Projected audio hidden states.
 
-Example:
-
-```python
->>> from transformers import AutoProcessor, GraniteSpeechPlusForConditionalGeneration
->>> from datasets import load_dataset
->>> import torch
-
->>> dataset = load_dataset("hf-internal-testing/librispeech_asr_demo", "clean", split="validation")
->>> dataset = dataset.sort("id")
->>> sampling_rate = dataset.features["audio"].sampling_rate
-
->>> processor = AutoProcessor.from_pretrained("ibm-granite/granite-speech-4.1-2b-plus")
->>> model = GraniteSpeechPlusForConditionalGeneration.from_pretrained("ibm-granite/granite-speech-4.1-2b-plus")
-
->>> # audio file is decoded on the fly
->>> inputs = processor(dataset[0]["audio"]["array"], sampling_rate=sampling_rate, return_tensors="pt")
->>> with torch.no_grad():
-...     logits = model(**inputs).logits
->>> predicted_ids = torch.argmax(logits, dim=-1)
-
->>> # transcribe speech
->>> transcription = processor.batch_decode(predicted_ids)
->>> transcription[0]
-...
-
->>> inputs["labels"] = processor(text=dataset[0]["text"], return_tensors="pt").input_ids
-
->>> # compute loss
->>> loss = model(**inputs).loss
->>> round(loss.item(), 2)
-...
-```
-
 #### get_audio_features[[transformers.GraniteSpeechPlusForConditionalGeneration.get_audio_features]]
 
 ```python
 get_audio_features(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/granite_speech_plus/modeling_granite_speech_plus.py#L536)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/granite_speech_plus/modeling_granite_speech_plus.py#L537)
 
 ### Mamba 2
-https://huggingface.co/docs/transformers/v5.23.0/model_doc/mamba2.md
+https://huggingface.co/docs/transformers/v5.24.0/model_doc/mamba2.md

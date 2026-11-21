@@ -217,11 +217,13 @@ print(decoded_outputs)
 
 ➡️ Training:
 
+Audio understanding
 ```python
 from transformers import AudioFlamingo3ForConditionalGeneration, AutoProcessor
 
 model_id = "nvidia/audio-flamingo-3-hf"
-processor = AutoProcessor.from_pretrained(model_id)
+# NOTE: the revision must be used until the chat template marking the assistant turn (for training) is merged
+processor = AutoProcessor.from_pretrained(model_id, revision="refs/pr/6")
 model = AudioFlamingo3ForConditionalGeneration.from_pretrained(model_id, device_map="auto")
 model.train()
 
@@ -252,7 +254,7 @@ conversation = [
         },
         {
             "role": "assistant",
-            "content": [{"type": "text", "text": "The transcription of the audio is 'some transcription of the audio'."}],
+            "content": [{"type": "text", "text": "The reverberation and gentle guitar strumming."}],
         }
 
     ]
@@ -262,10 +264,60 @@ inputs = processor.apply_chat_template(
     conversation,
     tokenize=True,
     return_dict=True,
+    # only train on the assistant outputs: mask the labels outside the assistant turns
+    return_assistant_tokens_mask=True,
+    return_tensors="pt",
     processor_kwargs={"output_labels": True},
 ).to(model.device, dtype=model.dtype)
+inputs["labels"][inputs.pop("assistant_masks") == 0] = -100
 
 loss = model(**inputs).loss
+print("Loss:", loss.item())
+loss.backward()
+```
+
+Transcription (ASR)
+```python
+from datasets import Audio, load_dataset
+from transformers import AudioFlamingo3ForConditionalGeneration, AutoProcessor
+
+model_id = "nvidia/audio-flamingo-3-hf"
+NUM_SAMPLES = 2
+
+# NOTE: the revision must be used until the chat template marking the assistant turn (for training) is merged
+processor = AutoProcessor.from_pretrained(model_id, revision="refs/pr/6")
+model = AudioFlamingo3ForConditionalGeneration.from_pretrained(model_id, device_map="auto")
+model.train()
+
+ds = load_dataset("hf-internal-testing/librispeech_asr_dummy", "clean", split="validation")
+ds = ds.cast_column("audio", Audio(sampling_rate=processor.feature_extractor.sampling_rate))
+conversation = [
+    [
+        {
+            "role": "user",
+            "content": [
+                {"type": "text", "text": "Transcribe the input speech."},
+                {"type": "audio", "audio": sample["audio"]["array"]},
+            ],
+        },
+        {"role": "assistant", "content": [{"type": "text", "text": sample["text"]}]},
+    ]
+    for sample in ds.select(range(NUM_SAMPLES))
+]
+
+inputs = processor.apply_chat_template(
+    conversation,
+    tokenize=True,
+    return_dict=True,
+    # only train on the assistant outputs: mask the labels outside the assistant turns
+    return_assistant_tokens_mask=True,
+    return_tensors="pt",
+    processor_kwargs={"output_labels": True},
+).to(model.device, dtype=model.dtype)
+inputs["labels"][inputs.pop("assistant_masks") == 0] = -100
+
+loss = model(**inputs).loss
+print("Loss:", loss.item())
 loss.backward()
 ```
 
@@ -362,7 +414,7 @@ are forwarded, so you can tweak padding or tensor formats just like when calling
 transformers.AudioFlamingo3Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, audio_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, audio_token_id: int = 151669, projector_hidden_act: str = 'gelu', projector_bias: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/audioflamingo3/configuration_audioflamingo3.py#L73)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/audioflamingo3/configuration_audioflamingo3.py#L73)
 
 **Parameters:**
 
@@ -380,8 +432,8 @@ This is the configuration class to store the configuration of a AudioFlamingo3Mo
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [nvidia/audio-flamingo-3-hf](https://huggingface.co/nvidia/audio-flamingo-3-hf)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -412,7 +464,7 @@ Example:
 transformers.AudioFlamingo3EncoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, num_mel_bins: int = 128, num_hidden_layers: int = 32, num_attention_heads: int = 20, intermediate_size: int = 5120, layerdrop: float | int = 0.0, activation_function: str = 'gelu', hidden_size: int = 1280, dropout: float | int = 0.0, attention_dropout: float | int = 0.0, activation_dropout: float | int = 0.0, initializer_range: float = 0.02, scale_embedding: bool = False, max_source_positions: int = 1500)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/audioflamingo3/configuration_audioflamingo3.py#L26)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/audioflamingo3/configuration_audioflamingo3.py#L26)
 
 **Parameters:**
 
@@ -446,8 +498,8 @@ This is the configuration class to store the configuration of a AudioFlamingo3Mo
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [nvidia/audio-flamingo-3-hf](https://huggingface.co/nvidia/audio-flamingo-3-hf)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -472,7 +524,7 @@ Example:
 transformers.AudioFlamingo3Processor(feature_extractor, tokenizer, chat_template = None, audio_token = '<sound>', default_transcription_prompt = 'Transcribe the input speech.', max_audio_len = 600)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/audioflamingo3/processing_audioflamingo3.py#L37)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/audioflamingo3/processing_audioflamingo3.py#L37)
 
 **Parameters:**
 
@@ -490,8 +542,8 @@ max_audio_len (`int`, *optional*, defaults to 600) : Maximum length of audio seq
 
 Constructs a AudioFlamingo3Processor which wraps a feature extractor and a tokenizer into a single processor.
 
-[AudioFlamingo3Processor](/docs/transformers/v5.23.0/en/model_doc/audioflamingo3#transformers.AudioFlamingo3Processor) offers all the functionalities of [WhisperFeatureExtractor](/docs/transformers/v5.23.0/en/model_doc/whisper#transformers.WhisperFeatureExtractor) and [Qwen2Tokenizer](/docs/transformers/v5.23.0/en/model_doc/qwen2#transformers.Qwen2Tokenizer). See the
-[~WhisperFeatureExtractor](/docs/transformers/v5.23.0/en/model_doc/whisper#transformers.WhisperFeatureExtractor) and [~Qwen2Tokenizer](/docs/transformers/v5.23.0/en/model_doc/qwen2#transformers.Qwen2Tokenizer) for more information.
+[AudioFlamingo3Processor](/docs/transformers/v5.24.0/en/model_doc/audioflamingo3#transformers.AudioFlamingo3Processor) offers all the functionalities of [WhisperFeatureExtractor](/docs/transformers/v5.24.0/en/model_doc/whisper#transformers.WhisperFeatureExtractor) and [Qwen2Tokenizer](/docs/transformers/v5.24.0/en/model_doc/qwen2#transformers.Qwen2Tokenizer). See the
+[~WhisperFeatureExtractor](/docs/transformers/v5.24.0/en/model_doc/whisper#transformers.WhisperFeatureExtractor) and [~Qwen2Tokenizer](/docs/transformers/v5.24.0/en/model_doc/qwen2#transformers.Qwen2Tokenizer) for more information.
 
 #### __call__[[transformers.AudioFlamingo3Processor.__call__]]
 
@@ -499,7 +551,7 @@ Constructs a AudioFlamingo3Processor which wraps a feature extractor and a token
 __call__(text: str | list[str], audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor'], NoneType] = None, output_labels: bool | None = False, **kwargs: *<class 'transformers.processing_utils.ProcessingKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/audioflamingo3/processing_audioflamingo3.py#L71)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/audioflamingo3/processing_audioflamingo3.py#L71)
 
 **Parameters:**
 
@@ -513,11 +565,11 @@ return_mm_token_type_ids (`bool`, *kwargs*) : Whether to return multimodal token
 
 return_text_replacement_offsets (`bool`, *kwargs*) : Whether to return character offsets for each multimodal placeholder and its replacement.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.23.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.24.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.23.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.24.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
-**Returns:** [BatchFeature](/docs/transformers/v5.23.0/en/main_classes/feature_extractor#transformers.BatchFeature)
+**Returns:** [BatchFeature](/docs/transformers/v5.24.0/en/main_classes/feature_extractor#transformers.BatchFeature)
 
 A dictionary with tokenized text (`input_ids`, `attention_mask`) and
 audio features (`input_features`, `input_features_mask`).
@@ -530,15 +582,15 @@ audio features (`input_features`, `input_features_mask`).
 transformers.AudioFlamingo3Encoder(config: AudioFlamingo3EncoderConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/audioflamingo3/modeling_audioflamingo3.py#L303)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/audioflamingo3/modeling_audioflamingo3.py#L304)
 
 **Parameters:**
 
-config ([AudioFlamingo3EncoderConfig](/docs/transformers/v5.23.0/en/model_doc/audioflamingo3#transformers.AudioFlamingo3EncoderConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([AudioFlamingo3EncoderConfig](/docs/transformers/v5.24.0/en/model_doc/audioflamingo3#transformers.AudioFlamingo3EncoderConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The audio model from AudioFlamingo3 without any head or projection on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -552,7 +604,7 @@ and behavior.
 forward(input_features: Tensor, input_features_mask: typing.Optional[torch.Tensor] = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/audioflamingo3/modeling_audioflamingo3.py#L350)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/audioflamingo3/modeling_audioflamingo3.py#L351)
 
 **Parameters:**
 
@@ -568,16 +620,16 @@ input_features_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *o
 transformers.AudioFlamingo3Model(config: AudioFlamingo3Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/audioflamingo3/modeling_audioflamingo3.py#L448)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/audioflamingo3/modeling_audioflamingo3.py#L449)
 
 **Parameters:**
 
-config ([AudioFlamingo3Config](/docs/transformers/v5.23.0/en/model_doc/audioflamingo3#transformers.AudioFlamingo3Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([AudioFlamingo3Config](/docs/transformers/v5.24.0/en/model_doc/audioflamingo3#transformers.AudioFlamingo3Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The AudioFlamingo3 model (fine-tuned Whisper encoder, multi-modal projector, Qwen2 language model),
 without a language modeling head.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -588,16 +640,16 @@ and behavior.
 #### forward[[transformers.AudioFlamingo3Model.forward]]
 
 ```python
-forward(input_ids: typing.Optional[torch.LongTensor] = None, input_features: typing.Optional[torch.Tensor] = None, input_features_mask: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, use_cache: bool | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(input_ids: typing.Optional[torch.LongTensor] = None, input_features: typing.Optional[torch.Tensor] = None, input_features_mask: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, cache: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, use_cache: bool | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/audioflamingo3/modeling_audioflamingo3.py#L514)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/audioflamingo3/modeling_audioflamingo3.py#L515)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-input_features (`torch.Tensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using [WhisperFeatureExtractor](/docs/transformers/v5.23.0/en/model_doc/whisper#transformers.WhisperFeatureExtractor). See [WhisperFeatureExtractor.__call__()](/docs/transformers/v5.23.0/en/model_doc/whisper#transformers.WhisperFeatureExtractor.__call__) for details ([AudioFlamingo3Processor](/docs/transformers/v5.23.0/en/model_doc/audioflamingo3#transformers.AudioFlamingo3Processor) uses [WhisperFeatureExtractor](/docs/transformers/v5.23.0/en/model_doc/whisper#transformers.WhisperFeatureExtractor) for processing audios).
+input_features (`torch.Tensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using `feature_extractor_class`. See `feature_extractor_class.__call__` for details (`processor_class` uses `feature_extractor_class` for processing audios).
 
 input_features_mask (`torch.Tensor` of shape `(batch_size, feature_sequence_length)`) : Mask to avoid performing attention on padding feature indices.
 
@@ -605,19 +657,19 @@ attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *option
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
-use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
+use_cache (`bool`, *optional*) : If set to `True`, `cache` key value states are returned and can be used to speed up decoding (see `cache`).
 
 **Returns:** `AudioFlamingo3ModelOutputWithPast` or `tuple(torch.Tensor)`
 
 A `AudioFlamingo3ModelOutputWithPast` or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([AudioFlamingo3Config](/docs/transformers/v5.23.0/en/model_doc/audioflamingo3#transformers.AudioFlamingo3Config)) and inputs.
+elements depending on the configuration (`None`) and inputs.
 
-The [AudioFlamingo3Model](/docs/transformers/v5.23.0/en/model_doc/audioflamingo3#transformers.AudioFlamingo3Model) forward method, overrides the `__call__` special method.
+The [AudioFlamingo3Model](/docs/transformers/v5.24.0/en/model_doc/audioflamingo3#transformers.AudioFlamingo3Model) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -633,15 +685,15 @@ the latter silently ignores them.
 transformers.AudioFlamingo3ForConditionalGeneration(config: AudioFlamingo3Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/audioflamingo3/modeling_audioflamingo3.py#L570)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/audioflamingo3/modeling_audioflamingo3.py#L572)
 
 **Parameters:**
 
-config ([AudioFlamingo3Config](/docs/transformers/v5.23.0/en/model_doc/audioflamingo3#transformers.AudioFlamingo3Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([AudioFlamingo3Config](/docs/transformers/v5.24.0/en/model_doc/audioflamingo3#transformers.AudioFlamingo3Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The AudioFlamingo3 model which consists of a fine-tuned Whisper encoder, a multi-modal projector and a Qwen2 language model.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -652,16 +704,16 @@ and behavior.
 #### forward[[transformers.AudioFlamingo3ForConditionalGeneration.forward]]
 
 ```python
-forward(input_ids: typing.Optional[torch.LongTensor] = None, input_features: typing.Optional[torch.Tensor] = None, input_features_mask: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(input_ids: typing.Optional[torch.LongTensor] = None, input_features: typing.Optional[torch.Tensor] = None, input_features_mask: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, cache: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/audioflamingo3/modeling_audioflamingo3.py#L582)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/audioflamingo3/modeling_audioflamingo3.py#L584)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-input_features (`torch.Tensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using [WhisperFeatureExtractor](/docs/transformers/v5.23.0/en/model_doc/whisper#transformers.WhisperFeatureExtractor). See [WhisperFeatureExtractor.__call__()](/docs/transformers/v5.23.0/en/model_doc/whisper#transformers.WhisperFeatureExtractor.__call__) for details ([AudioFlamingo3Processor](/docs/transformers/v5.23.0/en/model_doc/audioflamingo3#transformers.AudioFlamingo3Processor) uses [WhisperFeatureExtractor](/docs/transformers/v5.23.0/en/model_doc/whisper#transformers.WhisperFeatureExtractor) for processing audios).
+input_features (`torch.Tensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using `feature_extractor_class`. See `feature_extractor_class.__call__` for details (`processor_class` uses `feature_extractor_class` for processing audios).
 
 input_features_mask (`torch.Tensor` of shape `(batch_size, feature_sequence_length)`) : Mask to avoid performing attention on padding feature indices.
 
@@ -669,13 +721,13 @@ attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *option
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
 labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss.
 
-use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
+use_cache (`bool`, *optional*) : If set to `True`, `cache` key value states are returned and can be used to speed up decoding (see `cache`).
 
 logits_to_keep (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) : If an `int`, compute logits for the last `logits_to_keep` tokens. If `0`, calculate logits for all `input_ids` (special case). Only last token logits are needed for generation, and calculating them only for that token can save memory, which becomes pretty significant for long sequences or large vocabulary size. If a `torch.Tensor`, must be 1D corresponding to the indices to keep in the sequence length dimension. This is useful when using packed tensor format (single dimension for batch and sequence length).
 
@@ -683,9 +735,9 @@ logits_to_keep (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) : If an
 
 A `AudioFlamingo3CausalLMOutputWithPast` or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([AudioFlamingo3Config](/docs/transformers/v5.23.0/en/model_doc/audioflamingo3#transformers.AudioFlamingo3Config)) and inputs.
+elements depending on the configuration (`None`) and inputs.
 
-The [AudioFlamingo3ForConditionalGeneration](/docs/transformers/v5.23.0/en/model_doc/audioflamingo3#transformers.AudioFlamingo3ForConditionalGeneration) forward method, overrides the `__call__` special method.
+The [AudioFlamingo3ForConditionalGeneration](/docs/transformers/v5.24.0/en/model_doc/audioflamingo3#transformers.AudioFlamingo3ForConditionalGeneration) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -693,7 +745,7 @@ the latter silently ignores them.
 
 - **loss** (`torch.Tensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
 - **logits** (`torch.Tensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance.
+- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance.
 - **hidden_states** (`tuple[torch.Tensor]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
@@ -721,7 +773,7 @@ Example:
 get_audio_features(input_features, input_features_mask, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/audioflamingo3/modeling_audioflamingo3.py#L579)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/audioflamingo3/modeling_audioflamingo3.py#L581)
 
 ### Gemma2
-https://huggingface.co/docs/transformers/v5.23.0/model_doc/gemma2.md
+https://huggingface.co/docs/transformers/v5.24.0/model_doc/gemma2.md

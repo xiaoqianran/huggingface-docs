@@ -8,9 +8,9 @@
 > [!WARNING]
 > The tokenizer is built from the checkpoints' SentencePiece model. Many of its pieces share the same score, and SentencePiece breaks those ties by position, which the `tokenizers` library can't reproduce, so a small fraction of texts tokenize differently from the original remote code.
 
-The auto classes load it with the Llama implementation ([LlamaModel](/docs/transformers/v5.23.0/en/model_doc/llama2#transformers.LlamaModel) and [LlamaForCausalLM](/docs/transformers/v5.23.0/en/model_doc/llama2#transformers.LlamaForCausalLM)), so only [IQuestCoderConfig](/docs/transformers/v5.23.0/en/model_doc/iquestcoder#transformers.IQuestCoderConfig) is specific to IQuestCoder.
+The auto classes load it with the Llama implementation ([LlamaModel](/docs/transformers/v5.24.0/en/model_doc/llama2#transformers.LlamaModel) and [LlamaForCausalLM](/docs/transformers/v5.24.0/en/model_doc/llama2#transformers.LlamaForCausalLM)), so only [IQuestCoderConfig](/docs/transformers/v5.24.0/en/model_doc/iquestcoder#transformers.IQuestCoderConfig) is specific to IQuestCoder.
 
-The example below demonstrates how to generate text with the [AutoModelForCausalLM](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoModelForCausalLM) class.
+The example below demonstrates how to generate text with the [AutoModelForCausalLM](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoModelForCausalLM) class.
 
 ```python
 from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -32,7 +32,7 @@ print(tokenizer.decode(output[0][inputs["input_ids"].shape[1] :], skip_special_t
 transformers.IQuestCoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, vocab_size: int = 76800, hidden_size: int = 5120, intermediate_size: int = 27648, num_hidden_layers: int = 80, num_attention_heads: int = 40, num_key_value_heads: int | None = 8, hidden_act: str = 'silu', max_position_embeddings: int = 131072, initializer_range: float = 0.02, rms_norm_eps: float = 1e-05, use_cache: bool = True, pad_token_id: int | None = None, bos_token_id: int | None = 1, eos_token_id: int | list[int] | None = 2, tie_word_embeddings: bool = False, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None, attention_bias: bool = False, attention_dropout: float | int = 0.0, mlp_bias: bool = False, head_dim: int | None = 128)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/iquestcoder/configuration_iquestcoder.py#L30)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/iquestcoder/configuration_iquestcoder.py#L30)
 
 **Parameters:**
 
@@ -80,8 +80,8 @@ This is the configuration class to store the configuration of a LlamaModel. It i
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [IQuestLab/IQuest-Coder-V1-40B-Instruct](https://huggingface.co/IQuestLab/IQuest-Coder-V1-40B-Instruct)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ```python
 >>> from transformers import AutoModelForCausalLM, IQuestCoderConfig
@@ -97,4 +97,4 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes
 ```
 
 ### ModernBERT Decoder
-https://huggingface.co/docs/transformers/v5.23.0/model_doc/modernbert-decoder.md
+https://huggingface.co/docs/transformers/v5.24.0/model_doc/modernbert-decoder.md

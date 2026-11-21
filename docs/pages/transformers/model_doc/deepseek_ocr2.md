@@ -54,7 +54,7 @@ processor.decode(generate_ids[0, inputs["input_ids"].shape[1] :], skip_special_t
 transformers.DeepseekOcr2Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, image_token_id: int = 128815, tie_word_embeddings: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/deepseek_ocr2/configuration_deepseek_ocr2.py#L264)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/deepseek_ocr2/configuration_deepseek_ocr2.py#L262)
 
 **Parameters:**
 
@@ -70,8 +70,8 @@ This is the configuration class to store the configuration of a DeepseekOcr2Mode
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [deepseek-community/DeepSeek-OCR-2](https://huggingface.co/deepseek-community/DeepSeek-OCR-2)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## DeepseekOcr2VisionConfig[[transformers.DeepseekOcr2VisionConfig]]
 
@@ -81,7 +81,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes
 transformers.DeepseekOcr2VisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, sam_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, encoder_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/deepseek_ocr2/configuration_deepseek_ocr2.py#L150)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/deepseek_ocr2/configuration_deepseek_ocr2.py#L149)
 
 **Parameters:**
 
@@ -93,8 +93,8 @@ This is the configuration class to store the configuration of a DeepseekOcr2Mode
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [deepseek-community/DeepSeek-OCR-2](https://huggingface.co/deepseek-community/DeepSeek-OCR-2)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## DeepseekOcr2SamVisionConfig[[transformers.DeepseekOcr2SamVisionConfig]]
 
@@ -104,7 +104,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes
 transformers.DeepseekOcr2SamVisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, hidden_size: int = 768, output_channels: int = 256, num_hidden_layers: int = 12, num_attention_heads: int = 12, num_channels: int = 3, image_size: int | list[int] | tuple[int, int] = 1024, patch_size: int | list[int] | tuple[int, int] = 16, hidden_act: str = 'gelu', layer_norm_eps: float = 1e-06, attention_dropout: float | int = 0.0, initializer_range: float = 1e-10, qkv_bias: bool = True, mlp_ratio: float = 4.0, use_abs_pos: bool = True, use_rel_pos: bool = True, window_size: int = 14, global_attn_indexes: list[int] | tuple[int, ...] = (2, 5, 8, 11), mlp_dim: int | None = None, downsample_channels: list[int] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/deepseek_ocr2/configuration_deepseek_ocr2.py#L30)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/deepseek_ocr2/configuration_deepseek_ocr2.py#L30)
 
 **Parameters:**
 
@@ -150,8 +150,8 @@ This is the configuration class to store the configuration of a DeepseekOcr2Mode
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [deepseek-community/DeepSeek-OCR-2](https://huggingface.co/deepseek-community/DeepSeek-OCR-2)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## DeepseekOcr2VisionEncoderConfig[[transformers.DeepseekOcr2VisionEncoderConfig]]
 
@@ -161,7 +161,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes
 transformers.DeepseekOcr2VisionEncoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, vocab_size: int = 151936, hidden_size: int = 4096, intermediate_size: int = 22016, num_hidden_layers: int = 32, num_attention_heads: int = 32, num_key_value_heads: int | None = 32, hidden_act: str = 'silu', max_position_embeddings: int = 32768, initializer_range: float = 0.02, rms_norm_eps: float = 1e-06, use_cache: bool = True, tie_word_embeddings: bool = False, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None, use_sliding_window: bool = False, sliding_window: int | None = 4096, max_window_layers: int = 28, layer_types: list[str] | None = None, attention_dropout: float | int = 0.0, pad_token_id: int | None = None, bos_token_id: int | None = None, eos_token_id: int | list[int] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/deepseek_ocr2/configuration_deepseek_ocr2.py#L78)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/deepseek_ocr2/configuration_deepseek_ocr2.py#L78)
 
 **Parameters:**
 
@@ -211,8 +211,8 @@ This is the configuration class to store the configuration of a DeepseekOcr2Mode
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [deepseek-community/DeepSeek-OCR-2](https://huggingface.co/deepseek-community/DeepSeek-OCR-2)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -231,7 +231,7 @@ Example:
 transformers.DeepseekOcr2TextConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, vocab_size: int = 102400, hidden_size: int = 4096, intermediate_size: int = 11008, num_hidden_layers: int = 32, num_attention_heads: int = 32, num_key_value_heads: int | None = None, hidden_act: str = 'silu', max_position_embeddings: int = 2048, initializer_range: float = 0.02, rms_norm_eps: float = 1e-06, use_cache: bool = True, pad_token_id: int | None = None, bos_token_id: int | None = 1, eos_token_id: int | list[int] | None = 2, pretraining_tp: int | None = 1, tie_word_embeddings: bool = False, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None, attention_bias: bool = False, attention_dropout: float | None = 0.0, mlp_bias: bool = False, head_dim: int | None = None, n_group: int | None = None, n_routed_experts: int = 64, output_router_logits: bool = False, n_shared_experts: int = 2, routed_scaling_factor: float = 1.0, topk_group: int | None = None, topk_method: str | None = 'greedy', num_experts_per_tok: int | None = None, moe_intermediate_size: int = 1407, mlp_layer_types: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/deepseek_ocr2/configuration_deepseek_ocr2.py#L170)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/deepseek_ocr2/configuration_deepseek_ocr2.py#L169)
 
 **Parameters:**
 
@@ -301,8 +301,8 @@ This is the configuration class to store the configuration of a DeepseekOcr2Mode
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [deepseek-community/DeepSeek-OCR-2](https://huggingface.co/deepseek-community/DeepSeek-OCR-2)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## DeepseekOcr2ImageProcessor[[transformers.DeepseekOcr2ImageProcessor]]
 
@@ -312,7 +312,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes
 transformers.DeepseekOcr2ImageProcessor(**kwargs: *<class 'transformers.models.deepseek_ocr2.image_processing_deepseek_ocr2.DeepseekOcr2ImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/deepseek_ocr2/image_processing_deepseek_ocr2.py#L134)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/deepseek_ocr2/image_processing_deepseek_ocr2.py#L134)
 
 **Parameters:**
 
@@ -374,7 +374,7 @@ Constructs a DeepseekOcr2ImageProcessor image processor.
 crop_image_to_patches(images: torch.Tensor, min_patches: int, max_patches: int, tile_size: int, resample: PIL.Image.Resampling | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/deepseek_ocr2/image_processing_deepseek_ocr2.py#L154)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/deepseek_ocr2/image_processing_deepseek_ocr2.py#L154)
 
 **Parameters:**
 
@@ -401,7 +401,7 @@ Crop batched images to patches based on optimal tiling.
 get_number_of_image_patches(height: int, width: int, images_kwargs: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/deepseek_ocr2/image_processing_deepseek_ocr2.py#L288)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/deepseek_ocr2/image_processing_deepseek_ocr2.py#L288)
 
 Returns the number of image patches for a given image size (1 global + local patches).
 
@@ -411,7 +411,7 @@ Returns the number of image patches for a given image size (1 global + local pat
 pad_to_square(images: torch.Tensor, background_color: int | tuple[int, int, int] = 0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/deepseek_ocr2/image_processing_deepseek_ocr2.py#L308)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/deepseek_ocr2/image_processing_deepseek_ocr2.py#L308)
 
 **Parameters:**
 
@@ -433,7 +433,7 @@ Pads an image to a square based on the longest edge.
 transformers.DeepseekOcr2ImageProcessorPil(**kwargs: *<class 'transformers.models.deepseek_ocr2.image_processing_pil_deepseek_ocr2.DeepseekOcr2ImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/deepseek_ocr2/image_processing_pil_deepseek_ocr2.py#L142)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/deepseek_ocr2/image_processing_pil_deepseek_ocr2.py#L142)
 
 **Parameters:**
 
@@ -495,7 +495,7 @@ Constructs a DeepseekOcr2ImageProcessor image processor.
 crop_image_to_patches(image: ndarray, min_patches: int, max_patches: int, tile_size: int, resample: PILImageResampling | int | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/deepseek_ocr2/image_processing_pil_deepseek_ocr2.py#L162)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/deepseek_ocr2/image_processing_pil_deepseek_ocr2.py#L162)
 
 Crop the image to patches and return a list of cropped images.
 
@@ -505,7 +505,7 @@ Crop the image to patches and return a list of cropped images.
 get_number_of_image_patches(height: int, width: int, images_kwargs: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/deepseek_ocr2/image_processing_pil_deepseek_ocr2.py#L274)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/deepseek_ocr2/image_processing_pil_deepseek_ocr2.py#L274)
 
 **Parameters:**
 
@@ -527,7 +527,7 @@ A utility that returns number patches for a given image size.
 pad_to_square(image: ndarray, background_color: int | tuple[int, int, int] = 0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/deepseek_ocr2/image_processing_pil_deepseek_ocr2.py#L309)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/deepseek_ocr2/image_processing_pil_deepseek_ocr2.py#L309)
 
 **Parameters:**
 
@@ -549,7 +549,7 @@ Pads an image to a square based on the longest edge.
 transformers.DeepseekOcr2Processor(image_processor = None, tokenizer = None, chat_template = None, patch_size = 16, downsample_ratio = 4, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/deepseek_ocr2/processing_deepseek_ocr2.py#L31)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/deepseek_ocr2/processing_deepseek_ocr2.py#L31)
 
 **Parameters:**
 
@@ -565,8 +565,8 @@ downsample_ratio (`int`, *optional*, defaults to `4`) : The downsampling ratio a
 
 Constructs a DeepseekOcr2Processor which wraps a image processor and a tokenizer into a single processor.
 
-[DeepseekOcr2Processor](/docs/transformers/v5.23.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2Processor) offers all the functionalities of [DeepseekOcr2ImageProcessor](/docs/transformers/v5.23.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2ImageProcessor) and `tokenizer_class`. See the
-[~DeepseekOcr2ImageProcessor](/docs/transformers/v5.23.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2ImageProcessor) and `~tokenizer_class` for more information.
+[DeepseekOcr2Processor](/docs/transformers/v5.24.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2Processor) offers all the functionalities of [DeepseekOcr2ImageProcessor](/docs/transformers/v5.24.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2ImageProcessor) and `tokenizer_class`. See the
+[~DeepseekOcr2ImageProcessor](/docs/transformers/v5.24.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2ImageProcessor) and `~tokenizer_class` for more information.
 
 ## DeepseekOcr2TextModel[[transformers.DeepseekOcr2TextModel]]
 
@@ -576,15 +576,15 @@ Constructs a DeepseekOcr2Processor which wraps a image processor and a tokenizer
 transformers.DeepseekOcr2TextModel(config: DeepseekOcr2TextConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/deepseek_ocr2/modeling_deepseek_ocr2.py#L1318)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/deepseek_ocr2/modeling_deepseek_ocr2.py#L1290)
 
 **Parameters:**
 
-config ([DeepseekOcr2TextConfig](/docs/transformers/v5.23.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2TextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([DeepseekOcr2TextConfig](/docs/transformers/v5.24.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2TextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Deepseek Ocr2 Text Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -595,42 +595,42 @@ and behavior.
 #### forward[[transformers.DeepseekOcr2TextModel.forward]]
 
 ```python
-forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, use_cache: bool | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, cache: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, use_cache: bool | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/deepseek_ocr2/modeling_deepseek_ocr2.py#L1335)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/deepseek_ocr2/modeling_deepseek_ocr2.py#L1307)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
-use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
+use_cache (`bool`, *optional*) : If set to `True`, `cache` key value states are returned and can be used to speed up decoding (see `cache`).
 
 **Returns:** `MoeModelOutputWithPast` or `tuple(torch.Tensor)`
 
 A `MoeModelOutputWithPast` or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([DeepseekOcr2Config](/docs/transformers/v5.23.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2Config)) and inputs.
+elements depending on the configuration (`None`) and inputs.
 
-The [DeepseekOcr2TextModel](/docs/transformers/v5.23.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2TextModel) forward method, overrides the `__call__` special method.
+The [DeepseekOcr2TextModel](/docs/transformers/v5.24.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2TextModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
 - **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
-  `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `past_key_values`
+  `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `cache`
   input) to speed up sequential decoding.
 - **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
@@ -654,15 +654,15 @@ the latter silently ignores them.
 transformers.DeepseekOcr2VisionModel(config: DeepseekOcr2VisionConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/deepseek_ocr2/modeling_deepseek_ocr2.py#L957)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/deepseek_ocr2/modeling_deepseek_ocr2.py#L929)
 
 **Parameters:**
 
-config ([DeepseekOcr2VisionConfig](/docs/transformers/v5.23.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2VisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([DeepseekOcr2VisionConfig](/docs/transformers/v5.24.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2VisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Vision pipeline: SAM ViT-B (with neck)
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -676,19 +676,19 @@ and behavior.
 forward(pixel_values: Tensor, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/deepseek_ocr2/modeling_deepseek_ocr2.py#L970)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/deepseek_ocr2/modeling_deepseek_ocr2.py#L942)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [DeepseekOcr2ImageProcessor](/docs/transformers/v5.23.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2ImageProcessor). See [DeepseekOcr2ImageProcessor.__call__()](/docs/transformers/v5.23.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([DeepseekOcr2Processor](/docs/transformers/v5.23.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2Processor) uses [DeepseekOcr2ImageProcessor](/docs/transformers/v5.23.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2ImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [DeepseekOcr2ImageProcessor](/docs/transformers/v5.24.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2ImageProcessor). See [DeepseekOcr2ImageProcessor.__call__()](/docs/transformers/v5.24.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([DeepseekOcr2Processor](/docs/transformers/v5.24.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2Processor) uses [DeepseekOcr2ImageProcessor](/docs/transformers/v5.24.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2ImageProcessor) for processing images).
 
-**Returns:** [BaseModelOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.Tensor)`
+**Returns:** [BaseModelOutput](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.Tensor)`
 
-A [BaseModelOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
+A [BaseModelOutput](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([DeepseekOcr2Config](/docs/transformers/v5.23.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2Config)) and inputs.
+elements depending on the configuration ([DeepseekOcr2Config](/docs/transformers/v5.24.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2Config)) and inputs.
 
-The [DeepseekOcr2VisionModel](/docs/transformers/v5.23.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2VisionModel) forward method, overrides the `__call__` special method.
+The [DeepseekOcr2VisionModel](/docs/transformers/v5.24.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2VisionModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -713,15 +713,15 @@ the latter silently ignores them.
 transformers.DeepseekOcr2Model(config: DeepseekOcr2Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/deepseek_ocr2/modeling_deepseek_ocr2.py#L1399)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/deepseek_ocr2/modeling_deepseek_ocr2.py#L1372)
 
 **Parameters:**
 
-config ([DeepseekOcr2Config](/docs/transformers/v5.23.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([DeepseekOcr2Config](/docs/transformers/v5.24.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Llava-Next model which consists of a vision backbone and a language model without language modeling head.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -732,16 +732,16 @@ and behavior.
 #### forward[[transformers.DeepseekOcr2Model.forward]]
 
 ```python
-forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.Tensor] = None, pixel_values_local: typing.Optional[torch.Tensor] = None, num_local_patches: typing.Union[list[int], torch.Tensor, NoneType] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, use_cache: bool | None = None, mm_encoder_outputs: dict[str, transformers.modeling_outputs.BaseModelOutputWithPooling] | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.Tensor] = None, pixel_values_local: typing.Optional[torch.Tensor] = None, num_local_patches: typing.Union[list[int], torch.Tensor, NoneType] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, cache: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, use_cache: bool | None = None, mm_encoder_outputs: dict[str, transformers.modeling_outputs.BaseModelOutputWithPooling] | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/deepseek_ocr2/modeling_deepseek_ocr2.py#L1497)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/deepseek_ocr2/modeling_deepseek_ocr2.py#L1470)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [DeepseekOcr2ImageProcessor](/docs/transformers/v5.23.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2ImageProcessor). See [DeepseekOcr2ImageProcessor.__call__()](/docs/transformers/v5.23.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([DeepseekOcr2Processor](/docs/transformers/v5.23.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2Processor) uses [DeepseekOcr2ImageProcessor](/docs/transformers/v5.23.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2ImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using `image_processor_class`. See `image_processor_class.__call__` for details (`processor_class` uses `image_processor_class` for processing images).
 
 pixel_values_local (`torch.Tensor`, *optional*) : Local patch pixel values of shape `(total_patches, 3, H, W)`.
 
@@ -751,11 +751,11 @@ attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *option
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
-use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
+use_cache (`bool`, *optional*) : If set to `True`, `cache` key value states are returned and can be used to speed up decoding (see `cache`).
 
 mm_encoder_outputs (`dict[str, ~modeling_outputs.BaseModelOutputWithPooling]`, *optional*) : Dict where keys are supported modalities and values are encoded outputs for that modality. Each encoded output is a tuple that consists of (`pooler_output`, *optional*: `last_hidden_states`, *optional*: `hidden_states`, *optional*: `attentions`) `pooler_output` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) is a sequence of multimmodal features of the encoder merged into text embeddings.
 
@@ -763,36 +763,36 @@ mm_encoder_outputs (`dict[str, ~modeling_outputs.BaseModelOutputWithPooling]`, *
 
 A `DeepseekOcr2ModelOutputWithPast` or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([DeepseekOcr2Config](/docs/transformers/v5.23.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2Config)) and inputs.
+elements depending on the configuration (`None`) and inputs.
 
-The [DeepseekOcr2Model](/docs/transformers/v5.23.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2Model) forward method, overrides the `__call__` special method.
+The [DeepseekOcr2Model](/docs/transformers/v5.24.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2Model) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
-
-  If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
+- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the language model backbone.
+  If `cache` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
-
-  Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
-  `past_key_values` input) to speed up sequential decoding.
-- **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+  Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
+  `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `cache`
+  input) to speed up sequential decoding.
+- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
-
-  Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
-  sequence_length)`.
-
-  Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
-  heads.
-- **image_hidden_states** (`torch.Tensor`, *optional*) -- A `torch.Tensor` of size `(batch_size, num_images, sequence_length, hidden_size)`.
-  image_hidden_states of the model produced by the vision encoder and after projecting the last hidden state.
-- **router_logits** (`tuple[torch.Tensor]`, *optional*, returned when `output_router_logits=True` is passed or when `config.add_router_probs=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, sequence_length, num_experts)`.
-
-  Router logits of the model, useful to compute the auxiliary loss for Mixture of Experts models.
+  Hidden-states of the language model backbone at the output of each layer plus the optional initial
+  embedding outputs.
+- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+  sequence_length)`. Attention weights of the language model backbone, after the attention softmax.
+- **router_logits** (`tuple(torch.Tensor)`, *optional*, returned when `output_router_logits=True` is passed or when `config.output_router_logits=True`) -- Tuple of `torch.Tensor` (one for each sparse layer) of shape `(batch_size * sequence_length, num_experts)`.
+  Raw router logits computed by the MoE routers. They can be used to compute a load-balancing loss or to
+  inspect how tokens are dispatched to experts.
+- **image_outputs** (`BaseModelOutputWithPooling`, *optional*) -- Output of the image encoder: `last_hidden_state`, `pooler_output`, `hidden_states` and `attentions`.
+  `None` if no images were processed.
+- **video_outputs** (`BaseModelOutputWithPooling`, *optional*) -- Output of the video encoder: `last_hidden_state`, `pooler_output`, `hidden_states` and `attentions`.
+  `None` if no videos were processed.
+- **audio_outputs** (`BaseModelOutputWithPooling`, *optional*) -- Output of the audio encoder: `last_hidden_state`, `pooler_output`, `hidden_states` and `attentions`.
+  `None` if no audio was processed.
 
 #### get_image_features[[transformers.DeepseekOcr2Model.get_image_features]]
 
@@ -800,21 +800,21 @@ the latter silently ignores them.
 get_image_features(pixel_values: Tensor, pixel_values_local: typing.Optional[torch.Tensor] = None, num_local_patches: typing.Union[list[int], torch.Tensor, NoneType] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/deepseek_ocr2/modeling_deepseek_ocr2.py#L1418)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/deepseek_ocr2/modeling_deepseek_ocr2.py#L1391)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [DeepseekOcr2ImageProcessor](/docs/transformers/v5.23.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2ImageProcessor). See [DeepseekOcr2ImageProcessor.__call__()](/docs/transformers/v5.23.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([DeepseekOcr2Processor](/docs/transformers/v5.23.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2Processor) uses [DeepseekOcr2ImageProcessor](/docs/transformers/v5.23.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2ImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [DeepseekOcr2ImageProcessor](/docs/transformers/v5.24.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2ImageProcessor). See [DeepseekOcr2ImageProcessor.__call__()](/docs/transformers/v5.24.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([DeepseekOcr2Processor](/docs/transformers/v5.24.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2Processor) uses [DeepseekOcr2ImageProcessor](/docs/transformers/v5.24.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2ImageProcessor) for processing images).
 
 pixel_values_local (`torch.Tensor` of shape `(total_patches, 3, height, width)`, *optional*) : All local patches flattened across the batch, or `None` if no local views.
 
 num_local_patches (`list[int]` or `torch.Tensor`, *optional*) : Number of local patches per image, e.g. `[6, 0, 4]`.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([DeepseekOcr2Config](/docs/transformers/v5.23.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2Config)) and inputs.
+elements depending on the configuration ([DeepseekOcr2Config](/docs/transformers/v5.24.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2Config)) and inputs.
 
 - **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.Tensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -837,7 +837,7 @@ elements depending on the configuration ([DeepseekOcr2Config](/docs/transformers
 get_placeholder_mask(input_ids: LongTensor, inputs_embeds: Tensor, image_features: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/deepseek_ocr2/modeling_deepseek_ocr2.py#L1474)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/deepseek_ocr2/modeling_deepseek_ocr2.py#L1447)
 
 Obtains multimodal placeholder mask from `input_ids` or `inputs_embeds`, and checks that the placeholder token count is
 equal to the length of multimodal features. If the lengths are different, an error is raised.
@@ -850,15 +850,15 @@ equal to the length of multimodal features. If the lengths are different, an err
 transformers.DeepseekOcr2ForConditionalGeneration(config: DeepseekOcr2Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/deepseek_ocr2/modeling_deepseek_ocr2.py#L1558)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/deepseek_ocr2/modeling_deepseek_ocr2.py#L1525)
 
 **Parameters:**
 
-config ([DeepseekOcr2Config](/docs/transformers/v5.23.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([DeepseekOcr2Config](/docs/transformers/v5.24.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Deepseek Ocr2 Model for token generation conditioned on other modalities (e.g. image-text-to-text generation).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -869,16 +869,16 @@ and behavior.
 #### forward[[transformers.DeepseekOcr2ForConditionalGeneration.forward]]
 
 ```python
-forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.Tensor] = None, pixel_values_local: typing.Optional[torch.Tensor] = None, num_local_patches: typing.Union[list[int], torch.Tensor, NoneType] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, mm_encoder_outputs: dict[str, transformers.modeling_outputs.BaseModelOutputWithPooling] | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.Tensor] = None, pixel_values_local: typing.Optional[torch.Tensor] = None, num_local_patches: typing.Union[list[int], torch.Tensor, NoneType] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, cache: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, mm_encoder_outputs: dict[str, transformers.modeling_outputs.BaseModelOutputWithPooling] | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/deepseek_ocr2/modeling_deepseek_ocr2.py#L1598)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/deepseek_ocr2/modeling_deepseek_ocr2.py#L1565)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [DeepseekOcr2ImageProcessor](/docs/transformers/v5.23.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2ImageProcessor). See [DeepseekOcr2ImageProcessor.__call__()](/docs/transformers/v5.23.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([DeepseekOcr2Processor](/docs/transformers/v5.23.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2Processor) uses [DeepseekOcr2ImageProcessor](/docs/transformers/v5.23.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2ImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using `image_processor_class`. See `image_processor_class.__call__` for details (`processor_class` uses `image_processor_class` for processing images).
 
 pixel_values_local (`torch.Tensor`, *optional*) : Local patch pixel values of shape `(total_patches, 3, H, W)`.
 
@@ -888,13 +888,13 @@ attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *option
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
 labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should either be in `[0, ..., config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
 
-use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
+use_cache (`bool`, *optional*) : If set to `True`, `cache` key value states are returned and can be used to speed up decoding (see `cache`).
 
 logits_to_keep (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) : If an `int`, compute logits for the last `logits_to_keep` tokens. If `0`, calculate logits for all `input_ids` (special case). Only last token logits are needed for generation, and calculating them only for that token can save memory, which becomes pretty significant for long sequences or large vocabulary size. If a `torch.Tensor`, must be 1D corresponding to the indices to keep in the sequence length dimension. This is useful when using packed tensor format (single dimension for batch and sequence length).
 
@@ -904,64 +904,38 @@ mm_encoder_outputs (`dict[str, ~modeling_outputs.BaseModelOutputWithPooling]`, *
 
 A `DeepseekOcr2CausalLMOutputWithPast` or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([DeepseekOcr2Config](/docs/transformers/v5.23.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2Config)) and inputs.
+elements depending on the configuration (`None`) and inputs.
 
-The [DeepseekOcr2ForConditionalGeneration](/docs/transformers/v5.23.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2ForConditionalGeneration) forward method, overrides the `__call__` special method.
+The [DeepseekOcr2ForConditionalGeneration](/docs/transformers/v5.24.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2ForConditionalGeneration) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **loss** (`torch.Tensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
-- **logits** (`torch.Tensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
-
-  Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
-  `past_key_values` input) to speed up sequential decoding.
-- **hidden_states** (`tuple[torch.Tensor]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
+- **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
+- **aux_loss** (`torch.Tensor`, *optional*, returned when `output_router_logits=True` is passed or when `config.output_router_logits=True`, and the model trains its router with a load-balancing loss) -- Load-balancing auxiliary loss for the sparse modules. Models that balance their experts with a router bias
+  instead (DeepSeek-V3 and the architectures derived from it) return `None` here while still returning
+  `router_logits`.
+- **logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
+- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+  Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
+  `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `cache`
+  input) to speed up sequential decoding.
+- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
-
-  Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple[torch.Tensor]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
-  sequence_length)`.
-
-  Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
-  heads.
-- **image_hidden_states** (`torch.Tensor`, *optional*) -- A `torch.Tensor` of size (batch_size * num_patches, num_images, sequence_length, hidden_size)`.
-  image_hidden_states of the model produced by the vision encoder and after projecting the last hidden state.
-- **router_logits** (`tuple[torch.Tensor]`, *optional*, returned when `output_router_logits=True` is passed or when `config.add_router_probs=True`) -- Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, sequence_length, num_experts)`.
-
-  Router logits of the model, useful to compute the auxiliary loss for Mixture of Experts models.
-
-Example:
-
-```python
->>> from PIL import Image
->>> from transformers import AutoProcessor, DeepseekOcr2ForConditionalGeneration
-
->>> model = DeepseekOcr2ForConditionalGeneration.from_pretrained("deepseek-community/DeepSeek-OCR-2")
->>> processor = AutoProcessor.from_pretrained("deepseek-community/DeepSeek-OCR-2")
-
->>> messages = [
-...     {
-...         "role": "user", "content": [
-...             {"type": "image", "url": "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/pipeline-cat-chonk.jpeg"},
-...             {"type": "text", "text": "Where is the cat standing?"},
-...         ]
-...     },
-... ]
-
->>> inputs = processor.apply_chat_template(
-...     messages,
-...     tokenize=True,
-...     return_dict=True,
-...     return_tensors="pt",
-...     add_generation_prompt=True
-... )
->>> # Generate
->>> generate_ids = model.generate(**inputs)
->>> processor.batch_decode(generate_ids, skip_special_tokens=True)[0]
-```
+  Hidden-states of the language model backbone at the output of each layer plus the optional initial
+  embedding outputs.
+- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) -- Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
+  sequence_length)`. Attention weights of the language model backbone, after the attention softmax.
+- **router_logits** (`tuple(torch.Tensor)`, *optional*, returned when `output_router_logits=True` is passed or when `config.output_router_logits=True`) -- Tuple of `torch.Tensor` (one for each sparse layer) of shape `(batch_size * sequence_length, num_experts)`.
+  Raw router logits computed by the MoE routers. They can be used to compute a load-balancing loss or to
+  inspect how tokens are dispatched to experts.
+- **image_outputs** (`BaseModelOutputWithPooling`, *optional*) -- Output of the image encoder: `last_hidden_state`, `pooler_output`, `hidden_states` and `attentions`.
+  `None` if no images were processed.
+- **video_outputs** (`BaseModelOutputWithPooling`, *optional*) -- Output of the video encoder: `last_hidden_state`, `pooler_output`, `hidden_states` and `attentions`.
+  `None` if no videos were processed.
+- **audio_outputs** (`BaseModelOutputWithPooling`, *optional*) -- Output of the audio encoder: `last_hidden_state`, `pooler_output`, `hidden_states` and `attentions`.
+  `None` if no audio was processed.
 
 #### get_image_features[[transformers.DeepseekOcr2ForConditionalGeneration.get_image_features]]
 
@@ -969,7 +943,7 @@ Example:
 get_image_features(pixel_values: Tensor, pixel_values_local: typing.Optional[torch.Tensor] = None, num_local_patches: typing.Union[list[int], torch.Tensor, NoneType] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/deepseek_ocr2/modeling_deepseek_ocr2.py#L1574)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/deepseek_ocr2/modeling_deepseek_ocr2.py#L1541)
 
 **Parameters:**
 
@@ -979,11 +953,11 @@ pixel_values_local (`torch.Tensor` of shape `(total_patches, 3, height, width)`,
 
 num_local_patches (`list[int]` or `torch.Tensor`, *optional*) : Number of local patches per image, e.g. `[6, 0, 4]`.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([DeepseekOcr2Config](/docs/transformers/v5.23.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2Config)) and inputs.
+elements depending on the configuration ([DeepseekOcr2Config](/docs/transformers/v5.24.0/en/model_doc/deepseek_ocr2#transformers.DeepseekOcr2Config)) and inputs.
 
 - **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.Tensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -1031,4 +1005,4 @@ Example:
 ```
 
 ### MMS
-https://huggingface.co/docs/transformers/v5.23.0/model_doc/mms.md
+https://huggingface.co/docs/transformers/v5.24.0/model_doc/mms.md

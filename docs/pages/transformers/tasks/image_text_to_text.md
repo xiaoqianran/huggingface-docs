@@ -94,7 +94,7 @@ messages = [
 ]
 ```
 
-We will now call the processors' [apply_chat_template()](/docs/transformers/v5.23.0/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) method to preprocess its output along with the image inputs.
+We will now call the processors' [apply_chat_template()](/docs/transformers/v5.24.0/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) method to preprocess its output along with the image inputs.
 
 ```python
 inputs = processor.apply_chat_template(messages, add_generation_prompt=True, tokenize=True, return_dict=True, return_tensors="pt").to(device)
@@ -115,7 +115,7 @@ print(generated_texts)
 
 ## Pipeline
 
-The fastest way to get started is to use the [Pipeline](/docs/transformers/v5.23.0/en/main_classes/pipelines#transformers.Pipeline) API. Specify the `"image-text-to-text"` task and the model you want to use.
+The fastest way to get started is to use the [Pipeline](/docs/transformers/v5.24.0/en/main_classes/pipelines#transformers.Pipeline) API. Specify the `"image-text-to-text"` task and the model you want to use.
 
 ```python
 from transformers import pipeline
@@ -145,7 +145,7 @@ messages = [
  ]
 ```
 
-Pass the chat template formatted text and image to [Pipeline](/docs/transformers/v5.23.0/en/main_classes/pipelines#transformers.Pipeline) and set `return_full_text=False` to remove the input from the generated output.
+Pass the chat template formatted text and image to [Pipeline](/docs/transformers/v5.24.0/en/main_classes/pipelines#transformers.Pipeline) and set `return_full_text=False` to remove the input from the generated output.
 
 ```python
 outputs = pipe(text=messages, max_new_tokens=20, return_full_text=False)
@@ -202,9 +202,9 @@ outputs[0]['input_text']
 
 ## Streaming
 
-We can use [text streaming](../generation_features#streaming) for a better generation experience. Transformers supports streaming with the [TextStreamer](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.TextStreamer) or [TextIteratorStreamer](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.TextIteratorStreamer) classes. We will use the [TextIteratorStreamer](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.TextIteratorStreamer) with IDEFICS-8B.
+We can use [text streaming](../generation_features#streaming) for a better generation experience. Transformers supports streaming with the [TextStreamer](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.TextStreamer) or [TextIteratorStreamer](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.TextIteratorStreamer) classes. We will use the [TextIteratorStreamer](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.TextIteratorStreamer) with IDEFICS-8B.
 
-Assume we have an application that keeps chat history and takes in the new user input. We will preprocess the inputs as usual and initialize [TextIteratorStreamer](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.TextIteratorStreamer) to handle the generation in a separate thread. This allows you to stream the generated text tokens in real-time. Any generation arguments can be passed to [TextIteratorStreamer](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.TextIteratorStreamer).
+Assume we have an application that keeps chat history and takes in the new user input. We will preprocess the inputs as usual and initialize [TextIteratorStreamer](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.TextIteratorStreamer) to handle the generation in a separate thread. This allows you to stream the generated text tokens in real-time. Any generation arguments can be passed to [TextIteratorStreamer](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.TextIteratorStreamer).
 
 ```python
 import time
@@ -291,7 +291,7 @@ First, install dependencies.
 pip install -U optimum-quanto bitsandbytes
 ```
 
-To quantize a model during loading, we need to first create [QuantoConfig](/docs/transformers/v5.23.0/en/main_classes/quantization#transformers.QuantoConfig). Then load the model as usual, but pass `quantization_config` during model initialization.
+To quantize a model during loading, we need to first create [QuantoConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.QuantoConfig). Then load the model as usual, but pass `quantization_config` during model initialization.
 
 ```python
 from transformers import AutoModelForImageTextToText, QuantoConfig
@@ -345,7 +345,7 @@ model_id = 'google/gemma-4-E2B-it'
 processor = AutoProcessor.from_pretrained(model_id)
 model = Gemma4ForConditionalGeneration.from_pretrained(model_id, dtype=torch.float32, device_map='cpu')
 
-past_key_values = DynamicCache()
+cache = DynamicCache()
 streamer = TextStreamer(processor.tokenizer, skip_prompt=True, skip_special_tokens=True)
 
 ## Turn 1: multimodal input (text + image + audio)
@@ -363,7 +363,7 @@ messages = [
 ]
 input_string = processor.apply_chat_template(messages, add_generation_prompt=True, tokenize=False)
 inputs = processor(text=input_string, images=[image], audio=[audio], return_tensors='pt')
-output = model.generate(**inputs, past_key_values=past_key_values, max_new_tokens=1024, do_sample=False, streamer=streamer)
+output = model.generate(**inputs, cache=cache, max_new_tokens=1024, do_sample=False, streamer=streamer)
 first_response = processor.decode(output[0][inputs['input_ids'].shape[1]:], skip_special_tokens=True)
 
 ## Turn 2: text-only follow-up (reuses KV cache, no new media)
@@ -375,9 +375,9 @@ new_string = full_string[len(cached_string):]
 
 new_input_ids = processor.tokenizer(new_string, add_special_tokens=False, return_tensors='pt')['input_ids']
 # Build and pass an attention mask only if batched input or there is padding
-# attention_mask = torch.ones(1, past_key_values.get_seq_length() + new_input_ids.shape[1], dtype=torch.long)
+# attention_mask = torch.ones(1, cache.get_seq_length() + new_input_ids.shape[1], dtype=torch.long)
 
-output2 = model.generate(input_ids=new_input_ids, past_key_values=past_key_values, max_new_tokens=1024, do_sample=False, streamer=streamer)
+output2 = model.generate(input_ids=new_input_ids, cache=cache, max_new_tokens=1024, do_sample=False, streamer=streamer)
 second_response = processor.decode(output2[0][new_input_ids.shape[1]:], skip_special_tokens=True)
 
 ## Turn 3: new image (must go through processor for image token expansion + encoding)
@@ -389,8 +389,8 @@ full_string2 = processor.apply_chat_template(messages, add_generation_prompt=Tru
 new_string2 = full_string2[len(cached_string2):]
 
 new_inputs2 = processor(text=new_string2, images=[image2], add_special_tokens=False, return_tensors='pt')
-# new_inputs2['attention_mask'] = torch.ones(1, past_key_values.get_seq_length() + new_inputs2['input_ids'].shape[1], dtype=torch.long)
-new_inputs2['past_key_values'] = past_key_values
+# new_inputs2['attention_mask'] = torch.ones(1, cache.get_seq_length() + new_inputs2['input_ids'].shape[1], dtype=torch.long)
+new_inputs2['cache'] = cache
 
 output3 = model.generate(**new_inputs2, max_new_tokens=1024, do_sample=False, streamer=streamer)
 ```
@@ -404,4 +404,4 @@ Here are some more resources for the image-text-to-text task.
 - [Learn how to fine-tune vision language models using TRL](https://huggingface.co/blog/trl-vlm-alignment)
 
 ### Keypoint matching
-https://huggingface.co/docs/transformers/v5.23.0/tasks/keypoint_matching.md
+https://huggingface.co/docs/transformers/v5.24.0/tasks/keypoint_matching.md

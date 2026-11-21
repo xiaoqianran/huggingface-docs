@@ -1595,6 +1595,7 @@ https://huggingface.co/docs/transformers/model_doc/albert.md
 https://huggingface.co/docs/transformers/model_doc/align.md
 https://huggingface.co/docs/transformers/model_doc/altclip.md
 https://huggingface.co/docs/transformers/model_doc/apertus.md
+https://huggingface.co/docs/transformers/model_doc/apertus1p5.md
 https://huggingface.co/docs/transformers/model_doc/arcee.md
 https://huggingface.co/docs/transformers/model_doc/aria.md
 https://huggingface.co/docs/transformers/model_doc/audio-spectrogram-transformer.md
@@ -1696,6 +1697,7 @@ https://huggingface.co/docs/transformers/model_doc/dinov3.md
 https://huggingface.co/docs/transformers/model_doc/distilbert.md
 https://huggingface.co/docs/transformers/model_doc/doge.md
 https://huggingface.co/docs/transformers/model_doc/donut.md
+https://huggingface.co/docs/transformers/model_doc/dory.md
 https://huggingface.co/docs/transformers/model_doc/dots1.md
 https://huggingface.co/docs/transformers/model_doc/dots3_note.md
 https://huggingface.co/docs/transformers/model_doc/dpr.md
@@ -1720,6 +1722,7 @@ https://huggingface.co/docs/transformers/model_doc/esmc.md
 https://huggingface.co/docs/transformers/model_doc/esmfold2.md
 https://huggingface.co/docs/transformers/model_doc/eurobert.md
 https://huggingface.co/docs/transformers/model_doc/evolla.md
+https://huggingface.co/docs/transformers/model_doc/exaone.md
 https://huggingface.co/docs/transformers/model_doc/exaone4.md
 https://huggingface.co/docs/transformers/model_doc/exaone4_5.md
 https://huggingface.co/docs/transformers/model_doc/exaone_moe.md
@@ -1802,6 +1805,7 @@ https://huggingface.co/docs/transformers/model_doc/hunyuan_v1_moe.md
 https://huggingface.co/docs/transformers/model_doc/hunyuan_vl.md
 https://huggingface.co/docs/transformers/model_doc/hy_v3.md
 https://huggingface.co/docs/transformers/model_doc/hy_v4.md
+https://huggingface.co/docs/transformers/model_doc/hy_v4_vl.md
 https://huggingface.co/docs/transformers/model_doc/hyperclovax.md
 https://huggingface.co/docs/transformers/model_doc/hyperclovax_vision_v2.md
 https://huggingface.co/docs/transformers/model_doc/ibert.md
@@ -1813,6 +1817,7 @@ https://huggingface.co/docs/transformers/model_doc/imagegpt.md
 https://huggingface.co/docs/transformers/model_doc/informer.md
 https://huggingface.co/docs/transformers/model_doc/inkling.md
 https://huggingface.co/docs/transformers/model_doc/inkling2.md
+https://huggingface.co/docs/transformers/model_doc/inkling2_loop.md
 https://huggingface.co/docs/transformers/model_doc/instructblip.md
 https://huggingface.co/docs/transformers/model_doc/instructblipvideo.md
 https://huggingface.co/docs/transformers/model_doc/internlm3.md
@@ -1830,6 +1835,7 @@ https://huggingface.co/docs/transformers/model_doc/kosmos-2.md
 https://huggingface.co/docs/transformers/model_doc/kosmos2_5.md
 https://huggingface.co/docs/transformers/model_doc/kyutai_speech_to_text.md
 https://huggingface.co/docs/transformers/model_doc/laguna.md
+https://huggingface.co/docs/transformers/model_doc/lara_mini.md
 https://huggingface.co/docs/transformers/model_doc/lasr.md
 https://huggingface.co/docs/transformers/model_doc/layoutlm.md
 https://huggingface.co/docs/transformers/model_doc/layoutlmv2.md
@@ -1940,6 +1946,8 @@ https://huggingface.co/docs/transformers/model_doc/olmo3.md
 https://huggingface.co/docs/transformers/model_doc/olmo_hybrid.md
 https://huggingface.co/docs/transformers/model_doc/olmoe.md
 https://huggingface.co/docs/transformers/model_doc/omdet-turbo.md
+https://huggingface.co/docs/transformers/model_doc/omniasr.md
+https://huggingface.co/docs/transformers/model_doc/omniasr_ctc.md
 https://huggingface.co/docs/transformers/model_doc/oneformer.md
 https://huggingface.co/docs/transformers/model_doc/openai-gpt.md
 https://huggingface.co/docs/transformers/model_doc/openai_privacy_filter.md
@@ -2034,6 +2042,8 @@ https://huggingface.co/docs/transformers/model_doc/sam3_tracker_video.md
 https://huggingface.co/docs/transformers/model_doc/sam3_video.md
 https://huggingface.co/docs/transformers/model_doc/sam_hq.md
 https://huggingface.co/docs/transformers/model_doc/sapiens2.md
+https://huggingface.co/docs/transformers/model_doc/sarvam_mla.md
+https://huggingface.co/docs/transformers/model_doc/sarvam_moe.md
 https://huggingface.co/docs/transformers/model_doc/seamless_m4t.md
 https://huggingface.co/docs/transformers/model_doc/seamless_m4t_v2.md
 https://huggingface.co/docs/transformers/model_doc/seed_oss.md
@@ -2121,6 +2131,7 @@ https://huggingface.co/docs/transformers/model_doc/wav2vec2-conformer.md
 https://huggingface.co/docs/transformers/model_doc/wav2vec2.md
 https://huggingface.co/docs/transformers/model_doc/wav2vec2_phoneme.md
 https://huggingface.co/docs/transformers/model_doc/wavlm.md
+https://huggingface.co/docs/transformers/model_doc/wavtokenizer.md
 https://huggingface.co/docs/transformers/model_doc/whisper.md
 https://huggingface.co/docs/transformers/model_doc/xclip.md
 https://huggingface.co/docs/transformers/model_doc/xcodec.md

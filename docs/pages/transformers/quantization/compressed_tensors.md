@@ -39,7 +39,7 @@ print(f"{mem_params/2**30:.4f} GB")
 
 ## Loading modes
 
-A compressed-tensors checkpoint stores its weights compressed (fp8, or packed int4/int8). How they are executed is up to two [CompressedTensorsConfig](/docs/transformers/v5.23.0/en/main_classes/quantization#transformers.CompressedTensorsConfig) arguments.
+A compressed-tensors checkpoint stores its weights compressed (fp8, or packed int4/int8). How they are executed is up to two [CompressedTensorsConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.CompressedTensorsConfig) arguments.
 
 | Configuration | Weights after loading | Execution |
 |---------------|-----------------------|-----------|
@@ -47,7 +47,7 @@ A compressed-tensors checkpoint stores its weights compressed (fp8, or packed in
 | `dequantize=True` | decompressed while loading into the model dtype (e.g. BF16) | a plain dense model with no `quantization_scheme` left, so w8a8 activations aren't quantized either; it can be fine-tuned or saved in that dtype |
 | `use_optimized_inference=True` | kept quantized | layers whose scheme has a kernel run through it, currently W8A8 fp8; inference only |
 
-With the default, [save_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) writes the compressed tensors back unchanged, so a loaded model saves in the same compressed-tensors format.
+With the default, [save_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) writes the compressed tensors back unchanged, so a loaded model saves in the same compressed-tensors format.
 
 ## FP8 kernel acceleration
 
@@ -208,4 +208,4 @@ print(ct_model.model.layers[0].self_attn.q_proj)
 ```
 
 ### MXFP4
-https://huggingface.co/docs/transformers/v5.23.0/quantization/mxfp4.md
+https://huggingface.co/docs/transformers/v5.24.0/quantization/mxfp4.md

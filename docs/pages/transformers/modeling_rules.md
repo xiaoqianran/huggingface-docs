@@ -28,7 +28,7 @@ When a rule violation is detected, the error looks like this:
 src/transformers/models/acme/modeling_acme.py:18: TRF013: AcmeModel.__init__ does not call self.post_init().
 ```
 
-Use the rule ID to look up the fix in the [rules reference](#rules-reference). TRF013 is triggered when a [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel) subclass doesn't call `self.post_init()`. That method performs essential finalization steps, and omitting it causes runtime bugs.
+Use the rule ID to look up the fix in the [rules reference](#rules-reference). TRF013 is triggered when a [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel) subclass doesn't call `self.post_init()`. That method performs essential finalization steps, and omitting it causes runtime bugs.
 
 ```diff
  class AcmeModel(AcmePreTrainedModel):
@@ -93,7 +93,7 @@ Checks the shape of _no_split_modules when present. Malformed values can break d
 Checks that cache arguments in a forward signature are used in the body. An unused cache argument suggests incomplete caching support and inconsistent API behavior.
 
 ```diff
-def forward(self, x, past_key_values=None, use_cache=False):
+def forward(self, x, cache=None, use_cache=False):
 +    if use_cache:
 +        ...
      return x
@@ -609,18 +609,18 @@ class AcmeAttention(nn.Module):
 
 ### TRF044
 
-Flags a parameter named cache_position on any function in modeling_*.py and modular_*.py. cache_position was removed from all models in v5. Reintroducing it (usually copied from pre-v5 sources) threads a dead argument through every layer; the cache update is past_key_values.update(key_states, value_states, self.layer_idx), with no position threading.
+Flags a parameter named cache_position on any function in modeling_*.py and modular_*.py. cache_position was removed from all models in v5. Reintroducing it (usually copied from pre-v5 sources) threads a dead argument through every layer; the cache update is cache.update(key_states, value_states, self.layer_idx), with no position threading.
 
 ```diff
 def forward(
      self,
      hidden_states,
-     past_key_values=None,
+     cache=None,
 -    cache_position=None,
      **kwargs,
  ):
--    key_states, value_states = past_key_values.update(key_states, value_states, self.layer_idx, cache_position)
-+    key_states, value_states = past_key_values.update(key_states, value_states, self.layer_idx)
+-    key_states, value_states = cache.update(key_states, value_states, self.layer_idx, cache_position)
++    key_states, value_states = cache.update(key_states, value_states, self.layer_idx)
 ```
 
 ### TRF045
@@ -980,4 +980,4 @@ allowlist_models = ["existing_model", "your_model_name"]
 ```
 
 ### Tokenizers
-https://huggingface.co/docs/transformers/v5.23.0/fast_tokenizers.md
+https://huggingface.co/docs/transformers/v5.24.0/fast_tokenizers.md

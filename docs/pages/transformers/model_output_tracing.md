@@ -3,7 +3,7 @@
 Every model's `forward()` method used to manually resolve `None` flags like `output_attentions` from config defaults, accumulate per-layer attention weights and hidden states into tuples, and convert `ModelOutput` dataclasses to plain tuples when `return_dict=False`. Two decorators replace all of that boilerplate.
 
 - `@capture_outputs` resolves output flags, collects intermediate values, and handles `return_dict` conversion.
-- `@merge_with_config_defaults` resolves `use_cache` from config. Omit it for models that don't cache, like [CLIPModel](/docs/transformers/v5.23.0/en/model_doc/clip#transformers.CLIPModel).
+- `@merge_with_config_defaults` resolves `use_cache` from config. Omit it for models that don't cache, like [CLIPModel](/docs/transformers/v5.24.0/en/model_doc/clip#transformers.CLIPModel).
 
 You'll mostly encounter these decorators when integrating a new model. See [adding a model to 🤗 Transformers](./modular_transformers) for a step-by-step guide.
 
@@ -86,7 +86,7 @@ class MyModel(MyPreTrainedModel):
     def forward(
         self,
         input_ids: torch.LongTensor | None = None,
-        past_key_values: Cache = None,
+        cache: Cache = None,
         **kwargs: Unpack[TransformersKwargs],
     ) -> BaseModelOutputWithPast:
 
@@ -99,7 +99,7 @@ class MyModel(MyPreTrainedModel):
         # hidden_states/attentions/cross_attentions automatically.
         return BaseModelOutputWithPast(
             last_hidden_state=hidden_states,
-            past_key_values=past_key_values
+            cache=cache
         )
 ```
 
@@ -165,7 +165,7 @@ unregister_patch_mapping(["Qwen2MoeExperts", ".*Attention$"])
 Once mappings are registered, `patch_output_recorders` walks every submodule and updates each `OutputRecorder.target_class` to the registered replacement.
 
 > [!TIP]
-> The [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method calls `patch_output_recorders` automatically. You only need to call it yourself when constructing a model directly.
+> The [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method calls `patch_output_recorders` automatically. You only need to call it yourself when constructing a model directly.
 
 ```python
 from transformers.monkey_patching import patch_output_recorders
@@ -178,4 +178,4 @@ patch_output_recorders(model)
 ```
 
 ### DDP
-https://huggingface.co/docs/transformers/v5.23.0/ddp.md
+https://huggingface.co/docs/transformers/v5.24.0/ddp.md

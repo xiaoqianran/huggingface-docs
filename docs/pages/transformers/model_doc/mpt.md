@@ -31,7 +31,7 @@ Read more about it [in the release blogpost](https://www.mosaicml.com/blog/mpt-7
 transformers.MptConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, d_model: int = 2048, n_heads: int = 16, n_layers: int = 24, expansion_ratio: int = 4, max_seq_len: int = 2048, vocab_size: int = 50368, resid_pdrop: float | int = 0.0, layer_norm_epsilon: float = 1e-05, emb_pdrop: float | int = 0.0, learned_pos_emb: bool = True, attn_config: dict | transformers.models.mpt.configuration_mpt.MptAttentionConfig | None = None, init_device: str = 'cpu', logit_scale: float | str | None = None, no_bias: bool = True, embedding_fraction: float = 1.0, norm_type: str = 'low_precision_layernorm', use_cache: bool = False, initializer_range: float = 0.02, tie_word_embeddings: bool = True, pad_token_id: int | None = None, bos_token_id: int | None = None, eos_token_id: int | list[int] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/mpt/configuration_mpt.py#L71)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/mpt/configuration_mpt.py#L71)
 
 **Parameters:**
 
@@ -83,8 +83,8 @@ This is the configuration class to store the configuration of a MptModel. It is 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [mosaicml/mpt-7b](https://huggingface.co/mosaicml/mpt-7b)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -109,15 +109,15 @@ Example:
 transformers.MptModel(config: MptConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/mpt/modeling_mpt.py#L224)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/mpt/modeling_mpt.py#L226)
 
 **Parameters:**
 
-config ([MptConfig](/docs/transformers/v5.23.0/en/model_doc/mpt#transformers.MptConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MptConfig](/docs/transformers/v5.24.0/en/model_doc/mpt#transformers.MptConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Mpt Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -128,36 +128,36 @@ and behavior.
 #### forward[[transformers.MptModel.forward]]
 
 ```python
-forward(input_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, attention_mask: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
+forward(input_ids: typing.Optional[torch.LongTensor] = None, cache: transformers.cache_utils.Cache | None = None, attention_mask: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/mpt/modeling_mpt.py#L256)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/mpt/modeling_mpt.py#L258)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, input_ids_length)`) : `input_ids_length` = `sequence_length` if `past_key_values` is `None` else `past_key_values.get_seq_length()` (`sequence_length` of input past key value states). Indices of input sequence tokens in the vocabulary.  If `past_key_values` is used, only `input_ids` that do not have their past calculated should be passed as `input_ids`.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, input_ids_length)`) : `input_ids_length` = `sequence_length` if `cache` is `None` else `cache.get_seq_length()` (`sequence_length` of input past key value states). Indices of input sequence tokens in the vocabulary.  If `cache` is used, only `input_ids` that do not have their past calculated should be passed as `input_ids`.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 inputs_embeds (`torch.LongTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
-use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
+use_cache (`bool`, *optional*) : If set to `True`, `cache` key value states are returned and can be used to speed up decoding (see `cache`).
 
 output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.24.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [BaseModelOutputWithPastAndCrossAttentions](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPastAndCrossAttentions) or `tuple(torch.Tensor)`
+**Returns:** [BaseModelOutputWithPastAndCrossAttentions](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPastAndCrossAttentions) or `tuple(torch.Tensor)`
 
-A [BaseModelOutputWithPastAndCrossAttentions](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPastAndCrossAttentions) or a tuple of
+A [BaseModelOutputWithPastAndCrossAttentions](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPastAndCrossAttentions) or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MptConfig](/docs/transformers/v5.23.0/en/model_doc/mpt#transformers.MptConfig)) and inputs.
+elements depending on the configuration (`None`) and inputs.
 
-The [MptModel](/docs/transformers/v5.23.0/en/model_doc/mpt#transformers.MptModel) forward method, overrides the `__call__` special method.
+The [MptModel](/docs/transformers/v5.24.0/en/model_doc/mpt#transformers.MptModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -165,12 +165,12 @@ the latter silently ignores them.
 
 - **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 
-  If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
+  If `cache` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
-  `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `past_key_values`
+  `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `cache`
   input) to speed up sequential decoding.
 - **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
@@ -195,16 +195,16 @@ the latter silently ignores them.
 transformers.MptForCausalLM(config: MptConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/mpt/modeling_mpt.py#L368)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/mpt/modeling_mpt.py#L369)
 
 **Parameters:**
 
-config ([MptConfig](/docs/transformers/v5.23.0/en/model_doc/mpt#transformers.MptConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MptConfig](/docs/transformers/v5.24.0/en/model_doc/mpt#transformers.MptConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The MPT Model transformer with a language modeling head on top (linear layer with weights tied to the input
 embeddings).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -215,16 +215,16 @@ and behavior.
 #### forward[[transformers.MptForCausalLM.forward]]
 
 ```python
-forward(input_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, attention_mask: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, use_cache: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, **kwargs)
+forward(input_ids: typing.Optional[torch.LongTensor] = None, cache: transformers.cache_utils.Cache | None = None, attention_mask: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, use_cache: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/mpt/modeling_mpt.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/mpt/modeling_mpt.py#L383)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, input_ids_length)`) : `input_ids_length` = `sequence_length` if `past_key_values` is `None` else `past_key_values.get_seq_length()` (`sequence_length` of input past key value states). Indices of input sequence tokens in the vocabulary.  If `past_key_values` is used, only `input_ids` that do not have their past calculated should be passed as `input_ids`.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, input_ids_length)`) : `input_ids_length` = `sequence_length` if `cache` is `None` else `cache.get_seq_length()` (`sequence_length` of input past key value states). Indices of input sequence tokens in the vocabulary.  If `cache` is used, only `input_ids` that do not have their past calculated should be passed as `input_ids`.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -232,23 +232,23 @@ inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_siz
 
 labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for language modeling. Note that the labels **are shifted** inside the model, i.e. you can set `labels = input_ids` Indices are selected in `[-100, 0, ..., config.vocab_size]` All labels set to `-100` are ignored (masked), the loss is only computed for labels in `[0, ..., config.vocab_size]`
 
-use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
+use_cache (`bool`, *optional*) : If set to `True`, `cache` key value states are returned and can be used to speed up decoding (see `cache`).
 
 output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.24.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 logits_to_keep (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) : If an `int`, compute logits for the last `logits_to_keep` tokens. If `0`, calculate logits for all `input_ids` (special case). Only last token logits are needed for generation, and calculating them only for that token can save memory, which becomes pretty significant for long sequences or large vocabulary size. If a `torch.Tensor`, must be 1D corresponding to the indices to keep in the sequence length dimension. This is useful when using packed tensor format (single dimension for batch and sequence length).
 
-**Returns:** [CausalLMOutputWithCrossAttentions](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithCrossAttentions) or `tuple(torch.Tensor)`
+**Returns:** [CausalLMOutputWithCrossAttentions](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithCrossAttentions) or `tuple(torch.Tensor)`
 
-A [CausalLMOutputWithCrossAttentions](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithCrossAttentions) or a tuple of
+A [CausalLMOutputWithCrossAttentions](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithCrossAttentions) or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MptConfig](/docs/transformers/v5.23.0/en/model_doc/mpt#transformers.MptConfig)) and inputs.
+elements depending on the configuration (`None`) and inputs.
 
-The [MptForCausalLM](/docs/transformers/v5.23.0/en/model_doc/mpt#transformers.MptForCausalLM) forward method, overrides the `__call__` special method.
+The [MptForCausalLM](/docs/transformers/v5.24.0/en/model_doc/mpt#transformers.MptForCausalLM) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -270,15 +270,10 @@ the latter silently ignores them.
 
   Cross attentions weights after the attention softmax, used to compute the weighted average in the
   cross-attention heads.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the attention blocks) that can be used (see
-  `past_key_values` input) to speed up sequential decoding.
-
-Example:
-
-```python
-```
+  `cache` input) to speed up sequential decoding.
 
 ## MptForSequenceClassification[[transformers.MptForSequenceClassification]]
 
@@ -288,15 +283,15 @@ Example:
 transformers.MptForSequenceClassification(config: MptConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/mpt/modeling_mpt.py#L462)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/mpt/modeling_mpt.py#L464)
 
 **Parameters:**
 
-config ([MptConfig](/docs/transformers/v5.23.0/en/model_doc/mpt#transformers.MptConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MptConfig](/docs/transformers/v5.24.0/en/model_doc/mpt#transformers.MptConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The MPT Model transformer with a sequence classification head on top (linear layer).
 
-[MptForSequenceClassification](/docs/transformers/v5.23.0/en/model_doc/mpt#transformers.MptForSequenceClassification) uses the last token in order to do the classification, as other causal models
+[MptForSequenceClassification](/docs/transformers/v5.24.0/en/model_doc/mpt#transformers.MptForSequenceClassification) uses the last token in order to do the classification, as other causal models
 (e.g. GPT-1) do.
 
 Since it does classification on the last token, it requires to know the position of the last token. If a
@@ -305,7 +300,7 @@ no `pad_token_id` is defined, it simply takes the last value in each row of the 
 padding tokens when `inputs_embeds` are passed instead of `input_ids`, it does the same (take the last value in
 each row of the batch).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -316,16 +311,16 @@ and behavior.
 #### forward[[transformers.MptForSequenceClassification.forward]]
 
 ```python
-forward(input_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, attention_mask: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, use_cache: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
+forward(input_ids: typing.Optional[torch.LongTensor] = None, cache: transformers.cache_utils.Cache | None = None, attention_mask: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, use_cache: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/mpt/modeling_mpt.py#L475)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/mpt/modeling_mpt.py#L477)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, input_ids_length)`) : `input_ids_length` = `sequence_length` if `past_key_values` is `None` else `past_key_values.get_seq_length()` (`sequence_length` of input past key value states). Indices of input sequence tokens in the vocabulary.  If `past_key_values` is used, only `input_ids` that do not have their past calculated should be passed as `input_ids`.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, input_ids_length)`) : `input_ids_length` = `sequence_length` if `cache` is `None` else `cache.get_seq_length()` (`sequence_length` of input past key value states). Indices of input sequence tokens in the vocabulary.  If `cache` is used, only `input_ids` that do not have their past calculated should be passed as `input_ids`.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -333,21 +328,21 @@ inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_siz
 
 labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the sequence classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
 
-use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
+use_cache (`bool`, *optional*) : If set to `True`, `cache` key value states are returned and can be used to speed up decoding (see `cache`).
 
 output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.24.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 **Returns:** `SequenceClassifierOutputWithPast` or `tuple(torch.Tensor)`
 
 A `SequenceClassifierOutputWithPast` or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MptConfig](/docs/transformers/v5.23.0/en/model_doc/mpt#transformers.MptConfig)) and inputs.
+elements depending on the configuration (`None`) and inputs.
 
-The [MptForSequenceClassification](/docs/transformers/v5.23.0/en/model_doc/mpt#transformers.MptForSequenceClassification) forward method, overrides the `__call__` special method.
+The [MptForSequenceClassification](/docs/transformers/v5.24.0/en/model_doc/mpt#transformers.MptForSequenceClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -355,10 +350,10 @@ the latter silently ignores them.
 
 - **loss** (`torch.Tensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Classification (or regression if config.num_labels==1) loss.
 - **logits** (`torch.Tensor` of shape `(batch_size, config.num_labels)`) -- Classification (or regression if config.num_labels==1) scores (before SoftMax).
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
-  `past_key_values` input) to speed up sequential decoding.
+  `cache` input) to speed up sequential decoding.
 - **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
@@ -369,62 +364,6 @@ the latter silently ignores them.
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
   heads.
 
-Example of single-label classification:
-
-```python
->>> import torch
->>> from transformers import AutoTokenizer, MptForSequenceClassification
-
->>> tokenizer = AutoTokenizer.from_pretrained("mosaicml/mpt-7b")
->>> model = MptForSequenceClassification.from_pretrained("mosaicml/mpt-7b")
-
->>> inputs = tokenizer("Hello, my dog is cute", return_tensors="pt")
-
->>> with torch.no_grad():
-...     logits = model(**inputs).logits
-
->>> predicted_class_id = logits.argmax().item()
->>> model.config.id2label[predicted_class_id]
-...
-
->>> # To train a model on `num_labels` classes, you can pass `num_labels=num_labels` to `.from_pretrained(...)`
->>> num_labels = len(model.config.id2label)
->>> model = MptForSequenceClassification.from_pretrained("mosaicml/mpt-7b", num_labels=num_labels)
-
->>> labels = torch.tensor([1])
->>> loss = model(**inputs, labels=labels).loss
->>> round(loss.item(), 2)
-...
-```
-
-Example of multi-label classification:
-
-```python
->>> import torch
->>> from transformers import AutoTokenizer, MptForSequenceClassification
-
->>> tokenizer = AutoTokenizer.from_pretrained("mosaicml/mpt-7b")
->>> model = MptForSequenceClassification.from_pretrained("mosaicml/mpt-7b", problem_type="multi_label_classification")
-
->>> inputs = tokenizer("Hello, my dog is cute", return_tensors="pt")
-
->>> with torch.no_grad():
-...     logits = model(**inputs).logits
-
->>> predicted_class_ids = torch.arange(0, logits.shape[-1])[torch.sigmoid(logits).squeeze(dim=0) > 0.5]
-
->>> # To train a model on `num_labels` classes, you can pass `num_labels=num_labels` to `.from_pretrained(...)`
->>> num_labels = len(model.config.id2label)
->>> model = MptForSequenceClassification.from_pretrained(
-...     "mosaicml/mpt-7b", num_labels=num_labels, problem_type="multi_label_classification"
-... )
-
->>> labels = torch.sum(
-...     torch.nn.functional.one_hot(predicted_class_ids[None, :].clone(), num_classes=num_labels), dim=1
-... ).to(torch.float)
->>> loss = model(**inputs, labels=labels).loss
-```
-
 ## MptForTokenClassification[[transformers.MptForTokenClassification]]
 
 #### transformers.MptForTokenClassification[[transformers.MptForTokenClassification]]
@@ -433,16 +372,16 @@ Example of multi-label classification:
 transformers.MptForTokenClassification(config: MptConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/mpt/modeling_mpt.py#L577)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/mpt/modeling_mpt.py#L580)
 
 **Parameters:**
 
-config ([MptConfig](/docs/transformers/v5.23.0/en/model_doc/mpt#transformers.MptConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MptConfig](/docs/transformers/v5.24.0/en/model_doc/mpt#transformers.MptConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Mpt transformer with a token classification head on top (a linear layer on top of the hidden-states
 output) e.g. for Named-Entity-Recognition (NER) tasks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -453,16 +392,16 @@ and behavior.
 #### forward[[transformers.MptForTokenClassification.forward]]
 
 ```python
-forward(input_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, attention_mask: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, use_cache: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **deprecated_arguments)
+forward(input_ids: typing.Optional[torch.LongTensor] = None, cache: transformers.cache_utils.Cache | None = None, attention_mask: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, use_cache: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **deprecated_arguments)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/mpt/modeling_mpt.py#L595)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/mpt/modeling_mpt.py#L598)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, input_ids_length)`) : `input_ids_length` = `sequence_length` if `past_key_values` is `None` else `past_key_values.get_seq_length()` (`sequence_length` of input past key value states). Indices of input sequence tokens in the vocabulary.  If `past_key_values` is used, only `input_ids` that do not have their past calculated should be passed as `input_ids`.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, input_ids_length)`) : `input_ids_length` = `sequence_length` if `cache` is `None` else `cache.get_seq_length()` (`sequence_length` of input past key value states). Indices of input sequence tokens in the vocabulary.  If `cache` is used, only `input_ids` that do not have their past calculated should be passed as `input_ids`.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -470,21 +409,21 @@ inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_siz
 
 labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the sequence classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
 
-use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
+use_cache (`bool`, *optional*) : If set to `True`, `cache` key value states are returned and can be used to speed up decoding (see `cache`).
 
 output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.24.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [TokenClassifierOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or `tuple(torch.Tensor)`
+**Returns:** [TokenClassifierOutput](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or `tuple(torch.Tensor)`
 
-A [TokenClassifierOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or a tuple of
+A [TokenClassifierOutput](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MptConfig](/docs/transformers/v5.23.0/en/model_doc/mpt#transformers.MptConfig)) and inputs.
+elements depending on the configuration (`None`) and inputs.
 
-The [MptForTokenClassification](/docs/transformers/v5.23.0/en/model_doc/mpt#transformers.MptForTokenClassification) forward method, overrides the `__call__` special method.
+The [MptForTokenClassification](/docs/transformers/v5.24.0/en/model_doc/mpt#transformers.MptForTokenClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -502,37 +441,6 @@ the latter silently ignores them.
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
   heads.
 
-Example:
-
-```python
->>> from transformers import AutoTokenizer, MptForTokenClassification
->>> import torch
-
->>> tokenizer = AutoTokenizer.from_pretrained("mosaicml/mpt-7b")
->>> model = MptForTokenClassification.from_pretrained("mosaicml/mpt-7b")
-
->>> inputs = tokenizer(
-...     "HuggingFace is a company based in Paris and New York", add_special_tokens=False, return_tensors="pt"
-... )
-
->>> with torch.no_grad():
-...     logits = model(**inputs).logits
-
->>> predicted_token_class_ids = logits.argmax(-1)
-
->>> # Note that tokens are classified rather then input words which means that
->>> # there might be more predicted token classes than words.
->>> # Multiple token classes might account for the same word
->>> predicted_tokens_classes = [model.config.id2label[t.item()] for t in predicted_token_class_ids[0]]
->>> predicted_tokens_classes
-...
-
->>> labels = predicted_token_class_ids
->>> loss = model(**inputs, labels=labels).loss
->>> round(loss.item(), 2)
-...
-```
-
 ## MptForQuestionAnswering[[transformers.MptForQuestionAnswering]]
 
 #### transformers.MptForQuestionAnswering[[transformers.MptForQuestionAnswering]]
@@ -541,16 +449,16 @@ Example:
 transformers.MptForQuestionAnswering(config: MptConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/mpt/modeling_mpt.py#L666)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/mpt/modeling_mpt.py#L670)
 
 **Parameters:**
 
-config ([MptConfig](/docs/transformers/v5.23.0/en/model_doc/mpt#transformers.MptConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MptConfig](/docs/transformers/v5.24.0/en/model_doc/mpt#transformers.MptConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Mpt transformer with a span classification head on top for extractive question-answering tasks like
 SQuAD (a linear layer on top of the hidden-states output to compute `span start logits` and `span end logits`).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -564,11 +472,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, start_positions: typing.Optional[torch.LongTensor] = None, end_positions: typing.Optional[torch.LongTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/mpt/modeling_mpt.py#L675)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/mpt/modeling_mpt.py#L679)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, input_ids_length)`) : `input_ids_length` = `sequence_length` if `past_key_values` is `None` else `past_key_values.get_seq_length()` (`sequence_length` of input past key value states). Indices of input sequence tokens in the vocabulary.  If `past_key_values` is used, only `input_ids` that do not have their past calculated should be passed as `input_ids`.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, input_ids_length)`) : `input_ids_length` = `sequence_length` if `cache` is `None` else `cache.get_seq_length()` (`sequence_length` of input past key value states). Indices of input sequence tokens in the vocabulary.  If `cache` is used, only `input_ids` that do not have their past calculated should be passed as `input_ids`.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -582,15 +490,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.24.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [QuestionAnsweringModelOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.QuestionAnsweringModelOutput) or `tuple(torch.Tensor)`
+**Returns:** [QuestionAnsweringModelOutput](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.QuestionAnsweringModelOutput) or `tuple(torch.Tensor)`
 
-A [QuestionAnsweringModelOutput](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.QuestionAnsweringModelOutput) or a tuple of
+A [QuestionAnsweringModelOutput](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.QuestionAnsweringModelOutput) or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MptConfig](/docs/transformers/v5.23.0/en/model_doc/mpt#transformers.MptConfig)) and inputs.
+elements depending on the configuration ([MptConfig](/docs/transformers/v5.24.0/en/model_doc/mpt#transformers.MptConfig)) and inputs.
 
-The [MptForQuestionAnswering](/docs/transformers/v5.23.0/en/model_doc/mpt#transformers.MptForQuestionAnswering) forward method, overrides the `__call__` special method.
+The [MptForQuestionAnswering](/docs/transformers/v5.24.0/en/model_doc/mpt#transformers.MptForQuestionAnswering) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -642,4 +550,4 @@ Example:
 ```
 
 ### DAC
-https://huggingface.co/docs/transformers/v5.23.0/model_doc/dac.md
+https://huggingface.co/docs/transformers/v5.24.0/model_doc/dac.md

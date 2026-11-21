@@ -1485,7 +1485,7 @@ As of 2021, Paris has a population of approximately 2.8 million people.
 
 The `v1/systemone` endpoint answers typed questions about a shared `state`, following [TypeSafe’s System One API](https://api.typesafe.ai/openapi.json). Use it for decisions such as routing a support ticket, rating urgency, or choosing an action.
 
-Requests are answered by [DecisionPipeline](/docs/transformers/v5.23.0/en/main_classes/pipelines#transformers.DecisionPipeline) around the served model, so the endpoint and the pipeline build the same prompts and return the same answers. The model scores the allowed answers without generating text, in one forward pass per prompt. This endpoint supports autoregressive models with a chat template;
+Requests are answered by [DecisionPipeline](/docs/transformers/v5.24.0/en/main_classes/pipelines#transformers.DecisionPipeline) around the served model, so the endpoint and the pipeline build the same prompts and return the same answers. The model scores the allowed answers without generating text, in one forward pass per prompt. This endpoint supports autoregressive models with a chat template;
 
 Send a model, the state to evaluate, and questions keyed by name:
 
@@ -1575,7 +1575,7 @@ Answers use the same question names. For example:
 
 `state`, optional `instructions`, and descriptions can contain text or JSON objects and arrays. Each request accepts up to 64 questions, with at least one choice or score level per question and at most one per answer label (26 with the default `A`–`Z` labels).
 
-Questions are validated like [DecisionPipeline](/docs/transformers/v5.23.0/en/main_classes/pipelines#transformers.DecisionPipeline)'s, before the model is loaded. An invalid request returns a `422` whose message lists every invalid question, each with an example of a valid one, and suggests close matches for misspelled types and fields:
+Questions are validated like [DecisionPipeline](/docs/transformers/v5.24.0/en/main_classes/pipelines#transformers.DecisionPipeline)'s, before the model is loaded. An invalid request returns a `422` whose message lists every invalid question, each with an example of a valid one, and suggests close matches for misspelled types and fields:
 
 ```text
 Question 'team': expected a `type` among noul, choice, score, got type 'Choice'. Did you mean 'choice'?
@@ -1663,21 +1663,39 @@ The command returns the following response.
 
 ## v1/models
 
-The `v1/models` endpoint scans your local Hugging Face cache and returns a list of downloaded models in the OpenAI-compatible format. Third-party tools use this endpoint to discover available models.
-
-Download a model before running `transformers serve`.
-
-```bash
-transformers download Qwen/Qwen2.5-0.5B-Instruct
-```
-
-Once downloaded, the model appears in `/v1/models` responses.
+The `v1/models` endpoint returns the models the server can serve in the OpenAI-compatible format. Third-party tools use this endpoint to discover available models.
 
 ```shell
 curl http://localhost:8000/v1/models
 ```
 
-The endpoint returns a JSON object with available models.
+What it lists depends on how the server was started.
+
+- `transformers serve` loads models on demand, so the endpoint lists the models downloaded in your local Hugging Face cache, and the models that are loaded but not in the cache, like a model served from a local path.
+- `transformers serve <model>` only answers for that model, so the endpoint lists it alone.
+
+Download a model for it to appear in the list before it is loaded.
+
+```bash
+transformers download Qwen/Qwen2.5-0.5B-Instruct
+```
+
+Each model has a `status`, which isn't part of the OpenAI format. It is `loaded` when the model is in memory, and `unloaded` when it is downloaded and loads on the first request that names it.
+
+```json
+{
+  "object": "list",
+  "data": [
+    {
+      "id": "Qwen/Qwen2.5-0.5B-Instruct",
+      "object": "model",
+      "created": 1776183469,
+      "owned_by": "Qwen",
+      "status": {"value": "unloaded"}
+    }
+  ]
+}
+```
 
 ## Loading models
 
@@ -1801,7 +1819,7 @@ tools = [
 ]
 ```
 
-Customize generation by passing [GenerationConfig](/docs/transformers/v5.23.0/en/main_classes/text_generation#transformers.GenerationConfig) parameters to the `extra_body` argument in [create](https://platform.openai.com/docs/api-reference/responses/create).
+Customize generation by passing [GenerationConfig](/docs/transformers/v5.24.0/en/main_classes/text_generation#transformers.GenerationConfig) parameters to the `extra_body` argument in [create](https://platform.openai.com/docs/api-reference/responses/create).
 
 ```py
 generation_config = {
@@ -2093,4 +2111,4 @@ transformers serve Qwen/Qwen2.5-0.5B-Instruct \
 ```
 
 ### Jan
-https://huggingface.co/docs/transformers/v5.23.0/serve-cli/jan.md
+https://huggingface.co/docs/transformers/v5.24.0/serve-cli/jan.md

@@ -13,7 +13,7 @@ Some noteworthy use case examples for VQA include:
 
 In this guide you'll learn how to:
 
-- Fine-tune a classification VQA model, specifically [ViLT](../model_doc/vilt), on the [`Graphcore/vqa` dataset](https://huggingface.co/datasets/Graphcore/vqa).
+- Fine-tune a classification VQA model, specifically [ViLT](../model_doc/vilt), on the Graphcore/vqa dataset.
 - Use your fine-tuned ViLT for inference.
 - Run zero-shot VQA inference with a generative model, like BLIP-2.
 
@@ -51,9 +51,8 @@ Let's define the model checkpoint as a global variable.
 ## Load the data
 
 For illustration purposes, in this guide we use a very small sample of the annotated visual question answering `Graphcore/vqa` dataset.
-You can find the full dataset on [🤗 Hub](https://huggingface.co/datasets/Graphcore/vqa).
 
-As an alternative to the [`Graphcore/vqa` dataset](https://huggingface.co/datasets/Graphcore/vqa), you can download the
+As an alternative to the Graphcore/vqa dataset, you can download the
 same data manually from the official [VQA dataset page](https://visualqa.org/download.html). If you prefer to follow the
 tutorial with your custom data, check out how to [Create an image dataset](https://huggingface.co/docs/datasets/image_dataset#loading-script)
 guide in the 🤗 Datasets documentation.
@@ -154,7 +153,7 @@ Now that we have the mappings, we can replace the string answers with their ids,
 ## Preprocessing data
 
 The next step is to load a ViLT processor to prepare the image and text data for the model.
-[ViltProcessor](/docs/transformers/v5.23.0/en/model_doc/vilt#transformers.ViltProcessor) wraps a BERT tokenizer and ViLT image processor into a convenient single processor:
+[ViltProcessor](/docs/transformers/v5.24.0/en/model_doc/vilt#transformers.ViltProcessor) wraps a BERT tokenizer and ViLT image processor into a convenient single processor:
 
 ```py
 >>> from transformers import ViltProcessor
@@ -162,9 +161,9 @@ The next step is to load a ViLT processor to prepare the image and text data for
 >>> processor = ViltProcessor.from_pretrained(model_checkpoint)
 ```
 
-To preprocess the data we need to encode the images and questions using the [ViltProcessor](/docs/transformers/v5.23.0/en/model_doc/vilt#transformers.ViltProcessor). The processor will use
-the [BertTokenizerFast](/docs/transformers/v5.23.0/en/model_doc/lxmert#transformers.BertTokenizer) to tokenize the text and create `input_ids`, `attention_mask` and `token_type_ids` for the text data.
-As for images, the processor will leverage [ViltImageProcessor](/docs/transformers/v5.23.0/en/model_doc/vilt#transformers.ViltImageProcessor) to resize and normalize the image, and create `pixel_values` and `pixel_mask`.
+To preprocess the data we need to encode the images and questions using the [ViltProcessor](/docs/transformers/v5.24.0/en/model_doc/vilt#transformers.ViltProcessor). The processor will use
+the [BertTokenizerFast](/docs/transformers/v5.24.0/en/model_doc/lxmert#transformers.BertTokenizer) to tokenize the text and create `input_ids`, `attention_mask` and `token_type_ids` for the text data.
+As for images, the processor will leverage [ViltImageProcessor](/docs/transformers/v5.24.0/en/model_doc/vilt#transformers.ViltImageProcessor) to resize and normalize the image, and create `pixel_values` and `pixel_mask`.
 
 All these preprocessing steps are done under the hood, we only need to call the `processor`. However, we still need to
 prepare the target labels. In this representation, each element corresponds to a possible answer (label). For correct answers, the element holds
@@ -212,7 +211,7 @@ Dataset({
 })
 ```
 
-As a final step, create a batch of examples using [DefaultDataCollator](/docs/transformers/v5.23.0/en/main_classes/data_collator#transformers.DefaultDataCollator):
+As a final step, create a batch of examples using [DefaultDataCollator](/docs/transformers/v5.24.0/en/main_classes/data_collator#transformers.DefaultDataCollator):
 
 ```py
 >>> from transformers import DefaultDataCollator
@@ -222,7 +221,7 @@ As a final step, create a batch of examples using [DefaultDataCollator](/docs/tr
 
 ## Train the model
 
-You're ready to start training your model now! Load ViLT with [ViltForQuestionAnswering](/docs/transformers/v5.23.0/en/model_doc/vilt#transformers.ViltForQuestionAnswering). Specify the number of labels
+You're ready to start training your model now! Load ViLT with [ViltForQuestionAnswering](/docs/transformers/v5.24.0/en/model_doc/vilt#transformers.ViltForQuestionAnswering). Specify the number of labels
 along with the label mappings:
 
 ```py
@@ -233,7 +232,7 @@ along with the label mappings:
 
 At this point, only three steps remain:
 
-1. Define your training hyperparameters in [TrainingArguments](/docs/transformers/v5.23.0/en/main_classes/trainer#transformers.TrainingArguments):
+1. Define your training hyperparameters in [TrainingArguments](/docs/transformers/v5.24.0/en/main_classes/trainer#transformers.TrainingArguments):
 
 ```py
 >>> from transformers import TrainingArguments
@@ -253,7 +252,7 @@ At this point, only three steps remain:
 ... )
 ```
 
-2. Pass the training arguments to [Trainer](/docs/transformers/v5.23.0/en/main_classes/trainer#transformers.Trainer) along with the model, dataset, processor, and data collator.
+2. Pass the training arguments to [Trainer](/docs/transformers/v5.24.0/en/main_classes/trainer#transformers.Trainer) along with the model, dataset, processor, and data collator.
 
 ```py
 >>> from transformers import Trainer
@@ -267,13 +266,13 @@ At this point, only three steps remain:
 ... )
 ```
 
-3. Call [train()](/docs/transformers/v5.23.0/en/main_classes/trainer#transformers.Trainer.train) to finetune your model.
+3. Call [train()](/docs/transformers/v5.24.0/en/main_classes/trainer#transformers.Trainer.train) to finetune your model.
 
 ```py
 >>> trainer.train()
 ```
 
-Once training is completed, share your model to the Hub with the [push_to_hub()](/docs/transformers/v5.23.0/en/main_classes/trainer#transformers.Trainer.push_to_hub) method to share your final model on the 🤗 Hub:
+Once training is completed, share your model to the Hub with the [push_to_hub()](/docs/transformers/v5.24.0/en/main_classes/trainer#transformers.Trainer.push_to_hub) method to share your final model on the 🤗 Hub:
 
 ```py
 >>> trainer.push_to_hub()
@@ -316,7 +315,7 @@ paradigm in which any combination of pre-trained vision encoder and LLM can be u
 This enables achieving state-of-the-art results on multiple visual-language tasks including visual question answering.
 
 Let's illustrate how you can use this model for VQA. First, let's load the model. Here we'll explicitly send the model to a
-GPU, if available, which we didn't need to do earlier when training, as [Trainer](/docs/transformers/v5.23.0/en/main_classes/trainer#transformers.Trainer) handles this automatically:
+GPU, if available, which we didn't need to do earlier when training, as [Trainer](/docs/transformers/v5.24.0/en/main_classes/trainer#transformers.Trainer) handles this automatically:
 
 ```py
 >>> from transformers import AutoProcessor, Blip2ForConditionalGeneration
@@ -359,4 +358,4 @@ the fact the crowd is behind the skater. Still, in cases where acquiring human-a
 approach can quickly produce useful results.
 
 ### Summarization
-https://huggingface.co/docs/transformers/v5.23.0/tasks/summarization.md
+https://huggingface.co/docs/transformers/v5.24.0/tasks/summarization.md

@@ -2,7 +2,7 @@
 
 Quantized weights can't be updated by gradients directly, so you fine-tune a quantized model by training a small adapter on top of the frozen quantized weights. Training a [LoRA](https://huggingface.co/docs/peft/main/en/conceptual_guides/lora) adapter on a 4-bit model is known as QLoRA, and it lets you fine-tune a model that wouldn't fit in memory in bf16.
 
-[Trainer](/docs/transformers/v5.23.0/en/main_classes/trainer#transformers.Trainer) checks the model before training to make sure:
+[Trainer](/docs/transformers/v5.24.0/en/main_classes/trainer#transformers.Trainer) checks the model before training to make sure:
 
 - The quantization method supports training. See the Fine-tune column in [Choose a method](./selecting).
 - The model has a trainable adapter attached. Methods that support quantization-aware training are the exception, covered [below](#quantization-aware-training).
@@ -16,7 +16,7 @@ Install [PEFT](https://huggingface.co/docs/peft/index).
 pip install -U peft
 ```
 
-Load the model with a method that supports training, attach a LoRA adapter with [add_adapter()](/docs/transformers/v5.23.0/en/main_classes/peft#transformers.integrations.PeftAdapterMixin.add_adapter), and pass the model to [Trainer](/docs/transformers/v5.23.0/en/main_classes/trainer#transformers.Trainer). The example below uses 4-bit [bitsandbytes](./bitsandbytes) and assumes `train_dataset` is a tokenized dataset.
+Load the model with a method that supports training, attach a LoRA adapter with [add_adapter()](/docs/transformers/v5.24.0/en/main_classes/peft#transformers.integrations.PeftAdapterMixin.add_adapter), and pass the model to [Trainer](/docs/transformers/v5.24.0/en/main_classes/trainer#transformers.Trainer). The example below uses 4-bit [bitsandbytes](./bitsandbytes) and assumes `train_dataset` is a tokenized dataset.
 
 ```py
 import torch
@@ -49,7 +49,7 @@ Only the adapter weights train. The quantized base weights stay frozen.
 
 ## Save the adapter
 
-[save_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) saves only the adapter weights, which are a few megabytes. This works with every method, including ones that can't save their quantized weights.
+[save_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) saves only the adapter weights, which are a few megabytes. This works with every method, including ones that can't save their quantized weights.
 
 ```py
 model.save_pretrained("qwen3-qlora-adapter")
@@ -61,10 +61,10 @@ To use the adapter, load the base model with the same quantization config and lo
 
 [BitNet](./bitnet) and [compressed-tensors](./compressed_tensors) can train the full model without an adapter, as long as the weights stay in a trainable form.
 
-- BitNet needs `linear_class="autobitlinear"` and `quantization_mode="online"` in [BitNetQuantConfig](/docs/transformers/v5.23.0/en/main_classes/quantization#transformers.BitNetQuantConfig).
-- compressed-tensors needs a checkpoint that isn't compressed, or `dequantize=True` in [CompressedTensorsConfig](/docs/transformers/v5.23.0/en/main_classes/quantization#transformers.CompressedTensorsConfig). Checkpoints that use the FP8 kernels can't train.
+- BitNet needs `linear_class="autobitlinear"` and `quantization_mode="online"` in [BitNetQuantConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.BitNetQuantConfig).
+- compressed-tensors needs a checkpoint that isn't compressed, or `dequantize=True` in [CompressedTensorsConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.CompressedTensorsConfig). Checkpoints that use the FP8 kernels can't train.
 
 See [Quantization concepts](./concept_guide) for how quantization-aware training differs from post-training quantization.
 
 ### Text classification
-https://huggingface.co/docs/transformers/v5.23.0/tasks/sequence_classification.md
+https://huggingface.co/docs/transformers/v5.24.0/tasks/sequence_classification.md

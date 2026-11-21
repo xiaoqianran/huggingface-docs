@@ -1,7 +1,7 @@
 # Exporters
 
 New export backends can be added to Transformers by subclassing `HfExporter` and registering it with
-[register_backend()](/docs/transformers/v5.23.0/en/main_classes/exporters#transformers.exporters.register_backend).
+[register_backend()](/docs/transformers/v5.24.0/en/main_classes/exporters#transformers.exporters.register_backend).
 
 Learn how to use the built-in exporters in the [Exporters](../exporters) guide.
 
@@ -13,7 +13,7 @@ Learn how to use the built-in exporters in the [Exporters](../exporters) guide.
 transformers.exporters.AutoHfExporter()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/auto.py#L112)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/auto.py#L112)
 
 The Auto-HF exporter class that takes care of automatically instantiating to the correct
 `HfExporter` given the `ExportConfig`.
@@ -26,7 +26,7 @@ The Auto-HF exporter class that takes care of automatically instantiating to the
 transformers.exporters.AutoExportConfig()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/auto.py#L101)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/auto.py#L101)
 
 The Auto-HF export config class that takes care of automatically dispatching to the correct
 export config given an export config stored in a dictionary.
@@ -39,7 +39,7 @@ export config given an export config stored in a dictionary.
 transformers.exporters.register_backend(exporter: type[HfExporter], runner: type[ModelRunner] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/auto.py#L61)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/auto.py#L61)
 
 Register an exporter, with its `config_class`, under its `export_format`, and the runner that runs its exports,
 so the auto classes find them.
@@ -52,7 +52,7 @@ so the auto classes find them.
 transformers.exporters.HfExporter()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/base.py#L321)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/base.py#L335)
 
 Abstract base class for all Transformers exporters.
 
@@ -67,7 +67,7 @@ them.
 export(model: PreTrainedModel, sample_inputs: MutableMapping[str, torch.Tensor | Cache], config: ExportConfigMixin | dict[str, Any])
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/base.py#L407)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/base.py#L423)
 
 **Returns:** `ExportedModel`
 
@@ -84,31 +84,31 @@ Takes the same **forward** kwargs as `~HfExporter.export_program`.
 export_for_generation(model: PreTrainedModel, sample_inputs: MutableMapping[str, torch.Tensor | Cache], config: ExportConfigMixin | dict[str, ExportConfigMixin], generation_config: GenerationConfig | None = None, multi_token_decode: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/base.py#L426)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/base.py#L442)
 
 **Parameters:**
 
-model ([PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel)) : The generative model to export. Must support `model.generate(**sample_inputs)`.
+model ([PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel)) : The generative model to export. Must support `model.generate(**sample_inputs)`.
 
 sample_inputs (`dict[str, torch.Tensor | Cache]`) : **Generate** kwargs — what you'd pass to `model.generate(**sample_inputs)` (typically `input_ids` + `attention_mask`, plus any modality inputs like `pixel_values` / `input_features` for multi-modal models). Per-stage forward kwargs are captured internally.
 
 config (`ExportConfigMixin` or `dict[str, ExportConfigMixin]`) : Backend-specific configuration. Pass a single config to apply to every component, or a `dict` keyed by component name (e.g. `"image_encoder"`, `"language_model"`, `"lm_head"`, `"decode"`) to override per-component — all component names must be present in the dict.
 
-generation_config ([GenerationConfig](/docs/transformers/v5.23.0/en/main_classes/text_generation#transformers.GenerationConfig), *optional*) : Forwarded to the `generate()` capture (defaults to the model's own). Pass one with `cache_implementation="static"` to export against a fixed-size `StaticCache`.
+generation_config ([GenerationConfig](/docs/transformers/v5.24.0/en/main_classes/text_generation#transformers.GenerationConfig), *optional*) : Forwarded to the `generate()` capture (defaults to the model's own). Pass one with `cache_implementation="static"` to export against a fixed-size `StaticCache`.
 
-multi_token_decode (`bool`, *optional*, defaults to `False`) : Whether the `decode` component processes multiple query tokens at once — a dynamic query axis (prefill on an empty cache, continuation-from-past otherwise) — vs the classic single-token step (see [decompose_for_generation()](/docs/transformers/v5.23.0/en/main_classes/exporters#transformers.exporters.utils.decompose_for_generation)). Only stays dynamic under a dynamic-shape export (`config.dynamic=True`).
+multi_token_decode (`bool`, *optional*, defaults to `False`) : Whether the `decode` component processes multiple query tokens at once — a dynamic query axis (prefill on an empty cache, continuation-from-past otherwise) — vs the classic single-token step (see [decompose_for_generation()](/docs/transformers/v5.24.0/en/main_classes/exporters#transformers.exporters.utils.decompose_for_generation)). Only stays dynamic under a dynamic-shape export (`config.dynamic=True`).
 
 **Returns:** `ExportedModel`
 
 One `ExportedComponent` per stage, with the same keys as
-[decompose_for_generation()](/docs/transformers/v5.23.0/en/main_classes/exporters#transformers.exporters.utils.decompose_for_generation).
+[decompose_for_generation()](/docs/transformers/v5.24.0/en/main_classes/exporters#transformers.exporters.utils.decompose_for_generation).
 
 Decompose a generative model and export each component independently.
 
-Thin wrapper around [decompose_for_generation()](/docs/transformers/v5.23.0/en/main_classes/exporters#transformers.exporters.utils.decompose_for_generation) that calls
+Thin wrapper around [decompose_for_generation()](/docs/transformers/v5.24.0/en/main_classes/exporters#transformers.exporters.utils.decompose_for_generation) that calls
 `~HfExporter.export_program` on every returned `(submodel, forward_inputs)` pair. If you need
 the intermediate `(submodel, forward_inputs)` pairs (for verification, custom inputs,
-skipping a stage, …), call [decompose_for_generation()](/docs/transformers/v5.23.0/en/main_classes/exporters#transformers.exporters.utils.decompose_for_generation) directly.
+skipping a stage, …), call [decompose_for_generation()](/docs/transformers/v5.24.0/en/main_classes/exporters#transformers.exporters.utils.decompose_for_generation) directly.
 
 #### export_program[[transformers.exporters.HfExporter.export_program]]
 
@@ -116,13 +116,13 @@ skipping a stage, …), call [decompose_for_generation()](/docs/transformers/v5.
 export_program(model: PreTrainedModel, sample_inputs: MutableMapping[str, torch.Tensor | Cache], config: ExportConfigMixin)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/base.py#L351)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/base.py#L367)
 
 **Parameters:**
 
-model ([PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel)) : The model to export.
+model ([PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel)) : The model to export.
 
-sample_inputs (`dict[str, torch.Tensor | Cache]`) : **Forward** kwargs — what you'd pass to `model(**sample_inputs)`. These are used directly as the example inputs during tracing. For an autoregressive decode-step export, this means you need to include `past_key_values`, `cache_position`, etc. If you only have generation-style inputs, use `~HfExporter.export_for_generation` instead — it runs `model.generate` for you and exports each stage.
+sample_inputs (`dict[str, torch.Tensor | Cache]`) : **Forward** kwargs — what you'd pass to `model(**sample_inputs)`. These are used directly as the example inputs during tracing. For an autoregressive decode-step export, this means you need to include `cache`, etc. If you only have generation-style inputs, use `~HfExporter.export_for_generation` instead — it runs `model.generate` for you and exports each stage.
 
 config (`ExportConfigMixin`) : Backend-specific configuration.
 
@@ -141,7 +141,7 @@ Trace one graph. The backend extension point, paired with `~HfExporter.save_prog
 load_program(path: str | Path)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/base.py#L385)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/base.py#L401)
 
 Read back a program written by `~HfExporter.save_program`. It can differ from what
 `~HfExporter.export_program` returned: a runtime `Program` for ExecuTorch, whose `ExecutorchProgramManager`
@@ -153,7 +153,7 @@ can't be rebuilt from the file.
 program_files(filename: str)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/base.py#L392)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/base.py#L408)
 
 The files `~HfExporter.save_program` writes for a program saved as `filename`: the file itself, plus
 any the format keeps beside it (weights, external data).
@@ -164,7 +164,7 @@ any the format keeps beside it (weights, external data).
 save_program(program: Any, path: str | Path)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/base.py#L380)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/base.py#L396)
 
 Write one program returned by `~HfExporter.export_program` to `path`, in the backend's file format.
 
@@ -174,7 +174,7 @@ Write one program returned by `~HfExporter.export_program` to `path`, in the bac
 validate_environment()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/base.py#L347)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/base.py#L363)
 
 Check `required_packages` are installed and warn on version drift from `tested_versions`.
 
@@ -186,7 +186,7 @@ Check `required_packages` are installed and warn on version drift from `tested_v
 transformers.exporters.ExportedModel(components: dict[str, ExportedComponent], export_format: ExportFormat | str, config: PreTrainedConfig | None = None, generation_config: GenerationConfig | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/base.py#L67)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/base.py#L68)
 
 An exported model: its graphs (`components`, `{name: ExportedComponent}`) and the configs they were traced
 against, called the way you'd call the model it came from.
@@ -207,7 +207,7 @@ against, called the way you'd call the model it came from.
 __call__(share_inputs: bool = True, share_outputs: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/base.py#L143)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/base.py#L144)
 
 Run a single-graph export, returning what the source model returns. Kwargs the export was not traced with
 are dropped, so a processor's whole output can be passed. `share_inputs` and `share_outputs` go to the runner
@@ -219,7 +219,7 @@ are dropped, so a processor's whole output can be passed. `share_inputs` and `sh
 program()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/base.py#L108)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/base.py#L109)
 
 The backend's own program, for a single-graph export.
 
@@ -229,7 +229,7 @@ The backend's own program, for a single-graph export.
 to(device = None, **runner_kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/base.py#L130)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/base.py#L131)
 
 Load the programs on their backend's runtime, on `device` (the backend's default when `None`).
 `runner_kwargs` go to the backend's runner: `providers` and `session_options` for ONNX Runtime, `config`
@@ -241,7 +241,7 @@ Load the programs on their backend's runtime, on `device` (the backend's default
 save_pretrained(save_directory: str | Path, push_to_hub: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/base.py#L156)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/base.py#L157)
 
 **Parameters:**
 
@@ -260,7 +260,7 @@ metadata recorded when tracing it. `~ExportedModel.from_pretrained` loads them b
 from_pretrained(pretrained_model_name_or_path: str | Path, device = None, cache_dir: str | os.PathLike | None = None, force_download: bool = False, local_files_only: bool = False, token: str | bool | None = None, revision: str = 'main', subfolder: str = '', trust_remote_code: bool = False, **runner_kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/base.py#L206)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/base.py#L207)
 
 **Parameters:**
 
@@ -280,7 +280,7 @@ revision (`str`, *optional*, defaults to `"main"`) : The specific model version 
 
 subfolder (`str`, *optional*, defaults to `""`) : In case the relevant files are located inside a subfolder of the model repo on huggingface.co, you can specify the folder name here.
 
-trust_remote_code (`bool`, *optional*, defaults to `False`) : Whether to load the config of a model whose code lives in its repo, as for [from_pretrained()](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoConfig.from_pretrained).
+trust_remote_code (`bool`, *optional*, defaults to `False`) : Whether to run code the export holds: the config of a model whose code lives in its repo, as for [from_pretrained()](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoConfig.from_pretrained), and programs of a format whose loading runs code (`torch.export`'s pickled `.pt2`), which can't be loaded without it. Only pass it for an export you trust.
 
 runner_kwargs (*optional*) : The backend's runner options, as for `~ExportedModel.to`: `providers` and `session_options` for ONNX Runtime, `config` and `torch_threads` for OpenVINO.
 
@@ -296,7 +296,7 @@ on their backend's runtime right away, ready to run.
 transformers.exporters.ExportedComponent(program: Any, metadata: ExportMetadata)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/base.py#L60)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/base.py#L61)
 
 One exported graph: the backend's program, and what the exporter recorded about it.
 
@@ -308,7 +308,7 @@ One exported graph: the backend's program, and what the exporter recorded about 
 transformers.exporters.ExportMetadata(architecture: str | None = None, packages: dict[str, str] = <factory>, export_config: dict[str, Any] = <factory>, export_dtype: str | None = None, export_device: str | None = None, kwargs: dict[str, dict] = <factory>, in_spec: str | None = None, out_spec: str | None = None, in_constants: dict[str, Any] = <factory>, out_constants: list = <factory>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/metadata.py#L58)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/metadata.py#L58)
 
 What the exporter recorded about one graph (`build_export_metadata()`).
 
@@ -318,7 +318,7 @@ What the exporter recorded about one graph (`build_export_metadata()`).
 from_dict(values: Mapping[str, Any])
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/metadata.py#L75)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/metadata.py#L75)
 
 Build the metadata from its saved dict, skipping fields this class doesn't have (added by a newer version).
 
@@ -330,7 +330,7 @@ Build the metadata from its saved dict, skipping fields this class doesn't have 
 transformers.exporters.ModelRunner(metadata: ExportMetadata)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/runners/base.py#L29)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/runners/base.py#L29)
 
 Runs one exported program on its backend: `runner(**kwargs)` returns what the source model returns.
 
@@ -340,7 +340,7 @@ Runs one exported program on its backend: `runner(**kwargs)` returns what the so
 from_program(program: Any, metadata: ExportMetadata, device = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/runners/base.py#L56)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/runners/base.py#L56)
 
 A runner for a program as an export returns it or `~HfExporter.load_program` reads it back, on
 `device` (the backend's default when `None`).
@@ -351,7 +351,7 @@ A runner for a program as an export returns it or `~HfExporter.load_program` rea
 unflatten(outputs: list)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/runners/base.py#L47)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/runners/base.py#L47)
 
 Rebuild the model's outputs from the program's flat ones (which come last) and the recorded constants.
 
@@ -363,9 +363,9 @@ Rebuild the model's outputs from the program's flat ones (which come last) and t
 transformers.exporters.DynamoExporter()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/exporter_dynamo.py#L69)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/exporter_dynamo.py#L69)
 
-Exporter that converts a [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel) to an `ExportedProgram`.
+Exporter that converts a [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel) to an `ExportedProgram`.
 
 Example:
 
@@ -384,7 +384,7 @@ Example:
 export(model: PreTrainedModel, sample_inputs: MutableMapping[str, torch.Tensor | Cache], config: ExportConfigMixin | dict[str, Any])
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/base.py#L407)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/base.py#L423)
 
 **Returns:** `ExportedModel`
 
@@ -403,9 +403,9 @@ Takes the same **forward** kwargs as `~HfExporter.export_program`.
 transformers.exporters.OnnxExporter()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/exporter_onnx.py#L113)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/exporter_onnx.py#L113)
 
-Exporter that converts a [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel) to an ONNX graph (an `onnx_ir.Model`).
+Exporter that converts a [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel) to an ONNX graph (an `onnx_ir.Model`).
 
 Example:
 
@@ -425,7 +425,7 @@ Example:
 export(model: PreTrainedModel, sample_inputs: MutableMapping[str, torch.Tensor | Cache], config: ExportConfigMixin | dict[str, Any])
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/base.py#L407)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/base.py#L423)
 
 **Returns:** `ExportedModel`
 
@@ -444,9 +444,9 @@ Takes the same **forward** kwargs as `~HfExporter.export_program`.
 transformers.exporters.ExecutorchExporter()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/exporter_executorch.py#L107)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/exporter_executorch.py#L107)
 
-Exporter that converts a [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel) to an ExecuTorch `ExecutorchProgramManager`.
+Exporter that converts a [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel) to an ExecuTorch `ExecutorchProgramManager`.
 
 Example:
 
@@ -465,7 +465,7 @@ Example:
 export(model: PreTrainedModel, sample_inputs: MutableMapping[str, torch.Tensor | Cache], config: ExportConfigMixin | dict[str, Any])
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/base.py#L407)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/base.py#L423)
 
 **Returns:** `ExportedModel`
 
@@ -484,7 +484,7 @@ Takes the same **forward** kwargs as `~HfExporter.export_program`.
 transformers.exporters.DynamoConfig(export_format: ExportFormat = <ExportFormat.DYNAMO: 'dynamo'>, dynamic: bool = False, strict: bool = False, dynamic_shapes: dict[str, Any] | None = None, prefer_deferred_runtime_asserts_over_guards: bool = False, quantizer: ExportQuantizer | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/configs.py#L92)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/configs.py#L92)
 
 **Parameters:**
 
@@ -508,7 +508,7 @@ Configuration class for exporting models via *torch.export*.
 transformers.exporters.OnnxConfig(export_format: ExportFormat = <ExportFormat.ONNX: 'onnx'>, dynamic: bool = False, strict: bool = False, dynamic_shapes: dict[str, Any] | None = None, prefer_deferred_runtime_asserts_over_guards: bool = False, quantizer: ExportQuantizer | None = None, opset_version: int | None = None, optimize: bool = True, ort_fusions: Literal['cpu', 'cuda', 'webgpu', 'dml'] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/configs.py#L134)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/configs.py#L134)
 
 **Parameters:**
 
@@ -531,7 +531,7 @@ Inherits all fields from `DynamoConfig` (`dynamic`, `strict`,
 transformers.exporters.ExecutorchConfig(export_format: ExportFormat = <ExportFormat.EXECUTORCH: 'executorch'>, dynamic: bool = False, strict: bool = False, dynamic_shapes: dict[str, Any] | None = None, prefer_deferred_runtime_asserts_over_guards: bool = False, quantizer: ExportQuantizer | None = None, backend: str = 'xnnpack', alloc_graph_input: bool = True, alloc_graph_output: bool = True, alloc_mutable_buffers: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/configs.py#L168)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/configs.py#L168)
 
 **Parameters:**
 
@@ -556,7 +556,7 @@ Inherits all fields from `DynamoConfig` (`dynamic`, `strict`,
 transformers.exporters.OpenVINOConfig(export_format: ExportFormat = <ExportFormat.OPENVINO: 'openvino'>, dynamic: bool = False, strict: bool = False, dynamic_shapes: dict[str, Any] | None = None, prefer_deferred_runtime_asserts_over_guards: bool = False, quantizer: ExportQuantizer | None = None, compress_to_fp16: bool = False, stateful: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/configs.py#L205)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/configs.py#L205)
 
 **Parameters:**
 
@@ -577,7 +577,7 @@ Inherits all fields from [*DynamoConfig*] (*dynamic*, *strict*, *dynamic_shapes*
 transformers.exporters.ExportQuantizer(calibration_dataset: Iterable[dict[str, Any]] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/quantizers/base.py#L33)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/quantizers/base.py#L33)
 
 **Parameters:**
 
@@ -598,7 +598,7 @@ calibration samples to the model's own inputs.
 quantize(model: Any, sample_inputs: dict[str, Any], export_format: ExportFormat)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/quantizers/base.py#L83)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/quantizers/base.py#L83)
 
 Quantize `model` (the FX graph if `quantizes_fx_graph`, else the backend model) and return the result,
 calibrated on `calibration_dataset`, or on the export's `sample_inputs` when it has none.
@@ -609,7 +609,7 @@ calibrated on `calibration_dataset`, or on the export's `sample_inputs` when it 
 traced_calibration(sample_inputs: dict[str, Any])
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/quantizers/base.py#L76)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/quantizers/base.py#L76)
 
 Calibration samples as the traced kwargs, for FX-graph quantizers.
 
@@ -619,7 +619,7 @@ Calibration samples as the traced kwargs, for FX-graph quantizers.
 validate_environment(export_format: ExportFormat)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/quantizers/base.py#L68)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/quantizers/base.py#L68)
 
 Raise if this quantizer can't run on an `export_format` export, or a package it needs is missing or too old;
 warn when one differs from the version it is tested on.
@@ -630,7 +630,7 @@ warn when one differs from the version it is tested on.
 with_calibration(calibration_dataset: Iterable[dict[str, Any]])
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/quantizers/base.py#L62)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/quantizers/base.py#L62)
 
 A copy of this quantizer that calibrates on `calibration_dataset`.
 
@@ -640,7 +640,7 @@ A copy of this quantizer that calibrates on `calibration_dataset`.
 transformers.exporters.quantizers.CalibrationSet(calibration_dataset: Iterable[dict[str, Any]] | None, sample_inputs: dict[str, Any], transform: Callable[[dict[str, Any]], Any])
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/quantizers/base.py#L89)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/quantizers/base.py#L89)
 
 Re-iterable view of calibration samples as model inputs.
 
@@ -655,7 +655,7 @@ port feeds), lazily, one sample at a time, on every pass.
 transformers.exporters.PT2EQuantizer(quantizer: Any, calibration_dataset: Iterable[dict[str, Any]] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/quantizers/quantizer_pt2e.py#L33)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/quantizers/quantizer_pt2e.py#L33)
 
 **Parameters:**
 
@@ -686,7 +686,7 @@ Example:
 transformers.exporters.OnnxRuntimeQuantizer(config: OnnxRuntimeStaticConfig | OnnxRuntimeDynamicConfig | None = None, calibration_dataset: Iterable[dict[str, Any]] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/quantizers/quantizer_onnxruntime.py#L78)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/quantizers/quantizer_onnxruntime.py#L78)
 
 Quantize the converted ONNX model with ONNX Runtime's own tools (`onnxruntime.quantization`): `quantize_static`
 with an `OnnxRuntimeStaticConfig` (the default), or `quantize_dynamic` with an `OnnxRuntimeDynamicConfig`.
@@ -712,7 +712,7 @@ Example:
 transformers.exporters.OnnxRuntimeStaticConfig(quant_format: Any = None, op_types_to_quantize: list[str] | None = None, per_channel: bool | None = None, reduce_range: bool | None = None, activation_type: Any = None, weight_type: Any = None, nodes_to_quantize: list[str] | None = None, nodes_to_exclude: list[str] | None = None, calibrate_method: Any = None, calibration_providers: list[str] | None = None, extra_options: dict[str, Any] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/quantizers/quantizer_onnxruntime.py#L41)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/quantizers/quantizer_onnxruntime.py#L41)
 
 Arguments of `onnxruntime.quantization.quantize_static`: int8 activations and weights (QDQ by default), calibrated
 on the quantizer's `calibration_dataset`. A field left to `None` keeps ONNX Runtime's default. See
@@ -724,7 +724,7 @@ on the quantizer's `calibration_dataset`. A field left to `None` keeps ONNX Runt
 transformers.exporters.OnnxRuntimeDynamicConfig(op_types_to_quantize: list[str] | None = None, per_channel: bool | None = None, reduce_range: bool | None = None, weight_type: Any = None, nodes_to_quantize: list[str] | None = None, nodes_to_exclude: list[str] | None = None, extra_options: dict[str, Any] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/quantizers/quantizer_onnxruntime.py#L62)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/quantizers/quantizer_onnxruntime.py#L62)
 
 Arguments of `onnxruntime.quantization.quantize_dynamic`: int8 weights, activations quantized at runtime, no
 calibration. A field left to `None` keeps ONNX Runtime's default. See
@@ -736,7 +736,7 @@ calibration. A field left to `None` keeps ONNX Runtime's default. See
 transformers.exporters.NNCFOpenVINOQuantizer(config: NNCFQuantizationConfig | NNCFWeightCompressionConfig | None = None, calibration_dataset: Iterable[dict[str, Any]] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/quantizers/quantizer_nncf.py#L143)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/quantizers/quantizer_nncf.py#L143)
 
 Quantize the converted OpenVINO model with [NNCF](https://github.com/openvinotoolkit/nncf): `nncf.quantize` with a
 `NNCFQuantizationConfig` (the default), or `nncf.compress_weights` with a `NNCFWeightCompressionConfig`.
@@ -759,7 +759,7 @@ Example:
 transformers.exporters.NNCFOnnxQuantizer(config: NNCFQuantizationConfig | NNCFWeightCompressionConfig | None = None, calibration_dataset: Iterable[dict[str, Any]] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/quantizers/quantizer_nncf.py#L175)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/quantizers/quantizer_nncf.py#L175)
 
 Quantize the converted ONNX model with [NNCF](https://github.com/openvinotoolkit/nncf) through its ONNX backend:
 `nncf.quantize` with a `NNCFQuantizationConfig` (the default, int8 QDQ), or `nncf.compress_weights` with a
@@ -781,7 +781,7 @@ Example:
 transformers.exporters.NNCFTorchFXQuantizer(config: NNCFQuantizationConfig | NNCFWeightCompressionConfig | None = None, calibration_dataset: Iterable[dict[str, Any]] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/quantizers/quantizer_nncf.py#L231)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/quantizers/quantizer_nncf.py#L231)
 
 Quantize the `torch.export` FX graph with [NNCF](https://github.com/openvinotoolkit/nncf) through its TorchFX
 backend: `nncf.quantize` with a `NNCFQuantizationConfig` (the default, `quantize`/`dequantize` ops), or
@@ -803,7 +803,7 @@ Example:
 transformers.exporters.NNCFQuantizationConfig(mode: Any = None, preset: Any = None, target_device: Any = None, subset_size: int | None = None, fast_bias_correction: bool | None = None, model_type: Any = None, ignored_scope: Any = None, advanced_parameters: Any = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/quantizers/quantizer_nncf.py#L58)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/quantizers/quantizer_nncf.py#L58)
 
 Arguments of `nncf.quantize`: int8 activations and weights, calibrated on the quantizer's `calibration_dataset`.
 A field left to `None` keeps NNCF's default, except `model_type`, which defaults to `nncf.ModelType.TRANSFORMER`.
@@ -815,7 +815,7 @@ See [`nncf.quantize`](https://openvinotoolkit.github.io/nncf/autoapi/nncf/index.
 transformers.exporters.NNCFWeightCompressionConfig(mode: Any = None, ratio: float | None = None, group_size: int | None = None, ignored_scope: Any = None, all_layers: bool | None = None, sensitivity_metric: Any = None, subset_size: int | None = None, awq: bool | None = None, scale_estimation: bool | None = None, gptq: bool | None = None, lora_correction: bool | None = None, backup_mode: Any = None, compression_format: Any = None, advanced_parameters: Any = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/quantizers/quantizer_nncf.py#L76)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/quantizers/quantizer_nncf.py#L76)
 
 Arguments of `nncf.compress_weights`: weight-only int8 or int4, with data-aware methods (AWQ, scale estimation,
 GPTQ) for the int4 modes. The int8 modes are data-free; the others calibrate on the quantizer's
@@ -835,7 +835,7 @@ between decomposing a model and exporting each component.
 transformers.exporters.utils.get_leaf_tensors(obj: Any)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/utils.py#L348)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/utils.py#L348)
 
 **Parameters:**
 
@@ -853,7 +853,7 @@ Recursively retrieve all leaf tensors from a potentially nested structure.
 transformers.exporters.utils.prepare_for_export(model: PreTrainedModel | torch.nn.Module, inputs: MutableMapping[str, Any])
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/utils.py#L519)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/utils.py#L519)
 
 Configure model and inputs for export. Mutates both `model` and `inputs` in place,
 returning `(model, inputs, output_flags)` where `output_flags` holds the values popped
@@ -874,7 +874,7 @@ from `inputs` for `use_cache`, `return_dict`, etc. (to be applied reversibly ont
 transformers.exporters.utils.decompose_prefill_decode(model: PreTrainedModel, inputs: dict[str, Any], generation_config: Any = None, multi_token_decode: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/utils.py#L922)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/utils.py#L922)
 
 **Returns:** `dict[str, tuple[torch.nn.Module, dict]]`
 
@@ -903,7 +903,7 @@ classic single-token decode.
 transformers.exporters.utils.decompose_multimodal(model: PreTrainedModel, inputs: dict[str, Any])
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/utils.py#L1045)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/utils.py#L1045)
 
 **Returns:** `dict[str, tuple[torch.nn.Module, dict]]`
 
@@ -931,7 +931,7 @@ to assemble `inputs_embeds` from the encoder outputs before running the decoder.
 transformers.exporters.utils.decompose_for_generation(model: PreTrainedModel, inputs: dict[str, Any], generation_config: Any = None, multi_token_decode: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/utils.py#L1089)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/utils.py#L1089)
 
 **Parameters:**
 
@@ -962,7 +962,7 @@ further splits it into one entry per submodule (vision/audio encoder, projector,
 transformers.exporters.utils.is_multimodal(model: PreTrainedModel | torch.nn.Module)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/exporters/utils.py#L1036)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/exporters/utils.py#L1036)
 
 Returns `True` if the model is multi-modal with modal encoders and a language model.
 
@@ -970,4 +970,4 @@ A non-`PreTrainedModel` (e.g. a bare `nn.Module`) has no canonical `get_encoder`
 accessors and is trivially not multi-modal, so it short-circuits to `False`.
 
 ### Callbacks
-https://huggingface.co/docs/transformers/v5.23.0/main_classes/callback.md
+https://huggingface.co/docs/transformers/v5.24.0/main_classes/callback.md

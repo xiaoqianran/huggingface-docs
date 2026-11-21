@@ -1,6 +1,6 @@
 # Models timeline
 
-The [model timeline](https://huggingface.co/spaces/stevhliu/model-timeline) places every model in Transformers on a timeline by the month it was added to the library. It opens at the present, and scrolling down goes back in time. The timeline refreshes every six hours, so newly merged models show up without waiting for a release.
+The model timeline places every model in Transformers on a timeline by the month it was added to the library. It opens at the present, and scrolling down goes back in time. The timeline refreshes every six hours, so newly merged models show up without waiting for a release.
 
 Use the **Modality** row to filter by text, vision, audio, video, multimodal, or other models. Click on a model to see a short summary.
 
@@ -13,4 +13,4 @@ Use the **Modality** row to filter by text, vision, audio, video, multimodal, or
 >
 
 ### Writing a chat template
-https://huggingface.co/docs/transformers/v5.23.0/chat_templating_writing.md
+https://huggingface.co/docs/transformers/v5.24.0/chat_templating_writing.md

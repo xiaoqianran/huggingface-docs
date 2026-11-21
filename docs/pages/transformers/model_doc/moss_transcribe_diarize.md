@@ -184,13 +184,17 @@ conversation with the audio in the user turn and the target transcription as the
 out with `-100`).
 
 ```python
-from transformers import AutoProcessor, AutoModelForCausalLM
+from transformers import AutoModelForCausalLM, AutoProcessor
 
-model_id = "itazap/MOSS-Transcribe-Diarize-HF"
+model_id = "hf-audio/MOSS-Transcribe-Diarize-HF"
 processor = AutoProcessor.from_pretrained(model_id)
 model = AutoModelForCausalLM.from_pretrained(model_id, device_map="auto")
 model.train()
 
+transcription = (
+    "[0.00][S01] Welcome to this demonstration of automatic speech recognition and speaker diarization using an "
+    "end-to-end transformer model.[7.47]"
+)
 conversation = [
     [
         {
@@ -202,23 +206,20 @@ conversation = [
                 },
             ],
         },
-        {
-            "role": "assistant",
-            "content": [
-                {
-                    "type": "text",
-                    "text": "[0.00][S01] Mister quilter is apostle of the middle classes, and we are glad to welcome his gospel.[3.00]",
-                },
-            ],
-        },
+        {"role": "assistant", "content": [{"type": "text", "text": transcription}]},
     ],
 ]
+
 inputs = processor.apply_chat_template(
     conversation,
     tokenize=True,
     return_dict=True,
+    # only train on the assistant outputs: mask the labels outside the assistant turns
+    return_assistant_tokens_mask=True,
+    return_tensors="pt",
     output_labels=True,
 ).to(model.device, dtype=model.dtype)
+inputs["labels"][inputs.pop("assistant_masks") == 0] = -100
 
 loss = model(**inputs).loss
 print("Loss:", loss.item())
@@ -333,7 +334,7 @@ print(transcription)
 transformers.MossTranscribeDiarizeConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, audio_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, audio_token_id: int = 151671, projector_hidden_act: str = 'silu', projector_bias: bool = True, audio_merge_size: int = 4, audio_chunk_size: int = 480000, tie_word_embeddings: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/moss_transcribe_diarize/configuration_moss_transcribe_diarize.py#L73)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/moss_transcribe_diarize/configuration_moss_transcribe_diarize.py#L73)
 
 **Parameters:**
 
@@ -357,8 +358,8 @@ This is the configuration class to store the configuration of a MossTranscribeDi
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [hf-audio/MOSS-Transcribe-Diarize-HF](https://huggingface.co/hf-audio/MOSS-Transcribe-Diarize-HF)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -383,7 +384,7 @@ Example:
 transformers.MossTranscribeDiarizeAudioConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, num_mel_bins: int = 80, num_hidden_layers: int = 24, num_attention_heads: int = 16, intermediate_size: int = 4096, activation_function: str = 'gelu', hidden_size: int = 1024, dropout: float | int = 0.0, attention_dropout: float | int = 0.0, activation_dropout: float | int = 0.0, initializer_range: float = 0.02, max_source_positions: int = 1500)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/moss_transcribe_diarize/configuration_moss_transcribe_diarize.py#L30)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/moss_transcribe_diarize/configuration_moss_transcribe_diarize.py#L30)
 
 **Parameters:**
 
@@ -413,8 +414,8 @@ This is the configuration class to store the configuration of a MossTranscribeDi
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [hf-audio/MOSS-Transcribe-Diarize-HF](https://huggingface.co/hf-audio/MOSS-Transcribe-Diarize-HF)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.23.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -439,15 +440,15 @@ Example:
 transformers.MossTranscribeDiarizeAudioModel(config: MossTranscribeDiarizeAudioConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/moss_transcribe_diarize/modeling_moss_transcribe_diarize.py#L256)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/moss_transcribe_diarize/modeling_moss_transcribe_diarize.py#L256)
 
 **Parameters:**
 
-config ([MossTranscribeDiarizeAudioConfig](/docs/transformers/v5.23.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeAudioConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MossTranscribeDiarizeAudioConfig](/docs/transformers/v5.24.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeAudioConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The MOSS-Transcribe-Diarize audio model, which is a Whisper encoder.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -461,21 +462,21 @@ and behavior.
 forward(input_features, attention_mask = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/moss_transcribe_diarize/modeling_moss_transcribe_diarize.py#L295)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/moss_transcribe_diarize/modeling_moss_transcribe_diarize.py#L295)
 
 **Parameters:**
 
-input_features (`torch.Tensor` of shape `(batch_size, feature_size, sequence_length)`) : Log-mel features extracted from the raw speech waveform, one row per 30s Whisper window. See [__call__()](/docs/transformers/v5.23.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeFeatureExtractor.__call__).
+input_features (`torch.Tensor` of shape `(batch_size, feature_size, sequence_length)`) : Log-mel features extracted from the raw speech waveform, one row per 30s Whisper window. See [__call__()](/docs/transformers/v5.24.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeFeatureExtractor.__call__).
 
 attention_mask (`torch.Tensor`, *optional*) : MossTranscribeDiarize does not support masking of the `input_features`, this argument is preserved for compatibility, but it is not used.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MossTranscribeDiarizeConfig](/docs/transformers/v5.23.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeConfig)) and inputs.
+elements depending on the configuration ([MossTranscribeDiarizeConfig](/docs/transformers/v5.24.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeConfig)) and inputs.
 
-The [MossTranscribeDiarizeAudioModel](/docs/transformers/v5.23.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeAudioModel) forward method, overrides the `__call__` special method.
+The [MossTranscribeDiarizeAudioModel](/docs/transformers/v5.24.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeAudioModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -504,11 +505,11 @@ the latter silently ignores them.
 transformers.MossTranscribeDiarizeFeatureExtractor(feature_size = 80, sampling_rate = 16000, hop_length = 160, chunk_length = 30, n_fft = 400, padding_value = 0.0, dither = 0.0, return_attention_mask = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/moss_transcribe_diarize/feature_extraction_moss_transcribe_diarize.py#L35)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/moss_transcribe_diarize/feature_extraction_moss_transcribe_diarize.py#L35)
 
 Constructs a MOSS-Transcribe-Diarize feature extractor.
 
-This is a [WhisperFeatureExtractor](/docs/transformers/v5.23.0/en/model_doc/whisper#transformers.WhisperFeatureExtractor) that additionally splits audio longer than `chunk_length` seconds
+This is a [WhisperFeatureExtractor](/docs/transformers/v5.24.0/en/model_doc/whisper#transformers.WhisperFeatureExtractor) that additionally splits audio longer than `chunk_length` seconds
 into consecutive Whisper-window chunks before extracting log-mel features, and reports each sample's
 original raw-audio length via `padding_mask` (as opposed to `input_features_mask`, which marks valid
 frames per chunk).
@@ -519,7 +520,7 @@ frames per chunk).
 __call__(raw_speech: numpy.ndarray | list[float] | list[numpy.ndarray] | list[list[float]], truncation: bool = True, pad_to_multiple_of: int | None = None, return_tensors: str | transformers.utils.generic.TensorType | None = None, sampling_rate: int | None = None, device: str | None = 'cpu', **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/moss_transcribe_diarize/feature_extraction_moss_transcribe_diarize.py#L170)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/moss_transcribe_diarize/feature_extraction_moss_transcribe_diarize.py#L170)
 
 **Parameters:**
 
@@ -531,7 +532,7 @@ pad_to_multiple_of (`int`, *optional*) : If set, pads each chunk's raw audio to 
 
 device (`str`, *optional*, defaults to `"cpu"`) : Device used to compute the log-mel spectrogram.
 
-**Returns:** [BatchFeature](/docs/transformers/v5.23.0/en/main_classes/feature_extractor#transformers.BatchFeature)
+**Returns:** [BatchFeature](/docs/transformers/v5.24.0/en/main_classes/feature_extractor#transformers.BatchFeature)
 
 with `input_features` (log-mel features, one row per chunk), `input_features_mask`
 (valid-frame mask per chunk), and `padding_mask` (valid raw-sample mask, one row per input sample).
@@ -547,7 +548,7 @@ chunk, and reports each sample's original raw-audio length via `padding_mask`.
 transformers.MossTranscribeDiarizeProcessor(feature_extractor = None, tokenizer = None, chat_template: str | None = None, audio_token: str = '<|audio_pad|>', audio_bos_token: str = '<|audio_start|>', audio_eos_token: str = '<|audio_end|>', audio_tokens_per_second: float = 12.5, audio_merge_size: int = 4, time_marker_every_seconds: int = 2)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/moss_transcribe_diarize/processing_moss_transcribe_diarize.py#L40)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/moss_transcribe_diarize/processing_moss_transcribe_diarize.py#L40)
 
 **Parameters:**
 
@@ -571,8 +572,8 @@ time_marker_every_seconds (`int`, *optional*, defaults to 2) : Insert numeric ti
 
 Constructs a MossTranscribeDiarizeProcessor which wraps a feature extractor and a tokenizer into a single processor.
 
-[MossTranscribeDiarizeProcessor](/docs/transformers/v5.23.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeProcessor) offers all the functionalities of [MossTranscribeDiarizeFeatureExtractor](/docs/transformers/v5.23.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeFeatureExtractor) and [Qwen2Tokenizer](/docs/transformers/v5.23.0/en/model_doc/qwen2#transformers.Qwen2Tokenizer). See the
-[~MossTranscribeDiarizeFeatureExtractor](/docs/transformers/v5.23.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeFeatureExtractor) and [~Qwen2Tokenizer](/docs/transformers/v5.23.0/en/model_doc/qwen2#transformers.Qwen2Tokenizer) for more information.
+[MossTranscribeDiarizeProcessor](/docs/transformers/v5.24.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeProcessor) offers all the functionalities of [MossTranscribeDiarizeFeatureExtractor](/docs/transformers/v5.24.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeFeatureExtractor) and [Qwen2Tokenizer](/docs/transformers/v5.24.0/en/model_doc/qwen2#transformers.Qwen2Tokenizer). See the
+[~MossTranscribeDiarizeFeatureExtractor](/docs/transformers/v5.24.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeFeatureExtractor) and [~Qwen2Tokenizer](/docs/transformers/v5.24.0/en/model_doc/qwen2#transformers.Qwen2Tokenizer) for more information.
 
 #### __call__[[transformers.MossTranscribeDiarizeProcessor.__call__]]
 
@@ -580,7 +581,7 @@ Constructs a MossTranscribeDiarizeProcessor which wraps a feature extractor and 
 __call__(text: str | list[str], audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor'], NoneType] = None, output_labels: bool | None = False, **kwargs: *<class 'transformers.processing_utils.ProcessingKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/moss_transcribe_diarize/processing_moss_transcribe_diarize.py#L99)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/moss_transcribe_diarize/processing_moss_transcribe_diarize.py#L99)
 
 **Parameters:**
 
@@ -594,11 +595,11 @@ return_mm_token_type_ids (`bool`, *kwargs*) : Whether to return multimodal token
 
 return_text_replacement_offsets (`bool`, *kwargs*) : Whether to return character offsets for each multimodal placeholder and its replacement.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.23.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.24.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.23.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.24.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
-**Returns:** [BatchFeature](/docs/transformers/v5.23.0/en/main_classes/feature_extractor#transformers.BatchFeature)
+**Returns:** [BatchFeature](/docs/transformers/v5.24.0/en/main_classes/feature_extractor#transformers.BatchFeature)
 
 A dictionary with tokenized text (`input_ids`, `attention_mask`) and
 audio features (`input_values`, `padding_mask`).
@@ -609,7 +610,7 @@ audio features (`input_values`, `padding_mask`).
 apply_chat_template(conversation: list[dict[str, str]] | list[list[dict[str, str]]], chat_template: str | None = None, tools: list[dict] | None = None, documents: list[dict[str, str]] | None = None, add_generation_prompt: bool = False, continue_final_message: bool | str = False, return_assistant_tokens_mask: bool = False, tokenize: bool = False, return_tensors: str | transformers.utils.generic.TensorType | None = 'auto', return_dict: bool = False, load_audio_from_video: bool = False, processor_kwargs: dict | None = None, sanitize_control_tokens: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/processing_utils.py#L2310)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/processing_utils.py#L2307)
 
 **Parameters:**
 
@@ -642,7 +643,7 @@ conversation = [
 apply_transcription_request(audio: typing.Union[str, list[str], numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor']], prompt: str | list[str] | None = None, keywords: str | list[str] | list[list[str]] | None = None, tokenize: bool = True, **kwargs: *<class 'transformers.processing_utils.ProcessingKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/moss_transcribe_diarize/processing_moss_transcribe_diarize.py#L206)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/moss_transcribe_diarize/processing_moss_transcribe_diarize.py#L206)
 
 **Parameters:**
 
@@ -654,7 +655,7 @@ keywords (`str`, `list[str]`, or `list[list[str]]`, *optional*) : Hotwords/domai
 
 tokenize (`bool`, *optional*, defaults to `True`) : Whether to tokenize the prompts and process the audio. If `False`, the audio is not loaded and the prompts are returned as strings with unexpanded audio placeholders. Passing them with the audio to the processor, `processor(text=prompts, audio=audio)`, gives the same outputs as `tokenize=True`.
 
-- ****kwargs** : Additional keyword arguments forwarded to [apply_chat_template()](/docs/transformers/v5.23.0/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template).
+- ****kwargs** : Additional keyword arguments forwarded to [apply_chat_template()](/docs/transformers/v5.24.0/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template).
 
 Prepare inputs for transcription / diarization without manually writing the chat template.
 
@@ -666,15 +667,15 @@ Prepare inputs for transcription / diarization without manually writing the chat
 transformers.MossTranscribeDiarizeModel(config: MossTranscribeDiarizeConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/moss_transcribe_diarize/modeling_moss_transcribe_diarize.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/moss_transcribe_diarize/modeling_moss_transcribe_diarize.py#L382)
 
 **Parameters:**
 
-config ([MossTranscribeDiarizeConfig](/docs/transformers/v5.23.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MossTranscribeDiarizeConfig](/docs/transformers/v5.24.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The MOSS-Transcribe-Diarize model: Whisper encoder, 4x time merge, multi-modal projector, and Qwen3 language model.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -688,13 +689,13 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, input_features: typing.Optional[torch.Tensor] = None, input_features_mask: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, padding_mask: typing.Optional[torch.Tensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/moss_transcribe_diarize/modeling_moss_transcribe_diarize.py#L459)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/moss_transcribe_diarize/modeling_moss_transcribe_diarize.py#L459)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-input_features (`torch.Tensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using [MossTranscribeDiarizeFeatureExtractor](/docs/transformers/v5.23.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeFeatureExtractor). See [MossTranscribeDiarizeFeatureExtractor.__call__()](/docs/transformers/v5.23.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeFeatureExtractor.__call__) for details ([MossTranscribeDiarizeProcessor](/docs/transformers/v5.23.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeProcessor) uses [MossTranscribeDiarizeFeatureExtractor](/docs/transformers/v5.23.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeFeatureExtractor) for processing audios).
+input_features (`torch.Tensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using [MossTranscribeDiarizeFeatureExtractor](/docs/transformers/v5.24.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeFeatureExtractor). See [MossTranscribeDiarizeFeatureExtractor.__call__()](/docs/transformers/v5.24.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeFeatureExtractor.__call__) for details ([MossTranscribeDiarizeProcessor](/docs/transformers/v5.24.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeProcessor) uses [MossTranscribeDiarizeFeatureExtractor](/docs/transformers/v5.24.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeFeatureExtractor) for processing audios).
 
 input_features_mask (`torch.Tensor` of shape `(num_chunks, feature_sequence_length)`, *optional*) : Mask marking valid (non-padded) feature indices, one row per chunked log-mel feature row in `input_features`. Used to compute each chunk's valid encoder-output length.
 
@@ -708,9 +709,9 @@ padding_mask (`torch.Tensor` of shape `(batch_size, max_audio_length)`, *optiona
 
 A `MossTranscribeDiarizeModelOutputWithPast` or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MossTranscribeDiarizeConfig](/docs/transformers/v5.23.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeConfig)) and inputs.
+elements depending on the configuration ([MossTranscribeDiarizeConfig](/docs/transformers/v5.24.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeConfig)) and inputs.
 
-The [MossTranscribeDiarizeModel](/docs/transformers/v5.23.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeModel) forward method, overrides the `__call__` special method.
+The [MossTranscribeDiarizeModel](/docs/transformers/v5.24.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -718,12 +719,12 @@ the latter silently ignores them.
 
 - **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 
-  If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
+  If `cache` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
-  `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `past_key_values`
+  `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `cache`
   input) to speed up sequential decoding.
 - **hidden_states** (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
@@ -742,21 +743,21 @@ the latter silently ignores them.
 get_audio_features(input_features: Tensor, input_features_mask: Tensor, padding_mask: Tensor, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/moss_transcribe_diarize/modeling_moss_transcribe_diarize.py#L394)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/moss_transcribe_diarize/modeling_moss_transcribe_diarize.py#L394)
 
 **Parameters:**
 
-input_features (`torch.Tensor` of shape `(batch_size, sequence_length, feature_dim)`) : The tensors corresponding to the input audio features. Audio features can be obtained using [MossTranscribeDiarizeFeatureExtractor](/docs/transformers/v5.23.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeFeatureExtractor). See [MossTranscribeDiarizeFeatureExtractor.__call__()](/docs/transformers/v5.23.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeFeatureExtractor.__call__) for details ([MossTranscribeDiarizeProcessor](/docs/transformers/v5.23.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeProcessor) uses [MossTranscribeDiarizeFeatureExtractor](/docs/transformers/v5.23.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeFeatureExtractor) for processing audios).
+input_features (`torch.Tensor` of shape `(batch_size, sequence_length, feature_dim)`) : The tensors corresponding to the input audio features. Audio features can be obtained using [MossTranscribeDiarizeFeatureExtractor](/docs/transformers/v5.24.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeFeatureExtractor). See [MossTranscribeDiarizeFeatureExtractor.__call__()](/docs/transformers/v5.24.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeFeatureExtractor.__call__) for details ([MossTranscribeDiarizeProcessor](/docs/transformers/v5.24.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeProcessor) uses [MossTranscribeDiarizeFeatureExtractor](/docs/transformers/v5.24.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeFeatureExtractor) for processing audios).
 
 input_features_mask (`torch.Tensor` of shape `(num_chunks, feature_sequence_length)`) : Mask marking valid (non-padded) feature indices, one row per chunked log-mel feature row in `input_features`. Used to compute each chunk's valid encoder-output length.
 
 padding_mask (`torch.Tensor` of shape `(batch_size, max_audio_length)`) : Mask marking each audio sample's valid raw-audio length, one row per sample. Used with `config.audio_chunk_size` to recover `audio_chunk_mapping`.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.23.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MossTranscribeDiarizeConfig](/docs/transformers/v5.23.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeConfig)) and inputs.
+elements depending on the configuration ([MossTranscribeDiarizeConfig](/docs/transformers/v5.24.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeConfig)) and inputs.
 
 Extract MOSS audio embeddings from log-mel features, reassembling multi-chunk audio per sample.
 
@@ -783,15 +784,15 @@ Extract MOSS audio embeddings from log-mel features, reassembling multi-chunk au
 transformers.MossTranscribeDiarizeForConditionalGeneration(config: MossTranscribeDiarizeConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/moss_transcribe_diarize/modeling_moss_transcribe_diarize.py#L522)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/moss_transcribe_diarize/modeling_moss_transcribe_diarize.py#L522)
 
 **Parameters:**
 
-config ([MossTranscribeDiarizeConfig](/docs/transformers/v5.23.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MossTranscribeDiarizeConfig](/docs/transformers/v5.24.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The MOSS-Transcribe-Diarize model for conditional generation with transcription and speaker diarization.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -802,22 +803,22 @@ and behavior.
 #### forward[[transformers.MossTranscribeDiarizeForConditionalGeneration.forward]]
 
 ```python
-forward(input_ids: typing.Optional[torch.LongTensor] = None, input_features: typing.Optional[torch.Tensor] = None, input_features_mask: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.LongTensor] = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, padding_mask: typing.Optional[torch.Tensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
+forward(input_ids: typing.Optional[torch.LongTensor] = None, input_features: typing.Optional[torch.Tensor] = None, input_features_mask: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, cache: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.LongTensor] = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, padding_mask: typing.Optional[torch.Tensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/moss_transcribe_diarize/modeling_moss_transcribe_diarize.py#L535)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/moss_transcribe_diarize/modeling_moss_transcribe_diarize.py#L535)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-input_features (`torch.Tensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using [MossTranscribeDiarizeFeatureExtractor](/docs/transformers/v5.23.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeFeatureExtractor). See [MossTranscribeDiarizeFeatureExtractor.__call__()](/docs/transformers/v5.23.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeFeatureExtractor.__call__) for details ([MossTranscribeDiarizeProcessor](/docs/transformers/v5.23.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeProcessor) uses [MossTranscribeDiarizeFeatureExtractor](/docs/transformers/v5.23.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeFeatureExtractor) for processing audios).
+input_features (`torch.Tensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using `feature_extractor_class`. See `feature_extractor_class.__call__` for details (`processor_class` uses `feature_extractor_class` for processing audios).
 
 input_features_mask (`torch.Tensor` of shape `(num_chunks, feature_sequence_length)`, *optional*) : Mask marking valid (non-padded) feature indices, one row per chunked log-mel feature row in `input_features`. Used to compute each chunk's valid encoder-output length.
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Forwarded as-is to the language model.
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Precomputed embeddings, in place of passing `input_ids`. When `input_features` is also given, `input_ids` is still required so the audio placeholder positions in `inputs_embeds` can be located and filled with the audio embeddings.
 
@@ -831,9 +832,9 @@ padding_mask (`torch.Tensor` of shape `(batch_size, max_audio_length)`, *optiona
 
 A `MossTranscribeDiarizeCausalLMOutputWithPast` or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MossTranscribeDiarizeConfig](/docs/transformers/v5.23.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeConfig)) and inputs.
+elements depending on the configuration (`None`) and inputs.
 
-The [MossTranscribeDiarizeForConditionalGeneration](/docs/transformers/v5.23.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeForConditionalGeneration) forward method, overrides the `__call__` special method.
+The [MossTranscribeDiarizeForConditionalGeneration](/docs/transformers/v5.24.0/en/model_doc/moss_transcribe_diarize#transformers.MossTranscribeDiarizeForConditionalGeneration) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -841,7 +842,7 @@ the latter silently ignores them.
 
 - **loss** (`torch.Tensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
 - **logits** (`torch.Tensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.23.0/en/internal/generation_utils#transformers.Cache) instance.
+- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance.
 - **hidden_states** (`tuple[torch.Tensor]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
@@ -873,7 +874,7 @@ Example:
 get_audio_features(input_features, input_features_mask, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.23.0/src/transformers/models/moss_transcribe_diarize/modeling_moss_transcribe_diarize.py#L532)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/moss_transcribe_diarize/modeling_moss_transcribe_diarize.py#L532)
 
 ### InternLM3
-https://huggingface.co/docs/transformers/v5.23.0/model_doc/internlm3.md
+https://huggingface.co/docs/transformers/v5.24.0/model_doc/internlm3.md

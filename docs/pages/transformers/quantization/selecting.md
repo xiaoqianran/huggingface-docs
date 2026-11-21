@@ -84,4 +84,4 @@ The results group into three bit ranges.
 > Benchmark accuracy and speed on your own task and hardware before you pick a method for production.
 
 ### AutoRound
-https://huggingface.co/docs/transformers/v5.23.0/quantization/auto_round.md
+https://huggingface.co/docs/transformers/v5.24.0/quantization/auto_round.md

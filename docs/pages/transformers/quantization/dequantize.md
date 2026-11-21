@@ -6,14 +6,14 @@ Transformers dequantizes in two ways, depending on the method.
 
 | Method | How to dequantize |
 |---|---|
-| [bitsandbytes](./bitsandbytes), [HIGGS](./higgs) | Call [dequantize()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.dequantize) after loading. |
+| [bitsandbytes](./bitsandbytes), [HIGGS](./higgs) | Call [dequantize()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.dequantize) after loading. |
 | [compressed-tensors](./compressed_tensors), [Fine-grained FP8](./finegrained_fp8), [GGUF](./gguf), [Metal](./metal), [MXFP4](./mxfp4) | Pass `dequantize=True` to the method's config when loading. |
 
-Other methods raise a `NotImplementedError` from [dequantize()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.dequantize).
+Other methods raise a `NotImplementedError` from [dequantize()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.dequantize).
 
 ## Dequantize after loading
 
-Call [dequantize()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.dequantize) on a loaded model. It defaults to the dtype the model was loaded in. Pass `dtype` to choose another.
+Call [dequantize()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.dequantize) on a loaded model. It defaults to the dtype the model was loaded in. Pass `dtype` to choose another.
 
 ```py
 import torch
@@ -27,7 +27,7 @@ model = AutoModelForCausalLM.from_pretrained(
 model = model.dequantize(dtype=torch.bfloat16)
 ```
 
-[dequantize()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.dequantize) also removes the `quantization_config`, so [save_pretrained()](/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) saves a regular full-precision checkpoint.
+[dequantize()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.dequantize) also removes the `quantization_config`, so [save_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) saves a regular full-precision checkpoint.
 
 ## Dequantize while loading
 
@@ -46,4 +46,4 @@ model = AutoModelForCausalLM.from_pretrained(
 Some methods dequantize automatically when their kernels can't run. [GGUF](./gguf), for example, falls back to dequantizing when no kernel supports the file's quantization types.
 
 ### SINQ
-https://huggingface.co/docs/transformers/v5.23.0/quantization/sinq.md
+https://huggingface.co/docs/transformers/v5.24.0/quantization/sinq.md

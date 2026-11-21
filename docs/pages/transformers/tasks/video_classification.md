@@ -169,7 +169,7 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
 
 The warning is telling us we are throwing away some weights (e.g. the weights and bias of the `classifier` layer) and randomly initializing some others (the weights and bias of a new `classifier` layer). This is expected in this case, because we are adding a new head for which we don't have pretrained weights, so the library warns us we should fine-tune this model before using it for inference, which is exactly what we are going to do.
 
-**Note** that [this checkpoint](https://huggingface.co/MCG-NJU/videomae-base-finetuned-kinetics) leads to better performance on this task as the checkpoint was obtained fine-tuning on a similar downstream task having considerable domain overlap. You can check out [this checkpoint](https://huggingface.co/sayakpaul/videomae-base-finetuned-kinetics-finetuned-ucf101-subset) which was obtained by fine-tuning `MCG-NJU/videomae-base-finetuned-kinetics`.
+**Note** that [this checkpoint](https://huggingface.co/MCG-NJU/videomae-base-finetuned-kinetics) leads to better performance on this task as the checkpoint was obtained fine-tuning on a similar downstream task having considerable domain overlap.
 
 ## Prepare the datasets for training
 
@@ -335,7 +335,7 @@ You can access the `num_videos` argument to know the number of videos in the dat
 
 ## Train the model
 
-Leverage [Trainer](/docs/transformers/v5.23.0/en/main_classes/trainer#transformers.Trainer) from  🤗 Transformers for training the model. To instantiate a `Trainer`, you need to define the training configuration and an evaluation metric. The most important is the [TrainingArguments](/docs/transformers/v5.23.0/en/main_classes/trainer#transformers.TrainingArguments), which is a class that contains all the attributes to configure the training. It requires an output folder name, which will be used to save the checkpoints of the model. It also helps sync all the information in the model repository on 🤗 Hub.
+Leverage [Trainer](/docs/transformers/v5.24.0/en/main_classes/trainer#transformers.Trainer) from  🤗 Transformers for training the model. To instantiate a `Trainer`, you need to define the training configuration and an evaluation metric. The most important is the [TrainingArguments](/docs/transformers/v5.24.0/en/main_classes/trainer#transformers.TrainingArguments), which is a class that contains all the attributes to configure the training. It requires an output folder name, which will be used to save the checkpoints of the model. It also helps sync all the information in the model repository on 🤗 Hub.
 
 Most of the training arguments are self-explanatory, but one that is quite important here is `remove_unused_columns=False`. This one will drop any features not used by the model's call function. By default it's `True` because usually it's ideal to drop unused feature columns, making it easier to unpack inputs into the model's call function. But, in this case, you need the unused features ('video' in particular) in order to create `pixel_values` (which is a mandatory key our model expects in its inputs).
 
@@ -415,7 +415,7 @@ Now fine-tune our model by calling the `train` method:
 >>> train_results = trainer.train()
 ```
 
-Once training is completed, share your model to the Hub with the [push_to_hub()](/docs/transformers/v5.23.0/en/main_classes/trainer#transformers.Trainer.push_to_hub) method so everyone can use your model:
+Once training is completed, share your model to the Hub with the [push_to_hub()](/docs/transformers/v5.24.0/en/main_classes/trainer#transformers.Trainer.push_to_hub) method so everyone can use your model:
 
 ```py
 >>> trainer.push_to_hub()
@@ -433,7 +433,7 @@ Load a video for inference:
 
     
 
-The simplest way to try out your fine-tuned model for inference is to use it in a [VideoClassificationPipeline](/docs/transformers/v5.23.0/en/main_classes/pipelines#transformers.VideoClassificationPipeline). Instantiate a `pipeline` for video classification with your model, and pass your video to it:
+The simplest way to try out your fine-tuned model for inference is to use it in a [VideoClassificationPipeline](/docs/transformers/v5.24.0/en/main_classes/pipelines#transformers.VideoClassificationPipeline). Instantiate a `pipeline` for video classification with your model, and pass your video to it:
 
 ```py
 >>> from transformers import pipeline
@@ -488,4 +488,4 @@ Decoding the `logits`, we get:
 ```
 
 ### Training Vision Models using Backbone API
-https://huggingface.co/docs/transformers/v5.23.0/tasks/training_vision_backbone.md
+https://huggingface.co/docs/transformers/v5.24.0/tasks/training_vision_backbone.md

@@ -187,4 +187,4 @@ treated as forward arguments). Each entry carries a reason naming the model-side
 list is also expected to shrink, not grow.
 
 ### Customizing tokenizers
-https://huggingface.co/docs/transformers/v5.23.0/custom_tokenizers.md
+https://huggingface.co/docs/transformers/v5.24.0/custom_tokenizers.md

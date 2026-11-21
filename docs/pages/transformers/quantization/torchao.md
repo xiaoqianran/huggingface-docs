@@ -9,10 +9,10 @@ See the table below for additional torchao features.
 | Feature | Description |
 |--------|-------------|
 | **Quantization Aware Training (QAT)** | Train quantized models with minimal accuracy loss (see [QAT README](https://github.com/pytorch/ao/blob/main/torchao/quantization/qat/README.md)) |
-| **Float8 Training** | High-throughput training with float8 formats (see [torchtitan](https://github.com/pytorch/torchtitan/blob/main/docs/float8.md) and [Accelerate](https://huggingface.co/docs/accelerate/usage_guides/low_precision_training#configuring-torchao) docs) |
+| **Float8 Training** | High-throughput training with float8 formats (see [torchtitan](https://github.com/pytorch/torchtitan/blob/main/torchtitan/quantization/README.md) and [Accelerate](https://huggingface.co/docs/accelerate/usage_guides/low_precision_training#configuring-torchao) docs) |
 | **Sparsity Support** | Semi-structured (2:4) sparsity for faster inference (see [Accelerating Neural Network Training with Semi-Structured (2:4) Sparsity](https://pytorch.org/blog/accelerating-neural-network-training/) blog post) |
 | **Optimizer Quantization** | Reduce optimizer state memory with 4 and 8-bit variants of Adam |
-| **KV Cache Quantization** | Enables long context inference with lower memory (see [KV Cache Quantization](https://github.com/pytorch/ao/blob/main/torchao/_models/llama/README.md)) |
+| **KV Cache Quantization** | Enables long context inference with lower memory |
 | **Custom Kernels Support** | use your own `torch.compile` compatible ops |
 | **FSDP2** | Composable with FSDP2 for training|
 
@@ -63,12 +63,12 @@ For a complete list of available configurations, see the [quantization API docum
 
 You can manually choose the quantization types and settings or automatically select the quantization types.
 
-Create a [TorchAoConfig](/docs/transformers/v5.23.0/en/main_classes/quantization#transformers.TorchAoConfig) and specify the quantization type and `group_size` of the weights to quantize (for int8 weight only and int4 weight only). Set the `cache_implementation` to `"static"` to automatically [torch.compile](https://pytorch.org/tutorials/intermediate/torch_compile_tutorial.html) the forward method.
+Create a [TorchAoConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.TorchAoConfig) and specify the quantization type and `group_size` of the weights to quantize (for int8 weight only and int4 weight only). Set the `cache_implementation` to `"static"` to automatically [torch.compile](https://pytorch.org/tutorials/intermediate/torch_compile_tutorial.html) the forward method.
 
 We'll show examples for recommended quantization methods based on hardwares, e.g. A100 GPU, H100 GPU, CPU.
 
 > [!WARNING]
-> torchao automatically compiles the model during the first inference if we set `cache_implementation="static"`. The model is recompiled every time batch size or `max_new_tokens` is modified. Pass `disable_compile=True` in [generate()](/docs/transformers/v5.23.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) to quantize without compilation.
+> torchao automatically compiles the model during the first inference if we set `cache_implementation="static"`. The model is recompiled every time batch size or `max_new_tokens` is modified. Pass `disable_compile=True` in [generate()](/docs/transformers/v5.24.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) to quantize without compilation.
 
 ### H100 GPU
 
@@ -611,4 +611,4 @@ Refer to [Other Available Quantization Techniques](https://github.com/pytorch/ao
 If you encounter any issues with the Transformers integration, please open an issue on the [Transformers](https://github.com/huggingface/transformers/issues) repository. For issues directly related to torchao, please open an issue on the [torchao](https://github.com/pytorch/ao/issues) repository.
 
 ### Metal
-https://huggingface.co/docs/transformers/v5.23.0/quantization/metal.md
+https://huggingface.co/docs/transformers/v5.24.0/quantization/metal.md

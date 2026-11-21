@@ -158,4 +158,4 @@ There are four timelines for model additions depending on the model contributor 
 For API reference generated from source files, use the [`@auto_docstring`](https://github.com/huggingface/transformers/blob/main/docs/source/en/auto_docstring.md) decorator when it applies. Refer to the docs [README](https://github.com/huggingface/transformers/blob/main/docs/README.md) for more details about how to edit the docs and the syntax we use.
 
 ### CPU
-https://huggingface.co/docs/transformers/v5.23.0/cpu.md
+https://huggingface.co/docs/transformers/v5.24.0/cpu.md
