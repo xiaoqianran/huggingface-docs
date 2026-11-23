@@ -12,7 +12,7 @@ Most of those are only useful if you are studying the general code in the librar
 transformers.utils.ExplicitEnum(value, names = None, module = None, qualname = None, type = None, start = 1, boundary = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/utils/generic.py#L664)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/utils/generic.py#L668)
 
 Enum with more explicit error message for missing values.
 
@@ -22,7 +22,7 @@ Enum with more explicit error message for missing values.
 transformers.utils.PaddingStrategy(value, names = None, module = None, qualname = None, type = None, start = 1, boundary = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/utils/generic.py#L676)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/utils/generic.py#L680)
 
 Possible values for the `padding` argument in [PreTrainedTokenizerBase.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__). Useful for tab-completion in an
 IDE.
@@ -33,7 +33,7 @@ IDE.
 transformers.TensorType(value, names = None, module = None, qualname = None, type = None, start = 1, boundary = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/utils/generic.py#L687)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/utils/generic.py#L691)
 
 Possible values for the `return_tensors` argument in [PreTrainedTokenizerBase.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__). Useful for
 tab-completion in an IDE.

@@ -176,7 +176,7 @@ it needs to declare a new instance of this class inside the `modeling_<model>.py
 register(key: str, value: Callable)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/utils/generic.py#L1244)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/utils/generic.py#L1248)
 
 ## Attention Mask Functions[[transformers.AttentionMaskInterface]]
 
@@ -194,7 +194,7 @@ transformers.AttentionMaskInterface()
 register(key: str, value: Callable)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/utils/generic.py#L1244)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/utils/generic.py#L1248)
 
 ## Rotary Position Embedding Functions[[transformers.dynamic_rope_update]]
 

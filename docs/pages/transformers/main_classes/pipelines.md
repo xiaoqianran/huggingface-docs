@@ -1540,7 +1540,7 @@ Fill the masked token in the text(s) given as inputs.
 #### transformers.TableQuestionAnsweringPipeline[[transformers.TableQuestionAnsweringPipeline]]
 
 ```python
-transformers.TableQuestionAnsweringPipeline(args_parser = <transformers.pipelines.table_question_answering.TableQuestionAnsweringArgumentHandler object at 0x7f6c860dca10>, **kwargs)
+transformers.TableQuestionAnsweringPipeline(args_parser = <transformers.pipelines.table_question_answering.TableQuestionAnsweringArgumentHandler object at 0x7f470125c490>, **kwargs)
 ```
 
 [Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/pipelines/table_question_answering.py#L78)
@@ -1873,7 +1873,7 @@ Complete the prompt(s) given as inputs.
 #### transformers.TokenClassificationPipeline[[transformers.TokenClassificationPipeline]]
 
 ```python
-transformers.TokenClassificationPipeline(args_parser = <transformers.pipelines.token_classification.TokenClassificationArgumentHandler object at 0x7f6c862368d0>, **kwargs)
+transformers.TokenClassificationPipeline(args_parser = <transformers.pipelines.token_classification.TokenClassificationArgumentHandler object at 0x7f4701283410>, **kwargs)
 ```
 
 [Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/pipelines/token_classification.py#L91)
@@ -2026,7 +2026,7 @@ Group together the adjacent tokens with the same entity predicted.
 #### transformers.ZeroShotClassificationPipeline[[transformers.ZeroShotClassificationPipeline]]
 
 ```python
-transformers.ZeroShotClassificationPipeline(args_parser = <transformers.pipelines.zero_shot_classification.ZeroShotClassificationArgumentHandler object at 0x7f6c85faa210>, **kwargs)
+transformers.ZeroShotClassificationPipeline(args_parser = <transformers.pipelines.zero_shot_classification.ZeroShotClassificationArgumentHandler object at 0x7f470120ee10>, **kwargs)
 ```
 
 [Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/pipelines/zero_shot_classification.py#L44)

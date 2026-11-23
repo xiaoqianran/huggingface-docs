@@ -54,7 +54,7 @@ documented on their corresponding model page.
 transformers.utils.ModelOutput(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/utils/generic.py#L469)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/utils/generic.py#L473)
 
 Base class for all model outputs as dataclass. Has a `__getitem__` that allows indexing by integer or slice (like a
 tuple) or strings (like a dictionary) that will ignore the `None` attributes. Otherwise behaves like a regular
@@ -69,7 +69,7 @@ before.
 to_tuple()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/utils/generic.py#L628)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/utils/generic.py#L632)
 
 Convert self to a tuple containing all the attributes/keys that are not `None`.
 

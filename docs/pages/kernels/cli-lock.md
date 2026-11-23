@@ -1,6 +1,7 @@
 # kernels lock
 
-Use `kernels lock` to generate a `kernels.lock` file that pins kernel dependencies to specific revisions.
+Use `kernels lock` to generate a `kernels.lock` file that pins kernel
+dependencies to specific revisions.
 
 ## Usage
 
@@ -10,7 +11,8 @@ kernels lock <project_dir>
 
 ## What It Does
 
-- Reads kernel dependencies from `pyproject.toml` under `[tool.kernels.dependencies]`
+- Reads kernel dependencies from `pyproject.toml` under
+  `[tool.kernels.dependencies]`
 - Resolves each kernel to its current revision SHA
 - Writes a `kernels.lock` file with pinned versions and variant information
 
@@ -75,7 +77,8 @@ The generated lock file contains:
 ## See Also
 
 - [kernels download](cli-download) - Download locked kernels
-- [kernels variants](cli-variants) - View kernel variants and compatibility decisions
+- [kernels variants](cli-variants) - View kernel variants and compatibility
+  decisions
 
 ### Quickstart
 https://huggingface.co/docs/kernels/main/basic-usage.md

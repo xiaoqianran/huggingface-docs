@@ -1,6 +1,7 @@
 # kernels download
 
-Use `kernels download` to download kernels that have been locked in a project's `kernels.lock` file.
+Use `kernels download` to download kernels that have been locked in a project's
+`kernels.lock` file.
 
 ## Usage
 
@@ -12,7 +13,8 @@ kernels download <project_dir> [--all-variants]
 
 - Reads the `kernels.lock` file from the specified project directory
 - Downloads each locked kernel at its pinned revision (SHA)
-- Installs the appropriate variant for your platform (or all variants with `--all-variants`)
+- Installs the appropriate variant for your platform (or all variants with
+  `--all-variants`)
 
 ## Examples
 
@@ -42,12 +44,14 @@ kernels download /path/to/my-project
 
 ## Prerequisites
 
-Your project directory must contain a `kernels.lock` file. Generate one using [`kernels lock`](cli-lock).
+Your project directory must contain a `kernels.lock` file. Generate one using
+[`kernels lock`](cli-lock).
 
 ## See Also
 
 - [kernels lock](cli-lock) - Generate the lock file
-- [kernels variants](cli-variants) - View kernel variants and compatibility decisions
+- [kernels variants](cli-variants) - View kernel variants and compatibility
+  decisions
 
 ### kernels benchmark
 https://huggingface.co/docs/kernels/main/cli-benchmark.md

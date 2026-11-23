@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-22T15:11:57.545107+00:00",
+  "fetchedAt": "2026-11-23T19:09:54.198562+00:00",
   "method": "llms-full-split",
   "ok": 2340,
   "failed": 0,
@@ -5835,7 +5835,7 @@
     },
     {
       "rel": "hub/spaces-sdks-docker-zenml.md",
-      "bytes": 9049,
+      "bytes": 9075,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/spaces-sdks-docker-zenml.md",
       "track": "Hub",
@@ -6789,7 +6789,7 @@
     },
     {
       "rel": "hub/publisher-analytics.md",
-      "bytes": 4414,
+      "bytes": 4356,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/publisher-analytics.md",
       "track": "Hub",
@@ -8670,7 +8670,7 @@
     },
     {
       "rel": "kernels/index.md",
-      "bytes": 4985,
+      "bytes": 4991,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/index.md",
       "track": "Kernels",
@@ -8679,7 +8679,7 @@
     },
     {
       "rel": "kernels/layers.md",
-      "bytes": 18009,
+      "bytes": 18025,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/layers.md",
       "track": "Kernels",
@@ -8688,7 +8688,7 @@
     },
     {
       "rel": "kernels/cli-download.md",
-      "bytes": 1440,
+      "bytes": 1444,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/cli-download.md",
       "track": "Kernels",
@@ -8697,7 +8697,7 @@
     },
     {
       "rel": "kernels/cli-benchmark.md",
-      "bytes": 5685,
+      "bytes": 5695,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/cli-benchmark.md",
       "track": "Kernels",
@@ -8706,7 +8706,7 @@
     },
     {
       "rel": "kernels/cli-versions.md",
-      "bytes": 1757,
+      "bytes": 1755,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/cli-versions.md",
       "track": "Kernels",
@@ -8724,7 +8724,7 @@
     },
     {
       "rel": "kernels/why_kernels.md",
-      "bytes": 1744,
+      "bytes": 1772,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/why_kernels.md",
       "track": "Kernels",
@@ -8733,7 +8733,7 @@
     },
     {
       "rel": "kernels/cli.md",
-      "bytes": 1012,
+      "bytes": 1037,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/cli.md",
       "track": "Kernels",
@@ -8742,7 +8742,7 @@
     },
     {
       "rel": "kernels/cli-variants.md",
-      "bytes": 4256,
+      "bytes": 4707,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/cli-variants.md",
       "track": "Kernels",
@@ -8751,7 +8751,7 @@
     },
     {
       "rel": "kernels/migration.md",
-      "bytes": 10667,
+      "bytes": 10665,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/migration.md",
       "track": "Kernels",
@@ -8760,7 +8760,7 @@
     },
     {
       "rel": "kernels/installation.md",
-      "bytes": 2173,
+      "bytes": 2169,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/installation.md",
       "track": "Kernels",
@@ -8787,7 +8787,7 @@
     },
     {
       "rel": "kernels/cli-lock.md",
-      "bytes": 1797,
+      "bytes": 1801,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/cli-lock.md",
       "track": "Kernels",
@@ -8796,7 +8796,7 @@
     },
     {
       "rel": "kernels/basic-usage.md",
-      "bytes": 6974,
+      "bytes": 6972,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/basic-usage.md",
       "track": "Kernels",
@@ -8805,7 +8805,7 @@
     },
     {
       "rel": "kernels/cli-info.md",
-      "bytes": 3369,
+      "bytes": 3375,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/cli-info.md",
       "track": "Kernels",
@@ -8823,7 +8823,7 @@
     },
     {
       "rel": "kernels/kernel-requirements.md",
-      "bytes": 19832,
+      "bytes": 19822,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/kernel-requirements.md",
       "track": "Kernels",
@@ -8841,7 +8841,7 @@
     },
     {
       "rel": "kernels/cli-cache.md",
-      "bytes": 4117,
+      "bytes": 4341,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/cli-cache.md",
       "track": "Kernels",
@@ -8850,7 +8850,7 @@
     },
     {
       "rel": "kernels/cli-describe-api.md",
-      "bytes": 2720,
+      "bytes": 2722,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/cli-describe-api.md",
       "track": "Kernels",
@@ -8859,7 +8859,7 @@
     },
     {
       "rel": "kernels/cli-skills.md",
-      "bytes": 2963,
+      "bytes": 3008,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/cli-skills.md",
       "track": "Kernels",
@@ -8895,7 +8895,7 @@
     },
     {
       "rel": "kernels/integrating-kernels.md",
-      "bytes": 2275,
+      "bytes": 2360,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/integrating-kernels.md",
       "track": "Kernels",
@@ -8931,7 +8931,7 @@
     },
     {
       "rel": "kernels/builder/metal.md",
-      "bytes": 2254,
+      "bytes": 2252,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/builder/metal.md",
       "track": "Kernels",
@@ -8949,7 +8949,7 @@
     },
     {
       "rel": "kernels/builder/build.md",
-      "bytes": 9991,
+      "bytes": 9987,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/builder/build.md",
       "track": "Kernels",
@@ -8967,7 +8967,7 @@
     },
     {
       "rel": "kernels/builder/why-nix.md",
-      "bytes": 3384,
+      "bytes": 3400,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/builder/why-nix.md",
       "track": "Kernels",
@@ -8976,7 +8976,7 @@
     },
     {
       "rel": "kernels/builder/agents-guide.md",
-      "bytes": 9731,
+      "bytes": 9751,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/builder/agents-guide.md",
       "track": "Kernels",
@@ -8985,7 +8985,7 @@
     },
     {
       "rel": "kernels/builder/design-overview.md",
-      "bytes": 1500,
+      "bytes": 1504,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/builder/design-overview.md",
       "track": "Kernels",
@@ -8994,7 +8994,7 @@
     },
     {
       "rel": "kernels/builder/triton-autotune.md",
-      "bytes": 7168,
+      "bytes": 7112,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/builder/triton-autotune.md",
       "track": "Kernels",
@@ -9003,7 +9003,7 @@
     },
     {
       "rel": "kernels/builder/design-nix-builder.md",
-      "bytes": 4730,
+      "bytes": 4727,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/builder/design-nix-builder.md",
       "track": "Kernels",
@@ -9012,7 +9012,7 @@
     },
     {
       "rel": "kernels/builder/writing-kernels.md",
-      "bytes": 26571,
+      "bytes": 26577,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/builder/writing-kernels.md",
       "track": "Kernels",
@@ -9021,7 +9021,7 @@
     },
     {
       "rel": "kernels/builder/github-actions.md",
-      "bytes": 9698,
+      "bytes": 9712,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/builder/github-actions.md",
       "track": "Kernels",
@@ -21117,7 +21117,7 @@
       "toc": 282,
       "found": 281,
       "written": 281,
-      "full_bytes": 1637365
+      "full_bytes": 1637333
     },
     {
       "pkg": "huggingface_hub",
@@ -21145,7 +21145,7 @@
       "toc": 41,
       "found": 41,
       "written": 41,
-      "full_bytes": 262386
+      "full_bytes": 263267
     },
     {
       "pkg": "lerobot",
