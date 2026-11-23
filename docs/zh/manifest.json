@@ -377,8 +377,8 @@
       "translatedAt": "2026-10-29T14:07:45.216Z"
     },
     "hub/enterprise.md": {
-      "hash": "de6b2ba1b9f14b651d89ffe04a869ed0b234449d",
-      "translatedAt": "2026-10-29T14:07:41.235Z"
+      "hash": "180cbcfc48e8491edd45b2ebb1f837eaf1bbc0df",
+      "translatedAt": "2026-11-23T19:10:08.806Z"
     },
     "hub/gguf.md": {
       "hash": "62322b02be27d2ed40510e6969405db41f690959",
@@ -617,8 +617,8 @@
       "translatedAt": "2026-11-12T15:55:10.289Z"
     },
     "hub/publisher-analytics.md": {
-      "hash": "ae803e04431f41378226265941330f0fc86a37b6",
-      "translatedAt": "2026-11-17T16:49:39.775Z"
+      "hash": "0e4ccf2f9f3e935517b800fe97a6ad6cc20196b3",
+      "translatedAt": "2026-11-23T19:09:59.651Z"
     },
     "hub/repositories-github-actions.md": {
       "hash": "401f35a8fa03a4ba35750321834a31dc7471674d",
@@ -957,8 +957,8 @@
       "translatedAt": "2026-10-29T14:10:49.167Z"
     },
     "hub/spaces-sdks-docker-zenml.md": {
-      "hash": "23dfbbc2ce4c4e6e11f2afcf279f73256df00ac6",
-      "translatedAt": "2026-10-29T14:10:46.752Z"
+      "hash": "a9d596c0833281fff5afac58759df70893fdff8d",
+      "translatedAt": "2026-11-23T19:10:02.223Z"
     },
     "hub/spaces-sdks-streamlit.md": {
       "hash": "cfae0ec7c537c03d483cb5acff163efe5ebccb12",
@@ -2057,10 +2057,10 @@
       "translatedAt": "2026-11-19T16:29:39.854Z"
     }
   },
-  "updatedAt": "2026-11-22T15:11:57.736Z",
+  "updatedAt": "2026-11-23T19:10:08.806Z",
   "stats": {
-    "translated": 0,
-    "skipped": 400,
+    "translated": 3,
+    "skipped": 397,
     "failed": 0,
     "total": 400
   }

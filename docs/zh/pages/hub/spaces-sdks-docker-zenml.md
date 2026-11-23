@@ -83,7 +83,7 @@ zenml connect --url '<YOUR_HF_SPACES_DIRECT_URL>' --username='default' --passwor
 
 您还可以使用浏览器中的直接 URL 将 ZenML 仪表板用作
 全屏应用程序（即没有 Hugging Face Spaces 包装器）。> [!警告]
-> 从 Hugging Face 内部查看时，ZenML 仪表板当前无法工作 
+> 从 Hugging Face 内部查看时，ZenML 仪表板目前无法工作 
 > 网页（即包含在主`https://huggingface.co/...`网站中）。这是在 
 > 说明 ZenML 和 Hugging Face 之间处理 cookie 的方式存在限制。 
 > 您**必须**从“直接 URL”查看仪表板（见上文）。
@@ -94,7 +94,7 @@ zenml connect --url '<YOUR_HF_SPACES_DIRECT_URL>' --username='default' --passwor
 非持久性数据库。如果你想使用持久数据库，你可以
 通过修改空间根目录中的`Dockerfile`来配置它。对于
 有关您可以更改的各种参数的完整详细信息，请参阅有关配置的[our reference
-documentation](https://docs.zenml.io/getting-started/deploying-zenml/docker#zenml-server-configuration-options)
+documentation](https://docs.zenml.io/deploying-zenml/deploying-zenml/deploy-with-docker#zenml-server-configuration-options)
 使用 Docker 部署时的 ZenML。
 
 > [!提示]
@@ -103,7 +103,7 @@ documentation](https://docs.zenml.io/getting-started/deploying-zenml/docker#zenm
 
 您还可以将外部秘密后端与 Hugging Face 一起使用
 [our
-documentation](https://docs.zenml.io/getting-started/deploying-zenml/docker#zenml-server-configuration-options) 中描述的空间。你应该是
+documentation](https://docs.zenml.io/deploying-zenml/deploying-zenml/deploy-with-docker#zenml-server-configuration-options) 中描述的空间。你应该是
 请务必使用 Hugging Face 的内置“存储库秘密”功能
 配置您需要在`Dockerfile`配置中使用的任何秘密。 [See the
 documentation](https://huggingface.co/docs/hub/spaces-sdks-docker#secret-management)
@@ -137,7 +137,7 @@ documentation](https://huggingface.co/docs/hub/spaces-sdks-docker#secret-managem
 ## 后续步骤
 
 下一步，请查看我们的 [Starter Guide to MLOps with
-ZenML](https://docs.zenml.io/starter-guide/pipelines)，这是一系列短片
+ZenML](https://docs.zenml.io/user-guides/starter-guide)，这是一系列短片
 有关如何快速入门的实用页面。或者，查看 [our
 ⟦T9⟧
 example](https://github.com/zenml-io/zenml/tree/main/examples/quickstart)
