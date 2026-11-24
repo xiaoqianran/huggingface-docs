@@ -12,7 +12,7 @@
 
     
 
-这将开始使用 Plotly 的 Dash Docker 模板构建您的空间。如果成功，您应该会看到与[Dash template app](https://huggingface.co/spaces/dash/dash-app-template)类似的应用程序。
+这将开始使用 Plotly 的 Dash Docker 模板构建您的空间。如果成功，您应该会看到与[Dash template app](https://huggingface.co/spaces/plotly/dash-app-template)类似的应用程序。
 
 ## 定制您的 Dash 应用
 

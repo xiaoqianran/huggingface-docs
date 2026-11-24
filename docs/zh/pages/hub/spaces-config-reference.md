@@ -53,7 +53,7 @@
 对于静态空间，首先运行命令以生成要渲染的 HTML。示例：`npm run build`。它与指向构建索引文件的`app_file`结合使用：例如`app_file: dist/index.html`。 
 
 每次更新，构建命令都会在 Job 中运行，构建输出将存储在 `refs/convert/build` 中，
-这将由空间提供服务。请参阅 https://huggingface.co/spaces/coyotte508/static-vite 的示例
+这将由空间提供服务。请参阅 https://huggingface.co/spaces/static-templates/svelte 的示例
 
 **`app_port`** : _int_  
 您的应用程序正在其上运行的端口。仅当 `sdk` 为 `docker` 时使用。默认端口是`7860`。

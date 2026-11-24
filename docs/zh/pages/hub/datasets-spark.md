@@ -22,7 +22,7 @@ pip install pyspark_huggingface
 
 ### 身份验证
 
-您需要向 Hugging Face 进行身份验证才能读取私有/门控数据集存储库或写入数据集存储库。
+您需要对 Hugging Face 进行身份验证才能读取私有/门控数据集存储库或写入数据集存储库。
 
 您可以使用 CLI，例如：
 
@@ -49,7 +49,7 @@ huggingface datasource enabled for pyspark 3.x.x (backport from pyspark 4)
 “huggingface”数据源允许从 Hugging Face 读取数据集，在后台使用 `pyarrow` 来传输 Arrow 数据。
 这与 Hugging Face 上[supported format](https://huggingface.co/docs/hub/datasets-adding#file-formats) 中的所有数据集兼容，例如 Parquet 数据集。
 
-例如，以下是如何加载 [stanfordnlp/imdb](https://huggingface.co/stanfordnlp/imdb) 数据集：
+例如，以下是如何加载 [stanfordnlp/imdb](https://huggingface.co/datasets/stanfordnlp/imdb) 数据集：
 
 ```python
 >>> import pyspark_huggingface
@@ -276,7 +276,7 @@ https://huggingface.co/docs/hub/tf-keras.md
 
 如果您对 Keras 3.x 支持感兴趣，请查看 [this guide](./keras)。
 
-安装完成后，您只需使用`from_pretrained_keras`方法从Hub加载模型即可。了解更多关于 `from_pretrained_keras` [here](https://huggingface.co/docs/huggingface_hub/main/en/package_reference/mixins#huggingface_hub.from_pretrained_keras) 的信息。
+安装后，您只需使用`from_pretrained_keras`方法从Hub加载模型即可。了解更多关于 `from_pretrained_keras` [here](https://huggingface.co/docs/huggingface_hub/main/en/package_reference/mixins#huggingface_hub.from_pretrained_keras) 的信息。
 
 ```py
 from huggingface_hub import from_pretrained_keras
@@ -291,7 +291,7 @@ print(f'The image is a {classes[(np.argmax(prediction))]}!')
 # The image is a sunflower!
 ```
 
-您还可以在 Hub 上托管您的 `tf-keras` 模型。但是，请记住，`tf-keras` 是一个遗留框架。为了达到最大数量的用户，我们建议使用 Keras 3.x 创建模型并如上所述在本机共享。有关上传`tf-keras`模型的更多详细信息，请查看[⟦T62⟧ documentation](https://huggingface.co/docs/huggingface_hub/main/en/package_reference/mixins#huggingface_hub.push_to_hub_keras)。
+您还可以在 Hub 上托管您的 `tf-keras` 模型。但是，请记住，`tf-keras` 是一个遗留框架。为了达到最大数量的用户，我们建议使用 Keras 3.x 创建模型并按上述方式在本机共享。有关上传`tf-keras`模型的更多详细信息，请查看[⟦T62⟧ documentation](https://huggingface.co/docs/huggingface_hub/main/en/package_reference/mixins#huggingface_hub.push_to_hub_keras)。
 
 ```py
 from huggingface_hub import push_to_hub_keras

@@ -18,7 +18,7 @@ Hub 可在浏览器中预览 3D 文件，因此您无需下载即可检查网格
 | GLTF | `.glb`、`.gltf` | [DamagedHelmet.glb](https://huggingface.co/datasets/cfahlgren1/3d-model-samples/blob/main/DamagedHelmet.glb) |
 |网布| `.obj`、`.stl`、`.ply` | [cone.stl](https://huggingface.co/datasets/cfahlgren1/mesh-doc-test-formats/blob/main/meshes/cone.stl) |
 |点云| `.ply` | [birmingham_block_13.ply](https://huggingface.co/datasets/WhiteFlamesCN/sensaturban-citynav-ply/blob/main/birmingham_block_13.ply) |
-|高斯分布| `.ply`、`.splat` | [a_monarch_butterfly.ply](https://huggingface.co/datasets/cfahlgren1/3d-splat-samples/blob/main/a_monarch_butterfly.ply) |
+|高斯分布| `.ply`、`.splat`、`.sog` | [a_monarch_butterfly.ply](https://huggingface.co/datasets/cfahlgren1/3d-splat-samples/blob/main/a_monarch_butterfly.ply) |
 |开盘美元 | `.usd`、`.usda`、`.usdc`、`.usdz` | [sm_box_corrugated_brown_b08_01.usd](https://huggingface.co/datasets/nvidia/simready-assets/blob/main/box_corrugated_brown_b08/simready_usd/sm_box_corrugated_brown_b08_01.usd) |> [!提示]
 > 单击“**加载 3D 预览**”时，会加载超过 100 MB 的 glTF、网格、点云和高斯 splat 文件。无法预览超过 1 GB 的文件。
 
@@ -32,23 +32,23 @@ glTF 文件使用其材质和纹理进行渲染。使用右上角的按钮在**�
 
 ### 高斯分布
 
-高斯图可以存储为 `.splat` 或 `.ply` 文件：
+高斯图可以存储为 `.ply`、`.splat` 或 `.sog` 文件。 [SOG](https://developer.playcanvas.com/user-manual/gaussian-splatting/formats/sog/) 是 PlayCanvas 的压缩 splat 格式，由 SuperSplat 和 `splat-transform` 等工具导出。它比同等的 `.ply` 小得多，同时保持与视图相关的颜色，这使其成为共享大型场景的不错选择。也支持 PlayCanvas 压缩 `.ply` 文件。
 
-### 开放美元
-
-美元资产通常分为多个文件：引用子层、有效负载、材质和纹理的根文件。查看器从同一存储库加载这些引用的文件，因此请保留您创作资产所用的文件夹结构，并使用相对路径进行引用。无法加载对绝对路径或存储库外部文件的引用。
+### 开放美元美元资产通常分为多个文件：引用子层、有效负载、材质和纹理的根文件。查看器从同一存储库加载这些引用的文件，因此请保留您创作资产所用的文件夹结构，并使用相对路径进行引用。无法加载对绝对路径或存储库外部文件的引用。
 
 ## 数据集查看器中的 3D 文件
 
 ### 网格列
 
-数据集查看器显示 [⟦T21⟧](https://huggingface.co/docs/datasets/main/en/package_reference/main_classes#datasets.Mesh) 列的每个单元格的缩略图。可以为 `.glb`、`.ply`、`.stl` 和 `.obj` 文件呈现缩略图。单击缩略图以 3D 方式打开文件，位于该行的其他值旁边：
+数据集查看器显示 [⟦T26⟧](https://huggingface.co/docs/datasets/main/en/package_reference/main_classes#datasets.Mesh) 列的每个单元格的缩略图。可以为 `.glb`、`.ply`、`.stl` 和 `.obj` 文件呈现缩略图。
+
+单击缩略图以 3D 方式打开文件，位于该行的其他值旁边：
 
 ### 3D 资产卡
 
 数据集页面还显示一个 **3D 资源** 卡，其中包含所选子集和拆分的第一行中最多 15 个缩略图，如 [top of this page](#3d-dataset) 中的缩略图。确保第一行有网格，否则卡片不会出现。
 
-例如，参见[cfahlgren1/smithsonian-3d-glb](https://huggingface.co/datasets/cfahlgren1/smithsonian-3d-glb)。
+例如，请参阅[cfahlgren1/smithsonian-3d-glb](https://huggingface.co/datasets/cfahlgren1/smithsonian-3d-glb)。
 
 ## 构建数据集
 
@@ -64,9 +64,7 @@ my_dataset_repository/
     └── table.glb
 ```
 
-### 附加列
-
-要添加标题、标签或其他列，请在 3D 文件旁边添加带有 `file_name` 列的 `metadata.jsonl`（或 `metadata.csv`）文件：
+### 附加列要添加标题、标签或其他列，请在 3D 文件旁边添加带有 `file_name` 列的 `metadata.jsonl`（或 `metadata.csv`）文件：
 
 ```
 my_dataset_repository/
@@ -111,7 +109,9 @@ table = table.replace_schema_metadata(
     {"huggingface": json.dumps({"info": {"features": features.to_dict()}})}
 )
 pq.write_table(table, "train.parquet")
-```- 路径必须相对于包含 Parquet 文件的目录。
+```
+
+- 路径必须相对于包含 Parquet 文件的目录。
 - 对于没有 3D 文件的行使用 `None`。
 - 一个文件夹最多可包含 10,000 个文件，因此请将较大的文件集分组到子文件夹中。
 
@@ -125,9 +125,7 @@ pq.write_table(table, "train.parquet")
 
 这些数据集还具有 `simready` 标签，因此它们会在 [filtering datasets](https://huggingface.co/datasets?other=simready) 时显示。
 
-### 包结构
-
-包是包含 `com.nvidia.simready.packaging.json` 文件的文件夹。包可以位于存储库中的任何深度，包内的文件夹是该包的一部分。
+### 包结构包是包含 `com.nvidia.simready.packaging.json` 文件的文件夹。包可以位于存储库中的任何深度，包内的文件夹是该包的一部分。
 
 每个包都需要其根 USD 文件的缩略图才能出现在卡中。根据 SimReady 对缩略图的要求，`<folder>/<file>.usd` 的缩略图是 `<folder>/.thumbs/256x256/<file>.usd.png`（或 `.usda.png`、`.usdc.png`、`.usdz.png`），位于包文件夹或其下一个文件夹中：
 
@@ -146,7 +144,9 @@ my_dataset_repository/
 └── IV_pole_a02
     ├── com.nvidia.simready.packaging.json
     └── ...
-```- 可选的`<file>.usd_light.png`在浅色模式下显示，`<file>.usd.png`在深色模式下显示。
+```
+
+- 可选的`<file>.usd_light.png`在浅色模式下显示，`<file>.usd.png`在深色模式下显示。
 - 超过 4 MB 的缩略图将被跳过。
 
 每次推送到数据集后，该卡都会更新。

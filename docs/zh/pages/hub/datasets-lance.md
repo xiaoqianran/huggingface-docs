@@ -46,7 +46,7 @@ for row in ds.take(3):
 > 流式传输对于简单标量元数据采样速度很快，但对于嵌入或大型多模式资产则不那么快。要处理大型数据集，建议扫描元数据，识别所需的子集，并在本地下载数据集的该部分，以避免面临 Hub 速率限制：
 > `hf download lance-format/laion-1m --repo-type dataset --local-dir ./laion`
 
-## 使用 `lance.dataset` 从集线器进行流式传输您还可以使用 `hf://` 路径说明符扫描存储在 Hugging Face Hub 上的 Lance 数据集。这会扫描远程数据集，而不需要您将其下载到本地。使用 Lance `dataset` API，可以非常简单地设置限制、过滤器和预测以仅获取您需要的数据。
+## 使用 `lance.dataset` 从集线器进行流式传输您还可以使用 `hf://` 路径说明符扫描存储在 Hugging Face Hub 上的 Lance 数据集。这将扫描远程数据集，而不需要您将其下载到本地。使用 Lance `dataset` API，可以非常简单地设置限制、过滤器和预测以仅获取您需要的数据。
 
 ```python
 import lance
@@ -171,7 +171,7 @@ neighbors = ds.scanner(
 > [!注意]
 > 设置较大的 `k` 或 `nprobes` 值，或一次发送大量查询可能会达到 Hub 速率限制。对于大量使用，请在本地下载数据集（或其子集）并将 Lance 指向本地路径以避免限制。
 
-## 数据集演化Lance 最强大的功能之一是灵活、零成本的数据演化，这意味着您可以轻松添加派生列，**无需**重写原始表。对于包含大量大 blob 的非常大的表，I/O 节省可能非常显着。如果您正在试验 ML/AI 工程任务的数据，并且经常发现自己添加新功能、嵌入或派生元数据，则此功能非常相关。
+## 数据集演变Lance 最强大的功能之一是灵活、零成本的数据演化，这意味着您可以轻松添加派生列，**无需**重写原始表。对于包含大量大 blob 的非常大的表，I/O 节省可能非常显着。如果您正在试验 ML/AI 工程任务的数据，并且经常发现自己添加新功能、嵌入或派生元数据，则此功能非常相关。
 
 下面的示例展示了如何添加派生的 `moderation_label` 列，根据现有分数列将图像标记为 `NSFW`。进行此更改时，回填新列**仅**写入新列数据，而不会触及原始图像 blob 或其他列中的数据。您还可以选择仅添加新列架构而不回填任何数据。
 
@@ -238,7 +238,7 @@ decoder = VideoDecoder(blob_file)
 tensor = decoder[0]  # uint8 tensor of shape [C, H, W]
 ```
 
-有关高效解码视频的更多功能，请参阅[torchcodec docs](https://docs.pytorch.org/torchcodec/stable/generated/torchcodec.decoders.VideoDecoder.html)。
+有关高效解码视频的更多功能，请参阅[torchcodec docs](https://meta-pytorch.org/torchcodec/stable/generated/torchcodec.decoders.VideoDecoder.html)。
 
 此外，您还可以查看[Lance documentation](https://lance.org/examples/python/clip_training/)，了解更多将图像数据加载到`torchvision`以训练您自己的图像模型的示例。
 

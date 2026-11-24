@@ -27,14 +27,14 @@
 > [!提示]
 > 如果您想自定义空间的标题、表情符号和颜色，请转到“文件和版本”并编辑 README.md 文件的元数据。
 
-### 您的虎斑空间网址Tabby 启动并运行后，对于 https://huggingface.com/spaces/TabbyML/tabby 等空间链接，直接 URL 将为 https://tabbyml-tabby.hf.space。
+### 您的虎斑空间网址Tabby 启动并运行后，对于 https://huggingface.co/spaces/TabbyML/tabby-template-space 等空间链接，直接 URL 将为 https://tabbyml-tabby-template-space.hf.space。
 此 URL 提供对全屏模式下稳定 Tabby 实例的访问，并用作 IDE/编辑器扩展与之通信的 API 端点。
 
 ### 将 VSCode 扩展连接到 Space 后端
 
 1. 安装[VSCode Extension](https://marketplace.visualstudio.com/items?itemName=TabbyML.vscode-tabby)。
 2. 打开位于`~/.tabby-client/agent/config.toml`的文件。取消注释 `[server]` 部分和 `[server.requestHeaders]` 部分。
-   * 将端点设置为您在上一步中找到的直接 URL，它应该类似于 `https://UserName-SpaceName.hf.space`。
+   * 将端点设置为您在上一步中找到的直接 URL，该 URL 应该类似于 `https://UserName-SpaceName.hf.space`。
    * 由于空间设置为**私有**，因此必须配置访问端点的授权标头。您可以从[Access Tokens](https://huggingface.co/settings/tokens)页面获取代币。
 
 ![Agent Config](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/tabby/agent-config.png)

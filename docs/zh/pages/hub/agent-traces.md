@@ -20,7 +20,7 @@ Hugging Face Hub 原生支持来自 Claude Code、Codex、Pi、Hermes Agent 和 
 
 这些跟踪文件是开箱即用的，因此您可以上传它们，而无需先修改或转换它们。
 
-Hermes Agent 将当前会话存储在其会话数据库中。上传之前将要共享的会话导出为 JSONL：
+Hermes Agent 将当前会话存储在其会话数据库中。在上传之前将要共享的会话导出为 JSONL：
 
 ```bash
 hermes sessions export session.jsonl --session-id <session_id>
@@ -74,8 +74,8 @@ openrouter-traces/<date>/gen-<unix>-<id>-<timestamp>.json
 
 打开存储桶中的任何 `.json` 文件，将其视为 **OpenRouter 跟踪**，并在跟踪视图和原始 JSON 之间切换。查看器显示消息、工具调用和结果、模型、令牌计数（包括缓存的令牌）和成本。页脚中的费用是针对该一次请求的费用，而不是针对会话的费用。
 
-阅读这些痕迹时需要了解两件事：- 不存储图像。导出前从消息中打开路由器[strips multimodal content](https://openrouter.ai/docs/guides/features/broadcast/overview)，查看器在其位置显示`[image]`。
+阅读这些痕迹时需要了解两件事：- 不存储图像。导出之前从消息中打开路由器[strips multimodal content](https://openrouter.ai/docs/guides/features/broadcast/overview)，查看器在其位置显示`[image]`。
 - 某些请求可能丢失或没有内容。 OpenRouter 的采样率和 API 密钥过滤器限制发送到目的地的请求，而隐私模式会删除提示和完成内容。
 
-### 使用空格作为组织卡
-https://huggingface.co/docs/hub/spaces-organization-cards.md
+### 守夜人
+https://huggingface.co/docs/hub/enterprise-nightwatch.md

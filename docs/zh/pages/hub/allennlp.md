@@ -69,7 +69,6 @@ push_to_hf(
 
 ## 其他资源
 
-* AllenNLP [website](https://allenai.org/allennlp)。
 * AllenNLP [repository](https://github.com/allenai/allennlp)。
 
 ### 集线器上的存储区域

@@ -24,8 +24,8 @@ Spaces 还可以为您的应用程序容纳自定义 HTML，而不是使用 Stre
 
 空间示例： 
 
-- [Svelte App](https://huggingface.co/spaces/julien-c/vite-svelte)
-- [React App](https://huggingface.co/spaces/coyotte508/static-vite)
+- [Svelte App](https://huggingface.co/spaces/static-templates/svelte)
+- [React App](https://huggingface.co/spaces/static-templates/react)
 
 在底层，它将[launch a build](https://huggingface.co/spaces/huggingface/space-build)，将生成的文件存储在特殊的`refs/convert/build`引用中。
 

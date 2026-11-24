@@ -19,7 +19,7 @@
 
 首先，让我们从您的 [settings]( https://huggingface.co/settings/webhooks) 创建一个 Webhook。
 
-- 选择您的数据集作为目标存储库。在此示例中，我们将定位[huggingface-projects/input-dataset](https://huggingface.co/datasets/huggingface-projects/input-dataset)。
+- 选择您的数据集作为目标存储库。在此示例中，我们将定位[huggingface-projects/auto-retrain-input-dataset](https://huggingface.co/datasets/huggingface-projects/auto-retrain-input-dataset)。
 - 您现在可以输入一个虚拟的 Webhook URL。定义 Webhook 将让您查看将发送给它的事件。您还可以重播它们，这对于调试很有用！
 - 输入密码以使其更安全。
 - 订阅“Repo update”事件，因为我们希望对数据更改做出反应

@@ -29,8 +29,8 @@
       "translatedAt": "2026-10-29T14:05:58.275Z"
     },
     "hub/agent-traces.md": {
-      "hash": "ea10a659c373aba95bfab187a54e3ec8467b1760",
-      "translatedAt": "2026-11-19T16:29:34.396Z"
+      "hash": "e18c2bcd8269778a140f6d341f1677c0e6f614dc",
+      "translatedAt": "2026-11-24T18:48:16.255Z"
     },
     "hub/index.md": {
       "hash": "f3ebde60692c5fea0143fbe5e79a4ffe2e5ccd1a",
@@ -65,8 +65,8 @@
       "translatedAt": "2026-10-29T14:06:05.995Z"
     },
     "hub/allennlp.md": {
-      "hash": "40dd1d0ba9b3299c8ff606ef246809b1042a33bb",
-      "translatedAt": "2026-10-29T14:06:06.034Z"
+      "hash": "cec4ea08706ea67636056615a322fafb8fed2d51",
+      "translatedAt": "2026-11-24T18:48:15.267Z"
     },
     "hub/asteroid.md": {
       "hash": "73eb043e14c313dad9735cf37c3b5297e41d2b67",
@@ -117,8 +117,8 @@
       "translatedAt": "2026-11-09T17:22:31.457Z"
     },
     "hub/datasets-data-designer.md": {
-      "hash": "774eb65235266515a110f1a98c8ee99eb0539522",
-      "translatedAt": "2026-10-29T14:06:25.109Z"
+      "hash": "abef8e2e0a0dd3531d43ef11da4da40638142b9b",
+      "translatedAt": "2026-11-24T18:48:15.744Z"
     },
     "hub/datasets-dask.md": {
       "hash": "93de64714137613f51c956d351bd7d589945a49c",
@@ -169,8 +169,8 @@
       "translatedAt": "2026-10-29T14:06:36.403Z"
     },
     "hub/datasets-embedding-atlas.md": {
-      "hash": "95b1cc266880733d37f542bc584f2c27660d615d",
-      "translatedAt": "2026-10-29T14:06:35.667Z"
+      "hash": "fe7a72cf03cb8588e1ff174c9028bf02e66dd50c",
+      "translatedAt": "2026-11-24T18:48:16.012Z"
     },
     "hub/datasets-editing.md": {
       "hash": "2f55884d4e496f0f7c82539f6a1a9090e58f23de",
@@ -197,8 +197,8 @@
       "translatedAt": "2026-11-04T15:19:36.767Z"
     },
     "hub/datasets-lance.md": {
-      "hash": "9c309d6eebd495ef89fb4d9b493a131b83529509",
-      "translatedAt": "2026-10-29T14:06:54.467Z"
+      "hash": "9e89a86a2a26a663fcb9301446f1b81b119b60f3",
+      "translatedAt": "2026-11-24T18:48:21.030Z"
     },
     "hub/datasets-gated.md": {
       "hash": "bf4096473e253cc43dafcda885285e661e963331",
@@ -253,8 +253,8 @@
       "translatedAt": "2026-10-29T14:07:04.675Z"
     },
     "hub/datasets-spark.md": {
-      "hash": "5417523f223fbfc0547e79817b0ed65847c9c5c4",
-      "translatedAt": "2026-10-29T14:07:05.270Z"
+      "hash": "2a6a71ebdd1d958050452681f9cd6a5c201085ac",
+      "translatedAt": "2026-11-24T18:48:20.372Z"
     },
     "hub/datasets-viewer-configure.md": {
       "hash": "8afcbd2c644497b7a33b471c6c6b23538405fff5",
@@ -377,8 +377,8 @@
       "translatedAt": "2026-10-29T14:07:45.216Z"
     },
     "hub/enterprise.md": {
-      "hash": "180cbcfc48e8491edd45b2ebb1f837eaf1bbc0df",
-      "translatedAt": "2026-11-23T19:10:08.806Z"
+      "hash": "e35d6adaabe8ccaad78d8bf9ddf4214fc7f4e4ac",
+      "translatedAt": "2026-11-24T18:48:25.291Z"
     },
     "hub/gguf.md": {
       "hash": "62322b02be27d2ed40510e6969405db41f690959",
@@ -449,8 +449,8 @@
       "translatedAt": "2026-10-29T14:08:04.853Z"
     },
     "hub/ml-agents.md": {
-      "hash": "babec82ca7c75fb2760ee4f0cfbcf53d36bf5264",
-      "translatedAt": "2026-10-29T14:08:12.034Z"
+      "hash": "5c9b59bd38e3db0033c5beac729ba272e30d4cde",
+      "translatedAt": "2026-11-24T18:48:22.042Z"
     },
     "hub/local-cache.md": {
       "hash": "7efc262f9820b13e0847080605b6d8796e1e4435",
@@ -469,8 +469,8 @@
       "translatedAt": "2026-10-29T14:08:18.620Z"
     },
     "hub/model-card-appendix.md": {
-      "hash": "f31c5d923fa9fe10651838b084512aac5f1960e1",
-      "translatedAt": "2026-10-29T14:08:19.818Z"
+      "hash": "3a80b4e19ffdd4535e4ea4b4971d43ee0f0f0399",
+      "translatedAt": "2026-11-24T18:48:26.217Z"
     },
     "hub/model-cards-co2.md": {
       "hash": "8ee69dad6695cd8c816d1d7b8f25024d77f37c93",
@@ -817,8 +817,8 @@
       "translatedAt": "2026-10-29T14:10:07.616Z"
     },
     "hub/spaces-config-reference.md": {
-      "hash": "3cd54875b1213d68d8a63fda5cbf79e045f4d2a4",
-      "translatedAt": "2026-10-29T14:10:07.675Z"
+      "hash": "374144655da1cd69b1929bc2cbda20a27b343676",
+      "translatedAt": "2026-11-24T18:48:25.284Z"
     },
     "hub/spaces-get-user-plan.md": {
       "hash": "129913f024f2e3a6b893206fbd4711375f909f08",
@@ -877,8 +877,8 @@
       "translatedAt": "2026-10-29T14:10:20.850Z"
     },
     "hub/spaces-sdks-docker-dash.md": {
-      "hash": "c4d5390185c98d42e797c6a6032e817e0f92a391",
-      "translatedAt": "2026-10-29T14:10:19.787Z"
+      "hash": "c1134de74a62e464e24a91732f7f94d37b9f8da3",
+      "translatedAt": "2026-11-24T18:48:29.595Z"
     },
     "hub/spaces-sdks-docker-examples.md": {
       "hash": "f625de0e06a450b138cf8f3008e5181d4d1e7bb8",
@@ -921,8 +921,8 @@
       "translatedAt": "2026-10-29T14:10:33.425Z"
     },
     "hub/spaces-sdks-docker-tabby.md": {
-      "hash": "8c9afcf97238b187517f605a01fec92f4f001990",
-      "translatedAt": "2026-10-29T14:10:36.988Z"
+      "hash": "04d7e76ce06d3a275d78100530d01caf0afd0d93",
+      "translatedAt": "2026-11-24T18:48:26.407Z"
     },
     "hub/spaces-sdks-gradio.md": {
       "hash": "9f60c3b2ea60beb119b9c77fc278fe90176378bb",
@@ -933,8 +933,8 @@
       "translatedAt": "2026-10-29T14:10:38.553Z"
     },
     "hub/spaces-sdks-docker.md": {
-      "hash": "6276003c0378d69a0f4688f2ef345e2b2e74539e",
-      "translatedAt": "2026-10-29T14:10:42.647Z"
+      "hash": "331e9e99a47c67234fa1f1fbf80ec683a50797e0",
+      "translatedAt": "2026-11-24T18:48:30.092Z"
     },
     "hub/spaces-sdks-python.md": {
       "hash": "aac75f669fbe24293cca40cee27e663211316765",
@@ -945,8 +945,8 @@
       "translatedAt": "2026-10-29T14:10:46.006Z"
     },
     "hub/spaces-sdks-static.md": {
-      "hash": "d35892d9adda6883bc8a57194e59b913e56df7ba",
-      "translatedAt": "2026-10-29T14:10:45.115Z"
+      "hash": "122ffe98ea3e1d181ccfa7d759de21c59fcac9e0",
+      "translatedAt": "2026-11-24T18:48:28.459Z"
     },
     "hub/spaces-using-opencv.md": {
       "hash": "93ceb89fcf554a349e55984858148bb3765703a3",
@@ -1045,8 +1045,8 @@
       "translatedAt": "2026-10-29T14:11:16.419Z"
     },
     "hub/webhooks-guide-auto-retrain.md": {
-      "hash": "84d5dccf11a9c838f5e5927fe95b80f21fa55880",
-      "translatedAt": "2026-10-29T14:11:13.914Z"
+      "hash": "faf573771477ecae4e002cb41615b6ee1fe72f3d",
+      "translatedAt": "2026-11-24T18:48:30.462Z"
     },
     "hub/trusted-publishers.md": {
       "hash": "50883385b2cbaba9eb5384c9faa31f83a4880828",
@@ -2025,8 +2025,8 @@
       "translatedAt": "2026-11-09T17:22:28.408Z"
     },
     "hub/datasets-3d.md": {
-      "hash": "966d7f3fc45cf3de159f7e0872f345ff5061e8e0",
-      "translatedAt": "2026-11-09T17:22:31.074Z"
+      "hash": "d44f7cc3e040032e357bd2aa23f69765f6490810",
+      "translatedAt": "2026-11-24T18:48:15.159Z"
     },
     "hub/security-passkeys.md": {
       "hash": "b25209fa0469eebb8e16b9afe6f48bfdbca7035b",
@@ -2055,12 +2055,16 @@
     "hub/models-release-announcements.md": {
       "hash": "97dddef2d6106b42cd26f2b582233d28be8d62db",
       "translatedAt": "2026-11-19T16:29:39.854Z"
+    },
+    "hub/enterprise-nightwatch.md": {
+      "hash": "f27e025515f6ea95cdb027c6c270d5d6d74cc55f",
+      "translatedAt": "2026-11-24T18:48:17.568Z"
     }
   },
-  "updatedAt": "2026-11-23T19:10:08.806Z",
+  "updatedAt": "2026-11-24T18:48:30.462Z",
   "stats": {
-    "translated": 3,
-    "skipped": 397,
+    "translated": 17,
+    "skipped": 383,
     "failed": 0,
     "total": 400
   }
