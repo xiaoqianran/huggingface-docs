@@ -45,5 +45,5 @@ Let the dataset viewer take care of the heavy lifting so you can use a simple **
 
 Join the growing community on the [forum](https://discuss.huggingface.co/) or [Discord](https://discord.com/invite/JfAtkvEtRb) today, and give the [dataset viewer repository](https://github.com/huggingface/dataset-viewer) a ⭐️ if you're interested in the latest updates!
 
-### Get the number of rows and the size in bytes
-https://huggingface.co/docs/dataset-viewer/size.md
+### mlcroissant
+https://huggingface.co/docs/dataset-viewer/mlcroissant.md

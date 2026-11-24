@@ -4,14 +4,14 @@ Quantization saves memory, but dequantizing weights inside every matmul can make
 
 ## Compile automatically in generate
 
-[generate()](/docs/transformers/v5.24.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) compiles the model's forward pass automatically when all of these hold.
+[generate()](/docs/transformers/v5.24.1/en/main_classes/text_generation#transformers.GenerationMixin.generate) compiles the model's forward pass automatically when all of these hold.
 
 - The quantization method supports compilation ([compressed-tensors](./compressed_tensors), [Fine-grained FP8](./finegrained_fp8), [GGUF](./gguf), [NVFP4](./nvfp4), and [torchao](./torchao)).
 - The model uses a cache with a fixed size, like the [static cache](../kv_cache#fixed-size-cache).
 - The model runs on CUDA, XPU, Neuron, or TPU.
 - No part of the model is offloaded to the CPU or disk.
 
-Pass `cache_implementation="static"` to [generate()](/docs/transformers/v5.24.0/en/main_classes/text_generation#transformers.GenerationMixin.generate). The example below uses [torchao](./torchao) int8 weight-only quantization.
+Pass `cache_implementation="static"` to [generate()](/docs/transformers/v5.24.1/en/main_classes/text_generation#transformers.GenerationMixin.generate). The example below uses [torchao](./torchao) int8 weight-only quantization.
 
 ```py
 import torch
@@ -33,7 +33,7 @@ print(tokenizer.decode(outputs[0], skip_special_tokens=True))
 
 The first calls are slow while the model compiles. Later calls with the same shapes reuse the compiled kernels.
 
-Pass `disable_compile=True` to [generate()](/docs/transformers/v5.24.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) to turn automatic compilation off.
+Pass `disable_compile=True` to [generate()](/docs/transformers/v5.24.1/en/main_classes/text_generation#transformers.GenerationMixin.generate) to turn automatic compilation off.
 
 ### NVFP4
-https://huggingface.co/docs/transformers/v5.24.0/quantization/nvfp4.md
+https://huggingface.co/docs/transformers/v5.24.1/quantization/nvfp4.md

@@ -1485,7 +1485,7 @@ As of 2021, Paris has a population of approximately 2.8 million people.
 
 The `v1/systemone` endpoint answers typed questions about a shared `state`, following [TypeSafe’s System One API](https://api.typesafe.ai/openapi.json). Use it for decisions such as routing a support ticket, rating urgency, or choosing an action.
 
-Requests are answered by [DecisionPipeline](/docs/transformers/v5.24.0/en/main_classes/pipelines#transformers.DecisionPipeline) around the served model, so the endpoint and the pipeline build the same prompts and return the same answers. The model scores the allowed answers without generating text, in one forward pass per prompt. This endpoint supports autoregressive models with a chat template;
+Requests are answered by [DecisionPipeline](/docs/transformers/v5.24.1/en/main_classes/pipelines#transformers.DecisionPipeline) around the served model, so the endpoint and the pipeline build the same prompts and return the same answers. The model scores the allowed answers without generating text, in one forward pass per prompt. This endpoint supports autoregressive models with a chat template;
 
 Send a model, the state to evaluate, and questions keyed by name:
 
@@ -1575,7 +1575,7 @@ Answers use the same question names. For example:
 
 `state`, optional `instructions`, and descriptions can contain text or JSON objects and arrays. Each request accepts up to 64 questions, with at least one choice or score level per question and at most one per answer label (26 with the default `A`–`Z` labels).
 
-Questions are validated like [DecisionPipeline](/docs/transformers/v5.24.0/en/main_classes/pipelines#transformers.DecisionPipeline)'s, before the model is loaded. An invalid request returns a `422` whose message lists every invalid question, each with an example of a valid one, and suggests close matches for misspelled types and fields:
+Questions are validated like [DecisionPipeline](/docs/transformers/v5.24.1/en/main_classes/pipelines#transformers.DecisionPipeline)'s, before the model is loaded. An invalid request returns a `422` whose message lists every invalid question, each with an example of a valid one, and suggests close matches for misspelled types and fields:
 
 ```text
 Question 'team': expected a `type` among noul, choice, score, got type 'Choice'. Did you mean 'choice'?
@@ -1819,7 +1819,7 @@ tools = [
 ]
 ```
 
-Customize generation by passing [GenerationConfig](/docs/transformers/v5.24.0/en/main_classes/text_generation#transformers.GenerationConfig) parameters to the `extra_body` argument in [create](https://platform.openai.com/docs/api-reference/responses/create).
+Customize generation by passing [GenerationConfig](/docs/transformers/v5.24.1/en/main_classes/text_generation#transformers.GenerationConfig) parameters to the `extra_body` argument in [create](https://platform.openai.com/docs/api-reference/responses/create).
 
 ```py
 generation_config = {
@@ -2111,4 +2111,4 @@ transformers serve Qwen/Qwen2.5-0.5B-Instruct \
 ```
 
 ### Jan
-https://huggingface.co/docs/transformers/v5.24.0/serve-cli/jan.md
+https://huggingface.co/docs/transformers/v5.24.1/serve-cli/jan.md

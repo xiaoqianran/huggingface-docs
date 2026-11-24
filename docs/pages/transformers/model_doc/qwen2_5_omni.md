@@ -9,13 +9,13 @@ The abstract from the technical report is the following:
 *We present Qwen2.5-Omni, an end-to-end multimodal model designed to perceive diverse modalities, including text, images, audio, and video, while simultaneously generating text and natural speech responses in a streaming manner. To enable the streaming of multimodal information inputs, both audio and visual encoders utilize a block-wise processing approach. This strategy effectively decouples the handling of long sequences of multimodal data, assigning the perceptual responsibilities to the multimodal encoder and entrusting the modeling of extended sequences to a large language model. Such a division of labor enhances the fusion of different modalities via the shared attention mechanism. To synchronize the timestamps of video inputs with audio, we organized the audio and video sequentially in an interleaved manner and propose a novel position embedding approach, named TMRoPE (Time-aligned Multimodal RoPE). To concurrently generate text and speech while avoiding interference between the two modalities, we propose Thinker-Talker architecture. In this framework, Thinker functions as a large language model tasked with text generation, while Talker is a dual-track autoregressive model that directly utilizes the hidden representations from the Thinker to produce audio tokens as output. Both the Thinker and Talker models are designed to be trained and inferred in an end-to-end manner. For decoding audio tokens in a streaming manner, we introduce a sliding-window DiT that restricts the receptive field, aiming to reduce the initial package delay. Qwen2.5-Omni outperforms the similarly sized Qwen2-VL and Qwen2-Audio in both image and audio capabilities. Furthermore, Qwen2.5-Omni achieves state-of-the-art performance on multimodal benchmarks like Omni-Bench. Notably, Qwen2.5-Omni is the first open-source model to achieve a level of performance in end-to-end speech instruction following that is comparable to its capabilities with text inputs, as evidenced by benchmarks such as MMLU and GSM8K. As for speech generation, Qwen2.5-Omni's streaming Talker outperform most existing streaming and non-streaming alternatives in robustness and naturalness.*
 
 > [!TIP]
-> Set `use_kernels=True` in [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to replace supported layers with optimized kernels from the Hub. Refer to [Loading kernels](../kernel_doc/loading_kernels) to learn more.
+> Set `use_kernels=True` in [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to replace supported layers with optimized kernels from the Hub. Refer to [Loading kernels](../kernel_doc/loading_kernels) to learn more.
 
 ## Notes
 
-- Use [Qwen2_5OmniForConditionalGeneration](/docs/transformers/v5.24.0/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniForConditionalGeneration) to generate audio and text output. To generate only one output type, use [Qwen2_5OmniThinkerForConditionalGeneration](/docs/transformers/v5.24.0/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniThinkerForConditionalGeneration) for text-only and `Qwen2_5OmniTalkersForConditionalGeneration` for audio-only outputs.
+- Use [Qwen2_5OmniForConditionalGeneration](/docs/transformers/v5.24.1/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniForConditionalGeneration) to generate audio and text output. To generate only one output type, use [Qwen2_5OmniThinkerForConditionalGeneration](/docs/transformers/v5.24.1/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniThinkerForConditionalGeneration) for text-only and `Qwen2_5OmniTalkersForConditionalGeneration` for audio-only outputs.
 - In case out-of-memory errors when working with video input, decrease `processor.max_pixels`. By default the maximum is set to a very large value and high resolution visuals will not be resized, unless resolution exceeds `processor.max_pixels`.
-- The processor has its own [apply_chat_template()](/docs/transformers/v5.24.0/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) method to convert chat messages to model inputs.
+- The processor has its own [apply_chat_template()](/docs/transformers/v5.24.1/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) method to convert chat messages to model inputs.
 
 ## Usage example
 
@@ -229,7 +229,7 @@ print(text)
 
 ### Batch audio generation
 
-[Qwen2_5OmniForConditionalGeneration](/docs/transformers/v5.24.0/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniForConditionalGeneration) supports batched audio output generation. For example, below for text-to-speech batch generation. With a batch of more than one sample, the generated audio is returned as a list with one waveform per sample, each already trimmed to its own length, so shorter samples are not padded with spurious audio. A single-sample call still returns one tensor.
+[Qwen2_5OmniForConditionalGeneration](/docs/transformers/v5.24.1/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniForConditionalGeneration) supports batched audio output generation. For example, below for text-to-speech batch generation. With a batch of more than one sample, the generated audio is returned as a list with one waveform per sample, each already trimmed to its own length, so shorter samples are not padded with spurious audio. A single-sample call still returns one tensor.
 
 ```python
 import soundfile as sf
@@ -381,7 +381,7 @@ model = Qwen2_5OmniForConditionalGeneration.from_pretrained(
 transformers.Qwen2_5OmniConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, thinker_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, talker_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, token2wav_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, enable_audio_output: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen2_5_omni/configuration_qwen2_5_omni.py#L532)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen2_5_omni/configuration_qwen2_5_omni.py#L532)
 
 **Parameters:**
 
@@ -397,8 +397,8 @@ This is the configuration class to store the configuration of a Qwen2 5 OmniMode
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [Qwen/Qwen2.5-Omni-7B](https://huggingface.co/Qwen/Qwen2.5-Omni-7B)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -434,7 +434,7 @@ Example:
 get_text_config(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen2_5_omni/configuration_qwen2_5_omni.py#L585)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen2_5_omni/configuration_qwen2_5_omni.py#L585)
 
 **Parameters:**
 
@@ -451,7 +451,7 @@ itself. On specific composite models, it is under a set of valid names.
 transformers.Qwen2_5OmniVisionEncoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, depth: int = 32, hidden_size: int = 3584, hidden_act: str = 'silu', intermediate_size: int = 3420, num_heads: int = 16, in_channels: int = 3, patch_size: int | list[int] | tuple[int, int] = 14, spatial_merge_size: int = 2, temporal_patch_size: int | list[int] | tuple[int, int] = 2, window_size: int = 112, out_hidden_size: int = 3584, fullatt_block_indexes: list[int] | tuple[int, ...] = (7, 15, 23, 31), initializer_range: float = 0.02, rope_parameters: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen2_5_omni/configuration_qwen2_5_omni.py#L30)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen2_5_omni/configuration_qwen2_5_omni.py#L30)
 
 **Parameters:**
 
@@ -487,8 +487,8 @@ This is the configuration class to store the configuration of a Qwen2 5 OmniMode
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [Qwen/Qwen2.5-Omni-7B](https://huggingface.co/Qwen/Qwen2.5-Omni-7B)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -513,7 +513,7 @@ Example:
 transformers.Qwen2_5OmniTextConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, vocab_size: int = 152064, hidden_size: int = 3584, intermediate_size: int = 18944, num_hidden_layers: int = 28, num_attention_heads: int = 28, num_key_value_heads: int | None = 4, hidden_act: str = 'silu', max_position_embeddings: int = 32768, initializer_range: float = 0.02, rms_norm_eps: float = 1e-06, use_cache: bool = True, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None, use_sliding_window: bool = False, sliding_window: int | None = 32768, max_window_layers: int = 28, layer_types: list[str] | None = None, attention_dropout: float | int = 0.0, pad_token_id: int | None = None, bos_token_id: int | None = None, eos_token_id: int | list[int] | None = None, tie_word_embeddings: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen2_5_omni/configuration_qwen2_5_omni.py#L128)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen2_5_omni/configuration_qwen2_5_omni.py#L128)
 
 **Parameters:**
 
@@ -563,8 +563,8 @@ This is the configuration class to store the configuration of a Qwen2 5 OmniMode
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [Qwen/Qwen2.5-Omni-7B](https://huggingface.co/Qwen/Qwen2.5-Omni-7B)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -595,7 +595,7 @@ Example:
 transformers.Qwen2_5OmniDiTConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, hidden_size: int = 1024, num_hidden_layers: int = 22, num_attention_heads: int = 16, ff_mult: int = 2, emb_dim: int = 512, head_dim: int = 64, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None, max_position_embeddings: int = 32768, block_size: int = 24, look_ahead_layers: list[int] | tuple[int, ...] = (10,), look_backward_layers: list[int] | tuple[int, ...] = (0, 20), repeats: int = 2, num_embeds: int = 8193, mel_dim: int = 80, dropout: float | int = 0.1, enc_emb_dim: int = 192, enc_dim: int = 128, enc_channels: list[int] | tuple[int, ...] = (256, 256, 256, 256, 768), enc_kernel_sizes: list[int] | tuple[int, ...] = (5, 3, 3, 3, 1), enc_dilations: list[int] | tuple[int, ...] = (1, 2, 3, 4, 1), enc_attention_channels: int = 64, enc_res2net_scale: int = 2, enc_se_channels: int = 64)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen2_5_omni/configuration_qwen2_5_omni.py#L390)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen2_5_omni/configuration_qwen2_5_omni.py#L390)
 
 **Parameters:**
 
@@ -649,8 +649,8 @@ This is the configuration class to store the configuration of a Qwen2 5 OmniMode
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [Qwen/Qwen2.5-Omni-7B](https://huggingface.co/Qwen/Qwen2.5-Omni-7B)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## Qwen2_5OmniBigVGANConfig[[transformers.Qwen2_5OmniBigVGANConfig]]
 
@@ -660,7 +660,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes
 transformers.Qwen2_5OmniBigVGANConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, mel_dim: int = 80, upsample_initial_channel: int = 1536, resblock_kernel_sizes: list[int] | tuple[int, ...] = (3, 7, 11), resblock_dilation_sizes: list | tuple = ((1, 3, 5), (1, 3, 5), (1, 3, 5)), upsample_rates: list[int] | tuple[int, ...] = (5, 3, 2, 2, 2, 2), upsample_kernel_sizes: list[int] | tuple[int, ...] = (11, 7, 4, 4, 4, 4))
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen2_5_omni/configuration_qwen2_5_omni.py#L455)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen2_5_omni/configuration_qwen2_5_omni.py#L455)
 
 **Parameters:**
 
@@ -680,8 +680,8 @@ This is the configuration class to store the configuration of a Qwen2 5 OmniMode
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [Qwen/Qwen2.5-Omni-7B](https://huggingface.co/Qwen/Qwen2.5-Omni-7B)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## Qwen2_5OmniAudioEncoderConfig[[transformers.Qwen2_5OmniAudioEncoderConfig]]
 
@@ -691,7 +691,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes
 transformers.Qwen2_5OmniAudioEncoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, num_mel_bins: int = 128, encoder_layers: int = 32, encoder_attention_heads: int = 20, encoder_ffn_dim: int = 5120, d_model: int = 1280, dropout: float | int = 0.0, attention_dropout: float | int = 0.0, activation_function: str = 'gelu', activation_dropout: float | int = 0.0, scale_embedding: bool = False, initializer_range: float = 0.02, max_source_positions: int = 1500, n_window: int = 100, output_dim: int = 3584)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen2_5_omni/configuration_qwen2_5_omni.py#L77)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen2_5_omni/configuration_qwen2_5_omni.py#L77)
 
 **Parameters:**
 
@@ -727,8 +727,8 @@ This is the configuration class to store the configuration of a Qwen2 5 OmniMode
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [Qwen/Qwen2.5-Omni-7B](https://huggingface.co/Qwen/Qwen2.5-Omni-7B)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -753,7 +753,7 @@ Example:
 transformers.Qwen2_5OmniProcessor(image_processor = None, video_processor = None, feature_extractor = None, tokenizer = None, chat_template = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen2_5_omni/processing_qwen2_5_omni.py#L121)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen2_5_omni/processing_qwen2_5_omni.py#L121)
 
 **Parameters:**
 
@@ -769,8 +769,8 @@ chat_template (`str`) : A Jinja template to convert lists of messages in a chat 
 
 Constructs a Qwen2_5OmniProcessor which wraps a image processor, a video processor, a feature extractor, and a tokenizer into a single processor.
 
-[Qwen2_5OmniProcessor](/docs/transformers/v5.24.0/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniProcessor) offers all the functionalities of [Qwen2VLImageProcessor](/docs/transformers/v5.24.0/en/model_doc/qwen2_vl#transformers.Qwen2VLImageProcessor), [Qwen2VLVideoProcessor](/docs/transformers/v5.24.0/en/model_doc/qwen2_vl#transformers.Qwen2VLVideoProcessor), [WhisperFeatureExtractor](/docs/transformers/v5.24.0/en/model_doc/whisper#transformers.WhisperFeatureExtractor), and [Qwen2Tokenizer](/docs/transformers/v5.24.0/en/model_doc/qwen2#transformers.Qwen2Tokenizer). See the
-[~Qwen2VLImageProcessor](/docs/transformers/v5.24.0/en/model_doc/qwen2_vl#transformers.Qwen2VLImageProcessor), [~Qwen2VLVideoProcessor](/docs/transformers/v5.24.0/en/model_doc/qwen2_vl#transformers.Qwen2VLVideoProcessor), [~WhisperFeatureExtractor](/docs/transformers/v5.24.0/en/model_doc/whisper#transformers.WhisperFeatureExtractor), and [~Qwen2Tokenizer](/docs/transformers/v5.24.0/en/model_doc/qwen2#transformers.Qwen2Tokenizer) for more information.
+[Qwen2_5OmniProcessor](/docs/transformers/v5.24.1/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniProcessor) offers all the functionalities of [Qwen2VLImageProcessor](/docs/transformers/v5.24.1/en/model_doc/qwen2_vl#transformers.Qwen2VLImageProcessor), [Qwen2VLVideoProcessor](/docs/transformers/v5.24.1/en/model_doc/qwen2_vl#transformers.Qwen2VLVideoProcessor), [WhisperFeatureExtractor](/docs/transformers/v5.24.1/en/model_doc/whisper#transformers.WhisperFeatureExtractor), and [Qwen2Tokenizer](/docs/transformers/v5.24.1/en/model_doc/qwen2#transformers.Qwen2Tokenizer). See the
+[~Qwen2VLImageProcessor](/docs/transformers/v5.24.1/en/model_doc/qwen2_vl#transformers.Qwen2VLImageProcessor), [~Qwen2VLVideoProcessor](/docs/transformers/v5.24.1/en/model_doc/qwen2_vl#transformers.Qwen2VLVideoProcessor), [~WhisperFeatureExtractor](/docs/transformers/v5.24.1/en/model_doc/whisper#transformers.WhisperFeatureExtractor), and [~Qwen2Tokenizer](/docs/transformers/v5.24.1/en/model_doc/qwen2#transformers.Qwen2Tokenizer) for more information.
 
 #### __call__[[transformers.Qwen2_5OmniProcessor.__call__]]
 
@@ -778,7 +778,7 @@ Constructs a Qwen2_5OmniProcessor which wraps a image processor, a video process
 __call__(text: str | list[str] | list[list[str]] = None, images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]], NoneType] = None, audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, **kwargs: *<class 'transformers.models.qwen2_5_omni.processing_qwen2_5_omni.Qwen2_5OmniProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen2_5_omni/processing_qwen2_5_omni.py#L155)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen2_5_omni/processing_qwen2_5_omni.py#L155)
 
 **Parameters:**
 
@@ -822,9 +822,9 @@ seconds_per_chunk (`float`, *kwargs*, *optional*, defaults to `2.0`) : The durat
 
 position_id_per_seconds (`int`, *kwargs* or `float`, *optional*, defaults to `25`) : The number of position IDs allocated per second of video. This parameter controls the temporal resolution of position embeddings and is used to align video tokens with audio tokens when `load_audio_from_video=True`.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.24.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.24.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.24.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.24.1/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
 **Returns:** `~feature_extraction_utils.BatchFeature`
 
@@ -842,21 +842,21 @@ return_tensors (`str` or [TensorType](/docs/transformers/v5.24.0/en/internal/fil
 transformers.Qwen2_5OmniForConditionalGeneration(config: Qwen2_5OmniConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L3718)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L3718)
 
 **Parameters:**
 
-config ([Qwen2_5OmniConfig](/docs/transformers/v5.24.0/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Qwen2_5OmniConfig](/docs/transformers/v5.24.1/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The full Qwen2.5Omni model, a multimodal model composed of 3 sub-models:
-- [Qwen2_5OmniThinkerForConditionalGeneration](/docs/transformers/v5.24.0/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniThinkerForConditionalGeneration):
+- [Qwen2_5OmniThinkerForConditionalGeneration](/docs/transformers/v5.24.1/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniThinkerForConditionalGeneration):
 a causal auto-regressive transformer takes text, audio, image, video as input and predict text tokens.
-- [Qwen2_5OmniTalkerForConditionalGeneration](/docs/transformers/v5.24.0/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniTalkerForConditionalGeneration):
+- [Qwen2_5OmniTalkerForConditionalGeneration](/docs/transformers/v5.24.1/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniTalkerForConditionalGeneration):
 a causal auto-regressive transformer takes thinker hidden states and response as input and predict speech tokens.
-- [Qwen2_5OmniToken2WavModel](/docs/transformers/v5.24.0/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniToken2WavModel):
+- [Qwen2_5OmniToken2WavModel](/docs/transformers/v5.24.1/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniToken2WavModel):
 a DiT model take speech tokens as input and predict mel spectrogram and a BigVGAN vocoder take mel spectrogram as input and predict waveform.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -884,7 +884,7 @@ real subclasses keep a normal metaclass and `inspect.signature` reads their real
 transformers.Qwen2_5OmniPreTrainedModelForConditionalGeneration(config: PreTrainedConfig, *inputs, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L157)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L157)
 
 #### get_chunked_index[[transformers.Qwen2_5OmniPreTrainedModelForConditionalGeneration.get_chunked_index]]
 
@@ -892,7 +892,7 @@ transformers.Qwen2_5OmniPreTrainedModelForConditionalGeneration(config: PreTrain
 get_chunked_index(token_indices: Tensor, tokens_per_chunk: int, remove_index: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L180)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L180)
 
 **Parameters:**
 
@@ -922,7 +922,7 @@ For example, if `t_ntoken_per_chunk` is 1000, the function will create chunks su
 get_rope_index(input_ids: typing.Optional[torch.LongTensor] = None, image_grid_thw: typing.Optional[torch.LongTensor] = None, video_grid_thw: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, use_audio_in_video: bool = False, audio_seqlens: typing.Optional[torch.LongTensor] = None, second_per_grids: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L217)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L217)
 
 **Parameters:**
 
@@ -985,7 +985,7 @@ Here we calculate the text start position_ids as the max vision position_ids plu
 transformers.Qwen2_5OmniThinkerConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, audio_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, audio_token_index: int = 151646, image_token_index: int = 151655, video_token_index: int = 151656, position_id_per_seconds: int = 25, seconds_per_chunk: int = 2, audio_start_token_id: int = 151647, audio_end_token_id: int = 151648, user_token_id: int = 872, initializer_range: float = 0.02, tie_word_embeddings: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen2_5_omni/configuration_qwen2_5_omni.py#L211)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen2_5_omni/configuration_qwen2_5_omni.py#L211)
 
 **Parameters:**
 
@@ -1019,8 +1019,8 @@ This is the configuration class to store the configuration of a Qwen2 5 OmniMode
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [Qwen/Qwen2.5-Omni-7B](https://huggingface.co/Qwen/Qwen2.5-Omni-7B)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -1054,15 +1054,15 @@ Example:
 transformers.Qwen2_5OmniThinkerModel(config: Qwen2_5OmniThinkerConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L1671)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L1671)
 
 **Parameters:**
 
-config ([Qwen2_5OmniThinkerConfig](/docs/transformers/v5.24.0/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniThinkerConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Qwen2_5OmniThinkerConfig](/docs/transformers/v5.24.1/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniThinkerConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Qwen2.5OmniThinker model which consists of an audio backbone and a language model.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1076,11 +1076,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, input_features: typing.Optional[torch.Tensor] = None, pixel_values: typing.Optional[torch.Tensor] = None, pixel_values_videos: typing.Optional[torch.Tensor] = None, image_grid_thw: typing.Optional[torch.LongTensor] = None, video_grid_thw: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, feature_attention_mask: typing.Optional[torch.Tensor] = None, audio_feature_lengths: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, cache: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, use_cache: bool | None = None, use_audio_in_video: bool | None = None, video_second_per_grid: typing.Optional[torch.LongTensor] = None, mm_encoder_outputs: dict[str, transformers.modeling_outputs.BaseModelOutputWithPooling] | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L1847)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L1847)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 input_features (`torch.Tensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using `feature_extractor_class`. See `feature_extractor_class.__call__` for details (`processor_class` uses `feature_extractor_class` for processing audios).
 
@@ -1100,7 +1100,7 @@ audio_feature_lengths (`torch.LongTensor` of shape `(num_audios)`, *optional*) :
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
@@ -1118,7 +1118,7 @@ A `MultimodalBaseModelOutputWithPast` or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [Qwen2_5OmniThinkerModel](/docs/transformers/v5.24.0/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniThinkerModel) forward method, overrides the `__call__` special method.
+The [Qwen2_5OmniThinkerModel](/docs/transformers/v5.24.1/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniThinkerModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1127,7 +1127,7 @@ the latter silently ignores them.
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the language model backbone.
   If `cache` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `cache`
   input) to speed up sequential decoding.
@@ -1152,7 +1152,7 @@ the latter silently ignores them.
 transformers.Qwen2_5OmniThinkerForConditionalGeneration(config: Qwen2_5OmniThinkerConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L1959)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L1959)
 
 #### forward[[transformers.Qwen2_5OmniThinkerForConditionalGeneration.forward]]
 
@@ -1160,11 +1160,11 @@ transformers.Qwen2_5OmniThinkerForConditionalGeneration(config: Qwen2_5OmniThink
 forward(input_ids: typing.Optional[torch.LongTensor] = None, input_features: typing.Optional[torch.Tensor] = None, pixel_values: typing.Optional[torch.Tensor] = None, pixel_values_videos: typing.Optional[torch.Tensor] = None, image_grid_thw: typing.Optional[torch.LongTensor] = None, video_grid_thw: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, feature_attention_mask: typing.Optional[torch.Tensor] = None, audio_feature_lengths: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, cache: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, use_audio_in_video: bool | None = None, video_second_per_grid: typing.Optional[torch.LongTensor] = None, mm_encoder_outputs: dict[str, transformers.modeling_outputs.BaseModelOutputWithPooling] | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L2017)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L2017)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 input_features (`torch.Tensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using `feature_extractor_class`. See `feature_extractor_class.__call__` for details (`processor_class` uses `feature_extractor_class` for processing audios).
 
@@ -1184,7 +1184,7 @@ audio_feature_lengths (`torch.LongTensor` of shape `(num_audios)`, *optional*) :
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
@@ -1204,7 +1204,7 @@ A `MultimodalCausalLMOutputWithPast` or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [Qwen2_5OmniThinkerForConditionalGeneration](/docs/transformers/v5.24.0/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniThinkerForConditionalGeneration) forward method, overrides the `__call__` special method.
+The [Qwen2_5OmniThinkerForConditionalGeneration](/docs/transformers/v5.24.1/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniThinkerForConditionalGeneration) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1212,7 +1212,7 @@ the latter silently ignores them.
 
 - **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
 - **logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
-- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `cache`
   input) to speed up sequential decoding.
@@ -1266,7 +1266,7 @@ Example:
 get_audio_features(input_features: Tensor, feature_attention_mask: typing.Optional[torch.LongTensor] = None, audio_feature_lengths: typing.Optional[torch.LongTensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L1999)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L1999)
 
 **Parameters:**
 
@@ -1276,11 +1276,11 @@ feature_attention_mask (`torch.LongTensor`, *optional*) : Mask to avoid performi
 
 audio_feature_lengths (`torch.LongTensor` of shape `(num_audios)`, *optional*) : The length of feature shape of each audio in LLM.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Qwen2_5OmniConfig](/docs/transformers/v5.24.0/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniConfig)) and inputs.
+elements depending on the configuration ([Qwen2_5OmniConfig](/docs/transformers/v5.24.1/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniConfig)) and inputs.
 
 - **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.Tensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -1333,7 +1333,7 @@ Example:
 get_image_features(pixel_values: Tensor, image_grid_thw: typing.Optional[torch.LongTensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L1986)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L1986)
 
 **Parameters:**
 
@@ -1341,11 +1341,11 @@ pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, im
 
 image_grid_thw (`torch.LongTensor` of shape `(num_images, 3)`, *optional*) : The temporal, height and width of feature shape of each image in LLM.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Qwen2_5OmniConfig](/docs/transformers/v5.24.0/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniConfig)) and inputs.
+elements depending on the configuration ([Qwen2_5OmniConfig](/docs/transformers/v5.24.1/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniConfig)) and inputs.
 
 - **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.Tensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -1398,7 +1398,7 @@ Example:
 get_video_features(pixel_values_videos: Tensor, video_grid_thw: typing.Optional[torch.LongTensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L1973)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L1973)
 
 **Parameters:**
 
@@ -1406,11 +1406,11 @@ pixel_values_videos (`torch.Tensor` of shape `(batch_size, num_channels, image_s
 
 video_grid_thw (`torch.LongTensor` of shape `(num_videos, 3)`, *optional*) : The temporal, height and width of feature shape of each video in LLM.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Qwen2_5OmniConfig](/docs/transformers/v5.24.0/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniConfig)) and inputs.
+elements depending on the configuration ([Qwen2_5OmniConfig](/docs/transformers/v5.24.1/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniConfig)) and inputs.
 
 - **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.Tensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -1465,15 +1465,15 @@ Example:
 transformers.Qwen2_5OmniThinkerTextModel(config: Qwen2_5OmniTextConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L1550)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L1550)
 
 **Parameters:**
 
-config ([Qwen2_5OmniTextConfig](/docs/transformers/v5.24.0/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Qwen2_5OmniTextConfig](/docs/transformers/v5.24.1/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Qwen2 5 Omni Text Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1487,29 +1487,29 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, cache: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, use_cache: bool | None = None, **kwargs: *<class 'transformers.modeling_flash_attention_utils.FlashAttentionKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L1577)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L1577)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
 use_cache (`bool`, *optional*) : If set to `True`, `cache` key value states are returned and can be used to speed up decoding (see `cache`).
 
-**Returns:** [BaseModelOutputWithPast](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or `tuple(torch.Tensor)`
+**Returns:** [BaseModelOutputWithPast](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or `tuple(torch.Tensor)`
 
-A [BaseModelOutputWithPast](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or a tuple of
+A [BaseModelOutputWithPast](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [Qwen2_5OmniThinkerTextModel](/docs/transformers/v5.24.0/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniThinkerTextModel) forward method, overrides the `__call__` special method.
+The [Qwen2_5OmniThinkerTextModel](/docs/transformers/v5.24.1/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniThinkerTextModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1519,7 +1519,7 @@ the latter silently ignores them.
 
   If `cache` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `cache`
@@ -1542,7 +1542,7 @@ the latter silently ignores them.
 transformers.Qwen2_5OmniTalkerConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, audio_token_index: int = 151646, image_token_index: int = 151655, video_token_index: int = 151656, vocab_size: int = 8448, tts_text_start_token_id: int = 151860, tts_text_end_token_id: int = 151861, tts_text_pad_token_id: int = 151859, tts_codec_start_token_id: int = 8293, tts_codec_end_token_id: int = 8294, tts_codec_pad_token_id: int = 8292, tts_codec_mask_token_id: int = 8296, vision_start_token_id: int = 151652, vision_end_token_id: int = 151653, embedding_size: int = 3584, hidden_size: int = 3584, intermediate_size: int = 18944, num_hidden_layers: int = 28, num_attention_heads: int = 28, num_key_value_heads: int = 4, hidden_act: str = 'silu', max_position_embeddings: int = 32768, rms_norm_eps: float = 1e-06, head_dim: int = 128, use_cache: bool = True, tie_word_embeddings: bool = False, use_sliding_window: bool = False, sliding_window: int | None = 32768, max_window_layers: int = 28, attention_dropout: float | int = 0.0, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None, position_id_per_seconds: int = 25, seconds_per_chunk: int = 2, audio_start_token_id: int = 151647, audio_end_token_id: int = 151648, initializer_range: float = 0.02, spatial_merge_size: int = 2, layer_types: list[str] | None = None, pad_token_id: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen2_5_omni/configuration_qwen2_5_omni.py#L277)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen2_5_omni/configuration_qwen2_5_omni.py#L277)
 
 **Parameters:**
 
@@ -1626,8 +1626,8 @@ This is the configuration class to store the configuration of a Qwen2 5 OmniMode
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [Qwen/Qwen2.5-Omni-7B](https://huggingface.co/Qwen/Qwen2.5-Omni-7B)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -1658,7 +1658,7 @@ Example:
 transformers.Qwen2_5OmniTalkerForConditionalGeneration(config: Qwen2_5OmniTalkerConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L2303)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L2303)
 
 #### forward[[transformers.Qwen2_5OmniTalkerForConditionalGeneration.forward]]
 
@@ -1666,17 +1666,17 @@ transformers.Qwen2_5OmniTalkerForConditionalGeneration(config: Qwen2_5OmniTalker
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, cache: transformers.cache_utils.Cache | None = None, thinker_reply_part: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, use_cache: bool | None = None, input_text_ids: typing.Optional[torch.LongTensor] = None, image_grid_thw: typing.Optional[torch.LongTensor] = None, video_grid_thw: typing.Optional[torch.LongTensor] = None, use_audio_in_video: bool | None = None, audio_feature_lengths: typing.Optional[torch.LongTensor] = None, video_second_per_grid: typing.Optional[torch.LongTensor] = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L2337)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L2337)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 thinker_reply_part (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Hidden states from the thinker model's output that represent the text reply part to be processed.
 
@@ -1702,7 +1702,7 @@ A `Qwen2_5OmniTalkerCausalLMOutputWithPast` or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [Qwen2_5OmniTalkerForConditionalGeneration](/docs/transformers/v5.24.0/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniTalkerForConditionalGeneration) forward method, overrides the `__call__` special method.
+The [Qwen2_5OmniTalkerForConditionalGeneration](/docs/transformers/v5.24.1/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniTalkerForConditionalGeneration) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1710,7 +1710,7 @@ the latter silently ignores them.
 
 - **loss** (`torch.Tensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
 - **logits** (`torch.Tensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
-- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
   `cache` input) to speed up sequential decoding.
@@ -1755,15 +1755,15 @@ Example:
 transformers.Qwen2_5OmniTalkerModel(config: Qwen2_5OmniTalkerConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L2187)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L2187)
 
 **Parameters:**
 
-config ([Qwen2_5OmniTalkerConfig](/docs/transformers/v5.24.0/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniTalkerConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Qwen2_5OmniTalkerConfig](/docs/transformers/v5.24.1/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniTalkerConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Qwen2 5 Omni Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1777,29 +1777,29 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, cache: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, use_cache: bool | None = None, **kwargs: *<class 'transformers.modeling_flash_attention_utils.FlashAttentionKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L2214)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L2214)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
 use_cache (`bool`, *optional*) : If set to `True`, `cache` key value states are returned and can be used to speed up decoding (see `cache`).
 
-**Returns:** [BaseModelOutputWithPast](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or `tuple(torch.Tensor)`
+**Returns:** [BaseModelOutputWithPast](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or `tuple(torch.Tensor)`
 
-A [BaseModelOutputWithPast](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or a tuple of
+A [BaseModelOutputWithPast](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [Qwen2_5OmniTalkerModel](/docs/transformers/v5.24.0/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniTalkerModel) forward method, overrides the `__call__` special method.
+The [Qwen2_5OmniTalkerModel](/docs/transformers/v5.24.1/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniTalkerModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1809,7 +1809,7 @@ the latter silently ignores them.
 
   If `cache` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `cache`
@@ -1832,7 +1832,7 @@ the latter silently ignores them.
 transformers.Qwen2_5OmniToken2WavConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, dit_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, bigvgan_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen2_5_omni/configuration_qwen2_5_omni.py#L483)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen2_5_omni/configuration_qwen2_5_omni.py#L483)
 
 **Parameters:**
 
@@ -1844,8 +1844,8 @@ This is the configuration class to store the configuration of a Qwen2 5 OmniMode
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [Qwen/Qwen2.5-Omni-7B](https://huggingface.co/Qwen/Qwen2.5-Omni-7B)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -1884,15 +1884,15 @@ Example:
 transformers.Qwen2_5OmniToken2WavModel(config: Qwen2_5OmniToken2WavConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L3647)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L3647)
 
 **Parameters:**
 
-config ([Qwen2_5OmniToken2WavConfig](/docs/transformers/v5.24.0/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniToken2WavConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Qwen2_5OmniToken2WavConfig](/docs/transformers/v5.24.1/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniToken2WavConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The full Qwen2.5Omni Token2Wav model. Consists a DiT model take speech tokens as input and predict mel spectrogram and a BigVGAN vocoder take mel spectrogram as input and predict waveform.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1906,7 +1906,7 @@ and behavior.
 forward(code, conditioning, reference_mel, num_steps = 10, guidance_scale = 0.5, sway_coefficient = -1.0, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L3676)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L3676)
 
 Generates a waveform from input code and conditioning parameters.
 
@@ -1918,15 +1918,15 @@ Generates a waveform from input code and conditioning parameters.
 transformers.Qwen2_5OmniToken2WavDiTModel(config: Qwen2_5OmniDiTConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L3476)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L3476)
 
 **Parameters:**
 
-config ([Qwen2_5OmniDiTConfig](/docs/transformers/v5.24.0/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniDiTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Qwen2_5OmniDiTConfig](/docs/transformers/v5.24.1/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniDiTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The full Qwen2.5Omni Token2WavDiT model. Which take speech tokens as input and predict mel spectrogram.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1942,15 +1942,15 @@ and behavior.
 transformers.Qwen2_5OmniToken2WavBigVGANModel(config: Qwen2_5OmniBigVGANConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L3338)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py#L3338)
 
 **Parameters:**
 
-config ([Qwen2_5OmniBigVGANConfig](/docs/transformers/v5.24.0/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniBigVGANConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Qwen2_5OmniBigVGANConfig](/docs/transformers/v5.24.1/en/model_doc/qwen2_5_omni#transformers.Qwen2_5OmniBigVGANConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The full Qwen2.5Omni Token2WavBigVGAN model. Which take mel spectrogram as input and predict waveform.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1959,4 +1959,4 @@ Use it as a regular PyTorch Module and refer to the PyTorch documentation for al
 and behavior.
 
 ### EXAONE
-https://huggingface.co/docs/transformers/v5.24.0/model_doc/exaone.md
+https://huggingface.co/docs/transformers/v5.24.1/model_doc/exaone.md

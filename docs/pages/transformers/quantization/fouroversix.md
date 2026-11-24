@@ -6,7 +6,7 @@ The table below summarizes what Four Over Six supports in Transformers.
 
 | | |
 |---|---|
-| Config | [FourOverSixConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.FourOverSixConfig) |
+| Config | [FourOverSixConfig](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.FourOverSixConfig) |
 | `quant_method` | `fouroversix` |
 | Workflow | Quantize while loading |
 | Bits | 4 |
@@ -31,7 +31,7 @@ SKIP_CUDA_BUILD=1 pip install fouroversix --no-build-isolation
 
 ## Quantize a model with Four Over Six
 
-Create a [FourOverSixConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.FourOverSixConfig) and pass it to [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). The default config quantizes every linear layer except `lm_head` to NVFP4.
+Create a [FourOverSixConfig](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.FourOverSixConfig) and pass it to [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). The default config quantizes every linear layer except `lm_head` to NVFP4.
 
 ```py
 from transformers import AutoModelForCausalLM, FourOverSixConfig
@@ -45,7 +45,7 @@ model = AutoModelForCausalLM.from_pretrained(
 
 ## Configure Four Over Six
 
-These [FourOverSixConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.FourOverSixConfig) parameters change how the weights and activations are quantized. Most of them also have `weight_`, `activation_`, and `gradient_` variants that override the setting for one kind of tensor.
+These [FourOverSixConfig](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.FourOverSixConfig) parameters change how the weights and activations are quantized. Most of them also have `weight_`, `activation_`, and `gradient_` variants that override the setting for one kind of tensor.
 
 | Parameter | Default | Effect |
 |---|---|---|
@@ -56,7 +56,7 @@ These [FourOverSixConfig](/docs/transformers/v5.24.0/en/main_classes/quantizatio
 | `matmul_backend` | `None` | Matmul backend, either `"cutlass"` or `"pytorch"`. With `None`, CUTLASS is used when it's available. |
 | `module_config_overrides` | `None` | Maps module names to dictionaries of quantization options, so individual layers can use different settings. |
 
-See [FourOverSixConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.FourOverSixConfig) for the rest of the parameters.
+See [FourOverSixConfig](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.FourOverSixConfig) for the rest of the parameters.
 
 ## Train with quantized weights
 
@@ -95,4 +95,4 @@ model = AutoModelForCausalLM.from_pretrained(
 - [fouroversix](https://github.com/mit-han-lab/fouroversix) repository
 
 ### VPTQ
-https://huggingface.co/docs/transformers/v5.24.0/quantization/vptq.md
+https://huggingface.co/docs/transformers/v5.24.1/quantization/vptq.md

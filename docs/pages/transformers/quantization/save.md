@@ -4,7 +4,7 @@ Saving a model after quantizing it while loading lets you, and anyone you share 
 
 ## Save the model
 
-Call [save_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) on the quantized model to write the quantized weights and add the `quantization_config` to `config.json`.
+Call [save_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) on the quantized model to write the quantized weights and add the `quantization_config` to `config.json`.
 
 ```py
 from transformers import AutoModelForCausalLM, BitsAndBytesConfig
@@ -22,7 +22,7 @@ Save the tokenizer to the same directory so the checkpoint is complete.
 
 ## Push the model to the Hub
 
-Call [push_to_hub()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) to upload the quantized weights and config to a Hub repository. Log in with `hf auth login` first.
+Call [push_to_hub()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) to upload the quantized weights and config to a Hub repository. Log in with `hf auth login` first.
 
 ```py
 model.push_to_hub("Qwen3-0.6B-bnb-4bit")
@@ -30,7 +30,7 @@ model.push_to_hub("Qwen3-0.6B-bnb-4bit")
 
 ## Load the saved model
 
-Load the saved checkpoint with [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) and no quantization config. Transformers reads the method from the `quantization_config` in `config.json` and loads the weights already quantized.
+Load the saved checkpoint with [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) and no quantization config. Transformers reads the method from the `quantization_config` in `config.json` and loads the weights already quantized.
 
 ```py
 from transformers import AutoModelForCausalLM
@@ -42,7 +42,7 @@ The method's library must be installed wherever the checkpoint is loaded.
 
 ## Methods that can't save
 
-Some methods can't save their quantized weights, and [save_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) raises a `ValueError` for them.
+Some methods can't save their quantized weights, and [save_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) raises a `ValueError` for them.
 
 | Method | Why |
 |---|---|
@@ -52,9 +52,9 @@ Some methods can't save their quantized weights, and [save_pretrained()](/docs/t
 | [Quark](./quark) | Saving isn't supported through Transformers. |
 | [AWQ](./awq) with an ExLlama backend | Saving isn't supported with the ExLlama backends. Load the model with another backend to save it. |
 
-A quantized model with a [PEFT](../peft) adapter attached is an exception. [save_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) saves only the adapter weights, so it works with any method.
+A quantized model with a [PEFT](../peft) adapter attached is an exception. [save_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) saves only the adapter weights, so it works with any method.
 
 To save a model in full precision instead, dequantize it first. See [Dequantize a model](./dequantize).
 
 ### AQLM
-https://huggingface.co/docs/transformers/v5.24.0/quantization/aqlm.md
+https://huggingface.co/docs/transformers/v5.24.1/quantization/aqlm.md

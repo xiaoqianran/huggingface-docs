@@ -1,6 +1,6 @@
 # Model outputs
 
-All models have outputs that are instances of subclasses of [ModelOutput](/docs/transformers/v5.24.0/en/main_classes/output#transformers.utils.ModelOutput). Those are
+All models have outputs that are instances of subclasses of [ModelOutput](/docs/transformers/v5.24.1/en/main_classes/output#transformers.utils.ModelOutput). Those are
 data structures containing all the information returned by the model, but that can also be used as tuples or
 dictionaries.
 
@@ -18,7 +18,7 @@ labels = torch.tensor([1]).unsqueeze(0)  # Batch size 1
 outputs = model(**inputs, labels=labels)
 ```
 
-The `outputs` object is a [SequenceClassifierOutput](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput), as we can see in the
+The `outputs` object is a [SequenceClassifierOutput](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput), as we can see in the
 documentation of that class below, it means it has an optional `loss`, a `logits`, an optional `hidden_states` and
 an optional `attentions` attribute. Here we have the `loss` since we passed along `labels`, but we don't have
 `hidden_states` and `attentions` because we didn't pass `output_hidden_states=True` or
@@ -54,13 +54,13 @@ documented on their corresponding model page.
 transformers.utils.ModelOutput(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/utils/generic.py#L473)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/utils/generic.py#L473)
 
 Base class for all model outputs as dataclass. Has a `__getitem__` that allows indexing by integer or slice (like a
 tuple) or strings (like a dictionary) that will ignore the `None` attributes. Otherwise behaves like a regular
 python dictionary.
 
-You can't unpack a `ModelOutput` directly. Use the [to_tuple()](/docs/transformers/v5.24.0/en/main_classes/output#transformers.utils.ModelOutput.to_tuple) method to convert it to a tuple
+You can't unpack a `ModelOutput` directly. Use the [to_tuple()](/docs/transformers/v5.24.1/en/main_classes/output#transformers.utils.ModelOutput.to_tuple) method to convert it to a tuple
 before.
 
 #### to_tuple[[transformers.utils.ModelOutput.to_tuple]]
@@ -69,7 +69,7 @@ before.
 to_tuple()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/utils/generic.py#L632)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/utils/generic.py#L632)
 
 Convert self to a tuple containing all the attributes/keys that are not `None`.
 
@@ -81,7 +81,7 @@ Convert self to a tuple containing all the attributes/keys that are not `None`.
 transformers.modeling_outputs.BaseModelOutput(last_hidden_state: typing.Optional[torch.Tensor] = None, hidden_states: tuple[torch.Tensor, ...] | None = None, attentions: tuple[torch.Tensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_outputs.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_outputs.py#L24)
 
 **Parameters:**
 
@@ -101,7 +101,7 @@ Base class for model's outputs, with potential hidden states and attentions.
 transformers.modeling_outputs.BaseModelOutputWithPooling(last_hidden_state: typing.Optional[torch.Tensor] = None, pooler_output: typing.Optional[torch.Tensor] = None, hidden_states: tuple[torch.Tensor, ...] | None = None, attentions: tuple[torch.Tensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_outputs.py#L69)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_outputs.py#L69)
 
 **Parameters:**
 
@@ -123,7 +123,7 @@ Base class for model's outputs that also contains a pooling of the last hidden s
 transformers.modeling_outputs.BaseModelOutputWithCrossAttentions(last_hidden_state: typing.Optional[torch.Tensor] = None, hidden_states: tuple[torch.Tensor, ...] | None = None, attentions: tuple[torch.Tensor, ...] | None = None, cross_attentions: tuple[torch.Tensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_outputs.py#L159)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_outputs.py#L159)
 
 **Parameters:**
 
@@ -145,7 +145,7 @@ Base class for model's outputs, with potential hidden states and attentions.
 transformers.modeling_outputs.BaseModelOutputWithPoolingAndCrossAttentions(last_hidden_state: typing.Optional[torch.Tensor] = None, pooler_output: typing.Optional[torch.Tensor] = None, hidden_states: tuple[torch.Tensor, ...] | None = None, cache: transformers.cache_utils.Cache | None = None, attentions: tuple[torch.Tensor, ...] | None = None, cross_attentions: tuple[torch.Tensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_outputs.py#L192)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_outputs.py#L192)
 
 **Parameters:**
 
@@ -159,7 +159,7 @@ attentions (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=
 
 cross_attentions (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` and `config.add_cross_attention=True` is passed or when `config.output_attentions=True`) : Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length, sequence_length)`.  Attentions weights of the decoder's cross-attention layer, after the attention softmax, used to compute the weighted average in the cross-attention heads.
 
-cache (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) : It is a [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).  Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `cache` input) to speed up sequential decoding.
+cache (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) : It is a [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).  Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `cache` input) to speed up sequential decoding.
 
 Base class for model's outputs that also contains a pooling of the last hidden states.
 
@@ -171,13 +171,13 @@ Base class for model's outputs that also contains a pooling of the last hidden s
 transformers.modeling_outputs.BaseModelOutputWithPast(last_hidden_state: typing.Optional[torch.Tensor] = None, cache: transformers.cache_utils.Cache | None = None, hidden_states: tuple[torch.Tensor, ...] | None = None, attentions: tuple[torch.Tensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_outputs.py#L123)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_outputs.py#L123)
 
 **Parameters:**
 
 last_hidden_state (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) : Sequence of hidden-states at the output of the last layer of the model.  If `cache` is used only the last hidden-state of the sequences of shape `(batch_size, 1, hidden_size)` is output.
 
-cache (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) : It is a [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).  Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `cache` input) to speed up sequential decoding.
+cache (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) : It is a [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).  Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `cache` input) to speed up sequential decoding.
 
 hidden_states (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) : Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, + one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.  Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
 
@@ -193,13 +193,13 @@ Base class for model's outputs that may also contain a past key/values (to speed
 transformers.modeling_outputs.BaseModelOutputWithPastAndCrossAttentions(last_hidden_state: typing.Optional[torch.Tensor] = None, cache: transformers.cache_utils.Cache | None = None, hidden_states: tuple[torch.Tensor, ...] | None = None, attentions: tuple[torch.Tensor, ...] | None = None, cross_attentions: tuple[torch.Tensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_outputs.py#L238)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_outputs.py#L238)
 
 **Parameters:**
 
 last_hidden_state (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) : Sequence of hidden-states at the output of the last layer of the model.  If `cache` is used only the last hidden-state of the sequences of shape `(batch_size, 1, hidden_size)` is output.
 
-cache (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) : It is a [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).  Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `cache` input) to speed up sequential decoding.
+cache (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) : It is a [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).  Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `cache` input) to speed up sequential decoding.
 
 hidden_states (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) : Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, + one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.  Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
 
@@ -217,13 +217,13 @@ Base class for model's outputs that may also contain a past key/values (to speed
 transformers.modeling_outputs.Seq2SeqModelOutput(last_hidden_state: typing.Optional[torch.Tensor] = None, cache: transformers.cache_utils.EncoderDecoderCache | None = None, decoder_hidden_states: tuple[torch.Tensor, ...] | None = None, decoder_attentions: tuple[torch.Tensor, ...] | None = None, cross_attentions: tuple[torch.Tensor, ...] | None = None, encoder_last_hidden_state: typing.Optional[torch.Tensor] = None, encoder_hidden_states: tuple[torch.Tensor, ...] | None = None, encoder_attentions: tuple[torch.Tensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_outputs.py#L454)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_outputs.py#L454)
 
 **Parameters:**
 
 last_hidden_state (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) : Sequence of hidden-states at the output of the last layer of the decoder of the model.  If `cache` is used only the last hidden-state of the sequences of shape `(batch_size, 1, hidden_size)` is output.
 
-cache (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) : It is a [EncoderDecoderCache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).  Contains pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used (see `cache` input) to speed up sequential decoding.
+cache (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) : It is a [EncoderDecoderCache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).  Contains pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used (see `cache` input) to speed up sequential decoding.
 
 decoder_hidden_states (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) : Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, + one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.  Hidden-states of the decoder at the output of each layer plus the optional initial embedding outputs.
 
@@ -248,7 +248,7 @@ decoding.
 transformers.modeling_outputs.CausalLMOutput(loss: typing.Optional[torch.Tensor] = None, logits: typing.Optional[torch.Tensor] = None, hidden_states: tuple[torch.Tensor, ...] | None = None, attentions: tuple[torch.Tensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_outputs.py#L791)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_outputs.py#L791)
 
 **Parameters:**
 
@@ -270,7 +270,7 @@ Base class for causal language model (or autoregressive) outputs.
 transformers.modeling_outputs.CausalLMOutputWithCrossAttentions(loss: typing.Optional[torch.Tensor] = None, logits: typing.Optional[torch.Tensor] = None, cache: transformers.cache_utils.Cache | None = None, hidden_states: tuple[torch.Tensor, ...] | None = None, attentions: tuple[torch.Tensor, ...] | None = None, cross_attentions: tuple[torch.Tensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_outputs.py#L855)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_outputs.py#L855)
 
 **Parameters:**
 
@@ -284,7 +284,7 @@ attentions (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=
 
 cross_attentions (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) : Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length, sequence_length)`.  Cross attentions weights after the attention softmax, used to compute the weighted average in the cross-attention heads.
 
-cache (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) : It is a [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).  Contains pre-computed hidden-states (key and values in the attention blocks) that can be used (see `cache` input) to speed up sequential decoding.
+cache (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) : It is a [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).  Contains pre-computed hidden-states (key and values in the attention blocks) that can be used (see `cache` input) to speed up sequential decoding.
 
 Base class for causal language model (or autoregressive) outputs.
 
@@ -296,7 +296,7 @@ Base class for causal language model (or autoregressive) outputs.
 transformers.modeling_outputs.CausalLMOutputWithPast(loss: typing.Optional[torch.Tensor] = None, logits: typing.Optional[torch.Tensor] = None, cache: transformers.cache_utils.Cache | None = None, hidden_states: tuple[torch.Tensor, ...] | None = None, attentions: tuple[torch.Tensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_outputs.py#L820)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_outputs.py#L820)
 
 **Parameters:**
 
@@ -304,7 +304,7 @@ loss (`torch.Tensor` of shape `(1,)`, *optional*, returned when `labels` is prov
 
 logits (`torch.Tensor` of shape `(batch_size, sequence_length, config.vocab_size)`) : Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
 
-cache (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) : It is a [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).  Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see `cache` input) to speed up sequential decoding.
+cache (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) : It is a [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).  Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see `cache` input) to speed up sequential decoding.
 
 hidden_states (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) : Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, + one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.  Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
 
@@ -320,7 +320,7 @@ Base class for causal language model (or autoregressive) outputs.
 transformers.modeling_outputs.MaskedLMOutput(loss: typing.Optional[torch.Tensor] = None, logits: typing.Optional[torch.Tensor] = None, hidden_states: tuple[torch.Tensor, ...] | None = None, attentions: tuple[torch.Tensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_outputs.py#L932)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_outputs.py#L932)
 
 **Parameters:**
 
@@ -342,7 +342,7 @@ Base class for masked language models outputs.
 transformers.modeling_outputs.Seq2SeqLMOutput(loss: typing.Optional[torch.Tensor] = None, logits: typing.Optional[torch.Tensor] = None, cache: transformers.cache_utils.EncoderDecoderCache | None = None, decoder_hidden_states: tuple[torch.Tensor, ...] | None = None, decoder_attentions: tuple[torch.Tensor, ...] | None = None, cross_attentions: tuple[torch.Tensor, ...] | None = None, encoder_last_hidden_state: typing.Optional[torch.Tensor] = None, encoder_hidden_states: tuple[torch.Tensor, ...] | None = None, encoder_attentions: tuple[torch.Tensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_outputs.py#L961)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_outputs.py#L961)
 
 **Parameters:**
 
@@ -350,7 +350,7 @@ loss (`torch.Tensor` of shape `(1,)`, *optional*, returned when `labels` is prov
 
 logits (`torch.Tensor` of shape `(batch_size, sequence_length, config.vocab_size)`) : Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
 
-cache (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) : It is a [EncoderDecoderCache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).  Contains pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used (see `cache` input) to speed up sequential decoding.
+cache (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) : It is a [EncoderDecoderCache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).  Contains pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used (see `cache` input) to speed up sequential decoding.
 
 decoder_hidden_states (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) : Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, + one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.  Hidden-states of the decoder at the output of each layer plus the initial embedding outputs.
 
@@ -374,7 +374,7 @@ Base class for sequence-to-sequence language models outputs.
 transformers.modeling_outputs.NextSentencePredictorOutput(loss: typing.Optional[torch.Tensor] = None, logits: typing.Optional[torch.Tensor] = None, hidden_states: tuple[torch.Tensor, ...] | None = None, attentions: tuple[torch.Tensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_outputs.py#L1092)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_outputs.py#L1092)
 
 **Parameters:**
 
@@ -396,7 +396,7 @@ Base class for outputs of models predicting if two sentences are consecutive or 
 transformers.modeling_outputs.SequenceClassifierOutput(loss: typing.Optional[torch.Tensor] = None, logits: typing.Optional[torch.Tensor] = None, hidden_states: tuple[torch.Tensor, ...] | None = None, attentions: tuple[torch.Tensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_outputs.py#L1122)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_outputs.py#L1122)
 
 **Parameters:**
 
@@ -418,7 +418,7 @@ Base class for outputs of sentence classification models.
 transformers.modeling_outputs.Seq2SeqSequenceClassifierOutput(loss: typing.Optional[torch.Tensor] = None, logits: typing.Optional[torch.Tensor] = None, cache: transformers.cache_utils.EncoderDecoderCache | None = None, decoder_hidden_states: tuple[torch.Tensor, ...] | None = None, decoder_attentions: tuple[torch.Tensor, ...] | None = None, cross_attentions: tuple[torch.Tensor, ...] | None = None, encoder_last_hidden_state: typing.Optional[torch.Tensor] = None, encoder_hidden_states: tuple[torch.Tensor, ...] | None = None, encoder_attentions: tuple[torch.Tensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_outputs.py#L1151)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_outputs.py#L1151)
 
 **Parameters:**
 
@@ -426,7 +426,7 @@ loss (`torch.Tensor` of shape `(1,)`, *optional*, returned when `label` is provi
 
 logits (`torch.Tensor` of shape `(batch_size, config.num_labels)`) : Classification (or regression if config.num_labels==1) scores (before SoftMax).
 
-cache (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) : It is a [EncoderDecoderCache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).  Contains pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used (see `cache` input) to speed up sequential decoding.
+cache (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) : It is a [EncoderDecoderCache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).  Contains pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used (see `cache` input) to speed up sequential decoding.
 
 decoder_hidden_states (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) : Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, + one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.  Hidden-states of the decoder at the output of each layer plus the initial embedding outputs.
 
@@ -450,7 +450,7 @@ Base class for outputs of sequence-to-sequence sentence classification models.
 transformers.modeling_outputs.MultipleChoiceModelOutput(loss: typing.Optional[torch.Tensor] = None, logits: typing.Optional[torch.Tensor] = None, hidden_states: tuple[torch.Tensor, ...] | None = None, attentions: tuple[torch.Tensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_outputs.py#L1209)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_outputs.py#L1209)
 
 **Parameters:**
 
@@ -472,7 +472,7 @@ Base class for outputs of multiple choice models.
 transformers.modeling_outputs.TokenClassifierOutput(loss: typing.Optional[torch.Tensor] = None, logits: typing.Optional[torch.Tensor] = None, hidden_states: tuple[torch.Tensor, ...] | None = None, attentions: tuple[torch.Tensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_outputs.py#L1240)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_outputs.py#L1240)
 
 **Parameters:**
 
@@ -494,7 +494,7 @@ Base class for outputs of token classification models.
 transformers.modeling_outputs.QuestionAnsweringModelOutput(loss: typing.Optional[torch.Tensor] = None, start_logits: typing.Optional[torch.Tensor] = None, end_logits: typing.Optional[torch.Tensor] = None, hidden_states: tuple[torch.Tensor, ...] | None = None, attentions: tuple[torch.Tensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_outputs.py#L1269)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_outputs.py#L1269)
 
 **Parameters:**
 
@@ -518,7 +518,7 @@ Base class for outputs of question answering models.
 transformers.modeling_outputs.Seq2SeqQuestionAnsweringModelOutput(loss: typing.Optional[torch.Tensor] = None, start_logits: typing.Optional[torch.Tensor] = None, end_logits: typing.Optional[torch.Tensor] = None, cache: transformers.cache_utils.EncoderDecoderCache | None = None, decoder_hidden_states: tuple[torch.Tensor, ...] | None = None, decoder_attentions: tuple[torch.Tensor, ...] | None = None, cross_attentions: tuple[torch.Tensor, ...] | None = None, encoder_last_hidden_state: typing.Optional[torch.Tensor] = None, encoder_hidden_states: tuple[torch.Tensor, ...] | None = None, encoder_attentions: tuple[torch.Tensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_outputs.py#L1301)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_outputs.py#L1301)
 
 **Parameters:**
 
@@ -528,7 +528,7 @@ start_logits (`torch.Tensor` of shape `(batch_size, sequence_length)`) : Span-st
 
 end_logits (`torch.Tensor` of shape `(batch_size, sequence_length)`) : Span-end scores (before SoftMax).
 
-cache (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) : It is a [EncoderDecoderCache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).  Contains pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used (see `cache` input) to speed up sequential decoding.
+cache (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) : It is a [EncoderDecoderCache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).  Contains pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used (see `cache` input) to speed up sequential decoding.
 
 decoder_hidden_states (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) : Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, + one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.  Hidden-states of the decoder at the output of each layer plus the initial embedding outputs.
 
@@ -552,7 +552,7 @@ Base class for outputs of sequence-to-sequence question answering models.
 transformers.modeling_outputs.Seq2SeqSpectrogramOutput(loss: typing.Optional[torch.Tensor] = None, spectrogram: typing.Optional[torch.Tensor] = None, cache: transformers.cache_utils.EncoderDecoderCache | None = None, decoder_hidden_states: tuple[torch.Tensor, ...] | None = None, decoder_attentions: tuple[torch.Tensor, ...] | None = None, cross_attentions: tuple[torch.Tensor, ...] | None = None, encoder_last_hidden_state: typing.Optional[torch.Tensor] = None, encoder_hidden_states: tuple[torch.Tensor, ...] | None = None, encoder_attentions: tuple[torch.Tensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_outputs.py#L1632)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_outputs.py#L1632)
 
 **Parameters:**
 
@@ -560,7 +560,7 @@ loss (`torch.Tensor` of shape `(1,)`, *optional*, returned when `labels` is prov
 
 spectrogram (`torch.Tensor` of shape `(batch_size, sequence_length, num_bins)`) : The predicted spectrogram.
 
-cache (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) : It is a [EncoderDecoderCache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).  Contains pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used (see `cache` input) to speed up sequential decoding.
+cache (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) : It is a [EncoderDecoderCache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).  Contains pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used (see `cache` input) to speed up sequential decoding.
 
 decoder_hidden_states (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) : Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, + one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.  Hidden-states of the decoder at the output of each layer plus the initial embedding outputs.
 
@@ -584,7 +584,7 @@ Base class for sequence-to-sequence spectrogram outputs.
 transformers.modeling_outputs.SemanticSegmenterOutput(loss: typing.Optional[torch.Tensor] = None, logits: typing.Optional[torch.Tensor] = None, hidden_states: tuple[torch.Tensor, ...] | None = None, attentions: tuple[torch.Tensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_outputs.py#L1362)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_outputs.py#L1362)
 
 **Parameters:**
 
@@ -606,7 +606,7 @@ Base class for outputs of semantic segmentation models.
 transformers.modeling_outputs.ImageClassifierOutput(loss: typing.Optional[torch.Tensor] = None, logits: typing.Optional[torch.Tensor] = None, hidden_states: tuple[torch.Tensor, ...] | None = None, attentions: tuple[torch.Tensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_outputs.py#L1400)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_outputs.py#L1400)
 
 **Parameters:**
 
@@ -628,7 +628,7 @@ Base class for outputs of image classification models.
 transformers.modeling_outputs.ImageClassifierOutputWithNoAttention(loss: typing.Optional[torch.Tensor] = None, logits: typing.Optional[torch.Tensor] = None, hidden_states: tuple[torch.Tensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_outputs.py#L1428)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_outputs.py#L1428)
 
 **Parameters:**
 
@@ -648,7 +648,7 @@ Base class for outputs of image classification models.
 transformers.modeling_outputs.DepthEstimatorOutput(loss: typing.Optional[torch.Tensor] = None, predicted_depth: typing.Optional[torch.Tensor] = None, hidden_states: tuple[torch.Tensor, ...] | None = None, attentions: tuple[torch.Tensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_outputs.py#L1449)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_outputs.py#L1449)
 
 **Parameters:**
 
@@ -670,7 +670,7 @@ Base class for outputs of depth estimation models.
 transformers.modeling_outputs.Wav2Vec2BaseModelOutput(last_hidden_state: typing.Optional[torch.Tensor] = None, extract_features: typing.Optional[torch.Tensor] = None, hidden_states: tuple[torch.Tensor, ...] | None = None, attentions: tuple[torch.Tensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_outputs.py#L1507)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_outputs.py#L1507)
 
 **Parameters:**
 
@@ -692,7 +692,7 @@ Base class for models that have been trained with the Wav2Vec2 loss objective.
 transformers.modeling_outputs.XVectorOutput(loss: typing.Optional[torch.Tensor] = None, logits: typing.Optional[torch.Tensor] = None, embeddings: typing.Optional[torch.Tensor] = None, hidden_states: tuple[torch.Tensor, ...] | None = None, attentions: tuple[torch.Tensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_outputs.py#L1536)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_outputs.py#L1536)
 
 **Parameters:**
 
@@ -706,7 +706,7 @@ hidden_states (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_s
 
 attentions (`tuple(torch.Tensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) : Tuple of `torch.Tensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length, sequence_length)`.  Attentions weights after the attention softmax, used to compute the weighted average in the self-attention heads.
 
-Output type of [Wav2Vec2ForXVector](/docs/transformers/v5.24.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ForXVector).
+Output type of [Wav2Vec2ForXVector](/docs/transformers/v5.24.1/en/model_doc/wav2vec2#transformers.Wav2Vec2ForXVector).
 
 ## Seq2SeqTSModelOutput[[transformers.modeling_outputs.Seq2SeqTSModelOutput]]
 
@@ -716,13 +716,13 @@ Output type of [Wav2Vec2ForXVector](/docs/transformers/v5.24.0/en/model_doc/wav2
 transformers.modeling_outputs.Seq2SeqTSModelOutput(last_hidden_state: typing.Optional[torch.Tensor] = None, cache: transformers.cache_utils.EncoderDecoderCache | None = None, decoder_hidden_states: tuple[torch.Tensor, ...] | None = None, decoder_attentions: tuple[torch.Tensor, ...] | None = None, cross_attentions: tuple[torch.Tensor, ...] | None = None, encoder_last_hidden_state: typing.Optional[torch.Tensor] = None, encoder_hidden_states: tuple[torch.Tensor, ...] | None = None, encoder_attentions: tuple[torch.Tensor, ...] | None = None, loc: typing.Optional[torch.Tensor] = None, scale: typing.Optional[torch.Tensor] = None, static_features: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_outputs.py#L1690)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_outputs.py#L1690)
 
 **Parameters:**
 
 last_hidden_state (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) : Sequence of hidden-states at the output of the last layer of the decoder of the model.  If `cache` is used only the last hidden-state of the sequences of shape `(batch_size, 1, hidden_size)` is output.
 
-cache (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) : It is a [EncoderDecoderCache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).  Contains pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used (see `cache` input) to speed up sequential decoding.
+cache (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) : It is a [EncoderDecoderCache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).  Contains pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used (see `cache` input) to speed up sequential decoding.
 
 decoder_hidden_states (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) : Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, + one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.  Hidden-states of the decoder at the output of each layer plus the optional initial embedding outputs.
 
@@ -753,7 +753,7 @@ sequential decoding.
 transformers.modeling_outputs.Seq2SeqTSPredictionOutput(loss: typing.Optional[torch.Tensor] = None, params: tuple[torch.Tensor, ...] | None = None, cache: transformers.cache_utils.EncoderDecoderCache | None = None, decoder_hidden_states: tuple[torch.Tensor, ...] | None = None, decoder_attentions: tuple[torch.Tensor, ...] | None = None, cross_attentions: tuple[torch.Tensor, ...] | None = None, encoder_last_hidden_state: typing.Optional[torch.Tensor] = None, encoder_hidden_states: tuple[torch.Tensor, ...] | None = None, encoder_attentions: tuple[torch.Tensor, ...] | None = None, loc: typing.Optional[torch.Tensor] = None, scale: typing.Optional[torch.Tensor] = None, static_features: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_outputs.py#L1760)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_outputs.py#L1760)
 
 **Parameters:**
 
@@ -761,7 +761,7 @@ loss (`torch.Tensor` of shape `(1,)`, *optional*, returned when a `future_values
 
 params (`torch.Tensor` of shape `(batch_size, num_samples, num_params)`) : Parameters of the chosen distribution.
 
-cache (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) : It is a [EncoderDecoderCache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).  Contains pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used (see `cache` input) to speed up sequential decoding.
+cache (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) : It is a [EncoderDecoderCache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).  Contains pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used (see `cache` input) to speed up sequential decoding.
 
 decoder_hidden_states (`tuple(torch.Tensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) : Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, + one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.  Hidden-states of the decoder at the output of each layer plus the initial embedding outputs.
 
@@ -792,7 +792,7 @@ chosen distribution.
 transformers.modeling_outputs.SampleTSPredictionOutput(sequences: typing.Optional[torch.Tensor] = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_outputs.py#L1830)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_outputs.py#L1830)
 
 **Parameters:**
 
@@ -802,4 +802,4 @@ Base class for time series model's predictions outputs that contains the sampled
 distribution.
 
 ### Cursor
-https://huggingface.co/docs/transformers/v5.24.0/serve-cli/cursor.md
+https://huggingface.co/docs/transformers/v5.24.1/serve-cli/cursor.md

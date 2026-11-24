@@ -101,4 +101,4 @@ Compute efficiency is enabled by ZeRO data parallelism where each GPU only store
 This approach is scalable to extremely large models with trillions of parameters.
 
 ### Writing model tests
-https://huggingface.co/docs/transformers/v5.24.0/testing.md
+https://huggingface.co/docs/transformers/v5.24.1/testing.md

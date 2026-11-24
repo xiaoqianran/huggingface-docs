@@ -2,9 +2,9 @@
 
 EXAONE covers the [EXAONE 3.0](https://huggingface.co/LGAI-EXAONE/EXAONE-3.0-7.8B-Instruct), [EXAONE 3.5](https://huggingface.co/collections/LGAI-EXAONE/exaone-35) and [EXAONE Deep](https://huggingface.co/collections/LGAI-EXAONE/exaone-deep) language models developed by [LG AI Research](https://huggingface.co/LGAI-EXAONE). Their architecture is the same as [Llama](./llama), with different parameter and config names.
 
-The auto classes load them with the Llama implementation ([LlamaModel](/docs/transformers/v5.24.0/en/model_doc/llama2#transformers.LlamaModel) and [LlamaForCausalLM](/docs/transformers/v5.24.0/en/model_doc/llama2#transformers.LlamaForCausalLM)), so only [ExaoneConfig](/docs/transformers/v5.24.0/en/model_doc/exaone#transformers.ExaoneConfig) is specific to EXAONE. The released checkpoints are renamed to the Llama names when loading and back when saving.
+The auto classes load them with the Llama implementation ([LlamaModel](/docs/transformers/v5.24.1/en/model_doc/llama2#transformers.LlamaModel) and [LlamaForCausalLM](/docs/transformers/v5.24.1/en/model_doc/llama2#transformers.LlamaForCausalLM)), so only [ExaoneConfig](/docs/transformers/v5.24.1/en/model_doc/exaone#transformers.ExaoneConfig) is specific to EXAONE. The released checkpoints are renamed to the Llama names when loading and back when saving.
 
-The example below demonstrates how to generate text with the [AutoModelForCausalLM](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoModelForCausalLM) class.
+The example below demonstrates how to generate text with the [AutoModelForCausalLM](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoModelForCausalLM) class.
 
 ```python
 from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -26,7 +26,7 @@ print(tokenizer.decode(output[0][inputs["input_ids"].shape[1] :], skip_special_t
 transformers.ExaoneConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, vocab_size: int = 102400, hidden_size: int = 4096, intermediate_size: int = 14336, num_hidden_layers: int = 32, num_attention_heads: int = 32, num_key_value_heads: int | None = 8, hidden_act: str = 'silu', max_position_embeddings: int = 4096, initializer_range: float = 0.02, rms_norm_eps: float = 1e-05, use_cache: bool = True, pad_token_id: int | None = 0, bos_token_id: int | None = 1, eos_token_id: int | list[int] | None = 361, tie_word_embeddings: bool = False, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None, attention_bias: bool = False, attention_dropout: int | float | None = 0.0, mlp_bias: bool = False, head_dim: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/exaone/configuration_exaone.py#L31)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/exaone/configuration_exaone.py#L31)
 
 **Parameters:**
 
@@ -74,8 +74,8 @@ This is the configuration class to store the configuration of a LlamaModel. It i
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [LGAI-EXAONE/EXAONE-3.0-7.8B-Instruct](https://huggingface.co/LGAI-EXAONE/EXAONE-3.0-7.8B-Instruct)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ```python
 >>> from transformers import AutoModelForCausalLM, ExaoneConfig
@@ -91,4 +91,4 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes
 ```
 
 ### KOSMOS-2
-https://huggingface.co/docs/transformers/v5.24.0/model_doc/kosmos-2.md
+https://huggingface.co/docs/transformers/v5.24.1/model_doc/kosmos-2.md

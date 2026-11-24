@@ -83,5 +83,5 @@ Two things to know when reading these traces:
 - Images are not stored. OpenRouter [strips multimodal content](https://openrouter.ai/docs/guides/features/broadcast/overview) from the messages before exporting, and the viewer shows `[image]` in its place.
 - Some requests may be missing or have no content. OpenRouter's sampling rate and API key filters limit which requests are sent to a destination, and Privacy Mode removes the prompt and completion content.
 
-### Using Spaces for Organization Cards
-https://huggingface.co/docs/hub/spaces-organization-cards.md
+### Nightwatch
+https://huggingface.co/docs/hub/enterprise-nightwatch.md

@@ -163,7 +163,7 @@ Calibration methods use the activations in different ways. GPTQ quantizes a laye
 
 Where the calibration runs decides how you use the method in Transformers.
 
-- [GPTQ](./gptq) calibrates inside `from_pretrained` when you pass a `dataset` to [GPTQConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.GPTQConfig), so it's listed under *Quantize while loading*.
+- [GPTQ](./gptq) calibrates inside `from_pretrained` when you pass a `dataset` to [GPTQConfig](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.GPTQConfig), so it's listed under *Quantize while loading*.
 - Other calibration methods, like AWQ, AutoRound, AQLM, and VPTQ, calibrate in their own libraries. Transformers loads the result, so they're listed under *Load pre-quantized checkpoints*.
 
 ### Quantization-aware training
@@ -182,4 +182,4 @@ Where the calibration runs decides how you use the method in Transformers.
 - [Accelerating Generative AI with PyTorch Part 2: LLM Optimizations](https://pytorch.org/blog/accelerating-generative-ai-2/)
 
 ### Compile a model
-https://huggingface.co/docs/transformers/v5.24.0/quantization/compile.md
+https://huggingface.co/docs/transformers/v5.24.1/quantization/compile.md

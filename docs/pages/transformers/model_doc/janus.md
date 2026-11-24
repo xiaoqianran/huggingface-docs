@@ -172,7 +172,7 @@ for i, image in enumerate(images['pixel_values']):
 transformers.JanusConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, vq_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, image_token_id: int = 100581, tie_word_embeddings: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/janus/configuration_janus.py#L102)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/janus/configuration_janus.py#L102)
 
 **Parameters:**
 
@@ -190,8 +190,8 @@ This is the configuration class to store the configuration of a JanusModel. It i
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [deepseek-community/Janus-Pro-1B](https://huggingface.co/deepseek-community/Janus-Pro-1B)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -225,7 +225,7 @@ Example:
 transformers.JanusVisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, hidden_size: int = 1024, num_hidden_layers: int = 24, num_attention_heads: int = 16, num_channels: int = 3, image_size: int | list[int] | tuple[int, int] = 384, patch_size: int | list[int] | tuple[int, int] = 16, hidden_act: str = 'gelu', layer_norm_eps: float = 1e-06, attention_dropout: float | int = 0.0, mlp_ratio: float | int = 4.0, attention_bias: bool = True, hidden_dropout_rate: float | int = 0.0, projection_dim: int = 2048, projection_dropout: float | int = 0.0, use_qk_norm: bool = False, initializer_range: float = 0.02, depth: int = 2, num_image_tokens: int = 576)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/janus/configuration_janus.py#L30)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/janus/configuration_janus.py#L30)
 
 **Parameters:**
 
@@ -269,8 +269,8 @@ This is the configuration class to store the configuration of a JanusModel. It i
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [deepseek-community/Janus-Pro-1B](https://huggingface.co/deepseek-community/Janus-Pro-1B)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## JanusVQVAEConfig[[transformers.JanusVQVAEConfig]]
 
@@ -280,7 +280,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes
 transformers.JanusVQVAEConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, embed_dim: int = 8, num_embeddings: int = 16384, double_latent: bool = False, latent_channels: int = 256, in_channels: int = 3, base_channels: int = 128, channel_multiplier: list[int] | tuple[int, ...] = (1, 1, 2, 2, 4), num_res_blocks: int = 2, dropout: float | int = 0.0, initializer_range: float = 0.02, num_patches: int = 32, out_channels: int = 3, projection_dim: int = 2048, num_hidden_layers: int = 2, hidden_act: str = 'gelu', image_token_embed_dim: int = 2048)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/janus/configuration_janus.py#L63)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/janus/configuration_janus.py#L63)
 
 **Parameters:**
 
@@ -320,8 +320,8 @@ This is the configuration class to store the configuration of a JanusModel. It i
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [deepseek-community/Janus-Pro-1B](https://huggingface.co/deepseek-community/Janus-Pro-1B)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## JanusProcessor[[transformers.JanusProcessor]]
 
@@ -331,7 +331,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes
 transformers.JanusProcessor(image_processor, tokenizer, chat_template: str | None = None, use_default_system_prompt: bool = False, num_image_tokens: int = 576, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/janus/processing_janus.py#L61)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/janus/processing_janus.py#L61)
 
 **Parameters:**
 
@@ -347,8 +347,8 @@ num_image_tokens (`int`, *optional*, defaults to `576`) : The number of placehol
 
 Constructs a JanusProcessor which wraps a image processor and a tokenizer into a single processor.
 
-[JanusProcessor](/docs/transformers/v5.24.0/en/model_doc/janus#transformers.JanusProcessor) offers all the functionalities of [JanusImageProcessor](/docs/transformers/v5.24.0/en/model_doc/janus#transformers.JanusImageProcessor) and `tokenizer_class`. See the
-[~JanusImageProcessor](/docs/transformers/v5.24.0/en/model_doc/janus#transformers.JanusImageProcessor) and `~tokenizer_class` for more information.
+[JanusProcessor](/docs/transformers/v5.24.1/en/model_doc/janus#transformers.JanusProcessor) offers all the functionalities of [JanusImageProcessor](/docs/transformers/v5.24.1/en/model_doc/janus#transformers.JanusImageProcessor) and `tokenizer_class`. See the
+[~JanusImageProcessor](/docs/transformers/v5.24.1/en/model_doc/janus#transformers.JanusImageProcessor) and `~tokenizer_class` for more information.
 
 #### __call__[[transformers.JanusProcessor.__call__]]
 
@@ -356,7 +356,7 @@ Constructs a JanusProcessor which wraps a image processor and a tokenizer into a
 __call__(text: str | list[str] | list[list[str]] = None, images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, **kwargs: *<class 'transformers.models.janus.processing_janus.JanusProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/janus/processing_janus.py#L94)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/janus/processing_janus.py#L94)
 
 **Parameters:**
 
@@ -372,13 +372,13 @@ return_text_replacement_offsets (`bool`, *kwargs*) : Whether to return character
 
 generation_mode (`str`, *kwargs*, *optional*, defaults to `"text"`) : The generation mode indicating which modality to generate. Can be one of `"text"` or `"image"`. When set to `"text"`, the processor prepares inputs for text generation. When set to `"image"`, it prepares inputs for image generation by appending image start tokens to the prompt.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.24.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.24.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.24.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.24.1/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
-**Returns:** [BatchFeature](/docs/transformers/v5.24.0/en/main_classes/feature_extractor#transformers.BatchFeature)
+**Returns:** [BatchFeature](/docs/transformers/v5.24.1/en/main_classes/feature_extractor#transformers.BatchFeature)
 
-A [BatchFeature](/docs/transformers/v5.24.0/en/main_classes/feature_extractor#transformers.BatchFeature) with the following fields:
+A [BatchFeature](/docs/transformers/v5.24.1/en/main_classes/feature_extractor#transformers.BatchFeature) with the following fields:
 
 - **input_ids** -- List of token ids to be fed to a model. Returned when `text` is not `None`.
 - **attention_mask** -- List of indices specifying which tokens should be attended to by the model (when
@@ -394,7 +394,7 @@ A [BatchFeature](/docs/transformers/v5.24.0/en/main_classes/feature_extractor#tr
 transformers.JanusImageProcessor(**kwargs: *<class 'transformers.models.janus.image_processing_janus.JanusImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/janus/image_processing_janus.py#L47)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/janus/image_processing_janus.py#L47)
 
 **Parameters:**
 
@@ -448,7 +448,7 @@ Constructs a JanusImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, image_like_kwargs: dict[str, typing.Any] | None = None, **kwargs: *<class 'transformers.processing_utils.ImagesKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/image_processing_utils.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/image_processing_utils.py#L382)
 
 **Parameters:**
 
@@ -512,7 +512,7 @@ Preprocess an image or a batch of images.
 transformers.JanusImageProcessorPil(**kwargs: *<class 'transformers.models.janus.image_processing_pil_janus.JanusImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/janus/image_processing_pil_janus.py#L55)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/janus/image_processing_pil_janus.py#L55)
 
 **Parameters:**
 
@@ -566,7 +566,7 @@ Constructs a JanusImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: *<class 'transformers.models.janus.image_processing_pil_janus.JanusImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/janus/image_processing_pil_janus.py#L76)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/janus/image_processing_pil_janus.py#L76)
 
 **Parameters:**
 
@@ -628,15 +628,15 @@ min_size (`int`, *kwargs*, *optional*, defaults to 14) : The minimum allowed siz
 transformers.JanusVisionModel(config: JanusVisionConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/janus/modeling_janus.py#L392)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/janus/modeling_janus.py#L392)
 
 **Parameters:**
 
-config ([JanusVisionConfig](/docs/transformers/v5.24.0/en/model_doc/janus#transformers.JanusVisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([JanusVisionConfig](/docs/transformers/v5.24.1/en/model_doc/janus#transformers.JanusVisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Janus Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -650,21 +650,21 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.Tensor] = None, interpolate_pos_encoding: bool = False, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/janus/modeling_janus.py#L412)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/janus/modeling_janus.py#L412)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [JanusImageProcessor](/docs/transformers/v5.24.0/en/model_doc/janus#transformers.JanusImageProcessor). See [JanusImageProcessor.__call__()](/docs/transformers/v5.24.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([JanusProcessor](/docs/transformers/v5.24.0/en/model_doc/janus#transformers.JanusProcessor) uses [JanusImageProcessor](/docs/transformers/v5.24.0/en/model_doc/janus#transformers.JanusImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [JanusImageProcessor](/docs/transformers/v5.24.1/en/model_doc/janus#transformers.JanusImageProcessor). See [JanusImageProcessor.__call__()](/docs/transformers/v5.24.1/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([JanusProcessor](/docs/transformers/v5.24.1/en/model_doc/janus#transformers.JanusProcessor) uses [JanusImageProcessor](/docs/transformers/v5.24.1/en/model_doc/janus#transformers.JanusImageProcessor) for processing images).
 
 interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([JanusConfig](/docs/transformers/v5.24.0/en/model_doc/janus#transformers.JanusConfig)) and inputs.
+elements depending on the configuration ([JanusConfig](/docs/transformers/v5.24.1/en/model_doc/janus#transformers.JanusConfig)) and inputs.
 
-The [JanusVisionModel](/docs/transformers/v5.24.0/en/model_doc/janus#transformers.JanusVisionModel) forward method, overrides the `__call__` special method.
+The [JanusVisionModel](/docs/transformers/v5.24.1/en/model_doc/janus#transformers.JanusVisionModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -693,18 +693,18 @@ the latter silently ignores them.
 transformers.JanusVQVAE(config: JanusVQVAEConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/janus/modeling_janus.py#L821)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/janus/modeling_janus.py#L821)
 
 **Parameters:**
 
-config ([JanusVQVAEConfig](/docs/transformers/v5.24.0/en/model_doc/janus#transformers.JanusVQVAEConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([JanusVQVAEConfig](/docs/transformers/v5.24.1/en/model_doc/janus#transformers.JanusVQVAEConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The VQ-VAE model used in Janus for encoding/decoding images into discrete tokens.
 This model follows the "Make-a-scene: Scene-based text-to-image generation with human priors" paper from
 [ Oran Gafni, Adam Polyak, Oron Ashual, Shelly Sheynin, Devi Parikh, and Yaniv
 Taigman](https://huggingface.co/papers/2203.13131).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -718,17 +718,17 @@ and behavior.
 forward(pixel_values: Tensor, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/janus/modeling_janus.py#L878)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/janus/modeling_janus.py#L878)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [JanusImageProcessor](/docs/transformers/v5.24.0/en/model_doc/janus#transformers.JanusImageProcessor). See [JanusImageProcessor.__call__()](/docs/transformers/v5.24.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([JanusProcessor](/docs/transformers/v5.24.0/en/model_doc/janus#transformers.JanusProcessor) uses [JanusImageProcessor](/docs/transformers/v5.24.0/en/model_doc/janus#transformers.JanusImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [JanusImageProcessor](/docs/transformers/v5.24.1/en/model_doc/janus#transformers.JanusImageProcessor). See [JanusImageProcessor.__call__()](/docs/transformers/v5.24.1/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([JanusProcessor](/docs/transformers/v5.24.1/en/model_doc/janus#transformers.JanusProcessor) uses [JanusImageProcessor](/docs/transformers/v5.24.1/en/model_doc/janus#transformers.JanusImageProcessor) for processing images).
 
 **Returns:**
 
 `tuple[torch.Tensor, torch.Tensor]`
 
-The [JanusVQVAE](/docs/transformers/v5.24.0/en/model_doc/janus#transformers.JanusVQVAE) forward method, overrides the `__call__` special method.
+The [JanusVQVAE](/docs/transformers/v5.24.1/en/model_doc/janus#transformers.JanusVQVAE) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -742,15 +742,15 @@ the latter silently ignores them.
 transformers.JanusModel(config: JanusConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/janus/modeling_janus.py#L931)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/janus/modeling_janus.py#L931)
 
 **Parameters:**
 
-config ([JanusConfig](/docs/transformers/v5.24.0/en/model_doc/janus#transformers.JanusConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([JanusConfig](/docs/transformers/v5.24.1/en/model_doc/janus#transformers.JanusConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Janus model which consists of a siglip vision backbone, a Llama language model and a VQ model.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -764,11 +764,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, cache: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, use_cache: bool | None = None, mm_encoder_outputs: dict[str, transformers.modeling_outputs.BaseModelOutputWithPooling] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/janus/modeling_janus.py#L987)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/janus/modeling_janus.py#L987)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using `image_processor_class`. See `image_processor_class.__call__` for details (`processor_class` uses `image_processor_class` for processing images).
 
@@ -776,7 +776,7 @@ attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *option
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
@@ -790,7 +790,7 @@ A `JanusBaseModelOutputWithPast` or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [JanusModel](/docs/transformers/v5.24.0/en/model_doc/janus#transformers.JanusModel) forward method, overrides the `__call__` special method.
+The [JanusModel](/docs/transformers/v5.24.1/en/model_doc/janus#transformers.JanusModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -799,7 +799,7 @@ the latter silently ignores them.
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the language model backbone.
   If `cache` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `cache`
   input) to speed up sequential decoding.
@@ -822,17 +822,17 @@ the latter silently ignores them.
 get_image_features(pixel_values: Tensor, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/janus/modeling_janus.py#L953)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/janus/modeling_janus.py#L953)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [JanusImageProcessor](/docs/transformers/v5.24.0/en/model_doc/janus#transformers.JanusImageProcessor). See [JanusImageProcessor.__call__()](/docs/transformers/v5.24.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([JanusProcessor](/docs/transformers/v5.24.0/en/model_doc/janus#transformers.JanusProcessor) uses [JanusImageProcessor](/docs/transformers/v5.24.0/en/model_doc/janus#transformers.JanusImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [JanusImageProcessor](/docs/transformers/v5.24.1/en/model_doc/janus#transformers.JanusImageProcessor). See [JanusImageProcessor.__call__()](/docs/transformers/v5.24.1/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([JanusProcessor](/docs/transformers/v5.24.1/en/model_doc/janus#transformers.JanusProcessor) uses [JanusImageProcessor](/docs/transformers/v5.24.1/en/model_doc/janus#transformers.JanusImageProcessor) for processing images).
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([JanusConfig](/docs/transformers/v5.24.0/en/model_doc/janus#transformers.JanusConfig)) and inputs.
+elements depending on the configuration ([JanusConfig](/docs/transformers/v5.24.1/en/model_doc/janus#transformers.JanusConfig)) and inputs.
 
 - **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.Tensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -857,7 +857,7 @@ elements depending on the configuration ([JanusConfig](/docs/transformers/v5.24.
 transformers.JanusForConditionalGeneration(config: JanusConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/janus/modeling_janus.py#L1037)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/janus/modeling_janus.py#L1037)
 
 #### forward[[transformers.JanusForConditionalGeneration.forward]]
 
@@ -865,11 +865,11 @@ transformers.JanusForConditionalGeneration(config: JanusConfig)
 forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, cache: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, mm_encoder_outputs: dict[str, transformers.modeling_outputs.BaseModelOutputWithPooling] | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/janus/modeling_janus.py#L1057)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/janus/modeling_janus.py#L1057)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using `image_processor_class`. See `image_processor_class.__call__` for details (`processor_class` uses `image_processor_class` for processing images).
 
@@ -877,7 +877,7 @@ attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *option
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
@@ -895,7 +895,7 @@ A `JanusCausalLMOutputWithPast` or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [JanusForConditionalGeneration](/docs/transformers/v5.24.0/en/model_doc/janus#transformers.JanusForConditionalGeneration) forward method, overrides the `__call__` special method.
+The [JanusForConditionalGeneration](/docs/transformers/v5.24.1/en/model_doc/janus#transformers.JanusForConditionalGeneration) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -903,7 +903,7 @@ the latter silently ignores them.
 
 - **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
 - **logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
-- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `cache`
   input) to speed up sequential decoding.
@@ -921,4 +921,4 @@ the latter silently ignores them.
   `None` if no audio was processed.
 
 ### Fun-ASR-Nano
-https://huggingface.co/docs/transformers/v5.24.0/model_doc/fun_asr_nano.md
+https://huggingface.co/docs/transformers/v5.24.1/model_doc/fun_asr_nano.md

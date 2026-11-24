@@ -13,7 +13,7 @@ You can find all the original CamemBERT checkpoints under the [ALMAnaCH](https:/
 >
 > Click on the CamemBERT models in the right sidebar for more examples of how to apply CamemBERT to different NLP tasks.
 
-The examples below demonstrate how to predict the `<mask>` token with [Pipeline](/docs/transformers/v5.24.0/en/main_classes/pipelines#transformers.Pipeline), [AutoModel](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoModel), and from the command line.
+The examples below demonstrate how to predict the `<mask>` token with [Pipeline](/docs/transformers/v5.24.1/en/main_classes/pipelines#transformers.Pipeline), [AutoModel](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoModel), and from the command line.
 
 ```python
 from transformers import pipeline
@@ -80,7 +80,7 @@ print(f"The predicted token is: {predicted_token}")
 transformers.CamembertConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, vocab_size: int = 30522, hidden_size: int = 768, num_hidden_layers: int = 12, num_attention_heads: int = 12, intermediate_size: int = 3072, hidden_act: str = 'gelu', hidden_dropout_prob: float | int = 0.1, attention_probs_dropout_prob: float | int = 0.1, max_position_embeddings: int = 512, type_vocab_size: int = 2, initializer_range: float = 0.02, layer_norm_eps: float = 1e-12, pad_token_id: int | None = 1, bos_token_id: int | None = 0, eos_token_id: int | list[int] | None = 2, use_cache: bool = True, classifier_dropout: float | int | None = None, is_decoder: bool = False, add_cross_attention: bool = False, tie_word_embeddings: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/camembert/configuration_camembert.py#L25)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/camembert/configuration_camembert.py#L25)
 
 **Parameters:**
 
@@ -128,8 +128,8 @@ This is the configuration class to store the configuration of a CamembertModel. 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [almanach/camembert-base](https://huggingface.co/almanach/camembert-base)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -154,7 +154,7 @@ Example:
 transformers.CamembertTokenizer(bos_token = '<s>', eos_token = '</s>', sep_token = '</s>', cls_token = '<s>', unk_token = '<unk>', pad_token = '<pad>', _spm_precompiled_charsmap = None, mask_token = '<mask>', additional_special_tokens = None, add_prefix_space = True, vocab_file = None, vocab: str | dict | list | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/camembert/tokenization_camembert.py#L32)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/camembert/tokenization_camembert.py#L32)
 
 **Parameters:**
 
@@ -181,10 +181,10 @@ vocab_file (`str`, *optional*) : [SentencePiece](https://github.com/google/sente
 vocab (`str`, `dict` or `list`, *optional*) : Custom vocabulary dictionary. If not provided, vocabulary is loaded from vocab_file.
 
 Construct a "fast" CamemBERT tokenizer (backed by HuggingFace's *tokenizers* library). Adapted from
-[RobertaTokenizer](/docs/transformers/v5.24.0/en/model_doc/led#transformers.RobertaTokenizer) and [XLNetTokenizer](/docs/transformers/v5.24.0/en/model_doc/xlnet#transformers.XLNetTokenizer). Based on
+[RobertaTokenizer](/docs/transformers/v5.24.1/en/model_doc/led#transformers.RobertaTokenizer) and [XLNetTokenizer](/docs/transformers/v5.24.1/en/model_doc/xlnet#transformers.XLNetTokenizer). Based on
 [Unigram](https://huggingface.co/docs/tokenizers/python/latest/components.html?highlight=unigram#models).
 
-This tokenizer inherits from [PreTrainedTokenizerFast](/docs/transformers/v5.24.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
+This tokenizer inherits from [PreTrainedTokenizerFast](/docs/transformers/v5.24.1/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
 refer to this superclass for more information regarding those methods.
 
 #### get_special_tokens_mask[[transformers.CamembertTokenizer.get_special_tokens_mask]]
@@ -193,7 +193,7 @@ refer to this superclass for more information regarding those methods.
 get_special_tokens_mask(token_ids_0: list[int], token_ids_1: list[int] | None = None, already_has_special_tokens: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/tokenization_utils_base.py#L1347)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/tokenization_utils_base.py#L1347)
 
 **Parameters:**
 
@@ -218,7 +218,7 @@ already-formatted sequence. In that case, we compute the mask by checking member
 save_vocabulary(save_directory: str, filename_prefix: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/tokenization_utils_tokenizers.py#L555)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/tokenization_utils_tokenizers.py#L555)
 
 ## CamembertModel[[transformers.CamembertModel]]
 
@@ -228,11 +228,11 @@ save_vocabulary(save_directory: str, filename_prefix: str | None = None)
 transformers.CamembertModel(config: CamembertConfig, add_pooling_layer = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/camembert/modeling_camembert.py#L574)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/camembert/modeling_camembert.py#L574)
 
 **Parameters:**
 
-config ([CamembertConfig](/docs/transformers/v5.24.0/en/model_doc/camembert#transformers.CamembertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([CamembertConfig](/docs/transformers/v5.24.1/en/model_doc/camembert#transformers.CamembertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 add_pooling_layer (`bool`, *optional*, defaults to `True`) : Whether to add a pooling layer
 
@@ -245,7 +245,7 @@ To behave as an decoder the model needs to be initialized with the `is_decoder` 
 to `True`. To be used in a Seq2Seq model, the model needs to initialized with both `is_decoder` argument and
 `add_cross_attention` set to `True`; an `encoder_hidden_states` is then expected as an input to the forward pass.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -259,11 +259,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, encoder_hidden_states: typing.Optional[torch.Tensor] = None, encoder_attention_mask: typing.Optional[torch.Tensor] = None, cache: transformers.cache_utils.Cache | None = None, use_cache: bool | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/camembert/modeling_camembert.py#L600)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/camembert/modeling_camembert.py#L600)
 
 **Parameters:**
 
-input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -277,17 +277,17 @@ encoder_hidden_states (`torch.Tensor` of shape `(batch_size, sequence_length, hi
 
 encoder_attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on the padding token indices of the encoder input. This mask is used in the cross-attention if the model is configured as a decoder. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.
 
-cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 use_cache (`bool`, *optional*) : If set to `True`, `cache` key value states are returned and can be used to speed up decoding (see `cache`).
 
-**Returns:** [BaseModelOutputWithPoolingAndCrossAttentions](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPoolingAndCrossAttentions) or `tuple(torch.Tensor)`
+**Returns:** [BaseModelOutputWithPoolingAndCrossAttentions](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPoolingAndCrossAttentions) or `tuple(torch.Tensor)`
 
-A [BaseModelOutputWithPoolingAndCrossAttentions](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPoolingAndCrossAttentions) or a tuple of
+A [BaseModelOutputWithPoolingAndCrossAttentions](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPoolingAndCrossAttentions) or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [CamembertModel](/docs/transformers/v5.24.0/en/model_doc/camembert#transformers.CamembertModel) forward method, overrides the `__call__` special method.
+The [CamembertModel](/docs/transformers/v5.24.1/en/model_doc/camembert#transformers.CamembertModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -312,7 +312,7 @@ the latter silently ignores them.
 
   Attentions weights of the decoder's cross-attention layer, after the attention softmax, used to compute the
   weighted average in the cross-attention heads.
-- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `cache`
@@ -326,15 +326,15 @@ the latter silently ignores them.
 transformers.CamembertForCausalLM(config: CamembertConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/camembert/modeling_camembert.py#L1138)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/camembert/modeling_camembert.py#L1138)
 
 **Parameters:**
 
-config ([CamembertConfig](/docs/transformers/v5.24.0/en/model_doc/camembert#transformers.CamembertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([CamembertConfig](/docs/transformers/v5.24.1/en/model_doc/camembert#transformers.CamembertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Camembert Model with a `language modeling` head on top for CLM fine-tuning.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -348,11 +348,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, encoder_hidden_states: typing.Optional[torch.Tensor] = None, encoder_attention_mask: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.LongTensor] = None, cache: tuple[tuple[torch.Tensor]] | None = None, use_cache: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/camembert/modeling_camembert.py#L1162)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/camembert/modeling_camembert.py#L1162)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -368,19 +368,19 @@ encoder_attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`,
 
 labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the left-to-right language modeling loss (next word prediction). Indices should be in `[-100, 0, ..., config.vocab_size]` (see `input_ids` docstring) Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`
 
-cache (`tuple[tuple[torch.Tensor]]`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+cache (`tuple[tuple[torch.Tensor]]`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 use_cache (`bool`, *optional*) : If set to `True`, `cache` key value states are returned and can be used to speed up decoding (see `cache`).
 
 logits_to_keep (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) : If an `int`, compute logits for the last `logits_to_keep` tokens. If `0`, calculate logits for all `input_ids` (special case). Only last token logits are needed for generation, and calculating them only for that token can save memory, which becomes pretty significant for long sequences or large vocabulary size. If a `torch.Tensor`, must be 1D corresponding to the indices to keep in the sequence length dimension. This is useful when using packed tensor format (single dimension for batch and sequence length).
 
-**Returns:** [CausalLMOutputWithCrossAttentions](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithCrossAttentions) or `tuple(torch.Tensor)`
+**Returns:** [CausalLMOutputWithCrossAttentions](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithCrossAttentions) or `tuple(torch.Tensor)`
 
-A [CausalLMOutputWithCrossAttentions](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithCrossAttentions) or a tuple of
+A [CausalLMOutputWithCrossAttentions](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithCrossAttentions) or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [CamembertForCausalLM](/docs/transformers/v5.24.0/en/model_doc/camembert#transformers.CamembertForCausalLM) forward method, overrides the `__call__` special method.
+The [CamembertForCausalLM](/docs/transformers/v5.24.1/en/model_doc/camembert#transformers.CamembertForCausalLM) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -402,7 +402,7 @@ the latter silently ignores them.
 
   Cross attentions weights after the attention softmax, used to compute the weighted average in the
   cross-attention heads.
-- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the attention blocks) that can be used (see
   `cache` input) to speed up sequential decoding.
@@ -432,15 +432,15 @@ Example:
 transformers.CamembertForMaskedLM(config: CamembertConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/camembert/modeling_camembert.py#L703)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/camembert/modeling_camembert.py#L703)
 
 **Parameters:**
 
-config ([CamembertConfig](/docs/transformers/v5.24.0/en/model_doc/camembert#transformers.CamembertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([CamembertConfig](/docs/transformers/v5.24.1/en/model_doc/camembert#transformers.CamembertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Camembert Model with a `language modeling` head on top."
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -454,11 +454,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, encoder_hidden_states: typing.Optional[torch.Tensor] = None, encoder_attention_mask: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.LongTensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/camembert/modeling_camembert.py#L730)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/camembert/modeling_camembert.py#L730)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -474,13 +474,13 @@ encoder_attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`,
 
 labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should be in `[-100, 0, ..., config.vocab_size]` (see `input_ids` docstring) Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
 
-**Returns:** [MaskedLMOutput](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or `tuple(torch.Tensor)`
+**Returns:** [MaskedLMOutput](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or `tuple(torch.Tensor)`
 
-A [MaskedLMOutput](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or a tuple of
+A [MaskedLMOutput](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([CamembertConfig](/docs/transformers/v5.24.0/en/model_doc/camembert#transformers.CamembertConfig)) and inputs.
+elements depending on the configuration ([CamembertConfig](/docs/transformers/v5.24.1/en/model_doc/camembert#transformers.CamembertConfig)) and inputs.
 
-The [CamembertForMaskedLM](/docs/transformers/v5.24.0/en/model_doc/camembert#transformers.CamembertForMaskedLM) forward method, overrides the `__call__` special method.
+The [CamembertForMaskedLM](/docs/transformers/v5.24.1/en/model_doc/camembert#transformers.CamembertForMaskedLM) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -536,16 +536,16 @@ Example:
 transformers.CamembertForSequenceClassification(config: CamembertConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/camembert/modeling_camembert.py#L812)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/camembert/modeling_camembert.py#L812)
 
 **Parameters:**
 
-config ([CamembertConfig](/docs/transformers/v5.24.0/en/model_doc/camembert#transformers.CamembertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([CamembertConfig](/docs/transformers/v5.24.1/en/model_doc/camembert#transformers.CamembertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Camembert Model transformer with a sequence classification/regression head on top (a linear layer on top of the
 pooled output) e.g. for GLUE tasks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -559,11 +559,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.LongTensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/camembert/modeling_camembert.py#L824)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/camembert/modeling_camembert.py#L824)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -575,13 +575,13 @@ inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_siz
 
 labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the sequence classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
 
-**Returns:** [SequenceClassifierOutput](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or `tuple(torch.Tensor)`
+**Returns:** [SequenceClassifierOutput](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or `tuple(torch.Tensor)`
 
-A [SequenceClassifierOutput](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or a tuple of
+A [SequenceClassifierOutput](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([CamembertConfig](/docs/transformers/v5.24.0/en/model_doc/camembert#transformers.CamembertConfig)) and inputs.
+elements depending on the configuration ([CamembertConfig](/docs/transformers/v5.24.1/en/model_doc/camembert#transformers.CamembertConfig)) and inputs.
 
-The [CamembertForSequenceClassification](/docs/transformers/v5.24.0/en/model_doc/camembert#transformers.CamembertForSequenceClassification) forward method, overrides the `__call__` special method.
+The [CamembertForSequenceClassification](/docs/transformers/v5.24.1/en/model_doc/camembert#transformers.CamembertForSequenceClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -663,16 +663,16 @@ Example of multi-label classification:
 transformers.CamembertForMultipleChoice(config: CamembertConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/camembert/modeling_camembert.py#L893)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/camembert/modeling_camembert.py#L893)
 
 **Parameters:**
 
-config ([CamembertConfig](/docs/transformers/v5.24.0/en/model_doc/camembert#transformers.CamembertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([CamembertConfig](/docs/transformers/v5.24.1/en/model_doc/camembert#transformers.CamembertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Camembert Model with a multiple choice classification head on top (a linear layer on top of the pooled output and a
 softmax) e.g. for RocStories/SWAG tasks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -686,11 +686,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/camembert/modeling_camembert.py#L904)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/camembert/modeling_camembert.py#L904)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, num_choices, sequence_length)`) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, num_choices, sequence_length)`) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 token_type_ids (`torch.LongTensor` of shape `(batch_size, num_choices, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0,1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token. This parameter can only be used when the model is initialized with `type_vocab_size` parameter with value >= 2. All the value in this tensor should be always < type_vocab_size.  [What are token type IDs?](../glossary#token-type-ids)
 
@@ -702,13 +702,13 @@ position_ids (`torch.LongTensor` of shape `(batch_size, num_choices, sequence_le
 
 inputs_embeds (`torch.Tensor` of shape `(batch_size, num_choices, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
-**Returns:** [MultipleChoiceModelOutput](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.MultipleChoiceModelOutput) or `tuple(torch.Tensor)`
+**Returns:** [MultipleChoiceModelOutput](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.MultipleChoiceModelOutput) or `tuple(torch.Tensor)`
 
-A [MultipleChoiceModelOutput](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.MultipleChoiceModelOutput) or a tuple of
+A [MultipleChoiceModelOutput](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.MultipleChoiceModelOutput) or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([CamembertConfig](/docs/transformers/v5.24.0/en/model_doc/camembert#transformers.CamembertConfig)) and inputs.
+elements depending on the configuration ([CamembertConfig](/docs/transformers/v5.24.1/en/model_doc/camembert#transformers.CamembertConfig)) and inputs.
 
-The [CamembertForMultipleChoice](/docs/transformers/v5.24.0/en/model_doc/camembert#transformers.CamembertForMultipleChoice) forward method, overrides the `__call__` special method.
+The [CamembertForMultipleChoice](/docs/transformers/v5.24.1/en/model_doc/camembert#transformers.CamembertForMultipleChoice) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -758,16 +758,16 @@ Example:
 transformers.CamembertForTokenClassification(config: CamembertConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/camembert/modeling_camembert.py#L986)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/camembert/modeling_camembert.py#L986)
 
 **Parameters:**
 
-config ([CamembertConfig](/docs/transformers/v5.24.0/en/model_doc/camembert#transformers.CamembertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([CamembertConfig](/docs/transformers/v5.24.1/en/model_doc/camembert#transformers.CamembertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Camembert transformer with a token classification head on top (a linear layer on top of the hidden-states
 output) e.g. for Named-Entity-Recognition (NER) tasks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -781,11 +781,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.LongTensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/camembert/modeling_camembert.py#L1001)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/camembert/modeling_camembert.py#L1001)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -797,13 +797,13 @@ inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_siz
 
 labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the token classification loss. Indices should be in `[0, ..., config.num_labels - 1]`.
 
-**Returns:** [TokenClassifierOutput](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or `tuple(torch.Tensor)`
+**Returns:** [TokenClassifierOutput](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or `tuple(torch.Tensor)`
 
-A [TokenClassifierOutput](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or a tuple of
+A [TokenClassifierOutput](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([CamembertConfig](/docs/transformers/v5.24.0/en/model_doc/camembert#transformers.CamembertConfig)) and inputs.
+elements depending on the configuration ([CamembertConfig](/docs/transformers/v5.24.1/en/model_doc/camembert#transformers.CamembertConfig)) and inputs.
 
-The [CamembertForTokenClassification](/docs/transformers/v5.24.0/en/model_doc/camembert#transformers.CamembertForTokenClassification) forward method, overrides the `__call__` special method.
+The [CamembertForTokenClassification](/docs/transformers/v5.24.1/en/model_doc/camembert#transformers.CamembertForTokenClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -860,16 +860,16 @@ Example:
 transformers.CamembertForQuestionAnswering(config: CamembertConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/camembert/modeling_camembert.py#L1055)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/camembert/modeling_camembert.py#L1055)
 
 **Parameters:**
 
-config ([CamembertConfig](/docs/transformers/v5.24.0/en/model_doc/camembert#transformers.CamembertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([CamembertConfig](/docs/transformers/v5.24.1/en/model_doc/camembert#transformers.CamembertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Camembert transformer with a span classification head on top for extractive question-answering tasks like
 SQuAD (a linear layer on top of the hidden-states output to compute `span start logits` and `span end logits`).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -883,11 +883,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, start_positions: typing.Optional[torch.LongTensor] = None, end_positions: typing.Optional[torch.LongTensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/camembert/modeling_camembert.py#L1066)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/camembert/modeling_camembert.py#L1066)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -901,13 +901,13 @@ start_positions (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labe
 
 end_positions (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for position (index) of the end of the labelled span for computing the token classification loss. Positions are clamped to the length of the sequence (`sequence_length`). Position outside of the sequence are not taken into account for computing the loss.
 
-**Returns:** [QuestionAnsweringModelOutput](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.QuestionAnsweringModelOutput) or `tuple(torch.Tensor)`
+**Returns:** [QuestionAnsweringModelOutput](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.QuestionAnsweringModelOutput) or `tuple(torch.Tensor)`
 
-A [QuestionAnsweringModelOutput](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.QuestionAnsweringModelOutput) or a tuple of
+A [QuestionAnsweringModelOutput](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.QuestionAnsweringModelOutput) or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([CamembertConfig](/docs/transformers/v5.24.0/en/model_doc/camembert#transformers.CamembertConfig)) and inputs.
+elements depending on the configuration ([CamembertConfig](/docs/transformers/v5.24.1/en/model_doc/camembert#transformers.CamembertConfig)) and inputs.
 
-The [CamembertForQuestionAnswering](/docs/transformers/v5.24.0/en/model_doc/camembert#transformers.CamembertForQuestionAnswering) forward method, overrides the `__call__` special method.
+The [CamembertForQuestionAnswering](/docs/transformers/v5.24.1/en/model_doc/camembert#transformers.CamembertForQuestionAnswering) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -959,4 +959,4 @@ Example:
 ```
 
 ### MiniCPM-V
-https://huggingface.co/docs/transformers/v5.24.0/model_doc/minicpmv4_6.md
+https://huggingface.co/docs/transformers/v5.24.1/model_doc/minicpmv4_6.md

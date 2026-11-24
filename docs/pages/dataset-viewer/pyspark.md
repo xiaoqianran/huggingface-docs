@@ -54,5 +54,5 @@ df.printSchema()
 
 ```
 
-### Search text in a dataset
-https://huggingface.co/docs/dataset-viewer/search.md
+### Polars
+https://huggingface.co/docs/dataset-viewer/polars.md

@@ -5,7 +5,7 @@
 
 JEV is a decision head that scores single-token labels with a linear layer at the last token of the prompt, soft-capped like the logits of a language model head. It was introduced by [JEV](https://huggingface.co/autotrust/JEV-9B) and is also used by [GEV](https://huggingface.co/autotrust/GEV-26B-Decide).
 
-[JevForDecision](/docs/transformers/v5.24.0/en/model_doc/jev#transformers.JevForDecision) is the model of the checkpoint and its head, like a `ForCausalLM` is the model and its `lm_head`. It
+[JevForDecision](/docs/transformers/v5.24.1/en/model_doc/jev#transformers.JevForDecision) is the model of the checkpoint and its head, like a `ForCausalLM` is the model and its `lm_head`. It
 reads the files that the checkpoint ships its head with, next to its weights (`readout.safetensors` and
 `decision_config.json` for vLLM decision models, `head.safetensors` and `judge_config.json` for JEV).
 
@@ -72,7 +72,7 @@ pipeline("decision", model="vllm-sr/d3")(request)  # or perplexity-ai/pplx-decid
 transformers.JevConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, hidden_size: int = 4096, num_verbalizers: int = 24, offsets: dict[str, int] | None = None, softcap: float | None = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, initializer_range: float = 0.02)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/jev/configuration_jev.py#L101)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/jev/configuration_jev.py#L101)
 
 **Parameters:**
 
@@ -92,8 +92,8 @@ This is the configuration class to store the configuration of a JevModel. It is 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [autotrust/JEV-9B](https://huggingface.co/autotrust/JEV-9B)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 ```python
@@ -108,7 +108,7 @@ Example:
 decision_config(head_configs: dict, text_config: dict)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/jev/configuration_jev.py#L134)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/jev/configuration_jev.py#L134)
 
 The decision config of a checkpoint that ships a JEV head next to its weights, from its config files.
 
@@ -120,16 +120,16 @@ The decision config of a checkpoint that ships a JEV head next to its weights, f
 transformers.JevForDecision(config: JevConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/jev/modeling_jev.py#L38)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/jev/modeling_jev.py#L38)
 
 **Parameters:**
 
-config ([JevConfig](/docs/transformers/v5.24.0/en/model_doc/jev#transformers.JevConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([JevConfig](/docs/transformers/v5.24.1/en/model_doc/jev#transformers.JevConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 JEV (autotrust/JEV-9B): the model of its repo and a decision head, linear scores of single-token labels at the token
 before the `<|mark|>` of each question, soft-capped like the logits of a language model head.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -143,11 +143,11 @@ and behavior.
 forward(input_ids: LongTensor, marks: LongTensor, num_options: LongTensor, question_type_ids: LongTensor, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/jev/modeling_jev.py#L45)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/jev/modeling_jev.py#L45)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 marks (`torch.LongTensor` of shape `(num_marks,)`) : Positions recorded by the `<|mark|>` of a decision template: the number of tokens of the prompt before each of them.
 
@@ -159,11 +159,11 @@ question_type_ids (`torch.LongTensor` of shape `(num_questions,)`) : Type of eac
 
 `torch.Tensor`
 
-The [JevForDecision](/docs/transformers/v5.24.0/en/model_doc/jev#transformers.JevForDecision) forward method, overrides the `__call__` special method.
+The [JevForDecision](/docs/transformers/v5.24.1/en/model_doc/jev#transformers.JevForDecision) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
 ### OWLv2
-https://huggingface.co/docs/transformers/v5.24.0/model_doc/owlv2.md
+https://huggingface.co/docs/transformers/v5.24.1/model_doc/owlv2.md

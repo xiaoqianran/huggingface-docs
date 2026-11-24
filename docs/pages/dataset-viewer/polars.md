@@ -103,3 +103,6 @@ q = (
 )
 df = q.collect()
 ```
+
+### List Parquet files
+https://huggingface.co/docs/dataset-viewer/parquet.md

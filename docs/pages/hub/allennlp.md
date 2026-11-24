@@ -70,7 +70,6 @@ In just a minute, you can get your model in the Hub, try it out directly in the 
 
 ## Additional resources
 
-* AllenNLP [website](https://allenai.org/allennlp).
 * AllenNLP [repository](https://github.com/allenai/allennlp).
 
 ### Storage Regions on the Hub

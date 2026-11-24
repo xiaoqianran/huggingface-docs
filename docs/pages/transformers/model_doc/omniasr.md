@@ -259,7 +259,7 @@ print(processor.decode(generated_ids, skip_special_tokens=True)[0])
 transformers.OmniASRAudioConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, hidden_size: int = 1024, conv_dim: list[int] | tuple[int, ...] = (512, 512, 512, 512, 512, 512, 512), conv_kernel: list[int] | tuple[int, ...] = (10, 3, 3, 3, 3, 2, 2), conv_stride: list[int] | tuple[int, ...] = (5, 2, 2, 2, 2, 2, 2), conv_bias: bool = True, num_attention_heads: int = 16, num_hidden_layers: int = 24, num_conv_pos_embeddings: int = 128, num_conv_pos_embedding_groups: int = 16, intermediate_size: int = 4096, attention_dropout: float | int = 0.0, hidden_dropout: float | int = 0.1, layerdrop: float | int = 0.1, activation_dropout: float | int = 0.1, initializer_range: float = 0.02, layer_norm_eps: float = 1e-05, hidden_act: str = 'gelu')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/omniasr/configuration_omniasr.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/omniasr/configuration_omniasr.py#L24)
 
 **Parameters:**
 
@@ -301,8 +301,8 @@ This is the configuration class to store the configuration of a OmniASRModel. It
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [hf-audio/omniasr-ctc-300m-v2](https://huggingface.co/hf-audio/omniasr-ctc-300m-v2)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -327,7 +327,7 @@ Example:
 transformers.OmniASRConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, audio_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, audio_token_id: int = 10289, initializer_range: float = 0.02, bos_token_id: int | None = 0, pad_token_id: int | None = 1, eos_token_id: int | None = 2)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/omniasr/configuration_omniasr.py#L95)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/omniasr/configuration_omniasr.py#L95)
 
 **Parameters:**
 
@@ -349,8 +349,8 @@ This is the configuration class to store the configuration of a OmniASRModel. It
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [hf-audio/omniasr-llm-300m-v2](https://huggingface.co/hf-audio/omniasr-llm-300m-v2)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -375,7 +375,7 @@ Example:
 transformers.OmniASRFeatureExtractor(feature_size = 1, sampling_rate = 16000, padding_value = 0.0, return_attention_mask = True, do_normalize = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/omniasr/feature_extraction_omniasr.py#L33)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/omniasr/feature_extraction_omniasr.py#L33)
 
 **Parameters:**
 
@@ -399,7 +399,7 @@ Constructs an OmniASR feature extractor.
 transformers.OmniASRProcessor(feature_extractor, tokenizer, chat_template = None, audio_token = 'REDACTED', conv_kernel = None, conv_stride = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/omniasr/processing_omniasr.py#L64)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/omniasr/processing_omniasr.py#L64)
 
 **Parameters:**
 
@@ -417,8 +417,8 @@ conv_stride (`list[int]`, *optional*) : Stride of each convolution of the speech
 
 Constructs a OmniASRProcessor which wraps a feature extractor and a tokenizer into a single processor.
 
-[OmniASRProcessor](/docs/transformers/v5.24.0/en/model_doc/omniasr#transformers.OmniASRProcessor) offers all the functionalities of [OmniASRFeatureExtractor](/docs/transformers/v5.24.0/en/model_doc/omniasr#transformers.OmniASRFeatureExtractor) and [TokenizersBackend](/docs/transformers/v5.24.0/en/main_classes/tokenizer#transformers.TokenizersBackend). See the
-[~OmniASRFeatureExtractor](/docs/transformers/v5.24.0/en/model_doc/omniasr#transformers.OmniASRFeatureExtractor) and [~TokenizersBackend](/docs/transformers/v5.24.0/en/main_classes/tokenizer#transformers.TokenizersBackend) for more information.
+[OmniASRProcessor](/docs/transformers/v5.24.1/en/model_doc/omniasr#transformers.OmniASRProcessor) offers all the functionalities of [OmniASRFeatureExtractor](/docs/transformers/v5.24.1/en/model_doc/omniasr#transformers.OmniASRFeatureExtractor) and [TokenizersBackend](/docs/transformers/v5.24.1/en/main_classes/tokenizer#transformers.TokenizersBackend). See the
+[~OmniASRFeatureExtractor](/docs/transformers/v5.24.1/en/model_doc/omniasr#transformers.OmniASRFeatureExtractor) and [~TokenizersBackend](/docs/transformers/v5.24.1/en/main_classes/tokenizer#transformers.TokenizersBackend) for more information.
 
 #### apply_chat_template[[transformers.OmniASRProcessor.apply_chat_template]]
 
@@ -426,9 +426,9 @@ Constructs a OmniASRProcessor which wraps a feature extractor and a tokenizer in
 apply_chat_template(conversation, *args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/omniasr/processing_omniasr.py#L210)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/omniasr/processing_omniasr.py#L210)
 
-Same as [apply_chat_template()](/docs/transformers/v5.24.0/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template), but resolves the language codes of the conversation first.
+Same as [apply_chat_template()](/docs/transformers/v5.24.1/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template), but resolves the language codes of the conversation first.
 The chat template writes the language token as is, so this override is needed to accept ISO 639-1 codes (e.g.
 `"en"` for `"eng_Latn"`), and to raise on unsupported codes instead of silently writing an unknown token.
 
@@ -438,7 +438,7 @@ The chat template writes the language token as is, so this override is needed to
 apply_transcription_request(audio: typing.Union[str, list[str], numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor']], language: str | list[str] | None = None, tokenize: bool = True, **kwargs: *<class 'transformers.processing_utils.ProcessingKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/omniasr/processing_omniasr.py#L155)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/omniasr/processing_omniasr.py#L155)
 
 **Parameters:**
 
@@ -448,12 +448,12 @@ language (`str` or `list[str]`, *optional*) : Language code(s) (e.g. `"eng_Latn"
 
 tokenize (`bool`, *optional*, defaults to `True`) : Whether to tokenize the prompts and process the audio. If `False`, the audio is not loaded and the prompts are returned as strings with unexpanded audio placeholders. Passing them with the audio to the processor, `processor(text=prompts, audio=audio)`, gives the same outputs as `tokenize=True`.
 
-- ****kwargs** : Additional keyword arguments forwarded to [apply_chat_template()](/docs/transformers/v5.24.0/en/model_doc/omniasr#transformers.OmniASRProcessor.apply_chat_template). Processor kwargs (for example `text_kwargs`, `audio_kwargs`, ...) should be passed as `processor_kwargs={...}`.
+- ****kwargs** : Additional keyword arguments forwarded to [apply_chat_template()](/docs/transformers/v5.24.1/en/model_doc/omniasr#transformers.OmniASRProcessor.apply_chat_template). Processor kwargs (for example `text_kwargs`, `audio_kwargs`, ...) should be passed as `processor_kwargs={...}`.
 
-**Returns:** [BatchFeature](/docs/transformers/v5.24.0/en/main_classes/feature_extractor#transformers.BatchFeature) or `list[str]`
+**Returns:** [BatchFeature](/docs/transformers/v5.24.1/en/main_classes/feature_extractor#transformers.BatchFeature) or `list[str]`
 
 One prompt per audio when `tokenize=False`, otherwise processor
-outputs ready to be passed to [OmniASRForConditionalGeneration.generate()](/docs/transformers/v5.24.0/en/main_classes/text_generation#transformers.GenerationMixin.generate).
+outputs ready to be passed to [OmniASRForConditionalGeneration.generate()](/docs/transformers/v5.24.1/en/main_classes/text_generation#transformers.GenerationMixin.generate).
 
 Prepare inputs for speech recognition without manually writing the chat template.
 
@@ -465,15 +465,15 @@ Prepare inputs for speech recognition without manually writing the chat template
 transformers.OmniASRAudioModel(config: OmniASRAudioConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/omniasr/modeling_omniasr.py#L347)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/omniasr/modeling_omniasr.py#L347)
 
 **Parameters:**
 
-config ([OmniASRAudioConfig](/docs/transformers/v5.24.0/en/model_doc/omniasr#transformers.OmniASRAudioConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([OmniASRAudioConfig](/docs/transformers/v5.24.1/en/model_doc/omniasr#transformers.OmniASRAudioConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The OmniASR speech encoder, which is a Wav2Vec2-style encoder.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -487,11 +487,11 @@ and behavior.
 forward(input_values: typing.Optional[torch.Tensor], padding_mask: typing.Optional[torch.Tensor] = None, output_attention_mask: bool = True, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/omniasr/modeling_omniasr.py#L368)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/omniasr/modeling_omniasr.py#L368)
 
 **Parameters:**
 
-input_values (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Float values of input raw speech waveform. Values can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_values`, the [AutoProcessor](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoProcessor) should be used for padding and conversion into a tensor of type `torch.Tensor`. See `processor_class.__call__` for details.
+input_values (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Float values of input raw speech waveform. Values can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_values`, the [AutoProcessor](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoProcessor) should be used for padding and conversion into a tensor of type `torch.Tensor`. See `processor_class.__call__` for details.
 
 padding_mask (`torch.Tensor` of shape `(batch_size, 1, sequence_length)`) : Padding mask used to pad `input_values`.
 
@@ -503,7 +503,7 @@ A `OmniASREncoderModelOutput` or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [OmniASRAudioModel](/docs/transformers/v5.24.0/en/model_doc/omniasr#transformers.OmniASRAudioModel) forward method, overrides the `__call__` special method.
+The [OmniASRAudioModel](/docs/transformers/v5.24.1/en/model_doc/omniasr#transformers.OmniASRAudioModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -537,16 +537,16 @@ the latter silently ignores them.
 transformers.OmniASRModel(config: OmniASRConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/omniasr/modeling_omniasr.py#L438)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/omniasr/modeling_omniasr.py#L439)
 
 **Parameters:**
 
-config ([OmniASRConfig](/docs/transformers/v5.24.0/en/model_doc/omniasr#transformers.OmniASRConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([OmniASRConfig](/docs/transformers/v5.24.1/en/model_doc/omniasr#transformers.OmniASRConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The OmniASR model, which consists of a Wav2Vec2 encoder, a multi-modal projector and a LLama language model,
 without a language modeling head.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -560,15 +560,15 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, input_values: typing.Optional[torch.Tensor] = None, padding_mask: typing.Optional[torch.Tensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/omniasr/modeling_omniasr.py#L499)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/omniasr/modeling_omniasr.py#L500)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
-input_values (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Float values of input raw speech waveform. Values can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_values`, the [AutoProcessor](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoProcessor) should be used for padding and conversion into a tensor of type `torch.Tensor`. See `OmniASRProcessor.__call__()` for details.
+input_values (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Float values of input raw speech waveform. Values can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_values`, the [AutoProcessor](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoProcessor) should be used for padding and conversion into a tensor of type `torch.Tensor`. See `OmniASRProcessor.__call__()` for details.
 
 padding_mask (`torch.Tensor` of shape `(batch_size, num_samples)`, *optional*) : Padding mask to remove padded parts of audio.
 
@@ -576,9 +576,9 @@ padding_mask (`torch.Tensor` of shape `(batch_size, num_samples)`, *optional*) :
 
 A `OmniASRBaseModelOutputWithPast` or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([OmniASRConfig](/docs/transformers/v5.24.0/en/model_doc/omniasr#transformers.OmniASRConfig)) and inputs.
+elements depending on the configuration ([OmniASRConfig](/docs/transformers/v5.24.1/en/model_doc/omniasr#transformers.OmniASRConfig)) and inputs.
 
-The [OmniASRModel](/docs/transformers/v5.24.0/en/model_doc/omniasr#transformers.OmniASRModel) forward method, overrides the `__call__` special method.
+The [OmniASRModel](/docs/transformers/v5.24.1/en/model_doc/omniasr#transformers.OmniASRModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -588,7 +588,7 @@ the latter silently ignores them.
 
   If `cache` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `cache`
@@ -612,15 +612,15 @@ the latter silently ignores them.
 transformers.OmniASRForConditionalGeneration(config: OmniASRConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/omniasr/modeling_omniasr.py#L539)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/omniasr/modeling_omniasr.py#L540)
 
 **Parameters:**
 
-config ([OmniASRConfig](/docs/transformers/v5.24.0/en/model_doc/omniasr#transformers.OmniASRConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([OmniASRConfig](/docs/transformers/v5.24.1/en/model_doc/omniasr#transformers.OmniASRConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 OmniASR model, which consists of a Wav2Vec2 encoder, a multi-modal projector and a LLama language model.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -634,13 +634,13 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, input_values: typing.Optional[torch.Tensor] = None, padding_mask: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, cache: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.Tensor] = None, use_cache: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/omniasr/modeling_omniasr.py#L553)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/omniasr/modeling_omniasr.py#L554)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-input_values (`torch.Tensor` of shape `(batch_size, 1, num_samples)`, *optional*) : Float values of the raw audio waveform, scattered over the audio placeholders of `input_ids`. See [OmniASRModel.forward()](/docs/transformers/v5.24.0/en/model_doc/omniasr#transformers.OmniASRModel.forward).
+input_values (`torch.Tensor` of shape `(batch_size, 1, num_samples)`, *optional*) : Float values of the raw audio waveform, scattered over the audio placeholders of `input_ids`. See [OmniASRModel.forward()](/docs/transformers/v5.24.1/en/model_doc/omniasr#transformers.OmniASRModel.forward).
 
 padding_mask (`torch.Tensor` of shape `(batch_size, num_samples)`, *optional*) : Mask to avoid running the speech encoder over padding samples of `input_values`, with 1 for samples that are **not** padding. Distinct from `attention_mask`, which covers the decoder sequence.
 
@@ -648,7 +648,7 @@ attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *option
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
@@ -658,13 +658,13 @@ use_cache (`bool`, *optional*) : If set to `True`, `cache` key value states are 
 
 logits_to_keep (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) : If an `int`, compute logits for the last `logits_to_keep` tokens. If `0`, calculate logits for all `input_ids` (special case). Only last token logits are needed for generation, and calculating them only for that token can save memory, which becomes pretty significant for long sequences or large vocabulary size. If a `torch.Tensor`, must be 1D corresponding to the indices to keep in the sequence length dimension. This is useful when using packed tensor format (single dimension for batch and sequence length).
 
-**Returns:** [CausalLMOutputWithPast](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or `tuple(torch.Tensor)`
+**Returns:** [CausalLMOutputWithPast](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or `tuple(torch.Tensor)`
 
-A [CausalLMOutputWithPast](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or a tuple of
+A [CausalLMOutputWithPast](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([OmniASRConfig](/docs/transformers/v5.24.0/en/model_doc/omniasr#transformers.OmniASRConfig)) and inputs.
+elements depending on the configuration ([OmniASRConfig](/docs/transformers/v5.24.1/en/model_doc/omniasr#transformers.OmniASRConfig)) and inputs.
 
-The [OmniASRForConditionalGeneration](/docs/transformers/v5.24.0/en/model_doc/omniasr#transformers.OmniASRForConditionalGeneration) forward method, overrides the `__call__` special method.
+The [OmniASRForConditionalGeneration](/docs/transformers/v5.24.1/en/model_doc/omniasr#transformers.OmniASRForConditionalGeneration) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -672,7 +672,7 @@ the latter silently ignores them.
 
 - **loss** (`torch.Tensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
 - **logits** (`torch.Tensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
-- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
   `cache` input) to speed up sequential decoding.
@@ -705,4 +705,4 @@ Example:
 ```
 
 ### PP-OCRv6_medium_det
-https://huggingface.co/docs/transformers/v5.24.0/model_doc/pp_ocrv6_medium_det.md
+https://huggingface.co/docs/transformers/v5.24.1/model_doc/pp_ocrv6_medium_det.md

@@ -241,7 +241,7 @@ and the processor pads on the left so that `generate` keeps producing from the e
 transformers.MiniCPMOcrConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, insert_layer_id: int = 6, image_token_id: int | None = None, video_token_id: int | None = None, tie_word_embeddings: bool = True, downsample_mode: str = '4x', merge_kernel_size: tuple[int, int] | list[int] = (2, 2), merger_times: int = 1)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/minicpm_ocr/configuration_minicpm_ocr.py#L66)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/minicpm_ocr/configuration_minicpm_ocr.py#L66)
 
 **Parameters:**
 
@@ -267,8 +267,8 @@ This is the configuration class to store the configuration of a MiniCPMOcrModel.
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [openbmb/MiniCPM-OCR-1.0](https://huggingface.co/openbmb/MiniCPM-OCR-1.0)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## MiniCPMOcrVisionConfig[[transformers.MiniCPMOcrVisionConfig]]
 
@@ -278,7 +278,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes
 transformers.MiniCPMOcrVisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, hidden_size: int = 768, intermediate_size: int = 3072, num_hidden_layers: int = 12, num_attention_heads: int = 12, num_channels: int = 3, image_size: int | list[int] | tuple[int, int] = 224, patch_size: int | list[int] | tuple[int, int] = 16, hidden_act: str = 'gelu_pytorch_tanh', layer_norm_eps: float = 1e-06, attention_dropout: float | int = 0.0, insert_layer_id: int = 6, window_kernel_size: tuple[int, int] | list[int] = (2, 2))
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/minicpm_ocr/configuration_minicpm_ocr.py#L31)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/minicpm_ocr/configuration_minicpm_ocr.py#L31)
 
 **Parameters:**
 
@@ -310,8 +310,8 @@ This is the configuration class to store the configuration of a MiniCPMOcrModel.
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [openbmb/MiniCPM-OCR-1.0](https://huggingface.co/openbmb/MiniCPM-OCR-1.0)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## MiniCPMOcrVisionPreTrainedModel[[transformers.MiniCPMOcrVisionPreTrainedModel]]
 
@@ -321,7 +321,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes
 transformers.MiniCPMOcrVisionPreTrainedModel(config: PreTrainedConfig, *inputs, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/minicpm_ocr/modeling_minicpm_ocr.py#L397)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/minicpm_ocr/modeling_minicpm_ocr.py#L397)
 
 #### forward[[transformers.MiniCPMOcrVisionPreTrainedModel.forward]]
 
@@ -343,7 +343,7 @@ real subclasses keep a normal metaclass and `inspect.signature` reads their real
 transformers.MiniCPMOcrVisionModel(config: MiniCPMOcrVisionConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/minicpm_ocr/modeling_minicpm_ocr.py#L411)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/minicpm_ocr/modeling_minicpm_ocr.py#L411)
 
 #### forward[[transformers.MiniCPMOcrVisionModel.forward]]
 
@@ -351,23 +351,23 @@ transformers.MiniCPMOcrVisionModel(config: MiniCPMOcrVisionConfig)
 forward(pixel_values, target_sizes: typing.Optional[torch.IntTensor] = None, use_vit_merger: bool = True, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/minicpm_ocr/modeling_minicpm_ocr.py#L443)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/minicpm_ocr/modeling_minicpm_ocr.py#L443)
 
 **Parameters:**
 
-pixel_values (`` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [MiniCPMOcrImageProcessor](/docs/transformers/v5.24.0/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrImageProcessor). See [MiniCPMOcrImageProcessor.__call__()](/docs/transformers/v5.24.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([MiniCPMOcrProcessor](/docs/transformers/v5.24.0/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrProcessor) uses [MiniCPMOcrImageProcessor](/docs/transformers/v5.24.0/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrImageProcessor) for processing images).
+pixel_values (`` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [MiniCPMOcrImageProcessor](/docs/transformers/v5.24.1/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrImageProcessor). See [MiniCPMOcrImageProcessor.__call__()](/docs/transformers/v5.24.1/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([MiniCPMOcrProcessor](/docs/transformers/v5.24.1/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrProcessor) uses [MiniCPMOcrImageProcessor](/docs/transformers/v5.24.1/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrImageProcessor) for processing images).
 
 target_sizes (`torch.IntTensor` of shape `(batch_size, 2)`, *optional*) : Patch grid sizes `(h, w)` for computing position embeddings.
 
 use_vit_merger (`bool`, *optional*, defaults to `True`) : Whether to apply the ViT window-attention merger after the encoder.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MiniCPMOcrConfig](/docs/transformers/v5.24.0/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrConfig)) and inputs.
+elements depending on the configuration ([MiniCPMOcrConfig](/docs/transformers/v5.24.1/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrConfig)) and inputs.
 
-The [MiniCPMOcrVisionModel](/docs/transformers/v5.24.0/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrVisionModel) forward method, overrides the `__call__` special method.
+The [MiniCPMOcrVisionModel](/docs/transformers/v5.24.1/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrVisionModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -396,15 +396,15 @@ the latter silently ignores them.
 transformers.MiniCPMOcrModel(config: MiniCPMOcrConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/minicpm_ocr/modeling_minicpm_ocr.py#L594)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/minicpm_ocr/modeling_minicpm_ocr.py#L594)
 
 **Parameters:**
 
-config ([MiniCPMOcrConfig](/docs/transformers/v5.24.0/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MiniCPMOcrConfig](/docs/transformers/v5.24.1/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The MiniCPMOcr model which consists of a vision backbone and a language model, without a language modeling head.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -418,11 +418,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.Tensor] = None, target_sizes: typing.Optional[torch.IntTensor] = None, pixel_values_videos: typing.Optional[torch.Tensor] = None, target_sizes_videos: typing.Optional[torch.IntTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, cache: list[torch.Tensor] | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, use_cache: bool | None = None, downsample_mode: str | None = None, mm_encoder_outputs: dict[str, transformers.modeling_outputs.BaseModelOutputWithPooling] | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/minicpm_ocr/modeling_minicpm_ocr.py#L663)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/minicpm_ocr/modeling_minicpm_ocr.py#L663)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 pixel_values (`torch.Tensor`, *optional*) : Pixel value patches for images, NaViT-packed.
 
@@ -436,7 +436,7 @@ attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *option
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-cache (`list[torch.Tensor]`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+cache (`list[torch.Tensor]`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
@@ -452,7 +452,7 @@ A `MultimodalBaseModelOutputWithPast` or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [MiniCPMOcrModel](/docs/transformers/v5.24.0/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrModel) forward method, overrides the `__call__` special method.
+The [MiniCPMOcrModel](/docs/transformers/v5.24.1/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -461,7 +461,7 @@ the latter silently ignores them.
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the language model backbone.
   If `cache` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `cache`
   input) to speed up sequential decoding.
@@ -484,21 +484,21 @@ the latter silently ignores them.
 get_image_features(pixel_values: Tensor, target_sizes: IntTensor, downsample_mode: str | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/minicpm_ocr/modeling_minicpm_ocr.py#L603)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/minicpm_ocr/modeling_minicpm_ocr.py#L603)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [MiniCPMOcrImageProcessor](/docs/transformers/v5.24.0/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrImageProcessor). See [MiniCPMOcrImageProcessor.__call__()](/docs/transformers/v5.24.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([MiniCPMOcrProcessor](/docs/transformers/v5.24.0/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrProcessor) uses [MiniCPMOcrImageProcessor](/docs/transformers/v5.24.0/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [MiniCPMOcrImageProcessor](/docs/transformers/v5.24.1/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrImageProcessor). See [MiniCPMOcrImageProcessor.__call__()](/docs/transformers/v5.24.1/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([MiniCPMOcrProcessor](/docs/transformers/v5.24.1/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrProcessor) uses [MiniCPMOcrImageProcessor](/docs/transformers/v5.24.1/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrImageProcessor) for processing images).
 
 target_sizes (`torch.IntTensor` of shape `(num_images, 2)`) : Height and width (in patches) of each image.
 
 downsample_mode (`str`, *optional*) : When set to `"4x"` the intermediate `vit_merger` is skipped so that each image keeps `4×` more visual tokens. Default `"16x"` mode applies the full merge pipeline.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MiniCPMOcrConfig](/docs/transformers/v5.24.0/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrConfig)) and inputs.
+elements depending on the configuration ([MiniCPMOcrConfig](/docs/transformers/v5.24.1/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrConfig)) and inputs.
 
 Extract image features: vision encoder, insert merger, then MLP merger.
 
@@ -523,7 +523,7 @@ Extract image features: vision encoder, insert merger, then MLP merger.
 get_video_features(pixel_values_videos: Tensor, target_sizes_videos: IntTensor, downsample_mode: str | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/minicpm_ocr/modeling_minicpm_ocr.py#L747)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/minicpm_ocr/modeling_minicpm_ocr.py#L747)
 
 **Parameters:**
 
@@ -533,11 +533,11 @@ target_sizes_videos (`torch.IntTensor` of shape `(num_patches, 2)`) : Height and
 
 downsample_mode (`str`, *optional*) : When set to `"4x"` the intermediate `vit_merger` is skipped so that each frame keeps `4×` more visual tokens. Default `"16x"` mode applies the full merge pipeline.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MiniCPMOcrConfig](/docs/transformers/v5.24.0/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrConfig)) and inputs.
+elements depending on the configuration ([MiniCPMOcrConfig](/docs/transformers/v5.24.1/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrConfig)) and inputs.
 
 Extract video features: repack frames into NaViT format, then vision encoder + merger.
 
@@ -564,15 +564,15 @@ Extract video features: repack frames into NaViT format, then vision encoder + m
 transformers.MiniCPMOcrForConditionalGeneration(config: MiniCPMOcrConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/minicpm_ocr/modeling_minicpm_ocr.py#L783)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/minicpm_ocr/modeling_minicpm_ocr.py#L783)
 
 **Parameters:**
 
-config ([MiniCPMOcrConfig](/docs/transformers/v5.24.0/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MiniCPMOcrConfig](/docs/transformers/v5.24.1/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Minicpm Ocr Model for token generation conditioned on other modalities (e.g. image-text-to-text generation).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -586,11 +586,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.Tensor] = None, target_sizes: typing.Optional[torch.IntTensor] = None, pixel_values_videos: typing.Optional[torch.Tensor] = None, target_sizes_videos: typing.Optional[torch.IntTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, cache: list[torch.Tensor] | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, downsample_mode: str | None = None, mm_encoder_outputs: dict[str, transformers.modeling_outputs.BaseModelOutputWithPooling] | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/minicpm_ocr/modeling_minicpm_ocr.py#L794)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/minicpm_ocr/modeling_minicpm_ocr.py#L794)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 pixel_values (`torch.Tensor`, *optional*) : Pixel value patches for images, NaViT-packed.
 
@@ -604,7 +604,7 @@ attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *option
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-cache (`list[torch.Tensor]`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+cache (`list[torch.Tensor]`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
@@ -622,7 +622,7 @@ A `MultimodalCausalLMOutputWithPast` or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [MiniCPMOcrForConditionalGeneration](/docs/transformers/v5.24.0/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrForConditionalGeneration) forward method, overrides the `__call__` special method.
+The [MiniCPMOcrForConditionalGeneration](/docs/transformers/v5.24.1/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrForConditionalGeneration) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -630,7 +630,7 @@ the latter silently ignores them.
 
 - **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
 - **logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
-- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `cache`
   input) to speed up sequential decoding.
@@ -653,13 +653,13 @@ the latter silently ignores them.
 get_image_features(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/minicpm_ocr/modeling_minicpm_ocr.py#L861)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/minicpm_ocr/modeling_minicpm_ocr.py#L861)
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MiniCPMOcrConfig](/docs/transformers/v5.24.0/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrConfig)) and inputs.
+elements depending on the configuration ([MiniCPMOcrConfig](/docs/transformers/v5.24.1/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrConfig)) and inputs.
 
 Extract image features: vision encoder, insert merger, then MLP merger.
 
@@ -714,13 +714,13 @@ Example:
 get_video_features(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/minicpm_ocr/modeling_minicpm_ocr.py#L865)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/minicpm_ocr/modeling_minicpm_ocr.py#L865)
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MiniCPMOcrConfig](/docs/transformers/v5.24.0/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrConfig)) and inputs.
+elements depending on the configuration ([MiniCPMOcrConfig](/docs/transformers/v5.24.1/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrConfig)) and inputs.
 
 Extract video features: repack frames into NaViT format, then vision encoder + merger.
 
@@ -777,7 +777,7 @@ Example:
 transformers.MiniCPMOcrProcessor(image_processor = None, video_processor = None, tokenizer = None, chat_template = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/minicpm_ocr/processing_minicpm_ocr.py#L46)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/minicpm_ocr/processing_minicpm_ocr.py#L46)
 
 **Parameters:**
 
@@ -791,8 +791,8 @@ chat_template (`str`) : A Jinja template to convert lists of messages in a chat 
 
 Constructs a MiniCPMOcrProcessor which wraps a image processor, a video processor, and a tokenizer into a single processor.
 
-[MiniCPMOcrProcessor](/docs/transformers/v5.24.0/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrProcessor) offers all the functionalities of [MiniCPMOcrImageProcessor](/docs/transformers/v5.24.0/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrImageProcessor), [MiniCPMOcrVideoProcessor](/docs/transformers/v5.24.0/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrVideoProcessor), and [TokenizersBackend](/docs/transformers/v5.24.0/en/main_classes/tokenizer#transformers.TokenizersBackend). See the
-[~MiniCPMOcrImageProcessor](/docs/transformers/v5.24.0/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrImageProcessor), [~MiniCPMOcrVideoProcessor](/docs/transformers/v5.24.0/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrVideoProcessor), and [~TokenizersBackend](/docs/transformers/v5.24.0/en/main_classes/tokenizer#transformers.TokenizersBackend) for more information.
+[MiniCPMOcrProcessor](/docs/transformers/v5.24.1/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrProcessor) offers all the functionalities of [MiniCPMOcrImageProcessor](/docs/transformers/v5.24.1/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrImageProcessor), [MiniCPMOcrVideoProcessor](/docs/transformers/v5.24.1/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrVideoProcessor), and [TokenizersBackend](/docs/transformers/v5.24.1/en/main_classes/tokenizer#transformers.TokenizersBackend). See the
+[~MiniCPMOcrImageProcessor](/docs/transformers/v5.24.1/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrImageProcessor), [~MiniCPMOcrVideoProcessor](/docs/transformers/v5.24.1/en/model_doc/minicpm_ocr#transformers.MiniCPMOcrVideoProcessor), and [~TokenizersBackend](/docs/transformers/v5.24.1/en/main_classes/tokenizer#transformers.TokenizersBackend) for more information.
 
 #### __call__[[transformers.MiniCPMOcrProcessor.__call__]]
 
@@ -800,7 +800,7 @@ Constructs a MiniCPMOcrProcessor which wraps a image processor, a video processo
 __call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] | None = None, videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]], NoneType] = None, **kwargs: *<class 'transformers.models.minicpm_ocr.processing_minicpm_ocr.MiniCPMOcrProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/minicpm_ocr/processing_minicpm_ocr.py#L82)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/minicpm_ocr/processing_minicpm_ocr.py#L82)
 
 **Parameters:**
 
@@ -828,7 +828,7 @@ return_tensors (*str* or [*~utils.TensorType*], *optional*) : If set, will retur
 transformers.MiniCPMOcrImageProcessor(**kwargs: *<class 'transformers.models.minicpm_ocr.image_processing_minicpm_ocr.MiniCPMOcrImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/minicpm_ocr/image_processing_minicpm_ocr.py#L139)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/minicpm_ocr/image_processing_minicpm_ocr.py#L139)
 
 **Parameters:**
 
@@ -894,7 +894,7 @@ Constructs a MiniCPMOcrImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: *<class 'transformers.models.minicpm_ocr.image_processing_minicpm_ocr.MiniCPMOcrImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/minicpm_ocr/image_processing_minicpm_ocr.py#L246)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/minicpm_ocr/image_processing_minicpm_ocr.py#L246)
 
 **Parameters:**
 
@@ -970,7 +970,7 @@ small_image_upsize (*str*, *kwargs*, *optional*, defaults to *"always"*) : How i
 transformers.MiniCPMOcrVideoProcessor(**kwargs: *<class 'transformers.models.minicpm_ocr.video_processing_minicpm_ocr.MiniCPMOcrVideoProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/minicpm_ocr/video_processing_minicpm_ocr.py#L77)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/minicpm_ocr/video_processing_minicpm_ocr.py#L77)
 
 **Parameters:**
 
@@ -1044,7 +1044,7 @@ Constructs a MiniCPMOcrVideoProcessor video processor.
 preprocess(videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]]], **kwargs: *<class 'transformers.processing_utils.VideosKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/minicpm_ocr/video_processing_minicpm_ocr.py#L292)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/minicpm_ocr/video_processing_minicpm_ocr.py#L292)
 
 **Parameters:**
 
@@ -1103,4 +1103,4 @@ return_tensors (`Annotated[str | ~utils.generic.TensorType | None, None]`, *kwar
 - **skip_tensor_conversion** (`list[str]` or `set[str]`, *optional*) -- List or set of keys that should NOT be converted to tensors, even when `tensor_type` is specified.
 
 ### Longformer
-https://huggingface.co/docs/transformers/v5.24.0/model_doc/longformer.md
+https://huggingface.co/docs/transformers/v5.24.1/model_doc/longformer.md

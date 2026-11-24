@@ -1,13 +1,13 @@
 # Models
 
-The base class [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel) implements the common methods for loading/saving a model either from a local
+The base class [PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel) implements the common methods for loading/saving a model either from a local
 file or directory, or from a pretrained model configuration provided by the library (downloaded from HuggingFace's Hub).
 
-[PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel) also implements a few methods which are common among all the models to:
+[PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel) also implements a few methods which are common among all the models to:
 
 - resize the input token embeddings when new tokens are added to the vocabulary
 
-The other methods that are common to each model are defined in [ModuleUtilsMixin](/docs/transformers/v5.24.0/en/main_classes/model#transformers.modeling_utils.ModuleUtilsMixin) and [GenerationMixin](/docs/transformers/v5.24.0/en/main_classes/text_generation#transformers.GenerationMixin).
+The other methods that are common to each model are defined in [ModuleUtilsMixin](/docs/transformers/v5.24.1/en/main_classes/model#transformers.modeling_utils.ModuleUtilsMixin) and [GenerationMixin](/docs/transformers/v5.24.1/en/main_classes/text_generation#transformers.GenerationMixin).
 
 ## PreTrainedModel[[transformers.PreTrainedModel]]
 
@@ -17,18 +17,18 @@ The other methods that are common to each model are defined in [ModuleUtilsMixin
 transformers.PreTrainedModel(config: PreTrainedConfig, *inputs, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_utils.py#L1068)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_utils.py#L1068)
 
 Base class for all models.
 
-[PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel) takes care of storing the configuration of the models and handles methods for loading,
+[PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel) takes care of storing the configuration of the models and handles methods for loading,
 downloading and saving models as well as a few methods common to all models to:
 
 - resize the input embeddings
 
 Class attributes (overridden by derived classes):
 
-- **config_class** ([PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig)) -- A subclass of [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) to use as configuration class
+- **config_class** ([PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig)) -- A subclass of [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) to use as configuration class
   for this model architecture.
 - **base_model_prefix** (`str`) -- A string indicating the attribute associated to the base model in derived
   classes of the same architecture adding modules on top of the base model.
@@ -42,7 +42,7 @@ Class attributes (overridden by derived classes):
 push_to_hub(repo_id: str, commit_message: str | None = None, commit_description: str | None = None, private: bool | None = None, token: bool | str | None = None, revision: str | None = None, create_pr: bool = False, max_shard_size: int | str | None = '50GB', tags: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/utils/hub.py#L822)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/utils/hub.py#L822)
 
 **Parameters:**
 
@@ -86,7 +86,7 @@ model.push_to_hub("huggingface/my-finetuned-bert")
 activation_checkpointing_disable()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_utils.py#L3258)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_utils.py#L3258)
 
 Deactivates activation checkpointing for the current model.
 
@@ -96,7 +96,7 @@ Deactivates activation checkpointing for the current model.
 activation_checkpointing_enable(activation_checkpointing_kwargs = None, every_n_layers: int = 1, offload: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_utils.py#L3119)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_utils.py#L3119)
 
 **Parameters:**
 
@@ -117,7 +117,7 @@ the module. https://discuss.pytorch.org/t/any-different-between-model-input-and-
 add_model_tags(tags: list[str] | str)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_utils.py#L1360)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_utils.py#L1360)
 
 **Parameters:**
 
@@ -145,7 +145,7 @@ model.push_to_hub("my-custom-bert")
 can_generate()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_utils.py#L1474)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_utils.py#L1474)
 
 **Returns:** `bool`
 
@@ -175,7 +175,7 @@ real subclasses keep a normal metaclass and `inspect.signature` reads their real
 dequantize(dtype = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_utils.py#L1342)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_utils.py#L1342)
 
 Potentially dequantize the model in case it has been quantized by a quantization method that support
 dequantization.
@@ -186,7 +186,7 @@ dequantization.
 disable_input_require_grads()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_utils.py#L2191)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_utils.py#L2191)
 
 Removes the `_require_grads_hook`.
 
@@ -196,7 +196,7 @@ Removes the `_require_grads_hook`.
 enable_input_require_grads()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_utils.py#L2147)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_utils.py#L2147)
 
 Enables the gradients for the input embeddings. This is useful for fine-tuning adapter weights while keeping
 the model weights fixed.
@@ -207,17 +207,17 @@ the model weights fixed.
 from_pretrained(pretrained_model_name_or_path: str | os.PathLike | None, *model_args, config: transformers.configuration_utils.PreTrainedConfig | str | os.PathLike | None = None, cache_dir: str | os.PathLike | None = None, ignore_mismatched_sizes: bool = False, force_download: bool = False, local_files_only: bool = False, token: str | bool | None = None, revision: str = 'main', use_safetensors: bool | None = None, weights_only: bool = True, fusion_config: dict[str, bool | dict[str, typing.Any]] | None = None, disable_mmap: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_utils.py#L3902)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_utils.py#L3902)
 
 **Parameters:**
 
-pretrained_model_name_or_path (`str` or `os.PathLike`, *optional*) : Can be either:  - A string, the *model id* of a pretrained model hosted inside a model repo on huggingface.co. - A path to a *directory* containing model weights saved using [save_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained), e.g., `./my_model_directory/`. Directories saved with `save_pretrained(..., distributed_checkpoint=True)` are detected and loaded with distributed checkpointing (DCP), preserving the model's current mesh and placements. This requires `torch>=2.7` and loads strictly: every model key must be present in the checkpoint. - `None` if you are both providing the configuration and state dictionary (resp. with keyword arguments `config` and `state_dict`).
+pretrained_model_name_or_path (`str` or `os.PathLike`, *optional*) : Can be either:  - A string, the *model id* of a pretrained model hosted inside a model repo on huggingface.co. - A path to a *directory* containing model weights saved using [save_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.save_pretrained), e.g., `./my_model_directory/`. Directories saved with `save_pretrained(..., distributed_checkpoint=True)` are detected and loaded with distributed checkpointing (DCP), preserving the model's current mesh and placements. This requires `torch>=2.7` and loads strictly: every model key must be present in the checkpoint. - `None` if you are both providing the configuration and state dictionary (resp. with keyword arguments `config` and `state_dict`).
 
 model_args (sequence of positional arguments, *optional*) : All remaining positional arguments will be passed to the underlying model's `__init__` method.
 
-config (`Union[PreTrainedConfig, str, os.PathLike]`, *optional*) : Can be either:  - an instance of a class derived from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig), - a string or path valid as input to [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig.from_pretrained).  Configuration for the model to use instead of an automatically loaded configuration. Configuration can be automatically loaded when:  - The model is a model provided by the library (loaded with the *model id* string of a pretrained model). - The model was saved using [save_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) and is reloaded by supplying the save directory. - The model is loaded by supplying a local directory as `pretrained_model_name_or_path` and a configuration JSON file named *config.json* is found in the directory.
+config (`Union[PreTrainedConfig, str, os.PathLike]`, *optional*) : Can be either:  - an instance of a class derived from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig), - a string or path valid as input to [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig.from_pretrained).  Configuration for the model to use instead of an automatically loaded configuration. Configuration can be automatically loaded when:  - The model is a model provided by the library (loaded with the *model id* string of a pretrained model). - The model was saved using [save_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) and is reloaded by supplying the save directory. - The model is loaded by supplying a local directory as `pretrained_model_name_or_path` and a configuration JSON file named *config.json* is found in the directory.
 
-state_dict (`dict[str, torch.Tensor]`, *optional*) : A state dictionary to use instead of a state dictionary loaded from saved weights file.  This option can be used if you want to create a model from a pretrained configuration but load your own weights. In this case though, you should check if using [save_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) and [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) is not a simpler option.
+state_dict (`dict[str, torch.Tensor]`, *optional*) : A state dictionary to use instead of a state dictionary loaded from saved weights file.  This option can be used if you want to create a model from a pretrained configuration but load your own weights. In this case though, you should check if using [save_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) and [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) is not a simpler option.
 
 cache_dir (`Union[str, os.PathLike]`, *optional*) : Path to a directory in which a downloaded pretrained model configuration should be cached if the standard cache should not be used.
 
@@ -247,7 +247,7 @@ device_map (`str` or `dict[str, Union[int, str, torch.device]]` or `int` or `tor
 
 max_memory (`Dict`, *optional*) : A dictionary device identifier to maximum memory if using `device_map`. Will default to the maximum memory available for each GPU and the available CPU RAM if unset.
 
-distributed_config ([DistributedConfig](/docs/transformers/v5.24.0/en/expert_parallelism#transformers.DistributedConfig), *optional*) : Configuration for native distributed loading with tensor parallelism or FSDP2. Pass `DistributedConfig(tp_size=N)` to use a model's predefined tensor parallel plan, `DistributedConfig(tp_plan=...)` to specify a tensor parallel plan, or `DistributedConfig(fsdp_size=N)` for FSDP2. Requires `torchrun` and an initialized process group when `tp_size > 1` or `fsdp_size > 1`. Mutually exclusive with `device_map`.
+distributed_config ([DistributedConfig](/docs/transformers/v5.24.1/en/expert_parallelism#transformers.DistributedConfig), *optional*) : Configuration for native distributed loading with tensor parallelism or FSDP2. Pass `DistributedConfig(tp_size=N)` to use a model's predefined tensor parallel plan, `DistributedConfig(tp_plan=...)` to specify a tensor parallel plan, or `DistributedConfig(fsdp_size=N)` for FSDP2. Requires `torchrun` and an initialized process group when `tp_size > 1` or `fsdp_size > 1`. Mutually exclusive with `device_map`.
 
 device_mesh (`torch.distributed.DeviceMesh`, *optional*) : A torch device mesh. If not provided would default to world size. Used only for tensor parallel for now. If provided, it has to contain dimension named `"tp"` in case it's > 1 dimensional, this dimension will be used for tensor parallelism
 
@@ -271,7 +271,7 @@ fusion_config (`dict[str, bool | dict[str, Any]]`, *optional*) : Optional fusion
 
 key_mapping (`dict[str, str], *optional*) : A potential mapping of the weight names if using a model on the Hub which is compatible to a Transformers architecture, but was not converted accordingly.
 
-kwargs (remaining dictionary of keyword arguments, *optional*) : Can be used to update the configuration object (after it being loaded) and initiate the model (e.g., `output_attentions=True`). Behaves differently depending on whether a `config` is provided or automatically loaded:  - If a configuration is provided with `config`, `**kwargs` will be directly passed to the underlying model's `__init__` method (we assume all relevant updates to the configuration have already been done) - If a configuration is not provided, `kwargs` will be first passed to the configuration class initialization function ([from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig.from_pretrained)). Each key of `kwargs` that corresponds to a configuration attribute will be used to override said attribute with the supplied `kwargs` value. Remaining keys that do not correspond to any configuration attribute will be passed to the underlying model's `__init__` function.
+kwargs (remaining dictionary of keyword arguments, *optional*) : Can be used to update the configuration object (after it being loaded) and initiate the model (e.g., `output_attentions=True`). Behaves differently depending on whether a `config` is provided or automatically loaded:  - If a configuration is provided with `config`, `**kwargs` will be directly passed to the underlying model's `__init__` method (we assume all relevant updates to the configuration have already been done) - If a configuration is not provided, `kwargs` will be first passed to the configuration class initialization function ([from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig.from_pretrained)). Each key of `kwargs` that corresponds to a configuration attribute will be used to override said attribute with the supplied `kwargs` value. Remaining keys that do not correspond to any configuration attribute will be passed to the underlying model's `__init__` function.
 
 Instantiate a pretrained pytorch model from a pre-trained model configuration.
 
@@ -308,7 +308,7 @@ Examples:
 get_compiled_call(compile_config: transformers.generation.configuration_utils.CompileConfig | None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_utils.py#L4820)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_utils.py#L4820)
 
 Return a `torch.compile`'d version of `self.__call__`. This is useful to dynamically choose between
 non-compiled/compiled `forward` during inference, especially to switch between prefill (where we don't
@@ -321,7 +321,7 @@ want to use compiled version to avoid recomputing the graph with new shapes) and
 get_decoder()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_utils.py#L2264)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_utils.py#L2264)
 
 Best-effort lookup of the *decoder* module.
 
@@ -338,7 +338,7 @@ Order of attempts (covers ~85 % of current usages):
 get_encoder(modality: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_utils.py#L2206)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_utils.py#L2206)
 
 Best-effort lookup of the *encoder* module. If provided with `modality` argument,
 it looks for a modality-specific encoder in multimodal models (e.g. "image_encoder")
@@ -352,7 +352,7 @@ Possible `modality` values are "image", "video" and "audio".
 get_expanded_tied_weights_keys(all_submodels: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_utils.py#L2425)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_utils.py#L2425)
 
 Return the expanded tied weight keys (in case they contain modules or regex patterns) for only the current
 model, or recursively for all submodels if `all_submodels=True` (i.e. it will re-check the config values for all
@@ -412,7 +412,7 @@ i.e. all the parameters matching the regex and modules patterns in `_tied_weight
 get_experts_implementation()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_utils.py#L2074)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_utils.py#L2074)
 
 Return the experts implementation of this model and its submodels, as a `dict` in the form accepted by
 `set_experts_implementation` (`""` for this model, and one entry per sub_config). This is the counterpart of
@@ -424,7 +424,7 @@ Return the experts implementation of this model and its submodels, as a `dict` i
 get_memory_footprint(return_buffers = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_utils.py#L3686)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_utils.py#L3686)
 
 **Parameters:**
 
@@ -440,7 +440,7 @@ PyTorch discussions: https://discuss.pytorch.org/t/gpu-memory-that-model-uses/56
 get_parameter_or_buffer(target: str)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_utils.py#L4987)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_utils.py#L4987)
 
 Return the parameter or buffer given by `target` if it exists, otherwise throw an error. This combines
 `get_parameter()` and `get_buffer()` in a single handy function. If the target is an `_extra_state` attribute,
@@ -452,9 +452,9 @@ it will return the extra state provided by the module. Note that it only work if
 gradient_checkpointing_disable()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_utils.py#L3285)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_utils.py#L3285)
 
-Deprecated alias of [activation_checkpointing_disable()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.activation_checkpointing_disable), will be removed in v6.
+Deprecated alias of [activation_checkpointing_disable()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.activation_checkpointing_disable), will be removed in v6.
 
 #### gradient_checkpointing_enable[[transformers.PreTrainedModel.gradient_checkpointing_enable]]
 
@@ -462,9 +462,9 @@ Deprecated alias of [activation_checkpointing_disable()](/docs/transformers/v5.2
 gradient_checkpointing_enable(gradient_checkpointing_kwargs = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_utils.py#L3200)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_utils.py#L3200)
 
-Deprecated alias of [activation_checkpointing_enable()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.activation_checkpointing_enable), will be removed in v6.
+Deprecated alias of [activation_checkpointing_enable()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.activation_checkpointing_enable), will be removed in v6.
 
 #### init_weights[[transformers.PreTrainedModel.init_weights]]
 
@@ -472,7 +472,7 @@ Deprecated alias of [activation_checkpointing_enable()](/docs/transformers/v5.24
 init_weights()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_utils.py#L3107)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_utils.py#L3107)
 
 Initialize and tie the weights if needed. If using a custom `PreTrainedModel`, you need to implement any
 initialization logic in `_init_weights`.
@@ -483,7 +483,7 @@ initialization logic in `_init_weights`.
 initialize_weights()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_utils.py#L2395)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_utils.py#L2395)
 
 This is equivalent to calling `self.apply(self._initialize_weights)`, but correctly handles composite models.
 This function dynamically dispatches the correct `init_weights` function to the modules as we advance in the
@@ -497,7 +497,7 @@ is extremely error prone and inefficient.
 is_custom_code()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_utils.py#L5041)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_utils.py#L5041)
 
 Return whether the current model is custom code, i.e. either code loaded from the hub, or defined in any user-specific
 module/session.
@@ -508,7 +508,7 @@ module/session.
 is_remote_code()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_utils.py#L5035)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_utils.py#L5035)
 
 Return whether the current model is custom code, i.e. code loaded from the hub, or class that we just registered
 via `register_for_auto_class`.
@@ -519,7 +519,7 @@ via `register_for_auto_class`.
 mark_tied_weights_as_initialized(loading_info)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_utils.py#L4959)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_utils.py#L4959)
 
 Adds the `_is_hf_initialized` flag on parameters that will be tied, in order to avoid initializing them
 later as they will be tied (overwritten) anyway.
@@ -532,7 +532,7 @@ running inits on them is very costly.
 named_non_persistent_buffers(recurse: bool = True, remove_duplicate: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_utils.py#L5011)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_utils.py#L5011)
 
 Similar to `named_buffers`, but only yield non-persistent ones. It is handy as it's not perfectly straightforward
 to know if they are persistent or not
@@ -543,7 +543,7 @@ to know if they are persistent or not
 post_init()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_utils.py#L1289)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_utils.py#L1289)
 
 A method executed at the end of each Transformer model initialization, to execute code that needs the model's
 modules properly initialized (such as weight initialization).
@@ -556,7 +556,7 @@ correctly in the case of composite models (that is, the top level model should k
 register_for_auto_class(auto_class = 'AutoModel')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_utils.py#L4666)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_utils.py#L4666)
 
 **Parameters:**
 
@@ -571,7 +571,7 @@ library are already mapped with an auto class.
 resize_token_embeddings(new_num_tokens: int | None = None, pad_to_multiple_of: int | None = None, mean_resizing: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_utils.py#L2642)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_utils.py#L2642)
 
 **Parameters:**
 
@@ -595,7 +595,7 @@ Takes care of tying weights embeddings afterwards if the model class has a `tie_
 save_pretrained(save_directory: str | os.PathLike, is_main_process: bool = True, state_dict: dict | None = None, push_to_hub: bool = False, max_shard_size: int | str = '50GB', variant: str | None = None, token: str | bool | None = None, save_peft_format: bool = True, save_original_format: bool = True, distributed_checkpoint: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_utils.py#L3319)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_utils.py#L3319)
 
 **Parameters:**
 
@@ -619,10 +619,10 @@ save_original_format (`bool`, *optional*, defaults to `True`) : For backward com
 
 distributed_checkpoint (`bool`, *optional*, defaults to `False`) : When saving an FSDP- or TP-sharded model, write safetensors with distributed checkpointing (DCP) instead of gathering weights to CPU first. Every rank must call this method. When `False`, weights are gathered to CPU on rank 0 via `gather_full_state_dict` before writing. It is only intended to save and resume training, set it to `False` if you want full `save_pretrained` features. With `push_to_hub=True`, rank 0 consolidates the checkpoint in a `consolidated/` subdirectory and uploads that directory. Requires `torch>=2.7`.
 
-kwargs (`dict[str, Any]`, *optional*) : Additional key word arguments passed along to the [push_to_hub()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) method.
+kwargs (`dict[str, Any]`, *optional*) : Additional key word arguments passed along to the [push_to_hub()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) method.
 
 Save a model and its configuration file to a directory, so that it can be re-loaded using the
-[from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) class method.
+[from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) class method.
 
 #### set_attn_implementation[[transformers.PreTrainedModel.set_attn_implementation]]
 
@@ -630,7 +630,7 @@ Save a model and its configuration file to a directory, so that it can be re-loa
 set_attn_implementation(attn_implementation: str | dict, allow_all_kernels: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_utils.py#L1970)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_utils.py#L1970)
 
 **Parameters:**
 
@@ -646,7 +646,7 @@ Set the requested `attn_implementation` for this model.
 set_decoder(decoder)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_utils.py#L2287)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_utils.py#L2287)
 
 Symmetric setter. Mirrors the lookup logic used in `get_decoder`.
 
@@ -656,7 +656,7 @@ Symmetric setter. Mirrors the lookup logic used in `get_decoder`.
 set_encoder(encoder, modality: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_utils.py#L2238)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_utils.py#L2238)
 
 Symmetric setter. Mirrors the lookup logic used in `get_encoder`.
 
@@ -666,7 +666,7 @@ Symmetric setter. Mirrors the lookup logic used in `get_encoder`.
 set_experts_implementation(experts_implementation: str | dict)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_utils.py#L2087)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_utils.py#L2087)
 
 **Parameters:**
 
@@ -680,7 +680,7 @@ Set the requested `experts_implementation` for this model.
 set_use_kernels(use_kernels, kernel_config: transformers.utils.kernel_config.KernelConfig | None = None, mode: Mode | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_utils.py#L3860)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_utils.py#L3860)
 
 **Parameters:**
 
@@ -698,7 +698,7 @@ Set whether or not to use the `kernels` library to kernelize some layers of the 
 tie_weights(missing_keys: set[str] | None = None, recompute_mapping: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_utils.py#L2539)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_utils.py#L2539)
 
 Tie the model weights. If `recompute_mapping=False` (default when called internally), it will rely on the
 `model.all_tied_weights_keys` attribute, containing the `{target: source}` mapping for the tied params.
@@ -728,7 +728,7 @@ real subclasses keep a normal metaclass and `inspect.signature` reads their real
 warn_if_padding_and_no_attention_mask(input_ids, attention_mask)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_utils.py#L4688)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_utils.py#L4688)
 
 Shows a one-time warning if the input_ids appear to contain padding and no attention mask was given.
 
@@ -744,7 +744,7 @@ set this to `False`.
 transformers.modeling_utils.ModuleUtilsMixin()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_utils.py#L894)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_utils.py#L894)
 
 A few utilities for `torch.nn.Modules`, to be used as a mixin.
 
@@ -754,7 +754,7 @@ A few utilities for `torch.nn.Modules`, to be used as a mixin.
 num_parameters(only_trainable: bool = False, exclude_embeddings: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_utils.py#L914)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_utils.py#L914)
 
 **Parameters:**
 
@@ -776,7 +776,7 @@ Get number of (optionally, trainable or non-embeddings) parameters in the module
 transformers.utils.PushToHubMixin()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/utils/hub.py#L728)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/utils/hub.py#L728)
 
 A Mixin containing the functionality to push a model or tokenizer to the hub.
 
@@ -786,7 +786,7 @@ A Mixin containing the functionality to push a model or tokenizer to the hub.
 push_to_hub(repo_id: str, commit_message: str | None = None, commit_description: str | None = None, private: bool | None = None, token: bool | str | None = None, revision: str | None = None, create_pr: bool = False, max_shard_size: int | str | None = '50GB', tags: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/utils/hub.py#L822)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/utils/hub.py#L822)
 
 **Parameters:**
 
@@ -825,4 +825,4 @@ from transformers import {object_class}
 ```
 
 ### Generation
-https://huggingface.co/docs/transformers/v5.24.0/main_classes/text_generation.md
+https://huggingface.co/docs/transformers/v5.24.1/main_classes/text_generation.md

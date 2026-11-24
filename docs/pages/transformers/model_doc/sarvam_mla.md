@@ -37,7 +37,7 @@ print(tokenizer.decode(outputs[0], skip_special_tokens=True))
 transformers.SarvamMLAConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, vocab_size: int = 262144, hidden_size: int = 4096, intermediate_size: int = 16384, moe_intermediate_size: int = 2048, num_hidden_layers: int = 32, num_attention_heads: int = 64, num_key_value_heads: int | None = None, n_shared_experts: int = 1, n_routed_experts: int = 128, output_router_logits: bool = False, routed_scaling_factor: float = 2.5, kv_lora_rank: int = 512, q_lora_rank: int | None = None, qk_rope_head_dim: int = 64, v_head_dim: int | None = 128, qk_nope_head_dim: int = 128, n_group: int | None = 1, topk_group: int | None = 1, num_experts_per_tok: int | None = 8, first_k_dense_replace: int | None = 1, norm_topk_prob: bool | None = True, hidden_act: str = 'silu', max_position_embeddings: int = 4096, initializer_range: float = 0.006, rms_norm_eps: float = 1e-06, use_cache: bool = True, pad_token_id: int | None = None, bos_token_id: int | None = 0, eos_token_id: int | list[int] | None = 1, pretraining_tp: int | None = 1, tie_word_embeddings: bool = False, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None, rope_interleave: bool | None = True, attention_bias: bool = False, attention_dropout: float | int | None = 0.0, num_mtp_layers: int = 0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/sarvam_mla/configuration_sarvam_mla.py#L33)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/sarvam_mla/configuration_sarvam_mla.py#L33)
 
 **Parameters:**
 
@@ -117,8 +117,8 @@ This is the configuration class to store the configuration of a DeepseekV3Model.
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [sarvamai/sarvam-105b](https://huggingface.co/sarvamai/sarvam-105b)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -133,4 +133,4 @@ Example:
 ```
 
 ### PP-DocLayoutV3
-https://huggingface.co/docs/transformers/v5.24.0/model_doc/pp_doclayout_v3.md
+https://huggingface.co/docs/transformers/v5.24.1/model_doc/pp_doclayout_v3.md

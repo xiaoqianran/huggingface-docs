@@ -45,7 +45,7 @@ print(fill_mask("Plants create <|mask|> through a process known as photosynthesi
 transformers.UltraVBertConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, text_config: transformers.configuration_utils.PreTrainedConfig | dict | None = None, vision_config: transformers.configuration_utils.PreTrainedConfig | dict | None = None, image_token_id: int = 49191, pixel_shuffle_factor: int = 4, initializer_range: float = 0.02, initializer_cutoff_factor: float = 2.0, classifier_pooling: typing.Literal['cls', 'mean'] = 'cls', classifier_dropout: float | int = 0.0, tie_word_embeddings: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/ultravbert/configuration_ultravbert.py#L32)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/ultravbert/configuration_ultravbert.py#L32)
 
 **Parameters:**
 
@@ -71,8 +71,8 @@ This is the configuration class to store the configuration of a UltraVBertModel.
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [athrael-soju/UltraVBERT](https://huggingface.co/athrael-soju/UltraVBERT)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## UltraVBertImageProcessor[[transformers.UltraVBertImageProcessor]]
 
@@ -82,7 +82,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes
 transformers.UltraVBertImageProcessor(**kwargs: *<class 'transformers.models.ultravbert.image_processing_ultravbert.UltraVBertImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/ultravbert/image_processing_ultravbert.py#L216)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/ultravbert/image_processing_ultravbert.py#L216)
 
 **Parameters:**
 
@@ -142,7 +142,7 @@ Constructs a UltraVBertImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: *<class 'transformers.models.ultravbert.image_processing_ultravbert.UltraVBertImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/ultravbert/image_processing_ultravbert.py#L236)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/ultravbert/image_processing_ultravbert.py#L236)
 
 **Parameters:**
 
@@ -210,15 +210,15 @@ max_image_tiles (`int`, *kwargs*, *optional*, defaults to 27) : Largest number o
 transformers.UltraVBertModel(config: UltraVBertConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/ultravbert/modeling_ultravbert.py#L185)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/ultravbert/modeling_ultravbert.py#L185)
 
 **Parameters:**
 
-config ([UltraVBertConfig](/docs/transformers/v5.24.0/en/model_doc/ultravbert#transformers.UltraVBertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([UltraVBertConfig](/docs/transformers/v5.24.1/en/model_doc/ultravbert#transformers.UltraVBertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Ultravbert Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -232,11 +232,11 @@ and behavior.
 forward(input_ids: LongTensor = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, pixel_values: typing.Optional[torch.Tensor] = None, pixel_attention_mask: typing.Optional[torch.BoolTensor] = None, image_hidden_states: typing.Optional[torch.Tensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/ultravbert/modeling_ultravbert.py#L269)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/ultravbert/modeling_ultravbert.py#L269)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -244,7 +244,7 @@ position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *opti
 
 inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [UltraVBertImageProcessor](/docs/transformers/v5.24.0/en/model_doc/ultravbert#transformers.UltraVBertImageProcessor). See [UltraVBertImageProcessor.__call__()](/docs/transformers/v5.24.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Idefics3Processor](/docs/transformers/v5.24.0/en/model_doc/idefics3#transformers.Idefics3Processor) uses [UltraVBertImageProcessor](/docs/transformers/v5.24.0/en/model_doc/ultravbert#transformers.UltraVBertImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [UltraVBertImageProcessor](/docs/transformers/v5.24.1/en/model_doc/ultravbert#transformers.UltraVBertImageProcessor). See [UltraVBertImageProcessor.__call__()](/docs/transformers/v5.24.1/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Idefics3Processor](/docs/transformers/v5.24.1/en/model_doc/idefics3#transformers.Idefics3Processor) uses [UltraVBertImageProcessor](/docs/transformers/v5.24.1/en/model_doc/ultravbert#transformers.UltraVBertImageProcessor) for processing images).
 
 pixel_attention_mask (`torch.BoolTensor` of shape `(batch_size, num_images, image_size, image_size)`, *optional*) : Mask over the real pixels of each image tile.
 
@@ -254,9 +254,9 @@ image_hidden_states (`torch.Tensor` of shape `(batch_size, num_channels, image_s
 
 A `MultimodalBaseModelOutputWithPast` or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([UltraVBertConfig](/docs/transformers/v5.24.0/en/model_doc/ultravbert#transformers.UltraVBertConfig)) and inputs.
+elements depending on the configuration ([UltraVBertConfig](/docs/transformers/v5.24.1/en/model_doc/ultravbert#transformers.UltraVBertConfig)) and inputs.
 
-The [UltraVBertModel](/docs/transformers/v5.24.0/en/model_doc/ultravbert#transformers.UltraVBertModel) forward method, overrides the `__call__` special method.
+The [UltraVBertModel](/docs/transformers/v5.24.1/en/model_doc/ultravbert#transformers.UltraVBertModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -265,7 +265,7 @@ the latter silently ignores them.
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the language model backbone.
   If `cache` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `cache`
   input) to speed up sequential decoding.
@@ -290,15 +290,15 @@ the latter silently ignores them.
 transformers.UltraVBertForMaskedLM(config: UltraVBertConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/ultravbert/modeling_ultravbert.py#L356)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/ultravbert/modeling_ultravbert.py#L356)
 
 **Parameters:**
 
-config ([UltraVBertConfig](/docs/transformers/v5.24.0/en/model_doc/ultravbert#transformers.UltraVBertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([UltraVBertConfig](/docs/transformers/v5.24.1/en/model_doc/ultravbert#transformers.UltraVBertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Ultravbert Model with a `language modeling` head on top."
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -312,11 +312,11 @@ and behavior.
 forward(input_ids: LongTensor = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, pixel_values: typing.Optional[torch.Tensor] = None, pixel_attention_mask: typing.Optional[torch.BoolTensor] = None, image_hidden_states: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.LongTensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/ultravbert/modeling_ultravbert.py#L378)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/ultravbert/modeling_ultravbert.py#L378)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -324,7 +324,7 @@ position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *opti
 
 inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [UltraVBertImageProcessor](/docs/transformers/v5.24.0/en/model_doc/ultravbert#transformers.UltraVBertImageProcessor). See [UltraVBertImageProcessor.__call__()](/docs/transformers/v5.24.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Idefics3Processor](/docs/transformers/v5.24.0/en/model_doc/idefics3#transformers.Idefics3Processor) uses [UltraVBertImageProcessor](/docs/transformers/v5.24.0/en/model_doc/ultravbert#transformers.UltraVBertImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [UltraVBertImageProcessor](/docs/transformers/v5.24.1/en/model_doc/ultravbert#transformers.UltraVBertImageProcessor). See [UltraVBertImageProcessor.__call__()](/docs/transformers/v5.24.1/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Idefics3Processor](/docs/transformers/v5.24.1/en/model_doc/idefics3#transformers.Idefics3Processor) uses [UltraVBertImageProcessor](/docs/transformers/v5.24.1/en/model_doc/ultravbert#transformers.UltraVBertImageProcessor) for processing images).
 
 pixel_attention_mask (`torch.BoolTensor` of shape `(batch_size, num_images, image_size, image_size)`, *optional*) : Mask over the real pixels of each image tile.
 
@@ -336,9 +336,9 @@ labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*)
 
 A `UltraVBertMaskedLMOutput` or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([UltraVBertConfig](/docs/transformers/v5.24.0/en/model_doc/ultravbert#transformers.UltraVBertConfig)) and inputs.
+elements depending on the configuration ([UltraVBertConfig](/docs/transformers/v5.24.1/en/model_doc/ultravbert#transformers.UltraVBertConfig)) and inputs.
 
-The [UltraVBertForMaskedLM](/docs/transformers/v5.24.0/en/model_doc/ultravbert#transformers.UltraVBertForMaskedLM) forward method, overrides the `__call__` special method.
+The [UltraVBertForMaskedLM](/docs/transformers/v5.24.1/en/model_doc/ultravbert#transformers.UltraVBertForMaskedLM) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -394,15 +394,15 @@ Example:
 transformers.UltraVBertForSequenceClassification(config: UltraVBertConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/ultravbert/modeling_ultravbert.py#L432)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/ultravbert/modeling_ultravbert.py#L432)
 
 **Parameters:**
 
-config ([UltraVBertConfig](/docs/transformers/v5.24.0/en/model_doc/ultravbert#transformers.UltraVBertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([UltraVBertConfig](/docs/transformers/v5.24.1/en/model_doc/ultravbert#transformers.UltraVBertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The UltraVBert Model with a sequence classification head on top that performs pooling.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -416,11 +416,11 @@ and behavior.
 forward(input_ids: LongTensor = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, pixel_values: typing.Optional[torch.Tensor] = None, pixel_attention_mask: typing.Optional[torch.BoolTensor] = None, image_hidden_states: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.LongTensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/ultravbert/modeling_ultravbert.py#L446)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/ultravbert/modeling_ultravbert.py#L446)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -428,7 +428,7 @@ position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *opti
 
 inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [UltraVBertImageProcessor](/docs/transformers/v5.24.0/en/model_doc/ultravbert#transformers.UltraVBertImageProcessor). See [UltraVBertImageProcessor.__call__()](/docs/transformers/v5.24.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Idefics3Processor](/docs/transformers/v5.24.0/en/model_doc/idefics3#transformers.Idefics3Processor) uses [UltraVBertImageProcessor](/docs/transformers/v5.24.0/en/model_doc/ultravbert#transformers.UltraVBertImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [UltraVBertImageProcessor](/docs/transformers/v5.24.1/en/model_doc/ultravbert#transformers.UltraVBertImageProcessor). See [UltraVBertImageProcessor.__call__()](/docs/transformers/v5.24.1/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Idefics3Processor](/docs/transformers/v5.24.1/en/model_doc/idefics3#transformers.Idefics3Processor) uses [UltraVBertImageProcessor](/docs/transformers/v5.24.1/en/model_doc/ultravbert#transformers.UltraVBertImageProcessor) for processing images).
 
 pixel_attention_mask (`torch.BoolTensor` of shape `(batch_size, num_images, image_size, image_size)`, *optional*) : Mask over the real pixels of each image tile.
 
@@ -436,13 +436,13 @@ image_hidden_states (`torch.Tensor` of shape `(batch_size, num_channels, image_s
 
 labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the sequence classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
 
-**Returns:** [SequenceClassifierOutput](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or `tuple(torch.Tensor)`
+**Returns:** [SequenceClassifierOutput](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or `tuple(torch.Tensor)`
 
-A [SequenceClassifierOutput](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or a tuple of
+A [SequenceClassifierOutput](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([UltraVBertConfig](/docs/transformers/v5.24.0/en/model_doc/ultravbert#transformers.UltraVBertConfig)) and inputs.
+elements depending on the configuration ([UltraVBertConfig](/docs/transformers/v5.24.1/en/model_doc/ultravbert#transformers.UltraVBertConfig)) and inputs.
 
-The [UltraVBertForSequenceClassification](/docs/transformers/v5.24.0/en/model_doc/ultravbert#transformers.UltraVBertForSequenceClassification) forward method, overrides the `__call__` special method.
+The [UltraVBertForSequenceClassification](/docs/transformers/v5.24.1/en/model_doc/ultravbert#transformers.UltraVBertForSequenceClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -524,15 +524,15 @@ Example of multi-label classification:
 transformers.UltraVBertForTokenClassification(config: UltraVBertConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/ultravbert/modeling_ultravbert.py#L533)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/ultravbert/modeling_ultravbert.py#L533)
 
 **Parameters:**
 
-config ([UltraVBertConfig](/docs/transformers/v5.24.0/en/model_doc/ultravbert#transformers.UltraVBertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([UltraVBertConfig](/docs/transformers/v5.24.1/en/model_doc/ultravbert#transformers.UltraVBertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The UltraVBert Model with a token classification head on top, e.g. for Named Entity Recognition (NER) tasks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -546,11 +546,11 @@ and behavior.
 forward(input_ids: LongTensor = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, pixel_values: typing.Optional[torch.Tensor] = None, pixel_attention_mask: typing.Optional[torch.BoolTensor] = None, image_hidden_states: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.LongTensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/ultravbert/modeling_ultravbert.py#L546)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/ultravbert/modeling_ultravbert.py#L546)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -558,7 +558,7 @@ position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *opti
 
 inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [UltraVBertImageProcessor](/docs/transformers/v5.24.0/en/model_doc/ultravbert#transformers.UltraVBertImageProcessor). See [UltraVBertImageProcessor.__call__()](/docs/transformers/v5.24.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Idefics3Processor](/docs/transformers/v5.24.0/en/model_doc/idefics3#transformers.Idefics3Processor) uses [UltraVBertImageProcessor](/docs/transformers/v5.24.0/en/model_doc/ultravbert#transformers.UltraVBertImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [UltraVBertImageProcessor](/docs/transformers/v5.24.1/en/model_doc/ultravbert#transformers.UltraVBertImageProcessor). See [UltraVBertImageProcessor.__call__()](/docs/transformers/v5.24.1/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([Idefics3Processor](/docs/transformers/v5.24.1/en/model_doc/idefics3#transformers.Idefics3Processor) uses [UltraVBertImageProcessor](/docs/transformers/v5.24.1/en/model_doc/ultravbert#transformers.UltraVBertImageProcessor) for processing images).
 
 pixel_attention_mask (`torch.BoolTensor` of shape `(batch_size, num_images, image_size, image_size)`, *optional*) : Mask over the real pixels of each image tile.
 
@@ -566,13 +566,13 @@ image_hidden_states (`torch.Tensor` of shape `(batch_size, num_channels, image_s
 
 labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the token classification loss. Indices should be in `[0, ..., config.num_labels - 1]`.
 
-**Returns:** [TokenClassifierOutput](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or `tuple(torch.Tensor)`
+**Returns:** [TokenClassifierOutput](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or `tuple(torch.Tensor)`
 
-A [TokenClassifierOutput](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or a tuple of
+A [TokenClassifierOutput](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([UltraVBertConfig](/docs/transformers/v5.24.0/en/model_doc/ultravbert#transformers.UltraVBertConfig)) and inputs.
+elements depending on the configuration ([UltraVBertConfig](/docs/transformers/v5.24.1/en/model_doc/ultravbert#transformers.UltraVBertConfig)) and inputs.
 
-The [UltraVBertForTokenClassification](/docs/transformers/v5.24.0/en/model_doc/ultravbert#transformers.UltraVBertForTokenClassification) forward method, overrides the `__call__` special method.
+The [UltraVBertForTokenClassification](/docs/transformers/v5.24.1/en/model_doc/ultravbert#transformers.UltraVBertForTokenClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -622,4 +622,4 @@ Example:
 ```
 
 ### GPT
-https://huggingface.co/docs/transformers/v5.24.0/model_doc/openai-gpt.md
+https://huggingface.co/docs/transformers/v5.24.1/model_doc/openai-gpt.md

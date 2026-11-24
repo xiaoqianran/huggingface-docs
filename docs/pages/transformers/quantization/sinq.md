@@ -6,7 +6,7 @@ The table below summarizes what SINQ supports in Transformers.
 
 | | |
 |---|---|
-| Config | [SinqConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.SinqConfig) |
+| Config | [SinqConfig](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.SinqConfig) |
 | `quant_method` | `sinq` |
 | Workflow | Quantize while loading |
 | Bits | 2, 3, 4, 5, 6, 8 |
@@ -25,7 +25,7 @@ pip install sinq
 
 ## Quantize a model with SINQ
 
-Create a [SinqConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.SinqConfig) and pass it to [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). The example below quantizes a model to 4 bits and keeps `lm_head` in bf16.
+Create a [SinqConfig](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.SinqConfig) and pass it to [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). The example below quantizes a model to 4 bits and keeps `lm_head` in bf16.
 
 ```py
 from transformers import AutoModelForCausalLM, SinqConfig
@@ -42,7 +42,7 @@ Without a CUDA GPU, SINQ quantizes and runs the model on the CPU, which is much 
 
 ## Configure SINQ
 
-These [SinqConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.SinqConfig) parameters change how the weights are quantized.
+These [SinqConfig](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.SinqConfig) parameters change how the weights are quantized.
 
 | Parameter | Default | Effect |
 |---|---|---|
@@ -62,4 +62,4 @@ These [SinqConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#trans
 - [SINQ](https://github.com/huawei-csl/SINQ) repository
 
 ### Quark
-https://huggingface.co/docs/transformers/v5.24.0/quantization/quark.md
+https://huggingface.co/docs/transformers/v5.24.1/quantization/quark.md

@@ -365,5 +365,5 @@ The endpoint response is a [JSON-LD](https://json-ld.org/) containing the metada
 
 To load the dataset, you can use the [mlcroissant](./mlcroissant) library. It provides a simple way to load datasets from Croissant metadata.
 
-### Analyze a dataset on the Hub
-https://huggingface.co/docs/dataset-viewer/analyze_data.md
+### Check dataset validity
+https://huggingface.co/docs/dataset-viewer/valid.md

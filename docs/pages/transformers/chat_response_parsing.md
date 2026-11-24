@@ -18,7 +18,7 @@ templates allow users to ignore the messy details of what specific formats and c
 and use a universal API of message dicts that works with any model.
 
 The best way to understand response templates is to see them in action. The main entry point is the
-[parse_response()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.parse_response) method, which accepts either a single sequence or a batch:
+[parse_response()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.parse_response) method, which accepts either a single sequence or a batch:
 
 ```python
 from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -433,9 +433,9 @@ input = '<|tool_call_start|>[get_weather(city="Paris", days=2)]<|tool_call_end|>
 Sometimes, the response parser may parse model outputs with the wrong type. For example,
 it might parse the float `1.5` as "1.50". This can cause problems with tool calling, if tools expect
 an argument in one type but receive it in another. To avoid this,
-you can pass the request's `tools` to [parse_response()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.parse_response) or
+you can pass the request's `tools` to [parse_response()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.parse_response) or
 `ResponseParser` to cast them using each tool's JSON Schema `parameters`.
-Tools are accepted in the same format as [apply_chat_template()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.apply_chat_template): JSON
+Tools are accepted in the same format as [apply_chat_template()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.apply_chat_template): JSON
 schemas, or Python functions with type hints and docstrings that are auto-converted to schemas.
 
 ```python
@@ -667,4 +667,4 @@ are shared between implementations. Each accepted input must parse to exactly th
 input must raise an error.
 
 ### FSDP2
-https://huggingface.co/docs/transformers/v5.24.0/fsdp.md
+https://huggingface.co/docs/transformers/v5.24.1/fsdp.md

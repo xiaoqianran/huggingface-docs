@@ -93,5 +93,5 @@ The endpoint response is a JSON with the `dataset_info` key. Its structure and c
 }
 ```
 
-### Overview
-https://huggingface.co/docs/dataset-viewer/parquet_process.md
+### PySpark
+https://huggingface.co/docs/dataset-viewer/pyspark.md

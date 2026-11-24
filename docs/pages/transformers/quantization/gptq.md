@@ -6,7 +6,7 @@ The table below summarizes what GPTQ supports in Transformers.
 
 | | |
 |---|---|
-| Config | [GPTQConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.GPTQConfig) |
+| Config | [GPTQConfig](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.GPTQConfig) |
 | `quant_method` | `gptq` |
 | Workflow | Quantize while loading, with calibration |
 | Bits | 2, 3, 4, 8 |
@@ -26,7 +26,7 @@ pip install -U "gptqmodel>=1.4.3" --no-build-isolation
 
 ## Quantize a model with GPTQ
 
-Create a [GPTQConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.GPTQConfig) with a `dataset` to calibrate on, and pass it to [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). The weights are quantized after they load. GPTQ recommends fp16, so the example below sets `dtype=torch.float16`.
+Create a [GPTQConfig](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.GPTQConfig) with a `dataset` to calibrate on, and pass it to [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). The weights are quantized after they load. GPTQ recommends fp16, so the example below sets `dtype=torch.float16`.
 
 ```py
 import torch
@@ -48,7 +48,7 @@ Calibration runs the model block by block, so it takes much longer than loading.
 
 ## Load a GPTQ checkpoint
 
-Pass the checkpoint to [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) without a [GPTQConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.GPTQConfig). Transformers reads the quantization settings from the checkpoint's config.
+Pass the checkpoint to [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) without a [GPTQConfig](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.GPTQConfig). Transformers reads the quantization settings from the checkpoint's config.
 
 ```py
 from transformers import AutoModelForCausalLM
@@ -59,11 +59,11 @@ model = AutoModelForCausalLM.from_pretrained(
 )
 ```
 
-To change the kernel or buffer size, pass a [GPTQConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.GPTQConfig) with the new `backend` or `max_input_length`. Transformers overrides only these two loading attributes and keeps the rest of the checkpoint's settings.
+To change the kernel or buffer size, pass a [GPTQConfig](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.GPTQConfig) with the new `backend` or `max_input_length`. Transformers overrides only these two loading attributes and keeps the rest of the checkpoint's settings.
 
 ## Configure GPTQ
 
-These [GPTQConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.GPTQConfig) parameters change how the weights are quantized. See [GPTQConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.GPTQConfig) for the rest.
+These [GPTQConfig](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.GPTQConfig) parameters change how the weights are quantized. See [GPTQConfig](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.GPTQConfig) for the rest.
 
 | Parameter | Default | Effect |
 |---|---|---|
@@ -106,4 +106,4 @@ See the GPT-QModel [backend list](https://github.com/ModelCloud/GPTQModel/blob/m
 - [GPTQ quantization with PEFT](https://colab.research.google.com/drive/1_TIrmuKOFhuRRiTWN94iLKUFu6ZX4ceb?usp=sharing) notebook
 
 ### Save and share a model
-https://huggingface.co/docs/transformers/v5.24.0/quantization/save.md
+https://huggingface.co/docs/transformers/v5.24.1/quantization/save.md

@@ -6,7 +6,7 @@ The table below summarizes what NVFP4 supports in Transformers.
 
 | | |
 |---|---|
-| Config | [NVFP4Config](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.NVFP4Config) |
+| Config | [NVFP4Config](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.NVFP4Config) |
 | `quant_method` | `nvfp4` |
 | Workflow | Quantize while loading |
 | Bits | 4 |
@@ -25,7 +25,7 @@ pip install -U "transformers[kernels]"
 
 ## Quantize a model with NVFP4
 
-Create a [NVFP4Config](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.NVFP4Config) and pass it to [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) with a `device_map` that places the whole model on one CUDA GPU. The source checkpoint must have floating-point weights.
+Create a [NVFP4Config](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.NVFP4Config) and pass it to [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) with a `device_map` that places the whole model on one CUDA GPU. The source checkpoint must have floating-point weights.
 
 ```py
 from transformers import AutoModelForCausalLM, NVFP4Config
@@ -38,7 +38,7 @@ model = AutoModelForCausalLM.from_pretrained(
 )
 ```
 
-NVFP4 replaces each `torch.nn.Linear` layer that has no bias and whose `in_features` and `out_features` are both divisible by 16. Other linear layers keep their original precision. [NVFP4Config](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.NVFP4Config) has no parameters that change how the weights are quantized.
+NVFP4 replaces each `torch.nn.Linear` layer that has no bias and whose `in_features` and `out_features` are both divisible by 16. Other linear layers keep their original precision. [NVFP4Config](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.NVFP4Config) has no parameters that change how the weights are quantized.
 
 ## Limitations
 
@@ -54,4 +54,4 @@ NVFP4 replaces each `torch.nn.Linear` layer that has no bias and whose `in_featu
 - [kernels-community/nvfp4-gemm](https://huggingface.co/kernels-community/nvfp4-gemm) Hub kernel
 
 ### HIGGS
-https://huggingface.co/docs/transformers/v5.24.0/quantization/higgs.md
+https://huggingface.co/docs/transformers/v5.24.1/quantization/higgs.md

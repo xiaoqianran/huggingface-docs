@@ -2,7 +2,7 @@
 
 Quantization stores a model's weights, and sometimes its activations, in fewer bits so the model needs less memory. Models are usually loaded in bf16, which takes 2 bytes per parameter. An 8B model needs about 16GB for its weights in bf16, about 8GB at 8 bits, and about 4–5GB at 4 bits. Fewer bits cost some accuracy, and each quantization method makes a different tradeoff between memory, speed, and accuracy.
 
-Transformers integrates more than 20 quantization methods through [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained), so you use the same loading code whichever method you choose.
+Transformers integrates more than 20 quantization methods through [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained), so you use the same loading code whichever method you choose.
 
 ## Two ways to use a quantized model
 
@@ -34,7 +34,7 @@ model = AutoModelForCausalLM.from_pretrained(
 )
 ```
 
-Every method in this group has its own config class, like [TorchAoConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.TorchAoConfig) or [BitsAndBytesConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.BitsAndBytesConfig). Most of them don't need a calibration dataset. [GPTQ](./gptq) is the exception because it calibrates on a dataset while the model loads.
+Every method in this group has its own config class, like [TorchAoConfig](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.TorchAoConfig) or [BitsAndBytesConfig](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.BitsAndBytesConfig). Most of them don't need a calibration dataset. [GPTQ](./gptq) is the exception because it calibrates on a dataset while the model loads.
 
 ## Load a pre-quantized checkpoint
 
@@ -69,7 +69,7 @@ Most GGUF models are dequantized to full precision as they load, so they use as 
 
 ## Save a quantized model
 
-Call [save_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) or [push_to_hub()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) to save the quantized weights and their `quantization_config`. Not every method can save its quantized weights.
+Call [save_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) or [push_to_hub()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) to save the quantized weights and their `quantization_config`. Not every method can save its quantized weights.
 
 ## Choose a method
 
@@ -95,4 +95,4 @@ These tools quantize models outside Transformers.
 - Contribute a new method with [Contribute a quantization method](./contribute).
 
 ### Four Over Six
-https://huggingface.co/docs/transformers/v5.24.0/quantization/fouroversix.md
+https://huggingface.co/docs/transformers/v5.24.1/quantization/fouroversix.md

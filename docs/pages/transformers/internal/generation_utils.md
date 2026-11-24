@@ -1,12 +1,12 @@
 # Utilities for generation
 
-This page lists all the utility functions used by [generate()](/docs/transformers/v5.24.0/en/main_classes/text_generation#transformers.GenerationMixin.generate).
+This page lists all the utility functions used by [generate()](/docs/transformers/v5.24.1/en/main_classes/text_generation#transformers.GenerationMixin.generate).
 
 ## Generate Outputs[[transformers.generation.GenerateDecoderOnlyOutput]]
 
-The output of [generate()](/docs/transformers/v5.24.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) is an instance of a subclass of
-[ModelOutput](/docs/transformers/v5.24.0/en/main_classes/output#transformers.utils.ModelOutput). This output is a data structure containing all the information returned
-by [generate()](/docs/transformers/v5.24.0/en/main_classes/text_generation#transformers.GenerationMixin.generate), but that can also be used as tuple or dictionary.
+The output of [generate()](/docs/transformers/v5.24.1/en/main_classes/text_generation#transformers.GenerationMixin.generate) is an instance of a subclass of
+[ModelOutput](/docs/transformers/v5.24.1/en/main_classes/output#transformers.utils.ModelOutput). This output is a data structure containing all the information returned
+by [generate()](/docs/transformers/v5.24.1/en/main_classes/text_generation#transformers.GenerationMixin.generate), but that can also be used as tuple or dictionary.
 
 Here's an example:
 
@@ -20,7 +20,7 @@ inputs = tokenizer("Hello, my dog is cute and ", return_tensors="pt")
 generation_output = model.generate(**inputs, return_dict_in_generate=True, output_scores=True)
 ```
 
-The `generation_output` object is a [GenerateDecoderOnlyOutput](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.generation.GenerateDecoderOnlyOutput), as we can
+The `generation_output` object is a [GenerateDecoderOnlyOutput](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.generation.GenerateDecoderOnlyOutput), as we can
 see in the documentation of that class below, it means it has the following attributes:
 
 - `sequences`: the generated sequences of tokens
@@ -55,7 +55,7 @@ We document here all output types.
 transformers.generation.GenerateDecoderOnlyOutput(sequences: LongTensor, scores: tuple[torch.Tensor] | None = None, logits: tuple[torch.Tensor] | None = None, attentions: tuple[tuple[torch.Tensor]] | None = None, hidden_states: tuple[tuple[torch.Tensor]] | None = None, cache: transformers.cache_utils.Cache | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/utils.py#L184)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/utils.py#L184)
 
 **Parameters:**
 
@@ -69,7 +69,7 @@ attentions (`tuple(tuple(torch.Tensor))`, *optional*, returned when `output_atte
 
 hidden_states (`tuple(tuple(torch.Tensor))`, *optional*, returned when `output_hidden_states=True`) : Tuple (one element for each generated token) of tuples (one element for each layer of the decoder) of `torch.Tensor` of shape `(batch_size, generated_length, hidden_size)`.
 
-cache (`Cache`, *optional*, returned when `use_cache=True`) : Returns the model cache, used to speed up decoding. Different models have a different cache format, check the model's documentation. Usually, a [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance.
+cache (`Cache`, *optional*, returned when `use_cache=True`) : Returns the model cache, used to speed up decoding. Different models have a different cache format, check the model's documentation. Usually, a [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance.
 
 Outputs of decoder-only generation models, when using non-beam methods.
 
@@ -79,7 +79,7 @@ Outputs of decoder-only generation models, when using non-beam methods.
 transformers.generation.GenerateEncoderDecoderOutput(sequences: LongTensor, scores: tuple[torch.Tensor] | None = None, logits: tuple[torch.Tensor] | None = None, encoder_attentions: tuple[torch.Tensor] | None = None, encoder_hidden_states: tuple[torch.Tensor] | None = None, decoder_attentions: tuple[tuple[torch.Tensor]] | None = None, cross_attentions: tuple[tuple[torch.Tensor]] | None = None, decoder_hidden_states: tuple[tuple[torch.Tensor]] | None = None, cache: transformers.cache_utils.Cache | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/utils.py#L220)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/utils.py#L220)
 
 **Parameters:**
 
@@ -99,7 +99,7 @@ cross_attentions (`tuple(tuple(torch.Tensor))`, *optional*, returned when `outpu
 
 decoder_hidden_states (`tuple(tuple(torch.Tensor))`, *optional*, returned when `output_hidden_states=True`) : Tuple (one element for each generated token) of tuples (one element for each layer of the decoder) of `torch.Tensor` of shape `(batch_size, generated_length, hidden_size)`.
 
-cache (`Cache`, *optional*, returned when `use_cache=True`) : Returns the model cache, used to speed up decoding. Different models have a different cache format, check the model's documentation. Usually, a [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance.
+cache (`Cache`, *optional*, returned when `use_cache=True`) : Returns the model cache, used to speed up decoding. Different models have a different cache format, check the model's documentation. Usually, a [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance.
 
 Outputs of encoder-decoder generation models, when using non-beam methods.
 
@@ -109,7 +109,7 @@ Outputs of encoder-decoder generation models, when using non-beam methods.
 transformers.generation.GenerateBeamDecoderOnlyOutput(sequences: LongTensor, sequences_scores: typing.Optional[torch.Tensor] = None, scores: tuple[torch.Tensor] | None = None, logits: tuple[torch.Tensor] | None = None, beam_indices: typing.Optional[torch.LongTensor] = None, attentions: tuple[tuple[torch.Tensor]] | None = None, hidden_states: tuple[tuple[torch.Tensor]] | None = None, cache: transformers.cache_utils.Cache | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/utils.py#L268)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/utils.py#L268)
 
 **Parameters:**
 
@@ -127,7 +127,7 @@ attentions (`tuple(tuple(torch.Tensor))`, *optional*, returned when `output_atte
 
 hidden_states (`tuple(tuple(torch.Tensor))`, *optional*, returned when `output_hidden_states=True`) : Tuple (one element for each generated token) of tuples (one element for each layer of the decoder) of `torch.Tensor` of shape `(batch_size*num_beams*num_return_sequences, generated_length, hidden_size)`.
 
-cache (`Cache`, *optional*, returned when `use_cache=True`) : Returns the model cache, used to speed up decoding. Different models have a different cache format, check the model's documentation. Usually, a [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance.
+cache (`Cache`, *optional*, returned when `use_cache=True`) : Returns the model cache, used to speed up decoding. Different models have a different cache format, check the model's documentation. Usually, a [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance.
 
 Outputs of decoder-only generation models, when using beam methods.
 
@@ -137,7 +137,7 @@ Outputs of decoder-only generation models, when using beam methods.
 transformers.generation.GenerateBeamEncoderDecoderOutput(sequences: LongTensor, sequences_scores: typing.Optional[torch.Tensor] = None, scores: tuple[torch.Tensor] | None = None, logits: tuple[torch.Tensor] | None = None, beam_indices: typing.Optional[torch.LongTensor] = None, encoder_attentions: tuple[torch.Tensor] | None = None, encoder_hidden_states: tuple[torch.Tensor] | None = None, decoder_attentions: tuple[tuple[torch.Tensor]] | None = None, cross_attentions: tuple[tuple[torch.Tensor]] | None = None, decoder_hidden_states: tuple[tuple[torch.Tensor]] | None = None, cache: transformers.cache_utils.Cache | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/utils.py#L312)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/utils.py#L312)
 
 **Parameters:**
 
@@ -161,13 +161,13 @@ cross_attentions (`tuple(tuple(torch.Tensor))`, *optional*, returned when `outpu
 
 decoder_hidden_states (`tuple(tuple(torch.Tensor))`, *optional*, returned when `output_hidden_states=True`) : Tuple (one element for each generated token) of tuples (one element for each layer of the decoder) of `torch.Tensor` of shape `(batch_size*num_beams*num_return_sequences, generated_length, hidden_size)`.
 
-cache (`Cache`, *optional*, returned when `use_cache=True`) : Returns the model cache, used to speed up decoding. Different models have a different cache format, check the model's documentation. Usually, a [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance.
+cache (`Cache`, *optional*, returned when `use_cache=True`) : Returns the model cache, used to speed up decoding. Different models have a different cache format, check the model's documentation. Usually, a [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance.
 
 Outputs of encoder-decoder generation models, when using beam methods.
 
 ## LogitsProcessor[[transformers.AlternatingCodebooksLogitsProcessor]]
 
-A [LogitsProcessor](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.LogitsProcessor) can be used to modify the prediction scores of a language model head for
+A [LogitsProcessor](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.LogitsProcessor) can be used to modify the prediction scores of a language model head for
 generation.
 
 #### transformers.AlternatingCodebooksLogitsProcessor[[transformers.AlternatingCodebooksLogitsProcessor]]
@@ -176,7 +176,7 @@ generation.
 transformers.AlternatingCodebooksLogitsProcessor(input_start_len: int, semantic_vocab_size: int, codebook_size: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L2231)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L2231)
 
 **Parameters:**
 
@@ -186,7 +186,7 @@ semantic_vocab_size (`int`) : Vocabulary size of the semantic part, i.e number o
 
 codebook_size (`int`) : Number of tokens associated to the codebook.
 
-[LogitsProcessor](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.LogitsProcessor) enforcing alternated generation between the two codebooks of Bark.
+[LogitsProcessor](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.LogitsProcessor) enforcing alternated generation between the two codebooks of Bark.
 
 This logits processor is exclusively compatible with
 [Bark](https://huggingface.co/docs/transformers/en/model_doc/bark)'s fine submodel. See the model documentation
@@ -198,7 +198,7 @@ for examples.
 __call__(input_ids: LongTensor, scores: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L2260)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L2260)
 
 #### transformers.ClassifierFreeGuidanceLogitsProcessor[[transformers.ClassifierFreeGuidanceLogitsProcessor]]
 
@@ -206,13 +206,13 @@ __call__(input_ids: LongTensor, scores: Tensor)
 transformers.ClassifierFreeGuidanceLogitsProcessor(guidance_scale)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L2167)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L2167)
 
 **Parameters:**
 
 guidance_scale (float) : The guidance scale for classifier free guidance (CFG). CFG is enabled by setting `guidance_scale > 1`. Higher guidance scale encourages the model to generate samples that are more closely linked to the input prompt, usually at the expense of poorer quality.
 
-[LogitsProcessor](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.LogitsProcessor) for classifier free guidance (CFG). The scores are split over the batch dimension,
+[LogitsProcessor](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.LogitsProcessor) for classifier free guidance (CFG). The scores are split over the batch dimension,
 where the first half correspond to the conditional logits (predicted from the input prompt) and the second half
 correspond to the unconditional logits (predicted from an empty or 'null' prompt). The processor computes a
 weighted average across the conditional and unconditional logits, parameterised by the `guidance_scale`.
@@ -244,7 +244,7 @@ Examples:
 __call__(input_ids: LongTensor, scores: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L2215)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L2215)
 
 **Parameters:**
 
@@ -262,7 +262,7 @@ The processed prediction scores.
 transformers.EncoderNoRepeatNGramLogitsProcessor(encoder_ngram_size: int, encoder_input_ids: LongTensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L1173)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L1173)
 
 **Parameters:**
 
@@ -270,7 +270,7 @@ encoder_ngram_size (`int`) : All ngrams of size `ngram_size` can only occur with
 
 encoder_input_ids (`int`) : The encoder_input_ids that should not be repeated within the decoder ids.
 
-[LogitsProcessor](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.LogitsProcessor) that works similarly to [NoRepeatNGramLogitsProcessor](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.NoRepeatNGramLogitsProcessor), but applied exclusively to prevent
+[LogitsProcessor](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.LogitsProcessor) that works similarly to [NoRepeatNGramLogitsProcessor](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.NoRepeatNGramLogitsProcessor), but applied exclusively to prevent
 the repetition of n-grams present in the prompt.
 
 It was designed to promote chattiness in a language model, by preventing the generation of n-grams present in
@@ -305,7 +305,7 @@ Bob: My cats are very cute.
 __call__(input_ids: LongTensor, scores: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L1222)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L1222)
 
 **Parameters:**
 
@@ -323,7 +323,7 @@ The processed prediction scores.
 transformers.EncoderRepetitionPenaltyLogitsProcessor(penalty: float, encoder_input_ids: LongTensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L440)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L440)
 
 **Parameters:**
 
@@ -331,7 +331,7 @@ penalty (`float`) : The parameter for repetition penalty. 1.0 means no penalty. 
 
 encoder_input_ids (`torch.LongTensor`) : The encoder_input_ids that should be repeated within the decoder ids.
 
-[LogitsProcessor](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.LogitsProcessor) that works similarly to [RepetitionPenaltyLogitsProcessor](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.RepetitionPenaltyLogitsProcessor), but with an *inverse* penalty
+[LogitsProcessor](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.LogitsProcessor) that works similarly to [RepetitionPenaltyLogitsProcessor](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.RepetitionPenaltyLogitsProcessor), but with an *inverse* penalty
 that is applied to the tokens present in the prompt. In other words, a penalty above 1.0 increases the odds of
 selecting tokens that were present in the prompt.
 
@@ -364,7 +364,7 @@ Alice and Bob. The third member's name was Bob. The third member's name was Bob.
 __call__(input_ids: LongTensor, scores: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L486)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L486)
 
 **Parameters:**
 
@@ -382,7 +382,7 @@ The processed prediction scores.
 transformers.EpsilonLogitsWarper(epsilon: float, filter_value: float = -inf, min_tokens_to_keep: int = 1)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L897)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L897)
 
 **Parameters:**
 
@@ -392,7 +392,7 @@ filter_value (`float`, *optional*, defaults to -inf) : All filtered values will 
 
 min_tokens_to_keep (`int`, *optional*, defaults to 1) : Minimum number of tokens that cannot be filtered.
 
-[LogitsProcessor](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.LogitsProcessor) that performs epsilon-sampling, i.e. restricting to tokens with `prob >= epsilon`. Takes the
+[LogitsProcessor](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.LogitsProcessor) that performs epsilon-sampling, i.e. restricting to tokens with `prob >= epsilon`. Takes the
 largest min_tokens_to_keep tokens if no tokens satisfy this constraint. See [Truncation Sampling as Language Model
 Desmoothing](https://huggingface.co/papers/2210.15191) for more information.
 
@@ -427,7 +427,7 @@ A sequence: 1, 2, 3, 4, 5, 6, 7, 8, 9
 __call__(input_ids: LongTensor, scores: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L952)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L952)
 
 **Parameters:**
 
@@ -445,7 +445,7 @@ The processed prediction scores.
 transformers.EtaLogitsWarper(epsilon: float, filter_value: float = -inf, min_tokens_to_keep: int = 1, device: str = 'cpu')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L966)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L966)
 
 **Parameters:**
 
@@ -457,7 +457,7 @@ min_tokens_to_keep (`int`, *optional*, defaults to 1) : Specifies the minimum nu
 
 device (`str`, *optional*, defaults to `"cpu"`) : The device to allocate the tensors.
 
-[LogitsProcessor](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.LogitsProcessor) that performs eta-sampling, a technique to filter out tokens with probabilities below a dynamic
+[LogitsProcessor](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.LogitsProcessor) that performs eta-sampling, a technique to filter out tokens with probabilities below a dynamic
 cutoff value, `eta`, which is calculated based on a combination of the hyperparameter `epsilon` and the entropy of
 the token probabilities, i.e. `eta := min(epsilon, sqrt(epsilon * e^-entropy(probabilities)))`. Takes the largest
 min_tokens_to_keep tokens if no tokens satisfy this constraint. It addresses the issue of poor quality in long
@@ -496,7 +496,7 @@ A sequence: 1, 2, 3, 4, 5, 6, 7, 8, 9
 __call__(input_ids: LongTensor, scores: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L1035)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L1035)
 
 **Parameters:**
 
@@ -514,7 +514,7 @@ The processed prediction scores.
 transformers.ExponentialDecayLengthPenalty(exponential_decay_length_penalty: tuple[int, float], eos_token_id: typing.Union[int, list[int], torch.Tensor], input_ids_seq_length: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L1721)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L1721)
 
 **Parameters:**
 
@@ -524,7 +524,7 @@ eos_token_id (`Union[int, list[int], torch.Tensor]`) : The id(s) of the *end-of-
 
 input_ids_seq_length (`int`) : The length of the input sequence.
 
-[LogitsProcessor](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.LogitsProcessor) that exponentially increases the score of the `eos_token_id` after `start_index` has been
+[LogitsProcessor](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.LogitsProcessor) that exponentially increases the score of the `eos_token_id` after `start_index` has been
 reached. This allows generating shorter sequences without having a hard cutoff, allowing the `eos_token` to be
 predicted in a meaningful position.
 
@@ -586,7 +586,7 @@ published in 2010.<|endoftext|>
 __call__(input_ids: LongTensor, scores: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L1807)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L1807)
 
 **Parameters:**
 
@@ -604,13 +604,13 @@ The processed prediction scores.
 transformers.ForcedBOSTokenLogitsProcessor(bos_token_id: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L1599)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L1599)
 
 **Parameters:**
 
 bos_token_id (`int`) : The id of the token to force as the first generated token.
 
-[LogitsProcessor](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.LogitsProcessor) that enforces the specified token as the first generated token. Used with encoder-decoder
+[LogitsProcessor](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.LogitsProcessor) that enforces the specified token as the first generated token. Used with encoder-decoder
 models.
 
 Examples:
@@ -641,7 +641,7 @@ Examples:
 __call__(input_ids: LongTensor, scores: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L1634)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L1634)
 
 **Parameters:**
 
@@ -659,7 +659,7 @@ The processed prediction scores.
 transformers.ForcedEOSTokenLogitsProcessor(max_length: int, eos_token_id: typing.Union[int, list[int], torch.Tensor], device: str = 'cpu')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L1644)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L1644)
 
 **Parameters:**
 
@@ -669,7 +669,7 @@ eos_token_id (`Union[int, list[int], torch.Tensor]`) : The id(s) of the *end-of-
 
 device (`str`, *optional*, defaults to `"cpu"`) : The device to allocate the tensors.
 
-[LogitsProcessor](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.LogitsProcessor) that enforces the specified token as the last generated token when `max_length` is reached.
+[LogitsProcessor](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.LogitsProcessor) that enforces the specified token as the last generated token when `max_length` is reached.
 
 Examples:
 
@@ -698,7 +698,7 @@ A sequence: 1, 2, 3, 4, 5, 6, 7,<|endoftext|>
 __call__(input_ids: LongTensor, scores: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L1690)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L1690)
 
 **Parameters:**
 
@@ -716,9 +716,9 @@ The processed prediction scores.
 transformers.InfNanRemoveLogitsProcessor()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L1700)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L1700)
 
-[LogitsProcessor](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.LogitsProcessor) that removes all `nan` and `inf` values to avoid the generation method to fail. Note that using
+[LogitsProcessor](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.LogitsProcessor) that removes all `nan` and `inf` values to avoid the generation method to fail. Note that using
 the logits processor should only be used if necessary since it can slow down the generation method.
 
 This logits processor has no `generate` example, as there shouldn't be a correct combination of flags that warrants
@@ -730,7 +730,7 @@ its use.
 __call__(input_ids: LongTensor, scores: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L1709)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L1709)
 
 **Parameters:**
 
@@ -748,9 +748,9 @@ The processed prediction scores.
 transformers.LogitNormalization()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L1823)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L1823)
 
-[LogitsProcessor](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.LogitsProcessor) for normalizing the scores using log-softmax. It's important to normalize
+[LogitsProcessor](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.LogitsProcessor) for normalizing the scores using log-softmax. It's important to normalize
 the scores during beam search, after applying the logits processors or warpers, since the search algorithm used in
 this library doesn't do it (it only does it before, but they may need re-normalization) but it still supposes that
 the scores are normalized when comparing the hypotheses.
@@ -784,7 +784,7 @@ True
 __call__(input_ids: LongTensor, scores: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L1854)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L1854)
 
 **Parameters:**
 
@@ -802,7 +802,7 @@ The processed prediction scores.
 transformers.LogitsProcessor()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L49)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L49)
 
 Abstract base class for all logit processors that can be applied during generation.
 
@@ -812,7 +812,7 @@ Abstract base class for all logit processors that can be applied during generati
 __call__(input_ids: LongTensor, scores: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L56)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L56)
 
 **Parameters:**
 
@@ -830,10 +830,10 @@ The processed prediction scores.
 transformers.LogitsProcessorList(iterable = ())
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L63)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L63)
 
-This class can be used to create a list of [LogitsProcessor](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.LogitsProcessor) to subsequently process a `scores` input tensor.
-This class inherits from list and adds a specific *__call__* method to apply each [LogitsProcessor](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.LogitsProcessor) to the
+This class can be used to create a list of [LogitsProcessor](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.LogitsProcessor) to subsequently process a `scores` input tensor.
+This class inherits from list and adds a specific *__call__* method to apply each [LogitsProcessor](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.LogitsProcessor) to the
 inputs.
 
 #### __call__[[transformers.LogitsProcessorList.__call__]]
@@ -842,7 +842,7 @@ inputs.
 __call__(input_ids: LongTensor, scores: Tensor, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L70)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L70)
 
 **Parameters:**
 
@@ -862,7 +862,7 @@ The processed prediction scores.
 transformers.MinLengthLogitsProcessor(min_length: int, eos_token_id: typing.Union[int, list[int], torch.Tensor], device: str = 'cpu')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L101)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L101)
 
 **Parameters:**
 
@@ -872,7 +872,7 @@ eos_token_id (`Union[int, list[int], torch.Tensor]`) : The id(s) of the *end-of-
 
 device (`str`, *optional*, defaults to `"cpu"`) : The device to allocate the tensors.
 
-[LogitsProcessor](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.LogitsProcessor) enforcing a min-length by setting EOS probability to 0. Note that, for decoder-only models
+[LogitsProcessor](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.LogitsProcessor) enforcing a min-length by setting EOS probability to 0. Note that, for decoder-only models
 like most LLMs, the length includes the prompt.
 
 Examples:
@@ -906,7 +906,7 @@ A number: one thousand, nine hundred and ninety-four
 __call__(input_ids: LongTensor, scores: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L154)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L154)
 
 **Parameters:**
 
@@ -924,7 +924,7 @@ The processed prediction scores.
 transformers.MinNewTokensLengthLogitsProcessor(prompt_length_to_skip: int, min_new_tokens: int, eos_token_id: typing.Union[int, list[int], torch.Tensor], device: str = 'cpu')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L164)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L164)
 
 **Parameters:**
 
@@ -936,8 +936,8 @@ eos_token_id (`Union[int, list[int], torch.Tensor]`) : The id(s) of the *end-of-
 
 device (`str`, *optional*, defaults to `"cpu"`) : The device to allocate the tensors.
 
-[LogitsProcessor](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.LogitsProcessor) enforcing a min-length of new tokens by setting EOS (End-Of-Sequence) token probability to 0.
-Contrarily to [MinLengthLogitsProcessor](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.MinLengthLogitsProcessor), this processor ignores the prompt.
+[LogitsProcessor](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.LogitsProcessor) enforcing a min-length of new tokens by setting EOS (End-Of-Sequence) token probability to 0.
+Contrarily to [MinLengthLogitsProcessor](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.MinLengthLogitsProcessor), this processor ignores the prompt.
 
 Examples:
 
@@ -965,7 +965,7 @@ A number: one thousand
 __call__(input_ids: LongTensor, scores: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L226)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L226)
 
 **Parameters:**
 
@@ -983,7 +983,7 @@ The processed prediction scores.
 transformers.MinPLogitsWarper(min_p: float, filter_value: float = -inf, min_tokens_to_keep: int = 1)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L733)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L733)
 
 **Parameters:**
 
@@ -993,12 +993,12 @@ filter_value (`float`, *optional*, defaults to -inf) : All filtered values will 
 
 min_tokens_to_keep (`int`, *optional*, defaults to 1) : Minimum number of tokens that cannot be filtered.
 
-[LogitsProcessor](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.LogitsProcessor) that performs min-p, i.e. keeps all tokens that are above a minimum probability, scaled by the
+[LogitsProcessor](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.LogitsProcessor) that performs min-p, i.e. keeps all tokens that are above a minimum probability, scaled by the
 probability of the most likely token. As a result, the filter becomes more aggressive in the presence of
 high-probability tokens, which is a sign of a confident output that we shouldn't deviate from.
 
-Often used together with [TemperatureLogitsWarper](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.TemperatureLogitsWarper). Used as an alternative to [TopPLogitsWarper](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.TopPLogitsWarper) and
-[TopKLogitsWarper](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.TopKLogitsWarper).
+Often used together with [TemperatureLogitsWarper](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.TemperatureLogitsWarper). Used as an alternative to [TopPLogitsWarper](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.TopPLogitsWarper) and
+[TopKLogitsWarper](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.TopKLogitsWarper).
 
 Created by @menhguin and @kalomaze (github handles). Code adapted from [this external PR](https://github.com/oobabooga/text-generation-webui/pull/4449/files)
 
@@ -1033,7 +1033,7 @@ A sequence: 1, 2, 3, 4, 5, 6, 7, 8, 9
 __call__(input_ids: LongTensor, scores: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L790)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L790)
 
 #### transformers.NoBadWordsLogitsProcessor[[transformers.NoBadWordsLogitsProcessor]]
 
@@ -1041,7 +1041,7 @@ __call__(input_ids: LongTensor, scores: Tensor)
 transformers.NoBadWordsLogitsProcessor(bad_words_ids: list[list[int]], eos_token_id: typing.Union[int, list[int], torch.Tensor, NoneType] = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L1432)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L1432)
 
 **Parameters:**
 
@@ -1049,7 +1049,7 @@ bad_words_ids (`list[list[int]]`) : List of list of token ids that are not allow
 
 eos_token_id (`Union[int, list[int], torch.Tensor]`, *optional*) : The id(s) of the *end-of-sequence* token.
 
-[LogitsProcessor](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.LogitsProcessor) that enforces that specified sequences will never be selected.
+[LogitsProcessor](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.LogitsProcessor) that enforces that specified sequences will never be selected.
 
 In order to get the token ids of the words that should not appear in the generated text, make sure to set
 `add_prefix_space=True` when initializing the tokenizer, and use `tokenizer(bad_words,
@@ -1095,7 +1095,7 @@ In a word, the cake is a bit of a surprise.
 __call__(input_ids: LongTensor, scores: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L1319)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L1319)
 
 **Parameters:**
 
@@ -1113,7 +1113,7 @@ The processed prediction scores.
 transformers.NoRepeatNGramLogitsProcessor(ngram_size: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L1102)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L1102)
 
 **Parameters:**
 
@@ -1121,7 +1121,7 @@ ngram_size (`int`) : All ngrams of size `ngram_size` can only occur once.
 
 N-grams are groups of "n" consecutive words, characters, or tokens taken from a sequence of text. Given the
 sentence: "She runs fast", the bi-grams (n=2) would be ("she", "runs") and ("runs", "fast"). In text generation,
-avoiding repetitions of word sequences provides a more diverse output. This [LogitsProcessor](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.LogitsProcessor) enforces no
+avoiding repetitions of word sequences provides a more diverse output. This [LogitsProcessor](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.LogitsProcessor) enforces no
 repetition of n-grams by setting the scores of banned tokens to negative infinity which eliminates those tokens
 from consideration when further processing the scores. Note that, for decoder-only models like most LLMs, the
 prompt is also considered to obtain the n-grams.
@@ -1156,7 +1156,7 @@ Today I'm not sure if I can get a better understanding of the nature of this iss
 __call__(input_ids: LongTensor, scores: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L1149)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L1149)
 
 **Parameters:**
 
@@ -1174,7 +1174,7 @@ The processed prediction scores.
 transformers.PrefixConstrainedLogitsProcessor(prefix_allowed_tokens_fn: collections.abc.Callable[[int, torch.Tensor], list[int]], num_beams: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L1521)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L1521)
 
 **Parameters:**
 
@@ -1182,7 +1182,7 @@ prefix_allowed_tokens_fn (`Callable[[int, torch.Tensor], list[int]]`) : This fun
 
 num_beams (`int`) : Number of expanded rows per original prompt. When constructing this processor directly for multi-return sampling, pass `max(num_beams, num_return_sequences)`.
 
-[LogitsProcessor](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.LogitsProcessor) that enforces constrained generation and is useful for prefix-conditioned constrained
+[LogitsProcessor](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.LogitsProcessor) that enforces constrained generation and is useful for prefix-conditioned constrained
 generation. See [Autoregressive Entity Retrieval](https://huggingface.co/papers/2010.00904) for more information.
 
 Examples:
@@ -1225,7 +1225,7 @@ Alice and Bob Marley
 __call__(input_ids: LongTensor, scores: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L1575)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L1575)
 
 **Parameters:**
 
@@ -1243,7 +1243,7 @@ The processed prediction scores.
 transformers.RepetitionPenaltyLogitsProcessor(penalty: float, prompt_ignore_length: typing.Union[int, torch.Tensor, NoneType] = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L306)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L306)
 
 **Parameters:**
 
@@ -1251,7 +1251,7 @@ penalty (`float`) : The parameter for repetition penalty. 1.0 means no penalty. 
 
 prompt_ignore_length (`int`, or `torch.LongTensor`, *optional*) : Number of leading tokens to ignore, optionally specified per batch element.
 
-[LogitsProcessor](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.LogitsProcessor) that prevents the repetition of previous tokens through a penalty. This penalty is applied at
+[LogitsProcessor](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.LogitsProcessor) that prevents the repetition of previous tokens through a penalty. This penalty is applied at
 most once per token. Note that, for decoder-only models like most LLMs, the considered tokens include the prompt
 by default.
 
@@ -1297,7 +1297,7 @@ I'm not going to be able to do that. I'm going to have to go through a lot of th
 __call__(input_ids: LongTensor, scores: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L373)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L373)
 
 **Parameters:**
 
@@ -1315,13 +1315,13 @@ The processed prediction scores.
 transformers.SequenceBiasLogitsProcessor(sequence_bias: list[list[list[int] | float]])
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L1242)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L1242)
 
 **Parameters:**
 
 sequence_bias (`list[list[Union[list[int], float]]]`) : List of lists that maps a sequence of tokens to its bias term (e.g. `[[[10, 45], -2.0], [[64], -7.5]]`). Positive biases increase the odds of the sequence being selected, while negative biases do the opposite. If a sequence has a length of 1, its bias will always be applied. Otherwise, the bias will only be applied if the sequence in question is about to be completed (in the token selection step after this processor is applied).
 
-[LogitsProcessor](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.LogitsProcessor) that applies an additive bias on sequences. The bias is applied to the last token of a sequence
+[LogitsProcessor](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.LogitsProcessor) that applies an additive bias on sequences. The bias is applied to the last token of a sequence
 when the next generated token can complete it. Consequently, to take the most of biasing sequences with more than
 one token, consider using beam methods (to gracefully work around partially completed sequences that have a
 negative bias) and applying the bias to their prefixes (to ensure the bias is applied earlier).
@@ -1377,7 +1377,7 @@ The full name of Donald is Donald Duck. He is
 __call__(input_ids: LongTensor, scores: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L1319)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L1319)
 
 **Parameters:**
 
@@ -1395,9 +1395,9 @@ The processed prediction scores.
 transformers.SuppressTokensAtBeginLogitsProcessor(begin_suppress_tokens, begin_index, device: str = 'cpu')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L1860)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L1860)
 
-[SuppressTokensAtBeginLogitsProcessor](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.SuppressTokensAtBeginLogitsProcessor) suppresses a list of tokens as soon as the `generate` function starts
+[SuppressTokensAtBeginLogitsProcessor](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.SuppressTokensAtBeginLogitsProcessor) suppresses a list of tokens as soon as the `generate` function starts
 generating using `begin_index` tokens. This should ensure that the tokens defined by `begin_suppress_tokens` are
 not generated at the beginning. Originally created for
 [Whisper](https://huggingface.co/docs/transformers/model_doc/whisper).
@@ -1435,7 +1435,7 @@ tensor(11.2027)
 __call__(input_ids: LongTensor, scores: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L1902)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L1902)
 
 **Parameters:**
 
@@ -1453,7 +1453,7 @@ The processed prediction scores.
 transformers.SuppressTokensLogitsProcessor(suppress_tokens, device: str = 'cpu')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L1913)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L1913)
 
 This processor can be used to suppress a list of tokens. The processor will set their log probs to `-inf` so
 that they are not generated. Originally created for
@@ -1487,7 +1487,7 @@ tensor(6.0678)
 __call__(input_ids: LongTensor, scores: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L1945)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L1945)
 
 **Parameters:**
 
@@ -1505,7 +1505,7 @@ The processed prediction scores.
 transformers.SynthIDTextWatermarkLogitsProcessor(ngram_len: int, keys: list[int], sampling_table_size: int, sampling_table_seed: int, context_history_size: int, device: device, skip_first_ngram_calls: bool = False, debug_mode: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L2614)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L2614)
 
 **Parameters:**
 
@@ -1581,7 +1581,7 @@ Examples:
 __call__(input_ids: LongTensor, scores: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L2752)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L2752)
 
 **Parameters:**
 
@@ -1599,15 +1599,15 @@ The processed prediction scores.
 transformers.TemperatureLogitsWarper(temperature: float)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L238)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L238)
 
 **Parameters:**
 
 temperature (`float`) : Strictly positive float value used to modulate the logits distribution. A value smaller than `1` decreases randomness (and vice versa), with `0` being equivalent to shifting all probability mass to the most likely token.
 
-[LogitsProcessor](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.LogitsProcessor) for temperature (exponential scaling output probability distribution), which effectively means
-that it can control the randomness of the predicted tokens. Often used together with [TopPLogitsWarper](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.TopPLogitsWarper) and
-[TopKLogitsWarper](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.TopKLogitsWarper).
+[LogitsProcessor](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.LogitsProcessor) for temperature (exponential scaling output probability distribution), which effectively means
+that it can control the randomness of the predicted tokens. Often used together with [TopPLogitsWarper](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.TopPLogitsWarper) and
+[TopKLogitsWarper](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.TopKLogitsWarper).
 
 Make sure that `do_sample=True` is included in the `generate` arguments otherwise the temperature value won't have
 any effect.
@@ -1646,7 +1646,7 @@ Examples:
 __call__(input_ids: LongTensor, scores: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L300)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L300)
 
 **Parameters:**
 
@@ -1664,7 +1664,7 @@ The processed prediction scores.
 transformers.TopHLogitsWarper(top_h: float, filter_value: float = -inf)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L627)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L627)
 
 **Parameters:**
 
@@ -1672,7 +1672,7 @@ top_h (`float`) : Scaling coefficient for the entropy-based threshold (`tau`). M
 
 filter_value (`float`, *optional*, defaults to -inf) : All filtered values will be set to this float value.
 
-[LogitsProcessor](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.LogitsProcessor) that implements Top-H sampling, a decoding method which adaptively selects a subset of
+[LogitsProcessor](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.LogitsProcessor) that implements Top-H sampling, a decoding method which adaptively selects a subset of
 high-probability tokens based on entropy and cumulative probability constraints.
 
 This method dynamically determines how many tokens to keep by analyzing the entropy difference of the selected
@@ -1704,7 +1704,7 @@ A sequence: 1, 2, 3, 4, 5, 6, 7, 8, 9
 __call__(input_ids: LongTensor, scores: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L678)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L678)
 
 **Parameters:**
 
@@ -1724,7 +1724,7 @@ Filters logits using Top-H sampling.
 transformers.TopKLogitsWarper(top_k: int, filter_value: float = -inf, min_tokens_to_keep: int = 1)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L571)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L571)
 
 **Parameters:**
 
@@ -1734,8 +1734,8 @@ filter_value (`float`, *optional*, defaults to -inf) : All filtered values will 
 
 min_tokens_to_keep (`int`, *optional*, defaults to 1) : Minimum number of tokens that cannot be filtered.
 
-[LogitsProcessor](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.LogitsProcessor) that performs top-k, i.e. restricting to the k highest probability elements. Often used
-together with [TemperatureLogitsWarper](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.TemperatureLogitsWarper) and [TopPLogitsWarper](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.TopPLogitsWarper).
+[LogitsProcessor](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.LogitsProcessor) that performs top-k, i.e. restricting to the k highest probability elements. Often used
+together with [TemperatureLogitsWarper](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.TemperatureLogitsWarper) and [TopPLogitsWarper](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.TopPLogitsWarper).
 
 Examples:
 
@@ -1766,7 +1766,7 @@ A sequence: A, B, C, D, E, F, G, H, I
 __call__(input_ids: LongTensor, scores: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L618)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L618)
 
 **Parameters:**
 
@@ -1784,7 +1784,7 @@ The processed prediction scores.
 transformers.TopPLogitsWarper(top_p: float, filter_value: float = -inf, min_tokens_to_keep: int = 1)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L502)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L502)
 
 **Parameters:**
 
@@ -1794,8 +1794,8 @@ filter_value (`float`, *optional*, defaults to -inf) : All filtered values will 
 
 min_tokens_to_keep (`int`, *optional*, defaults to 1) : Minimum number of tokens that cannot be filtered.
 
-[LogitsProcessor](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.LogitsProcessor) that performs top-p, i.e. restricting to top tokens summing to prob_cut_off <= prob_cut_off.
-Often used together with [TemperatureLogitsWarper](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.TemperatureLogitsWarper) and [TopKLogitsWarper](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.TopKLogitsWarper).
+[LogitsProcessor](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.LogitsProcessor) that performs top-p, i.e. restricting to top tokens summing to prob_cut_off <= prob_cut_off.
+Often used together with [TemperatureLogitsWarper](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.TemperatureLogitsWarper) and [TopKLogitsWarper](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.TopKLogitsWarper).
 
 Examples:
 
@@ -1828,7 +1828,7 @@ A sequence: 1, 2, 3, 4, 5, 6, 7, 8, 9
 __call__(input_ids: LongTensor, scores: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L555)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L555)
 
 **Parameters:**
 
@@ -1846,7 +1846,7 @@ The processed prediction scores.
 transformers.TypicalLogitsWarper(mass: float = 0.9, filter_value: float = -inf, min_tokens_to_keep: int = 1)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L809)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L809)
 
 **Parameters:**
 
@@ -1856,7 +1856,7 @@ filter_value (`float`, *optional*, defaults to -inf) : All filtered values will 
 
 min_tokens_to_keep (`int`, *optional*, defaults to 1) : Minimum number of tokens that cannot be filtered.
 
-[LogitsProcessor](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.LogitsProcessor) that performs typical decoding. Inspired on how humans use language, it prioritizes tokens
+[LogitsProcessor](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.LogitsProcessor) that performs typical decoding. Inspired on how humans use language, it prioritizes tokens
 whose log probability is close to the entropy of the token probability distribution. This means that the most
 likely tokens may be discarded in the process.
 
@@ -1904,7 +1904,7 @@ tensor(-inf)
 __call__(input_ids: LongTensor, scores: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L873)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L873)
 
 **Parameters:**
 
@@ -1922,7 +1922,7 @@ The processed prediction scores.
 transformers.UnbatchedClassifierFreeGuidanceLogitsProcessor(guidance_scale: float, model, unconditional_ids: typing.Optional[torch.LongTensor] = None, unconditional_attention_mask: typing.Optional[torch.LongTensor] = None, use_cache: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L2276)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L2276)
 
 **Parameters:**
 
@@ -1973,7 +1973,7 @@ Examples:
 __call__(input_ids, scores)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L2382)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L2382)
 
 #### transformers.WhisperTimeStampLogitsProcessor[[transformers.WhisperTimeStampLogitsProcessor]]
 
@@ -1981,7 +1981,7 @@ __call__(input_ids, scores)
 transformers.WhisperTimeStampLogitsProcessor(generate_config: GenerationConfig, begin_index: int, _detect_timestamp_from_logprob: bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L1953)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L1953)
 
 **Parameters:**
 
@@ -1991,7 +1991,7 @@ begin_index (`int`) : Token index of the first token that is generated by the mo
 
 _detect_timestamp_from_logprob (`bool`, *optional*) : Whether timestamps can be predicted from logprobs over all timestamps.
 
-[LogitsProcessor](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.LogitsProcessor) that modifies the logits for the generation of timestamps in the transcription. When the input
+[LogitsProcessor](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.LogitsProcessor) that modifies the logits for the generation of timestamps in the transcription. When the input
 tokens are at a specific threshold, the processor sets the scores to negative infinity. The processor makes sure
 that timestamp tokens appear in pairs, by masking out the logits that would break this pairing pattern. This is
 done to maintain the consistency and structure of generated timestamps. It also ensures that when the predicted
@@ -2034,7 +2034,7 @@ Transcription:  He has grave doubts whether Sir Frederick Layton's work is reall
 __call__(input_ids: LongTensor, scores: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L2043)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L2043)
 
 **Parameters:**
 
@@ -2052,7 +2052,7 @@ The processed prediction scores.
 transformers.WatermarkLogitsProcessor(vocab_size, device, greenlist_ratio: float = 0.25, bias: float = 2.0, hashing_key: int = 15485863, seeding_scheme: str = 'lefthash', context_width: int = 1)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L2441)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L2441)
 
 **Parameters:**
 
@@ -2074,7 +2074,7 @@ Logits processor for watermarking generated text. The processor modifies model o
 randomized set of "green" tokens before generating the next token. "Green" tokens selection process depends on the
 `seeding_scheme` used. The code was based on the [original repo](https://github.com/jwkirchenbauer/lm-watermarking/tree/main).
 
-The text generated by this `LogitsProcessor` can be detected using `WatermarkDetector`. See [__call__()](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.WatermarkDetector.__call__) for details,
+The text generated by this `LogitsProcessor` can be detected using `WatermarkDetector`. See [__call__()](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.WatermarkDetector.__call__) for details,
 
 See [the paper](https://huggingface.co/papers/2306.04634) for more information.
 
@@ -2112,7 +2112,7 @@ array([ True])
 __call__(input_ids: LongTensor, scores: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/logits_process.py#L2563)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/logits_process.py#L2563)
 
 **Parameters:**
 
@@ -2126,7 +2126,7 @@ The processed prediction scores.
 
 ## StoppingCriteria[[transformers.StoppingCriteria]]
 
-A [StoppingCriteria](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.StoppingCriteria) can be used to change when to stop generation (other than EOS token). Please note that this is exclusively available to our PyTorch implementations.
+A [StoppingCriteria](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.StoppingCriteria) can be used to change when to stop generation (other than EOS token). Please note that this is exclusively available to our PyTorch implementations.
 
 #### transformers.StoppingCriteria[[transformers.StoppingCriteria]]
 
@@ -2134,7 +2134,7 @@ A [StoppingCriteria](/docs/transformers/v5.24.0/en/internal/generation_utils#tra
 transformers.StoppingCriteria()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/stopping_criteria.py#L48)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/stopping_criteria.py#L48)
 
 Abstract base class for all stopping criteria that can be applied during generation.
 
@@ -2147,11 +2147,11 @@ output_scores=True` to `generate`.
 __call__(input_ids: LongTensor, scores: tuple[torch.Tensor] | None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/stopping_criteria.py#L55)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/stopping_criteria.py#L55)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 scores (`tuple(torch.Tensor)`) : Prediction scores of a language modeling head, as a tuple with one tensor per generation step, each of shape `(batch_size, config.vocab_size)`. These can be scores for each vocabulary token before SoftMax or scores for each vocabulary token after SoftMax. If this stopping criteria depends on the `scores` input, make sure you pass `return_dict_in_generate=True, output_scores=True` to `generate`, otherwise `None` is passed.
 
@@ -2168,7 +2168,7 @@ kwargs (`dict[str, Any]`, *optional*) : Additional stopping criteria specific kw
 transformers.StoppingCriteriaList(iterable = ())
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/stopping_criteria.py#L617)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/stopping_criteria.py#L617)
 
 #### __call__[[transformers.StoppingCriteriaList.__call__]]
 
@@ -2176,11 +2176,11 @@ transformers.StoppingCriteriaList(iterable = ())
 __call__(input_ids: LongTensor, scores: tuple[torch.Tensor] | None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/stopping_criteria.py#L618)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/stopping_criteria.py#L618)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 scores (`tuple(torch.Tensor)`) : Prediction scores of a language modeling head, as a tuple with one tensor per generation step, each of shape `(batch_size, config.vocab_size)`. These can be scores for each vocabulary token before SoftMax or scores for each vocabulary token after SoftMax. If this stopping criteria depends on the `scores` input, make sure you pass `return_dict_in_generate=True, output_scores=True` to `generate`, otherwise `None` is passed.
 
@@ -2197,7 +2197,7 @@ kwargs (`dict[str, Any]`, *optional*) : Additional stopping criteria specific kw
 transformers.MaxLengthCriteria(max_length: int, max_position_embeddings: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/stopping_criteria.py#L60)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/stopping_criteria.py#L60)
 
 **Parameters:**
 
@@ -2214,11 +2214,11 @@ in mind for decoder-only type of transformers, this will include the initial pro
 __call__(input_ids: LongTensor, scores: tuple[torch.Tensor] | None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/stopping_criteria.py#L76)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/stopping_criteria.py#L76)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 scores (`tuple(torch.Tensor)`) : Prediction scores of a language modeling head, as a tuple with one tensor per generation step, each of shape `(batch_size, config.vocab_size)`. These can be scores for each vocabulary token before SoftMax or scores for each vocabulary token after SoftMax. If this stopping criteria depends on the `scores` input, make sure you pass `return_dict_in_generate=True, output_scores=True` to `generate`, otherwise `None` is passed.
 
@@ -2235,7 +2235,7 @@ kwargs (`dict[str, Any]`, *optional*) : Additional stopping criteria specific kw
 transformers.MaxTimeCriteria(max_time: float, initial_timestamp: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/stopping_criteria.py#L89)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/stopping_criteria.py#L89)
 
 **Parameters:**
 
@@ -2253,11 +2253,11 @@ time will start being counted when you initialize this function. You can overrid
 __call__(input_ids: LongTensor, scores: tuple[torch.Tensor] | None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/stopping_criteria.py#L106)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/stopping_criteria.py#L106)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 scores (`tuple(torch.Tensor)`) : Prediction scores of a language modeling head, as a tuple with one tensor per generation step, each of shape `(batch_size, config.vocab_size)`. These can be scores for each vocabulary token before SoftMax or scores for each vocabulary token after SoftMax. If this stopping criteria depends on the `scores` input, make sure you pass `return_dict_in_generate=True, output_scores=True` to `generate`, otherwise `None` is passed.
 
@@ -2274,7 +2274,7 @@ kwargs (`dict[str, Any]`, *optional*) : Additional stopping criteria specific kw
 transformers.StopStringCriteria(tokenizer: PreTrainedTokenizerBase, stop_strings: str | list[str])
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/stopping_criteria.py#L112)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/stopping_criteria.py#L112)
 
 **Parameters:**
 
@@ -2408,11 +2408,11 @@ The biggest states in the USA by land area:
 __call__(input_ids: LongTensor, scores: tuple[torch.Tensor] | None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/stopping_criteria.py#L482)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/stopping_criteria.py#L482)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 scores (`tuple(torch.Tensor)`) : Prediction scores of a language modeling head, as a tuple with one tensor per generation step, each of shape `(batch_size, config.vocab_size)`. These can be scores for each vocabulary token before SoftMax or scores for each vocabulary token after SoftMax. If this stopping criteria depends on the `scores` input, make sure you pass `return_dict_in_generate=True, output_scores=True` to `generate`, otherwise `None` is passed.
 
@@ -2429,7 +2429,7 @@ kwargs (`dict[str, Any]`, *optional*) : Additional stopping criteria specific kw
 transformers.EosTokenCriteria(eos_token_id: typing.Union[int, list[int], torch.Tensor])
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/stopping_criteria.py#L544)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/stopping_criteria.py#L544)
 
 **Parameters:**
 
@@ -2444,11 +2444,11 @@ By default, it uses the `model.generation_config.eos_token_id`.
 __call__(input_ids: LongTensor, scores: tuple[torch.Tensor] | None, new_token_length: int = 1, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/stopping_criteria.py#L561)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/stopping_criteria.py#L561)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 scores (`tuple(torch.Tensor)`) : Prediction scores of a language modeling head, as a tuple with one tensor per generation step, each of shape `(batch_size, config.vocab_size)`. These can be scores for each vocabulary token before SoftMax or scores for each vocabulary token after SoftMax. If this stopping criteria depends on the `scores` input, make sure you pass `return_dict_in_generate=True, output_scores=True` to `generate`, otherwise `None` is passed.
 
@@ -2469,7 +2469,7 @@ kwargs (`dict[str, Any]`, *optional*) : Additional stopping criteria specific kw
 transformers.TextStreamer(tokenizer: PreTrainedTokenizerBase, skip_prompt: bool = False, **decode_kwargs: Any)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/streamers.py#L42)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/streamers.py#L42)
 
 **Parameters:**
 
@@ -2502,7 +2502,7 @@ An increasing sequence: one, two, three, four, five, six, seven, eight, nine, te
 end()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/streamers.py#L121)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/streamers.py#L121)
 
 Flushes any remaining cache and prints a newline to stdout.
 
@@ -2512,7 +2512,7 @@ Flushes any remaining cache and prints a newline to stdout.
 on_finalized_text(text: str, stream_end: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/streamers.py#L135)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/streamers.py#L135)
 
 Prints the new text to stdout. If the stream is ending, also prints a newline.
 
@@ -2522,7 +2522,7 @@ Prints the new text to stdout. If the stream is ending, also prints a newline.
 put(value)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/streamers.py#L80)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/streamers.py#L80)
 
 Receives tokens, decodes them, and prints them to stdout as soon as they are decoded.
 
@@ -2532,7 +2532,7 @@ Receives tokens, decodes them, and prints them to stdout as soon as they are dec
 transformers.TextIteratorStreamer(tokenizer: PreTrainedTokenizerBase, skip_prompt: bool = False, timeout: float | None = None, **decode_kwargs: Any)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/streamers.py#L164)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/streamers.py#L164)
 
 **Parameters:**
 
@@ -2576,7 +2576,7 @@ Examples:
 on_finalized_text(text: str, stream_end: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/streamers.py#L216)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/streamers.py#L216)
 
 Put the new text in the queue. If the stream is ending, also put a stop signal in the queue.
 
@@ -2586,7 +2586,7 @@ Put the new text in the queue. If the stream is ending, also put a stop signal i
 transformers.AsyncTextIteratorStreamer(tokenizer: PreTrainedTokenizerBase, skip_prompt: bool = False, timeout: float | None = None, **decode_kwargs: Any)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/streamers.py#L233)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/streamers.py#L233)
 
 **Parameters:**
 
@@ -2638,7 +2638,7 @@ An increasing sequence: one, two, three, four, five, six, seven, eight, nine, te
 on_finalized_text(text: str, stream_end: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/streamers.py#L293)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/streamers.py#L293)
 
 Put the new text in the queue. If the stream is ending, also put a stop signal in the queue.
 
@@ -2648,7 +2648,7 @@ Put the new text in the queue. If the stream is ending, also put a stop signal i
 transformers.TextDiffusionStreamer(tokenizer: PreTrainedTokenizerBase, skip_prompt: bool = False, sleep_time: float | None = None, **decode_kwargs: Any)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/streamers.py#L311)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/streamers.py#L311)
 
 **Parameters:**
 
@@ -2689,7 +2689,7 @@ Examples:
 end()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/streamers.py#L400)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/streamers.py#L400)
 
 Flushes any remaining cache and prints a newline.
 
@@ -2699,7 +2699,7 @@ Flushes any remaining cache and prints a newline.
 put(value)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/streamers.py#L395)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/streamers.py#L395)
 
 Receives confirmed tokens, clears draft, and prints them permanently.
 
@@ -2709,7 +2709,7 @@ Receives confirmed tokens, clears draft, and prints them permanently.
 put_draft(value, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/streamers.py#L373)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/streamers.py#L373)
 
 Receives the full sequence of draft tokens, decodes them, and prints them in yellow.
 Overwrites previous draft.
@@ -2722,7 +2722,7 @@ Overwrites previous draft.
 transformers.CacheLayerMixin(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L23)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L23)
 
 Base, abstract class for a single layer's cache.
 
@@ -2732,7 +2732,7 @@ Base, abstract class for a single layer's cache.
 update(key_states: Tensor, value_states: Tensor, *args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L52)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L52)
 
 #### get_seq_length[[transformers.CacheLayerMixin.get_seq_length]]
 
@@ -2740,7 +2740,7 @@ update(key_states: Tensor, value_states: Tensor, *args, **kwargs)
 get_seq_length()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L60)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L60)
 
 #### get_mask_sizes[[transformers.CacheLayerMixin.get_mask_sizes]]
 
@@ -2748,7 +2748,7 @@ get_seq_length()
 get_mask_sizes(query_length: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L57)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L57)
 
 #### get_max_length[[transformers.CacheLayerMixin.get_max_length]]
 
@@ -2756,7 +2756,7 @@ get_mask_sizes(query_length: int)
 get_max_length()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L63)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L63)
 
 Returns the maximum sequence length the layer can hold. A value of `-1` means no maximum, or an undefined
 maximum, for example a dynamic attention layer that grows indefinitely or a linear attention layer that has no
@@ -2768,7 +2768,7 @@ sequence length dimension.
 reset()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L84)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L84)
 
 Resets the cache values while preserving the objects
 
@@ -2778,7 +2778,7 @@ Resets the cache values while preserving the objects
 reorder_cache(beam_idx: LongTensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L97)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L97)
 
 Reorders this layer's cache for beam search.
 
@@ -2788,7 +2788,7 @@ Reorders this layer's cache for beam search.
 lazy_initialization(key_states: Tensor, value_states: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L49)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L49)
 
 #### transformers.DynamicLayer[[transformers.DynamicLayer]]
 
@@ -2796,7 +2796,7 @@ lazy_initialization(key_states: Tensor, value_states: Tensor)
 transformers.DynamicLayer(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L104)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L104)
 
 A cache layer that grows dynamically as more tokens are generated. This is the default for generative models.
 It stores the key and value states as tensors of shape `[batch_size, num_heads, seq_len, head_dim]`.
@@ -2807,7 +2807,7 @@ It stores the key and value states as tensors of shape `[batch_size, num_heads, 
 update(key_states: Tensor, value_states: Tensor, *args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L119)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L119)
 
 **Parameters:**
 
@@ -2827,7 +2827,7 @@ Update the key and value caches in-place, and return the necessary keys and valu
 lazy_initialization(key_states: Tensor, value_states: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L113)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L113)
 
 #### crop[[transformers.DynamicLayer.crop]]
 
@@ -2835,7 +2835,7 @@ lazy_initialization(key_states: Tensor, value_states: Tensor)
 crop(tokens_to_remove: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L164)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L164)
 
 Remove `tokens_to_remove` tokens from the current cache layer.
 
@@ -2845,7 +2845,7 @@ Remove `tokens_to_remove` tokens from the current cache layer.
 batch_repeat_interleave(repeats: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L183)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L183)
 
 Repeat the cache `repeats` times in the batch dimension.
 
@@ -2855,7 +2855,7 @@ Repeat the cache `repeats` times in the batch dimension.
 batch_select_indices(indices: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L189)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L189)
 
 Only keep the `indices` in the batch dimension of the cache.
 
@@ -2865,7 +2865,7 @@ Only keep the `indices` in the batch dimension of the cache.
 transformers.StaticLayer(max_cache_len: int, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L403)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L403)
 
 **Parameters:**
 
@@ -2880,7 +2880,7 @@ It lazily allocates its full backing tensors, and then mutates them in-place. Bu
 update(key_states: Tensor, value_states: Tensor, *args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L462)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L462)
 
 **Parameters:**
 
@@ -2900,7 +2900,7 @@ Update the key and value caches in-place, and return the necessary keys and valu
 lazy_initialization(key_states: Tensor, value_states: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L424)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L424)
 
 Lazy initialization of the keys and values tensors. This allows to get all properties (dtype, device,
 num_heads in case of TP etc...) at runtime directly, which is extremely practical as it avoids moving
@@ -2916,7 +2916,7 @@ prefill itself ends up in a compiled region (with chunked prefill for instance).
 transformers.StaticSlidingWindowLayer(max_cache_len: int, sliding_window: int, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L524)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L524)
 
 **Parameters:**
 
@@ -2934,7 +2934,7 @@ tensors, and then mutates them in-place. Built for `torch.compile` support.
 update(key_states: Tensor, value_states: Tensor, *args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L547)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L547)
 
 **Parameters:**
 
@@ -2954,7 +2954,7 @@ Update the key and value caches in-place, and return the necessary keys and valu
 lazy_initialization(key_states: Tensor, value_states: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L424)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L424)
 
 Lazy initialization of the keys and values tensors. This allows to get all properties (dtype, device,
 num_heads in case of TP etc...) at runtime directly, which is extremely practical as it avoids moving
@@ -2970,7 +2970,7 @@ prefill itself ends up in a compiled region (with chunked prefill for instance).
 transformers.QuantoQuantizedLayer(nbits: int = 4, axis_key: int = 0, axis_value: int = 0, q_group_size: int = 64, residual_length: int = 128)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L897)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L897)
 
 #### update[[transformers.QuantoQuantizedLayer.update]]
 
@@ -2978,7 +2978,7 @@ transformers.QuantoQuantizedLayer(nbits: int = 4, axis_key: int = 0, axis_value:
 update(key_states: Tensor, value_states: Tensor, *args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L824)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L824)
 
 **Parameters:**
 
@@ -2998,7 +2998,7 @@ Update the key and value caches in-place, and return the necessary keys and valu
 lazy_initialization(key_states: Tensor, value_states: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L113)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L113)
 
 #### transformers.HQQQuantizedLayer[[transformers.HQQQuantizedLayer]]
 
@@ -3006,7 +3006,7 @@ lazy_initialization(key_states: Tensor, value_states: Tensor)
 transformers.HQQQuantizedLayer(nbits: int = 4, axis_key: int = 0, axis_value: int = 0, q_group_size: int = 64, residual_length: int = 128)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L952)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L952)
 
 #### update[[transformers.HQQQuantizedLayer.update]]
 
@@ -3014,7 +3014,7 @@ transformers.HQQQuantizedLayer(nbits: int = 4, axis_key: int = 0, axis_value: in
 update(key_states: Tensor, value_states: Tensor, *args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L824)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L824)
 
 **Parameters:**
 
@@ -3034,7 +3034,7 @@ Update the key and value caches in-place, and return the necessary keys and valu
 lazy_initialization(key_states: Tensor, value_states: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L113)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L113)
 
 #### transformers.Fp8QuantizedLayer[[transformers.Fp8QuantizedLayer]]
 
@@ -3042,7 +3042,7 @@ lazy_initialization(key_states: Tensor, value_states: Tensor)
 transformers.Fp8QuantizedLayer()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L1009)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L1009)
 
 A quantized layer storing the key and value states in 8-bit floating point. The per-tensor scale is frozen
 after the first `update`, so new states are appended as-is: no residual cache, no re-quantization.
@@ -3056,7 +3056,7 @@ dimension keeps states appendable and only turns the stored scale into a tensor.
 update(key_states: Tensor, value_states: Tensor, *args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L1037)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L1037)
 
 **Parameters:**
 
@@ -3076,7 +3076,7 @@ Update the key and value caches in-place, and return the necessary keys and valu
 lazy_initialization(key_states: Tensor, value_states: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L1021)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L1021)
 
 #### transformers.Cache[[transformers.Cache]]
 
@@ -3084,7 +3084,7 @@ lazy_initialization(key_states: Tensor, value_states: Tensor)
 transformers.Cache(layers: list[transformers.cache_utils.CacheLayerMixin | transformers.cache_utils.LinearAttentionCacheLayerMixin | transformers.cache_utils.DummyLayer] | None = None, layer_class_to_replicate: type[transformers.cache_utils.CacheLayerMixin | transformers.cache_utils.LinearAttentionCacheLayerMixin] | None = None, offloading: bool = False, offload_only_non_sliding: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L1503)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L1503)
 
 **Parameters:**
 
@@ -3105,7 +3105,7 @@ the Cache of each layer.
 update(key_states: Tensor, value_states: Tensor, layer_idx: int, *args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L1590)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L1590)
 
 **Parameters:**
 
@@ -3127,7 +3127,7 @@ Updates the cache with the new `key_states` and `value_states` for the layer `la
 early_initialization(batch_size: int, num_heads: int | list[int], head_dim: int | list[int], dtype: dtype, device: device)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L1719)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L1719)
 
 Initialize all the layers in advance (it's otherwise lazily initialized on the first `update` call).
 This is useful for our `export` recipes, as `export` needs everything in advance.
@@ -3138,7 +3138,7 @@ This is useful for our `export` recipes, as `export` needs everything in advance
 get_seq_length(layer_idx: int = 0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L1756)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L1756)
 
 Returns the sequence length of the cache for the given layer.
 
@@ -3148,7 +3148,7 @@ Returns the sequence length of the cache for the given layer.
 get_mask_sizes(query_length: int, layer_idx: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L1826)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L1826)
 
 Return a tuple (kv_length, kv_offset) corresponding to the length and offset that will be returned for
 the given layer at `layer_idx`.
@@ -3160,7 +3160,7 @@ The masks are then prepared according to the given lengths (kv_length, kv_offset
 get_max_length(layer_idx: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L1780)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L1780)
 
 Returns the maximum length of the cache. If `layer_idx` is not provided (default), this returns the maximum
 across all layers. Otherwise, return the maximum supported value for the given layer.
@@ -3173,7 +3173,7 @@ or linear attention layer that do not have a sequence length dimension.
 reset()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L1863)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L1863)
 
 Recursively reset all layers tensors
 
@@ -3183,7 +3183,7 @@ Recursively reset all layers tensors
 reorder_cache(beam_idx: LongTensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L1868)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L1868)
 
 Reorder the cache for beam search
 
@@ -3193,7 +3193,7 @@ Reorder the cache for beam search
 crop(tokens_to_remove: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L1873)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L1873)
 
 Remove `tokens_to_remove` tokens from the current Cache. For layers that do not need to keep all the past states in memory,
 such as sliding window layers or linear attention layers, this will also restrict the size of the cached states back to their
@@ -3206,7 +3206,7 @@ minimal working size. This means that `crop(0)` will not necessarily always be a
 batch_repeat_interleave(repeats: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L1883)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L1883)
 
 Repeat and interleave the cache
 
@@ -3216,7 +3216,7 @@ Repeat and interleave the cache
 batch_select_indices(indices: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L1888)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L1888)
 
 Select indices from the cache
 
@@ -3226,7 +3226,7 @@ Select indices from the cache
 transformers.DynamicCache(ddp_cache_data: collections.abc.Iterable[tuple[typing.Optional[torch.Tensor], ...]] | None = None, config: transformers.configuration_utils.PreTrainedConfig | None = None, offloading: bool = False, offload_only_non_sliding: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L2009)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L2009)
 
 **Parameters:**
 
@@ -3268,7 +3268,7 @@ Example:
 transformers.StaticCache(config: PreTrainedConfig, max_cache_len: int, offloading: bool = False, offload_only_non_sliding: bool = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L2105)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L2105)
 
 **Parameters:**
 
@@ -3310,7 +3310,7 @@ StaticCache()
 transformers.QuantizedCache(backend: str, config: PreTrainedConfig, nbits: int | None = None, axis_key: int | None = None, axis_value: int | None = None, q_group_size: int | None = None, residual_length: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L2162)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L2162)
 
 **Parameters:**
 
@@ -3349,7 +3349,7 @@ rejects them.
 transformers.EncoderDecoderCache(*caches)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L2248)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L2248)
 
 **Parameters:**
 
@@ -3385,7 +3385,7 @@ EncoderDecoderCache()
 batch_repeat_interleave(repeats: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L2365)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L2365)
 
 Repeat the cache `repeats` times in the batch dimension. Used in contrastive search (on the Hub).
 
@@ -3395,7 +3395,7 @@ Repeat the cache `repeats` times in the batch dimension. Used in contrastive sea
 batch_select_indices(indices: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L2371)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L2371)
 
 Only keep the `indices` in the batch dimension of the cache. Used in contrastive search (on the Hub).
 
@@ -3405,7 +3405,7 @@ Only keep the `indices` in the batch dimension of the cache. Used in contrastive
 crop(tokens_to_remove: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L2358)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L2358)
 
 Remove `tokens_to_remove` tokens from the current cache layer.
 
@@ -3415,7 +3415,7 @@ Remove `tokens_to_remove` tokens from the current cache layer.
 get_max_length(layer_idx: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L2333)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L2333)
 
 Returns the maximum sequence length (i.e. max capacity) of the cache object
 
@@ -3425,7 +3425,7 @@ Returns the maximum sequence length (i.e. max capacity) of the cache object
 get_seq_length(layer_idx: int = 0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L2329)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L2329)
 
 Returns the sequence length of the cached states. A layer index can be optionally passed.
 
@@ -3435,7 +3435,7 @@ Returns the sequence length of the cached states. A layer index can be optionall
 reorder_cache(beam_idx: LongTensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/cache_utils.py#L2343)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/cache_utils.py#L2343)
 
 Reorders the cache for beam search, given the selected beam indices.
 
@@ -3447,7 +3447,7 @@ Reorders the cache for beam search, given the selected beam indices.
 transformers.WatermarkingConfig(greenlist_ratio: float = 0.25, bias: float = 2.0, hashing_key: int = 15485863, seeding_scheme: str = 'lefthash', context_width: int = 1)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/configuration_utils.py#L1460)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/configuration_utils.py#L1460)
 
 Class that holds arguments for watermark generation and should be passed into `GenerationConfig` during `generate`.
 See [this paper](https://huggingface.co/papers/2306.04634) for more details on the arguments.
@@ -3481,7 +3481,7 @@ Call self as a function.
 transformers.WatermarkDetector(model_config: PreTrainedConfig, device: str, watermarking_config: typing.Union[ForwardRef('WatermarkingConfig'), dict], ignore_repeated_ngrams: bool = False, max_cache_size: int = 128)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/watermarking.py#L71)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/watermarking.py#L71)
 
 **Parameters:**
 
@@ -3538,7 +3538,7 @@ array([False,  False])
 __call__(input_ids: LongTensor, z_threshold: float = 3.0, return_dict: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/watermarking.py#L193)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/watermarking.py#L193)
 
 **Parameters:**
 
@@ -3561,7 +3561,7 @@ ma
 transformers.BayesianDetectorConfig(watermarking_depth: int | None = None, base_rate: float = 0.5, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/watermarking.py#L252)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/watermarking.py#L252)
 
 **Parameters:**
 
@@ -3569,11 +3569,11 @@ watermarking_depth (`int`, *optional*) : The number of tournament layers.
 
 base_rate (`float`, *optional*, defaults to 0.5) : Prior probability P(w) that a text is watermarked.
 
-This is the configuration class to store the configuration of a [BayesianDetectorModel](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.BayesianDetectorModel). It is used to
+This is the configuration class to store the configuration of a [BayesianDetectorModel](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.BayesianDetectorModel). It is used to
 instantiate a Bayesian Detector model according to the specified arguments.
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 #### transformers.BayesianDetectorModel[[transformers.BayesianDetectorModel]]
 
@@ -3581,11 +3581,11 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes
 transformers.BayesianDetectorModel(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/watermarking.py#L359)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/watermarking.py#L359)
 
 **Parameters:**
 
-config ([BayesianDetectorConfig](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.BayesianDetectorConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([BayesianDetectorConfig](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.BayesianDetectorConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Bayesian classifier for watermark detection.
 
@@ -3597,7 +3597,7 @@ Paper URL: https://www.nature.com/articles/s41586-024-08025-4
 Note that this detector only works with non-distortionary Tournament-based watermarking using the Bernoulli(0.5)
 g-value distribution.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -3611,7 +3611,7 @@ and behavior.
 forward(g_values: Tensor, mask: Tensor, labels: typing.Optional[torch.Tensor] = None, loss_batch_weight = 1, return_dict = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/watermarking.py#L448)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/watermarking.py#L448)
 
 **Parameters:**
 
@@ -3631,7 +3631,7 @@ Computes the watermarked posterior P(watermarked|g_values).
 transformers.SynthIDTextWatermarkingConfig(ngram_len: int, keys: list[int], context_history_size: int = 1024, sampling_table_seed: int = 0, sampling_table_size: int = 65536, skip_first_ngram_calls: bool = False, debug_mode: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/configuration_utils.py#L1540)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/configuration_utils.py#L1540)
 
 **Parameters:**
 
@@ -3679,11 +3679,11 @@ Examples:
 transformers.SynthIDTextWatermarkDetector(detector_module: BayesianDetectorModel, logits_processor: SynthIDTextWatermarkLogitsProcessor, tokenizer: Any)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/watermarking.py#L492)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/watermarking.py#L492)
 
 **Parameters:**
 
-detector_module ([BayesianDetectorModel](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.BayesianDetectorModel)) : Bayesian detector module object initialized with parameters. Check https://github.com/huggingface/transformers-research-projects/tree/main/synthid_text for usage.
+detector_module ([BayesianDetectorModel](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.BayesianDetectorModel)) : Bayesian detector module object initialized with parameters. Check https://github.com/huggingface/transformers-research-projects/tree/main/synthid_text for usage.
 
 logits_processor (`SynthIDTextWatermarkLogitsProcessor`) : The logits processor used for watermarking.
 
@@ -3720,7 +3720,7 @@ Examples:
 __call__(tokenized_outputs: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/watermarking.py#L539)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/watermarking.py#L539)
 
 ## Compile Utils[[transformers.CompileConfig]]
 
@@ -3730,7 +3730,7 @@ __call__(tokenized_outputs: Tensor)
 transformers.CompileConfig(fullgraph: bool = False, dynamic: bool | None = None, backend: str | collections.abc.Callable = 'inductor', mode: str = 'reduce-overhead', options: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/generation/configuration_utils.py#L1632)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/generation/configuration_utils.py#L1632)
 
 **Parameters:**
 
@@ -3774,4 +3774,4 @@ __call__(*args, **kwargs)
 Call self as a function.
 
 ### Keep modules in full precision
-https://huggingface.co/docs/transformers/v5.24.0/quantization/skip_modules.md
+https://huggingface.co/docs/transformers/v5.24.1/quantization/skip_modules.md

@@ -182,4 +182,4 @@ message = [
 ```
 
 ### NVIDIA GPU
-https://huggingface.co/docs/transformers/v5.24.0/nvidia_gpu.md
+https://huggingface.co/docs/transformers/v5.24.1/nvidia_gpu.md

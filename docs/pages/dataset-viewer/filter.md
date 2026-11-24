@@ -194,5 +194,5 @@ If the result has `partial: true` it means that the filtering couldn't be run on
 
 Indeed, the indexing for `/filter` can be partial if the dataset is bigger than 5GB. In that case, it only uses the first 5GB.
 
-### Data types
-https://huggingface.co/docs/dataset-viewer/data_types.md
+### Preview a dataset
+https://huggingface.co/docs/dataset-viewer/first_rows.md

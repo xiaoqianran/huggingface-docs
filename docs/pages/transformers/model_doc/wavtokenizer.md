@@ -6,8 +6,8 @@
 single codebook, at 40 or 75 tokens per second depending on the checkpoint. It can also reconstruct audio
 from those tokens.
 
-This implementation supports inference with [WavTokenizerModel](/docs/transformers/v5.24.0/en/model_doc/wavtokenizer#transformers.WavTokenizerModel) for encoding and decoding, or
-[WavTokenizerEncoderModel](/docs/transformers/v5.24.0/en/model_doc/wavtokenizer#transformers.WavTokenizerEncoderModel) for encoding only. The 40-token-per-second variant supplies the audio tokenizer
+This implementation supports inference with [WavTokenizerModel](/docs/transformers/v5.24.1/en/model_doc/wavtokenizer#transformers.WavTokenizerModel) for encoding and decoding, or
+[WavTokenizerEncoderModel](/docs/transformers/v5.24.1/en/model_doc/wavtokenizer#transformers.WavTokenizerEncoderModel) for encoding only. The 40-token-per-second variant supplies the audio tokenizer
 for [Apertus 1.5](./apertus1p5). Training the codec is not supported.
 
 This model was contributed by the [Swiss AI Initiative](https://huggingface.co/swiss-ai).
@@ -69,7 +69,7 @@ with torch.no_grad():
 transformers.WavTokenizerConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, sampling_rate: int = 24000, audio_channels: int = 1, num_filters: int = 32, upsampling_ratios: list[int] | tuple[int, ...] = (6, 5, 5, 4), num_residual_layers: int = 1, dilation_growth_rate: int = 2, compress: int = 2, use_conv_shortcut: bool = True, use_causal_conv: bool = False, pad_mode: str = 'reflect', norm_type: str = 'weight_norm', kernel_size: int = 7, last_kernel_size: int = 7, residual_kernel_size: int = 3, num_lstm_layers: int = 2, hidden_size: int = 512, codebook_size: int = 4096, codebook_dim: int = 512, decoder_hidden_size: int = 768, decoder_intermediate_size: int = 2304, decoder_num_layers: int = 12, adanorm_num_embeddings: int = 4, decoder_attention_num_groups: int = 32, norm_eps: float = 1e-06)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/wavtokenizer/configuration_wavtokenizer.py#L26)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/wavtokenizer/configuration_wavtokenizer.py#L26)
 
 **Parameters:**
 
@@ -125,8 +125,8 @@ This is the configuration class to store the configuration of a WavTokenizerMode
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [swiss-ai/wavtokenizer-large-unify-40token](https://huggingface.co/swiss-ai/wavtokenizer-large-unify-40token)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -151,10 +151,10 @@ Example:
 transformers.WavTokenizerEncoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, sampling_rate: int = 24000, audio_channels: int = 1, num_filters: int = 32, upsampling_ratios: list[int] | tuple[int, ...] = (6, 5, 5, 4), num_residual_layers: int = 1, dilation_growth_rate: int = 2, compress: int = 2, use_conv_shortcut: bool = True, use_causal_conv: bool = False, pad_mode: str = 'reflect', norm_type: str = 'weight_norm', kernel_size: int = 7, last_kernel_size: int = 7, residual_kernel_size: int = 3, num_lstm_layers: int = 2, hidden_size: int = 512, codebook_size: int = 4096, codebook_dim: int = 512, decoder_hidden_size: int = 768, decoder_intermediate_size: int = 2304, decoder_num_layers: int = 12, adanorm_num_embeddings: int = 4, decoder_attention_num_groups: int = 32, norm_eps: float = 1e-06)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/wavtokenizer/configuration_wavtokenizer.py#L159)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/wavtokenizer/configuration_wavtokenizer.py#L159)
 
-Configuration of [WavTokenizerEncoderModel](/docs/transformers/v5.24.0/en/model_doc/wavtokenizer#transformers.WavTokenizerEncoderModel), the encoder and quantizer of WavTokenizer. It shares every field
-with [WavTokenizerConfig](/docs/transformers/v5.24.0/en/model_doc/wavtokenizer#transformers.WavTokenizerConfig) (see its documentation for the arguments), so it can be loaded from a full
+Configuration of [WavTokenizerEncoderModel](/docs/transformers/v5.24.1/en/model_doc/wavtokenizer#transformers.WavTokenizerEncoderModel), the encoder and quantizer of WavTokenizer. It shares every field
+with [WavTokenizerConfig](/docs/transformers/v5.24.1/en/model_doc/wavtokenizer#transformers.WavTokenizerConfig) (see its documentation for the arguments), so it can be loaded from a full
 WavTokenizer checkpoint. Decoder-specific fields are unused by the encoder model.
 
 ## WavTokenizerFeatureExtractor[[transformers.WavTokenizerFeatureExtractor]]
@@ -165,7 +165,7 @@ WavTokenizer checkpoint. Decoder-specific fields are unused by the encoder model
 transformers.WavTokenizerFeatureExtractor(feature_size: int = 1, sampling_rate: int = 24000, padding_value: float = 0.0, hop_length: int = 600, normalize_audio: bool = False, target_peak_dB_FS: float = -3.0, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/wavtokenizer/feature_extraction_wavtokenizer.py#L27)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/wavtokenizer/feature_extraction_wavtokenizer.py#L27)
 
 **Parameters:**
 
@@ -190,25 +190,25 @@ or downmixed.
 __call__(audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor']], padding: bool | str | transformers.utils.generic.PaddingStrategy | None = None, truncation: bool | None = False, max_length: int | None = None, return_tensors: str | transformers.utils.generic.TensorType | None = None, sampling_rate: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/wavtokenizer/feature_extraction_wavtokenizer.py#L72)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/wavtokenizer/feature_extraction_wavtokenizer.py#L72)
 
 **Parameters:**
 
 audio (`np.ndarray`, `torch.Tensor`, `list[float]`, `list[np.ndarray]`, `list[torch.Tensor]`, `list[list[float]]`) : The sequence or batch of sequences to be processed. Each sequence must be mono audio of shape `(num_samples,)`, already sampled at this feature extractor's `sampling_rate`. Audio is not resampled or downmixed.
 
-padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.24.0/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `True`) : Padding strategy: `True` or `'longest'` pads a batch to its longest sequence (single inputs stay unpadded), `'max_length'` pads to `max_length`, `False` or `'do_not_pad'` disables padding.
+padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.24.1/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `True`) : Padding strategy: `True` or `'longest'` pads a batch to its longest sequence (single inputs stay unpadded), `'max_length'` pads to `max_length`, `False` or `'do_not_pad'` disables padding.
 
 truncation (`bool`, *optional*, defaults to `False`) : Whether to truncate sequences longer than `max_length` to `max_length`.
 
 max_length (`int`, *optional*) : Target length for `'max_length'` padding and for `truncation`.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.24.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, return tensors instead of a list of numpy arrays: `'pt'` for PyTorch `torch.Tensor`, `'np'` for NumPy `np.ndarray`.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.24.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, return tensors instead of a list of numpy arrays: `'pt'` for PyTorch `torch.Tensor`, `'np'` for NumPy `np.ndarray`.
 
 sampling_rate (`int`, *optional*) : Sampling rate of the `audio` input; pass it so a mismatch with the configured `sampling_rate` raises an error instead of failing silently.
 
-**Returns:** [BatchFeature](/docs/transformers/v5.24.0/en/main_classes/feature_extractor#transformers.BatchFeature)
+**Returns:** [BatchFeature](/docs/transformers/v5.24.1/en/main_classes/feature_extractor#transformers.BatchFeature)
 
-A [BatchFeature](/docs/transformers/v5.24.0/en/main_classes/feature_extractor#transformers.BatchFeature) with the following fields:
+A [BatchFeature](/docs/transformers/v5.24.1/en/main_classes/feature_extractor#transformers.BatchFeature) with the following fields:
 
 - **input_values** -- Audio waveforms to be fed to the model, as a list of arrays of shape
   `(1, num_samples)`, or a tensor of shape `(batch_size, 1, num_samples)` when `return_tensors` is set.
@@ -225,15 +225,15 @@ Featurize and prepare one or several audio sequence(s) for the model.
 transformers.WavTokenizerEncoderModel(config: WavTokenizerEncoderConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/wavtokenizer/modeling_wavtokenizer.py#L540)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/wavtokenizer/modeling_wavtokenizer.py#L540)
 
 **Parameters:**
 
-config ([WavTokenizerEncoderConfig](/docs/transformers/v5.24.0/en/model_doc/wavtokenizer#transformers.WavTokenizerEncoderConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([WavTokenizerEncoderConfig](/docs/transformers/v5.24.1/en/model_doc/wavtokenizer#transformers.WavTokenizerEncoderConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Encoder and quantizer of WavTokenizer for converting audio waveforms to discrete codes.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -247,7 +247,7 @@ and behavior.
 encode(input_values: Tensor, padding_mask: typing.Optional[torch.Tensor] = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/wavtokenizer/modeling_wavtokenizer.py#L554)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/wavtokenizer/modeling_wavtokenizer.py#L554)
 
 **Parameters:**
 
@@ -271,7 +271,7 @@ elements depending on the configuration (`None`) and inputs.
 forward(input_values: Tensor, padding_mask: typing.Optional[torch.Tensor] = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/wavtokenizer/modeling_wavtokenizer.py#L589)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/wavtokenizer/modeling_wavtokenizer.py#L589)
 
 **Parameters:**
 
@@ -283,9 +283,9 @@ padding_mask (`torch.Tensor` of shape `(batch_size, sequence_length)` or `(batch
 
 A `WavTokenizerEncoderOutput` or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([WavTokenizerConfig](/docs/transformers/v5.24.0/en/model_doc/wavtokenizer#transformers.WavTokenizerConfig)) and inputs.
+elements depending on the configuration ([WavTokenizerConfig](/docs/transformers/v5.24.1/en/model_doc/wavtokenizer#transformers.WavTokenizerConfig)) and inputs.
 
-The [WavTokenizerEncoderModel](/docs/transformers/v5.24.0/en/model_doc/wavtokenizer#transformers.WavTokenizerEncoderModel) forward method, overrides the `__call__` special method.
+The [WavTokenizerEncoderModel](/docs/transformers/v5.24.1/en/model_doc/wavtokenizer#transformers.WavTokenizerEncoderModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -303,15 +303,15 @@ the latter silently ignores them.
 transformers.WavTokenizerModel(config: WavTokenizerConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/wavtokenizer/modeling_wavtokenizer.py#L610)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/wavtokenizer/modeling_wavtokenizer.py#L610)
 
 **Parameters:**
 
-config ([WavTokenizerConfig](/docs/transformers/v5.24.0/en/model_doc/wavtokenizer#transformers.WavTokenizerConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([WavTokenizerConfig](/docs/transformers/v5.24.1/en/model_doc/wavtokenizer#transformers.WavTokenizerConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Inference-only, single-codebook WavTokenizer neural audio codec.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -325,7 +325,7 @@ and behavior.
 decode(audio_codes: Tensor, bandwidth_id: int = 0, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/wavtokenizer/modeling_wavtokenizer.py#L639)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/wavtokenizer/modeling_wavtokenizer.py#L639)
 
 **Parameters:**
 
@@ -347,7 +347,7 @@ elements depending on the configuration (`None`) and inputs.
 encode(input_values: Tensor, padding_mask: typing.Optional[torch.Tensor] = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/wavtokenizer/modeling_wavtokenizer.py#L622)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/wavtokenizer/modeling_wavtokenizer.py#L622)
 
 **Parameters:**
 
@@ -371,7 +371,7 @@ elements depending on the configuration (`None`) and inputs.
 forward(input_values: Tensor, padding_mask: typing.Optional[torch.Tensor] = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/wavtokenizer/modeling_wavtokenizer.py#L660)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/wavtokenizer/modeling_wavtokenizer.py#L660)
 
 **Parameters:**
 
@@ -385,7 +385,7 @@ A `WavTokenizerOutput` or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [WavTokenizerModel](/docs/transformers/v5.24.0/en/model_doc/wavtokenizer#transformers.WavTokenizerModel) forward method, overrides the `__call__` special method.
+The [WavTokenizerModel](/docs/transformers/v5.24.1/en/model_doc/wavtokenizer#transformers.WavTokenizerModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -396,4 +396,4 @@ the latter silently ignores them.
 - **audio_codes_mask** (`torch.Tensor` of shape `(batch_size, 1, codes_length)`, *optional*) -- Downsampled `padding_mask` indicating valid audio codes in `audio_codes`.
 
 ### SqueezeBERT
-https://huggingface.co/docs/transformers/v5.24.0/model_doc/squeezebert.md
+https://huggingface.co/docs/transformers/v5.24.1/model_doc/squeezebert.md

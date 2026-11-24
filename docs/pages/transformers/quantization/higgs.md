@@ -6,7 +6,7 @@ The table below summarizes what HIGGS supports in Transformers.
 
 | | |
 |---|---|
-| Config | [HiggsConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.HiggsConfig) |
+| Config | [HiggsConfig](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.HiggsConfig) |
 | `quant_method` | `higgs` |
 | Workflow | Quantize while loading |
 | Bits | 2, 3, 4 |
@@ -25,7 +25,7 @@ pip install -U "flute-kernel>=0.3.0" fast_hadamard_transform accelerate
 
 ## Quantize a model with HIGGS
 
-Create a [HiggsConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.HiggsConfig) and pass it to [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). Set `device_map` to your CUDA devices, and load the model in fp16 or bf16.
+Create a [HiggsConfig](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.HiggsConfig) and pass it to [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). Set `device_map` to your CUDA devices, and load the model in fp16 or bf16.
 
 ```py
 from transformers import AutoModelForCausalLM, HiggsConfig
@@ -41,7 +41,7 @@ After the weights load, FLUTE tunes its kernels for each layer on your GPU and r
 
 ## Configure HIGGS
 
-These [HiggsConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.HiggsConfig) parameters change how the weights are quantized.
+These [HiggsConfig](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.HiggsConfig) parameters change how the weights are quantized.
 
 | Parameter | Default | Effect |
 |---|---|---|
@@ -52,7 +52,7 @@ These [HiggsConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#tran
 
 ## Speed up inference with torch.compile
 
-Without compilation, HIGGS runs slower than bf16. [generate()](/docs/transformers/v5.24.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) doesn't compile HIGGS models automatically, so compile the model yourself with [torch.compile](../perf_torch_compile).
+Without compilation, HIGGS runs slower than bf16. [generate()](/docs/transformers/v5.24.1/en/main_classes/text_generation#transformers.GenerationMixin.generate) doesn't compile HIGGS models automatically, so compile the model yourself with [torch.compile](../perf_torch_compile).
 
 ```py
 model = torch.compile(model)
@@ -79,4 +79,4 @@ The table below shows forward passes per second for Llama-3.1-8B-Instruct on an 
 - [HIGGS models](https://huggingface.co/collections/ISTA-DASLab/higgs-675308e432fd56b7f6dab94e) collection from ISTA-DASLab
 
 ### FP-Quant
-https://huggingface.co/docs/transformers/v5.24.0/quantization/fp_quant.md
+https://huggingface.co/docs/transformers/v5.24.1/quantization/fp_quant.md

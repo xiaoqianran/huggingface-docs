@@ -29,5 +29,5 @@ df = (
 )
 ```
 
-### Pandas
-https://huggingface.co/docs/dataset-viewer/pandas.md
+### Get dataset information
+https://huggingface.co/docs/dataset-viewer/info.md

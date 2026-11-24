@@ -71,4 +71,4 @@ Skip the modules where rounding error affects accuracy the most for the least me
 Every module you skip stays in its original precision and costs memory. Check that the model still fits after you add to the skip list.
 
 ### torchao
-https://huggingface.co/docs/transformers/v5.24.0/quantization/torchao.md
+https://huggingface.co/docs/transformers/v5.24.1/quantization/torchao.md

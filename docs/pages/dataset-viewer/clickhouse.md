@@ -139,5 +139,5 @@ DESC LIMIT(5)
 └───────────┴────────┴────────────────────┘
 ```
 
-### mlcroissant
-https://huggingface.co/docs/dataset-viewer/mlcroissant.md
+### Quickstart
+https://huggingface.co/docs/dataset-viewer/quick_start.md

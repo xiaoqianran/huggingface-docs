@@ -191,6 +191,7 @@
 - [Resource groups](https://huggingface.co/docs/hub/enterprise-resource-groups.md)
 - [Service Accounts](https://huggingface.co/docs/hub/enterprise-service-accounts.md)
 - [Agent Traces](https://huggingface.co/docs/hub/agent-traces.md)
+- [Nightwatch](https://huggingface.co/docs/hub/enterprise-nightwatch.md)
 - [Using Spaces for Organization Cards](https://huggingface.co/docs/hub/spaces-organization-cards.md)
 - [User Studies](https://huggingface.co/docs/hub/model-cards-user-studies.md)
 - [JupyterLab on Spaces](https://huggingface.co/docs/hub/spaces-sdks-docker-jupyter.md)

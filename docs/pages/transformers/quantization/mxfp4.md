@@ -6,7 +6,7 @@ The table below summarizes what MXFP4 supports in Transformers.
 
 | | |
 |---|---|
-| Config | [Mxfp4Config](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.Mxfp4Config) |
+| Config | [Mxfp4Config](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.Mxfp4Config) |
 | `quant_method` | `mxfp4` |
 | Workflow | Quantize while loading, load pre-quantized |
 | Bits | 4 |
@@ -25,7 +25,7 @@ pip install -U "transformers[kernels]" accelerate "triton>=3.4.0"
 
 ## Quantize a model with MXFP4
 
-Create a [Mxfp4Config](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.Mxfp4Config) and pass it to [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to quantize a bf16 GPT-OSS checkpoint while it loads. MXFP4 quantizes only the expert weights. The attention layers, router, embeddings, and `lm_head` keep their original precision.
+Create a [Mxfp4Config](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.Mxfp4Config) and pass it to [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to quantize a bf16 GPT-OSS checkpoint while it loads. MXFP4 quantizes only the expert weights. The attention layers, router, embeddings, and `lm_head` keep their original precision.
 
 ```py
 from transformers import AutoModelForCausalLM, Mxfp4Config
@@ -42,7 +42,7 @@ If the hardware or packages MXFP4 needs aren't available, set `dequantize=True` 
 
 ## Load a pre-quantized checkpoint
 
-The [openai/gpt-oss-20b](https://huggingface.co/openai/gpt-oss-20b) and [openai/gpt-oss-120b](https://huggingface.co/openai/gpt-oss-120b) checkpoints are stored in MXFP4, and their config sets `quant_method` to `mxfp4`. Load them without a [Mxfp4Config](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.Mxfp4Config).
+The [openai/gpt-oss-20b](https://huggingface.co/openai/gpt-oss-20b) and [openai/gpt-oss-120b](https://huggingface.co/openai/gpt-oss-120b) checkpoints are stored in MXFP4, and their config sets `quant_method` to `mxfp4`. Load them without a [Mxfp4Config](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.Mxfp4Config).
 
 ```py
 from transformers import AutoModelForCausalLM
@@ -54,7 +54,7 @@ If your hardware or packages can't run MXFP4, Transformers logs a warning and de
 
 ## Choose a kernel backend
 
-By default, MXFP4 runs the expert layers with the Triton kernels on CUDA and XPU. Pass `use_kernels=True` to [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to run them with the [MegaBlocks](https://huggingface.co/kernels-community/megablocks) kernel from the Hub instead.
+By default, MXFP4 runs the expert layers with the Triton kernels on CUDA and XPU. Pass `use_kernels=True` to [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to run them with the [MegaBlocks](https://huggingface.co/kernels-community/megablocks) kernel from the Hub instead.
 
 ```py
 model = AutoModelForCausalLM.from_pretrained("openai/gpt-oss-20b", device_map="cpu", use_kernels=True)
@@ -82,4 +82,4 @@ The backend you get depends on the device.
 - [kernels-community/gpt-oss-triton-kernels](https://huggingface.co/kernels-community/gpt-oss-triton-kernels) Hub kernel
 
 ### Fine-tune a model
-https://huggingface.co/docs/transformers/v5.24.0/quantization/finetune.md
+https://huggingface.co/docs/transformers/v5.24.1/quantization/finetune.md

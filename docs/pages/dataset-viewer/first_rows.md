@@ -198,5 +198,5 @@ For example, the [`GEM/SciDuet`](https://datasets-server.huggingface.co/first-ro
   truncated: true
 ```
 
-### Get Croissant metadata
-https://huggingface.co/docs/dataset-viewer/croissant.md
+### Explore statistics over split data
+https://huggingface.co/docs/dataset-viewer/statistics.md

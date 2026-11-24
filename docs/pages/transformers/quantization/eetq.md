@@ -6,7 +6,7 @@ The table below summarizes what EETQ supports in Transformers.
 
 | | |
 |---|---|
-| Config | [EetqConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.EetqConfig) |
+| Config | [EetqConfig](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.EetqConfig) |
 | `quant_method` | `eetq` |
 | Workflow | Quantize while loading |
 | Bits | 8 |
@@ -25,7 +25,7 @@ pip install -U "transformers[kernels]" accelerate
 
 ## Quantize a model with EETQ
 
-Create an [EetqConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.EetqConfig) and pass it to [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). `weights` sets the weight dtype and only accepts `"int8"`, which is the default.
+Create an [EetqConfig](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.EetqConfig) and pass it to [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). `weights` sets the weight dtype and only accepts `"int8"`, which is the default.
 
 ```py
 import torch
@@ -52,4 +52,4 @@ Load the model with `dtype=torch.float16` for the best efficiency. EETQ stores i
 - [EETQ](https://github.com/NetEase-FuXi/EETQ) repository
 
 ### Bitsandbytes
-https://huggingface.co/docs/transformers/v5.24.0/quantization/bitsandbytes.md
+https://huggingface.co/docs/transformers/v5.24.1/quantization/bitsandbytes.md

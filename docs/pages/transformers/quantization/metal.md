@@ -6,7 +6,7 @@ The table below summarizes what Metal supports in Transformers.
 
 | | |
 |---|---|
-| Config | [MetalConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.MetalConfig) |
+| Config | [MetalConfig](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.MetalConfig) |
 | `quant_method` | `metal` |
 | Workflow | Quantize while loading |
 | Bits | 2, 4, 8 |
@@ -25,7 +25,7 @@ pip install -U "transformers[kernels]"
 
 ## Quantize a model with Metal
 
-Create a [MetalConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.MetalConfig) and pass it to [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). Set `device_map="mps"` so the model runs on the Apple silicon GPU. The example below quantizes every linear layer to 4 bits in groups of 64 weights.
+Create a [MetalConfig](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.MetalConfig) and pass it to [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). Set `device_map="mps"` so the model runs on the Apple silicon GPU. The example below quantizes every linear layer to 4 bits in groups of 64 weights.
 
 ```py
 from transformers import AutoModelForCausalLM, MetalConfig
@@ -38,11 +38,11 @@ model = AutoModelForCausalLM.from_pretrained(
 )
 ```
 
-A checkpoint saved with Metal quantization stores the packed weights, scales, and biases. Loading it with [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) reads them directly without quantizing again.
+A checkpoint saved with Metal quantization stores the packed weights, scales, and biases. Loading it with [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) reads them directly without quantizing again.
 
 ## Configure Metal
 
-These [MetalConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.MetalConfig) parameters change how the weights are quantized.
+These [MetalConfig](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.MetalConfig) parameters change how the weights are quantized.
 
 | Parameter | Default | Effect |
 |---|---|---|
@@ -78,4 +78,4 @@ model = AutoModelForCausalLM.from_pretrained(
 - [kernels-community/mlx-quantization-metal-kernels](https://huggingface.co/kernels-community/mlx-quantization-metal-kernels) on the Hub
 
 ### Choose a method
-https://huggingface.co/docs/transformers/v5.24.0/quantization/selecting.md
+https://huggingface.co/docs/transformers/v5.24.1/quantization/selecting.md

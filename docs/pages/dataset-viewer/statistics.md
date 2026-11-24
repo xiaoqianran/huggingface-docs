@@ -598,5 +598,5 @@ Example
 }
 ```
 
-### Get dataset information
-https://huggingface.co/docs/dataset-viewer/info.md
+### Server infrastructure
+https://huggingface.co/docs/dataset-viewer/server.md

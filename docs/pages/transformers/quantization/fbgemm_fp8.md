@@ -6,7 +6,7 @@ The table below summarizes what FBGEMM supports in Transformers.
 
 | | |
 |---|---|
-| Config | [FbgemmFp8Config](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.FbgemmFp8Config) |
+| Config | [FbgemmFp8Config](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.FbgemmFp8Config) |
 | `quant_method` | `fbgemm_fp8` |
 | Workflow | Quantize while loading |
 | Bits | 8 |
@@ -31,7 +31,7 @@ pip install -U "transformers[kernels]" accelerate
 
 ## Quantize a model with FBGEMM
 
-Create a [FbgemmFp8Config](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.FbgemmFp8Config) and pass it to [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained).
+Create a [FbgemmFp8Config](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.FbgemmFp8Config) and pass it to [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained).
 
 ```py
 from transformers import AutoModelForCausalLM, FbgemmFp8Config
@@ -62,4 +62,4 @@ FBGEMM always loads the model in bf16. If you pass a different `dtype`, Transfor
 - [Open-sourcing FBGEMM for state-of-the-art server-side inference](https://engineering.fb.com/2018/11/07/ml-applications/fbgemm/) blog post
 
 ### Contribute
-https://huggingface.co/docs/transformers/v5.24.0/quantization/contribute.md
+https://huggingface.co/docs/transformers/v5.24.1/quantization/contribute.md

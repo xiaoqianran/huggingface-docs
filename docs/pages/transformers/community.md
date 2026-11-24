@@ -63,4 +63,4 @@ This page regroups resources around 🤗 Transformers developed by the community
 | [Fine-Tuning Open-Source LLM using QLoRA with MLflow and PEFT](https://github.com/mlflow/mlflow/blob/master/docs/docs/classic-ml/deep-learning/transformers/tutorials/fine-tuning/transformers-peft.ipynb) | How to use [QLoRA](https://github.com/artidoro/qlora) and [PEFT](https://huggingface.co/docs/peft/en/index) to fine-tune an LLM in a memory-efficient way, while using [MLflow](https://mlflow.org/docs/latest/llms/transformers/index.html) to manage experiment tracking | [Yuki Watanabe](https://github.com/B-Step62) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/mlflow/mlflow/blob/master/docs/docs/classic-ml/deep-learning/transformers/tutorials/fine-tuning/transformers-peft.ipynb) |
 
 ### Backbones
-https://huggingface.co/docs/transformers/v5.24.0/backbones.md
+https://huggingface.co/docs/transformers/v5.24.1/backbones.md

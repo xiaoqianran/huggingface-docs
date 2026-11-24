@@ -6,7 +6,7 @@ The table below summarizes what FP-Quant supports in Transformers.
 
 | | |
 |---|---|
-| Config | [FPQuantConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.FPQuantConfig) |
+| Config | [FPQuantConfig](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.FPQuantConfig) |
 | `quant_method` | `fp_quant` |
 | Workflow | Quantize while loading |
 | Bits | 4 |
@@ -27,7 +27,7 @@ cd qutlass && pip install --no-build-isolation .
 
 ## Quantize a model with FP-Quant
 
-Create a [FPQuantConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.FPQuantConfig) and pass it to [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). Set `device_map` to your GPUs. The default config quantizes every linear layer except `lm_head` to NVFP4.
+Create a [FPQuantConfig](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.FPQuantConfig) and pass it to [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). Set `device_map` to your GPUs. The default config quantizes every linear layer except `lm_head` to NVFP4.
 
 ```py
 from transformers import AutoModelForCausalLM, FPQuantConfig
@@ -51,11 +51,11 @@ model = AutoModelForCausalLM.from_pretrained(
 )
 ```
 
-To load a model that was quantized ahead of time with GPTQ for better accuracy, pass its Hub repository to [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) without a `quantization_config`. The [ISTA-DASLab](https://huggingface.co/ISTA-DASLab/models?search=FPQuant) organization hosts FP-Quant checkpoints, and the [FP-Quant](https://github.com/IST-DASLab/FP-Quant) repository has the code to create them.
+To load a model that was quantized ahead of time with GPTQ for better accuracy, pass its Hub repository to [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) without a `quantization_config`. The [ISTA-DASLab](https://huggingface.co/ISTA-DASLab/models?search=FPQuant) organization hosts FP-Quant checkpoints, and the [FP-Quant](https://github.com/IST-DASLab/FP-Quant) repository has the code to create them.
 
 ## Configure FP-Quant
 
-These [FPQuantConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.FPQuantConfig) parameters change how the weights and activations are quantized.
+These [FPQuantConfig](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.FPQuantConfig) parameters change how the weights and activations are quantized.
 
 | Parameter | Default | Effect |
 |---|---|---|
@@ -64,7 +64,7 @@ These [FPQuantConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#tr
 | `transform_init` | `"hadamard"` | How the transform matrix is initialized, either `"hadamard"`, `"identity"`, or `"gsr"`. |
 | `pseudoquantization` | `False` | Emulates FP4 with Triton kernels instead of running the QuTLASS kernels. Required on GPUs other than Blackwell. |
 
-See [FPQuantConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.FPQuantConfig) for the rest of the parameters.
+See [FPQuantConfig](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.FPQuantConfig) for the rest of the parameters.
 
 ## Train with quantized weights
 
@@ -105,4 +105,4 @@ The FP-Quant authors note that QAT currently only works with `pseudoquantization
 - [QuTLASS](https://github.com/IST-DASLab/qutlass) repository, including speedup benchmarks
 
 ### HQQ
-https://huggingface.co/docs/transformers/v5.24.0/quantization/hqq.md
+https://huggingface.co/docs/transformers/v5.24.1/quantization/hqq.md

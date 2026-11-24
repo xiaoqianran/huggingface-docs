@@ -6,7 +6,7 @@ The table below summarizes what Quanto supports in Transformers.
 
 | | |
 |---|---|
-| Config | [QuantoConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.QuantoConfig) |
+| Config | [QuantoConfig](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.QuantoConfig) |
 | `quant_method` | `quanto` |
 | Workflow | Quantize while loading |
 | Bits | 2, 4, 8 |
@@ -25,7 +25,7 @@ pip install -U optimum-quanto accelerate
 
 ## Quantize a model with Quanto
 
-Create a [QuantoConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.QuantoConfig) and pass it to [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). `weights` sets the weight dtype and accepts `"int8"` (the default), `"float8"`, `"int4"`, or `"int2"`.
+Create a [QuantoConfig](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.QuantoConfig) and pass it to [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). `weights` sets the weight dtype and accepts `"int8"` (the default), `"float8"`, `"int4"`, or `"int2"`.
 
 ```py
 from transformers import AutoModelForCausalLM, QuantoConfig
@@ -39,7 +39,7 @@ model = AutoModelForCausalLM.from_pretrained(
 
 ## Limitations
 
-- Transformers quantizes only the weights. Setting `activations` in [QuantoConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.QuantoConfig) raises a `ValueError`. Use the [Quanto](https://github.com/huggingface/optimum-quanto) library directly for activation quantization, calibration, or quantization-aware training.
+- Transformers quantizes only the weights. Setting `activations` in [QuantoConfig](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.QuantoConfig) raises a `ValueError`. Use the [Quanto](https://github.com/huggingface/optimum-quanto) library directly for activation quantization, calibration, or quantization-aware training.
 - Transformers can't save Quanto models. The [Quanto](https://github.com/huggingface/optimum-quanto) library has its own way to save and reload quantized models.
 - Quantizing while loading can't offload to the CPU or disk. A `device_map` that places part of the model on `"cpu"` or `"disk"` raises a `ValueError`.
 
@@ -49,4 +49,4 @@ model = AutoModelForCausalLM.from_pretrained(
 - [optimum-quanto](https://github.com/huggingface/optimum-quanto) repository
 
 ### GPTQ
-https://huggingface.co/docs/transformers/v5.24.0/quantization/gptq.md
+https://huggingface.co/docs/transformers/v5.24.1/quantization/gptq.md

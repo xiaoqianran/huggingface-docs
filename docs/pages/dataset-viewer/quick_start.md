@@ -596,5 +596,5 @@ This returns the size of the dataset, and for every subset and split:
 }
 ```
 
-### Preview a dataset
-https://huggingface.co/docs/dataset-viewer/first_rows.md
+### Search text in a dataset
+https://huggingface.co/docs/dataset-viewer/search.md

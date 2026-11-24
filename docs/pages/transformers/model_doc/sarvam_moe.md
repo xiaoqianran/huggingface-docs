@@ -8,9 +8,9 @@ Key architectural features:
 - **Sparse Mixture of Experts**: 128 routed experts with 6 active per token, plus 1 shared expert. The first layer uses a dense MLP.
 - **Sigmoid routing** with an expert bias correction and a routed scaling factor.
 
-The architecture is the same as [GLM-4-MoE](./glm4_moe), with different parameter and config names. The auto classes load it with the GLM-4-MoE implementation ([Glm4MoeModel](/docs/transformers/v5.24.0/en/model_doc/glm4_moe#transformers.Glm4MoeModel) and [Glm4MoeForCausalLM](/docs/transformers/v5.24.0/en/model_doc/glm4_moe#transformers.Glm4MoeForCausalLM)), so only [SarvamMoEConfig](/docs/transformers/v5.24.0/en/model_doc/sarvam_moe#transformers.SarvamMoEConfig) is specific to SarvamMoE. The released checkpoints are converted to the GLM-4-MoE names when loading and back when saving.
+The architecture is the same as [GLM-4-MoE](./glm4_moe), with different parameter and config names. The auto classes load it with the GLM-4-MoE implementation ([Glm4MoeModel](/docs/transformers/v5.24.1/en/model_doc/glm4_moe#transformers.Glm4MoeModel) and [Glm4MoeForCausalLM](/docs/transformers/v5.24.1/en/model_doc/glm4_moe#transformers.Glm4MoeForCausalLM)), so only [SarvamMoEConfig](/docs/transformers/v5.24.1/en/model_doc/sarvam_moe#transformers.SarvamMoEConfig) is specific to SarvamMoE. The released checkpoints are converted to the GLM-4-MoE names when loading and back when saving.
 
-The example below demonstrates how to generate text with the [AutoModelForCausalLM](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoModelForCausalLM) class.
+The example below demonstrates how to generate text with the [AutoModelForCausalLM](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoModelForCausalLM) class.
 
 ```python
 from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -32,7 +32,7 @@ print(tokenizer.decode(output[0][inputs["input_ids"].shape[1] :], skip_special_t
 transformers.SarvamMoEConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, vocab_size: int = 262144, hidden_size: int = 4096, intermediate_size: int = 8192, num_hidden_layers: int = 19, num_attention_heads: int = 64, num_key_value_heads: int = 4, hidden_act: str = 'silu', max_position_embeddings: int = 131072, initializer_range: float = 0.006, rms_norm_eps: float = 1e-06, use_cache: bool = True, tie_word_embeddings: bool = False, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None, attention_bias: bool = False, attention_dropout: float | int = 0.0, moe_intermediate_size: int = 1024, num_experts_per_tok: int = 6, output_router_logits: bool = False, n_shared_experts: int = 1, n_routed_experts: int = 128, routed_scaling_factor: float = 2.5, n_group: int = 1, topk_group: int = 1, first_k_dense_replace: int = 1, norm_topk_prob: bool = True, use_qk_norm: bool = True, bos_token_id: int | None = None, eos_token_id: int | list[int] | None = 1, pad_token_id: int | None = 0, num_mtp_layers: int = 0, head_dim: int = 64)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/sarvam_moe/configuration_sarvam_moe.py#L30)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/sarvam_moe/configuration_sarvam_moe.py#L30)
 
 **Parameters:**
 
@@ -102,8 +102,8 @@ This is the configuration class to store the configuration of a Glm4MoeModel. It
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [sarvamai/sarvam-30b](https://huggingface.co/sarvamai/sarvam-30b)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -121,4 +121,4 @@ Example:
 ```
 
 ### PatchTSMixer
-https://huggingface.co/docs/transformers/v5.24.0/model_doc/patchtsmixer.md
+https://huggingface.co/docs/transformers/v5.24.1/model_doc/patchtsmixer.md

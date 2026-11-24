@@ -6,7 +6,7 @@ The table below summarizes what Fine-grained FP8 supports in Transformers.
 
 | | |
 |---|---|
-| Config | [FineGrainedFP8Config](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.FineGrainedFP8Config) |
+| Config | [FineGrainedFP8Config](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.FineGrainedFP8Config) |
 | `quant_method` | `fp8`, `mxfp8` |
 | Workflow | Quantize while loading, load pre-quantized |
 | Bits | 8 |
@@ -25,7 +25,7 @@ pip install -U "transformers[kernels]" accelerate
 
 ## Quantize a model with Fine-grained FP8
 
-Create a [FineGrainedFP8Config](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.FineGrainedFP8Config) and pass it to [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained).
+Create a [FineGrainedFP8Config](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.FineGrainedFP8Config) and pass it to [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained).
 
 ```py
 from transformers import AutoModelForCausalLM, FineGrainedFP8Config
@@ -40,7 +40,7 @@ model = AutoModelForCausalLM.from_pretrained(
 
 ## Configure Fine-grained FP8
 
-These [FineGrainedFP8Config](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.FineGrainedFP8Config) parameters change how the weights and activations are quantized.
+These [FineGrainedFP8Config](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.FineGrainedFP8Config) parameters change how the weights and activations are quantized.
 
 | Parameter | Default | Effect |
 |---|---|---|
@@ -52,7 +52,7 @@ These [FineGrainedFP8Config](/docs/transformers/v5.24.0/en/main_classes/quantiza
 
 ## Load a pre-quantized FP8 checkpoint
 
-Checkpoints quantized with Fine-grained FP8 carry their quantization config, so load them without a [FineGrainedFP8Config](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.FineGrainedFP8Config).
+Checkpoints quantized with Fine-grained FP8 carry their quantization config, so load them without a [FineGrainedFP8Config](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.FineGrainedFP8Config).
 
 ```py
 from transformers import AutoModelForCausalLM
@@ -72,7 +72,7 @@ If DeepGEMM can't load or declines a layer, Transformers logs a warning and fall
 
 On Blackwell, DeepGEMM only reads UE8M0 scales. Linear layers with float32 scales (`scale_fmt="float"`) use the Triton kernel instead.
 
-For mixture-of-experts layers, DeepGEMM is opt-in. Pass `experts_implementation="deepgemm"` to [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained), or `"deepgemm_megamoe"` on Blackwell. See the [Experts backends](../experts_interface) guide for every option.
+For mixture-of-experts layers, DeepGEMM is opt-in. Pass `experts_implementation="deepgemm"` to [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained), or `"deepgemm_megamoe"` on Blackwell. See the [Experts backends](../experts_interface) guide for every option.
 
 ## Limitations
 
@@ -90,4 +90,4 @@ For mixture-of-experts layers, DeepGEMM is opt-in. Pass `experts_implementation=
 - [DeepGEMM](https://github.com/deepseek-ai/DeepGEMM) repository
 
 ### EETQ
-https://huggingface.co/docs/transformers/v5.24.0/quantization/eetq.md
+https://huggingface.co/docs/transformers/v5.24.1/quantization/eetq.md

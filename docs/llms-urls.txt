@@ -652,6 +652,7 @@ https://huggingface.co/docs/hub/enterprise-datasets.md
 https://huggingface.co/docs/hub/enterprise-gating-group-collections.md
 https://huggingface.co/docs/hub/enterprise-managed-sso-migration.md
 https://huggingface.co/docs/hub/enterprise-network-security.md
+https://huggingface.co/docs/hub/enterprise-nightwatch.md
 https://huggingface.co/docs/hub/enterprise-resource-groups.md
 https://huggingface.co/docs/hub/enterprise-scim.md
 https://huggingface.co/docs/hub/enterprise-service-accounts.md

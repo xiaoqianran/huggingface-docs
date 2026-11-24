@@ -59,5 +59,5 @@ The endpoint response is a JSON containing a list of the dataset's splits and su
 }
 ```
 
-### Polars
-https://huggingface.co/docs/dataset-viewer/polars.md
+### Download slices of rows
+https://huggingface.co/docs/dataset-viewer/rows.md

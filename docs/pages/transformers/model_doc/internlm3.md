@@ -1,10 +1,10 @@
 # InternLM3
 
-[InternLM3](https://huggingface.co/internlm/internlm3-8b-instruct) is an 8B instruction-tuned language model developed by [Shanghai AI Laboratory](https://huggingface.co/internlm). Its architecture is the same as [Llama](./llama). Its config names the biases of the query, key and value projections `qkv_bias` and those of the attention output projection and MLP layers `bias`; [InternLM3Config](/docs/transformers/v5.24.0/en/model_doc/internlm3#transformers.InternLM3Config) loads them as `attention_bias` and `mlp_bias`, and requires them to be equal, as they are in the released checkpoints.
+[InternLM3](https://huggingface.co/internlm/internlm3-8b-instruct) is an 8B instruction-tuned language model developed by [Shanghai AI Laboratory](https://huggingface.co/internlm). Its architecture is the same as [Llama](./llama). Its config names the biases of the query, key and value projections `qkv_bias` and those of the attention output projection and MLP layers `bias`; [InternLM3Config](/docs/transformers/v5.24.1/en/model_doc/internlm3#transformers.InternLM3Config) loads them as `attention_bias` and `mlp_bias`, and requires them to be equal, as they are in the released checkpoints.
 
-The auto classes load it with the Llama implementation ([LlamaModel](/docs/transformers/v5.24.0/en/model_doc/llama2#transformers.LlamaModel) and [LlamaForCausalLM](/docs/transformers/v5.24.0/en/model_doc/llama2#transformers.LlamaForCausalLM)), so only [InternLM3Config](/docs/transformers/v5.24.0/en/model_doc/internlm3#transformers.InternLM3Config) is specific to InternLM3.
+The auto classes load it with the Llama implementation ([LlamaModel](/docs/transformers/v5.24.1/en/model_doc/llama2#transformers.LlamaModel) and [LlamaForCausalLM](/docs/transformers/v5.24.1/en/model_doc/llama2#transformers.LlamaForCausalLM)), so only [InternLM3Config](/docs/transformers/v5.24.1/en/model_doc/internlm3#transformers.InternLM3Config) is specific to InternLM3.
 
-The example below demonstrates how to generate text with the [AutoModelForCausalLM](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoModelForCausalLM) class.
+The example below demonstrates how to generate text with the [AutoModelForCausalLM](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoModelForCausalLM) class.
 
 ```python
 from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -26,7 +26,7 @@ print(tokenizer.decode(output[0][inputs["input_ids"].shape[1] :], skip_special_t
 transformers.InternLM3Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, vocab_size: int = 128512, hidden_size: int = 4096, intermediate_size: int = 10240, num_hidden_layers: int = 48, num_attention_heads: int = 32, num_key_value_heads: int | None = 2, hidden_act: str = 'silu', max_position_embeddings: int = 32768, initializer_range: float = 0.02, rms_norm_eps: float = 1e-05, use_cache: bool = True, pad_token_id: int | None = 2, bos_token_id: int | None = 1, eos_token_id: int | list[int] | None = 2, tie_word_embeddings: bool = False, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None, attention_bias: bool = False, attention_dropout: float | int = 0.0, mlp_bias: bool = False, head_dim: int | None = 128)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/internlm3/configuration_internlm3.py#L30)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/internlm3/configuration_internlm3.py#L30)
 
 **Parameters:**
 
@@ -74,8 +74,8 @@ This is the configuration class to store the configuration of a LlamaModel. It i
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [internlm/internlm3-8b-instruct](https://huggingface.co/internlm/internlm3-8b-instruct)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ```python
 >>> from transformers import AutoModelForCausalLM, InternLM3Config
@@ -91,4 +91,4 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes
 ```
 
 ### ViTMatte
-https://huggingface.co/docs/transformers/v5.24.0/model_doc/vitmatte.md
+https://huggingface.co/docs/transformers/v5.24.1/model_doc/vitmatte.md

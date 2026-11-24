@@ -6,7 +6,7 @@ The table below summarizes what HQQ supports in Transformers.
 
 | | |
 |---|---|
-| Config | [HqqConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.HqqConfig) |
+| Config | [HqqConfig](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.HqqConfig) |
 | `quant_method` | `hqq` |
 | Workflow | Quantize while loading |
 | Bits | 1, 2, 3, 4, 8 |
@@ -25,7 +25,7 @@ pip install -U hqq
 
 ## Quantize a model with HQQ
 
-Create a [HqqConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.HqqConfig) and pass it to [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). The example below quantizes every linear layer to 4 bits in groups of 64 weights.
+Create a [HqqConfig](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.HqqConfig) and pass it to [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). The example below quantizes every linear layer to 4 bits in groups of 64 weights.
 
 ```py
 import torch
@@ -41,7 +41,7 @@ model = AutoModelForCausalLM.from_pretrained(
 
 ## Configure HQQ
 
-These [HqqConfig](/docs/transformers/v5.24.0/en/main_classes/quantization#transformers.HqqConfig) parameters change how the weights are quantized.
+These [HqqConfig](/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.HqqConfig) parameters change how the weights are quantized.
 
 | Parameter | Default | Effect |
 |---|---|---|
@@ -104,4 +104,4 @@ See the hqq [Backend](https://github.com/mobiusml/hqq/#backend) guide for the av
 - [hqq](https://github.com/mobiusml/hqq/) repository
 
 ### Fine-grained FP8
-https://huggingface.co/docs/transformers/v5.24.0/quantization/finegrained_fp8.md
+https://huggingface.co/docs/transformers/v5.24.1/quantization/finegrained_fp8.md

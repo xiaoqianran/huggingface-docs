@@ -132,7 +132,7 @@ if torch.distributed.get_rank() == 0:
 - The chat template defaults to `reasoning_effort="high"`. Use `reasoning_effort="no_think"` for
   a direct answer. For reasoning, allow enough generated tokens for both reasoning and the final answer.
 - Load the processor from the checkpoint to use its image and video settings. Images use
-  [HunYuanVLImageProcessor](/docs/transformers/v5.24.0/en/model_doc/hunyuan_vl#transformers.HunYuanVLImageProcessor); video preprocessing uses [HYV4VLVideoProcessor](/docs/transformers/v5.24.0/en/model_doc/hy_v4_vl#transformers.HYV4VLVideoProcessor).
+  [HunYuanVLImageProcessor](/docs/transformers/v5.24.1/en/model_doc/hunyuan_vl#transformers.HunYuanVLImageProcessor); video preprocessing uses [HYV4VLVideoProcessor](/docs/transformers/v5.24.1/en/model_doc/hy_v4_vl#transformers.HYV4VLVideoProcessor).
 - Pass image and video overrides separately through `processor_kwargs["images_kwargs"]` and
   `processor_kwargs["videos_kwargs"]`. Image `size["longest_edge"]` is a per-image pixel budget;
   video `size["longest_edge"]` is a whole-clip pixel budget, so sampling more frames can reduce
@@ -150,7 +150,7 @@ if torch.distributed.get_rank() == 0:
 transformers.HYV4VLConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, image_token_id: int = 120120, video_token_id: int = 120124, tie_word_embeddings: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/hy_v4_vl/configuration_hy_v4_vl.py#L216)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/hy_v4_vl/configuration_hy_v4_vl.py#L216)
 
 **Parameters:**
 
@@ -168,8 +168,8 @@ This is the configuration class to store the configuration of a HYV4VLModel. It 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [tencent/Hy4](https://huggingface.co/tencent/Hy4)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## HYV4VLTextConfig[[transformers.HYV4VLTextConfig]]
 
@@ -179,7 +179,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes
 transformers.HYV4VLTextConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, vocab_size: int = 120832, hidden_size: int = 6144, intermediate_size: int = 18432, moe_intermediate_size: int = 2048, num_hidden_layers: int = 78, num_attention_heads: int = 64, num_key_value_heads: int = 32, head_dim: int = 256, hidden_act: str = 'silu', max_position_embeddings: int = 262144, initializer_range: float = 0.006, rms_norm_eps: float = 1e-05, use_cache: bool = True, pad_token_id: int | None = 120002, bos_token_id: int | None = 120000, eos_token_id: int | list[int] | None = 120025, tie_word_embeddings: bool = False, attention_bias: bool = False, attention_dropout: float = 0.0, n_routed_experts: int = 256, output_router_logits: bool = False, n_shared_experts: int = 1, num_experts_per_tok: int = 8, routed_scaling_factor: float = 2.827, norm_topk_prob: bool = True, n_group: int = 1, topk_group: int = 1, q_lora_rank: int = 2048, kv_lora_rank: int = 512, qk_nope_head_dim: int = 192, qk_rope_head_dim: int = 64, v_head_dim: int = 256, mlp_layer_types: list[str] | None = None, layer_types: list[str] | None = None, index_topk: int = 2048, index_head_dim: int = 128, index_n_heads: int = 32, indexer_types: list[str] | None = None, hc_mult: int = 4, hc_magnitude: float = 2.0, hc_eps: float = 1e-06, learnable_sink_init: float = 0.0, swiglu_limit: float = 10.0, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/hy_v4_vl/configuration_hy_v4_vl.py#L67)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/hy_v4_vl/configuration_hy_v4_vl.py#L67)
 
 **Parameters:**
 
@@ -275,8 +275,8 @@ This is the configuration class to store the configuration of a HYV4VLModel. It 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [tencent/Hy4](https://huggingface.co/tencent/Hy4)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## HYV4VLVisionConfig[[transformers.HYV4VLVisionConfig]]
 
@@ -286,7 +286,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes
 transformers.HYV4VLVisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, hidden_act: str = 'gelu', hidden_size: int = 1536, intermediate_size: int = 6144, interpolate_mode: str = 'bilinear', rms_norm_eps: float = 1e-05, attention_dropout: float = 0.0, num_attention_heads: int = 16, num_key_value_heads: int | None = None, num_channels: int = 3, num_hidden_layers: int = 40, out_hidden_size: int = 6144, patch_size: int = 16, spatial_merge_size: int = 2, max_image_size: int = 2048)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/hy_v4_vl/configuration_hy_v4_vl.py#L29)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/hy_v4_vl/configuration_hy_v4_vl.py#L29)
 
 **Parameters:**
 
@@ -322,8 +322,8 @@ This is the configuration class to store the configuration of a HYV4VLModel. It 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [tencent/Hy4](https://huggingface.co/tencent/Hy4)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.24.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## HYV4VLProcessor[[transformers.HYV4VLProcessor]]
 
@@ -333,7 +333,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.24.0/en/main_classes
 transformers.HYV4VLProcessor(image_processor = None, tokenizer = None, video_processor = None, chat_template = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/hy_v4_vl/processing_hy_v4_vl.py#L25)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/hy_v4_vl/processing_hy_v4_vl.py#L25)
 
 **Parameters:**
 
@@ -347,8 +347,8 @@ chat_template (`str`) : A Jinja template to convert lists of messages in a chat 
 
 Constructs a HYV4VLProcessor which wraps a image processor, a tokenizer, and a video processor into a single processor.
 
-[HYV4VLProcessor](/docs/transformers/v5.24.0/en/model_doc/hy_v4_vl#transformers.HYV4VLProcessor) offers all the functionalities of [HYV4VLImageProcessor](/docs/transformers/v5.24.0/en/model_doc/hy_v4_vl#transformers.HYV4VLImageProcessor), `tokenizer_class`, and [HYV4VLVideoProcessor](/docs/transformers/v5.24.0/en/model_doc/hy_v4_vl#transformers.HYV4VLVideoProcessor). See the
-[~HYV4VLImageProcessor](/docs/transformers/v5.24.0/en/model_doc/hy_v4_vl#transformers.HYV4VLImageProcessor), `~tokenizer_class`, and [~HYV4VLVideoProcessor](/docs/transformers/v5.24.0/en/model_doc/hy_v4_vl#transformers.HYV4VLVideoProcessor) for more information.
+[HYV4VLProcessor](/docs/transformers/v5.24.1/en/model_doc/hy_v4_vl#transformers.HYV4VLProcessor) offers all the functionalities of [HYV4VLImageProcessor](/docs/transformers/v5.24.1/en/model_doc/hy_v4_vl#transformers.HYV4VLImageProcessor), `tokenizer_class`, and [HYV4VLVideoProcessor](/docs/transformers/v5.24.1/en/model_doc/hy_v4_vl#transformers.HYV4VLVideoProcessor). See the
+[~HYV4VLImageProcessor](/docs/transformers/v5.24.1/en/model_doc/hy_v4_vl#transformers.HYV4VLImageProcessor), `~tokenizer_class`, and [~HYV4VLVideoProcessor](/docs/transformers/v5.24.1/en/model_doc/hy_v4_vl#transformers.HYV4VLVideoProcessor) for more information.
 
 #### __call__[[transformers.HYV4VLProcessor.__call__]]
 
@@ -356,7 +356,7 @@ Constructs a HYV4VLProcessor which wraps a image processor, a tokenizer, and a v
 __call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] | None = None, videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]], NoneType] = None, audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor'], NoneType] = None, **kwargs: *<class 'transformers.processing_utils.ProcessingKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/processing_utils.py#L671)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/processing_utils.py#L671)
 
 **Parameters:**
 
@@ -372,9 +372,9 @@ return_mm_token_type_ids (`bool`, *kwargs*) : Whether to return multimodal token
 
 return_text_replacement_offsets (`bool`, *kwargs*) : Whether to return character offsets for each multimodal placeholder and its replacement.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.24.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.24.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.24.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.24.1/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
 ## HYV4VLImageProcessor[[transformers.HYV4VLImageProcessor]]
 
@@ -384,7 +384,7 @@ return_tensors (`str` or [TensorType](/docs/transformers/v5.24.0/en/internal/fil
 transformers.HYV4VLImageProcessor(**kwargs: *<class 'transformers.models.hy_v4_vl.image_processing_hy_v4_vl.HYV4VLImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/hy_v4_vl/image_processing_hy_v4_vl.py#L88)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/hy_v4_vl/image_processing_hy_v4_vl.py#L88)
 
 **Parameters:**
 
@@ -446,7 +446,7 @@ Constructs a HYV4VLImageProcessor image processor.
 get_number_of_image_patches(height: int, width: int, images_kwargs: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/hy_v4_vl/image_processing_hy_v4_vl.py#L268)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/hy_v4_vl/image_processing_hy_v4_vl.py#L268)
 
 **Parameters:**
 
@@ -471,7 +471,7 @@ without an image input.
 patchify(images: torch.Tensor, patch_size: int, merge_size: int, temporal_patch_size: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/hy_v4_vl/image_processing_hy_v4_vl.py#L176)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/hy_v4_vl/image_processing_hy_v4_vl.py#L176)
 
 Patchifies each image into flat layout of shape (`seq_len`, `patch_dim`) so we can concat dynamically shaped pixels.
 
@@ -481,7 +481,7 @@ Patchifies each image into flat layout of shape (`seq_len`, `patch_dim`) so we c
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: *<class 'transformers.models.hy_v4_vl.image_processing_hy_v4_vl.HYV4VLImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/hy_v4_vl/image_processing_hy_v4_vl.py#L139)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/hy_v4_vl/image_processing_hy_v4_vl.py#L139)
 
 **Parameters:**
 
@@ -549,7 +549,7 @@ merge_size (`int`, *kwargs*, *optional*, defaults to 2) : The merge size of the 
 resize(images: torch.Tensor, size: SizeDict, resample: PILImageResampling | tvF.InterpolationMode | int | None, factor: int, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/hy_v4_vl/image_processing_hy_v4_vl.py#L147)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/hy_v4_vl/image_processing_hy_v4_vl.py#L147)
 
 Resize dynamically based on input image aspect ratio.
 
@@ -561,7 +561,7 @@ Resize dynamically based on input image aspect ratio.
 transformers.HYV4VLImageProcessorPil(**kwargs: *<class 'transformers.models.hy_v4_vl.image_processing_pil_hy_v4_vl.HYV4VLImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/hy_v4_vl/image_processing_pil_hy_v4_vl.py#L85)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/hy_v4_vl/image_processing_pil_hy_v4_vl.py#L85)
 
 **Parameters:**
 
@@ -623,7 +623,7 @@ Constructs a HYV4VLImageProcessor image processor.
 get_number_of_image_patches(height: int, width: int, images_kwargs: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/hy_v4_vl/image_processing_pil_hy_v4_vl.py#L261)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/hy_v4_vl/image_processing_pil_hy_v4_vl.py#L261)
 
 **Parameters:**
 
@@ -648,7 +648,7 @@ without an image input.
 patchify(image: ndarray, patch_size: int, merge_size: int, temporal_patch_size: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/hy_v4_vl/image_processing_pil_hy_v4_vl.py#L165)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/hy_v4_vl/image_processing_pil_hy_v4_vl.py#L165)
 
 Patchifies each image into flat layout of shape (`seq_len`, `patch_dim`) so we can concat dynamically shaped pixels.
 
@@ -658,7 +658,7 @@ Patchifies each image into flat layout of shape (`seq_len`, `patch_dim`) so we c
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: *<class 'transformers.models.hy_v4_vl.image_processing_pil_hy_v4_vl.HYV4VLImageProcessorKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/hy_v4_vl/image_processing_pil_hy_v4_vl.py#L202)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/hy_v4_vl/image_processing_pil_hy_v4_vl.py#L202)
 
 **Parameters:**
 
@@ -726,7 +726,7 @@ merge_size (`int`, *kwargs*, *optional*, defaults to 2) : The merge size of the 
 resize(image: ndarray, size: SizeDict, resample: PILImageResampling | int | None, factor: int, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/hy_v4_vl/image_processing_pil_hy_v4_vl.py#L136)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/hy_v4_vl/image_processing_pil_hy_v4_vl.py#L136)
 
 Resize dynamically based on input image aspect ratio.
 
@@ -738,7 +738,7 @@ Resize dynamically based on input image aspect ratio.
 transformers.HYV4VLVideoProcessor(**kwargs: *<class 'transformers.models.hy_v4_vl.video_processing_hy_v4_vl.HYV4VLVideoProcessorInitKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/hy_v4_vl/video_processing_hy_v4_vl.py#L102)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/hy_v4_vl/video_processing_hy_v4_vl.py#L102)
 
 **Parameters:**
 
@@ -752,7 +752,7 @@ Constructs a HYV4VLVideoProcessor video processor.
 preprocess(videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]]], **kwargs: *<class 'transformers.processing_utils.VideosKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/video_processing_utils.py#L98)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/video_processing_utils.py#L98)
 
 **Parameters:**
 
@@ -816,15 +816,15 @@ return_tensors (`Annotated[str | ~utils.generic.TensorType | None, None]`, *kwar
 transformers.HYV4VLVisionModel(config: HYV4VLVisionConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/hy_v4_vl/modeling_hy_v4_vl.py#L1003)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/hy_v4_vl/modeling_hy_v4_vl.py#L1003)
 
 **Parameters:**
 
-config ([HYV4VLVisionConfig](/docs/transformers/v5.24.0/en/model_doc/hy_v4_vl#transformers.HYV4VLVisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([HYV4VLVisionConfig](/docs/transformers/v5.24.1/en/model_doc/hy_v4_vl#transformers.HYV4VLVisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Hy V4 Vl Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -838,7 +838,7 @@ and behavior.
 forward(pixel_values: Tensor, grid_thw: LongTensor, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/hy_v4_vl/modeling_hy_v4_vl.py#L1032)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/hy_v4_vl/modeling_hy_v4_vl.py#L1032)
 
 **Parameters:**
 
@@ -846,13 +846,13 @@ pixel_values (`torch.Tensor` of shape `(num_patches, num_channels * patch_size *
 
 grid_thw (`torch.LongTensor` of shape `(num_images, 3)`) : The temporal, height and width dimensions for each image. Each row contains `[t, h, w]` patch counts.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([HYV4VLConfig](/docs/transformers/v5.24.0/en/model_doc/hy_v4_vl#transformers.HYV4VLConfig)) and inputs.
+elements depending on the configuration ([HYV4VLConfig](/docs/transformers/v5.24.1/en/model_doc/hy_v4_vl#transformers.HYV4VLConfig)) and inputs.
 
-The [HYV4VLVisionModel](/docs/transformers/v5.24.0/en/model_doc/hy_v4_vl#transformers.HYV4VLVisionModel) forward method, overrides the `__call__` special method.
+The [HYV4VLVisionModel](/docs/transformers/v5.24.1/en/model_doc/hy_v4_vl#transformers.HYV4VLVisionModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -881,15 +881,15 @@ the latter silently ignores them.
 transformers.HYV4VLTextModel(config: HYV4VLTextConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/hy_v4_vl/modeling_hy_v4_vl.py#L1137)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/hy_v4_vl/modeling_hy_v4_vl.py#L1137)
 
 **Parameters:**
 
-config ([HYV4VLTextConfig](/docs/transformers/v5.24.0/en/model_doc/hy_v4_vl#transformers.HYV4VLTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([HYV4VLTextConfig](/docs/transformers/v5.24.1/en/model_doc/hy_v4_vl#transformers.HYV4VLTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Hy V4 Vl Text Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -903,17 +903,17 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, cache: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, use_cache: bool | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/hy_v4_vl/modeling_hy_v4_vl.py#L1157)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/hy_v4_vl/modeling_hy_v4_vl.py#L1157)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
@@ -925,14 +925,14 @@ A `MoeModelOutputWithPast` or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [HYV4VLTextModel](/docs/transformers/v5.24.0/en/model_doc/hy_v4_vl#transformers.HYV4VLTextModel) forward method, overrides the `__call__` special method.
+The [HYV4VLTextModel](/docs/transformers/v5.24.1/en/model_doc/hy_v4_vl#transformers.HYV4VLTextModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
 - **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
-- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `cache`
@@ -959,15 +959,15 @@ the latter silently ignores them.
 transformers.HYV4VLModel(config: HYV4VLConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/hy_v4_vl/modeling_hy_v4_vl.py#L1230)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/hy_v4_vl/modeling_hy_v4_vl.py#L1230)
 
 **Parameters:**
 
-config ([HYV4VLConfig](/docs/transformers/v5.24.0/en/model_doc/hy_v4_vl#transformers.HYV4VLConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([HYV4VLConfig](/docs/transformers/v5.24.1/en/model_doc/hy_v4_vl#transformers.HYV4VLConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Hy V4 Vl Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -981,17 +981,17 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, cache: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, use_cache: bool | None = None, pixel_values: typing.Optional[torch.Tensor] = None, pixel_values_videos: typing.Optional[torch.Tensor] = None, image_grid_thw: typing.Optional[torch.LongTensor] = None, video_grid_thw: typing.Optional[torch.LongTensor] = None, mm_token_type_ids: typing.Optional[torch.IntTensor] = None, mm_encoder_outputs: dict[str, transformers.modeling_outputs.BaseModelOutputWithPooling] | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/hy_v4_vl/modeling_hy_v4_vl.py#L1520)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/hy_v4_vl/modeling_hy_v4_vl.py#L1520)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
@@ -1005,7 +1005,7 @@ image_grid_thw (`torch.LongTensor` of shape `(num_images, 3)`, *optional*) : The
 
 video_grid_thw (`torch.LongTensor` of shape `(num_videos, 3)`, *optional*) : The temporal, height and width of feature shape of each video in LLM.
 
-mm_token_type_ids (`torch.IntTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens matching each modality. For example text (0), image (1), video (2). Multimodal token type ids can be obtained using [AutoProcessor](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoProcessor). See [ProcessorMixin.__call__()](/docs/transformers/v5.24.0/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details. 
+mm_token_type_ids (`torch.IntTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens matching each modality. For example text (0), image (1), video (2). Multimodal token type ids can be obtained using [AutoProcessor](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoProcessor). See [ProcessorMixin.__call__()](/docs/transformers/v5.24.1/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details. 
 
 mm_encoder_outputs (`dict[str, ~modeling_outputs.BaseModelOutputWithPooling]`, *optional*) : Dict where keys are supported modalities and values are encoded outputs for that modality. Each encoded output is a tuple that consists of (`pooler_output`, *optional*: `last_hidden_states`, *optional*: `hidden_states`, *optional*: `attentions`) `pooler_output` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) is a sequence of multimmodal features of the encoder merged into text embeddings.
 
@@ -1015,7 +1015,7 @@ A `MultimodalMoeBaseModelOutputWithPast` or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [HYV4VLModel](/docs/transformers/v5.24.0/en/model_doc/hy_v4_vl#transformers.HYV4VLModel) forward method, overrides the `__call__` special method.
+The [HYV4VLModel](/docs/transformers/v5.24.1/en/model_doc/hy_v4_vl#transformers.HYV4VLModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1024,7 +1024,7 @@ the latter silently ignores them.
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the language model backbone.
   If `cache` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `cache`
   input) to speed up sequential decoding.
@@ -1050,19 +1050,19 @@ the latter silently ignores them.
 get_image_features(pixel_values: Tensor, image_grid_thw: typing.Optional[torch.LongTensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/hy_v4_vl/modeling_hy_v4_vl.py#L1413)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/hy_v4_vl/modeling_hy_v4_vl.py#L1413)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [HYV4VLImageProcessor](/docs/transformers/v5.24.0/en/model_doc/hy_v4_vl#transformers.HYV4VLImageProcessor). See [HYV4VLImageProcessor.__call__()](/docs/transformers/v5.24.0/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([HYV4VLProcessor](/docs/transformers/v5.24.0/en/model_doc/hy_v4_vl#transformers.HYV4VLProcessor) uses [HYV4VLImageProcessor](/docs/transformers/v5.24.0/en/model_doc/hy_v4_vl#transformers.HYV4VLImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [HYV4VLImageProcessor](/docs/transformers/v5.24.1/en/model_doc/hy_v4_vl#transformers.HYV4VLImageProcessor). See [HYV4VLImageProcessor.__call__()](/docs/transformers/v5.24.1/en/model_doc/molmo2#transformers.Molmo2ImageProcessor.__call__) for details ([HYV4VLProcessor](/docs/transformers/v5.24.1/en/model_doc/hy_v4_vl#transformers.HYV4VLProcessor) uses [HYV4VLImageProcessor](/docs/transformers/v5.24.1/en/model_doc/hy_v4_vl#transformers.HYV4VLImageProcessor) for processing images).
 
 image_grid_thw (`torch.LongTensor` of shape `(num_images, 3)`, *optional*) : The temporal, height and width of feature shape of each image in LLM.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([HYV4VLConfig](/docs/transformers/v5.24.0/en/model_doc/hy_v4_vl#transformers.HYV4VLConfig)) and inputs.
+elements depending on the configuration ([HYV4VLConfig](/docs/transformers/v5.24.1/en/model_doc/hy_v4_vl#transformers.HYV4VLConfig)) and inputs.
 
 - **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.Tensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -1085,19 +1085,19 @@ elements depending on the configuration ([HYV4VLConfig](/docs/transformers/v5.24
 get_video_features(pixel_values_videos: Tensor, video_grid_thw: typing.Optional[torch.LongTensor] = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/hy_v4_vl/modeling_hy_v4_vl.py#L1401)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/hy_v4_vl/modeling_hy_v4_vl.py#L1401)
 
 **Parameters:**
 
-pixel_values_videos (`torch.Tensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [HYV4VLVideoProcessor](/docs/transformers/v5.24.0/en/model_doc/hy_v4_vl#transformers.HYV4VLVideoProcessor). See [HYV4VLVideoProcessor.__call__()](/docs/transformers/v5.24.0/en/model_doc/molmo2#transformers.Molmo2VideoProcessor.__call__) for details ([HYV4VLProcessor](/docs/transformers/v5.24.0/en/model_doc/hy_v4_vl#transformers.HYV4VLProcessor) uses [HYV4VLVideoProcessor](/docs/transformers/v5.24.0/en/model_doc/hy_v4_vl#transformers.HYV4VLVideoProcessor) for processing videos).
+pixel_values_videos (`torch.Tensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [HYV4VLVideoProcessor](/docs/transformers/v5.24.1/en/model_doc/hy_v4_vl#transformers.HYV4VLVideoProcessor). See [HYV4VLVideoProcessor.__call__()](/docs/transformers/v5.24.1/en/model_doc/molmo2#transformers.Molmo2VideoProcessor.__call__) for details ([HYV4VLProcessor](/docs/transformers/v5.24.1/en/model_doc/hy_v4_vl#transformers.HYV4VLProcessor) uses [HYV4VLVideoProcessor](/docs/transformers/v5.24.1/en/model_doc/hy_v4_vl#transformers.HYV4VLVideoProcessor) for processing videos).
 
 video_grid_thw (`torch.LongTensor` of shape `(num_videos, 3)`, *optional*) : The temporal, height and width of feature shape of each video in LLM.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([HYV4VLConfig](/docs/transformers/v5.24.0/en/model_doc/hy_v4_vl#transformers.HYV4VLConfig)) and inputs.
+elements depending on the configuration ([HYV4VLConfig](/docs/transformers/v5.24.1/en/model_doc/hy_v4_vl#transformers.HYV4VLConfig)) and inputs.
 
 - **last_hidden_state** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.Tensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -1122,15 +1122,15 @@ elements depending on the configuration ([HYV4VLConfig](/docs/transformers/v5.24
 transformers.HYV4VLForConditionalGeneration(config: HYV4VLConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/hy_v4_vl/modeling_hy_v4_vl.py#L1602)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/hy_v4_vl/modeling_hy_v4_vl.py#L1602)
 
 **Parameters:**
 
-config ([HYV4VLConfig](/docs/transformers/v5.24.0/en/model_doc/hy_v4_vl#transformers.HYV4VLConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([HYV4VLConfig](/docs/transformers/v5.24.1/en/model_doc/hy_v4_vl#transformers.HYV4VLConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Hy V4 Vl Model for token generation conditioned on other modalities (e.g. image-text-to-text generation).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1144,17 +1144,17 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, cache: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, pixel_values: typing.Optional[torch.Tensor] = None, pixel_values_videos: typing.Optional[torch.Tensor] = None, image_grid_thw: typing.Optional[torch.LongTensor] = None, video_grid_thw: typing.Optional[torch.LongTensor] = None, mm_token_type_ids: typing.Optional[torch.IntTensor] = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, mm_encoder_outputs: dict[str, transformers.modeling_outputs.BaseModelOutputWithPooling] | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/hy_v4_vl/modeling_hy_v4_vl.py#L1643)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/hy_v4_vl/modeling_hy_v4_vl.py#L1643)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
@@ -1170,7 +1170,7 @@ image_grid_thw (`torch.LongTensor` of shape `(num_images, 3)`, *optional*) : The
 
 video_grid_thw (`torch.LongTensor` of shape `(num_videos, 3)`, *optional*) : The temporal, height and width of feature shape of each video in LLM.
 
-mm_token_type_ids (`torch.IntTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens matching each modality. For example text (0), image (1), video (2). Multimodal token type ids can be obtained using [AutoProcessor](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoProcessor). See [ProcessorMixin.__call__()](/docs/transformers/v5.24.0/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details. 
+mm_token_type_ids (`torch.IntTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens matching each modality. For example text (0), image (1), video (2). Multimodal token type ids can be obtained using [AutoProcessor](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoProcessor). See [ProcessorMixin.__call__()](/docs/transformers/v5.24.1/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details. 
 
 logits_to_keep (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) : If an `int`, compute logits for the last `logits_to_keep` tokens. If `0`, calculate logits for all `input_ids` (special case). Only last token logits are needed for generation, and calculating them only for that token can save memory, which becomes pretty significant for long sequences or large vocabulary size. If a `torch.Tensor`, must be 1D corresponding to the indices to keep in the sequence length dimension. This is useful when using packed tensor format (single dimension for batch and sequence length).
 
@@ -1182,7 +1182,7 @@ A `MoeCausalLMOutputWithPast` or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [HYV4VLForConditionalGeneration](/docs/transformers/v5.24.0/en/model_doc/hy_v4_vl#transformers.HYV4VLForConditionalGeneration) forward method, overrides the `__call__` special method.
+The [HYV4VLForConditionalGeneration](/docs/transformers/v5.24.1/en/model_doc/hy_v4_vl#transformers.HYV4VLForConditionalGeneration) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1197,7 +1197,7 @@ the latter silently ignores them.
 
   Raw router logits computed by the MoE routers. They can be used to compute a load-balancing loss or to
   inspect how tokens are dispatched to experts.
-- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
   `cache` input) to speed up sequential decoding.
@@ -1244,4 +1244,4 @@ Example:
 ```
 
 ### TVP
-https://huggingface.co/docs/transformers/v5.24.0/model_doc/tvp.md
+https://huggingface.co/docs/transformers/v5.24.1/model_doc/tvp.md

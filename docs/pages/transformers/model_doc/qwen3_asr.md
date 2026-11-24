@@ -484,7 +484,7 @@ print(f"Transcription: {transcription}")
 transformers.Qwen3ASRConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, audio_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, audio_token_id: int = 151676, timestamp_token_id: int = 151705, pad_token_id: int = 151645, eos_token_id: list[int] | tuple[int, ...] | int = (151643, 151645), initializer_range: float = 0.02, tie_word_embeddings: bool = True, token_classification_bias: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen3_asr/configuration_qwen3_asr.py#L73)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen3_asr/configuration_qwen3_asr.py#L73)
 
 **Parameters:**
 
@@ -536,7 +536,7 @@ Example:
 transformers.Qwen3ASREncoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: str | torch.dtype | None = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: Literal['regression', 'single_label_classification', 'multi_label_classification'] | None = None, num_mel_bins: int = 128, encoder_layers: int = 24, encoder_attention_heads: int = 16, encoder_ffn_dim: int = 4096, d_model: int = 1024, dropout: float | int = 0.0, attention_dropout: float | int = 0.0, activation_function: str = 'gelu', activation_dropout: float | int = 0.0, scale_embedding: bool = False, initializer_range: float = 0.02, n_window: int = 50, output_dim: int = 3584, n_window_infer: int = 800, downsample_hidden_size: int = 480, max_position_embeddings: int = 13)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen3_asr/configuration_qwen3_asr.py#L30)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen3_asr/configuration_qwen3_asr.py#L30)
 
 **Parameters:**
 
@@ -587,7 +587,7 @@ documentation from [*PreTrainedConfig*] for more information.
 transformers.Qwen3ASRFeatureExtractor(feature_size = 128, sampling_rate = 16000, hop_length = 160, chunk_length = 30, n_fft = 400, padding_value = 0.0, dither = 0.0, return_attention_mask = True, n_window = 50, min_length = 8000, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen3_asr/feature_extraction_qwen3_asr.py#L31)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen3_asr/feature_extraction_qwen3_asr.py#L31)
 
 **Parameters:**
 
@@ -621,7 +621,7 @@ Extracts 128-bin log-mel features from raw speech, then right-pads the mel time 
 __call__(raw_speech: numpy.ndarray | list[float] | list[numpy.ndarray] | list[list[float]], truncation: bool = False, pad_to_multiple_of: int | None = None, return_tensors: str | None = 'pt', return_attention_mask: bool | None = None, padding: str | None = 'max_length', max_length: int | None = None, sampling_rate: int | None = None, n_window: int | None = None, device: str | None = 'cpu', **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen3_asr/feature_extraction_qwen3_asr.py#L129)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen3_asr/feature_extraction_qwen3_asr.py#L129)
 
 **Parameters:**
 
@@ -643,7 +643,7 @@ Prepare log-mel features from one or several audio sequences.
 transformers.Qwen3ASRProcessor(feature_extractor = None, tokenizer = None, chat_template = None, timestamp_segment_time: float = 80)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen3_asr/processing_qwen3_asr.py#L333)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen3_asr/processing_qwen3_asr.py#L333)
 
 **Parameters:**
 
@@ -657,8 +657,8 @@ timestamp_segment_time (`float`, *optional*) : Milliseconds per timestamp class.
 
 Constructs a Qwen3ASRProcessor which wraps a feature extractor and a tokenizer into a single processor.
 
-[Qwen3ASRProcessor](/docs/transformers/v5.24.0/en/model_doc/qwen3_asr#transformers.Qwen3ASRProcessor) offers all the functionalities of [Qwen3ASRFeatureExtractor](/docs/transformers/v5.24.0/en/model_doc/qwen3_asr#transformers.Qwen3ASRFeatureExtractor) and [Qwen2Tokenizer](/docs/transformers/v5.24.0/en/model_doc/qwen2#transformers.Qwen2Tokenizer). See the
-[~Qwen3ASRFeatureExtractor](/docs/transformers/v5.24.0/en/model_doc/qwen3_asr#transformers.Qwen3ASRFeatureExtractor) and [~Qwen2Tokenizer](/docs/transformers/v5.24.0/en/model_doc/qwen2#transformers.Qwen2Tokenizer) for more information.
+[Qwen3ASRProcessor](/docs/transformers/v5.24.1/en/model_doc/qwen3_asr#transformers.Qwen3ASRProcessor) offers all the functionalities of [Qwen3ASRFeatureExtractor](/docs/transformers/v5.24.1/en/model_doc/qwen3_asr#transformers.Qwen3ASRFeatureExtractor) and [Qwen2Tokenizer](/docs/transformers/v5.24.1/en/model_doc/qwen2#transformers.Qwen2Tokenizer). See the
+[~Qwen3ASRFeatureExtractor](/docs/transformers/v5.24.1/en/model_doc/qwen3_asr#transformers.Qwen3ASRFeatureExtractor) and [~Qwen2Tokenizer](/docs/transformers/v5.24.1/en/model_doc/qwen2#transformers.Qwen2Tokenizer) for more information.
 
 #### __call__[[transformers.Qwen3ASRProcessor.__call__]]
 
@@ -666,7 +666,7 @@ Constructs a Qwen3ASRProcessor which wraps a feature extractor and a tokenizer i
 __call__(text: str | list[str], audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor']], output_labels: bool | None = False, **kwargs: *<class 'transformers.processing_utils.ProcessingKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen3_asr/processing_qwen3_asr.py#L367)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen3_asr/processing_qwen3_asr.py#L367)
 
 **Parameters:**
 
@@ -680,11 +680,11 @@ return_mm_token_type_ids (`bool`, *kwargs*) : Whether to return multimodal token
 
 return_text_replacement_offsets (`bool`, *kwargs*) : Whether to return character offsets for each multimodal placeholder and its replacement.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.24.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.24.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.24.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.24.1/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
-**Returns:** [BatchFeature](/docs/transformers/v5.24.0/en/main_classes/feature_extractor#transformers.BatchFeature)
+**Returns:** [BatchFeature](/docs/transformers/v5.24.1/en/main_classes/feature_extractor#transformers.BatchFeature)
 
 A dictionary with tokenized text (`input_ids`, `attention_mask`) and
 audio features (`input_features`, `input_features_mask`).
@@ -695,7 +695,7 @@ audio features (`input_features`, `input_features_mask`).
 apply_transcription_request(audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor'], list[typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor']]]], language: str | list[str] | None = None, prompt: str | list[str] | None = None, tokenize: bool = True, **kwargs: *<class 'transformers.processing_utils.ProcessingKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen3_asr/processing_qwen3_asr.py#L435)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen3_asr/processing_qwen3_asr.py#L435)
 
 **Parameters:**
 
@@ -723,7 +723,7 @@ Prepare inputs for automatic speech recognition without manually writing the cha
 prepare_forced_aligner_inputs(audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor']], transcript: str | list[str], language: str | list[str] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen3_asr/processing_qwen3_asr.py#L639)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen3_asr/processing_qwen3_asr.py#L639)
 
 **Parameters:**
 
@@ -753,7 +753,7 @@ Prepare inputs for the forced aligner model.
 decode_forced_alignment(logits, input_ids, word_lists: list[list[str]], timestamp_token_id: int, timestamp_segment_time: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen3_asr/processing_qwen3_asr.py#L712)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen3_asr/processing_qwen3_asr.py#L712)
 
 **Parameters:**
 
@@ -781,7 +781,7 @@ Decode forced aligner model outputs into word-level timestamps.
 decode(*args, return_format = 'raw', **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen3_asr/processing_qwen3_asr.py#L505)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen3_asr/processing_qwen3_asr.py#L505)
 
 **Parameters:**
 
@@ -799,15 +799,15 @@ Qwen3 ASR outputs transcription in the format: `language &amp;lt;LANG>&amp;lt;as
 transformers.Qwen3ASREncoder(config: Qwen3ASREncoderConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen3_asr/modeling_qwen3_asr.py#L328)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen3_asr/modeling_qwen3_asr.py#L328)
 
 **Parameters:**
 
-config ([Qwen3ASREncoderConfig](/docs/transformers/v5.24.0/en/model_doc/qwen3_asr#transformers.Qwen3ASREncoderConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Qwen3ASREncoderConfig](/docs/transformers/v5.24.1/en/model_doc/qwen3_asr#transformers.Qwen3ASREncoderConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The audio model for Qwen3 ASR without any head or projection on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -821,21 +821,21 @@ and behavior.
 forward(input_features: Tensor, input_features_mask: Tensor, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen3_asr/modeling_qwen3_asr.py#L372)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen3_asr/modeling_qwen3_asr.py#L372)
 
 **Parameters:**
 
-input_features (`torch.Tensor` of shape `(batch_size, sequence_length, feature_dim)`) : The tensors corresponding to the input audio features. Audio features can be obtained using [Qwen3ASRFeatureExtractor](/docs/transformers/v5.24.0/en/model_doc/qwen3_asr#transformers.Qwen3ASRFeatureExtractor). See [Qwen3ASRFeatureExtractor.__call__()](/docs/transformers/v5.24.0/en/model_doc/qwen3_asr#transformers.Qwen3ASRFeatureExtractor.__call__) for details ([Qwen3ASRProcessor](/docs/transformers/v5.24.0/en/model_doc/qwen3_asr#transformers.Qwen3ASRProcessor) uses [Qwen3ASRFeatureExtractor](/docs/transformers/v5.24.0/en/model_doc/qwen3_asr#transformers.Qwen3ASRFeatureExtractor) for processing audios).
+input_features (`torch.Tensor` of shape `(batch_size, sequence_length, feature_dim)`) : The tensors corresponding to the input audio features. Audio features can be obtained using [Qwen3ASRFeatureExtractor](/docs/transformers/v5.24.1/en/model_doc/qwen3_asr#transformers.Qwen3ASRFeatureExtractor). See [Qwen3ASRFeatureExtractor.__call__()](/docs/transformers/v5.24.1/en/model_doc/qwen3_asr#transformers.Qwen3ASRFeatureExtractor.__call__) for details ([Qwen3ASRProcessor](/docs/transformers/v5.24.1/en/model_doc/qwen3_asr#transformers.Qwen3ASRProcessor) uses [Qwen3ASRFeatureExtractor](/docs/transformers/v5.24.1/en/model_doc/qwen3_asr#transformers.Qwen3ASRFeatureExtractor) for processing audios).
 
 input_features_mask (`torch.LongTensor` of shape `(batch_size, padded_feature_length)`) : 1 for valid mel frames and 0 for padding.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Qwen3ASRConfig](/docs/transformers/v5.24.0/en/model_doc/qwen3_asr#transformers.Qwen3ASRConfig)) and inputs.
+elements depending on the configuration ([Qwen3ASRConfig](/docs/transformers/v5.24.1/en/model_doc/qwen3_asr#transformers.Qwen3ASRConfig)) and inputs.
 
-The [Qwen3ASREncoder](/docs/transformers/v5.24.0/en/model_doc/qwen3_asr#transformers.Qwen3ASREncoder) forward method, overrides the `__call__` special method.
+The [Qwen3ASREncoder](/docs/transformers/v5.24.1/en/model_doc/qwen3_asr#transformers.Qwen3ASREncoder) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -864,16 +864,16 @@ the latter silently ignores them.
 transformers.Qwen3ASRModel(config: Qwen3ASRConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen3_asr/modeling_qwen3_asr.py#L474)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen3_asr/modeling_qwen3_asr.py#L474)
 
 **Parameters:**
 
-config ([Qwen3ASRConfig](/docs/transformers/v5.24.0/en/model_doc/qwen3_asr#transformers.Qwen3ASRConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Qwen3ASRConfig](/docs/transformers/v5.24.1/en/model_doc/qwen3_asr#transformers.Qwen3ASRConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Qwen3ASR model (fine-tuned Whisper encoder, multi-modal projector, Qwen2 language model),
 without a language modeling head.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -887,11 +887,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, input_features: typing.Optional[torch.Tensor] = None, input_features_mask: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, cache: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, use_cache: bool | None = None, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen3_asr/modeling_qwen3_asr.py#L532)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen3_asr/modeling_qwen3_asr.py#L532)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 input_features (`torch.Tensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using `feature_extractor_class`. See `feature_extractor_class.__call__` for details (`processor_class` uses `feature_extractor_class` for processing audios).
 
@@ -901,7 +901,7 @@ attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *option
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
@@ -913,7 +913,7 @@ A `Qwen3ASRModelOutputWithPast` or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [Qwen3ASRModel](/docs/transformers/v5.24.0/en/model_doc/qwen3_asr#transformers.Qwen3ASRModel) forward method, overrides the `__call__` special method.
+The [Qwen3ASRModel](/docs/transformers/v5.24.1/en/model_doc/qwen3_asr#transformers.Qwen3ASRModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -927,19 +927,19 @@ the latter silently ignores them.
 get_audio_features(input_features: Tensor, input_features_mask: LongTensor, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen3_asr/modeling_qwen3_asr.py#L486)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen3_asr/modeling_qwen3_asr.py#L486)
 
 **Parameters:**
 
-input_features (`torch.Tensor` of shape `(batch_size, sequence_length, feature_dim)`) : The tensors corresponding to the input audio features. Audio features can be obtained using [Qwen3ASRFeatureExtractor](/docs/transformers/v5.24.0/en/model_doc/qwen3_asr#transformers.Qwen3ASRFeatureExtractor). See [Qwen3ASRFeatureExtractor.__call__()](/docs/transformers/v5.24.0/en/model_doc/qwen3_asr#transformers.Qwen3ASRFeatureExtractor.__call__) for details ([Qwen3ASRProcessor](/docs/transformers/v5.24.0/en/model_doc/qwen3_asr#transformers.Qwen3ASRProcessor) uses [Qwen3ASRFeatureExtractor](/docs/transformers/v5.24.0/en/model_doc/qwen3_asr#transformers.Qwen3ASRFeatureExtractor) for processing audios).
+input_features (`torch.Tensor` of shape `(batch_size, sequence_length, feature_dim)`) : The tensors corresponding to the input audio features. Audio features can be obtained using [Qwen3ASRFeatureExtractor](/docs/transformers/v5.24.1/en/model_doc/qwen3_asr#transformers.Qwen3ASRFeatureExtractor). See [Qwen3ASRFeatureExtractor.__call__()](/docs/transformers/v5.24.1/en/model_doc/qwen3_asr#transformers.Qwen3ASRFeatureExtractor.__call__) for details ([Qwen3ASRProcessor](/docs/transformers/v5.24.1/en/model_doc/qwen3_asr#transformers.Qwen3ASRProcessor) uses [Qwen3ASRFeatureExtractor](/docs/transformers/v5.24.1/en/model_doc/qwen3_asr#transformers.Qwen3ASRFeatureExtractor) for processing audios).
 
 input_features_mask (`torch.LongTensor` of shape `(batch_size, padded_feature_length)`) : 1 for valid mel frames and 0 for padding.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.Tensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.24.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.24.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Qwen3ASRConfig](/docs/transformers/v5.24.0/en/model_doc/qwen3_asr#transformers.Qwen3ASRConfig)) and inputs.
+elements depending on the configuration ([Qwen3ASRConfig](/docs/transformers/v5.24.1/en/model_doc/qwen3_asr#transformers.Qwen3ASRConfig)) and inputs.
 
 This method is used to get the audio embeddings from input features (a log mel spectrogram).
 
@@ -964,7 +964,7 @@ This method is used to get the audio embeddings from input features (a log mel s
 get_placeholder_mask(input_ids: LongTensor, inputs_embeds: Tensor, audio_features: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen3_asr/modeling_qwen3_asr.py#L508)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen3_asr/modeling_qwen3_asr.py#L508)
 
 Obtains multimodal placeholder mask from `input_ids` or `inputs_embeds`, and checks that the placeholder token count is
 equal to the length of multimodal features. If the lengths are different, an error is raised.
@@ -977,15 +977,15 @@ equal to the length of multimodal features. If the lengths are different, an err
 transformers.Qwen3ASRForConditionalGeneration(config: Qwen3ASRConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen3_asr/modeling_qwen3_asr.py#L615)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen3_asr/modeling_qwen3_asr.py#L615)
 
 **Parameters:**
 
-config ([Qwen3ASRConfig](/docs/transformers/v5.24.0/en/model_doc/qwen3_asr#transformers.Qwen3ASRConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Qwen3ASRConfig](/docs/transformers/v5.24.1/en/model_doc/qwen3_asr#transformers.Qwen3ASRConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Qwen3ASR model which consists of an audio encoder and a language model.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -999,11 +999,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, input_features: typing.Optional[torch.Tensor] = None, input_features_mask: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, cache: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, **kwargs: *<class 'transformers.utils.generic.TransformersKwargs'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen3_asr/modeling_qwen3_asr.py#L628)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen3_asr/modeling_qwen3_asr.py#L628)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 input_features (`torch.Tensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using `feature_extractor_class`. See `feature_extractor_class.__call__` for details (`processor_class` uses `feature_extractor_class` for processing audios).
 
@@ -1013,7 +1013,7 @@ attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *option
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+cache (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
@@ -1029,7 +1029,7 @@ A `Qwen3ASRCausalLMOutputWithPast` or a tuple of
 `torch.Tensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [Qwen3ASRForConditionalGeneration](/docs/transformers/v5.24.0/en/model_doc/qwen3_asr#transformers.Qwen3ASRForConditionalGeneration) forward method, overrides the `__call__` special method.
+The [Qwen3ASRForConditionalGeneration](/docs/transformers/v5.24.1/en/model_doc/qwen3_asr#transformers.Qwen3ASRForConditionalGeneration) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1037,7 +1037,7 @@ the latter silently ignores them.
 
 - **loss** (`torch.Tensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
 - **logits** (`torch.Tensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head.
-- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance.
+- **cache** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance.
 - **hidden_states** (`tuple[torch.Tensor]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.Tensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
@@ -1065,7 +1065,7 @@ Example:
 get_audio_features(input_features, input_features_mask, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen3_asr/modeling_qwen3_asr.py#L625)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen3_asr/modeling_qwen3_asr.py#L625)
 
 ## Qwen3ASRForTokenClassification[[transformers.Qwen3ASRForTokenClassification]]
 
@@ -1075,15 +1075,15 @@ get_audio_features(input_features, input_features_mask, **kwargs)
 transformers.Qwen3ASRForTokenClassification(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/models/qwen3_asr/modeling_qwen3_asr.py#L697)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/models/qwen3_asr/modeling_qwen3_asr.py#L697)
 
 **Parameters:**
 
-config ([`[``GenericForTokenClassification``]`]) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([`[``GenericForTokenClassification``]`]) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Qwen3 ASR model with a token classification head for timestamp prediction (forced alignment).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.24.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1097,17 +1097,17 @@ and behavior.
 forward(input_ids: torch.LongTensor | None = None, attention_mask: torch.Tensor | None = None, position_ids: torch.LongTensor | None = None, cache: Cache | None = None, inputs_embeds: torch.Tensor | None = None, labels: torch.LongTensor | None = None, use_cache: bool | None = None, **kwargs: Unpack[TransformersKwargs])
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.24.0/src/transformers/modeling_layers.py#L292)
+[Source](https://github.com/huggingface/transformers/blob/v5.24.1/src/transformers/modeling_layers.py#L292)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-cache (`Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+cache (`Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `cache` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `cache` are passed, [DynamicCache](/docs/transformers/v5.24.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `cache` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
@@ -1124,4 +1124,4 @@ instance afterwards instead of this since the former takes care of running the p
 the latter silently ignores them.
 
 ### Gemma3n
-https://huggingface.co/docs/transformers/v5.24.0/model_doc/gemma3n.md
+https://huggingface.co/docs/transformers/v5.24.1/model_doc/gemma3n.md

@@ -241,4 +241,4 @@ Contributions to [AutoRound](https://github.com/intel/auto-round/pulls) are welc
 Whether it's fixing bugs, improving documentation, adding new features, or suggesting improvements, your help is always valued.
 
 ### Optimum
-https://huggingface.co/docs/transformers/v5.24.0/quantization/optimum.md
+https://huggingface.co/docs/transformers/v5.24.1/quantization/optimum.md

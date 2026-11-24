@@ -10,7 +10,7 @@ To get started with Dash on Spaces, click the button below:
 
     
 
-This will start building your Space using Plotly's Dash Docker template. If successful, you should see a similar application to the [Dash template app](https://huggingface.co/spaces/dash/dash-app-template).
+This will start building your Space using Plotly's Dash Docker template. If successful, you should see a similar application to the [Dash template app](https://huggingface.co/spaces/plotly/dash-app-template).
 
 ## Customizing your Dash app
 

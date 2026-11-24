@@ -30,5 +30,5 @@ df = (
 )
 ```
 
-### Server infrastructure
-https://huggingface.co/docs/dataset-viewer/server.md
+### ClickHouse
+https://huggingface.co/docs/dataset-viewer/clickhouse.md

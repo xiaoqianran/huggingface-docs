@@ -80,5 +80,5 @@ Pandas is a powerful library for data analysis; group the dataset by time comple
 df.groupby('complexity')['src'].apply(lambda x: x.str.len().mean()).sort_values(ascending=False).plot.barh(color="orange")
 ```
 
-### ClickHouse
-https://huggingface.co/docs/dataset-viewer/clickhouse.md
+### List splits and subsets
+https://huggingface.co/docs/dataset-viewer/splits.md

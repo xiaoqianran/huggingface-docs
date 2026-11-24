@@ -41,5 +41,5 @@ b'Aries'         918.666667
 Name: default/text, dtype: float64
 ```
 
-### DuckDB
-https://huggingface.co/docs/dataset-viewer/duckdb.md
+### cuDF
+https://huggingface.co/docs/dataset-viewer/cudf.md
