@@ -1,6 +1,6 @@
 <!-- huggingface-docs: machine-translated zh-CN from English source -->
 
-# SQL 控制台：在浏览器中查询 Hugging Face 数据集
+# SQL Console：在浏览器中查询拥抱人脸数据集
 
 您可以使用 SQL 控制台在浏览器中对数据集运行 SQL 查询。 SQL 控制台由 [DuckDB](https://duckdb.org/) WASM 提供支持，完全在浏览器中运行。您可以从 Data Studio 访问 SQL 控制台。
 
@@ -53,7 +53,7 @@ from histogram(train, Rating)
 
 DuckDB 最强大的功能之一是对正则表达式的深度支持。您可以使用 `regexp` 函数来匹配数据中的模式。
 
- 使用[regexp_matches](https://duckdb.org/docs/sql/functions/char.html#regexp_matchesstring-pattern)函数，我们可以过滤[GeneralReasoning/GeneralThought-195k](https://huggingface.co/datasets/GeneralReasoning/GeneralThought-195K)数据集以查找包含Markdown代码块的指令。
+ 使用 [regexp_matches](https://duckdb.org/docs/sql/functions/char.html#regexp_matchesstring-pattern) 函数，我们可以过滤 [nvidia/HelpSteer2](https://huggingface.co/datasets/nvidia/HelpSteer2) 数据集以查找包含 Markdown 代码块的响应。
 
  
     
@@ -64,7 +64,7 @@ DuckDB 最强大的功能之一是对正则表达式的深度支持。您可以�
 ```sql
 SELECT *
 FROM train
-WHERE regexp_matches(model_answer, '```')
+WHERE regexp_matches(response, '```')
 限制 10；
 ```
 
@@ -80,7 +80,7 @@ POST /api/datasets/{namespace}/{repo}/sql-console/embed
   "sql": "从火车 LIMIT 10 中选择 *",
   "title": "示例行",
   “私人”：假，
-  “视图”：[{“键”：“默认/火车”，“显示名称”：“火车”，“视图名称”：“火车”}]
+  "views": [{"key": "default/train", "displayName": "Train", "viewName": "train"}]
 }
 ```
 

@@ -4,7 +4,7 @@
 
 大多数工具已经可以通过以下两种方式之一使用存储桶：
 
-- **基于 fsspec** 构建的 Python 库（pandas、Dask、PyArrow 等）通过 [⟦T15⟧ filesystem interface](/docs/huggingface_hub/guides/hf_file_system) 读取和写入 `hf://buckets/` 路径。
+- **基于 fsspec** 构建的 Python 库（pandas、Dask、PyArrow 等）通过 [⟦T17⟧ filesystem interface](/docs/huggingface_hub/guides/hf_file_system) 读取和写入 `hf://buckets/` 路径。
 - **与 S3 通信的工具**（boto3、AWS CLI、rclone、DVC 等）针对 [S3-compatible API](./storage-buckets-s3) 工作。
 
 本页面涵盖具有内置存储桶支持的库，以及常见数据库的示例。对于安装和卷安装，请参阅[Access Patterns](./storage-buckets-access)。
@@ -54,7 +54,7 @@ table = pq.read_table("hf://buckets/username/my-bucket/data.parquet")
 
 ## PySpark
 
-安装[⟦T17⟧](https://github.com/huggingface/pyspark_huggingface)后：
+安装[⟦T19⟧](https://github.com/huggingface/pyspark_huggingface)后：
 
 ```python
 df = (
@@ -114,7 +114,34 @@ diffusers-cli run --model black-forest-labs/FLUX.1-dev --dtype bf16 \
 
 当[Trackio](https://huggingface.co/docs/trackio)登录到空间时，它将运行数据存储在根据空间ID创建的存储桶中。将 `bucket_id` 传递给 `trackio.init()` 以使用您选择的存储桶。
 
-## 检查人工智能
+## PyIceberg
+
+[PyIceberg](https://py.iceberg.apache.org/)可以将Iceberg表存储在桶中。将目录的 `warehouse` 设置为 `hf://buckets/` 路径：
+
+```bash
+pip install "pyiceberg[hf,pyarrow,sql-sqlite]"
+```
+
+```python
+import pyarrow as pa
+from pyiceberg.catalog import load_catalog
+
+catalog = load_catalog(
+    "default",
+    type="sql",
+    uri="sqlite:///catalog.db",
+    warehouse="hf://buckets/username/my-bucket/warehouse",
+)
+
+df = pa.table({"id": [1, 2, 3], "text": ["a", "b", "c"]})
+catalog.create_namespace("default")
+table = catalog.create_table("default.my_table", schema=df.schema)
+table.append(df)
+```
+
+表数据和元数据进入存储桶。 SQLite 目录保留在本地。
+
+## Inspect AI
 
 [Inspect AI](https://inspect.aisi.org.uk/)可以将评估日志直接写入存储桶——将其日志目录指向`hf://buckets/`路径（需要`huggingface_hub>=1.6.0`）。首先创建存储桶并进行身份验证（Inspect 不会为您创建它）：
 
@@ -158,15 +185,15 @@ file_mounts:
 
 run: |
   python train.py --model /base-model --output_dir /checkpoints
-```
-
-验证一次 - `hf auth login` （或 `export HF_TOKEN=REDACTED 就是 SkyPilot 所需要的。它将您本地的 Hugging Face 令牌转发到每个云，因此存储桶和存储库安装会自动进行验证：
+```验证一次 - `hf auth login` （或 `export HF_TOKEN=REDACTED 就是 SkyPilot 所需要的。它将您本地的 Hugging Face 令牌转发到每个云，因此存储桶和存储库安装会自动进行验证：
 
 ```bash
 pip install "skypilot[huggingface]"
 hf auth login                              # or: export HF_TOKEN=REDACTED
 sky launch qwen-sft.yaml
-```如果您自己的 `run` 代码拉取门控存储库，请将 `--secret HF_TOKEN` 添加到启动命令中，以将令牌公开为环境变量。
+```
+
+如果您自己的 `run` 代码拉取门控存储库，请将 `--secret HF_TOKEN` 添加到启动命令中，以将令牌公开为环境变量。
 
 > [!提示]
 > `MOUNT` 和 `MOUNT_CACHED` 与 `hf` 的行为相同，并使用 [hf-mount](https://github.com/huggingface/hf-mount) FUSE 后端，该后端需要 glibc ≥ 2.34 和 `/dev/fuse` 的基础映像。裸虚拟机云同时提供这两种功能。 SkyPilot 的默认 Kubernetes 映像附带较旧的 glibc，因此设置较新的 `image_id`（例如 `docker:mirror.gcr.io/ubuntu:22.04`）。当前环境要求请参见[SkyPilot storage docs](https://docs.skypilot.co/en/latest/reference/storage.html)。
@@ -204,9 +231,7 @@ COPY tbl TO 'hf://buckets/username/my-bucket/out.parquet';
 
 [OpenDAL](https://opendal.apache.org/) 为 Rust、Java、Go、JavaScript 等提供了类似的文件系统接口。
 
-## 即将推出
-
-更多库即将提供本机 `hf://` URL 支持 - 包括 WebDataset。与此同时，所有这些现在都已通过 [S3-compatible API](./storage-buckets-s3) 发挥作用。
+## 即将推出更多库即将提供本机 `hf://` URL 支持 - 包括 WebDataset。与此同时，所有这些今天都已通过 [S3-compatible API](./storage-buckets-s3) 发挥作用。
 
 ### marimo 空间
 https://huggingface.co/docs/hub/spaces-sdks-docker-marimo.md

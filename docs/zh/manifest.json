@@ -81,8 +81,8 @@
       "translatedAt": "2026-10-29T14:06:09.761Z"
     },
     "hub/audit-logs.md": {
-      "hash": "d5e89c0739688932af80557feea8d599d090c8a7",
-      "translatedAt": "2026-11-05T15:20:25.831Z"
+      "hash": "d150f8eadb3d3f8dfb087c61fc258e7eca9a07a6",
+      "translatedAt": "2026-11-25T17:55:07.755Z"
     },
     "hub/billing.md": {
       "hash": "dfae472c0373237960c43447bf2430c16b68b7eb",
@@ -281,8 +281,8 @@
       "translatedAt": "2026-11-09T17:22:36.350Z"
     },
     "hub/datasets-viewer-sql-console.md": {
-      "hash": "4267dd8c69918ba3e0a9df71be78ee9baafe3ff4",
-      "translatedAt": "2026-11-19T16:29:35.306Z"
+      "hash": "acda7eba209540466538f9d66f4cec7663496a78",
+      "translatedAt": "2026-11-25T17:55:02.166Z"
     },
     "hub/doi.md": {
       "hash": "6209806269d7bd0236cae16cff52f58e1b5c4ed3",
@@ -321,8 +321,8 @@
       "translatedAt": "2026-10-29T14:07:24.654Z"
     },
     "hub/enterprise-service-accounts.md": {
-      "hash": "cbeed061b0aa3f336655e5b622bbce0d46b7c8b6",
-      "translatedAt": "2026-11-16T16:55:49.700Z"
+      "hash": "e9df6992f3207c237fd16fe0def0691ba33c0248",
+      "translatedAt": "2026-11-25T17:55:04.034Z"
     },
     "hub/enterprise-network-security.md": {
       "hash": "de16800dfa1ded7dd20556eb80264cfec03211bd",
@@ -357,8 +357,8 @@
       "translatedAt": "2026-10-29T14:07:39.531Z"
     },
     "hub/enterprise-tokens-management.md": {
-      "hash": "ec52feed75e1d068b91320c8df50325bb2225918",
-      "translatedAt": "2026-10-29T14:07:37.919Z"
+      "hash": "ec2d5844db0fb423b99e594179e0b9de65aa649e",
+      "translatedAt": "2026-11-25T17:55:12.256Z"
     },
     "hub/gguf-gpt4all.md": {
       "hash": "78a4ab21a8e7a3969aff6227bf0ceedc6895f5e3",
@@ -377,8 +377,8 @@
       "translatedAt": "2026-10-29T14:07:45.216Z"
     },
     "hub/enterprise.md": {
-      "hash": "e35d6adaabe8ccaad78d8bf9ddf4214fc7f4e4ac",
-      "translatedAt": "2026-11-24T18:48:25.291Z"
+      "hash": "3d6ffd22e8e8fccc1aee0ef89b2e71dbf7c89490",
+      "translatedAt": "2026-11-25T17:55:15.973Z"
     },
     "hub/gguf.md": {
       "hash": "62322b02be27d2ed40510e6969405db41f690959",
@@ -617,8 +617,8 @@
       "translatedAt": "2026-11-12T15:55:10.289Z"
     },
     "hub/publisher-analytics.md": {
-      "hash": "0e4ccf2f9f3e935517b800fe97a6ad6cc20196b3",
-      "translatedAt": "2026-11-23T19:09:59.651Z"
+      "hash": "e97ed412a6cc1290740391068db0666757801c2b",
+      "translatedAt": "2026-11-25T17:55:13.518Z"
     },
     "hub/repositories-github-actions.md": {
       "hash": "401f35a8fa03a4ba35750321834a31dc7471674d",
@@ -781,8 +781,8 @@
       "translatedAt": "2026-10-29T14:10:01.607Z"
     },
     "hub/security-tokens.md": {
-      "hash": "f201f4efb41896e9a556be5ce12001641c901263",
-      "translatedAt": "2026-11-16T16:55:51.971Z"
+      "hash": "6747f3b109f0ba70cd4b055db2e1bd5f2e131afd",
+      "translatedAt": "2026-11-25T17:55:19.200Z"
     },
     "hub/spaces-circleci.md": {
       "hash": "e75ec2ec9b821899c4bd58104b762c3a9dfe103a",
@@ -853,8 +853,8 @@
       "translatedAt": "2026-10-29T14:10:16.409Z"
     },
     "hub/spaces-oauth.md": {
-      "hash": "0042b1f4c958ee616bd9e09d136ed732fa05a318",
-      "translatedAt": "2026-11-12T15:55:11.270Z"
+      "hash": "51ba8df5d6bae53af00a4ea8e5f287ad3c132dd4",
+      "translatedAt": "2026-11-25T17:55:20.149Z"
     },
     "hub/spaces-sdks-docker-aim.md": {
       "hash": "f4c576c1a383353033f4a8b7a465402b8461d892",
@@ -893,8 +893,8 @@
       "translatedAt": "2026-10-29T14:10:23.960Z"
     },
     "hub/spaces-overview.md": {
-      "hash": "ad0b630e0c349d25774d17b04ab2dc60f7de8799",
-      "translatedAt": "2026-10-29T14:10:22.831Z"
+      "hash": "52d513a9115f57d311d615f5aa011f5e3c5bc83f",
+      "translatedAt": "2026-11-25T17:55:24.096Z"
     },
     "hub/spaces-sdks-docker-giskard.md": {
       "hash": "9d1d6c37749ba4e3b108cd7a419eb8c3001acd18",
@@ -997,8 +997,8 @@
       "translatedAt": "2026-10-29T14:10:52.707Z"
     },
     "hub/storage-buckets-integrations.md": {
-      "hash": "5c68770909451268fafc5ea76896484b75b0a27d",
-      "translatedAt": "2026-11-19T16:29:41.338Z"
+      "hash": "903719ccb3166fafcbfa3cd979b3b9fe058ad157",
+      "translatedAt": "2026-11-25T17:55:22.743Z"
     },
     "hub/storage-buckets-security.md": {
       "hash": "03f5a2ee6155e191ee4f65ebd8aec40c6843b5b2",
@@ -2061,10 +2061,10 @@
       "translatedAt": "2026-11-24T18:48:17.568Z"
     }
   },
-  "updatedAt": "2026-11-24T18:48:30.462Z",
+  "updatedAt": "2026-11-25T17:55:24.096Z",
   "stats": {
-    "translated": 17,
-    "skipped": 383,
+    "translated": 10,
+    "skipped": 390,
     "failed": 0,
     "total": 400
   }

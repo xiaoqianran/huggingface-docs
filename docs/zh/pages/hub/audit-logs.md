@@ -64,14 +64,16 @@ GET https://huggingface.co/api/organizations/{org}/audit-log/export
   - **活动：** `org.rotate_token`
   - 令牌批准系统 — 启用或禁用策略、授权请求、批准、拒绝和撤销。
   - **活动：** `org.token_approval.enabled`、`org.token_approval.disabled`、`org.token_approval.authorization_request`、`org.token_approval.authorization_request.authorized`、`org.token_approval.authorization_request.revoked`、`org.token_approval.authorization_request.denied`
+  - 存储库范围的令牌 — 启用或禁用策略。
+  - **活动：** `org.token_repo_scope.enabled`、`org.token_repo_scope.disabled`
   - SSO — 通过 SSO 登录和加入，以及成员授权或取消授权其访问令牌和 SSH 密钥。
   - **活动：** `org.sso_login`、`org.sso_join`、`org.sso_credential.authorize`、`org.sso_credential.deauthorize`
 - **加入设置** — 基于域的访问和自动加入配置。
   - **活动：** `org.update_join_settings`
+- **分析导出** — 下载存储库和博客文章的 [Publisher Analytics](./publisher-analytics) CSV 导出。
+  - **活动：** `org.repo_analytics.export`、`org.blog_analytics.export`
 
-### 会员资格和访问控制
-
-- **成员生命周期** — 添加和删除成员、角色更改以及成员离开组织。
+### 会员资格和访问控制- **成员生命周期** — 添加和删除成员、角色更改以及成员离开组织。
   - **活动：** `org.add_user`、`org.remove_user`、`org.change_role`、`org.leave`
 - **账户类型** — 将会员转换为 [external collaborator](./security-sso-user-management#external-collaborators)，或重新转换为会员。
   - **活动：** `org.change_account_type`
@@ -80,14 +82,14 @@ GET https://huggingface.co/api/organizations/{org}/audit-log/export
 - **自动加入** — 通过经过验证的电子邮件域或“请求访问”加入。
   - **活动：** `org.join.from_domain`、`org.join.automatic`
 
-### 服务帐户- **服务帐户生命周期**：服务帐户的创建和删除。
+### 服务帐户
+
+- **服务帐户生命周期**：服务帐户的创建和删除。
   - **活动：** `org.service_account.create`、`org.service_account.delete`
 - **服务帐户令牌**：令牌创建、删除、轮换和更新（名称、权限、网络安全豁免），以及与令牌配对的 S3 凭证的生成和撤销。
   - **活动：** `org.service_account.token.create`、`org.service_account.token.delete`、`org.service_account.token.rotate`、`org.service_account.token.update`、`org.service_account.token.s3_credential.create`、`org.service_account.token.s3_credential.delete`
 
-### OAuth 应用程序
-
-- **OAuth 应用程序管理** — 创建、更新（名称、URL、范围或令牌过期）和删除组织拥有的 [OAuth apps](./oauth#organization-owned-oauth-apps)，包括其 [Token Exchange app](./oauth#token-exchange-for-organizations-rfc-8693)，以及将成员的个人应用程序转移到组织。不记录徽标更改。
+### OAuth 应用程序- **OAuth 应用程序管理** — 创建、更新（名称、URL、范围或令牌过期）和删除组织拥有的 [OAuth apps](./oauth#organization-owned-oauth-apps)，包括其 [Token Exchange app](./oauth#token-exchange-for-organizations-rfc-8693)，以及将成员的个人应用程序转移到组织。不记录徽标更改。
   - **活动：** `oauth.app.create`、`oauth.app.update`、`oauth.app.delete`、`oauth.app.move`
 - **客户端密钥** — 轮换客户端密钥（或向公共应用程序添加一个）、删除它，并通过 Hugging Face 使密钥过期。
   - **活动：** `oauth.app.secret.rotate`、`oauth.app.secret.delete`、`oauth.app.secret.expire`
@@ -97,7 +99,7 @@ GET https://huggingface.co/api/organizations/{org}/audit-log/export
 ### 内容和资源管理- **存储库管理** — 创建、删除、移动、禁用/重新启用、重复设置、DOI 删除、资源组分配和常规存储库设置（可见性、门控、讨论等）。还有LFS文件删除。
   - **活动：** `repo.create`、`repo.delete`、`repo.move`、`repo.disable`、`repo.removeDisable`、`repo.duplication`、`repo.delete_doi`、`repo.update_resource_group`、`repo.update_settings`、`repo.delete_lfs_file`
 - **集合** — 创建和删除集合。
-  - **活动：** `collection.create`、`collection.delete`
+  - **活动：** `collection.create`，`collection.delete`
 - **存储库安全性** — 秘密和变量（单独和批量添加/更新/删除）。
   - **事件（秘密）：** `repo.add_secret`、`repo.update_secret`、`repo.remove_secret`、`repo.add_secrets`、`repo.remove_secrets`
   - **事件（变量）：** `repo.add_variable`、`repo.update_variable`、`repo.remove_variable`、`repo.add_variables`、`repo.remove_variables`

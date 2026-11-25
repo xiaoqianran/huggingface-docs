@@ -31,7 +31,7 @@ Hugging Face Spaces 让您可以在几分钟内轻松创建和部署 ML 支持�
 |通过[custom domain](./spaces-custom-domain)访问应用程序 |是的 |是的 |没有 |
 |可以被其他人克隆|是的 |没有 |没有 |
 
-**公共**空间完全开放：任何人都可以查看源代码、访问正在运行的应用程序以及克隆存储库。**受保护** 空间在 Hub 上保留其源代码的私密性 - 只有所有者和协作者可以查看或克隆存储库。但是，正在运行的应用程序可以通过其嵌入 URL (`https://<space-subdomain>.hf.space`) 或在配置后通过 [custom domain](./spaces-custom-domain) 公开访问。这对于在不发布源代码的情况下托管网站或应用程序特别有用。
+**公共**空间完全开放：任何人都可以查看源代码、访问正在运行的应用程序以及克隆存储库。**受保护** 空间在 Hub 上保留其源代码的私密性 - 只有所有者和协作者可以查看或克隆存储库。但是，正在运行的应用程序可以通过其嵌入 URL (`https://<space-subdomain>.hf.space`) 或通过配置后的 [custom domain](./spaces-custom-domain) 公开访问。这对于在不发布源代码的情况下托管网站或应用程序特别有用。
 
 **私人** 空间是完全私人的：源代码和正在运行的应用程序只能由所有者和协作者访问。该空间不会出现在搜索结果中，其他用户在访问其 URL 时将收到 `404` 错误。
 
@@ -40,7 +40,7 @@ Hugging Face Spaces 让您可以在几分钟内轻松创建和部署 ML 支持�
 默认情况下，每个 Spaces 环境仅限于 16GB RAM、2 个 CPU 核心和 50GB（非持久）磁盘空间。默认的 CPU Basic 硬件没有每小时成本，但创建在计算（Gradio 或 Docker）上运行的空间需要付费计划，而静态空间对所有人免费。您可以为 [competitive price](https://huggingface.co/pricing#spaces) 升级到更好的硬件，包括各种 GPU 加速器。要请求升级，请单击空间中的_设置_按钮并选择您喜欢的硬件环境。| **硬件** | **CPU** | **内存** | **GPU 内存** | **每小时价格** |
 |------------------------ |-------------- |------------- |---------------- | ----------------- |
 | CPU基础| 2 个虚拟CPU | 16GB|                 |免费|
-| CPU升级 | 8 个 vCPU | 32GB|                 | 0.03 美元 | 
+| CPU升级| 8 个 vCPU | 32GB|                 | 0.03 美元 | 
 | Nvidia T4 - 小| 4 个虚拟CPU | 15GB| 16GB| 0.40 美元 |
 | Nvidia T4 - 中 | 8 个 vCPU | 30GB| 16GB| 0.60 美元 |
 | 1x Nvidia L4 | 8 个 vCPU | 30GB| 24GB| 0.80 美元 |
@@ -88,10 +88,10 @@ print(os.getenv('MODEL_REPO_ID'))
 
 ## 复制空间
 
-如果您想使用另一个演示作为初始模板来构建新演示，则复制空间可能会很有用。如果您希望有一个单独的升级空间供您快速推理使用，那么重复空间也很有用。如果您想复制一个空间，可以单击该空间右上角的三个点，然后单击“**复制此空间**”。完成此操作后，您将能够更改以下属性：
+如果您想使用另一个演示作为初始模板来构建新演示，则复制空间会很有用。如果您希望有一个单独的升级空间供您快速推理使用，那么重复空间也很有用。如果您想复制一个空间，可以单击该空间右上角的三个点，然后单击“**复制此空间**”。完成此操作后，您将能够更改以下属性：
 
 * 所有者：复制的空间可以位于您的帐户或您具有写入权限的任何组织下
-* 空间名称
+* Space name
 * 可见性：空间默认是私有的。了解有关可见性选项 [here](./repositories-settings#repository-visibility) 的更多信息。
 * 硬件：您可以选择运行空间的硬件。了解有关硬件升级的更多信息[here](./spaces-gpus)。
 * 存储：如果原始仓库使用存储桶，则会提示您配置存储。阅读有关磁盘使用和存储的更多信息[here](./spaces-storage)。
@@ -120,7 +120,7 @@ print(os.getenv('MODEL_REPO_ID'))
 * `SPACE_SIGNING_SECRET`：您的空间独有的随机秘密，作为秘密公开。它在重新启动、重建和副本中保持不变，因此您可以使用它来签署 cookie、OAuth 状态或 CSRF 令牌等内容。要使用您自己的值，请在您的空间设置中添加一个名为 `SPACE_SIGNING_SECRET` 的密钥。
 
 如果您的空间启用了[OAuth](./spaces-oauth)，则以下变量也将可用：* `OAUTH_CLIENT_ID`：您的 OAuth 应用程序的客户端 ID（公共）
-* `OAUTH_CLIENT_SECRET`：OAuth 应用程序的客户端密钥
+* `OAUTH_CLIENT_SECRET`：OAuth 应用程序的客户端密钥（已弃用：使用 PKCE 代替，它不需要令牌交换的密钥）
 * `OAUTH_SCOPES`：OAuth 应用程序可访问的范围。目前，这始终是`"openid profile"`。
 * `OPENID_PROVIDER_URL`：OpenID 提供商的 URL。 OpenID 元数据将在 [⟦T33⟧](https://huggingface.co/.well-known/openid-configuration) 提供。
 

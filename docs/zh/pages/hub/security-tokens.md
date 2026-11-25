@@ -69,9 +69,9 @@ model = AutoModel.from_pretrained("private/model", token=access_token)
 
 ## 撤销泄露的令牌
 
-如果您自己的令牌之一已泄漏，请从您设置的[Access Tokens tab](https://huggingface.co/settings/tokens)中删除或刷新它。
+如果您自己的令牌之一已泄漏，请从设置的[Access Tokens tab](https://huggingface.co/settings/tokens)中删除或刷新它。
 
-如果您发现了其他人的 Hugging Face 访问令牌，您可以使用 [⟦T8⟧](https://huggingface-openapi.hf.space/#tag/tokens/POST/api/credentials/revoke) 端点使其失效。您不需要拥有该令牌的帐户或组织的任何权利。
+如果您发现了其他人的 Hugging Face 访问令牌，您可以使用 [⟦T8⟧](https://huggingface-openapi.hf.space/#tag/tokens/POST/api/credentials/revoke) 端点使其失效。您不需要对拥有该令牌的帐户或组织拥有任何权限。
 
 ```bash
 # LEAKED_HF_TOKEN should contain the raw token value to revoke
@@ -113,6 +113,8 @@ curl -X POST "https://huggingface.co/api/credentials/revoke" \
 ### 当您的组织仅允许细粒度令牌时（团队和企业组织）
 
 如果您的组织设置了需要细粒度令牌的策略，则在针对该组织的资源使用读/写令牌时，读/写令牌将被拒绝，并出现 `403` 错误。
+
+### 当您的组织需要存储库范围的令牌时（企业组织）如果您的组织需要存储库范围的令牌，则您的细粒度令牌无法拥有整个组织的存储库权限。请在 **存储库权限** 下选择特定存储库。具有组织范围存储库权限的现有令牌将被拒绝，并在该组织的资源上出现 `403` 错误。参见[Require Repository-Scoped Tokens](./enterprise-tokens-management#require-repository-scoped-tokens)。
 
 ### 在拥抱脸部时使用 MLX
 https://huggingface.co/docs/hub/mlx.md

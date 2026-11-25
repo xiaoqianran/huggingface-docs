@@ -50,16 +50,47 @@ CSV 中的每条记录包含：- `repoType`：存储库的类型（例如“模�
 记录按时间顺序排序，并提供每个存储库下载活动的每日详细视图。
 
 > [!注意]
-> 用户**不会**对下载数据进行重复数据删除。如果您需要唯一下载计数，请参阅下一节。
+> 用户**不会**对下载数据进行重复数据删除。如果您需要独特的下载计数，请参阅[Unique downloaders and more granular logs](#unique-downloaders-and-more-granular-logs)部分。
+
+## 博客分析
+
+如果您的组织在中心发布博客文章，您可以从组织发布商分析设置的 **博客分析** 选项卡（**存储库分析** 和 **高级控制** 选项卡旁边）下载每个已发布帖子的每日流量。单击 **下载 CSV** 以获取过去 90 天内所有帖子的数据。
+
+您还可以通过以下端点以编程方式访问此数据：
+
+```bash
+curl -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+  "https://huggingface.co/organizations/YOUR_ORG_NAME/settings/publisher/blog-analytics/export" \
+  --output blog-analytics.csv
+```
+
+### 响应结构CSV 的每一行都包含一天一篇博客文章的流量。每个帖子在过去 90 天（包括当天）每天都会获取一行，如果是最近发布的，则从其发布日期开始。没有任何流量的天数包含在 `0` 值中：
+
+```csv
+blogTitle,blogUrl,publishedAt,date,humanViews,humanVisitors,agentViews
+"My first blog post",https://huggingface.co/blog/YOUR_ORG_NAME/my-first-blog-post,2026-05-12,2026-08-22,87,71,23
+"My first blog post",https://huggingface.co/blog/YOUR_ORG_NAME/my-first-blog-post,2026-05-12,2026-08-23,0,0,0
+```
+
+- `blogTitle`：博客文章的标题
+- `blogUrl`：博客文章的 URL
+- `publishedAt`：博客文章的发布日期（`YYYY-MM-DD`）
+- `date`：记录流量的日期 (`YYYY-MM-DD`)
+- `humanViews`：当天人们的页面浏览量
+- `humanVisitors`：当天独立访客数
+- `agentViews`：当天AI代理的页面浏览量
+
+> [!注意]
+> 数据每天更新一次，因此最新一天的数据可能不完整。唯一身份访问者按每天进行计数，因此不应将各天的唯一访问者数相加以获得唯一身份访问者总数。
+
+每次导出都会作为 `org.blog_analytics.export` 事件记录在您组织的 [audit logs](./audit-logs) 中。
 
 ## 高级发布商分析：独特的下载器和更精细的日志
 
 > [!警告]
-> 此功能是 Enterprise Plus 计划的附加功能。
+> 此功能是 Enterprise Plus 计划的附加功能。作为一项高级功能，Hugging Face 可以导出组织发布的所有模型和数据集的匿名请求级访问日志。每行代表一个与下载相关的请求，为您提供模型和数据集下载数据的完整粒度。
 
-作为一项高级功能，Hugging Face 可以导出组织发布的所有模型和数据集的匿名请求级访问日志。每行代表一个与下载相关的请求，为您提供模型和数据集下载数据的完整粒度。您的团队负责摄取这些日志并对其运行计算。导出有意包含原始 HTTP 状态代码和方法，以便您可以根据自己的分析需求对 `HEAD`、部分内容、重定向和其他请求模式进行分类。
-
-|专栏 |描述 |
+您的团队负责摄取这些日志并对其运行计算。导出有意包含原始 HTTP 状态代码和方法，以便您可以根据自己的分析需求对 `HEAD`、部分内容、重定向和其他请求模式进行分类。|专栏 |描述 |
 | -------------- | ------------------------------------------------------------------- |
 | `timestamp` |请求时间戳 |
 | `status` | HTTP 状态代码（例如 `200`、`206`、`302`、`307`、`304`）|
@@ -70,9 +101,8 @@ CSV 中的每条记录包含：- `repoType`：存储库的类型（例如“模�
 | `hashedIp` | IP 地址的不可逆哈希值（如果未经身份验证）|
 | `country` |国家 ISO 代码 |
 | `region` |地区或城市名称 |
-| `userAgent` | HTTP 用户代理标头 || `path` |存储库或存储桶内的文件路径，源自请求 URL |
+| `userAgent` | HTTP 用户代理标头 |
+| `path` |存储库或存储桶内的文件路径，源自请求 URL |
 
-由于它需要在我们这边设置自定义数据导出管道（自定义弹性索引等），因此这只能作为 Enterprise Plus 的附加组件提供。
-
-### Spaces 开发模式：Spaces 中的无缝开发
+由于它需要在我们这边设置自定义数据导出管道（自定义弹性索引等），因此这只能作为 Enterprise Plus 的附加组件提供。### Spaces 开发模式：Spaces 中的无缝开发
 https://huggingface.co/docs/hub/spaces-dev-mode.md

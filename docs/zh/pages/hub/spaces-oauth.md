@@ -4,7 +4,7 @@
 
 您可以通过无缝创建和关联 [OAuth/OpenID connect](https://developer.okta.com/blog/2019/10/21/illustrated-guide-to-oauth-and-oidc) 应用程序来启用空间中的内置登录流程，以便用户可以使用其 HF 帐户登录。
 
-这将为您的空间带来新的用例。例如，当与[Storage Buckets](https://huggingface.co/docs/hub/storage-buckets)结合使用时，生成式AI空间可以允许用户登录以访问他们的前几代，只有他们可以访问。
+这将为您的空间带来新的用例。例如，当与[Storage Buckets](https://huggingface.co/docs/hub/storage-buckets)结合使用时，生成式AI Space可以允许用户登录以访问他们的前几代，只有他们可以访问。
 
 > [!提示]
 > 本指南将引导您完成将*使用 HF 登录*按钮集成到任何空间的过程。如果您正在寻找一种快速而简单的方法来在 **Gradio** 空间中实现此目的，请查看它的 [built-in integration](https://www.gradio.app/guides/sharing-your-app#o-auth-login-via-hugging-face)。
@@ -48,9 +48,11 @@ hf_oauth_authorized_org:
 您可以查看[configuration reference docs](./spaces-config-reference)了解更多信息。
 
 这会将以下 [environment variables](https://huggingface.co/docs/hub/spaces-overview#built-in-environment-variables) 添加到您的空间：- `OAUTH_CLIENT_ID`：OAuth 应用程序的客户端 ID（公共）
-- `OAUTH_CLIENT_SECRET`：OAuth 应用程序的客户端密钥
+- `OAUTH_CLIENT_SECRET`：OAuth 应用程序的客户端密钥（已弃用：使用 PKCE 代替，它不需要令牌交换的密钥）
 - `OAUTH_SCOPES`：OAuth 应用程序可访问的范围。
 - `OPENID_PROVIDER_URL`：OpenID 提供商的 URL。 OpenID 元数据将在 [⟦T8⟧](https://huggingface.co/.well-known/openid-configuration) 提供。
+
+每个空间还获得一个[⟦T9⟧](./spaces-overview#built-in-environment-variables)，一个稳定的每个空间秘密。使用 PKCE 进行令牌交换，并使用 `SPACE_SIGNING_SECRET` 签署您自己的会话 cookie，以便登录在重新启动后继续存在并在副本之间共享。
 
 对于任何其他环境变量，您可以通过使用 `os.getenv("OAUTH_CLIENT_ID")` 在代码中使用它们。
 
@@ -80,11 +82,11 @@ hf_oauth_authorized_org:
 - `manage-repos`：全面管理用户的个人仓库，包括创建和删除它们。
 - `read-collections`：阅读用户的个人收藏。
 - `write-collections`：读写用户的个人收藏，包括创建和删除它们。
-- `inference-api`：代表用户向[Inference Providers](https://huggingface.co/docs/inference-providers/index)提出推理请求。- `read-endpoints`：查看用户的[Inference Endpoints](https://huggingface.co/docs/inference-endpoints/index)并代表用户向其发出推理请求。
-- `write-endpoints`：管理用户的推理端点，包括创建和删除它们。包括 `read-endpoints` 访问权限。
+- `inference-api`：代表用户向[Inference Providers](https://huggingface.co/docs/inference-providers/index)提出推理请求。- `read-endpoints`：查看用户的[Inference Endpoints](https://huggingface.co/docs/inference-endpoints/index)，并代表用户向其发出推理请求。
+- `write-endpoints`：管理用户的推理端点，包括创建和删除它们。包括 `read-endpoints` 访问。
 - `jobs`：运行[jobs](https://huggingface.co/docs/huggingface_hub/main/en/guides/jobs)
 - `webhooks`：管理[webhooks](https://huggingface.co/docs/huggingface_hub/main/en/guides/webhooks)
-- `write-discussions`：代表用户打开讨论和拉取请求，并与讨论互动（包括反应、发布/编辑评论、结束讨论等）。要在私有存储库上打开拉取请求，您还需要请求 `read-repos` 范围。
+- `write-discussions`：代表用户打开讨论和拉取请求，并与讨论互动（包括反应、发布/编辑评论、结束讨论……）。要在私有存储库上打开拉取请求，您还需要请求 `read-repos` 范围。
 
 ## 访问组织资源
 
@@ -92,7 +94,7 @@ hf_oauth_authorized_org:
 
 但某些范围（例如 `read-repos` 或 `read-billing`）也适用于组织。
 
-用户在授权应用程序时可以选择向哪些组织授予访问权限。如果您需要访问特定组织，可以将 `orgIds=ORG_ID` 作为查询参数添加到 OAuth 授权 URL。您必须将 `ORG_ID` 替换为组织 ID，该 ID 可在 userinfo 响应的 `organizations.sub` 字段中找到。
+用户在授权应用程序时可以选择向哪些组织授予访问权限。如果您需要访问特定组织，可以将 `orgIds=ORG_ID` 作为查询参数添加到 OAuth 授权 URL。您必须将 `ORG_ID` 替换为组织 ID，该 ID 可在用户信息响应的 `organizations.sub` 字段中找到。
 
 ## 将按钮添加到您的空间现在，您已掌握向您的空间添加“使用 HF 登录”按钮的所有信息。一些库（[Python](https://github.com/lepture/authlib)、[NodeJS](https://github.com/panva/node-openid-client)）可以帮助您实现 OpenID/OAuth 协议。
 
@@ -100,16 +102,14 @@ Gradio 和 Huggingface.js 还提供**内置支持**，使得使用 HF 按钮实�
 
 基本上，您需要：
 
-- 将用户重定向到`https://huggingface.co/oauth/authorize?redirect_uri={REDIRECT_URI}&scope=openid%20profile&client_id={CLIENT_ID}&state={STATE}`，其中`STATE`是一个随机字符串，您稍后需要验证。
+- 将用户重定向到 `https://huggingface.co/oauth/authorize?redirect_uri={REDIRECT_URI}&scope=openid%20profile&client_id={CLIENT_ID}&state={STATE}&code_challenge={CODE_CHALLENGE}&code_challenge_method=S256`，其中 `STATE` 是您稍后需要验证的随机字符串，`CODE_CHALLENGE` 是随机 `code_verifier` (PKCE) 的 base64url 编码的 SHA-256 哈希值。
 - 处理`/auth/callback`或`/login/callback`（或您自己的自定义回调URL）上的回调并验证`state`参数。
-- 使用 `code` 查询参数从 `https://huggingface.co/oauth/token` 获取访问令牌和 id 令牌（使用 `client_id`、`code`、`grant_type=authorization_code` 和 `redirect_uri` 作为表单数据，并使用 `Authorization: Basic {base64(client_id:client_secret)}` 作为标头的 POST 请求）。
+- 使用`code`查询参数从`https://huggingface.co/oauth/token`获取访问令牌和ID令牌（使用`client_id`、`code`、`grant_type=authorization_code`、`redirect_uri`和`code_verifier`作为表单数据的POST请求）。如果您的应用程序有客户端密钥，还请发送 `Authorization: Basic {base64(client_id:client_secret)}` 作为标头。
 
 > [!警告]
 > 您应该在按钮上使用 `target=_blank` 在新选项卡中打开登录页面，除非您运行其 `iframe` 之外的空间。否则，您可能会在某些浏览器上遇到 cookie 问题。
 
-## 示例：
-
-- [Gradio test app](https://huggingface.co/spaces/Wauplin/gradio-oauth-test)
+## 示例：- [Gradio test app](https://huggingface.co/spaces/Wauplin/gradio-oauth-test)
 - [HuggingChat (NodeJS/SvelteKit)](https://huggingface.co/spaces/huggingchat/chat-ui)
 - [Inference Widgets (Auth.js/SvelteKit)](https://huggingface.co/spaces/huggingfacejs/inference-widgets)，使用`inference-api`范围代表用户发出推理请求。
 - [Client-Side in a Static Space (huggingface.js)](https://huggingface.co/spaces/huggingfacejs/client-side-oauth) - 非常简单的 JavaScript 示例。
