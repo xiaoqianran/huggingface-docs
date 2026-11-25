@@ -6,7 +6,7 @@ Below, we outline these techniques and recommend experimenting with different co
 
 Each method includes examples for the supported trainers. If you're unsure whether a technique is compatible with your trainer, please take a look at the corresponding trainer documentation.
 
-For additional strategies, such as **gradient checkpointing**, which is supported across all trainers, see the [`transformers` performance guide](https://huggingface.co/docs/transformers/perf_train_gpu_one#gradient-checkpointing).
+For additional strategies, such as **activation checkpointing**, which is supported across all trainers, see the [`transformers` optimization guide](https://huggingface.co/docs/transformers/optimization_overview).
 
 ## Truncation
 
@@ -120,7 +120,7 @@ Padding-free batching is an alternative approach for reducing memory usage. In t
 ![Padding-free](https://huggingface.co/datasets/trl-lib/documentation-images/resolve/main/padding-free.png)
 
 > [!WARNING]
-> Padding-free is temporarily unavailable in [DPOTrainer](/docs/trl/v1.18.2/en/dpo_trainer#trl.DPOTrainer): since the DPO refactor, setting `padding_free=True` warns and falls back to standard padding. It is planned to return in a future update.
+> Padding-free is temporarily unavailable in [DPOTrainer](/docs/trl/v1.19.0/en/bema_for_reference_model#trl.DPOTrainer): since the DPO refactor, setting `padding_free=True` warns and falls back to standard padding. It is planned to return in a future update.
 
 ```python
 from trl import DPOConfig
@@ -224,34 +224,31 @@ training_args = RLOOConfig(..., vllm_enable_sleep_mode=True)
 
 Offloading the vLLM weights and cache helps keep GPU memory usage low, which can be particularly beneficial when training large models or using limited GPU resources. However, waking the vLLM engine from sleep mode introduces some host–device transfer latency, which may slightly impact training speed.
 
-## Gradient checkpointing
+## Activation checkpointing
 
-Gradient checkpointing trades compute for memory by not storing all intermediate activations during the forward pass, recomputing them during the backward pass instead.
+Activation checkpointing trades compute for memory by not storing all intermediate activations during the forward pass, recomputing them during the backward pass instead.
 
 ```python
 from trl import SFTConfig
 
-training_args = SFTConfig(..., gradient_checkpointing=True)
+training_args = SFTConfig(..., activation_checkpointing=True)
 ```
 
 > [!NOTE]
-> Gradient checkpointing is enabled by default in all trainers to optimize memory usage. You can disable it by setting `gradient_checkpointing=False` if needed.
+> Activation checkpointing is enabled by default in all trainers to optimize memory usage. You can disable it by setting `activation_checkpointing=False` if needed.
 
 ### Selective activation checkpointing
 
-With [SFTTrainer](/docs/trl/v1.18.2/en/sft_trainer#trl.SFTTrainer), you can save the attention output during the forward pass instead of recomputing it in the backward pass. This recovers most of the checkpointing slowdown at long context, for one extra hidden-state-sized tensor per layer. It forces non-reentrant checkpointing.
+With [SFTTrainer](/docs/trl/v1.19.0/en/sft_trainer#trl.SFTTrainer), you can save the attention output during the forward pass instead of recomputing it in the backward pass. This recovers most of the checkpointing slowdown at long context, for one extra hidden-state-sized tensor per layer. It forces non-reentrant checkpointing.
 
 ```python
 from trl import SFTConfig
 
 training_args = SFTConfig(
     ...,
-    gradient_checkpointing=True,
-    gradient_checkpointing_kwargs={"selective": True},
+    activation_checkpointing=True,
+    activation_checkpointing_kwargs={"selective": True},
 )
 ```
 
 For more memory optimization techniques, see the [Transformers Performance Guide](https://huggingface.co/docs/transformers/perf_train_gpu_one#gradient-checkpointing).
-
-### ORPO Trainer
-https://huggingface.co/docs/trl/v1.18.2/orpo_trainer.md

@@ -378,17 +378,18 @@ Choosing the right dataset type depends on the task you are working on and the s
 
 | Trainer | Expected dataset type |
 | --- | --- |
-| [AsyncGRPOTrainer](/docs/trl/v1.18.2/en/async_grpo_trainer#trl.AsyncGRPOTrainer) | [Prompt-only](#prompt-only) |
-| [DPOTrainer](/docs/trl/v1.18.2/en/dpo_trainer#trl.DPOTrainer) | [Preference (explicit prompt recommended)](#preference) |
-| [GRPOTrainer](/docs/trl/v1.18.2/en/grpo_trainer#trl.GRPOTrainer) | [Prompt-only](#prompt-only) |
-| [KTOTrainer](/docs/trl/v1.18.2/en/kto_trainer#trl.KTOTrainer) | [Unpaired preference](#unpaired-preference) or [Preference (explicit prompt recommended)](#preference) |
-| [RewardTrainer](/docs/trl/v1.18.2/en/reward_trainer#trl.RewardTrainer) | [Preference (implicit prompt recommended)](#preference) |
-| [RLOOTrainer](/docs/trl/v1.18.2/en/rloo_trainer#trl.RLOOTrainer) | [Prompt-only](#prompt-only) |
-| [SFTTrainer](/docs/trl/v1.18.2/en/sft_trainer#trl.SFTTrainer) | [Language modeling](#language-modeling) or [Prompt-completion](#prompt-completion) |
-| [experimental.cpo.CPOTrainer](/docs/trl/v1.18.2/en/cpo_trainer#trl.experimental.cpo.CPOTrainer) | [Preference (explicit prompt recommended)](#preference) |
-| [experimental.gkd.GKDTrainer](/docs/trl/v1.18.2/en/gkd_trainer#trl.experimental.gkd.GKDTrainer) | [Prompt-completion](#prompt-completion) |
-| [experimental.online_dpo.OnlineDPOTrainer](/docs/trl/v1.18.2/en/online_dpo_trainer#trl.experimental.online_dpo.OnlineDPOTrainer) | [Prompt-only](#prompt-only) |
-| [experimental.orpo.ORPOTrainer](/docs/trl/v1.18.2/en/orpo_trainer#trl.experimental.orpo.ORPOTrainer) | [Preference (explicit prompt recommended)](#preference) |
+| [AsyncGRPOTrainer](/docs/trl/v1.19.0/en/async_grpo_trainer#trl.AsyncGRPOTrainer) | [Prompt-only](#prompt-only) |
+| [DistillationTrainer](/docs/trl/v1.19.0/en/distillation_trainer#trl.DistillationTrainer) | [Prompt-only](#prompt-only) |
+| [DPOTrainer](/docs/trl/v1.19.0/en/bema_for_reference_model#trl.DPOTrainer) | [Preference (explicit prompt recommended)](#preference) |
+| [GRPOTrainer](/docs/trl/v1.19.0/en/grpo_trainer#trl.GRPOTrainer) | [Prompt-only](#prompt-only) |
+| [KTOTrainer](/docs/trl/v1.19.0/en/kto_trainer#trl.KTOTrainer) | [Unpaired preference](#unpaired-preference) or [Preference (explicit prompt recommended)](#preference) |
+| [RewardTrainer](/docs/trl/v1.19.0/en/reward_trainer#trl.RewardTrainer) | [Preference (implicit prompt recommended)](#preference) |
+| [RLOOTrainer](/docs/trl/v1.19.0/en/rloo_trainer#trl.RLOOTrainer) | [Prompt-only](#prompt-only) |
+| [SFTTrainer](/docs/trl/v1.19.0/en/sft_trainer#trl.SFTTrainer) | [Language modeling](#language-modeling) or [Prompt-completion](#prompt-completion) |
+| [experimental.cpo.CPOTrainer](/docs/trl/v1.19.0/en/cpo_trainer#trl.experimental.cpo.CPOTrainer) | [Preference (explicit prompt recommended)](#preference) |
+| [experimental.gkd.GKDTrainer](/docs/trl/v1.19.0/en/gkd_trainer#trl.experimental.gkd.GKDTrainer) | [Prompt-completion](#prompt-completion) |
+| [experimental.online_dpo.OnlineDPOTrainer](/docs/trl/v1.19.0/en/online_dpo_trainer#trl.experimental.online_dpo.OnlineDPOTrainer) | [Prompt-only](#prompt-only) |
+| [experimental.orpo.ORPOTrainer](/docs/trl/v1.19.0/en/orpo_trainer#trl.experimental.orpo.ORPOTrainer) | [Preference (explicit prompt recommended)](#preference) |
 
 ## Using any dataset with TRL: preprocessing and conversion
 
@@ -508,7 +509,7 @@ dataset = dataset.rename_column("chosen", "text").remove_columns("rejected")
 
 ### From preference with implicit prompt to prompt-completion dataset
 
-To convert a preference dataset with implicit prompt into a prompt-completion dataset, extract the prompt with [extract_prompt()](/docs/trl/v1.18.2/en/data_utils#trl.extract_prompt), remove the rejected, and rename the column `"chosen"` to `"completion"`.
+To convert a preference dataset with implicit prompt into a prompt-completion dataset, extract the prompt with [extract_prompt()](/docs/trl/v1.19.0/en/data_utils#trl.extract_prompt), remove the rejected, and rename the column `"chosen"` to `"completion"`.
 
 ```python
 from datasets import Dataset
@@ -534,7 +535,7 @@ dataset = dataset.map(extract_prompt).remove_columns("rejected").rename_column("
 
 ### From preference with implicit prompt to prompt-only dataset
 
-To convert a preference dataset with implicit prompt into a prompt-only dataset, extract the prompt with [extract_prompt()](/docs/trl/v1.18.2/en/data_utils#trl.extract_prompt), and remove the rejected and the chosen.
+To convert a preference dataset with implicit prompt into a prompt-only dataset, extract the prompt with [extract_prompt()](/docs/trl/v1.19.0/en/data_utils#trl.extract_prompt), and remove the rejected and the chosen.
 
 ```python
 from datasets import Dataset
@@ -560,7 +561,7 @@ dataset = dataset.map(extract_prompt).remove_columns(["chosen", "rejected"])
 
 ### From implicit to explicit prompt preference dataset
 
-To convert a preference dataset with implicit prompt into a preference dataset with explicit prompt, extract the prompt with [extract_prompt()](/docs/trl/v1.18.2/en/data_utils#trl.extract_prompt).
+To convert a preference dataset with implicit prompt into a preference dataset with explicit prompt, extract the prompt with [extract_prompt()](/docs/trl/v1.19.0/en/data_utils#trl.extract_prompt).
 
 ```python
 from datasets import Dataset
@@ -589,7 +590,7 @@ dataset = dataset.map(extract_prompt)
 
 ### From preference with implicit prompt to unpaired preference dataset
 
-To convert a preference dataset with implicit prompt into an unpaired preference dataset, extract the prompt with [extract_prompt()](/docs/trl/v1.18.2/en/data_utils#trl.extract_prompt), and unpair the dataset with [unpair_preference_dataset()](/docs/trl/v1.18.2/en/data_utils#trl.unpair_preference_dataset).
+To convert a preference dataset with implicit prompt into an unpaired preference dataset, extract the prompt with [extract_prompt()](/docs/trl/v1.19.0/en/data_utils#trl.extract_prompt), and unpair the dataset with [unpair_preference_dataset()](/docs/trl/v1.19.0/en/data_utils#trl.unpair_preference_dataset).
 
 ```python
 from datasets import Dataset
@@ -619,7 +620,7 @@ dataset = unpair_preference_dataset(dataset)
 
 > [!WARNING]
 > Keep in mind that the `"chosen"` and `"rejected"` completions in a preference dataset can be both good or bad.
-> Before applying [unpair_preference_dataset()](/docs/trl/v1.18.2/en/data_utils#trl.unpair_preference_dataset), please ensure that all `"chosen"` completions can be labeled as good and all `"rejected"` completions as bad.
+> Before applying [unpair_preference_dataset()](/docs/trl/v1.19.0/en/data_utils#trl.unpair_preference_dataset), please ensure that all `"chosen"` completions can be labeled as good and all `"rejected"` completions as bad.
 > This can be ensured by checking absolute rating of each completion, e.g. from a reward model.
 
 ### From preference to language modeling dataset
@@ -724,7 +725,7 @@ dataset = dataset.map(concat_prompt_to_completions, remove_columns="prompt")
 
 ### From preference to unpaired preference dataset
 
-To convert dataset into an unpaired preference dataset, unpair the dataset with [unpair_preference_dataset()](/docs/trl/v1.18.2/en/data_utils#trl.unpair_preference_dataset).
+To convert dataset into an unpaired preference dataset, unpair the dataset with [unpair_preference_dataset()](/docs/trl/v1.19.0/en/data_utils#trl.unpair_preference_dataset).
 
 ```python
 from datasets import Dataset
@@ -757,7 +758,7 @@ dataset = unpair_preference_dataset(dataset)
 
 > [!WARNING]
 > Keep in mind that the `"chosen"` and `"rejected"` completions in a preference dataset can be both good or bad.
-> Before applying [unpair_preference_dataset()](/docs/trl/v1.18.2/en/data_utils#trl.unpair_preference_dataset), please ensure that all `"chosen"` completions can be labeled as good and all `"rejected"` completions as bad.
+> Before applying [unpair_preference_dataset()](/docs/trl/v1.19.0/en/data_utils#trl.unpair_preference_dataset), please ensure that all `"chosen"` completions can be labeled as good and all `"rejected"` completions as bad.
 > This can be ensured by checking absolute rating of each completion, e.g. from a reward model.
 
 ### From unpaired preference to language modeling dataset
@@ -877,5 +878,5 @@ An example of a conversational vision dataset is the [openbmb/RLAIF-V-Dataset](h
 > })
 > ```
 
-### GMPO
-https://huggingface.co/docs/trl/v1.18.2/gmpo.md
+### Chat template utilities
+https://huggingface.co/docs/trl/v1.19.0/chat_template_utils.md

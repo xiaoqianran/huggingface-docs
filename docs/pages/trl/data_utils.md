@@ -8,7 +8,7 @@
 trl.is_conversational(example: dict[str, typing.Any])
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.18.2/trl/data_utils.py#L126)
+[Source](https://github.com/huggingface/trl/blob/v1.19.0/trl/data_utils.py#L126)
 
 **Parameters:**
 
@@ -40,7 +40,7 @@ False
 trl.maybe_convert_to_chatml(example: dict[str, list])
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.18.2/trl/data_utils.py#L967)
+[Source](https://github.com/huggingface/trl/blob/v1.19.0/trl/data_utils.py#L967)
 
 **Parameters:**
 
@@ -80,7 +80,7 @@ Example:
 trl.extract_prompt(example: dict[str, collections.abc.Sequence])
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.18.2/trl/data_utils.py#L548)
+[Source](https://github.com/huggingface/trl/blob/v1.19.0/trl/data_utils.py#L548)
 
 **Parameters:**
 
@@ -163,7 +163,7 @@ Or, with the `map` method of [Dataset](https://huggingface.co/docs/datasets/v5.2
 trl.unpair_preference_dataset(dataset: typing.Union[~DatasetType, ~IterableDatasetType], **map_kwargs)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.18.2/trl/data_utils.py#L445)
+[Source](https://github.com/huggingface/trl/blob/v1.19.0/trl/data_utils.py#L445)
 
 **Parameters:**
 
@@ -204,5 +204,5 @@ Dataset({
 {'prompt': 'The sky is', 'completion': ' blue.', 'label': True}
 ```
 
-### IW-OPD
-https://huggingface.co/docs/trl/v1.18.2/iw_opd_trainer.md
+### Training Beyond 1M Tokens
+https://huggingface.co/docs/trl/v1.19.0/long_context_training.md

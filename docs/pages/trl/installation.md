@@ -32,5 +32,5 @@ If you want the development install you can replace the pip install with the fol
 pip install -e ".[dev]"
 ```
 
-### Training with Jobs
-https://huggingface.co/docs/trl/v1.18.2/jobs_training.md
+### DPO Trainer
+https://huggingface.co/docs/trl/v1.19.0/dpo_trainer.md

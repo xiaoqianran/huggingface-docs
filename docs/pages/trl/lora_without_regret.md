@@ -321,5 +321,5 @@ Using TRL, you can efficiently implement LoRA adapters to match full fine-tuning
 }  
 ```
 
-### MergeModelCallback[[trl.experimental.merge_model_callback.MergeModelCallback]]
-https://huggingface.co/docs/trl/v1.18.2/merge_model_callback.md
+### Reducing Memory Usage
+https://huggingface.co/docs/trl/v1.19.0/reducing_memory_usage.md

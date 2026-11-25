@@ -47,5 +47,5 @@ Yes. Anything under `trl.experimental` can be removed, paper implementations inc
 
 Use: `export TRL_EXPERIMENTAL_SILENCE=1`.
 
-### RLOO Trainer
-https://huggingface.co/docs/trl/v1.18.2/rloo_trainer.md
+### Data Utilities
+https://huggingface.co/docs/trl/v1.19.0/data_utils.md

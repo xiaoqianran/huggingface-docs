@@ -16,7 +16,7 @@ pip install deepspeed
 
 ## Running Training Scripts with DeepSpeed
 
-No modifications to your training script are required. DeepSpeed is enabled through the training arguments, like for any [Trainer](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/trainer#transformers.Trainer): set `deepspeed` to the path of a DeepSpeed configuration file, and launch with torchrun.
+No modifications to your training script are required. DeepSpeed is enabled through the training arguments, like for any [Trainer](https://huggingface.co/docs/transformers/v5.24.1/en/main_classes/trainer#transformers.Trainer): set `deepspeed` to the path of a DeepSpeed configuration file, and launch with torchrun.
 
 ```python
 training_args = SFTConfig(..., deepspeed="<DEEPSPEED_CONFIG_FILE.json>")
@@ -26,7 +26,7 @@ training_args = SFTConfig(..., deepspeed="<DEEPSPEED_CONFIG_FILE.json>")
 torchrun --nproc_per_node 8 train.py
 ```
 
-Scripts that parse their arguments with [TrlParser](/docs/trl/v1.18.2/en/script_utils#trl.TrlParser), such as the ones behind the `trl` CLI, take it from the command line:
+Scripts that parse their arguments with [TrlParser](/docs/trl/v1.19.0/en/script_utils#trl.TrlParser), such as the ones behind the `trl` CLI, take it from the command line:
 
 ```bash
 trl sft ... --deepspeed <DEEPSPEED_CONFIG_FILE.json>
@@ -44,5 +44,5 @@ Values set to `"auto"` in these files (batch size, gradient accumulation, precis
 
 Consult the 🤗 Transformers [DeepSpeed documentation](https://huggingface.co/docs/transformers/deepspeed) for more information about the DeepSpeed integration.
 
-### Kernels Hub Integration and Usage
-https://huggingface.co/docs/trl/v1.18.2/kernels_hub.md
+### Online DPO Trainer
+https://huggingface.co/docs/trl/v1.19.0/online_dpo_trainer.md

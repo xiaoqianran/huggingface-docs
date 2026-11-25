@@ -27,5 +27,5 @@ The kernel has no attention-logit soft-capping, and Transformers skips `attn_log
 
 GRPO and RLOO with `use_vllm=True` need vLLM's ROCm build, see the [vLLM installation guide](https://docs.vllm.ai/en/latest/getting_started/installation/gpu.html).
 
-### vLLM Integration
-https://huggingface.co/docs/trl/v1.18.2/vllm_integration.md
+### Kernels Hub Integration and Usage
+https://huggingface.co/docs/trl/v1.19.0/kernels_hub.md

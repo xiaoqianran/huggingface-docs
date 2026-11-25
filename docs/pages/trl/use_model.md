@@ -57,3 +57,6 @@ model.save_pretrained("merged_adapters")
 ```
 
 Once you have the model loaded and either merged the adapters or keep them separately on top you can run generation as with a normal model outlined above.
+
+### RapidFire AI Integration
+https://huggingface.co/docs/trl/v1.19.0/rapidfire_integration.md

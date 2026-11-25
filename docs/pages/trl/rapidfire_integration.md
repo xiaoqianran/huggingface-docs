@@ -471,5 +471,5 @@ For troubleshooting guidance, see the [RapidFire AI Troubleshooting Guide](https
 
 Learn more about RapidFire AI in their [official repository](https://github.com/RapidFireAI/rapidfireai) and [documentation](https://oss-docs.rapidfire.ai).
 
-### Distributing Training
-https://huggingface.co/docs/trl/v1.18.2/distributing_training.md
+### MergeModelCallback[[trl.experimental.merge_model_callback.MergeModelCallback]]
+https://huggingface.co/docs/trl/v1.19.0/merge_model_callback.md

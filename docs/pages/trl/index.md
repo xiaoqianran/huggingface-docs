@@ -5,7 +5,7 @@ The library is integrated with 🤗 [transformers](https://github.com/huggingfac
 
 ## 🎉 What's New
 
-**⚡ AsyncGRPOTrainer is now stable:** [AsyncGRPOTrainer](/docs/trl/v1.18.2/en/async_grpo_trainer#trl.AsyncGRPOTrainer) graduates to the stable API. It runs GRPO much faster by decoupling generation from training: a vLLM server streams rollouts while the trainer updates the model.
+**⚡ AsyncGRPOTrainer is now stable:** [AsyncGRPOTrainer](/docs/trl/v1.19.0/en/async_grpo_trainer#trl.AsyncGRPOTrainer) graduates to the stable API. It runs GRPO much faster by decoupling generation from training: a vLLM server streams rollouts while the trainer updates the model.
 
 ## Taxonomy
 
@@ -76,13 +76,28 @@ The documentation is organized into the following sections:
   
     
       
+      Published on November 13, 2026
+      AsyncGRPOTrainer is stable: async RL in TRL
+    
+    
+      
+      Published on September 10, 2026
+      Async GRPO with LoRA across HF Jobs: a bucket, a proxy, and no NCCL
+    
+    
+      
       Published on May 27, 2026
       Shipping a Trillion Parameters With a Hub Bucket: Delta Weight Sync in TRL
     
     
       
+      Published on April 12, 2026
+      Distilling 100B+ Models 40x Faster with TRL
+    
+    
+      
       Published on March 31, 2026
-      TRL v1: Post-Training Library That Holds When the Field Invalidates Its Own Assumptions
+      TRL v1.0: Post-Training Library Built to Move with the Field
     
     
       
@@ -93,6 +108,11 @@ The documentation is organized into the following sections:
       
       Published on March 9, 2026
       Ulysses Sequence Parallelism: Training with Million-Token Contexts
+    
+    
+      
+      Published on October 29, 2025
+      Unlocking On-Policy Distillation for Any Model Family
     
     
       
@@ -169,5 +189,5 @@ The documentation is organized into the following sections:
       Talk given on October 30, 2025
       Fine tuning with TRL
 
-### A2PO
-https://huggingface.co/docs/trl/v1.18.2/a2po_trainer.md
+### Reward Functions
+https://huggingface.co/docs/trl/v1.19.0/rewards.md

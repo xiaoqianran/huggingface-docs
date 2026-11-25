@@ -8,7 +8,7 @@ The example in this guide trains on exactly one such sequence per step, on a sin
 
 ## Run it
 
-You need one node with 8 H100s (or better), and `transformers>=5.17.0`: the example uses gradient checkpointing's `offload`, added in that release.
+You need one node with 8 H100s (or better), and `transformers>=5.23.0`: the example uses activation checkpointing's `offload`, under the name that release gives it.
 
 ```sh
 torchrun --nproc_per_node 8 examples/sft_qwen3_8b_1m_context/sft_qwen3_8b_1m_context.py
@@ -53,7 +53,7 @@ The new profile looks like this.
 
 The peak is gone.
 
-How to enable this in TRL? There is nothing to do: the chunked loss is the default. If you want to opt in to the plain loss, set `loss_type="nll"` in the [SFTConfig](/docs/trl/v1.18.2/en/sft_trainer#trl.SFTConfig).
+How to enable this in TRL? There is nothing to do: the chunked loss is the default. If you want to opt in to the plain loss, set `loss_type="nll"` in the [SFTConfig](/docs/trl/v1.19.0/en/sft_trainer#trl.SFTConfig).
 
 How far does this let us push the sequence? In memory terms, this one change alone takes us from 32k tokens to 160k.
 
@@ -103,12 +103,12 @@ With the loss chunked and the positions rescaled, one GPU takes us to 160k token
 
 The model and its optimizer account for a fixed 22 GB, whatever the sequence length. Above that, each red band is one layer's saved activation, 0.47 GB apiece. They stack up as the forward writes them, sit there, and come off one at a time as the backward consumes them. The grey on top is everything recomputed and thrown away within milliseconds.
 
-TRL already reduces them for you, and it is on by default. Gradient checkpointing keeps only what goes into each layer and throws away everything the layer computes inside itself: the attention scores, the wide MLP intermediate, the norms. When the backward pass needs them it runs the layer a second time to get them back. What survives is one saved tensor per layer, `sequence x hidden` each, and at long sequence lengths that is still the largest thing on the card.
+TRL already reduces them for you, and it is on by default. Activation checkpointing keeps only what goes into each layer and throws away everything the layer computes inside itself: the attention scores, the wide MLP intermediate, the norms. When the backward pass needs them it runs the layer a second time to get them back. What survives is one saved tensor per layer, `sequence x hidden` each, and at long sequence lengths that is still the largest thing on the card.
 
 The useful observation is that those tensors are not needed during the forward pass at all. They are written, left alone, and read much later. So they do not have to sit on the GPU in the meantime: they can be moved to CPU memory and brought back when the backward pass reaches them.
 
 ```python
-training_args = SFTConfig(..., gradient_checkpointing_kwargs={"offload": True})
+training_args = SFTConfig(..., activation_checkpointing_kwargs={"offload": True})
 ```
 
 Same step, same length: instead of 38 bands stacking up, only 4 are ever resident at once, and the peak drops from 59.9 GB to 48.8 GB. Which buys sequence length:
@@ -121,7 +121,7 @@ This one is not free. Every saved activation crosses to the host and back, and t
 
 Chunked loss, offloaded activations: one card now trains on 256k tokens. How to reach one million? To see what stands in the way, look inside a single layer during the backward pass (grey peaks in the above profile).
 
-Gradient checkpointing means the forward keeps almost nothing: each layer stores its input and throws the rest away. The layer is recomputed later, when the backward reaches it, and that is the moment everything exists at once. In the MLP, one line of the model,
+Activation checkpointing means the forward keeps almost nothing: each layer stores its input and throws the rest away. The layer is recomputed later, when the backward reaches it, and that is the moment everything exists at once. In the MLP, one line of the model,
 
 ```python
 down_proj(act_fn(gate_proj(x)) * up_proj(x))
@@ -154,7 +154,6 @@ There are two ways to run that exchange, context parallelism (CP) and Ulysses se
 | What gets split | the tokens | the attention heads |
 | How far it scales | any number of GPUs | up to the number of KV heads, 8 here |
 | Attention | SDPA, causal only | SDPA or FlashAttention |
-| Requires | accelerate 1.11 | accelerate 1.12, DeepSpeed 0.18.1 |
 
 **On FSDP2, use CP.** Each GPU keeps its own slice, and the other slices come to it in turn, so every token eventually sees every earlier token.
 
@@ -176,7 +175,7 @@ The two knobs do not cross over today: `cp_size` requires FSDP2 and `sp_size` on
 
 Two things change once it is on:
 
-1. Sequences have to be padded to a multiple of `cp_size * 2`, so `pad_to_multiple_of=8` (in the [SFTConfig](/docs/trl/v1.18.2/en/sft_trainer#trl.SFTConfig)) for four GPUs.
+1. Sequences have to be padded to a multiple of `cp_size * 2`, so `pad_to_multiple_of=8` (in the [SFTConfig](/docs/trl/v1.19.0/en/sft_trainer#trl.SFTConfig)) for four GPUs.
 2. The causal-SDPA requirement rules out packing, which relies on a block-diagonal mask to keep documents from reading each other, and TRL raises if you ask for both. It also rules out models whose layers use sliding-window or chunked attention, which accelerate refuses: OpenAI GPT-OSS, Gemma 3 and 4, Qwen3.5 and later. Qwen3 and Qwen3-MoE are full attention throughout, which is why they are the models here.
 
 Passing the slices around costs less than you might expect. At 131k tokens on one node, a step takes 34.6 s across two GPUs, 17.8 s across four and 9.5 s across eight. Each doubling of the group nearly halves the step time, and going from two to eight recovers 3.7x of a possible 4x.
@@ -194,5 +193,5 @@ One card stops just past 256k. Four of them take the whole million!, landing at 
 - [Ulysses and ring attention](https://huggingface.co/blog/exploding-gradients/ulysses-ring-attention), on how the two exchanges differ and what each costs to communicate.
 - [YaRN](https://huggingface.co/papers/2309.00071), the position rescaling used in the RoPE section.
 
-### Distillation Trainer
-https://huggingface.co/docs/trl/v1.18.2/distillation_trainer.md
+### Generalized Knowledge Distillation Trainer
+https://huggingface.co/docs/trl/v1.19.0/gkd_trainer.md

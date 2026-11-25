@@ -289,7 +289,7 @@ trl kto --config kto_config.yaml
 
 ### DeepSpeed and FSDP
 
-DeepSpeed ZeRO and FSDP are configured through the training arguments, like for any [Trainer](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/trainer#transformers.Trainer): `--deepspeed` takes a DeepSpeed JSON config, and `--fsdp` turns on FSDP, tuned with `--fsdp_config`. A bare `--fsdp` on the command line needs transformers 5.10 or later; with older versions, set `fsdp: true` in a config file. Ready-to-use configs live in [`examples/deepspeed_configs`](https://github.com/huggingface/trl/tree/main/examples/deepspeed_configs) and [`examples/fsdp_configs`](https://github.com/huggingface/trl/tree/main/examples/fsdp_configs). If you installed TRL with pip, save this ZeRO-2 config as `zero2.json` and pass `--deepspeed zero2.json`:
+DeepSpeed ZeRO and FSDP are configured through the training arguments, like for any [Trainer](https://huggingface.co/docs/transformers/v5.24.1/en/main_classes/trainer#transformers.Trainer): `--deepspeed` takes a DeepSpeed JSON config, and `--fsdp` turns on FSDP, tuned with `--fsdp_config`. A bare `--fsdp` on the command line needs transformers 5.10 or later; with older versions, set `fsdp: true` in a config file. Ready-to-use configs live in [`examples/deepspeed_configs`](https://github.com/huggingface/trl/tree/main/examples/deepspeed_configs) and [`examples/fsdp_configs`](https://github.com/huggingface/trl/tree/main/examples/fsdp_configs). If you installed TRL with pip, save this ZeRO-2 config as `zero2.json` and pass `--deepspeed zero2.json`:
 
 ```json
 {
@@ -538,7 +538,7 @@ Launch with:
 trl kto --config kto_config.yaml
 ```
 
-To see all the available keywords for defining dataset mixtures, refer to the [scripts.utils.DatasetConfig](/docs/trl/v1.18.2/en/script_utils#trl.scripts.utils.DatasetConfig) and [DatasetMixtureConfig](/docs/trl/v1.18.2/en/script_utils#trl.DatasetMixtureConfig) classes.
+To see all the available keywords for defining dataset mixtures, refer to the [scripts.utils.DatasetConfig](/docs/trl/v1.19.0/en/script_utils#trl.scripts.utils.DatasetConfig) and [DatasetMixtureConfig](/docs/trl/v1.19.0/en/script_utils#trl.DatasetMixtureConfig) classes.
 
 ## Getting the System Information
 
@@ -592,5 +592,5 @@ Copy-paste the following information when reporting an issue:
 
 This information is required when reporting an issue.
 
-### SFT Trainer
-https://huggingface.co/docs/trl/v1.18.2/sft_trainer.md
+### Unsloth Integration
+https://huggingface.co/docs/trl/v1.19.0/unsloth_integration.md

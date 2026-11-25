@@ -21,7 +21,7 @@ model=<your private model>
 volume=$PWD/data
 token=<your cli Hugging Face Hub token>
 
-docker run --gpus all -e HF_TOKEN=$token -p 8080:80 -v $volume:/data --pull always ghcr.io/huggingface/text-embeddings-inference:cuda-1.9 --model-id $model
+docker run --gpus all -e HF_TOKEN=$token -p 8080:80 -v $volume:/data --pull always ghcr.io/huggingface/text-embeddings-inference:cuda-1.10 --model-id $model
 ```
 
 ### Using TEI on AMD Instinct GPUs (ROCm)

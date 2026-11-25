@@ -418,5 +418,5 @@ run_uv_job(
 > [!NOTE]
 > The [TRL Jobs](https://github.com/huggingface/trl-jobs) wrapper launches the TRL scripts on Jobs with preset configurations for some models, for example `trl-jobs sft --model_name Qwen/Qwen3-0.6B --dataset_name trl-lib/Capybara`.
 
-### Callbacks
-https://huggingface.co/docs/trl/v1.18.2/callbacks.md
+### Asynchronous GRPO Trainer
+https://huggingface.co/docs/trl/v1.19.0/async_grpo_trainer.md

@@ -39,9 +39,21 @@ Team & Enterprise organization administrators can enforce the following policies
 | **Allow access via User Access Tokens (default)** | Authorized                              | Authorized                                                  |
 | **Only access via fine-grained tokens**           | Unauthorized                            | Authorized                                                  |
 | **Require administrator approval**                | Unauthorized                            | Unauthorized without an approval (except for admin-created) |
+| **Require repository-scoped tokens**              | Unauthorized                            | Unauthorized with repository permissions on the whole org   |
 
     
     
+
+### Require Repository-Scoped Tokens
+
+> [!WARNING]
+> This feature is part of the Enterprise plan and above.
+
+With "Only access via fine-grained tokens" selected, administrators can also check **Require repository-scoped tokens**. Member tokens then can't hold repository permissions (like reading contents or opening PRs) on the whole organization: members select specific repositories under **Repositories permissions** instead. Org permissions that don't act on repositories, like Inference Providers calls or org settings, keep working.
+
+- Tokens with organization-wide repository permissions can't be created, and existing ones receive a `403` error on organization resources: _"Due to the organization token policy, your token can't have repository permissions on the whole organization. Scope it to specific repositories instead."_
+- If "Require administrator approval" is also enabled, these tokens can't be approved until their owner scopes them to specific repositories.
+- Service account tokens are exempt.
 
 ## Reviewing Token Authorization
 

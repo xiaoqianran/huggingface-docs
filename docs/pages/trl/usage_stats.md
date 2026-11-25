@@ -39,5 +39,5 @@ Without usage data, the maintainers have no way to know which parts of the libra
 
 If you find TRL useful, leaving telemetry enabled is a low-cost way to help us make it better.
 
-### BEMA for Reference Model
-https://huggingface.co/docs/trl/v1.18.2/bema_for_reference_model.md
+### LoRA Without Regret
+https://huggingface.co/docs/trl/v1.19.0/lora_without_regret.md

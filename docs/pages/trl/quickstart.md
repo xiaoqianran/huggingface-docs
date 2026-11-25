@@ -140,5 +140,5 @@ training_args = SFTConfig(learning_rate=2e-5)  # Good starting point
 
 For more help, open an [issue on GitHub](https://github.com/huggingface/trl/issues).
 
-### OpenEnv Integration for Training LLMs with Environments
-https://huggingface.co/docs/trl/v1.18.2/openenv.md
+### Harbor Integration for Training LLMs with Environments
+https://huggingface.co/docs/trl/v1.19.0/harbor.md

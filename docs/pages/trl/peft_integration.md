@@ -225,7 +225,7 @@ trainer.train()
 
 ### Direct Preference Optimization (DPO)
 
-The [DPOTrainer](/docs/trl/v1.18.2/en/dpo_trainer#trl.DPOTrainer) implements preference learning from human feedback.
+The [DPOTrainer](/docs/trl/v1.19.0/en/bema_for_reference_model#trl.DPOTrainer) implements preference learning from human feedback.
 
 #### With LoRA
 
@@ -356,7 +356,7 @@ python trl/scripts/sft.py \
 
 #### Python Example
 
-Pass the `quantization_config` directly to the trainer alongside `peft_config` — the trainer loads and quantizes the model for you. The same `quantization_config` argument is available on [SFTTrainer](/docs/trl/v1.18.2/en/sft_trainer#trl.SFTTrainer), [DPOTrainer](/docs/trl/v1.18.2/en/dpo_trainer#trl.DPOTrainer), [GRPOTrainer](/docs/trl/v1.18.2/en/grpo_trainer#trl.GRPOTrainer), and [RLOOTrainer](/docs/trl/v1.18.2/en/rloo_trainer#trl.RLOOTrainer).
+Pass the `quantization_config` directly to the trainer alongside `peft_config` — the trainer loads and quantizes the model for you. The same `quantization_config` argument is available on [SFTTrainer](/docs/trl/v1.19.0/en/sft_trainer#trl.SFTTrainer), [DPOTrainer](/docs/trl/v1.19.0/en/bema_for_reference_model#trl.DPOTrainer), [GRPOTrainer](/docs/trl/v1.19.0/en/grpo_trainer#trl.GRPOTrainer), and [RLOOTrainer](/docs/trl/v1.19.0/en/rloo_trainer#trl.RLOOTrainer).
 
 ```python
 import torch
@@ -718,7 +718,7 @@ model = AutoModelForCausalLM.from_pretrained(
 
 - **[SFT with LoRA/QLoRA Notebook](https://github.com/huggingface/trl/blob/main/examples/sft_qlora/sft_qlora.ipynb)** - Complete working example showing both LoRA and QLoRA implementations
 - **[TRL Examples Directory](https://github.com/huggingface/trl/tree/main/examples)** - Collection of training scripts demonstrating PEFT with different trainers
-- **[TRL Cookbook Recipes](https://github.com/huggingface/cookbook/tree/main/notebooks/transformers)** - Step-by-step guides for common PEFT training scenarios
+- **[TRL Cookbook Recipes](https://github.com/huggingface/cookbook/tree/main/notebooks/en)** - Step-by-step guides for common PEFT training scenarios
 
 ### Documentation
 
@@ -732,5 +732,5 @@ model = AutoModelForCausalLM.from_pretrained(
 - [QLoRA Paper](https://huggingface.co/papers/2305.14314) - Efficient finetuning with 4-bit quantization
 - [Prompt Tuning Paper](https://huggingface.co/papers/2104.08691) - The Power of Scale for Parameter-Efficient Prompt Tuning
 
-### Data Utilities
-https://huggingface.co/docs/trl/v1.18.2/data_utils.md
+### Speeding Up Training
+https://huggingface.co/docs/trl/v1.19.0/speeding_up_training.md

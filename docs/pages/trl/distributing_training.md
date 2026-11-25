@@ -93,5 +93,5 @@ You can combine multi-node with DeepSpeed by setting `deepspeed` in the training
 - [torchrun (Elastic Launch)](https://docs.pytorch.org/docs/stable/elastic/run.html)
 - [SLURM Workload Manager Documentation](https://slurm.schedmd.com/) - For cluster job scheduling
 
-### GRPO Trainer
-https://huggingface.co/docs/trl/v1.18.2/grpo_trainer.md
+### Installation
+https://huggingface.co/docs/trl/v1.19.0/installation.md

@@ -72,7 +72,7 @@ In practice, the projection to vocabulary logits and the divergence are computed
 
 ### Expected dataset type
 
-The dataset should be formatted as a [conversational](dataset_formats#conversational) [prompt-only](dataset_formats#prompt-only) dataset. The student generates its own completions on-policy, so only the prompt is needed:
+The dataset should be a [prompt-only](dataset_formats#prompt-only) dataset, in either [standard](dataset_formats#standard) or [conversational](dataset_formats#conversational) format. The student generates its own completions on-policy, so only the prompt is needed:
 
 ```python
 {"prompt": [{"role": "user", "content": "What color is the sky?"}]}
@@ -93,7 +93,11 @@ While training and evaluating, we record the following metrics:
 - `completions/clipped_ratio`: The ratio of truncated (clipped) completions.
 - `tools/call_frequency`: The average number of tool calls per completion in the generation batch. Logged only when `tools` are provided.
 - `tools/failure_frequency`: The fraction of tool calls that failed (the tool was not found, raised an exception, or the call type is unsupported). It is `0.0` when no tool was called. Logged only when `tools` are provided.
+- `rewards/{EnvironmentClass}/mean`: The average value returned by the environment's `get_reward` over the rollouts bound to that environment class. Logged only when an `environment_factory` defines `get_reward`, and never used in the loss.
+- `rewards/{EnvironmentClass}/std`: The standard deviation of the value returned by `get_reward`, over the same rollouts.
 - `entropy`: Average entropy of token predictions across generated completions (in nats).
+- `teacher/<id>/jsd`: The mean per-token divergence against teacher `<id>`, or NaN when no example was routed to it. Logged only when several teachers are passed.
+- `teacher/<id>/token_frac`: The fraction of completion tokens scored by teacher `<id>`. Logged only when several teachers are passed.
 
 ## Customization
 
@@ -127,7 +131,7 @@ In this mode, vLLM runs in a separate process (and using separate GPUs) and comm
 1. **Start the vLLM server**:
 
    ```bash
-   VLLM_SERVER_DEV_MODE=1 vllm serve <model_name> \
+   VLLM_SERVER_DEV_MODE=1 vllm serve <model_name> --gpu-memory-utilization 0.9 \
        --weight-transfer-config '{"backend": "nccl"}' \
        --logprobs-mode processed_logprobs \
        --max-logprobs -1
@@ -149,7 +153,7 @@ In this mode, vLLM runs in a separate process (and using separate GPUs) and comm
 > Make sure that the server is using different GPUs than the trainer, otherwise you may run into NCCL errors. You can specify the GPUs to use with the `CUDA_VISIBLE_DEVICES` environment variable.
 
 > [!TIP]
-> Depending on the model size and the overall GPU memory requirements for training, you may need to adjust the `vllm_gpu_memory_utilization` parameter in [DistillationConfig](/docs/trl/v1.18.2/en/distillation_trainer#trl.DistillationConfig) to avoid underutilization or out-of-memory errors.
+> Depending on the model size and the overall GPU memory requirements for training, you may need to adjust the `vllm_gpu_memory_utilization` parameter in [DistillationConfig](/docs/trl/v1.19.0/en/distillation_trainer#trl.DistillationConfig) to avoid underutilization or out-of-memory errors.
 
 For more information, see [Speeding up training with vLLM](speeding_up_training#vllm-for-fast-generation-in-online-methods).
 
@@ -176,9 +180,39 @@ trainer.train()
 > [!WARNING]
 > The distillation loss reads `lm_head.weight` directly and runs the student backbone without going through `PeftModel.forward()`. Adapters on `lm_head` (via `target_modules`) and prompt-learning methods (PromptTuning, PrefixTuning, P-Tuning) are therefore rejected, since they would be silently ignored. To train the head, use `modules_to_save=["lm_head"]` instead.
 
+### Multiple teachers
+
+To distill several frozen domain experts (e.g. a math expert and a code expert) into a single student, as in [MOPD](https://huggingface.co/papers/2606.30406), pass a dictionary mapping teacher IDs to teachers instead of a single teacher. Each example selects its teacher through a `teacher_id` column, and its completion is scored by that teacher only. Every teacher must share the student's vocabulary, and is prepared like a single teacher, so DeepSpeed ZeRO-3 shards (and optionally offloads) each of them. FSDP is not supported with a teacher mapping.
+
+```python
+from datasets import Dataset
+from trl import DistillationConfig, DistillationTrainer
+
+dataset = Dataset.from_dict(
+    {
+        "prompt": [
+            [{"role": "user", "content": "What is the derivative of x^2?"}],
+            [{"role": "user", "content": "Write a function that reverses a string."}],
+        ],
+        "teacher_id": ["math", "code"],
+    }
+)
+
+trainer = DistillationTrainer(
+    model="Qwen/Qwen2.5-0.5B-Instruct",
+    teacher_model={
+        "math": "Qwen/Qwen2.5-Math-1.5B-Instruct",
+        "code": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
+    },
+    args=DistillationConfig(output_dir="mopd-student", teacher_model_init_kwargs={"code": {"dtype": "bfloat16"}}),
+    train_dataset=dataset,
+)
+trainer.train()
+```
+
 ## Agent Training
 
-[DistillationTrainer](/docs/trl/v1.18.2/en/distillation_trainer#trl.DistillationTrainer) supports **agent training**: the student calls tools during generation and is distilled on the resulting trajectory. Tool-result tokens are masked out of the loss, so the student is only trained on the tokens it generated itself.
+[DistillationTrainer](/docs/trl/v1.19.0/en/distillation_trainer#trl.DistillationTrainer) supports **agent training**: the student calls tools during generation and is distilled on the resulting trajectory. Tool-result tokens are masked out of the loss, so the student is only trained on the tokens it generated itself.
 
 ### Tools
 
@@ -199,7 +233,7 @@ For more details, see the [Passing tools guide](https://huggingface.co/docs/tran
 > [!TIP]
 > The tool call loop requires the chat template to be *prefix-preserving* (appending a tool message must not change how earlier messages are rendered). For known model families (e.g. Qwen3, DeepSeek-V3), TRL automatically swaps in a patched training template when tools are enabled. See [Chat Templates](chat_templates#training-templates) for the full list.
 
-Use `max_tool_calling_iterations` in the [DistillationConfig](/docs/trl/v1.18.2/en/distillation_trainer#trl.DistillationConfig) to cap the number of tool-calling turns. By default there is no limit, and generation stops when the student produces a response turn with no tool calls, when the completion (all turns and tool results) reaches `max_completion_length` tokens, or when the full sequence reaches the model's maximum length (`vllm_max_model_length` with `vllm_mode="colocate"`, the model's `max_position_embeddings` otherwise).
+Use `max_tool_calling_iterations` in the [DistillationConfig](/docs/trl/v1.19.0/en/distillation_trainer#trl.DistillationConfig) to cap the number of tool-calling turns. By default there is no limit, and generation stops when the student produces a response turn with no tool calls, when the completion (all turns and tool results) reaches `max_completion_length` tokens, or when the full sequence reaches the model's maximum length (`vllm_max_model_length` with `vllm_mode="colocate"`, the model's `max_position_embeddings` otherwise).
 
 Example:
 
@@ -228,6 +262,80 @@ trainer = DistillationTrainer(
 > [!WARNING]
 > Async tools are not supported yet — pass synchronous functions.
 
+### Environments
+
+You can also provide tools through `environment_factory`. In this mode, [DistillationTrainer](/docs/trl/v1.19.0/en/distillation_trainer#trl.DistillationTrainer) creates one environment instance per rollout and exposes the environment's public methods as tools. The student runs a multi-turn episode against its own instance, the teacher scores every token the student generated with the whole episode (tool results included) as context, and the tool-result tokens are masked out of the loss.
+
+> [!IMPORTANT]
+> `environment_factory` requires `transformers>=5.2.0`.
+
+> [!NOTE]
+> The trainer keeps one environment instance per rollout in the generation batch, so `per_device_train_batch_size × gradient_accumulation_steps × num_processes` instances exist at once across processes (more if `per_device_eval_batch_size` is larger), reused between batches. If each instance opens a session on a remote environment server (as with [OpenEnv](openenv)), that server must accept that many concurrent sessions. See [Server concurrency](openenv#server-concurrency).
+
+Per rollout, the trainer samples one row of the `train_dataset`, uses its `"prompt"` column as the prompt, and passes the row's other columns to `reset()` as keyword arguments, so the environment reads the task from the dataset.
+
+```python
+from datasets import Dataset
+from trl import DistillationConfig, DistillationTrainer
+
+# Each row carries the prompt and the task data (here, the counter target to reach).
+targets = [i % 6 + 1 for i in range(64)]
+dataset = Dataset.from_dict(
+    {
+        "prompt": [[{"role": "user", "content": f"Increment the counter to {t}."}] for t in targets],
+        "target": targets,
+    }
+)
+
+class IncrementEnv:
+    # Reserved methods
+    def reset(self, target, **kwargs) -> str | None:  # required; the row's `target` column arrives as a keyword argument
+        self.counter = 0
+        self.target = target
+        return None  # a returned string is appended to the last user message
+
+    def get_reward(self) -> float:  # optional: logged, never used in the loss
+        return float(self.counter == self.target)
+
+    # Public methods (exposed as tools)
+    def increment(self, step: int) -> int:
+        """
+        Increment the internal counter.
+
+        Args:
+            step: Value to add to the counter.
+
+        Returns:
+            The updated counter value.
+        """
+        self.counter += step
+        return self.counter
+
+trainer = DistillationTrainer(
+    model="Qwen/Qwen3-0.6B",
+    teacher_model="Qwen/Qwen3-4B",
+    args=DistillationConfig(max_tool_calling_iterations=4, chat_template_kwargs={"enable_thinking": False}),
+    train_dataset=dataset,
+    environment_factory=IncrementEnv,
+)
+trainer.train()
+```
+
+The counter task is solved in one tool call, so it only shows the API. For a task where the later turns matter, see the [`distillation_data_analysis_env`](https://github.com/huggingface/trl/tree/main/examples/distillation_data_analysis_env) example and its comparison of whole episodes against the first turn.
+
+An environment class has two reserved methods: `reset` and `get_reward`. Unlike any other public methods, these are not exposed to the model as tools.
+
+- `reset` (required) is called when the rollout starts. It can return either `None` or a string. In distillation, when it returns a string, that string is appended to the last user message.
+- `get_reward` (optional) takes no argument and returns a `float`. Distillation has no reward, so it is called once per completed rollout only to log the episode's score as `rewards/{EnvironmentClass}/mean`, which is handy to follow task success while the loss goes down. It also lets an environment release per-episode resources. It runs on every rollout, so an expensive `get_reward` (for example one that runs a test suite) adds to the time of every step.
+
+> [!IMPORTANT]
+> With tools, `max_completion_length` is the budget for the **whole episode**: every model turn plus every tool result. Tool results are masked out of the loss but still count toward it, and they can take most of it, for example when tools return tables or tracebacks, as in the [`distillation_data_analysis_env`](https://github.com/huggingface/trl/tree/main/examples/distillation_data_analysis_env) example. Size it for the episode rather than for a single answer. A tool result that would overflow the budget is dropped and the episode ends there.
+
+To mix several environments in one run, pass a dictionary mapping environment names to factories and add an `environment` column to the dataset, as for [`GRPOTrainer`](grpo_trainer#multiple-environments): each rollout only sees the tools of its own environment, and the `environment` field is not forwarded to `reset`, nor is the `teacher_id` field with [multiple teachers](#multiple-teachers). Instances are reused across steps (reset between episodes), so an expensive `__init__` is paid once. The [`distillation_data_analysis_env`](https://github.com/huggingface/trl/tree/main/examples/distillation_data_analysis_env) example distills a data-analysis agent in OpenEnv's data-analysis environment.
+
+> [!WARNING]
+> Async environment methods (tools or `get_reward`) are not supported yet, and the `train_dataset` is required: the environment cannot own the data as with [GRPOTrainer](/docs/trl/v1.19.0/en/grpo_trainer#trl.GRPOTrainer).
+
 ### Multimodal Tool Responses
 
 Tools can return images alongside text by returning a list of content blocks. This is useful for VLM agent training where the tool provides visual feedback (e.g., screenshots, plots, camera captures).
@@ -250,7 +358,7 @@ The returned images are automatically injected into the conversation and passed 
 
 ## Training Vision Language Models
 
-[DistillationTrainer](/docs/trl/v1.18.2/en/distillation_trainer#trl.DistillationTrainer) supports distilling Vision-Language Models (VLMs) on multimodal datasets containing both text and images. Pass a VLM as both the student and the teacher, and provide a prompt-only dataset with either an `image` column (single image per sample) or an `images` column (list of images per sample). For more information on the expected dataset structure, see the [Dataset Format — Vision datasets](dataset_formats#vision-datasets) section.
+[DistillationTrainer](/docs/trl/v1.19.0/en/distillation_trainer#trl.DistillationTrainer) supports distilling Vision-Language Models (VLMs) on multimodal datasets containing both text and images. Pass a VLM as both the student and the teacher, and provide a prompt-only dataset with either an `image` column (single image per sample) or an `images` column (list of images per sample). For more information on the expected dataset structure, see the [Dataset Format — Vision datasets](dataset_formats#vision-datasets) section.
 
 Tested with:
 
@@ -300,34 +408,36 @@ trl distillation \
 #### trl.DistillationTrainer[[trl.DistillationTrainer]]
 
 ```python
-trl.DistillationTrainer(model: str | PreTrainedModel | PeftModel, teacher_model: str | transformers.modeling_utils.PreTrainedModel | None = None, args: trl.trainer.distillation_config.DistillationConfig | None = None, train_dataset: datasets.arrow_dataset.Dataset | None = None, eval_dataset: datasets.arrow_dataset.Dataset | dict[str, datasets.arrow_dataset.Dataset] | None = None, processing_class: transformers.tokenization_utils_base.PreTrainedTokenizerBase | transformers.processing_utils.ProcessorMixin | None = None, callbacks: list[transformers.trainer_callback.TrainerCallback] | None = None, optimizers: tuple[typing.Optional[torch.optim.Optimizer], typing.Optional[torch.optim.lr_scheduler.LambdaLR]] = (None, None), quantization_config: BitsAndBytesConfig | None = None, peft_config: PeftConfig | None = None, tools: list[collections.abc.Callable] | None = None)
+trl.DistillationTrainer(model: str | PreTrainedModel | PeftModel, teacher_model: str | transformers.modeling_utils.PreTrainedModel | dict[str, str | transformers.modeling_utils.PreTrainedModel] | None = None, args: trl.trainer.distillation_config.DistillationConfig | None = None, train_dataset: datasets.arrow_dataset.Dataset | None = None, eval_dataset: datasets.arrow_dataset.Dataset | dict[str, datasets.arrow_dataset.Dataset] | None = None, processing_class: transformers.tokenization_utils_base.PreTrainedTokenizerBase | transformers.processing_utils.ProcessorMixin | None = None, callbacks: list[transformers.trainer_callback.TrainerCallback] | None = None, optimizers: tuple[typing.Optional[torch.optim.Optimizer], typing.Optional[torch.optim.lr_scheduler.LambdaLR]] = (None, None), quantization_config: BitsAndBytesConfig | None = None, peft_config: PeftConfig | None = None, tools: list[collections.abc.Callable] | None = None, environment_factory: collections.abc.Callable[[], trl.trainer.distillation_trainer._SupportsReset] | dict[str, collections.abc.Callable[[], trl.trainer.distillation_trainer._SupportsReset]] | None = None)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.18.2/trl/trainer/distillation_trainer.py#L220)
+[Source](https://github.com/huggingface/trl/blob/v1.19.0/trl/trainer/distillation_trainer.py#L232)
 
 **Parameters:**
 
-model (`str` or [PreTrainedModel](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel) or [PeftModel](https://huggingface.co/docs/peft/v0.22.0/en/package_reference/peft_model#peft.PeftModel)) : Model to be trained. Can be either:  - A string, being the *model id* of a pretrained model hosted inside a model repo on huggingface.co, or a path to a *directory* containing model weights saved using [save_pretrained](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained), e.g., `'./my_model_directory/'`. The model is loaded using `<ModelArchitecture>.from_pretrained` (where `<ModelArchitecture>` is derived from the model config) with the keyword arguments in `args.model_init_kwargs`. If `dtype` is not specified in `args.model_init_kwargs`, it defaults to `float32`. This differs from [from_pretrained](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained), where (since Transformers v5) the dtype is inferred from the model config. - A [PreTrainedModel](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel) object. Only causal language models are supported. - A [PeftModel](https://huggingface.co/docs/peft/v0.22.0/en/package_reference/peft_model#peft.PeftModel) object. Only causal language models are supported.
+model (`str` or [PreTrainedModel](https://huggingface.co/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel) or [PeftModel](https://huggingface.co/docs/peft/v0.22.0/en/package_reference/peft_model#peft.PeftModel)) : Model to be trained. Can be either:  - A string, being the *model id* of a pretrained model hosted inside a model repo on huggingface.co, or a path to a *directory* containing model weights saved using [save_pretrained](https://huggingface.co/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.save_pretrained), e.g., `'./my_model_directory/'`. The model is loaded using `<ModelArchitecture>.from_pretrained` (where `<ModelArchitecture>` is derived from the model config) with the keyword arguments in `args.model_init_kwargs`. If `dtype` is not specified in `args.model_init_kwargs`, it defaults to `float32`. This differs from [from_pretrained](https://huggingface.co/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained), where (since Transformers v5) the dtype is inferred from the model config. - A [PreTrainedModel](https://huggingface.co/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel) object. Only causal language models are supported. - A [PeftModel](https://huggingface.co/docs/peft/v0.22.0/en/package_reference/peft_model#peft.PeftModel) object. Only causal language models are supported.
 
-teacher_model (`str` or [PreTrainedModel](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel), *optional*) : Teacher model whose next-token distribution the student is trained to match. Can be a *model id* / path (loaded like `model`, using `args.teacher_model_init_kwargs`) or an instantiated [PreTrainedModel](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/model#transformers.PreTrainedModel). It must share the student's vocabulary. May be omitted by subclasses that supply the teacher another way (e.g. a remote server).
+teacher_model (`str`, [PreTrainedModel](https://huggingface.co/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel) or `dict[str, str | PreTrainedModel]`, *optional*) : Teacher model whose next-token distribution the student is trained to match. Can be a *model id* / path (loaded like `model`, using `args.teacher_model_init_kwargs`), an instantiated [PreTrainedModel](https://huggingface.co/docs/transformers/v5.24.1/en/main_classes/model#transformers.PreTrainedModel), or a mapping from teacher ID to either of those, in which case the `teacher_id` column of each row selects its teacher. Every teacher must share the student's vocabulary. May be omitted by subclasses that supply the teacher another way (e.g. a remote server).
 
-args ([DistillationConfig](/docs/trl/v1.18.2/en/distillation_trainer#trl.DistillationConfig), *optional*) : Configuration for this trainer. If `None`, a default configuration is used.
+args ([DistillationConfig](/docs/trl/v1.19.0/en/distillation_trainer#trl.DistillationConfig), *optional*) : Configuration for this trainer. If `None`, a default configuration is used.
 
 train_dataset ([Dataset](https://huggingface.co/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset) or [IterableDataset](https://huggingface.co/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset)) : Dataset to use for training. It must include a column `"prompt"`. Any additional columns in the dataset is ignored. The format of the samples can be either:  - [Standard](dataset_formats#standard): Each sample contains plain text. - [Conversational](dataset_formats#conversational): Each sample contains structured messages (e.g., role and content).  When `train_dataset` is an [IterableDataset](https://huggingface.co/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset) (e.g. a streaming dataset), `max_steps` must be set in the training arguments, since its length cannot be inferred and the total number of training steps is required to bound the training loop and configure the learning rate scheduler.
 
 eval_dataset ([Dataset](https://huggingface.co/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.Dataset), [IterableDataset](https://huggingface.co/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDataset), [DatasetDict](https://huggingface.co/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.DatasetDict), [IterableDatasetDict](https://huggingface.co/docs/datasets/v5.2.0/en/package_reference/main_classes#datasets.IterableDatasetDict) or `dict[str, Dataset | IterableDataset]`) : Dataset to use for evaluation. It must meet the same requirements as `train_dataset`.
 
-processing_class ([PreTrainedTokenizerBase](https://huggingface.co/docs/transformers/v5.23.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase), [ProcessorMixin](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/processors#transformers.ProcessorMixin), *optional*) : Processing class used to process the data. The padding side must be set to "left". If `None`, the processing class is loaded from the model's name with [from_pretrained](https://huggingface.co/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoProcessor.from_pretrained). A padding token, `tokenizer.pad_token`, must be set. If the processing class has not set a padding token, `tokenizer.eos_token` will be used as the default.
+processing_class ([PreTrainedTokenizerBase](https://huggingface.co/docs/transformers/v5.24.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase), [ProcessorMixin](https://huggingface.co/docs/transformers/v5.24.1/en/main_classes/processors#transformers.ProcessorMixin), *optional*) : Processing class used to process the data. The padding side must be set to "left". If `None`, the processing class is loaded from the model's name with [from_pretrained](https://huggingface.co/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoProcessor.from_pretrained). A padding token, `tokenizer.pad_token`, must be set. If the processing class has not set a padding token, `tokenizer.eos_token` will be used as the default.
 
-callbacks (list of [TrainerCallback](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/callback#transformers.TrainerCallback), *optional*) : List of callbacks to customize the training loop. Will add those to the list of default callbacks detailed in [here](https://huggingface.co/docs/transformers/main_classes/callback).  If you want to remove one of the default callbacks used, use the [remove_callback](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/trainer#transformers.Trainer.remove_callback) method.
+callbacks (list of [TrainerCallback](https://huggingface.co/docs/transformers/v5.24.1/en/main_classes/callback#transformers.TrainerCallback), *optional*) : List of callbacks to customize the training loop. Will add those to the list of default callbacks detailed in [here](https://huggingface.co/docs/transformers/main_classes/callback).  If you want to remove one of the default callbacks used, use the [remove_callback](https://huggingface.co/docs/transformers/v5.24.1/en/main_classes/trainer#transformers.Trainer.remove_callback) method.
 
-optimizers (`tuple[torch.optim.Optimizer | None, torch.optim.lr_scheduler.LambdaLR | None]`, *optional*, defaults to `(None, None)`) : A tuple containing the optimizer and the scheduler to use. Will default to an instance of `AdamW` on your model and a scheduler given by [get_linear_schedule_with_warmup](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/optimizer_schedules#transformers.get_linear_schedule_with_warmup) controlled by `args`.
+optimizers (`tuple[torch.optim.Optimizer | None, torch.optim.lr_scheduler.LambdaLR | None]`, *optional*, defaults to `(None, None)`) : A tuple containing the optimizer and the scheduler to use. Will default to an instance of `AdamW` on your model and a scheduler given by [get_linear_schedule_with_warmup](https://huggingface.co/docs/transformers/v5.24.1/en/main_classes/optimizer_schedules#transformers.get_linear_schedule_with_warmup) controlled by `args`.
 
-quantization_config ([BitsAndBytesConfig](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/quantization#transformers.BitsAndBytesConfig), *optional*) : Quantization configuration used when loading the model from a model identifier. Combine with `peft_config` for QLoRA training. Ignored if the model is already instantiated.
+quantization_config ([BitsAndBytesConfig](https://huggingface.co/docs/transformers/v5.24.1/en/main_classes/quantization#transformers.BitsAndBytesConfig), *optional*) : Quantization configuration used when loading the model from a model identifier. Combine with `peft_config` for QLoRA training. Ignored if the model is already instantiated.
 
 peft_config ([PeftConfig](https://huggingface.co/docs/peft/v0.22.0/en/package_reference/config#peft.PeftConfig), *optional*) : PEFT configuration used to wrap the model. If `None`, the model is not wrapped.
 
 tools (list of `Callable`, *optional*) : A list of callable tool functions that the model can invoke during generation. Each tool should be a standard Python function with properly type-hinted arguments and return values, and a Google-style docstring describing its purpose, arguments, and return value. For more details, see: https://huggingface.co/docs/transformers/en/chat_extras#passing-tools. The model uses the function's name, type hints, and docstring to determine how to call it. Ensure that the model's chat template supports tool use and that it has been fine-tuned for tool calling.
+
+environment_factory (`EnvironmentFactory` or `dict[str, EnvironmentFactory]`, *optional*) : A callable that creates and returns an environment instance, or a dictionary mapping environment names to such callables. The environment class should define methods that can be invoked as tools during generation. Each method should comply with the same requirements as the `tools` described above. The environment must also implement a callable `reset` method that can be used to reset state between generations. The `reset` method should return either `None` or a string: when it returns a string, that string is appended to the last user message before generation. Tool-result tokens are excluded from the loss, but they count toward `max_completion_length`, which is the budget for the whole episode. If the environment defines a `get_reward` method taking no argument and returning a `float`, it is called once per rollout and only logged, never used in the loss, so an expensive `get_reward` adds to the time of every step.  With a single callable, every example uses the same environment, with one instance per rollout so their interactions stay isolated. With a dictionary, each example must carry an `environment` field selecting its environment by name, and only that environment's tools are exposed in its prompt — letting a single run mix tasks (e.g. a coding environment and a game). This feature is experimental and may change or be removed at any time without prior notice.
 
 Trainer for knowledge distillation. The student is trained on-policy — it generates the completions itself — to
 match the teacher's next-token distribution under a generalized Jensen-Shannon divergence (interpolating forward
@@ -356,7 +466,7 @@ Example:
 train(resume_from_checkpoint: str | bool | None = None, trial: optuna.Trial | dict[str, Any] | None = None, ignore_keys_for_eval: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.18.2/transformers/trainer.py#L1450)
+[Source](https://github.com/huggingface/trl/blob/v1.19.0/transformers/trainer.py#L1450)
 
 **Parameters:**
 
@@ -378,7 +488,7 @@ Main training entry point.
 save_model(output_dir: str | None = None, _internal_call: bool = False)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.18.2/transformers/trainer.py#L4077)
+[Source](https://github.com/huggingface/trl/blob/v1.19.0/transformers/trainer.py#L4085)
 
 Will save the model, so you can reload it using `from_pretrained()`.
 
@@ -390,7 +500,7 @@ Will only save from the main process.
 push_to_hub(commit_message: str | None = 'End of training', blocking: bool = True, token: str | None = None, revision: str | None = None, private: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.18.2/transformers/trainer.py#L4337)
+[Source](https://github.com/huggingface/trl/blob/v1.19.0/transformers/trainer.py#L4345)
 
 **Parameters:**
 
@@ -418,30 +528,30 @@ Upload `self.model` and `self.processing_class` to the 🤗 model hub on the rep
 #### trl.DistillationConfig[[trl.DistillationConfig]]
 
 ```python
-trl.DistillationConfig(output_dir: str | None = None, per_device_train_batch_size: int = 8, num_train_epochs: float = 3.0, max_steps: int = -1, learning_rate: float = 1e-06, lr_scheduler_type: transformers.trainer_utils.SchedulerType | str = 'linear', lr_scheduler_kwargs: dict | str | None = None, warmup_steps: float = 0, optim: transformers.training_args.OptimizerNames | str = 'adamw_torch_fused', optim_args: str | None = None, weight_decay: float = 0.0, adam_beta1: float = 0.9, adam_beta2: float = 0.999, adam_epsilon: float = 1e-08, optim_target_modules: None | str | list[str] = None, gradient_accumulation_steps: int = 1, average_tokens_across_devices: bool = True, max_grad_norm: float = 1.0, label_smoothing_factor: float = 0.0, bf16: bool | None = None, fp16: bool = False, bf16_full_eval: bool = False, fp16_full_eval: bool = False, tf32: bool | None = None, activation_checkpointing: bool | None = None, activation_checkpointing_kwargs: dict[str, typing.Any] | str | None = None, gradient_checkpointing: bool | None = None, gradient_checkpointing_kwargs: dict[str, typing.Any] | str | None = None, torch_compile: bool = False, torch_compile_backend: str | None = None, torch_compile_mode: str | None = None, use_liger_kernel: bool = False, liger_kernel_config: dict[str, bool] | None = None, use_cache: bool = False, neftune_noise_alpha: float | None = None, torch_empty_cache_steps: int | None = None, auto_find_batch_size: bool = False, logging_strategy: transformers.trainer_utils.IntervalStrategy | str = 'steps', logging_steps: float = 10, logging_first_step: bool = False, log_on_each_node: bool = True, logging_nan_inf_filter: bool = True, include_num_input_tokens_seen: str | bool = 'no', log_level: str = 'passive', log_level_replica: str = 'warning', disable_tqdm: bool | None = None, report_to: None | str | list[str] = 'none', run_name: str | None = None, project: str = 'huggingface', trackio_space_id: str | None = None, trackio_bucket_id: str | None = None, trackio_static_space_id: typing.Union[str, NoneType, typing.Literal[False]] = None, eval_strategy: transformers.trainer_utils.IntervalStrategy | str = 'no', eval_steps: float | None = None, eval_delay: float = 0, per_device_eval_batch_size: int = 8, prediction_loss_only: bool = False, eval_on_start: bool = False, eval_do_concat_batches: bool = True, eval_use_gather_object: bool = False, eval_accumulation_steps: int | None = None, include_for_metrics: list[str] = <factory>, batch_eval_metrics: bool = False, save_only_model: bool = False, save_strategy: transformers.trainer_utils.SaveStrategy | str = 'steps', save_steps: float = 500, save_on_each_node: bool = False, save_total_limit: int | None = None, enable_jit_checkpoint: bool = False, push_to_hub: bool = False, hub_token: str | None = None, hub_private_repo: bool | None = None, hub_model_id: str | None = None, hub_strategy: transformers.trainer_utils.HubStrategy | str = 'every_save', hub_always_push: bool = False, hub_revision: str | None = None, load_best_model_at_end: bool = False, metric_for_best_model: str | None = None, greater_is_better: bool | None = None, ignore_data_skip: bool = False, restore_callback_states_from_checkpoint: bool = False, full_determinism: bool = False, seed: int = 42, data_seed: int | None = None, use_cpu: bool = False, accelerator_config: dict | str | None = None, parallelism_config: accelerate.parallelism_config.ParallelismConfig | None = None, dataloader_drop_last: bool = False, dataloader_num_workers: int = 0, dataloader_pin_memory: bool = True, dataloader_persistent_workers: bool = False, dataloader_prefetch_factor: int | None = None, dataloader_multiprocessing_context: str | None = None, dataloader_in_order: bool = True, remove_unused_columns: bool | None = False, label_names: list[str] | None = None, train_sampling_strategy: str = 'random', length_column_name: str = 'length', ddp_find_unused_parameters: bool | None = None, ddp_bucket_cap_mb: int | None = None, ddp_broadcast_buffers: bool | None = None, ddp_static_graph: bool | None = None, ddp_backend: str | None = None, ddp_timeout: int = 1800, fsdp: str | None = None, fsdp_config: dict[str, typing.Any] | str | None = None, deepspeed: dict | str | None = None, debug: str | list[transformers.debug_utils.DebugOption] = '', skip_memory_metrics: bool = True, do_train: bool = False, do_eval: bool = False, do_predict: bool = False, resume_from_checkpoint: str | None = None, local_rank: int = -1, model_init_kwargs: dict[str, typing.Any] | str | None = None, trust_remote_code: bool = False, teacher_model_name_or_path: str | None = None, teacher_model_revision: str | None = None, teacher_model_init_kwargs: dict[str, typing.Any] | str | None = None, disable_dropout: bool = False, max_completion_length: int | None = 512, ds3_gather_for_generation: bool = True, shuffle_dataset: bool | None = True, pad_to_multiple_of: int | str | None = 'auto', temperature: float = 1.0, top_p: float = 1.0, top_k: int = 0, min_p: float | None = None, generation_kwargs: dict | str | None = None, chat_template_kwargs: dict | str | None = None, repetition_penalty: float = 1.0, cache_implementation: str | None = None, use_vllm: bool = False, vllm_mode: str = 'colocate', vllm_model_impl: str = 'vllm', vllm_enable_sleep_mode: bool = False, vllm_structured_outputs_regex: str | None = None, vllm_server_base_url: str | None = None, vllm_server_host: str = '0.0.0.0', vllm_server_port: int = 8000, vllm_server_timeout: float = 240.0, vllm_group_port: int = 51216, vllm_gpu_memory_utilization: float = 0.3, vllm_max_model_length: int | None = None, vllm_tensor_parallel_size: int = 1, beta: float = 1.0, max_tool_calling_iterations: int | None = None, log_completions: bool = False, num_completions_to_print: int | None = None, log_unique_prompts: bool = False)
+trl.DistillationConfig(output_dir: str | None = None, per_device_train_batch_size: int = 8, num_train_epochs: float = 3.0, max_steps: int = -1, learning_rate: float = 1e-06, lr_scheduler_type: transformers.trainer_utils.SchedulerType | str = 'linear', lr_scheduler_kwargs: dict | str | None = None, warmup_steps: float = 0, optim: transformers.training_args.OptimizerNames | str = 'adamw_torch_fused', optim_args: str | None = None, weight_decay: float = 0.0, adam_beta1: float = 0.9, adam_beta2: float = 0.999, adam_epsilon: float = 1e-08, optim_target_modules: None | str | list[str] = None, gradient_accumulation_steps: int = 1, average_tokens_across_devices: bool = True, max_grad_norm: float = 1.0, label_smoothing_factor: float = 0.0, bf16: bool | None = None, fp16: bool = False, bf16_full_eval: bool = False, fp16_full_eval: bool = False, tf32: bool | None = None, activation_checkpointing: bool | None = None, activation_checkpointing_kwargs: dict[str, typing.Any] | str | None = None, gradient_checkpointing: bool | None = None, gradient_checkpointing_kwargs: dict[str, typing.Any] | str | None = None, torch_compile: bool = False, torch_compile_backend: str | None = None, torch_compile_mode: str | None = None, use_liger_kernel: bool = False, liger_kernel_config: dict[str, bool] | None = None, use_cache: bool = False, neftune_noise_alpha: float | None = None, torch_empty_cache_steps: int | None = None, auto_find_batch_size: bool = False, logging_strategy: transformers.trainer_utils.IntervalStrategy | str = 'steps', logging_steps: float = 10, logging_first_step: bool = False, log_on_each_node: bool = True, logging_nan_inf_filter: bool = True, include_num_input_tokens_seen: str | bool = 'no', log_level: str = 'passive', log_level_replica: str = 'warning', disable_tqdm: bool | None = None, report_to: None | str | list[str] = 'none', run_name: str | None = None, project: str = 'huggingface', trackio_space_id: str | None = None, trackio_bucket_id: str | None = None, trackio_static_space_id: typing.Union[str, NoneType, typing.Literal[False]] = None, eval_strategy: transformers.trainer_utils.IntervalStrategy | str = 'no', eval_steps: float | None = None, eval_delay: float = 0, per_device_eval_batch_size: int = 8, prediction_loss_only: bool = False, eval_on_start: bool = False, eval_do_concat_batches: bool = True, eval_use_gather_object: bool = False, eval_accumulation_steps: int | None = None, include_for_metrics: list[str] = <factory>, batch_eval_metrics: bool = False, save_only_model: bool = False, save_strategy: transformers.trainer_utils.SaveStrategy | str = 'steps', save_steps: float = 500, save_on_each_node: bool = False, save_total_limit: int | None = None, enable_jit_checkpoint: bool = False, push_to_hub: bool = False, hub_token: str | None = None, hub_private_repo: bool | None = None, hub_model_id: str | None = None, hub_strategy: transformers.trainer_utils.HubStrategy | str = 'every_save', hub_always_push: bool = False, hub_revision: str | None = None, load_best_model_at_end: bool = False, metric_for_best_model: str | None = None, greater_is_better: bool | None = None, ignore_data_skip: bool = False, restore_callback_states_from_checkpoint: bool = False, full_determinism: bool = False, seed: int = 42, data_seed: int | None = None, use_cpu: bool = False, accelerator_config: dict | str | None = None, parallelism_config: accelerate.parallelism_config.ParallelismConfig | None = None, dataloader_drop_last: bool = False, dataloader_num_workers: int = 0, dataloader_pin_memory: bool = True, dataloader_persistent_workers: bool = False, dataloader_prefetch_factor: int | None = None, dataloader_multiprocessing_context: str | None = None, dataloader_in_order: bool = True, remove_unused_columns: bool | None = False, label_names: list[str] | None = None, train_sampling_strategy: str = 'random', length_column_name: str = 'length', ddp_find_unused_parameters: bool | None = None, ddp_bucket_cap_mb: int | None = None, ddp_broadcast_buffers: bool | None = None, ddp_static_graph: bool | None = None, ddp_backend: str | None = None, ddp_timeout: int = 1800, fsdp: str | None = None, fsdp_config: dict[str, typing.Any] | str | None = None, deepspeed: dict | str | None = None, debug: str | list[transformers.debug_utils.DebugOption] = '', skip_memory_metrics: bool = True, do_train: bool = False, do_eval: bool = False, do_predict: bool = False, resume_from_checkpoint: str | None = None, local_rank: int = -1, model_init_kwargs: dict[str, typing.Any] | str | None = None, trust_remote_code: bool = False, teacher_model_name_or_path: dict[str, str] | str | None = None, teacher_model_revision: str | None = None, teacher_model_init_kwargs: dict[str, typing.Any] | str | None = None, disable_dropout: bool = False, max_completion_length: int | None = 512, ds3_gather_for_generation: bool = True, shuffle_dataset: bool | None = True, pad_to_multiple_of: int | str | None = 'auto', temperature: float = 1.0, top_p: float = 1.0, top_k: int = 0, min_p: float | None = None, generation_kwargs: dict | str | None = None, chat_template_kwargs: dict | str | None = None, repetition_penalty: float = 1.0, cache_implementation: str | None = None, use_vllm: bool = False, vllm_mode: str = 'colocate', vllm_model_impl: str = 'vllm', vllm_enable_sleep_mode: bool = False, vllm_structured_outputs_regex: str | None = None, vllm_server_base_url: str | None = None, vllm_server_host: str = '0.0.0.0', vllm_server_port: int = 8000, vllm_server_timeout: float = 240.0, vllm_group_port: int = 51216, vllm_gpu_memory_utilization: float = 0.3, vllm_max_model_length: int | None = None, vllm_tensor_parallel_size: int = 1, beta: float = 1.0, max_tool_calling_iterations: int | None = None, log_completions: bool = False, num_completions_to_print: int | None = None, log_unique_prompts: bool = False)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.18.2/trl/trainer/distillation_config.py#L22)
+[Source](https://github.com/huggingface/trl/blob/v1.19.0/trl/trainer/distillation_config.py#L22)
 
 **Parameters that control the model and the teacher model:**
 
 model_init_kwargs (`str` or `dict[str, Any]`, *optional*) : Keyword arguments for `AutoModelForCausalLM.from_pretrained`, used when the `model` argument of the trainer is provided as a string. The `revision` value is also used when loading the processing class.
 
-trust_remote_code (`bool`, *optional*, defaults to `False`) : Whether to allow loading models and tokenizers that ship custom Python code from the Hub. Forwarded to [from_pretrained](https://huggingface.co/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained) and [from_pretrained](https://huggingface.co/docs/transformers/v5.23.0/en/model_doc/auto#transformers.AutoTokenizer.from_pretrained), for both the student and teacher.
+trust_remote_code (`bool`, *optional*, defaults to `False`) : Whether to allow loading models and tokenizers that ship custom Python code from the Hub. Forwarded to [from_pretrained](https://huggingface.co/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained) and [from_pretrained](https://huggingface.co/docs/transformers/v5.24.1/en/model_doc/auto#transformers.AutoTokenizer.from_pretrained), for both the student and teacher.
 
-teacher_model_name_or_path (`str`, *optional*) : Model name or path for the teacher model. Used when the teacher is loaded locally.
+teacher_model_name_or_path (`str` or `dict[str, str]`, *optional*) : Model name or path for the teacher model. Used when the teacher is loaded locally. A mapping from teacher ID to model name or path uses several teachers, where the `teacher_id` column of each row selects its teacher.
 
 teacher_model_revision (`str`, *optional*) : Model revision of the teacher model (e.g., branch name, tag, or commit hash).
 
-teacher_model_init_kwargs (`str` or `dict[str, Any]`, *optional*) : Keyword arguments passed to `AutoModelForCausalLM.from_pretrained` when instantiating the teacher model from a string.
+teacher_model_init_kwargs (`str` or `dict[str, Any]`, *optional*) : Keyword arguments passed to `AutoModelForCausalLM.from_pretrained` when instantiating the teacher model from a string. When `teacher_model_name_or_path` is a mapping, provide a mapping from teacher ID to loading kwargs instead, e.g. `{"math": {"dtype": "bfloat16"}, "code": {"revision": "main"}}`. Omitted teachers use the default loading kwargs.
 
 disable_dropout (`bool`, *optional*, defaults to `False`) : Whether to disable dropout in the student model during training.
 
 **Parameters that control the data preprocessing:**
 
-remove_unused_columns (`bool`, *optional*, defaults to `False`) : Whether to only keep the column `"prompt"` in the dataset. The trainer consumes the raw prompt column and generates completions on-policy, so it defaults to `False`.
+remove_unused_columns (`bool`, *optional*, defaults to `False`) : Whether to remove dataset columns other than `"prompt"`, `"image"`, `"images"`, `"teacher_id"`, and `"environment"`.
 
-max_completion_length (`int` or `None`, *optional*, defaults to `512`) : Maximum number of tokens to generate per completion during on-policy generation.
+max_completion_length (`int` or `None`, *optional*, defaults to `512`) : Maximum number of tokens to generate per completion during on-policy generation. With `tools` or `environment_factory`, it caps the whole multi-turn completion after the prompt (all model turns plus tool results).
 
 ds3_gather_for_generation (`bool`, *optional*, defaults to `True`) : This setting applies to DeepSpeed ZeRO-3. If enabled, the policy model weights are gathered for generation, improving generation speed. However, disabling this option allows training models that exceed the VRAM capacity of a single GPU, albeit at the cost of slower generation. Disabling this option is not compatible with vLLM generation.
 
@@ -459,7 +569,7 @@ top_k (`int`, *optional*, defaults to `0`) : Top-k sampling parameter for on-pol
 
 min_p (`float`, *optional*) : Minimum token probability, which will be scaled by the probability of the most likely token. It must be a value between `0.0` and `1.0`. Typical values are in the `0.01-0.2` range.
 
-generation_kwargs (`dict[str, Any]`, *optional*) : Additional keyword arguments to pass to [GenerationConfig](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/text_generation#transformers.GenerationConfig) (if using transformers) or `SamplingParams` (if using vLLM) when sampling completions. This can be used to further customize the generation behavior, such as setting `suppress_tokens`, `num_beams`, etc. If it contains keys that conflict with the other generation parameters (like `min_p`, `top_p`, etc.), they will override them.
+generation_kwargs (`dict[str, Any]`, *optional*) : Additional keyword arguments to pass to [GenerationConfig](https://huggingface.co/docs/transformers/v5.24.1/en/main_classes/text_generation#transformers.GenerationConfig) (if using transformers) or `SamplingParams` (if using vLLM) when sampling completions. This can be used to further customize the generation behavior, such as setting `suppress_tokens`, `num_beams`, etc. If it contains keys that conflict with the other generation parameters (like `min_p`, `top_p`, etc.), they will override them.
 
 chat_template_kwargs (`dict[str, Any]`, *optional*) : Additional keyword arguments to pass to the `apply_chat_template` function when generating completions.
 
@@ -503,7 +613,7 @@ vllm_tensor_parallel_size (`int`, *optional*, defaults to `1`) : Tensor parallel
 
 beta (`float`, *optional*, defaults to `1.0`) : Interpolation coefficient for the Generalized Jensen-Shannon Divergence loss. When `0.0`, the loss is the forward KL divergence. When `1.0`, the loss is the reverse KL divergence. When `0.5`, it is the standard JSD. Unlike GRPO's `beta` (a KL-penalty coefficient against a reference model), here it selects the divergence itself; there is no reference-model KL penalty.
 
-max_tool_calling_iterations (`int`, *optional*) : Maximum number of tool-calling turns when training an agent. If `None`, there is no limit and generation stops when the model generates a response turn with no tool calls, when the completion (all turns and tool results) reaches `max_completion_length` tokens, or when the full sequence reaches the model's maximum length (`vllm_max_model_length` with `vllm_mode="colocate"`, the model's `max_position_embeddings` otherwise).
+max_tool_calling_iterations (`int`, *optional*) : Maximum number of tool-calling turns when training an agent. If `None`, there is no limit and generation stops when the model generates a response turn with no tool calls, when the completion (all turns and tool results) reaches `max_completion_length` tokens, or when the full sequence reaches the model's maximum length (`vllm_max_model_length` with `vllm_mode="colocate"`, the model's `max_position_embeddings` otherwise). When the limit is reached, the tool calls of the last generated turn are not executed and the completion ends with that turn, so a final tool call (for example one that submits an answer) is never executed.
 
 **Parameters that control the logging:**
 
@@ -513,21 +623,21 @@ num_completions_to_print (`int`, *optional*) : Number of completions to print wi
 
 log_unique_prompts (`bool`, *optional*, defaults to `False`) : Whether to log unique prompts. If `True`, only unique prompts are logged. If `False`, all prompts are logged.
 
-Configuration class for the [DistillationTrainer](/docs/trl/v1.18.2/en/distillation_trainer#trl.DistillationTrainer).
+Configuration class for the [DistillationTrainer](/docs/trl/v1.19.0/en/distillation_trainer#trl.DistillationTrainer).
 
-Extends [TrainingArguments](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/trainer#transformers.TrainingArguments) with parameters specific to knowledge distillation. All necessary
+Extends [TrainingArguments](https://huggingface.co/docs/transformers/v5.24.1/en/main_classes/trainer#transformers.TrainingArguments) with parameters specific to knowledge distillation. All necessary
 fields are declared here.
 
-Using [HfArgumentParser](https://huggingface.co/docs/transformers/v5.23.0/en/internal/trainer_utils#transformers.HfArgumentParser) we can turn this class into
+Using [HfArgumentParser](https://huggingface.co/docs/transformers/v5.24.1/en/internal/trainer_utils#transformers.HfArgumentParser) we can turn this class into
 [argparse](https://docs.python.org/3/library/argparse#module-argparse) arguments that can be specified on the
 command line.
 
 > [!NOTE]
-> These parameters have default values different from [TrainingArguments](https://huggingface.co/docs/transformers/v5.23.0/en/main_classes/trainer#transformers.TrainingArguments):
+> These parameters have default values different from [TrainingArguments](https://huggingface.co/docs/transformers/v5.24.1/en/main_classes/trainer#transformers.TrainingArguments):
 > - `logging_steps`: Defaults to `10` instead of `500`.
 > - `gradient_checkpointing`: Defaults to `True` instead of `False`.
 > - `bf16`: Defaults to `True` if `fp16` is not set, instead of `False`.
 > - `learning_rate`: Defaults to `1e-6` instead of `5e-5`.
 
-### Usage Stats Collection
-https://huggingface.co/docs/trl/v1.18.2/usage_stats.md
+### Training on AMD GPUs
+https://huggingface.co/docs/trl/v1.19.0/amd_gpus.md
