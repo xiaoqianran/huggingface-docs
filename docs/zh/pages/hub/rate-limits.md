@@ -42,12 +42,12 @@
 
 准确地说，我们实现了以下标头：
 
-|标题|目的/意义|
+|标题 |目的/意义|
 | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **`RateLimit`** |当前窗口允许的总速率限制。 “您可以执行多少（此类）请求。”                      |
 | **`RateLimit-Policy`** |本身带有速率限制策略（例如“每 5 分钟 100 个请求”）。内容丰富；显示客户受哪些政策约束。 |
 
-一组例子如下：|标题|示例|
+一组例子如下：|标题 |示例|
 | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | **`RateLimit`** | `"api\|pages\|resolvers";r=[remaining];t=[seconds remaining until reset]` |
 | **`RateLimit-Policy`** | `"fixed window";"api\|\pages\|resolvers";q=[total allowed for window];w=[window duration in seconds]` |
@@ -101,6 +101,10 @@ Hub Python 库[⟦T12⟧](https://huggingface.co/docs/huggingface_hub/index)（�
 - 节制行动
 - 等我们目前没有记录这些特定操作的速率限制，因为它们往往会随着时间的推移而更频繁地发生变化。如果您遇到配额错误，我们鼓励您将帐户升级到 PRO、Team 或 Enterprise。
 请随时通过支持团队与我们联系。
+
+## 速率限制和下载带宽
+
+速率限制限制了您可以发出的请求数量。您的用户或组织计划还包括单独的 [egress allowance](./download-analytics#egress-overview)，它限制您通过 Hugging Face CDN 下载的数据量。
 
 ### 用户访问令牌
 https://huggingface.co/docs/hub/security-tokens.md

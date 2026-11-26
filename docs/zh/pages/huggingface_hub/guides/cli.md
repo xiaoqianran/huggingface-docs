@@ -34,7 +34,7 @@
 >>> powershell -ExecutionPolicy ByPass -c "irm https://hf.co/cli/install.ps1 | iex"
 ```
 
-安装程序还会在全球范围内安装 [⟦T214⟧ skill](https://huggingface.co/docs/hub/agents-cli)，供 Claude Code 和任何读取 `~/.agents/skills` 的代理使用。通过 `--exclude-skill` 跳过它：
+安装程序还会在全球范围内安装 [⟦T216⟧ skill](https://huggingface.co/docs/hub/agents-cli)，供 Claude Code 和任何读取 `~/.agents/skills` 的代理使用。通过 `--exclude-skill` 跳过它：
 
 ```bash
 >>> curl -LsSf https://hf.co/cli/install.sh | bash -s -- --exclude-skill
@@ -82,13 +82,13 @@ Help commands:
 ```如果 CLI 安装正确，您应该会看到 CLI 中所有可用选项的列表。如果您收到诸如`command not found: hf`之类的错误消息，请参阅[Installation](../installation)指南。
 
 > [!提示]
-> `--help` 选项对于获取有关命令的更多详细信息非常方便。您可以随时使用它来列出所有可用选项及其详细信息。例如，`hf upload --help` 提供了有关如何使用 CLI 上传文件的更多信息。
+> `--help` 选项对于获取有关命令的更多详细信息非常方便。您可以随时使用它来列出所有可用选项及其详细信息。例如，`hf upload --help`提供了有关如何使用 CLI 上传文件的更多信息。
 
 ### 使用紫外线
 
-使用 `hf` CLI 最简单的方法是使用 [⟦T221⟧](https://docs.astral.sh/uv/concepts/tools/)。它始终在隔离环境中运行最新版本 - 无需安装！
+使用 `hf` CLI 最简单的方法是使用 [⟦T223⟧](https://docs.astral.sh/uv/concepts/tools/)。它始终在隔离环境中运行最新版本 - 无需安装！
 
-确保首先安装`uv`。请参阅 [uv installation guide](https://docs.astral.sh/uv/getting-started/installation/) 了解说明。
+确保首先安装`uv`。有关说明，请参阅[uv installation guide](https://docs.astral.sh/uv/getting-started/installation/)。
 
 然后直接使用CLI：
 
@@ -99,7 +99,7 @@ Help commands:
 ```
 
 > [!提示]
-> `uvx hf` 使用[⟦T224⟧ PyPI package](https://pypi.org/project/hf/)。
+> `uvx hf` 使用[⟦T226⟧ PyPI package](https://pypi.org/project/hf/)。
 
 ### 使用 pip 安装
 
@@ -134,11 +134,11 @@ CLI 还随核心 `huggingface_hub` 包一起提供：
 大多数 `hf` 命令接受同一组全局格式化标志。它们记录在每个 `--help` 页面的专用 `Formatting options` 部分中，并且可以添加到任何命令中，而无需为每个命令声明它们：|旗帜|同等|描述 |
 | ---- | ---------- | ----------- |
 | `--format <value>` | — |明确选择输出格式。接受的值：`auto`（默认）、`human`、`agent`、`json`、`quiet`。 |
-| `--json` | `--format json` |打印结构化 JSON。对于通过管道输送到 `jq` 或其他脚本很有用。 |
+| `--json` | `--format json` |打印结构化 JSON。对于通过管道传输到 `jq` 或其他脚本很有用。 |
 | `-q`、`--quiet` | `--format quiet` |仅打印 ID（每行一个）。对于将 ID 通过管道传输到其他命令中非常有用。 |
 | `--no-truncate` | — |在人类表格中显示完整值，而不是使用 `...` 缩短长值。该表可能会溢出终端宽度。使用 `--format json` 进行列表/字典列的结构化输出。 |
 
-`auto`（默认）为交互式终端选​​择 `human`，当 AI 代理调用 CLI 时选择`agent`。 `human`增加了颜色和漂亮的桌子； `agent` 生成不截断的制表符分隔值； `json` 发出一个紧凑的 JSON 对象或数组。混合两个输出模式标志（例如 `--json` 与 `--format table`）会引发使用错误。人类表格会自动适应您的终端宽度：仅当自然宽度溢出屏幕时，最宽的列才会缩短（因此在宽终端上，您通常会看到没有`...`的完整值）。通过 `--no-truncate` 强制使用全值，无论宽度如何；使用 `--format json` 进行列表/字典列的结构化输出。
+`auto`（默认）为交互式终端选​​择 `human`，当 AI 代理调用 CLI 时选择`agent`。 `human` 添加颜色和漂亮的表格； `agent` 生成不截断的制表符分隔值； `json` 发出一个紧凑的 JSON 对象或数组。混合两个输出模式标志（例如 `--json` 与 `--format human`）会引发使用错误。人类表格会自动适应您的终端宽度：仅当自然宽度溢出屏幕时，最宽的列才会缩短（因此在宽终端上，您通常会看到没有`...`的完整值）。通过 `--no-truncate` 强制使用全值，无论宽度如何；使用 `--format json` 进行列表/字典列的结构化输出。
 
 ```bash
 # JSON output for scripting
@@ -224,9 +224,21 @@ orgs:  huggingface,eu-test,OAuthTesters,hf-accelerate,HFSmolCluster
 
 该命令将您注销。实际上，它将删除您计算机上存储的所有令牌。如果要删除特定令牌，可以指定令牌名称作为参数。如果您使用 `HF_TOKEN` 环境变量登录（请参阅 [reference](../package_reference/environment_variables#hftoken)），此命令不会让您注销。如果是这种情况，您必须在计算机配置中取消设置环境变量。
 
+## hf 授权撤销
+
+如果您遇到泄漏的令牌（在存储库、日志、粘贴的片段中……），您可以立即使用 `hf auth revoke` 撤销它。任何持有令牌原始价值的人都可以撤销它：您不需要登录，令牌的所有者就会收到一封电子邮件。您自己的令牌永远不会随此请求一起发送。
+
+```bash
+>>> hf auth revoke hf_xxx hf_yyy
+✓ Revocation requested for 2 token(s)
+  count: 2
+```
+
+集线器不会说明令牌是否存在：传递给命令的任何有效令牌都会被撤销。 Python 中的 [revoke_tokens()](/docs/huggingface_hub/v2.5.0/en/package_reference/authentication#huggingface_hub.revoke_tokens) 也提供了同样的功能。
+
 ## 高频下载
 
-使用`hf download`命令直接从Hub下载文件。在内部，它使用 [Download](./download) 指南中描述的相同 [hf_hub_download()](/docs/huggingface_hub/v2.4.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) 和 [snapshot_download()](/docs/huggingface_hub/v2.4.0/en/package_reference/file_download#huggingface_hub.snapshot_download) 帮助程序，并将返回的路径打印到终端。在下面的示例中，我们将介绍最常见的用例。要获得可用选项的完整列表，您可以运行：
+使用`hf download`命令直接从Hub下载文件。在内部，它使用 [Download](./download) 指南中描述的相同 [hf_hub_download()](/docs/huggingface_hub/v2.5.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) 和 [snapshot_download()](/docs/huggingface_hub/v2.5.0/en/package_reference/file_download#huggingface_hub.snapshot_download) 帮助程序，并将返回的路径打印到终端。在下面的示例中，我们将介绍最常见的用例。要获得可用选项的完整列表，您可以运行：
 
 ```bash
 hf download --help
@@ -241,9 +253,7 @@ hf download --help
 downloading https://huggingface.co/gpt2/resolve/main/config.json to /home/wauplin/.cache/huggingface/hub/tmpwrq8dm5o
 (…)ingface.co/gpt2/resolve/main/config.json: 100%|██████████████████████████████████| 665/665 [00:00<00:00, 2.49MB/s]
 /home/wauplin/.cache/huggingface/hub/models--gpt2/snapshots/11c5a3d5811f50298f278a704980280950aedb10/config.json
-```
-
-该命令将始终在最后一行打印本地计算机上文件的路径。
+```该命令将始终在最后一行打印本地计算机上文件的路径。
 
 要下载位于存储库子目录中的文件，您应该以 posix 格式提供存储库中文件的路径，如下所示：
 
@@ -263,7 +273,9 @@ Fetching 23 files:   0%|                                                | 0/23 [
 /home/wauplin/.cache/huggingface/hub/models--HuggingFaceH4--zephyr-7b-beta/snapshots/3bac358730f8806e5c3dc7c7e19eb36e045bf720
 ```
 
-### 下载多个文件您还可以使用单个命令从存储库下载文件的子集。这可以通过两种方式完成。如果您已经有要下载的文件的精确列表，您只需按顺序提供它们即可：
+### 下载多个文件
+
+您还可以使用单个命令从存储库下载文件的子集。这可以通过两种方式完成。如果您已经有了要下载的文件的精确列表，您只需按顺序提供它们即可：
 
 ```bash
 >>> hf download gpt2 config.json model.safetensors
@@ -274,7 +286,7 @@ Fetching 2 files: 100%|███████████████████
 /home/wauplin/.cache/huggingface/hub/models--gpt2/snapshots/11c5a3d5811f50298f278a704980280950aedb10
 ```
 
-另一种方法是使用 `--include` 和 `--exclude` 提供模式来过滤要下载的文件。例如，如果要下载[stabilityai/stable-diffusion-xl-base-1.0](https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0)中的所有safetensors文件，除了FP16精度的文件：
+另一种方法是使用 `--include` 和 `--exclude` 提供模式来过滤要下载的文件。例如，如果要下载 [stabilityai/stable-diffusion-xl-base-1.0](https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0) 中的所有 safetensors 文件，除了 FP16 精度的文件：
 
 ```bash
 >>> hf download stabilityai/stable-diffusion-xl-base-1.0 --include "*.safetensors" --exclude "*.fp16.*"*
@@ -299,9 +311,7 @@ Fetching 8 files: 100%|███████████████████
 ...
 ```
 
-### 下载特定版本
-
-上面的示例展示了如何从主分支上的最新提交下载。要从特定修订版（提交哈希、分支名称或标签）下载，请使用 `--revision` 选项：
+### 下载特定版本上面的示例展示了如何从主分支上的最新提交下载。要从特定修订版（提交哈希、分支名称或标签）下载，请使用 `--revision` 选项：
 
 ```bash
 >>> hf download bigcode/the-stack --repo-type dataset --revision v1.1
@@ -324,13 +334,13 @@ Fetching 8 files: 100%|███████████████████
 
 # A bare id still works and defaults to a model repo
 >>> hf download hf://openai-community/gpt2/config.json
-```当给定 URI 时，也无法设置 `--repo-type` 和 `--revision`，因为它们已经是 URI 的一部分（否则会引发错误），并且嵌入在 URI 中的文件路径无法与位置文件名组合。路径上的尾随 `/` 表示子文件夹（与位置参数一样）。包含 `/` 的分支名称必须进行 URL 编码为 `%2F`（例如 `hf://my-org/my-model@feature%2Ffoo`）。
+```
+
+当给定 URI 时，也无法设置 `--repo-type` 和 `--revision`，因为它们已经是 URI 的一部分（否则会引发错误），并且嵌入在 URI 中的文件路径无法与位置文件名组合。路径上的尾随 `/` 表示子文件夹（与位置参数一样）。包含 `/` 的分支名称必须进行 URL 编码为 `%2F`（例如 `hf://my-org/my-model@feature%2Ffoo`）。
 
 ### 下载到本地文件夹
 
-从集线器下载文件的推荐（也是默认）方法是使用缓存系统。但是，在某些情况下，您想要下载文件并将其移动到特定文件夹。这对于使工作流程更接近 git 命令提供的功能很有用。您可以使用 `--local-dir` 选项来做到这一点。
-
-将在本地目录的根目录中创建一个 `.cache/huggingface/` 文件夹，其中包含有关下载文件的元数据。如果文件已经是最新的，这可以防止重新下载文件。如果元数据已更改，则下载新的文件版本。这使得`local-dir`针对仅拉取最新更改进行了优化。
+从集线器下载文件的推荐（也是默认）方法是使用缓存系统。但是，在某些情况下，您想要下载文件并将其移动到特定文件夹。这对于使工作流程更接近 git 命令提供的功能很有用。您可以使用 `--local-dir` 选项来做到这一点。将在本地目录的根目录中创建一个 `.cache/huggingface/` 文件夹，其中包含有关下载文件的元数据。如果文件已经是最新的，这可以防止重新下载文件。如果元数据已更改，则下载新的文件版本。这使得`local-dir`针对仅拉取最新更改进行了优化。
 
 > [!提示]
 > 有关如何下载到本地文件的更多详细信息，请查看 [download](./download#download-files-to-a-local-folder) 指南。
@@ -341,7 +351,9 @@ Fetching 8 files: 100%|███████████████████
 fuyu/model-00001-of-00002.safetensors
 ```
 
-### 试运行模式在某些情况下，您希望在实际下载之前检查将下载哪些文件。您可以使用 `--dry-run` 参数进行检查。它列出了存储库上要下载的所有文件，并检查它们是否已下载。这可以了解必须下载的文件数量及其大小。
+### 试运行模式
+
+在某些情况下，您希望在实际下载之前检查将下载哪些文件。您可以使用 `--dry-run` 参数进行检查。它列出了存储库上要下载的所有文件，并检查它们是否已下载。这可以了解必须下载的文件数量及其大小。
 
 ```sh
 >>> hf download openai-community/gpt2 --dry-run
@@ -389,9 +401,7 @@ vocab.json                        -
 ./path/to/cache/models--adept--fuyu-8b/snapshots/ddcacbcf5fdf9cc59ff01f6be6d6662624d9c745
 ```
 
-### 指定一个令牌
-
-要访问私有或封闭的存储库，您必须使用令牌。默认情况下，将使用本地保存的令牌（使用`hf auth login`）。如果您想显式进行身份验证，请使用 `--token` 选项：
+### 指定一个令牌要访问私有或封闭的存储库，您必须使用令牌。默认情况下，将使用本地保存的令牌（使用`hf auth login`）。如果您想显式进行身份验证，请使用 `--token` 选项：
 
 ```bash
 >>> hf download gpt2 config.json --token=hf_****
@@ -400,12 +410,14 @@ vocab.json                        -
 
 ### 安静模式
 
-默认情况下，`hf download`命令将是详细的。它将打印警告消息、有关下载文件的信息和进度条等详细信息。如果您想消除所有这些，请使用 `--quiet` 选项。仅打印最后一行（即下载文件的路径）。如果您想将输出传递给脚本中的另一个命令，这可能非常有用。
+默认情况下，`hf download`命令将是详细的。它将打印警告消息、有关下载文件的信息和进度条等详细信息。如果您想静音所有这些，请使用 `--quiet` 选项。仅打印最后一行（即下载文件的路径）。如果您想将输出传递给脚本中的另一个命令，这会很有用。
 
 ```bash
 >>> hf download gpt2 --quiet
 /home/wauplin/.cache/huggingface/hub/models--gpt2/snapshots/11c5a3d5811f50298f278a704980280950aedb10
-```### 下载超时
+```
+
+### 下载超时
 
 在连接速度较慢的计算机上，您可能会遇到如下超时问题：
 
@@ -423,13 +435,11 @@ export HF_HUB_DOWNLOAD_TIMEOUT=30
 
 ## 高频上传
 
-使用`hf upload`命令直接将文件上传到Hub。在内部，它使用与 [Upload](./upload) 指南中描述的相同的 [upload_file()](/docs/huggingface_hub/v2.4.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file) 和 [upload_folder()](/docs/huggingface_hub/v2.4.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) 帮助器。在下面的示例中，我们将介绍最常见的用例。要获得可用选项的完整列表，您可以运行：
+使用`hf upload`命令直接将文件上传到Hub。在内部，它使用与 [Upload](./upload) 指南​​中描述的相同的 [upload_file()](/docs/huggingface_hub/v2.5.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file) 和 [upload_folder()](/docs/huggingface_hub/v2.5.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) 帮助器。在下面的示例中，我们将介绍最常见的用例。要获得可用选项的完整列表，您可以运行：
 
 ```bash
 >>> hf upload --help
-```
-
-### 上传整个文件夹
+```### 上传整个文件夹
 
 该命令的默认用法是：
 
@@ -468,7 +478,9 @@ https://huggingface.co/Wauplin/my-cool-model/tree/main/data/train
 ```bash
 >>> hf upload Wauplin/my-cool-model ./models/model.safetensors
 https://huggingface.co/Wauplin/my-cool-model/blob/main/model.safetensors
-```如果您想上传单个文件到特定目录，请相应设置`path_in_repo`：
+```
+
+如果要上传单个文件到特定目录，请相应设置`path_in_repo`：
 
 ```bash
 >>> hf upload Wauplin/my-cool-model ./models/model.safetensors /vae/model.safetensors
@@ -477,7 +489,7 @@ https://huggingface.co/Wauplin/my-cool-model/blob/main/vae/model.safetensors
 
 ### 上传多个文件
 
-要一次上传文件夹中的多个文件而不上传整个文件夹，请使用 `--include` 和 `--exclude` 模式。它还可以与 `--delete` 选项结合使用，在上传新文件的同时删除存储库上的文件。在下面的例子中，我们通过删除远程文件并上传除`/logs`中的文件之外的所有文件来同步本地空间：
+要一次上传文件夹中的多个文件而不上传整个文件夹，请使用 `--include` 和 `--exclude` 模式。它还可以与 `--delete` 选项结合使用，在上传新文件的同时删除存储库上的文件。在下面的例子中，我们通过删除远程文件并上传除`/logs`之外的所有文件来同步本地空间：
 
 ```bash
 # Sync local Space with Hub (upload new files except from logs/, delete removed files)
@@ -494,9 +506,7 @@ https://huggingface.co/Wauplin/my-cool-model/blob/main/vae/model.safetensors
 ...
 ```
 
-### 上传到组织
-
-要将内容上传到组织拥有的存储库而不是个人存储库，您必须在 `repo_id` 中明确指定：
+### 上传到组织要将内容上传到组织拥有的存储库而不是个人存储库，您必须在 `repo_id` 中明确指定：
 
 ```bash
 >>> hf upload MyCoolOrganization/my-cool-model . .
@@ -513,9 +523,11 @@ https://huggingface.co/MyCoolOrganization/my-cool-model/tree/main/
 ...
 ```
 
-**注意：**如果`revision`不存在且`--create-pr`未设置，则会从`main`分支自动创建一个分支。
+**注意：**如果`revision`不存在且`--create-pr`未设置，则会从`main`分支自动创建分支。
 
-### 使用 hf:// URI与 `hf download` 一样，目标可以表示为遵循语法 `hf://[<TYPE>/]<ID>[@<REVISION>][/<PATH>]` 的单个 `hf://` URI（有关完整语法，请参阅 [HF URIs reference](../package_reference/hf_uris)）。存储库类型、修订版本和 `path_in_repo` 均从 URI 中读取：
+### 使用 hf:// URI
+
+与 `hf download` 一样，目标可以表示为遵循语法 `hf://[<TYPE>/]<ID>[@<REVISION>][/<PATH>]` 的单个 `hf://` URI（有关完整语法，请参阅 [HF URIs reference](../package_reference/hf_uris)）。存储库类型、修订版本和 `path_in_repo` 均从 URI 中读取：
 
 ```bash
 # Equivalent to: hf upload Wauplin/my-cool-dataset ./train.csv data/train.csv --repo-type dataset --revision my-branch
@@ -537,9 +549,7 @@ https://huggingface.co/MyCoolOrganization/my-cool-model/tree/main/
 https://huggingface.co/datasets/bigcode/the-stack/blob/refs%2Fpr%2F104/
 ```
 
-### 定期上传
-
-在某些情况下，您可能希望将定期更新推送到存储库。例如，如果您正在训练模型并且希望每 10 分钟上传一次日志文件夹，则这非常有用。您可以使用 `--every` 选项来执行此操作：
+### 定期上传在某些情况下，您可能希望将定期更新推送到存储库。例如，如果您正在训练模型并且希望每 10 分钟上传一次日志文件夹，则这非常有用。您可以使用 `--every` 选项来执行此操作：
 
 ```bash
 # Upload new logs every 10 minutes
@@ -548,7 +558,7 @@ hf upload training-model logs/ --every=10
 
 ### 指定提交消息
 
-使用 `--commit-message` 和 `--commit-description` 为您的提交设置自定义消息和描述，而不是默认的消息和描述
+使用 `--commit-message` 和 `--commit-description` 为您的提交设置自定义消息和描述，而不是默认消息和描述
 
 ```bash
 >>> hf upload Wauplin/my-cool-model ./models . --commit-message="Epoch 34/50" --commit-description="Val accuracy: 68%. Check tensorboard for more details."
@@ -556,7 +566,9 @@ hf upload training-model logs/ --every=10
 https://huggingface.co/Wauplin/my-cool-model/tree/main
 ```
 
-### 指定一个令牌要上传文件，您必须使用令牌。默认情况下，将使用本地保存的令牌（使用`hf auth login`）。如果您想显式进行身份验证，请使用 `--token` 选项：
+### 指定一个令牌
+
+要上传文件，您必须使用令牌。默认情况下，将使用本地保存的令牌（使用`hf auth login`）。如果您想显式进行身份验证，请使用 `--token` 选项：
 
 ```bash
 >>> hf upload Wauplin/my-cool-model ./models . --token=hf_****
@@ -566,7 +578,7 @@ https://huggingface.co/Wauplin/my-cool-model/tree/main
 
 ### 安静模式
 
-默认情况下，`hf upload`命令将是详细的。它将打印警告消息、有关上传文件的信息和进度条等详细信息。如果您想静音所有这些，请使用 `--quiet` 选项。仅打印最后一行（即上传文件的 URL）。如果您想将输出传递给脚本中的另一个命令，这可能非常有用。
+默认情况下，`hf upload`命令将是详细的。它将打印警告消息、有关上传文件的信息和进度条等详细信息。如果您想消除所有这些，请使用 `--quiet` 选项。仅打印最后一行（即上传文件的 URL）。如果您想将输出传递给脚本中的另一个命令，这会很有用。
 
 ```bash
 >>> hf upload Wauplin/my-cool-model ./models . --quiet
@@ -663,7 +675,7 @@ username/logs                321.8 MB        2000 2026-02-13
 >>> hf buckets rm username/my-bucket/logs/ --recursive
 ```
 
-您还可以定位存储桶中不带前缀的所有文件：
+您还可以定位存储桶中的所有文件而不带前缀：
 
 ```bash
 >>> hf buckets rm username/my-bucket --recursive --include "*.tmp"
@@ -723,10 +735,10 @@ username/logs                321.8 MB        2000 2026-02-13
 
 ### 复制文件
 
-使用 `hf cp` 在本地计算机、存储库和存储桶之间复制单个文件。源和目标都可以是本地路径、`hf://` URI（存储库或存储桶）或`-`（stdin/stdout）。
+使用 `hf cp` 在本地计算机、存储库和存储桶之间复制单个文件。源和目标都可以是本地路径、`hf://` URI（存储库或存储桶）或`-`（stdin/stdout）。> [!提示]
+> `hf cp` 接受存储库和存储桶。分组命令限制远程端点：对存储库使用`hf repos cp`，对存储桶使用`hf buckets cp`。对于下载，源决定使用哪个命令。对于 Hub 位置之间的上传和复制，请使用目标。
 
-> [!提示]
-> `hf cp` 也公开为 `hf repos cp` 和 `hf buckets cp` — 所有三个都是完全相同的命令。使用最适合您的工作流程的选项。上传文件（本地 → 存储库或存储桶）：
+上传文件（本地 → 存储库或存储桶）：
 
 ```bash
 # To a repository
@@ -769,7 +781,7 @@ username/logs                321.8 MB        2000 2026-02-13
 >>> hf cp hf://buckets/username/source-bucket/logs/ hf://buckets/username/archive-bucket/logs/
 ```
 
-在两个集线器位置之间复制文件夹时，源路径上的尾随 `/` 控制是嵌套文件夹本身还是仅复制其内容（rsync 样式）：
+在两个 Hub 位置之间复制文件夹时，源路径上的尾随 `/` 控制是嵌套文件夹本身还是仅复制其内容（rsync 样式）：
 
 ```bash
 # Without trailing slash: "logs" dir is nested => archive/logs/...
@@ -786,9 +798,7 @@ username/logs                321.8 MB        2000 2026-02-13
 - 不支持本地到本地复制（使用 shell 的 `cp`）。
 - 两个 Hub 位置之间的副本只能在同一 [storage region](https://huggingface.co/docs/hub/storage-regions) 内使用。
 
-### 同步目录
-
-使用 `hf buckets sync` 同步本地机器和存储桶之间的目录。它比较源和目标并仅传输更改的文件。
+### 同步目录使用 `hf buckets sync` 同步本地机器和存储桶之间的目录。它比较源和目标并仅传输更改的文件。
 
 将本地目录上传到存储桶：
 
@@ -808,7 +818,9 @@ username/logs                321.8 MB        2000 2026-02-13
 >>> hf buckets sync ./data hf://buckets/username/my-bucket --delete
 ```
 
-您可以使用 `--include` 和 `--exclude` 模式过滤要同步的文件：```bash
+您可以使用 `--include` 和 `--exclude` 模式过滤要同步的文件：
+
+```bash
 >>> hf buckets sync ./data hf://buckets/username/my-bucket --include "*.safetensors" --exclude "*.tmp"
 ```
 
@@ -836,7 +848,7 @@ username/logs                321.8 MB        2000 2026-02-13
 ```
 
 > [!提示]
-> `hf sync` 是 `hf buckets sync` 的一个方便的顶级别名。有关所有同步选项的完整详细信息，请参阅[Buckets guide](./buckets#sync-directories)。
+> `hf sync` 是`hf buckets sync` 的一个方便的顶级别名。有关所有同步选项的完整详细信息，请参阅[Buckets guide](./buckets#sync-directories)。
 
 ## 高频型号
 
@@ -890,9 +902,7 @@ username/logs                321.8 MB        2000 2026-02-13
 
 ```bash
 >>> hf models info Lightricks/LTX-2
-```
-
-使用 `--expand` 获取其他属性，例如 `downloads`、`likes`、`tags` 等。
+```使用 `--expand` 获取其他属性，例如 `downloads`、`likes`、`tags` 等。
 
 ### 获取模型卡
 
@@ -945,7 +955,9 @@ username/logs                321.8 MB        2000 2026-02-13
 >>> hf datasets ls HuggingFaceFW/fineweb --tree
 ```
 
-### 列出数据集排行榜使用 `hf datasets leaderboard` 显示提交到基准数据集的模型分数，以便您可以找到任务的最佳模型或通过基准分数比较模型。
+### 列出数据集排行榜
+
+使用 `hf datasets leaderboard` 显示提交到基准数据集的模型分数，以便您可以找到任务的最佳模型或通过基准分数比较模型。
 
 ```bash
 >>> hf datasets leaderboard SWE-bench/SWE-bench_Verified
@@ -991,14 +1003,12 @@ Hub 上的数据集会通过数据集查看器服务在后端自动转换为 Par
 
 默认表输出包括来自 Hub API 的子集、拆分和镶木地板文件 URL。
 
-### 在数据集 parquet 上运行 SQL
-
-使用 `hf datasets sql` 使用 DuckDB 针对数据集 parquet URL 执行原始 SQL 查询。
-首先使用`hf datasets parquet`发现URL，然后使用`read_parquet(...)`直接查询它们。
+### 在数据集 parquet 上运行 SQL使用 `hf datasets sql` 使用 DuckDB 对数据集 parquet 文件执行原始 SQL 查询。
+直接用`hf_dataset(...)`查询。
 
 ```bash
->>> hf datasets sql "SELECT COUNT(*) AS rows FROM read_parquet('https://huggingface.co/api/datasets/cfahlgren1/hub-stats/parquet/models/train/0.parquet')"
->>> hf datasets sql "SELECT * FROM read_parquet('https://huggingface.co/api/datasets/cfahlgren1/hub-stats/parquet/models/train/0.parquet') LIMIT 5" --format json
+>>> hf datasets sql "SELECT COUNT(*) AS rows FROM hf_dataset('cfahlgren1/hub-stats', config:='models');"
+>>> hf datasets sql "SELECT * FROM hf_dataset('cfahlgren1/hub-stats', config:='models') LIMIT 5" --format json
 ```
 
 如果需要，请先安装 DuckDB：
@@ -1044,7 +1054,9 @@ Hub 上的数据集会通过数据集查看器服务在后端自动转换为 Par
 >>> hf spaces info victor/deepsite
 ```
 
-### 获取太空卡使用`hf spaces card`获取空间的空间卡（自述文件）。默认情况下，将完整的卡片内容打印到标准输出。
+### 获取太空卡
+
+使用`hf spaces card`获取空间的空间卡（README）。默认情况下，将完整的卡片内容打印到标准输出。
 
 ```bash
 # Full card (metadata + text)
@@ -1065,7 +1077,7 @@ Hub 上的数据集会通过数据集查看器服务在后端自动转换为 Par
 
 ### 暂停一个空格
 
-当您不使用空间时，使用`hf spaces pause`暂停空间（暂停时间不计费）。稍后使用`hf spaces restart`重新启动。
+当您不使用空间时，使用`hf spaces pause`暂停该空间（暂停时间不计费）。稍后使用`hf spaces restart`重新启动。
 
 ```bash
 >>> hf spaces pause username/my-space
@@ -1080,9 +1092,7 @@ Hub 上的数据集会通过数据集查看器服务在后端自动转换为 Par
 >>> hf spaces restart username/my-space --factory-reboot
 ```
 
-### 等待一个空间
-
-使用`hf spaces wait`进行封锁，直到空间完成构建/启动并达到稳定阶段。如果 Space 为 `RUNNING`，则以代码 0 退出，否则为非零（例如 `BUILD_ERROR`）。方便在重新启动或硬件更改后编写脚本。
+### 等待一个空间使用`hf spaces wait`进行封锁，直到空间完成构建/启动并达到稳定阶段。如果 Space 为 `RUNNING`，则以代码 0 退出，否则为非零（例如 `BUILD_ERROR`）。方便在重新启动或硬件更改后编写脚本。
 
 ```bash
 >>> hf spaces wait username/my-space
@@ -1104,7 +1114,7 @@ Hub 上的数据集会通过数据集查看器服务在后端自动转换为 Par
 
 ### 检查您的 ZeroGPU 配额
 
-使用`hf spaces zero-gpu quota`查看您的[ZeroGPU](https://huggingface.co/docs/hub/spaces-zerogpu)配额还剩多少以及何时重置。当从脚本、应用程序或代理调用 ZeroGPU Spaces 时，这对于跟踪您的使用情况非常有用。
+使用 `hf spaces zero-gpu quota` 查看您的 [ZeroGPU](https://huggingface.co/docs/hub/spaces-zerogpu) 配额还剩多少以及何时重置。当从脚本、应用程序或代理调用 ZeroGPU Spaces 时，这对于跟踪您的使用情况非常有用。
 
 ```bash
 >>> hf spaces zero-gpu quota
@@ -1116,7 +1126,9 @@ Hub 上的数据集会通过数据集查看器服务在后端自动转换为 Par
 
 >>> hf spaces zero-gpu quota --format json
 {"remaining": 1810, "base": 2400, "resets_at": "2026-09-30T18:12:03+00:00", "overquota_used": 0}
-```如果您的配额不足，该命令建议从您的 [billing settings](https://huggingface.co/settings/billing?add-credits=true) 购买积分，以在每日配额之外继续使用 ZeroGPU（仅限 PRO、团队和企业用户）。
+```
+
+如果您的配额不足，该命令建议从您的 [billing settings](https://huggingface.co/settings/billing?add-credits=true) 购买积分，以在每日配额之外继续使用 ZeroGPU（仅限 PRO、团队和企业用户）。
 
 ### 更新空间设置
 
@@ -1128,11 +1140,9 @@ Hub 上的数据集会通过数据集查看器服务在后端自动转换为 Par
 ```
 
 - `--sleep-time`：空间休眠前的空闲时间（以秒为单位）。使用`-1`永不睡觉。仅适用于升级的硬件（请参阅[Spaces sleep time docs](https://huggingface.co/docs/hub/spaces-gpus#sleep-time)）。
-- `--hardware`：硬件风味（例如`cpu-basic`、`t4-medium`、`l4x4`）。运行 `hf spaces hardware` 查看所有选项。
+- `--hardware`：硬件风味（例如`cpu-basic`、`t4-medium`、`l4x4`）。运行 `hf spaces hardware`​​ 查看所有选项。
 
-### 管理空间秘密
-
-使用 `hf spaces secrets ls` 列出空间上的秘密，使用 `hf spaces secrets add` 添加或更新一个或多个秘密，使用 `hf spaces secrets delete` 删除一个。通过 `--secrets-file PATH` 从 `.env` 样式文件加载机密。现有密钥将被覆盖。
+### 管理空间秘密使用 `hf spaces secrets ls` 列出空间上的秘密，使用 `hf spaces secrets add` 添加或更新一个或多个秘密，使用 `hf spaces secrets delete` 删除一个。通过 `--secrets-file PATH` 从 `.env` 样式文件加载机密。现有密钥将被覆盖。
 
 ```bash
 >>> hf spaces secrets ls username/my-space
@@ -1146,7 +1156,7 @@ Hub 上的数据集会通过数据集查看器服务在后端自动转换为 Par
 
 ### 管理空间环境变量
 
-使用 `hf spaces variables` 管理空间上的非秘密环境变量。与秘密不同，变量是可读的，因此`ls`同时显示键和值。将 `--env-file PATH` 传递给 `add` 以从 `.env` 样式文件加载。
+使用 `hf spaces variables` 管理空间上的非秘密环境变量。与秘密不同，变量是可读的，因此`ls`同时显示键和值。在 `add` 上传递 `--env-file PATH` 以从 `.env` 样式文件加载。
 
 ```bash
 >>> hf spaces variables ls username/my-space
@@ -1155,7 +1165,9 @@ Hub 上的数据集会通过数据集查看器服务在后端自动转换为 Par
 >>> hf spaces variables delete username/my-space MAX_TOKENS --yes
 ```
 
-### SSH 进入空间（开发模式）使用 `hf spaces ssh` 打开与 Space 的开发模式容器的 SSH 会话。如果未启用开发模式，CLI 将提示您启用它（或使用 `--auto` 跳过提示）。
+### SSH 进入空间（开发模式）
+
+使用 `hf spaces ssh` 打开与 Space 的开发模式容器的 SSH 会话。如果未启用开发模式，CLI 将提示您启用它（或使用 `--auto` 跳过提示）。
 
 您的 SSH 公钥必须注册 [in your settings](https://huggingface.co/settings/keys)。更多详情请参阅[Dev Mode documentation](https://huggingface.co/docs/hub/spaces-dev-mode)。
 
@@ -1232,9 +1244,7 @@ Hub 上的数据集会通过数据集查看器服务在后端自动转换为 Par
 >>> hf papers read 2601.15621
 ```
 
-## 高频讨论
-
-使用 `hf discussions` 直接从终端管理 Hub 存储库上的讨论和拉取请求。您可以列出、查看、创建、评论、关闭、重新打开和合并讨论和 PR。有关 Hub 社区功能如何工作的完整指南，请参阅 [Discussions and Pull Requests guide](./community)。
+## 高频讨论使用 `hf discussions` 直接从终端管理 Hub 存储库上的讨论和拉取请求。您可以列出、查看、创建、评论、关闭、重新打开和合并讨论和 PR。有关 Hub 社区功能如何工作的完整指南，请参阅 [Discussions and Pull Requests guide](./community)。
 
 ### 列出讨论
 
@@ -1258,7 +1268,9 @@ Hub 上的数据集会通过数据集查看器服务在后端自动转换为 Par
 >>> hf discussions ls username/my-model --quiet
 ```
 
-### 获取讨论或 PR 的信息要检查特定讨论或 PR，请传递存储库 ID 和讨论编号：
+### 获取讨论或 PR 的信息
+
+要检查特定讨论或 PR，请传递存储库 ID 和讨论编号：
 
 ```bash
 >>> hf discussions info username/my-model 5
@@ -1268,9 +1280,7 @@ Hub 上的数据集会通过数据集查看器服务在后端自动转换为 Par
 
 使用 `--format json` 进行机器可读输出，并设置 `NO_COLOR=1` 在管道到其他工具时剥离 ANSI 颜色。
 
-### 创建讨论或 PR
-
-要开启新讨论，请提供带有 `--title` 的标题。您可以选择包含与 `--body` 内联的描述，或从带有 `--body-file` 的文件中加载它：
+### 创建讨论或 PR要开启新讨论，请提供带有 `--title` 的标题。您可以选择包含与 `--body` 内联的描述，或从带有 `--body-file` 的文件加载它：
 
 ```bash
 >>> hf discussions create username/my-model --title "Bug report"
@@ -1303,7 +1313,9 @@ Hub 上的数据集会通过数据集查看器服务在后端自动转换为 Par
 >>> hf discussions edit username/my-model 5 abc123 --body-file fixed.md
 ```
 
-### 附加图像和视频将 `--attach` 传递给 `hf discussions create`、`comment` 或 `edit` 上传图像、视频或音频文件并将其嵌入到正文中，就像将文件拖到 Hub 上的评论框中一样。如果正文已经引用了该文件，如`![Before the fix](./before.png)`，则引用指向上传的文件。否则，该文件将附加到正文中。要设置附加图像的替代文本，请将其添加到 `#` 之后：
+### 附加图像和视频
+
+将 `--attach` 传递给 `hf discussions create`、`comment` 或 `edit` 上传图像、视频或音频文件并将其嵌入到正文中，就像将文件拖到 Hub 上的评论框中一样。如果正文已经引用了该文件，如`![Before the fix](./before.png)`，则引用指向上传的文件。否则，该文件将附加到正文中。要设置附加图像的替代文本，请将其添加到 `#` 之后：
 
 ```bash
 >>> hf discussions create username/my-model --title "Fix rendering" --pr --body "Before: ![Before the fix](./before.png)" --attach ./before.png --attach "./after.png#After the fix"
@@ -1312,9 +1324,7 @@ Hub 上的数据集会通过数据集查看器服务在后端自动转换为 Par
 
 支持的格式有 PNG、JPEG、GIF、WebP、MP4、MOV、WebM、MP3 和 WAV，最大 10MB（视频为 50MB）。
 
-### 关闭、重新打开和合并
-
-您可以通过 `hf discussions close` 结束讨论或 PR。默认情况下，系统将提示您确认。通过 `--yes` 跳过提示，并通过 `--comment` 留下结束消息：
+### 关闭、重新打开和合并您可以通过 `hf discussions close` 结束讨论或 PR。默认情况下，系统将提示您确认。通过 `--yes` 跳过提示，并通过 `--comment` 留下结束消息：
 
 ```bash
 >>> hf discussions close username/my-model 5
@@ -1351,7 +1361,9 @@ Hub 上的数据集会通过数据集查看器服务在后端自动转换为 Par
 
 `hf repos` 允许您列出、创建、复制、删除、移动存储库、更新其设置以及删除 Hugging Face Hub 上的文件。它还包括用于管理分支和标签的子命令。
 
-### 列出存储库使用 `hf repos ls` 列出所有存储库（模型、数据集、空间和存储桶）以及存储信息，并按存储使用情况排序。默认情况下，仅显示前 30 个存储库：
+### 列出存储库
+
+使用 `hf repos ls` 列出所有存储库（模型、数据集、空间和存储桶）以及存储信息，并按存储使用情况排序。默认情况下，仅显示前 30 个存储库：
 
 ```bash
 # List all your repos (first 30)
@@ -1383,7 +1395,7 @@ Hint: Showing 30 of 42 repos. Use `--limit 0` to list all.
 >>> hf repos ls --limit 0
 ```
 
-使用 `--format json` 进行脚本编写，或仅使用 `-q` 进行 ID。管道时，使用`--limit 0`导出所有存储库：
+使用 `--format json` 进行脚本编写或仅使用 `-q` 进行 ID。管道传输时，使用`--limit 0`导出所有存储库：
 
 ```bash
 >>> hf repos ls --limit 0 --format json | jq '.[].id'
@@ -1403,9 +1415,7 @@ Your repo is now available at https://huggingface.co/Wauplin/my-cool-model
 ```bash
 >>> hf repos create my-cool-dataset --repo-type dataset --private
 >>> hf repos create my-gradio-space --repo-type space --sdk gradio
-```
-
-如果存储库可能已存在，请使用 `--exist-ok`，并使用 `--resource-group-id` 来定位企业资源组。
+```如果存储库可能已存在，请使用 `--exist-ok`，并使用 `--resource-group-id` 来定位企业资源组。
 
 在特定区域创建存储库：
 
@@ -1452,7 +1462,9 @@ Your repo is now available at https://huggingface.co/Wauplin/my-cool-model
 ```
 
 - `--gated`：`auto`、`manual`、`false` 之一
-- `--private true|false`：设置存储库隐私### 从存储库中删除文件
+- `--private true|false`：设置存储库隐私
+
+### 从存储库中删除文件
 
 `hf repos delete-files <repo_id>` 子命令允许您从存储库中删除文件。以下是一些使用示例。
 
@@ -1470,9 +1482,7 @@ Files correctly deleted from repo. Commit: https://huggingface.co/Wauplin/my-coo
 Files correctly deleted from repo. Commit: https://huggingface.co/Wauplin/my-cool-mo...
 ```
 
-使用通配符模式删除文件集。模式是标准通配符（通配符模式），如文档[here](https://tldp.org/LDP/GNU-Linux-Tools-Summary/html/x11655.htm)所述。模式匹配基于[⟦T461⟧](https://docs.python.org/3/library/fnmatch.html)。
-
-> [!警告]
+使用通配符模式删除文件集。模式是标准通配符（通配符模式），如文档[here](https://tldp.org/LDP/GNU-Linux-Tools-Summary/html/x11655.htm)所述。模式匹配基于[⟦T463⟧](https://docs.python.org/3/library/fnmatch.html)。> [!警告]
 > 请注意，`fnmatch` 跨路径边界匹配 `*`，这与传统的 Unix shell 通配不同。例如，`"data/*.json"` 将匹配`data/file.json` **和** `data/subdir/file.json`。要仅匹配直接目录中的文件，您需要显式列出它们或使用更具体的模式。
 
 ```bash
@@ -1504,7 +1514,9 @@ Files correctly deleted from repo. Commit: https://huggingface.co/Wauplin/my-coo
 > [!提示]
 > 如果您需要显式进行身份验证，所有命令都接受 `--repo-type`（`model`、`dataset`、`space` 之一）和 `--token`。在任何命令上使用 `--help` 查看所有选项。
 
-## 高频缓存使用 `hf cache` 管理本地 Hugging Face 缓存目录。缓存存储从 Hub 下载的模型、数据集、空间和内核。
+## 高频缓存
+
+使用 `hf cache` 管理本地 Hugging Face 缓存目录。缓存存储从 Hub 下载的模型、数据集、空间和内核。
 
 ```bash
 # List cached repositories
@@ -1547,11 +1559,9 @@ ID                        REVISION                                 SIZE     LAST
 model/microsoft/UserLM-8b be8f2069189bdf443e554c24e488ff3ff6952691    32.1G 4 days ago    main
 
 Found 1 repo(s) for a total of 1 revision(s) and 32.1G on disk.
-```
+```该命令支持多种脚本输出格式：`--format json` 打印结构化对象，`--quiet` 仅打印 ID。使用 `--sort` 按 `accessed`、`modified`、`name` 或 `size` 对条目进行排序（附加 `:asc` 或 `:desc` 来控制顺序），并使用 `--limit` 将结果限制为前 N 个条目。将它们与 `--cache-dir` 结合起来以定位替代缓存位置。请参阅 [Manage your cache](./manage-cache) 高级工作流程指南。
 
-该命令支持多种脚本输出格式：`--format json` 打印结构化对象，`--format csv` 写入逗号分隔的行，`--quiet` 仅打印 ID。使用 `--sort` 按 `accessed`、`modified`、`name` 或 `size` 对条目进行排序（附加 `:asc` 或 `:desc` 来控制顺序），并使用 `--limit` 将结果限制为前 N 个条目。将它们与 `--cache-dir` 结合起来以定位替代缓存位置。请参阅 [Manage your cache](./manage-cache) 高级工作流程指南。
-
-通过将 ID 通过管道传输到 `hf cache rm` 来删除使用 `hf cache ls --q` 选择的缓存条目：
+通过将 ID 通过管道传输到 `hf cache rm` 来删除使用 `hf cache ls -q` 选择的缓存条目：
 
 ```bash
 >>> hf cache rm $(hf cache ls --filter "accessed>1y" -q) -y
@@ -1580,18 +1590,18 @@ Deleted 1 repo(s) and 2 revision(s); freed 3.2G.
 About to delete 1 repo(s) totalling 1.1G.
   - model/openai-community/gpt2 (entire repo)
 Dry run: no files were deleted.
-```要删除单个文件而不是整个存储库（例如一个 GGUF 量化），请传递 `hf://` 文件 URI。该文件将从存储库的每个缓存版本中删除，并且仅当没有其他缓存文件仍然引用它时才会删除其 blob：
+```
+
+要删除单个文件而不是整个存储库（例如一个 GGUF 量化），请传递 `hf://` 文件 URI。该文件将从存储库的每个缓存版本中删除，并且仅当没有其他缓存文件仍然引用它时才会删除其 blob：
 
 ```bash
 >>> hf cache rm hf://models/unsloth/gemma-3-27b-it-GGUF/gemma-3-27b-it-Q4_K_M.gguf --dry-run
 About to delete 1 file(s) totalling 16.5G.
   - model/unsloth/gemma-3-27b-it-GGUF@3f4b5c1d2e6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c/gemma-3-27b-it-Q4_K_M.gguf
 Dry run: no files were deleted.
-```
+```修订版本仍然可用，并且下次需要时会再次下载已删除的文件。路径必须完全匹配：不支持文件夹和 glob 模式，并且文件目标不能与同一调用中的存储库或修订版本混合。
 
-修订版本保持可用，并且下次需要时会再次下载已删除的文件。路径必须完全匹配：不支持文件夹和 glob 模式，并且文件目标不能与同一调用中的存储库或修订版本混合。
-
-在同一个调用中混合存储库和特定修订。使用 `--dry-run` 预览影响，或使用 `--yes` 跳过确认提示 - 在自动化脚本中非常方便：
+在同一个调用中混合存储库和特定修订。使用 `--dry-run` 预览影响，或使用 `--yes` 跳过确认提示——这在自动化脚本中非常方便：
 
 ```bash
 >>> hf cache rm model/t5-small 8f3ad1c --dry-run
@@ -1605,7 +1615,7 @@ Dry run: no files were deleted.
 
 ### hf 缓存修剪
 
-`hf cache prune` 是一个方便的快捷方式，可以回收缓存垃圾占用的空间：每个分离的（未引用的）修订版（仅保留仍可通过分支或标签访问的修订版）、中断下载中剩余的 `.incomplete` 文件以及任何缓存存储库不再引用的共享 blob：
+`hf cache prune` 是一个方便的快捷方式，可以回收缓存垃圾占用的空间：每个分离的（未引用的）修订版（仅保留仍可通过分支或标记访问的修订版）、中断下载中剩余的 `.incomplete` 文件以及任何缓存存储库不再引用的共享 blob：
 
 ```bash
 >>> hf cache prune
@@ -1617,13 +1627,13 @@ About to delete 3 unreferenced revision(s) and 2 incomplete download(s) (2.4G to
       2b91c8dd [(detached)] 937.6M
 Proceed? [y/N]: y
 Deleted 3 unreferenced revision(s) and 2 incomplete download(s); freed 2.4G.
-````.incomplete` 文件是下载中断时留下的部分下载。它们不会被 `hf cache ls`/`rm` （在修订级别工作）跟踪，因此 `hf cache ls` 用提示指出它们，`hf cache prune` 自动删除它们。
+```
 
-与其他缓存命令一样，可以使用 `--dry-run`、`--yes` 和 `--cache-dir`。有关更多示例，请参阅 [Manage your cache](./manage-cache) 指南。
+`.incomplete` 文件是下载中断时留下的部分下载。它们不会被 `hf cache ls`/`rm` （在修订级别工作）跟踪，因此 `hf cache ls` 用提示指出它们，`hf cache prune` 自动删除它们。
 
-### hf 缓存验证
+与其他缓存命令一样，可以使用 `--dry-run`、`--yes` 和 `--cache-dir`。有关更多示例，请参阅[Manage your cache](./manage-cache)指南。
 
-使用 `hf cache verify` 根据集线器上的校验和验证本地文件。您可以验证缓存快照或常规本地目录。
+### hf 缓存验证使用 `hf cache verify` 根据集线器上的校验和验证本地文件。您可以验证缓存快照或常规本地目录。
 
 示例：
 
@@ -1695,7 +1705,9 @@ You are about to create tag v1.0 on model Wauplin/my-cool-model
 Tag v1.0 created on Wauplin/my-cool-model
 ```
 
-### 标记数据集或空间如果要标记数据集或空间，则必须指定 `--repo-type` 选项：
+### 标记数据集或空间
+
+如果要标记数据集或空间，则必须指定 `--repo-type` 选项：
 
 ```bash
 >>> hf repos tag create bigcode/the-stack v1.0 --repo-type dataset
@@ -1731,9 +1743,7 @@ Tag v1.0 deleted on Wauplin/my-cool-model
 
 您也可以通过`-y`跳过确认步骤。
 
-## 高频环境
-
-`hf env` 命令打印有关机器设置的详细信息。当您在 [GitHub](https://github.com/huggingface/huggingface_hub) 上提出问题以帮助维护人员调查您的问题时，这非常有用。
+## 高频环境`hf env` 命令打印有关机器设置的详细信息。当您在 [GitHub](https://github.com/huggingface/huggingface_hub) 上提出问题以帮助维护人员调查您的问题时，这非常有用。
 
 ```bash
 >>> hf env
@@ -1781,7 +1791,7 @@ Copy-and-paste the text below in your GitHub issue.
 
 `hf jobs` 是一个命令行工具，可让您通过简单的命令在 Hugging Face 的基础设施（包括 GPU 和 TPU！）上运行任何内容。想想`docker run`，但在 A100 上运行代码。
 
-**有关作业和定价的一般概述，请参阅 [Hub Jobs documentation](https://huggingface.co/docs/hub/jobs)。** 有关与 CLI 一起使用 Python API 的信息，请参阅 [Run and manage Jobs guide](./jobs)。
+**有关作业和定价的一般概述，请参阅 [Hub Jobs documentation](https://huggingface.co/docs/hub/jobs)。**有关与 CLI 一起使用 Python API 的信息，请参阅 [Run and manage Jobs guide](./jobs)。
 
 ```bash
 # Directly run Python code
@@ -1811,7 +1821,9 @@ Copy-and-paste the text below in your GitHub issue.
 ```bash
 # Run a simple Python script
 >>> hf jobs run python:3.12 python -c 'print("Hello from HF compute!")'
-```此命令运行作业并显示日志。您可以通过 `--detach` 在后台运行作业并仅打印作业 ID。添加 `-q` 来单独打印作业 ID，这可以方便地在脚本中捕获它：
+```
+
+此命令运行作业并显示日志。您可以通过 `--detach` 在后台运行作业并仅打印作业 ID。添加 `-q` 来单独打印作业 ID，这可以方便地在脚本中捕获它：
 
 ```bash
 >>> JOB_ID=$(hf jobs run -dq python:3.12 python train.py)
@@ -1855,9 +1867,7 @@ Copy-and-paste the text below in your GitHub issue.
 >>> hf jobs run python:3.12 python train.py && echo "training succeeded"
 ```
 
-#### 3. 在 GPU 上运行
-
-您还可以使用 `--flavor` 选项在 GPU 或 TPU 上运行作业。例如，要在 A10G GPU 上运行 PyTorch 作业：
+#### 3. 在 GPU 上运行您还可以使用 `--flavor` 选项在 GPU 或 TPU 上运行作业。例如，要在 A10G GPU 上运行 PyTorch 作业：
 
 ```bash
 # Use an A10G GPU to check PyTorch CUDA
@@ -1880,7 +1890,9 @@ This code ran with the following GPU: NVIDIA A10G
 
 就是这样！您现在正在 Hugging Face 的基础设施上运行代码。
 
-### 常见用例- **模型训练**：在 GPU（T4、A10G、A100）上微调或训练模型，无需管理基础设施
+### 常见用例
+
+- **模型训练**：在 GPU（T4、A10G、A100）上微调或训练模型，无需管理基础设施
 - **合成数据生成**：在强大的硬件上使用法学硕士生成大规模数据集
 - **数据处理**：使用高 CPU 配置处理海量数据集以实现并行工作负载
 - **批量推理**：使用优化的 GPU 设置对数千个样本运行离线推理
@@ -1914,34 +1926,39 @@ This code ran with the following GPU: NVIDIA A10G
 ```bash
 # Or pipe them in, so the values touch neither the command line nor the disk
 >>> printf 'MY_SECRET=psswrd\n' | hf jobs run --secrets-file - python:3.12 python -c 'import os; print(os.environ["MY_SECRET"])'
-```
-
-秘密以所有三种形式在服务器端加密。 `-s MY_SECRET=REDACTED
+```秘密以所有三种形式在服务器端加密。 `-s MY_SECRET=REDACTED
 最终出现在您的 shell 历史记录和进程列表中（Linux 上的`/proc/<pid>/cmdline`），因此 CLI 会打印
 使用时向 stderr 发出警告；对于不太敏感的值保留该形式。一样的
 适用于 `--token <value>`：更喜欢 `hf auth login` 或 `HF_TOKEN` 环境变量。一个环境或
-机密文件应该只能由您读取 (`chmod 600`) — 如果不是，CLI 会发出警告。> [!提示]
+机密文件应该只能由您读取 (`chmod 600`) — 如果不是，CLI 会发出警告。
+
+> [!提示]
 > 使用 `--secrets HF_TOKEN` 隐式传递您本地的 Hugging Face 令牌。
 > 使用此语法，可以从环境变量中检索机密。
 > 对于`HF_TOKEN`，如果未设置环境变量，它可能会读取位于 Hugging Face 主文件夹中的令牌文件。
 
 #### 内置环境变量
 
-在作业容器内，以下环境变量自动可用：
-
-|变量|描述 |
-| ------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `JOB_ID` |当前作业的唯一标识符。使用它以编程方式引用作业。               |
-| `ACCELERATOR` |可用加速器的类型（例如，`t4-medium`、`a10g-small`、`a100x4`）。如果没有加速器则为空。 |
-| `CPU_CORES` |作业可用的 CPU 核心数量（例如，`2`、`4`、`8`）。                                     |
-| `MEMORY` |作业可用的内存量（例如，`16Gi`、`32Gi`）。                                       |
+在作业容器内，以下环境变量自动可用：|变量|描述 |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `HF_JOB_ID` |当前作业的唯一标识符。使用它以编程方式引用作业，例如以唯一名称将输出存储在数据集中。                                                           |
+| `HF_JOB_OWNER` |运行作业的用户或组织。                                                                                                                                                                      |
+| `HF_JOB_FLAVOR` |工作的硬件风格（例如，`a10g-small`）。                                                                                                                                                              || `HF_JOB_GPU_COUNT` |可用于该作业的 GPU 数量：CPU 和 Neuron 类型上的`0`。                                                                                                                                           |
+| `HF_JOB_DISK_GB` |作业可用的磁盘空间，以 GB 为单位（例如，`110`）。当风味没有磁盘限制时取消设置。                                                                                                                |
+| `HF_JOB_TIMEOUT` |作业超时（以秒为单位）。它适用于每次尝试，并从尝试开始计数，包括镜像拉取和卷安装。仅供参考：更改变量不会更改超时。 |
+| `HF_JOB_IMAGE` |提交的作业的 Docker 映像（例如，`python:3.12`）。仅为运行 Docker 映像的作业设置。                                                                                                       |
+| `HF_JOB_SPACE_ID` |作业运行其映像的空间的 ID（例如，`username/my-space`）。仅适用于从空间 (`hf.co/spaces/...`) 开始的作业。                                                                            || `ACCELERATOR` |设备类型：`cpu` 适用于 CPU 风格，`gpu` 适用于 GPU 风格，`neuron` 适用于 Neuron 风格。                                                                                                                    |
+| `CPU_CORES` |作业可用的 CPU 核心数量（例如，`2`、`4`、`8`）。                                                                                                                                               |
+| `MEMORY` |作业可用的内存量（例如，`16.0G`、`32.0G`）。                                                                                                                                               |
 
 ```bash
 # Access job environment information
->>> hf jobs run python:3.12 python -c "import os; print(f'Job: {os.environ.get(\"JOB_ID\")}, CPU: {os.environ.get(\"CPU_CORES\")}, Mem: {os.environ.get(\"MEMORY\")}')"
+>>> hf jobs run python:3.12 python -c "import os; print(f'Job: {os.environ.get(\"HF_JOB_ID\")}, Flavor: {os.environ.get(\"HF_JOB_FLAVOR\")}, CPU: {os.environ.get(\"CPU_CORES\")}, Mem: {os.environ.get(\"MEMORY\")}')"
 ```
 
-### 作业超时作业的默认超时时间为 30 分钟，之后会自动停止。对于模型训练等长时间运行的任务，请使用 `--timeout` 选项设置自定义超时：
+### 作业超时
+
+作业的默认超时时间为 30 分钟，之后会自动停止。对于模型训练等长时间运行的任务，请使用 `--timeout` 选项设置自定义超时：
 
 ```bash
 # Set timeout in seconds (default unit)
@@ -1966,16 +1983,14 @@ This code ran with the following GPU: NVIDIA A10G
 > [!警告]
 > 如果您的作业超过超时时间，它将自动终止。始终为长时间运行的任务设置适当的超时和一些缓冲区，以避免作业意外终止。
 
-### 重试并重新运行作业
-
-`--attempts` 设置最大尝试次数，包括第一次运行。它与 Docker、UV 和计划作业配合使用。重新运行作业将启动具有相同保存规格的新作业：
+### 重试并重新运行作业`--attempts` 设置最大尝试次数，包括第一次运行。它与 Docker、UV 和计划作业配合使用。重新运行作业将启动具有相同保存规范的新作业：
 
 ```bash
 >>> hf jobs run --attempts 3 --detach python:3.12 python train.py
 >>> hf jobs rerun <job_id>
 ```
 
-当作业失败时，尝试计数为 3 最多允许重试两次。 `hf jobs rerun` 还重用原始尝试计数。与 `hf jobs run` 一样，它会流式传输新作业的日志，直到完成。使用`--detach`立即返回。
+当作业失败时，尝试计数为 3 最多允许重试两次。 `hf jobs rerun` 还重用了​​原始尝试计数。与 `hf jobs run` 一样，它会流式传输新作业的日志，直到完成。使用`--detach`立即返回。
 
 ### 硬件
 
@@ -1989,7 +2004,9 @@ This code ran with the following GPU: NVIDIA A10G
 
 ## 卷
 
-使用 `-v` 或 `--volume` 在作业磁盘上安装卷。您可以使用 `hf://` URL 方案安装任何 Hugging Face 存储库（模型/数据集/空间）或 [Storage Bucket](/docs/hub/storage-buckets)。例如：
+使用 `-v` 或 `--volume` 在作业磁盘上安装卷。
+
+您可以使用 `hf://` URL 方案挂载任何 Hugging Face 存储库（模型/数据集/空间）或 [Storage Bucket](/docs/hub/storage-buckets)。例如：
 
 * 挂载模型库：`-v hf://openai/gpt-oss-120b:/model`
 * 挂载数据集存储库：`-v hf://datasets/HuggingFaceFW/fineweb:/data`
@@ -2007,9 +2024,7 @@ This code ran with the following GPU: NVIDIA A10G
 # UV Job with a mounted volume to save checkpoints when training a model
 >>> hf jobs uv run -v hf://buckets/username/my-bucket:/training-outputs \
 ...     sft.py --output-dir /training-outputs/training-v3-final ...
-```
-
-模型、数据集和空间始终以只读方式安装。存储桶默认是读+写的——这对于经常更改的数据特别有用，因为文件可以就地覆盖或删除。
+```模型、数据集和空间始终以只读方式安装。存储桶默认是读+写的——这对于经常更改的数据特别有用，因为文件可以就地覆盖或删除。
 
 使用 `:ro` 启用只读：
 
@@ -2032,15 +2047,15 @@ Hint: Volume '/output' is mounted read-write. Once the job is over, pull back it
   hf buckets sync hf://buckets/username/jobs-artifacts/md-out-a1b2c3d4 ./md-out
 ```
 
-### 标签使用 `-l` 或 `--label` 将标签添加到作业。标签是将元数据应用于作业的键=值对。要使用两个标签来标记作业，请重复标签标志（`-l` 或 `--label`）：
+### 标签
+
+使用 `-l` 或 `--label` 将标签添加到作业。标签是将元数据应用于作业的键=值对。要使用两个标签来标记作业，请重复标签标志（`-l` 或 `--label`）：
 
 ```bash
 >>> hf jobs run -l my-label --label foo=bar ubuntu echo "This Job has multiple labels"
 ```
 
-my-label 键未指定值，因此其值默认为空字符串 ("")。
-
-创建Job时使用`--name`添加`name`标签。名称使职位更容易在 UI 中查找和识别；它们是可选的并且不必是唯一的。如果您不通过 `--name`，则会从 Docker 映像或脚本自动派生一个名称，加上命令和解析的运行时设置（风味、超时、环境值等）的简短哈希值，因此相同的配置始终会生成相同的名称（例如 `python:3.12 foo --truc` → `python-3-12-1a2b3c4d`）。即使命令保持不变，更改设置也会更改名称。您还可以重命名现有作业：
+my-label 键未指定值，因此其值默认为空字符串 ("")。创建Job时使用`--name`添加`name`标签。名称使职位更容易在 UI 中查找和识别；它们是可选的并且不必是唯一的。如果您不通过 `--name`，则会从 Docker 映像或脚本自动派生一个名称，加上命令和解析的运行时设置（风味、超时、环境值等）的简短哈希值，因此相同的配置始终会生成相同的名称（例如 `python:3.12 foo --truc` → `python-3-12-1a2b3c4d`）。即使命令保持不变，更改设置也会更改名称。您还可以重命名现有作业：
 
 ```bash
 >>> hf jobs run --name training-v2 python:3.12 python train.py
@@ -2064,7 +2079,9 @@ my-label 键未指定值，因此其值默认为空字符串 ("")。
 
 # Combine filters: running Jobs labelled both `env=prod` and `team=ml`
 >>> hf jobs ls --status running --label env=prod --label team=ml
-```默认情况下，`hf jobs ps`最多显示 100 个作业，以避免终端臃肿。使用 `--limit` 更改此设置，或使用 `--limit 0` 显示所有内容：
+```
+
+默认情况下，`hf jobs ps`最多显示 100 个作业，以避免终端臃肿。使用 `--limit` 更改此设置，或使用 `--limit 0` 显示所有内容：
 
 ```bash
 # Show up to 500 Jobs
@@ -2087,9 +2104,7 @@ my-label 键未指定值，因此其值默认为空字符串 ("")。
 
 # Close all exposed ports
 >>> hf jobs expose <job_id> --clear
-```
-
-`hf jobs expose` 将受令牌保护的端口作为位置参数，并将公共端口与`--public` 一起使用。它应用更改而不重新运行作业。替换列表中省略的端口将被关闭。
+````hf jobs expose` 将受令牌保护的端口作为位置参数，并将公共端口与`--public` 一起使用。它应用更改而不重新运行作业。替换列表中省略的端口将被关闭。
 
 ### 通过 SSH 进入作业
 
@@ -2113,7 +2128,7 @@ my-label 键未指定值，因此其值默认为空字符串 ("")。
 
 ### 网络群组
 
-将`--network-group <name>`传递给`hf jobs run`（或`hf jobs uv run`），让同一命名空间和资源组中的作业在每个端口上相互到达。在每个成员内部，`$HF_NETWORK_GROUP_HOSTNAME` 解析为组中的每个作业，`${HF_NETWORK_GROUP_PREFIX}<alias>` 解析为使用 `--network-alias <alias>` 声明别名的成员：
+将`--network-group <name>`传递给`hf jobs run`（或`hf jobs uv run`），让同一命名空间和资源组中的作业在每个端口上相互访问。在每个成员内部，`$HF_NETWORK_GROUP_HOSTNAME` 解析为组中的每个作业，`${HF_NETWORK_GROUP_PREFIX}<alias>` 解析为使用 `--network-alias <alias>` 声明别名的成员：
 
 ```bash
 # Start a server, reachable by the other members of the group as "master"
@@ -2121,18 +2136,15 @@ my-label 键未指定值，因此其值默认为空字符串 ("")。
 
 # Start a client in the same group
 >>> hf jobs run --detach --network-group train python:3.12 sh -c 'curl --retry 10 --retry-connrefused "http://${HF_NETWORK_GROUP_PREFIX}master:8000/"'
-```成员在准备好之前就可以解析，因此请重试进行连接。组名称和别名由小写字母数字和短划线组成，最多 46 和 34 个字符。
+```
+
+成员在准备好之前就可以解析，因此请重试进行连接。组名称和别名由小写字母数字和短划线组成，最多 46 和 34 个字符。
 
 ### UV 脚本（实验）
 
-在 HF 基础设施上运行 UV 脚本（具有内联依赖项的 Python 脚本）。 UV 脚本是 Python 脚本，使用特殊的注释语法将其依赖项直接包含在文件中。
-
-```bash
-# Run a UV script (creates temporary repo)
+在 HF 基础设施上运行 UV 脚本（具有内联依赖项的 Python 脚本）。 UV 脚本是 Python 脚本，使用特殊的注释语法将其依赖项直接包含在文件中。```bash
+# Run a local UV script (uploaded to your `jobs-artifacts` bucket)
 >>> hf jobs uv run my_script.py
-
-# Run with persistent repo
->>> hf jobs uv run --repo my-uv-scripts my_script.py
 
 # Run with GPU
 >>> hf jobs uv run --flavor t4-small ml_training.py
@@ -2161,7 +2173,9 @@ UV 脚本是 Python 脚本，使用特殊的注释语法将其依赖项直接包
 
 这也适用于格式标志：`hf jobs run`、`hf jobs uv run` 及其 `scheduled` 变体无论出现在哪里，都会消耗 `--format`、`--json` 和 `-q`，因此当脚本需要它们时请使用 `--`。
 
-#### 使用脚本发送启动配置有些脚本只能在特定的运行时正确运行：给定的图像、GPU 风格、系统解释器等。脚本可以在其 PEP 723 标头中的可选 `[tool.hf-jobs]` 表中携带该配置：
+#### 使用脚本发送启动配置
+
+有些脚本只能在特定的运行时正确运行：给定的图像、GPU 风格、系统解释器等。脚本可以在其 PEP 723 标头中的可选 `[tool.hf-jobs]` 表中携带该配置：
 
 ```python
 # /// script
@@ -2181,20 +2195,18 @@ UV 脚本是 Python 脚本，使用特殊的注释语法将其依赖项直接包
 # ///
 ```
 
-然后，`hf jobs uv run ocr.py in_ds out_ds` 使用正确的运行时启动，而不是使用错误的解释器在 CPU 映像上静默运行。该表对于普通的 `uv run` 是不可见的：`[tool.*]` 表是 PEP 723 的一部分，工具会忽略它们不拥有的表。
+然后，`hf jobs uv run ocr.py in_ds out_ds` 使用正确的运行时启动，而不是使用错误的解释器在 CPU 映像上静默运行。该表对于普通的 `uv run` 是不可见的：`[tool.*]` 表是 PEP 723 的一部分，工具会忽略它们不拥有的表。支持的按键，全部可选：`image`、`flavor`、`python`、`timeout`、`name`、`namespace`、`env`、`secrets`、`labels`、 `volumes`、`network_group` 和 `network_aliases`。它们映射到同名的标志（`name`存储为`name`标签，`volumes`采用与`-v`相同的`hf://...:/MOUNT_PATH`规格，`network_aliases`是`--network-alias`值的列表）。未知的密钥是一个错误，而不是默默地丢弃的意图 - 像 `flavour` 这样的拼写错误正是此功能要防止的失败。
 
-支持的按键，全部可选：`image`、`flavor`、`python`、`timeout`、`name`、`namespace`、`env`、`secrets`、`labels`、 `volumes`、`network_group` 和 `network_aliases`。它们映射到同名的标志（`name`存储为`name`标签，`volumes`采用与`-v`相同的`hf://...:/MOUNT_PATH`规格，`network_aliases`是`--network-alias`值的列表）。未知的密钥是一个错误，而不是默默地丢弃的意图 - 像 `flavour` 这样的拼写错误正是此功能要防止的失败。
+所有值都必须是字符串，包括 `env` 和 `labels` 的值：`-e BATCH_SIZE=64` 转换为 `env = { BATCH_SIZE = "64" }`，而不是 `env = { BATCH_SIZE = 64 }`（TOML 将后者读取为整数，并且该表被拒绝）。唯一的例外是 `timeout`，它也接受整数秒（`timeout = 7200` 与 `timeout = "2h"` 相同）。
 
-所有值都必须是字符串，包括 `env` 和 `labels` 的值：`-e BATCH_SIZE=64` 转换为 `env = { BATCH_SIZE = "64" }`，而不是 `env = { BATCH_SIZE = 64 }`（TOML 将后者读取为整数，并且该表被拒绝）。唯一的例外是 `timeout`，它也接受整数秒（`timeout = 7200` 与 `timeout = "2h"` 相同）。脚本中的值是*默认值*：显式标志始终获胜，并且 `env`、`secrets`、`labels` 和 `volumes` 逐项合并，因此 `-e` 和 `-v` 可以添加到脚本声明的内容中：
+脚本中的值是*默认值*：显式标志始终获胜，并且 `env`、`secrets`、`labels` 和 `volumes` 逐项合并，因此 `-e` 和 `-v` 可以添加到脚本声明的内容中：
 
 ```bash
 # Same script, on bigger hardware, with one extra env var
 >>> hf jobs uv run --flavor a10g-large -e BATCH_SIZE=64 ocr.py in_ds out_ds
 ```
 
-`network_aliases` 是例外：作业声明的别名形成一个集合，因此 `--network-alias` 替换脚本的列表而不是添加到其中。计划作业根本没有网络组，因此 `hf jobs scheduled uv run` 拒绝声明 `network_group` 或 `network_aliases` 的脚本。
-
-`secrets` 仅列出秘密 *名称*：值始终来自运行脚本的人的环境，而不是来自脚本本身（`HF_TOKEN` 也从 `hf auth login` 解析）。请求但未在本地设置的机密是错误，而不是作业默默地接收空值。使用 `--dry-run` 时，它会显示为 `<not set>`，因此未配置机密的脚本的配置仍然可见。
+`network_aliases` 是例外：作业声明的别名形成一个集合，因此 `--network-alias` 替换脚本的列表而不是添加到其中。计划作业根本没有网络组，因此 `hf jobs scheduled uv run` 拒绝声明 `network_group` 或 `network_aliases` 的脚本。`secrets` 仅列出秘密 *名称*：值始终来自运行脚本的人的环境，而不是来自脚本本身（`HF_TOKEN` 也从 `hf auth login` 解析）。请求但未在本地设置的机密是错误，而不是作业默默地接收空值。使用 `--dry-run` 时，它会显示为 `<not set>`，因此未配置机密的脚本的配置仍然可见。
 
 每次运行都会回显它提交的配置，标记来自脚本的值。使用 `--dry-run` 打印它而不启动任何东西：
 
@@ -2215,12 +2227,12 @@ Job configuration:
   labels   task=ocr (from script)
            name=unlimited-ocr (from script)
 (dry run) Job not submitted.
-```> [!提示]
+```
+
+> [!提示]
 > 这也适用于位于 URL 后面的脚本：提交作业时会下载一次脚本（以读取其标头）并像本地脚本一样传送到作业，而不是由容器再次下载。该 URL 必须可从您的计算机访问。与本地脚本一样，URL 脚本使用保留的 `/data` 工件挂载；对输入卷使用另一个安装路径。
 
-对于 `hf jobs scheduled uv run`，这会在创建时将脚本固定到其内容。更新源 URL 不再更改未来的运行：重新创建计划作业以获取新版本。
-
-`--dry-run` 也适用于 `hf jobs run`、`hf jobs scheduled run` 和 `hf jobs scheduled uv run`。它会跳过提交和本地卷上传。 Docker 和 UV 作业自动生成的名称包括已解析的启动配置，因此更改运行时设置或环境值会更改名称。
+对于 `hf jobs scheduled uv run`，这会在创建时将脚本固定到其内容。更新源 URL 不再更改未来的运行：重新创建计划作业以获取新版本。`--dry-run` 也适用于 `hf jobs run`、`hf jobs scheduled run` 和 `hf jobs scheduled uv run`。它会跳过提交和本地卷上传。 Docker 和 UV 作业自动生成的名称包括已解析的启动配置，因此更改运行时设置或环境值会更改名称。
 
 ### hf 已安排工作
 
@@ -2245,7 +2257,9 @@ Job configuration:
 
 使用与`hf jobs run`相同的参数来传递环境变量、秘密、超时等。
 
-使用管理计划作业```bash
+使用管理计划作业
+
+```bash
 # List your active scheduled jobs
 >>> hf jobs scheduled ls
 
@@ -2275,7 +2289,7 @@ Job configuration:
 
 ## 高频沙箱
 
-`hf sandbox` 启动基于作业构建的隔离云机器：创建一台、使用实时流输出运行命令，以及将文件复制进出。任何带有 `/bin/sh` 的 Docker 镜像都可以。请参阅 [Sandboxes guide](./sandbox) 了解 Python API，以及 [conceptual guide](../concepts/sandbox) 了解其底层工作原理。
+`hf sandbox` 启动基于作业构建的隔离云计算机：创建一台、使用实时流输出运行命令，以及将文件复制进出。任何带有 `/bin/sh` 的 Docker 镜像都可以。请参阅 [Sandboxes guide](./sandbox) 了解 Python API，以及 [conceptual guide](../concepts/sandbox) 了解其底层工作原理。
 
 > [!注意]
 > 沙箱是实验性的，它们的 API 和行为可能会发生变化，恕不另行通知。共享沙箱的目的是
@@ -2299,16 +2313,16 @@ hi
 
 # Terminate a sandbox
 >>> hf sandbox kill 687f911eaea852de79c4a50a
-```
-
-使用 `--flavor` 选择硬件（例如 `a10g-small`），使用 `--idle-timeout` 绑定沙箱生命周期，并使用 `-l` / `--label` 将标签附加到其作业。要扇出许多廉价的 CPU 沙箱，请使用 `hf sandbox pool create` 预热池并使用 `hf sandbox create --pool <id>` 生成到其中（请参阅 [Sandboxes guide](./sandbox#from-the-cli)）。
+```使用 `--flavor` 选择硬件（例如 `a10g-small`），使用 `--idle-timeout` 绑定沙箱生命周期，并使用 `-l` / `--label` 将标签附加到其作业。要扇出许多廉价的 CPU 沙箱，请使用 `hf sandbox pool create` 预热池并使用 `hf sandbox create --pool <id>` 生成到其中（请参阅 [Sandboxes guide](./sandbox#from-the-cli)）。
 
 ### 将环境变量和机密传递到沙箱
 
-有两个独立的通道，具有不同的存储属性：|频道 |旗帜|专用沙箱|池化沙箱 (`--pool`) |
+有两个独立的通道，具有不同的存储属性：
+
+|频道 |旗帜|专用沙箱|池化沙箱 (`--pool`) |
 | ----------- | ------------------------------------------------ | -------------------------- | ------------------------------------------------------------------ |
-|环境 | `-e` / `--env`、`--env-file` |存储在作业元数据中|在创建时交付给主机，而不是存储在作业元数据中 |
-|秘密| `-s` / `--secrets`, `--secrets-file` |加密服务器端| **不可用** — 使用 `--env` |
+|环境 | `-e` / `--env`, `--env-file` |存储在作业元数据中|在创建时交付给主机，而不是存储在作业元数据中 |
+|秘密| `-s` / `--secrets`、`--secrets-file` |加密服务器端| **不可用** — 使用 `--env` |
 
 ```bash
 # Plain environment variables
@@ -2320,16 +2334,30 @@ hi
 # Secrets from a file, or piped in on stdin
 >>> hf sandbox create --secrets-file .env.secrets
 >>> printf 'OPENAI_API_KEY=sk-...\n' | hf sandbox create --secrets-file -
-```
-
-`-s KEY=value` 也可以工作，但是该值会出现在您的 shell 历史记录和进程列表中，因此 CLI
+````-s KEY=value` 也可以工作，但是该值会出现在您的 shell 历史记录和进程列表中，因此 CLI
 在 stderr 上发出警告，包括在安静模式下。池化沙箱彻底拒绝`--secrets`：池没有
 加密秘密通道，并且`hf sandbox create --pool <id> -s KEY=value`错误并指向
 `--env`。
 
+### 限制网络访问
+
+传递 `--network none` 以阻止来自沙箱的所有出站连接，或传递以逗号分隔的允许列表以仅允许某些目的地。条目可以是 IP 范围、IP 和主机名，以及可选端口。已安装的卷继续工作。它也适用于池化沙箱。
+
+```bash
+# No internet access
+>>> hf sandbox create --network none
+
+# Only an internal network range and the Hub
+>>> hf sandbox create --network 10.0.0.0/8,huggingface.co:443
+```
+
+详情请参阅[Sandboxes without internet access](./sandbox#sandboxes-without-internet-access)。
+
 ## 高频网络钩子
 
-`hf webhooks` 可让您直接从终端管理 Hugging Face Hub 上的 Webhooks。 Webhooks 允许您监听存储库、用户或组织上的事件（推送、讨论等）并触发操作 - 通过 ping 远程 URL 或在 Hugging Face 基础设施上运行作业。### 列出网络钩子
+`hf webhooks` 让您可以直接从终端管理 Hugging Face Hub 上的 Webhook。 Webhooks 允许您监听存储库、用户或组织上的事件（推送、讨论等）并触发操作 - 通过 ping 远程 URL 或在 Hugging Face 基础设施上运行作业。
+
+### 列出网络钩子
 
 ```bash
 >>> hf webhooks ls
@@ -2360,9 +2388,7 @@ wh-def456    https://example.com/other-hook      False     repo     org:HuggingF
 ```bash
 >>> hf webhooks create --url https://example.com/hook --watch model:bert-base-uncased
 >>> hf webhooks create --url https://example.com/hook --watch org:HuggingFace --watch model:gpt2 --domain repo
-```
-
-或者创建一个触发作业的 Webhook：
+```或者创建一个触发作业的 Webhook：
 
 ```bash
 >>> hf webhooks create --job-id 687f911eaea852de79c4a50a --watch user:julien-c
@@ -2379,16 +2405,15 @@ wh-def456    https://example.com/other-hook      False     repo     org:HuggingF
 ### 更新网络钩子
 
 ```bash
->>> hf webhooks update wh-abc123 --url https://new-url.com/hook
->>> hf webhooks update wh-abc123 --watch model:gpt2 --domain repo
+>>> hf webhooks update wh-abc123 --url https://new-url.com/hook --watch model:gpt2 --domain repo
 ```
 
-仅更改提供的选项。请注意，指定时，`--watch` 会替换整个观看列表。
+每次更新都必须包含完整的监视列表、域和目标（`--url` 或 `--job-id`），包括未更改的值。 `--watch` 和 `--domain` 替换整个现有列表。
 
 要更新作业触发的 Webhook 的机密，请传递 `--job-id` 和 `--secrets`。列出的秘密将替换存储的值，并保留所有其他秘密：
 
 ```bash
->>> hf webhooks update wh-abc123 --job-id 687f911eaea852de79c4a50a --secrets HF_TOKEN
+>>> hf webhooks update wh-abc123 --job-id 687f911eaea852de79c4a50a --watch user:julien-c --domain repo --secrets HF_TOKEN
 ```
 
 ### 启用/禁用网络钩子
@@ -2410,13 +2435,12 @@ Webhook deleted: wh-abc123
 
 ```bash
 >>> hf webhooks delete wh-abc123 --yes
-```> [!提示]
+```
+
+> [!提示]
 > 所有命令都接受 `--token` 来覆盖身份验证。在任何命令上使用 `--help` 即可查看所有选项。
 
-## 高频端点
-
-使用`hf endpoints`直接从终端列出、部署、描述和管理推理端点。遗产
-`hf inference-endpoints` 别名仍可用于兼容性。
+## 高频端点使用`hf endpoints`直接从终端列出、部署、描述和管理推理端点。
 
 ```bash
 # Lists endpoints in your namespace
@@ -2429,7 +2453,9 @@ Webhook deleted: wh-abc123
 >>> hf endpoints catalog deploy --repo openai/gpt-oss-120b --name my-endpoint
 
 # Deploy an endpoint from the Hugging Face Hub
->>> hf endpoints deploy my-endpoint --repo gpt2 --framework pytorch --accelerator cpu --instance-size x2 --instance-type intel-icl
+>>> hf endpoints deploy my-endpoint --repo gpt2 --framework pytorch \
+      --accelerator cpu --vendor aws --region us-east-1 \
+      --instance-size x2 --instance-type intel-icl
 
 # List catalog entries
 >>> hf endpoints catalog ls
@@ -2465,12 +2491,12 @@ aws    eu-west-1 gpu         nvidia-t4     x1                 15.0            16
 Hint: Deploy on one of these, e.g.: hf endpoints deploy my-endpoint --repo <repo> --framework <framework> --vendor aws --region eu-west-1 --accelerator cpu --instance-type intel-spr --instance-size x1
 ```
 
-过滤器标志是部署标志（`--vendor`、`--region`、`--accelerator`、`--instance-type`），因此您过滤的内容都会传递给`deploy`。仅列出您现在可以部署的硬件：可用状态以及命名空间中为一个副本留下的足够加速器配额。添加 `--all` 还可查看哪些内容已弃用、暂时不可用或超出配额。 `--format json` 将剩余的每个副本规格（vCPU、架构、加速器数量）添加到每个条目。> [!提示]
+过滤器标志是部署标志（`--vendor`、`--region`、`--accelerator`、`--instance-type`），因此您过滤的内容都会传递给`deploy`。仅列出您现在可以部署的硬件：可用状态以及命名空间中为一个副本留下的足够加速器配额。添加 `--all` 还可查看哪些内容已弃用、暂时不可用或超出配额。 `--format json` 将剩余的每个副本规格（vCPU、架构、加速器数量）添加到每个条目中。> [!提示]
 > 配额是针对每个命名空间的，它决定列出哪些行。如果您要部署到组织中，请传递您将传递给 `deploy` 的相同 `--namespace` — 否则您将查看您的个人配额，这既可以隐藏组织可以部署的硬件，也可以显示组织不能部署的硬件。
 
 #### 部署自定义容器
 
-要部署您自己的 Docker 映像而不是 Hugging Face 托管映像，请将 `--framework custom` 与 `--custom-image` 一起传递。模型存储库安装在容器内的`/repository`处。使用 `--container-args` （以及可选的 `--container-command`）传递带引号的启动字符串，使用 `--env`/`--secrets` 注入环境变量，以及 `--type` 设置访问类型（`public`、`authenticated` 或 `private`）：
+要部署您自己的 Docker 映像而不是 Hugging Face 管理的映像，请将 `--framework custom` 与 `--custom-image` 一起传递。模型存储库安装在容器内的`/repository`处。使用`--container-args`（以及可选的`--container-command`）传递带引号的启动字符串，使用`--env`/`--secrets`注入环境变量，使用`--type`设置访问类型（`public`、`authenticated`或`private`）：
 
 ```bash
 >>> hf endpoints deploy nex-n2-pro \
@@ -2546,5 +2572,5 @@ bartowski/QwQ-32B-Preview-GGUF      text-generation    Apache 2.0 gpu         ll
 
 使用`--repo`，可以使用`--accelerator`（`cpu`、`gpu`、`neuron`）和`--gguf-file`（适用于每份只有一个配方的型号）缩小默认配方范围。两者都与`--recipe`一起被拒绝，它已经指定了一个配方。
 
-### 创建 CLI 扩展
-https://huggingface.co/docs/huggingface_hub/v2.4.0/guides/cli-extensions.md
+### 桶
+https://huggingface.co/docs/huggingface_hub/v2.5.0/guides/buckets.md

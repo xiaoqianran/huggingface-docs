@@ -97,7 +97,7 @@ hf-hello/
 ```toml
 [build-system]
 requires = ["setuptools>=64"]
-build-backend = "setuptools.backends._legacy:_Backend"
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "hf-hello"
@@ -256,8 +256,8 @@ agents hanouticelina/hf-agents       HF extension to run local coding...
 
 |扩展|类型 |描述 |
 |------------|------|-------------|
-| [hanouticelina/hf-claude](https://github.com/hanouticelina/hf-claude) |外壳脚本 |与 HF 推理提供商一起启动 Claude Code |
+| [hanouticelina/hf-claude](https://github.com/hanouticelina/hf-claude) |外壳脚本|与 HF 推理提供商一起启动 Claude Code |
 | [alvarobartt/hf-mem](https://github.com/alvarobartt/hf-mem) |蟒蛇 |估计 HF 模型的推理内存需求 |
 
-### 管理您的空间
-https://huggingface.co/docs/huggingface_hub/v2.4.0/guides/manage-spaces.md
+### 运行和管理作业
+https://huggingface.co/docs/huggingface_hub/v2.5.0/guides/jobs.md

@@ -47,4 +47,4 @@ conduct](https://github.com/huggingface/huggingface_hub/blob/main/CODE_OF_CONDUC
 为每个人创造一个包容且热情的协作空间。
 
 ### 快速入门
-https://huggingface.co/docs/huggingface_hub/v2.4.0/quick-start.md
+https://huggingface.co/docs/huggingface_hub/v2.5.0/quick-start.md

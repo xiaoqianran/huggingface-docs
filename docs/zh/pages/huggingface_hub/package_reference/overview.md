@@ -4,5 +4,5 @@
 
 本节包含 `huggingface_hub` 类和方法的详尽技术描述。
 
-### 警告
-https://huggingface.co/docs/huggingface_hub/v2.4.0/package_reference/cli.md
+### OAuth 和 FastAPI
+https://huggingface.co/docs/huggingface_hub/v2.5.0/package_reference/oauth.md

@@ -9,7 +9,7 @@
 以及[Windows](https://phoenixnap.com/kb/windows-set-environment-variable)。
 
 此页面将引导您了解特定于 `huggingface_hub` 的所有环境变量
-以及它们的含义。
+以及它们的意义。
 
 > [!提示]
 > 所有环境变量均在`huggingface_hub` 导入时读取。任何修改
@@ -109,11 +109,11 @@
 
 ### HF_HUB_OFFLINE
 
-如果设置，则不会对 Hugging Face Hub 进行 HTTP 调用。如果您尝试下载文件，则只会访问缓存的文件。如果未检测到缓存文件，则会引发错误。如果您的网络速度较慢并且您不关心文件的最新版本，这非常有用。如果`HF_HUB_OFFLINE=1`设置为环境变量，并且调用[HfApi](/docs/huggingface_hub/v2.4.0/en/package_reference/hf_api#huggingface_hub.HfApi)的任何方法，都会引发[OfflineModeIsEnabled](/docs/huggingface_hub/v2.4.0/en/package_reference/utilities#huggingface_hub.errors.OfflineModeIsEnabled)异常。
+如果设置，则不会对 Hugging Face Hub 进行 HTTP 调用。如果您尝试下载文件，则只会访问缓存的文件。如果未检测到缓存文件，则会引发错误。如果您的网络速度较慢并且您不关心文件的最新版本，这非常有用。如果`HF_HUB_OFFLINE=1`设置为环境变量，并且调用[HfApi](/docs/huggingface_hub/v2.5.0/en/package_reference/hf_api#huggingface_hub.HfApi)的任何方法，都会引发[OfflineModeIsEnabled](/docs/huggingface_hub/v2.5.0/en/package_reference/utilities#huggingface_hub.errors.OfflineModeIsEnabled)异常。
 
 **注意：** 即使缓存了文件的最新版本，调用 `hf_hub_download` 仍然会触发 HTTP 请求来检查新版本是否可用。设置 `HF_HUB_OFFLINE=1` 将跳过此调用，从而加快加载时间。
 
-如果你想检查离线模式是否启用，你可以使用[is_offline_mode()](/docs/huggingface_hub/v2.4.0/en/package_reference/utilities#huggingface_hub.is_offline_mode)助手。
+如果你想检查离线模式是否启用，你可以使用[is_offline_mode()](/docs/huggingface_hub/v2.5.0/en/package_reference/utilities#huggingface_hub.is_offline_mode)助手。
 
 ### HF_HUB_DISABLE_IMPLICIT_TOKEN
 
@@ -135,14 +135,14 @@
 
 如果设置，`huggingface_hub`将永远不会在缓存中创建符号链接。相反，文件将被复制或直接移动到快照目录中。这是一项高级用户功能，使缓存目录以降级模式运行，其中巨大的文件最终会在硬盘驱动器上重复。
 
-一个示例用例是当共享网络驱动器（例如 NAS）在运行不同操作系统的机器上用作 `HF_HUB_CACHE` 时
+一个示例用例是当共享网络驱动器（例如 NAS）在运行不同操作的计算机之间用作 `HF_HUB_CACHE` 时
 系统。在 Linux 上创建的符号链接并不总是可以在 Windows 上遍历，从而导致错误。设置`HF_HUB_DISABLE_SYMLINKS=1`可以避免此问题，但代价是磁盘空间重复数据删除。
 
 ### HF_HUB_DISABLE_SYMLINKS_WARNING如果您使用的是Windows机器，建议启用开发者模式或运行
 `huggingface_hub` 处于管理模式。否则，`huggingface_hub`将无法创建
 缓存系统中的符号链接。您将能够执行除用户体验之外的任何脚本
 将会降级，因为一些大文件可能最终会在您的硬盘驱动器上重复。警告
-将触发消息来警告您此行为。设置`HF_HUB_DISABLE_SYMLINKS_WARNING=1`，
+系统会触发消息来警告您此行为。设置`HF_HUB_DISABLE_SYMLINKS_WARNING=1`，
 禁用此警告。
 
 欲了解更多详情，请参阅[cache limitations](../guides/manage-cache#limitations)。
@@ -156,7 +156,7 @@
 如果您正在使用实验性功能，请告诉我们！您的反馈可以帮助我们设计和改进它。
 
 ### HF_HUB_DISABLE_TELEMETRY默认情况下，HF 库（`transformers`、`datasets`、`gradio`、..）收集一些数据，以监控使用情况、调试问题并帮助确定功能的优先级。
-每个库定义了自己的策略（即监视哪些使用），但核心实现发生在`huggingface_hub`（请参阅`send_telemetry`）。
+每个库定义了自己的策略（即要监视的使用情况），但核心实现发生在`huggingface_hub`（请参阅`send_telemetry`）。
 
 您可以将 `HF_HUB_DISABLE_TELEMETRY=1` 设置为环境变量以全局禁用遥测。
 
@@ -193,7 +193,7 @@
 
 该变量不再使用。从`hf_xet` 1.3.0开始，文件总是按顺序写入本地磁盘（参见[file writer in v1.3.0](https://github.com/huggingface/xet-core/blob/v1.3.0/file_reconstruction/src/data_writer/data_writer.rs#L76-L91)）。
 
-## 已弃用的环境变量In order to standardize all environment variables within the Hugging Face ecosystem, some variables have been marked as deprecated. Although they remain functional, they no longer take precedence over their replacements. The following table outlines the deprecated variables and their corresponding alternatives:
+## 已弃用的环境变量为了标准化 Hugging Face 生态系统中的所有环境变量，一些变量已被标记为已弃用。尽管它们仍然有效，但它们不再优先于其替代品。下表概述了已弃用的变量及其相应的替代变量：
 
 |已弃用的变量 |更换|
 | --------------------------------------- | ------------------ |
@@ -203,15 +203,15 @@
 
 ## 来自外部工具
 
-Some environment variables are not specific to `huggingface_hub` but are still taken into account when they are set.
+某些环境变量并非特定于 `huggingface_hub`，但在设置时仍会考虑在内。
 
 ### 请勿追踪
 
-布尔值。相当于`HF_HUB_DISABLE_TELEMETRY`。 When set to true, telemetry is globally disabled in the Hugging Face Python ecosystem (`transformers`, `diffusers`, `gradio`, etc.).请参阅 https://donottrack.sh/ 了解更多详细信息。
+布尔值。相当于`HF_HUB_DISABLE_TELEMETRY`。当设置为 true 时，遥测在 Hugging Face Python 生态系统中全局禁用（`transformers`、`diffusers`、`gradio` 等）。请参阅 https://donottrack.sh/ 了解更多详细信息。
 
 ### 无颜色
 
-布尔值。 When set, `hf` CLI will not print any ANSI color.
+布尔值。设置后，`hf` CLI 将不会打印任何 ANSI 颜色。
 参见[no-color.org](https://no-color.org/)。
 
 ### XDG_CACHE_HOME
@@ -221,6 +221,6 @@ Some environment variables are not specific to `huggingface_hub` but are still t
 这是配置[user-specific non-essential (cached) data should be written](https://wiki.archlinux.org/title/XDG_Base_Directory)的默认方式
 在 Linux 机器上。
 
-If `HF_HOME` is not set, the default home will be `"$XDG_CACHE_HOME/huggingface"` instead
+如果未设置`HF_HOME`，则默认主页将为`"$XDG_CACHE_HOME/huggingface"`
 `"~/.cache/huggingface"`。### 存储卡
-https://huggingface.co/docs/huggingface_hub/v2.4.0/package_reference/cards.md
+https://huggingface.co/docs/huggingface_hub/v2.5.0/package_reference/cards.md

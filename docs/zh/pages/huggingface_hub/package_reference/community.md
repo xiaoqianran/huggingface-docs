@@ -2,18 +2,18 @@
 
 # 与讨论和 Pull 请求交互
 
-查看[HfApi](/docs/huggingface_hub/v2.4.0/en/package_reference/hf_api#huggingface_hub.HfApi)文档页面以获取启用方法的参考
+查看[HfApi](/docs/huggingface_hub/v2.5.0/en/package_reference/hf_api#huggingface_hub.HfApi)文档页面以获取启用方法的参考
 与 Hub 上的 Pull 请求和讨论进行交互。
 
-- [get_repo_discussions()](/docs/huggingface_hub/v2.4.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_repo_discussions)
-- [get_discussion_details()](/docs/huggingface_hub/v2.4.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_discussion_details)
-- [create_discussion()](/docs/huggingface_hub/v2.4.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_discussion)
-- [create_pull_request()](/docs/huggingface_hub/v2.4.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_pull_request)
-- [rename_discussion()](/docs/huggingface_hub/v2.4.0/en/package_reference/hf_api#huggingface_hub.HfApi.rename_discussion)
-- [comment_discussion()](/docs/huggingface_hub/v2.4.0/en/package_reference/hf_api#huggingface_hub.HfApi.comment_discussion)
-- [edit_discussion_comment()](/docs/huggingface_hub/v2.4.0/en/package_reference/hf_api#huggingface_hub.HfApi.edit_discussion_comment)
-- [change_discussion_status()](/docs/huggingface_hub/v2.4.0/en/package_reference/hf_api#huggingface_hub.HfApi.change_discussion_status)
-- [merge_pull_request()](/docs/huggingface_hub/v2.4.0/en/package_reference/hf_api#huggingface_hub.HfApi.merge_pull_request)
+- [get_repo_discussions()](/docs/huggingface_hub/v2.5.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_repo_discussions)
+- [get_discussion_details()](/docs/huggingface_hub/v2.5.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_discussion_details)
+- [create_discussion()](/docs/huggingface_hub/v2.5.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_discussion)
+- [create_pull_request()](/docs/huggingface_hub/v2.5.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_pull_request)
+- [rename_discussion()](/docs/huggingface_hub/v2.5.0/en/package_reference/hf_api#huggingface_hub.HfApi.rename_discussion)
+- [comment_discussion()](/docs/huggingface_hub/v2.5.0/en/package_reference/hf_api#huggingface_hub.HfApi.comment_discussion)
+- [edit_discussion_comment()](/docs/huggingface_hub/v2.5.0/en/package_reference/hf_api#huggingface_hub.HfApi.edit_discussion_comment)
+- [change_discussion_status()](/docs/huggingface_hub/v2.5.0/en/package_reference/hf_api#huggingface_hub.HfApi.change_discussion_status)
+- [merge_pull_request()](/docs/huggingface_hub/v2.5.0/en/package_reference/hf_api#huggingface_hub.HfApi.merge_pull_request)
 
 ## 数据结构[[huggingface_hub.Discussion]]
 
@@ -23,7 +23,7 @@
 huggingface_hub.Discussion(title: str, status: typing.Literal['open', 'closed', 'merged', 'draft'], num: int, repo_id: str, repo_type: str, author: str, is_pull_request: bool, created_at: datetime, endpoint: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.4.0/src/huggingface_hub/community.py#L20)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.5.0/src/huggingface_hub/community.py#L20)
 
 **参数：**
 
@@ -54,10 +54,10 @@ url (`str`) ：（属性）Hub 上讨论的 URL。
 #### Huggingface_hub.DiscussionWithDetails[[huggingface_hub.DiscussionWithDetails]]
 
 ```python
-huggingface_hub.DiscussionWithDetails(title: str, status: typing.Literal['open', 'closed', 'merged', 'draft'], num: int, repo_id: str, repo_type: str, author: str, is_pull_request: bool, created_at: datetime, endpoint: str, events: list, conflicting_files: list[str] | bool | None, target_branch: str | None, merge_commit_oid: str | None, diff: str | None)
+huggingface_hub.DiscussionWithDetails(title: str, status: typing.Literal['open', 'closed', 'merged', 'draft'], num: int, repo_id: str, repo_type: str, author: str, is_pull_request: bool, created_at: datetime, endpoint: str, events: list, conflicting_files: list[str] | bool | None, target_branch: str | None, merge_commit_oid: str | None, diff: str | None, diff_url: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.4.0/src/huggingface_hub/community.py#L88)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.5.0/src/huggingface_hub/community.py#L88)
 
 **参数：**
 
@@ -75,7 +75,7 @@ repo_type (`str`) ：打开讨论/拉取请求的存储库的类型。可能的�
 
 is_pull_request (`bool`) ：这是否是拉取请求。created_at (`datetime`) ：创建讨论/拉取请求的`datetime`。
 
-events (`list` of [DiscussionEvent](/docs/huggingface_hub/v2.4.0/en/package_reference/community#huggingface_hub.DiscussionEvent)) ：此讨论或 Pull 请求中的 `DiscussionEvents` 列表。
+events (`list` of [DiscussionEvent](/docs/huggingface_hub/v2.5.0/en/package_reference/community#huggingface_hub.DiscussionEvent)) ：此讨论或 Pull 请求中的 `DiscussionEvents` 列表。
 
 冲突文件（`Union[list[str], bool, None]`，*可选*）：冲突文件列表（如果这是拉取请求）。 `None` 如果 `self.is_pull_request` 是 `False`。 `True` 如果存在冲突文件但无法检索列表。
 
@@ -85,13 +85,15 @@ merge_commit_oid (`str`, *可选*) ：如果这是合并的拉取请求，则将
 
 diff (`str`, *可选*) ：如果这是 Pull Request 则为 git diff，否则为 `None`。
 
+diff_url (`str`, *可选*) ：如果这是拉取请求，则获取 git diff 的 URL，否则为 `None`。
+
 端点（`str`）：集线器的端点。默认为 https://huggingface.co。
 
 git_reference (`str`, *可选*) ：（属性）如果这是拉取请求，则可以推送更改的 Git 引用，否则为 `None`。
 
 url (`str`) ：（属性）Hub 上讨论的 URL。
 
-[Discussion](/docs/huggingface_hub/v2.4.0/en/package_reference/community#huggingface_hub.Discussion) 的子类。
+[Discussion](/docs/huggingface_hub/v2.5.0/en/package_reference/community#huggingface_hub.Discussion) 的子类。
 
 #### Huggingface_hub.DiscussionEvent[[huggingface_hub.DiscussionEvent]]
 
@@ -99,23 +101,23 @@ url (`str`) ：（属性）Hub 上讨论的 URL。
 huggingface_hub.DiscussionEvent(id: str, type: str, created_at: datetime, author: str, _event: dict)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.4.0/src/huggingface_hub/community.py#L155)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.5.0/src/huggingface_hub/community.py#L158)**参数：**
 
-**参数：**
+id (`str`) ：事件的ID。十六进制字符串。
 
-id (`str`) ：事件的ID。十六进制字符串。type (`str`) ：事件的类型。
+type (`str`) ：事件的类型。
 
-created_at (`datetime`) ：一个[⟦T69⟧](https://docs.python.org/3/library/datetime.html?highlight=datetime#datetime.datetime)对象，保存事件的创建时间戳。
+created_at (`datetime`) ：一个[⟦T71⟧](https://docs.python.org/3/library/datetime.html?highlight=datetime#datetime.datetime)对象，保存事件的创建时间戳。
 
 作者 (`str`) ：讨论/拉取请求作者的用户名。如果此后用户已被删除，则可以是`"deleted"`。
 
 讨论或拉取请求中的事件。
 
 使用具体类：
-* [DiscussionComment](/docs/huggingface_hub/v2.4.0/en/package_reference/community#huggingface_hub.DiscussionComment)
-* [DiscussionStatusChange](/docs/huggingface_hub/v2.4.0/en/package_reference/community#huggingface_hub.DiscussionStatusChange)
-* [DiscussionCommit](/docs/huggingface_hub/v2.4.0/en/package_reference/community#huggingface_hub.DiscussionCommit)
-* [DiscussionTitleChange](/docs/huggingface_hub/v2.4.0/en/package_reference/community#huggingface_hub.DiscussionTitleChange)
+* [DiscussionComment](/docs/huggingface_hub/v2.5.0/en/package_reference/community#huggingface_hub.DiscussionComment)
+* [DiscussionStatusChange](/docs/huggingface_hub/v2.5.0/en/package_reference/community#huggingface_hub.DiscussionStatusChange)
+* [DiscussionCommit](/docs/huggingface_hub/v2.5.0/en/package_reference/community#huggingface_hub.DiscussionCommit)
+* [DiscussionTitleChange](/docs/huggingface_hub/v2.5.0/en/package_reference/community#huggingface_hub.DiscussionTitleChange)
 
 #### Huggingface_hub.DiscussionComment[[huggingface_hub.DiscussionComment]]
 
@@ -123,7 +125,7 @@ created_at (`datetime`) ：一个[⟦T69⟧](https://docs.python.org/3/library/d
 huggingface_hub.DiscussionComment(id: str, type: str, created_at: datetime, author: str, _event: dict, content: str, edited: bool, hidden: bool)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.4.0/src/huggingface_hub/community.py#L188)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.5.0/src/huggingface_hub/community.py#L191)
 
 **参数：**
 
@@ -131,7 +133,7 @@ id (`str`) ：事件的 ID。十六进制字符串。
 
 type (`str`) ：事件的类型。
 
-created_at (`datetime`) ：一个[⟦T75⟧](https://docs.python.org/3/library/datetime.html?highlight=datetime#datetime.datetime)对象，保存事件的创建时间戳。
+created_at (`datetime`) ：一个[⟦T77⟧](https://docs.python.org/3/library/datetime.html?highlight=datetime#datetime.datetime)对象，保存事件的创建时间戳。
 
 作者 (`str`) ：讨论/拉取请求作者的用户名。如果此后用户已被删除，则可以是`"deleted"`。
 
@@ -143,29 +145,29 @@ hidden (`bool`) : 该评论是否被隐藏。
 
 讨论/拉取请求中的评论。
 
-[DiscussionEvent](/docs/huggingface_hub/v2.4.0/en/package_reference/community#huggingface_hub.DiscussionEvent) 的子类。
-
-#### Huggingface_hub.DiscussionStatusChange[[huggingface_hub.DiscussionStatusChange]]
+[DiscussionEvent](/docs/huggingface_hub/v2.5.0/en/package_reference/community#huggingface_hub.DiscussionEvent) 的子类。#### Huggingface_hub.DiscussionStatusChange[[huggingface_hub.DiscussionStatusChange]]
 
 ```python
 huggingface_hub.DiscussionStatusChange(id: str, type: str, created_at: datetime, author: str, _event: dict, new_status: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.4.0/src/huggingface_hub/community.py#L243)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.5.0/src/huggingface_hub/community.py#L246)
 
-**参数：**id (`str`) ：事件的ID。十六进制字符串。
+**参数：**
+
+id (`str`) ：事件的ID。十六进制字符串。
 
 type (`str`) ：事件的类型。
 
-created_at (`datetime`) ：一个[⟦T84⟧](https://docs.python.org/3/library/datetime.html?highlight=datetime#datetime.datetime)对象，保存事件的创建时间戳。
+created_at (`datetime`) ：一个[⟦T86⟧](https://docs.python.org/3/library/datetime.html?highlight=datetime#datetime.datetime)对象，保存事件的创建时间戳。
 
 作者 (`str`) ：讨论/拉取请求作者的用户名。如果此后用户已被删除，则可以是`"deleted"`。
 
-new_status (`str`) ：更改后讨论/拉取请求的状态。它可以是以下之一： * `"open"` * `"closed"` * `"merged"` （仅适用于 Pull 请求）
+new_status (`str`) ：更改后讨论/拉取请求的状态。它可以是以下之一： * `"open"` * `"closed"` * `"merged"` （仅适用于拉取请求）
 
 讨论/拉取请求中的状态更改。
 
-[DiscussionEvent](/docs/huggingface_hub/v2.4.0/en/package_reference/community#huggingface_hub.DiscussionEvent) 的子类。
+[DiscussionEvent](/docs/huggingface_hub/v2.5.0/en/package_reference/community#huggingface_hub.DiscussionEvent) 的子类。
 
 #### Huggingface_hub.DiscussionCommit[[huggingface_hub.DiscussionCommit]]
 
@@ -173,7 +175,7 @@ new_status (`str`) ：更改后讨论/拉取请求的状态。它可以是以下
 huggingface_hub.DiscussionCommit(id: str, type: str, created_at: datetime, author: str, _event: dict, summary: str, oid: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.4.0/src/huggingface_hub/community.py#L271)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.5.0/src/huggingface_hub/community.py#L274)
 
 **参数：**
 
@@ -181,7 +183,7 @@ id (`str`) ：事件的 ID。十六进制字符串。
 
 type (`str`) ：事件的类型。
 
-created_at (`datetime`) ：一个[⟦T94⟧](https://docs.python.org/3/library/datetime.html?highlight=datetime#datetime.datetime)对象，保存事件的创建时间戳。
+created_at (`datetime`) ：一个[⟦T96⟧](https://docs.python.org/3/library/datetime.html?highlight=datetime#datetime.datetime)对象，保存事件的创建时间戳。
 
 作者 (`str`) ：讨论/拉取请求作者的用户名。如果此后用户已被删除，则可以是`"deleted"`。
 
@@ -189,9 +191,7 @@ created_at (`datetime`) ：一个[⟦T94⟧](https://docs.python.org/3/library/d
 
 oid (`str`) ：提交的 OID / SHA，作为十六进制字符串。
 
-拉取请求中的提交。
-
-[DiscussionEvent](/docs/huggingface_hub/v2.4.0/en/package_reference/community#huggingface_hub.DiscussionEvent) 的子类。
+拉取请求中的提交。[DiscussionEvent](/docs/huggingface_hub/v2.5.0/en/package_reference/community#huggingface_hub.DiscussionEvent) 的子类。
 
 #### Huggingface_hub.DiscussionTitleChange[[huggingface_hub.DiscussionTitleChange]]
 
@@ -199,15 +199,17 @@ oid (`str`) ：提交的 OID / SHA，作为十六进制字符串。
 huggingface_hub.DiscussionTitleChange(id: str, type: str, created_at: datetime, author: str, _event: dict, old_title: str, new_title: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.4.0/src/huggingface_hub/community.py#L298)**参数：**
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.5.0/src/huggingface_hub/community.py#L301)
+
+**参数：**
 
 id (`str`) ：事件的 ID。十六进制字符串。
 
 type (`str`) ：事件的类型。
 
-created_at (`datetime`) ：一个[⟦T102⟧](https://docs.python.org/3/library/datetime.html?highlight=datetime#datetime.datetime)对象，保存事件的创建时间戳。
+created_at (`datetime`) ：一个[⟦T104⟧](https://docs.python.org/3/library/datetime.html?highlight=datetime#datetime.datetime)对象，保存事件的创建时间戳。
 
-作者 (`str`) ：讨论/拉取请求作者的用户名。如果用户此后已被删除，则可以是`"deleted"`。
+作者 (`str`) ：讨论/拉取请求作者的用户名。如果此后用户已被删除，则可以是`"deleted"`。
 
 old_title (`str`) ：讨论/拉取请求的先前标题。
 
@@ -215,7 +217,7 @@ new_title (`str`) ：新标题。
 
 讨论/拉取请求中的重命名事件。
 
-[DiscussionEvent](/docs/huggingface_hub/v2.4.0/en/package_reference/community#huggingface_hub.DiscussionEvent) 的子类。
+[DiscussionEvent](/docs/huggingface_hub/v2.5.0/en/package_reference/community#huggingface_hub.DiscussionEvent) 的子类。
 
-### 管理集合
-https://huggingface.co/docs/huggingface_hub/v2.4.0/package_reference/collections.md
+### 身份验证
+https://huggingface.co/docs/huggingface_hub/v2.5.0/package_reference/authentication.md

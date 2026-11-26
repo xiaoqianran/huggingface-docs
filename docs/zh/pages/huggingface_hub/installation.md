@@ -158,5 +158,5 @@ Task: text-generation
 ## 后续步骤一旦`huggingface_hub`正确安装在你的机器上，你可能想要
 [configure environment variables](package_reference/environment_variables) 或 [check one of our guides](guides/overview) 开始。
 
-### 通过文件系统 API 与 Hub 交互
-https://huggingface.co/docs/huggingface_hub/v2.4.0/guides/hf_file_system.md
+### Mixins 和序列化方法
+https://huggingface.co/docs/huggingface_hub/v2.5.0/package_reference/mixins.md

@@ -4,7 +4,7 @@
 
 安排和管理将在 HF 基础设施上运行的作业。
 
-将 `hf jobs uv run ` 或 `hf jobs run` 与`@annually`、`@yearly`、`@monthly`、`@weekly`、`@daily`、`@hourly` 的计划或 CRON 计划表达式（例如，`"0 9 * * 1"` 每周一上午 9 点）一起使用：
+将 `hf jobs uv run ` 或 `hf jobs run` 与`@annually`、`@yearly`、`@monthly`、`@weekly`、`@daily`、`@hourly` 的时间表或 CRON 时间表表达式（例如，`"0 9 * * 1"` 表示每周一上午 9 点）配合使用：
 
 ```bash
 # Schedule a job that runs every hour
@@ -27,6 +27,14 @@
 ```
 
 使用与`hf jobs uv run`和`hf jobs run`相同的参数来传递环境变量、秘密、超时、标签等。
+
+默认情况下，当上一个运行仍在进行时，计划作业不会启动新的运行。该运行将被跳过，而不是排队。传递 `--concurrency` 让运行重叠，例如，当运行时间可能比计划间隔长时：
+
+```bash
+>>> hf jobs scheduled uv run --concurrency @hourly my_script.py
+```
+
+通过`--suspend`创建暂停的计划作业，稍后使用`hf jobs scheduled resume`启动它。
 
 使用 `hf jobs scheduled ps`、`hf jobs scheduled inspect`、`hf jobs scheduled suspend`、`hf jobs scheduled resume`、`hf jobs scheduled reschedule`、`hf jobs scheduled trigger` 和 `hf jobs scheduled delete` 管理计划作业：
 
