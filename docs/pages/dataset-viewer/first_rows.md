@@ -10,6 +10,7 @@ The `/first-rows` endpoint accepts three query parameters:
 - `config`: the subset name, for example `cola`
 - `split`: the split name, for example `train`
 
+<inferencesnippet> <python>
 ```python
 import requests
 headers = {"Authorization": f"Bearer {API_TOKEN}"}
@@ -19,7 +20,7 @@ def query():
     return response.json()
 data = query()
 ```
-
+</python> <js>
 ```js
 import fetch from "node-fetch";
 async function query(data) {
@@ -37,12 +38,13 @@ query().then((response) => {
     console.log(JSON.stringify(response));
 });
 ```
-
+</js> <curl>
 ```curl
 curl https://datasets-server.huggingface.co/first-rows?dataset=ibm/duorc&config=SelfRC&split=train \
         -X GET \
         -H "Authorization: Bearer ${API_TOKEN}"
 ```
+</curl> </inferencesnippet>
 
 The endpoint response is a JSON containing two keys:
 
@@ -198,5 +200,5 @@ For example, the [`GEM/SciDuet`](https://datasets-server.huggingface.co/first-ro
   truncated: true
 ```
 
-### Explore statistics over split data
-https://huggingface.co/docs/dataset-viewer/statistics.md
+### Download slices of rows
+https://huggingface.co/docs/dataset-viewer/rows.md

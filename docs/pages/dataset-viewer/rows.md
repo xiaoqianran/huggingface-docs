@@ -2,13 +2,13 @@
 
 The dataset viewer provides a `/rows` endpoint for visualizing any slice of rows of a dataset. This will let you walk-through and inspect the data contained in a dataset.
 
-    
-    
+![](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/datasets-server/oasst1_light.png)
 
-  Currently, only {" "}
-  datasets with parquet exports
-  are supported so the dataset viewer can extract any slice of rows without downloading the
-  whole dataset.
+> [!WARNING]
+> Currently, only {" "}
+> [datasets with parquet exports](./parquet)
+> are supported so the dataset viewer can extract any slice of rows without downloading the
+> whole dataset.
 
 This guide shows you how to use the dataset viewer's `/rows` endpoint to download slices of a dataset.
 Feel free to also try it out with [Postman](https://www.postman.com/huggingface/workspace/hugging-face-apis/request/23242779-32d6a8be-b800-446a-8cee-f6b5ca1710df),
@@ -23,6 +23,7 @@ The `/rows` endpoint accepts five query parameters:
 - `offset`: the offset of the slice, for example `150`
 - `length`: the length of the slice, for example `10` (maximum: `100`)
 
+<inferencesnippet> <python>
 ```python
 import requests
 headers = {"Authorization": f"Bearer {API_TOKEN}"}
@@ -32,7 +33,7 @@ def query():
     return response.json()
 data = query()
 ```
-
+</python> <js>
 ```js
 import fetch from "node-fetch";
 async function query(data) {
@@ -50,12 +51,13 @@ query().then((response) => {
     console.log(JSON.stringify(response));
 });
 ```
-
+</js> <curl>
 ```curl
 curl https://datasets-server.huggingface.co/rows?dataset=ibm/duorc&config=SelfRC&split=train&offset=150&length=10 \
         -X GET \
         -H "Authorization: Bearer ${API_TOKEN}"
 ```
+</curl> </inferencesnippet>
 
 The endpoint response is a JSON containing two keys:
 
@@ -197,5 +199,5 @@ If a certain asset is not available, you may have to call `/rows` again.
 Unlike `/first-rows`, there is currently no truncation in `/rows`.
 The `truncated_cells` field is still there but is always empty.
 
-### Get the number of rows and the size in bytes
-https://huggingface.co/docs/dataset-viewer/size.md
+### Search text in a dataset
+https://huggingface.co/docs/dataset-viewer/search.md

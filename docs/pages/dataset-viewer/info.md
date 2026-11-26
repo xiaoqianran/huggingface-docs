@@ -7,6 +7,7 @@ The `/info` endpoint accepts two query parameters:
 - `dataset`: the dataset name
 - `config`: the subset name
 
+<inferencesnippet> <python>
 ```python
 import requests
 headers = {"Authorization": f"Bearer {API_TOKEN}"}
@@ -16,7 +17,7 @@ def query():
     return response.json()
 data = query()
 ```
-
+</python> <js>
 ```js
 import fetch from "node-fetch";
 async function query(data) {
@@ -34,12 +35,13 @@ query().then((response) => {
     console.log(JSON.stringify(response));
 });
 ```
-
+</js> <curl>
 ```curl
 curl https://datasets-server.huggingface.co/info?dataset=ibm/duorc&config=SelfRC \
         -X GET \
         -H "Authorization: Bearer ${API_TOKEN}"
 ```
+</curl> </inferencesnippet>
 
 The endpoint response is a JSON with the `dataset_info` key. Its structure and content correspond to [DatasetInfo](https://huggingface.co/docs/datasets/package_reference/main_classes#datasets.DatasetInfo) object of the `datasets` library.
 
@@ -93,5 +95,5 @@ The endpoint response is a JSON with the `dataset_info` key. Its structure and c
 }
 ```
 
-### PySpark
-https://huggingface.co/docs/dataset-viewer/pyspark.md
+### Preview a dataset
+https://huggingface.co/docs/dataset-viewer/first_rows.md

@@ -2,7 +2,8 @@
 
 [Polars](https://pola-rs.github.io/polars-book/user-guide/) is a fast DataFrame library written in Rust with Arrow as its foundation.
 
-💡 Learn more about how to get the dataset URLs in the [List Parquet files](parquet) guide.
+> [!TIP]
+> 💡 Learn more about how to get the dataset URLs in the [List Parquet files](parquet) guide.
 
 Let's start by grabbing the URLs to the `train` split of the [`tasksource/blog_authorship_corpus`](https://huggingface.co/datasets/tasksource/blog_authorship_corpus) dataset from the dataset viewer API:
 
@@ -104,5 +105,5 @@ q = (
 df = q.collect()
 ```
 
-### List Parquet files
-https://huggingface.co/docs/dataset-viewer/parquet.md
+### PostgreSQL
+https://huggingface.co/docs/dataset-viewer/postgresql.md

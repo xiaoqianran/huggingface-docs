@@ -129,5 +129,5 @@ Take a look at these guides to learn how to use huggingface_hub to solve real-wo
       
         How to run and manage compute Jobs on Hugging Face infrastructure and select the hardware?
 
-### Command Line Interface (CLI)
-https://huggingface.co/docs/huggingface_hub/v2.4.0/guides/cli.md
+### Upload files to the Hub
+https://huggingface.co/docs/huggingface_hub/v2.5.0/guides/upload.md

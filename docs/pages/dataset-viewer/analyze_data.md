@@ -12,6 +12,7 @@ Let's say you're interested in the average length of the submitted code as it re
 
 Use the `/parquet` endpoint to convert the dataset to a Parquet file and return the URL to it:
 
+<inferencesnippet> <python>
 ```python
 import requests
 API_URL = "https://datasets-server.huggingface.co/parquet?dataset=codeparrot/codecomplex"
@@ -20,7 +21,7 @@ def query():
     return response.json()
 data = query()
 ```
-
+</python> <js>
 ```js
 import fetch from "node-fetch";
 async function query(data) {
@@ -37,11 +38,12 @@ query().then((response) => {
     console.log(JSON.stringify(response));
 });
 ```
-
+</js> <curl>
 ```curl
 curl https://datasets-server.huggingface.co/parquet?dataset=codeparrot/codecomplex \
         -X GET
 ```
+</curl> </inferencesnippet>
 
 ```json
 {"parquet_files": 
@@ -80,5 +82,7 @@ Pandas is a powerful library for data analysis; group the dataset by time comple
 df.groupby('complexity')['src'].apply(lambda x: x.str.len().mean()).sort_values(ascending=False).plot.barh(color="orange")
 ```
 
-### List splits and subsets
-https://huggingface.co/docs/dataset-viewer/splits.md
+![](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/datasets-server/codecomplex.png)
+
+### Check dataset validity
+https://huggingface.co/docs/dataset-viewer/valid.md

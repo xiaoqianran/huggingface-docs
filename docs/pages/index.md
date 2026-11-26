@@ -10,7 +10,7 @@ Unofficial mirror from official `llms.txt` + `llms-full.txt`.
 | [`autotrain`](https://huggingface.co/docs/autotrain) | AutoTrain | 19 | [full](autotrain/_full.md) |
 | [`bitsandbytes`](https://huggingface.co/docs/bitsandbytes) | BitsAndBytes | 25 | [full](bitsandbytes/_full.md) |
 | [`cli`](https://huggingface.co/docs/cli) | CLI | 1 | [full](cli/_full.md) |
-| [`dataset-viewer`](https://huggingface.co/docs/dataset-viewer) | Dataset Viewer | 26 | [full](dataset-viewer/_full.md) |
+| [`dataset-viewer`](https://huggingface.co/docs/dataset-viewer) | Dataset Viewer | 24 | [full](dataset-viewer/_full.md) |
 | [`datasets`](https://huggingface.co/docs/datasets) | Datasets | 62 | [full](datasets/_full.md) |
 | [`diffusers`](https://huggingface.co/docs/diffusers) | Diffusers | 382 | [full](diffusers/_full.md) |
 | [`hub`](https://huggingface.co/docs/hub) | Hub | 282 | [full](hub/_full.md) |

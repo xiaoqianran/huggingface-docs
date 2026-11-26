@@ -2,9 +2,10 @@
 
 The dataset viewer provides a `/filter` endpoint for filtering rows in a dataset.
 
-  Currently, only datasets with Parquet exports
-  are supported so the dataset viewer can index the contents and run the filter query without
-  downloading the whole dataset.
+> [!WARNING]
+> Currently, only [datasets with Parquet exports](./parquet)
+> are supported so the dataset viewer can index the contents and run the filter query without
+> downloading the whole dataset.
 
 This guide shows you how to use the dataset viewer's `/filter` endpoint to filter rows based on a query string.
 Feel free to also try it out with [ReDoc](https://redocly.github.io/redoc/?url=https://datasets-server.huggingface.co/openapi.json#operation/filterRows).
@@ -31,17 +32,19 @@ where="age">30 AND ("name"='Simone' OR "children"=0)
 will filter the data to select only those rows where the float "age" column is larger than 30 and,
 either the string "name" column is equal to 'Simone' or the integer "children" column is equal to 0.
 
-  Note that, following SQL syntax, in comparison predicates,
-  column names should be enclosed in double quotes ("name"),
-  and string values must be enclosed in single quotes ('Simone').
-  Additionally, if the string value contains a single quote, it must be escaped with another single quote,
-  for example: 'O''Hara'.
+> [!TIP]
+> Note that, following SQL syntax, in comparison predicates,
+> column names should be enclosed in double quotes (`"name"`),
+> and string values must be enclosed in single quotes (`'Simone'`).
+> Additionally, if the string value contains a single quote, it must be escaped with another single quote,
+> for example: `'O''Hara'`.
 
 The `orderby` parameter must contain the column name (in double quotes) whose values will be sorted (in ascending order by default).
 To sort the rows in descending order, use the DESC keyword, like `orderby="age" DESC`.
 
 For example, let's filter those rows with no_answer=false in the `train` split of the `SelfRC` subset of the `ibm/duorc` dataset restricting the results to the slice 150-151:
 
+<inferencesnippet> <python>
 ```python
 import requests
 headers = {"Authorization": f"Bearer {API_TOKEN}"}
@@ -51,7 +54,7 @@ def query():
     return response.json()
 data = query()
 ```
-
+</python> <js>
 ```js
 import fetch from "node-fetch";
 async function query(data) {
@@ -69,12 +72,13 @@ query().then((response) => {
     console.log(JSON.stringify(response));
 });
 ```
-
+</js> <curl>
 ```curl
 curl https://datasets-server.huggingface.co/filter?dataset=ibm/duorc&config=SelfRC&split=train&where="no_answer"=true&offset=150&length=2 \
         -X GET \
         -H "Authorization: Bearer ${API_TOKEN}"
 ```
+</curl> </inferencesnippet>
 
 The endpoint response is a JSON containing two keys (same format as [`/rows`](./rows)):
 
@@ -194,5 +198,5 @@ If the result has `partial: true` it means that the filtering couldn't be run on
 
 Indeed, the indexing for `/filter` can be partial if the dataset is bigger than 5GB. In that case, it only uses the first 5GB.
 
-### Preview a dataset
-https://huggingface.co/docs/dataset-viewer/first_rows.md
+### List Parquet files
+https://huggingface.co/docs/dataset-viewer/parquet.md

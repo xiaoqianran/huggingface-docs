@@ -4,7 +4,7 @@
 - [AutoTrain](https://huggingface.co/docs/autotrain) — 19 pages
 - [BitsAndBytes](https://huggingface.co/docs/bitsandbytes) — 25 pages
 - [CLI](https://huggingface.co/docs/cli) — 1 pages
-- [Dataset Viewer](https://huggingface.co/docs/dataset-viewer) — 26 pages
+- [Dataset Viewer](https://huggingface.co/docs/dataset-viewer) — 24 pages
 - [Datasets](https://huggingface.co/docs/datasets) — 62 pages
 - [Diffusers](https://huggingface.co/docs/diffusers) — 382 pages
 - [Hub](https://huggingface.co/docs/hub) — 282 pages

@@ -8,6 +8,7 @@ This guide shows you how to use the dataset viewer's `/splits` endpoint to retri
 
 The `/splits` endpoint accepts the dataset name as its query parameter:
 
+<inferencesnippet> <python>
 ```python
 import requests
 headers = {"Authorization": f"Bearer {API_TOKEN}"}
@@ -17,7 +18,7 @@ def query():
     return response.json()
 data = query()
 ```
-
+</python> <js>
 ```js
 import fetch from "node-fetch";
 async function query(data) {
@@ -35,12 +36,13 @@ query().then((response) => {
     console.log(JSON.stringify(response));
 });
 ```
-
+</js> <curl>
 ```curl
 curl https://datasets-server.huggingface.co/splits?dataset=ibm/duorc \
         -X GET \
         -H "Authorization: Bearer ${API_TOKEN}"
 ```
+</curl> </inferencesnippet>
 
 The endpoint response is a JSON containing a list of the dataset's splits and subsets. For example, the [ibm/duorc](https://huggingface.co/datasets/ibm/duorc) dataset has six splits and two subsets:
 
@@ -59,5 +61,5 @@ The endpoint response is a JSON containing a list of the dataset's splits and su
 }
 ```
 
-### Download slices of rows
-https://huggingface.co/docs/dataset-viewer/rows.md
+### Get dataset information
+https://huggingface.co/docs/dataset-viewer/info.md

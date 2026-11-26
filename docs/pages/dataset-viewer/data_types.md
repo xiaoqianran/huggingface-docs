@@ -33,5 +33,5 @@ This dataset has two columns, `text` and `label`:
 
 For a complete list of available data types, take a look at the [`Features`](https://huggingface.co/docs/datasets/v2.5.2/en/package_reference/main_classes#datasets.Features) documentation.
 
-### Analyze a dataset on the Hub
-https://huggingface.co/docs/dataset-viewer/analyze_data.md
+### Server infrastructure
+https://huggingface.co/docs/dataset-viewer/server.md

@@ -121,9 +121,7 @@ https://huggingface.co/docs/dataset-viewer/quick_start.md
 https://huggingface.co/docs/dataset-viewer/rows.md
 https://huggingface.co/docs/dataset-viewer/search.md
 https://huggingface.co/docs/dataset-viewer/server.md
-https://huggingface.co/docs/dataset-viewer/size.md
 https://huggingface.co/docs/dataset-viewer/splits.md
-https://huggingface.co/docs/dataset-viewer/statistics.md
 https://huggingface.co/docs/dataset-viewer/valid.md
 https://huggingface.co/docs/datasets/about_arrow.md
 https://huggingface.co/docs/datasets/about_cache.md

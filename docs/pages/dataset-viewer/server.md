@@ -32,6 +32,3 @@ Take a look at the [workers configuration](https://github.com/huggingface/datase
 Once the workers complete a job, the results are stored - or _cached_ - in a Mongo database. When a user makes a request with an endpoint like `/first-rows`, the dataset viewer retrieves the preprocessed response from the cache, and serves it to the user. This eliminates the time a user would've waited if the server hadn't already completed the job and stored the response.
 
 As a result, users can get their requested information about a dataset (even large ones) nearly instantaneously!
-
-### PostgreSQL
-https://huggingface.co/docs/dataset-viewer/postgresql.md

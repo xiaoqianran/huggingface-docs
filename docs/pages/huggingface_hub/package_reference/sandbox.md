@@ -14,16 +14,16 @@ Check out the [Sandboxes guide](../guides/sandbox) to learn how to use them.
 huggingface_hub.Sandbox(id: str, server: _SandboxServer, local_id: str | None, owns_sandbox: bool, owns_server: bool, sandbox_token: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.4.0/src/huggingface_hub/_sandbox.py#L783)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.5.0/src/huggingface_hub/_sandbox.py#L809)
 
 An isolated cloud machine running on Hugging Face Jobs.
 
 > [!NOTE]
 > The Sandbox API is experimental. Its API and behavior may change without notice.
 
-Create a dedicated one with [Sandbox.create()](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.Sandbox.create) (one job per sandbox), or get many cheap shared ones from a [SandboxPool](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.SandboxPool).
+Create a dedicated one with [Sandbox.create()](/docs/huggingface_hub/v2.5.0/en/package_reference/sandbox#huggingface_hub.Sandbox.create) (one job per sandbox), or get many cheap shared ones from a [SandboxPool](/docs/huggingface_hub/v2.5.0/en/package_reference/sandbox#huggingface_hub.SandboxPool).
 
-Reattach to a running sandbox from anywhere with [Sandbox.connect()](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.Sandbox.connect). Use as a context manager to terminate it on exit:
+Reattach to a running sandbox from anywhere with [Sandbox.connect()](/docs/huggingface_hub/v2.5.0/en/package_reference/sandbox#huggingface_hub.Sandbox.connect). Use as a context manager to terminate it on exit:
 
 ```python
 >>> from huggingface_hub import Sandbox
@@ -37,7 +37,7 @@ Reattach to a running sandbox from anywhere with [Sandbox.connect()](/docs/huggi
 close()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.4.0/src/huggingface_hub/_sandbox.py#L1028)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.5.0/src/huggingface_hub/_sandbox.py#L1069)
 
 Release the local HTTP client without terminating the sandbox. Idempotent.
 
@@ -49,17 +49,17 @@ No-op for pool sandboxes (the client belongs to the pool's host).
 connect(sandbox_id: str, namespace: str | None = None, token: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.4.0/src/huggingface_hub/_sandbox.py#L952)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.5.0/src/huggingface_hub/_sandbox.py#L993)
 
 Reattach to a running sandbox from anywhere, using only its id.
 
 #### create[[huggingface_hub.Sandbox.create]]
 
 ```python
-create(image: str = 'python:3.12', flavor: str = 'cpu-basic', idle_timeout: int | float | str | None = 600, env: dict[str, typing.Any] | None = None, secrets: dict[str, typing.Any] | None = None, volumes: typing.Optional[typing.List[huggingface_hub._space_api.Volume]] = None, namespace: str | None = None, forward_hf_token: bool = False, labels: dict[str, str] | None = None, start_timeout: float = 120.0, token: str | None = None)
+create(image: str = 'python:3.12', flavor: str = 'cpu-basic', idle_timeout: int | float | str | None = 600, env: dict[str, typing.Any] | None = None, secrets: dict[str, typing.Any] | None = None, volumes: typing.Optional[typing.List[huggingface_hub._space_api.Volume]] = None, namespace: str | None = None, forward_hf_token: bool = False, labels: dict[str, str] | None = None, network: typing.Union[typing.Literal['none'], dict[str, typing.List[str]], NoneType] = None, start_timeout: float = 120.0, token: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.4.0/src/huggingface_hub/_sandbox.py#L835)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.5.0/src/huggingface_hub/_sandbox.py#L861)
 
 **Parameters:**
 
@@ -73,13 +73,15 @@ env (`dict[str, Any]`, *optional*) : Environment variables available in the sand
 
 secrets (`dict[str, Any]`, *optional*) : Secret environment variables (encrypted server-side).
 
-volumes (`List[Volume]`, *optional*) : HF repos/buckets to mount, see [Volume](/docs/huggingface_hub/v2.4.0/en/package_reference/jobs#huggingface_hub.Volume).
+volumes (`List[Volume]`, *optional*) : HF repos/buckets to mount, see [Volume](/docs/huggingface_hub/v2.5.0/en/package_reference/jobs#huggingface_hub.Volume).
 
 namespace (`str`, *optional*) : User or org namespace to run under (defaults to current user).
 
 forward_hf_token (`bool`, *optional*, defaults to `False`) : If True, your HF token is injected as `HF_TOKEN` (opt-in).
 
 labels (`dict[str, str]`, *optional*) : Labels to attach to the underlying HF Job.
+
+network (`"none"` or `dict`, *optional*) : Restrict the network access of the commands run in the sandbox. Pass `"none"` to block all outbound connections, or `{"allow": [...]}` to allow only some destinations: IP ranges (`"10.0.0.0/8"`), single IPs with an optional port (`"203.0.113.10:443"`) or hostnames (`"huggingface.co"`). Only TCP is allowed, even with an allowlist. Defaults to `None` (no restriction). See [Sandboxes without internet access](../guides/sandbox#sandboxes-without-internet-access).
 
 start_timeout (`float`, *optional*, defaults to `120.0`) : Max seconds to wait for the sandbox to become ready.
 
@@ -89,7 +91,7 @@ Create a dedicated sandbox (one HF Job) and block until it is ready (~7s on cpu-
 
 Each sandbox is a full isolated VM, so this is the right choice for GPU
 workloads or untrusted code. To fan out many cheap CPU sandboxes instead, use
-[SandboxPool](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.SandboxPool).
+[SandboxPool](/docs/huggingface_hub/v2.5.0/en/package_reference/sandbox#huggingface_hub.SandboxPool).
 
 The job runs with a fixed 24h maximum lifetime; `idle_timeout` is the real
 keeper — an idle sandbox shuts itself down well before that.
@@ -104,12 +106,12 @@ adds ~2-3s to cold start, so shipping `wget`/`curl` keeps it fast).
 processes()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.4.0/src/huggingface_hub/_sandbox.py#L1202)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.5.0/src/huggingface_hub/_sandbox.py#L1243)
 
 List the background processes of this sandbox.
 
-Returns the processes started with [Sandbox.run()](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.Sandbox.run)`(..., background=True)`; stop one
-with [SandboxProcess.kill()](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.SandboxProcess.kill). Recently completed processes stay listed (with
+Returns the processes started with [Sandbox.run()](/docs/huggingface_hub/v2.5.0/en/package_reference/sandbox#huggingface_hub.Sandbox.run)`(..., background=True)`; stop one
+with [SandboxProcess.kill()](/docs/huggingface_hub/v2.5.0/en/package_reference/sandbox#huggingface_hub.SandboxProcess.kill). Recently completed processes stay listed (with
 `running=False` and their `exit_code`); the server keeps a bounded number of them, so a
 sandbox that has run thousands of short commands will not list them all.
 
@@ -119,7 +121,7 @@ sandbox that has run thousands of short commands will not list them all.
 proxy_url_for(port: int | str, path: str = '/', scheme: str = 'https://')
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.4.0/src/huggingface_hub/_sandbox.py#L1238)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.5.0/src/huggingface_hub/_sandbox.py#L1279)
 
 **Parameters:**
 
@@ -162,7 +164,7 @@ Example:
 run(cmd: typing.Union[str, typing.List[str]], shell: bool | None = None, env: dict[str, typing.Any] | None = None, cwd: str | None = None, timeout: float | None = None, stdin: str | None = None, on_stdout: typing.Optional[typing.Callable[[str], NoneType]] = None, on_stderr: typing.Optional[typing.Callable[[str], NoneType]] = None, check: bool = True, capture_output: bool = True, background: bool = False)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.4.0/src/huggingface_hub/_sandbox.py#L1075)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.5.0/src/huggingface_hub/_sandbox.py#L1116)
 
 **Parameters:**
 
@@ -186,18 +188,18 @@ check (`bool`, *optional*, defaults to `True`) : If True, raise `SandboxCommandE
 
 capture_output (`bool`, *optional*, defaults to `True`) : If True, accumulate stdout/stderr into the returned result. Pass `False` when you only want `on_stdout`/`on_stderr`: output is then handed to the callbacks and dropped, so a command producing gigabytes does not have to fit in memory. `result.stdout`/`result.stderr` are empty in that case.
 
-background (`bool`, *optional*, defaults to `False`) : If True, start the command detached and return a [SandboxProcess](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.SandboxProcess) right away instead of waiting for it and returning a [SandboxCommandResult](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.SandboxCommandResult).
+background (`bool`, *optional*, defaults to `False`) : If True, start the command detached and return a [SandboxProcess](/docs/huggingface_hub/v2.5.0/en/package_reference/sandbox#huggingface_hub.SandboxProcess) right away instead of waiting for it and returning a [SandboxCommandResult](/docs/huggingface_hub/v2.5.0/en/package_reference/sandbox#huggingface_hub.SandboxCommandResult).
 
 Run a command in the sandbox and wait for it, streaming output live.
 
 With `background=True` the command is started detached and `run` returns a
-[SandboxProcess](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.SandboxProcess) immediately, without waiting for it to finish — handy for
-servers and other long-running processes. List them later with [Sandbox.processes()](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.Sandbox.processes)
-and stop one with [SandboxProcess.kill()](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.SandboxProcess.kill). The streaming/wait-only options
+[SandboxProcess](/docs/huggingface_hub/v2.5.0/en/package_reference/sandbox#huggingface_hub.SandboxProcess) immediately, without waiting for it to finish — handy for
+servers and other long-running processes. List them later with [Sandbox.processes()](/docs/huggingface_hub/v2.5.0/en/package_reference/sandbox#huggingface_hub.Sandbox.processes)
+and stop one with [SandboxProcess.kill()](/docs/huggingface_hub/v2.5.0/en/package_reference/sandbox#huggingface_hub.SandboxProcess.kill). The streaming/wait-only options
 (`timeout`, `stdin`, `on_stdout`, `on_stderr`, `check`) don't apply in that mode.
 
-Returns: a [SandboxCommandResult](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.SandboxCommandResult) (with `exit_code`, `stdout`, `stderr`,
-`duration_ms`), or a [SandboxProcess](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.SandboxProcess) when `background=True`.
+Returns: a [SandboxCommandResult](/docs/huggingface_hub/v2.5.0/en/package_reference/sandbox#huggingface_hub.SandboxCommandResult) (with `exit_code`, `stdout`, `stderr`,
+`duration_ms`), or a [SandboxProcess](/docs/huggingface_hub/v2.5.0/en/package_reference/sandbox#huggingface_hub.SandboxProcess) when `background=True`.
 
 ## SandboxPool[[huggingface_hub.SandboxPool]]
 
@@ -207,7 +209,7 @@ Returns: a [SandboxCommandResult](/docs/huggingface_hub/v2.4.0/en/package_refere
 huggingface_hub.SandboxPool(image: str = 'python:3.12', flavor: str = 'cpu-basic', sandboxes_per_host: int = 50, warm_up: int = 1, max_hosts: int | None = None, name: str | None = None, idle_timeout: int | float | str | None = 600, namespace: str | None = None, start_timeout: float = 120.0, adopt_hosts: str = 'own', token: str | None = None, _connect_mode: bool = False)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.4.0/src/huggingface_hub/_sandbox.py#L1313)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.5.0/src/huggingface_hub/_sandbox.py#L1354)
 
 A fleet of shared "host" jobs, each packing many landlock-isolated sandboxes.
 
@@ -217,7 +219,7 @@ A fleet of shared "host" jobs, each packing many landlock-isolated sandboxes.
 > **Pooled sandboxes are for workloads inside one trust boundary.** A pooled sandbox is a uid plus a Landlock
 > ruleset inside a shared VM — not a VM of its own — and every sandbox on a host shares that host's auth token
 > and its privileged control plane. Use a pool to fan out *your own* code cheaply. For mutually distrusting
-> workloads, use [Sandbox.create()](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.Sandbox.create), which gives each one its own VM. The specific gaps are listed under
+> workloads, use [Sandbox.create()](/docs/huggingface_hub/v2.5.0/en/package_reference/sandbox#huggingface_hub.Sandbox.create), which gives each one its own VM. The specific gaps are listed under
 > "Known limitations" in the sandbox conceptual guide.
 
 One host is one billed HF Job (a VM); it runs the sandbox server and multiplexes
@@ -226,7 +228,7 @@ uid + the Landlock LSM. This makes large fan-outs cheap (the VM cost is shared
 across all its sandboxes) and fast (creating a sandbox is ~one proxy round-trip
 once a host is warm). Best for many parallel CPU sandboxes such as RL rollouts;
 for GPU or strong VM-level isolation between mutually-distrusting workloads, use
-[Sandbox.create()](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.Sandbox.create) instead.
+[Sandbox.create()](/docs/huggingface_hub/v2.5.0/en/package_reference/sandbox#huggingface_hub.Sandbox.create) instead.
 
 The constructor pre-provisions `warm_up` hosts (default 1) and blocks until they are
 ready; further hosts are then provisioned on demand as sandboxes are requested, and all
@@ -260,13 +262,13 @@ hosts an earlier run left behind):
 close()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.4.0/src/huggingface_hub/_sandbox.py#L1729)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.5.0/src/huggingface_hub/_sandbox.py#L1780)
 
 Release the pool. Idempotent.
 
 For a pool we created, this terminates all host jobs (and therefore all their
 sandboxes). For a `connect()`'d handle it only releases the local HTTP clients: the
-shared hosts may be serving other clients, so — like [Sandbox.connect()](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.Sandbox.connect) — leaving a
+shared hosts may be serving other clients, so — like [Sandbox.connect()](/docs/huggingface_hub/v2.5.0/en/package_reference/sandbox#huggingface_hub.Sandbox.connect) — leaving a
 `with` block must not tear them down. Terminate a connected pool's hosts explicitly
 with `hf sandbox pool delete <id>`.
 
@@ -284,7 +286,7 @@ in flight, the failure is logged instead, so it cannot mask the original error.
 connect(pool_id: str, namespace: str | None = None, adopt_hosts: str = 'own', token: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.4.0/src/huggingface_hub/_sandbox.py#L1494)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.5.0/src/huggingface_hub/_sandbox.py#L1535)
 
 **Parameters:**
 
@@ -292,7 +294,7 @@ pool_id (`str`) : The id returned when the pool was first created.
 
 namespace (`str`, *optional*) : Namespace to search for the pool's hosts (defaults to yours).
 
-adopt_hosts (`str`, *optional*, defaults to `"own"`) : Which hosts may be attached to. See [SandboxPool](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.SandboxPool). Reattaching to a pool whose hosts another member of the namespace started needs `"namespace"`.
+adopt_hosts (`str`, *optional*, defaults to `"own"`) : Which hosts may be attached to. See [SandboxPool](/docs/huggingface_hub/v2.5.0/en/package_reference/sandbox#huggingface_hub.SandboxPool). Reattaching to a pool whose hosts another member of the namespace started needs `"namespace"`.
 
 token (`str`, *optional*) : HF token override.
 
@@ -300,7 +302,7 @@ Reattach to a running pool by id, from any machine — no local state needed.
 
 Finds a running host labelled with `pool_id` and rebuilds the pool's config
 (image/flavor/density/host-idle) from that host job's spec and env vars, returning
-a [SandboxPool](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.SandboxPool) ready to `create()` more sandboxes — packing onto the running
+a [SandboxPool](/docs/huggingface_hub/v2.5.0/en/package_reference/sandbox#huggingface_hub.SandboxPool) ready to `create()` more sandboxes — packing onto the running
 hosts, or booting a duplicate (same config) when they are full.
 
 Raises `SandboxError` if no running host is found (a pool stops existing once
@@ -309,10 +311,10 @@ all of its hosts are gone — idle-timed-out or killed).
 #### create[[huggingface_hub.SandboxPool.create]]
 
 ```python
-create(env: dict[str, typing.Any] | None = None, idle_timeout: int | float | str | None = 600, forward_hf_token: bool = False)
+create(env: dict[str, typing.Any] | None = None, idle_timeout: int | float | str | None = 600, forward_hf_token: bool = False, network: typing.Union[typing.Literal['none'], dict[str, typing.List[str]], NoneType] = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.4.0/src/huggingface_hub/_sandbox.py#L1591)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.5.0/src/huggingface_hub/_sandbox.py#L1632)
 
 **Parameters:**
 
@@ -321,6 +323,8 @@ env (`dict[str, Any]`, *optional*) : Environment variables for this sandbox (eac
 idle_timeout (`int` or `float` or `str`, *optional*, defaults to `600`) : Per-sandbox idle timeout — a sandbox is evicted from its host after this much inactivity (no API calls, no running process). Distinct from the host idle timeout. Pass `None` to disable.
 
 forward_hf_token (`bool`, *optional*, defaults to `False`) : If True, inject your HF token as `HF_TOKEN` in the sandbox (opt-in). Unlike a dedicated sandbox's `secrets`, a pooled sandbox's env is delivered to the host server at creation (never stored in the host job), so it doesn't appear in any job's metadata.
+
+network (`"none"` or `dict`, *optional*) : Restrict the network access of the commands run in this sandbox. Pass `"none"` to block all outbound connections, or `{"allow": [...]}` to allow only some destinations: IP ranges (`"10.0.0.0/8"`), single IPs with an optional port (`"203.0.113.10:443"`) or hostnames (`"huggingface.co"`). Only TCP is allowed, even with an allowlist. Defaults to `None` (no restriction). See [Sandboxes without internet access](../guides/sandbox#sandboxes-without-internet-access). Sandboxes with and without a policy can share a host.
 
 Create one sandbox, provisioning a host if needed.
 
@@ -337,7 +341,7 @@ re-placed on another host (or a fresh one).
 warm(num_hosts: int = 1)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.4.0/src/huggingface_hub/_sandbox.py#L1564)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.5.0/src/huggingface_hub/_sandbox.py#L1605)
 
 Ensure `num_hosts` empty host(s) are running and leave them running. Returns the
 pool's host job ids.
@@ -361,9 +365,9 @@ instead of duplicating live hosts and blowing past `max_hosts`.
 huggingface_hub.SandboxCommandResult(exit_code: int | None, stdout: str, stderr: str, signal: int | None = None, timed_out: bool = False, duration_ms: int = 0)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.4.0/src/huggingface_hub/_sandbox.py#L191)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.5.0/src/huggingface_hub/_sandbox.py#L217)
 
-Result of a command executed in a sandbox with [Sandbox.run()](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.Sandbox.run).
+Result of a command executed in a sandbox with [Sandbox.run()](/docs/huggingface_hub/v2.5.0/en/package_reference/sandbox#huggingface_hub.Sandbox.run).
 
 ### SandboxProcess[[huggingface_hub.SandboxProcess]]
 
@@ -373,11 +377,11 @@ Result of a command executed in a sandbox with [Sandbox.run()](/docs/huggingface
 huggingface_hub.SandboxProcess(id: str | None, pid: int, cmd: typing.Union[str, typing.List[str]], _sandbox: Sandbox, tag: str | None = None, started_at_ms: int | None = None, running: bool = True, exit_code: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.4.0/src/huggingface_hub/_sandbox.py#L211)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.5.0/src/huggingface_hub/_sandbox.py#L237)
 
-A background process started in a sandbox with [Sandbox.run()](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.Sandbox.run)`(..., background=True)`.
+A background process started in a sandbox with [Sandbox.run()](/docs/huggingface_hub/v2.5.0/en/package_reference/sandbox#huggingface_hub.Sandbox.run)`(..., background=True)`.
 
-List a sandbox's processes with [Sandbox.processes()](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.Sandbox.processes) and stop one with [SandboxProcess.kill()](/docs/huggingface_hub/v2.4.0/en/package_reference/sandbox#huggingface_hub.SandboxProcess.kill).
+List a sandbox's processes with [Sandbox.processes()](/docs/huggingface_hub/v2.5.0/en/package_reference/sandbox#huggingface_hub.Sandbox.processes) and stop one with [SandboxProcess.kill()](/docs/huggingface_hub/v2.5.0/en/package_reference/sandbox#huggingface_hub.SandboxProcess.kill).
 Recently completed processes stay in the listing (the server keeps a bounded number of
 them), so `running` and `exit_code` tell whether a process is still alive or already
 exited (as of when it was listed).
@@ -388,7 +392,7 @@ exited (as of when it was listed).
 kill()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.4.0/src/huggingface_hub/_sandbox.py#L235)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.5.0/src/huggingface_hub/_sandbox.py#L261)
 
 Terminate the background process. Idempotent.
 
@@ -407,7 +411,7 @@ everything it started is gone.
 huggingface_hub._sandbox.FileEntry(name: str, path: str, type: typing.Literal['file', 'dir', 'symlink'], size: int, mtime_ms: int | None = None, mode: str = '')
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.4.0/src/huggingface_hub/_sandbox.py#L256)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.5.0/src/huggingface_hub/_sandbox.py#L282)
 
 A file or directory inside a sandbox.
 
@@ -421,7 +425,7 @@ A file or directory inside a sandbox.
 huggingface_hub.errors.SandboxError(message: str, status_code: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.4.0/src/huggingface_hub/errors.py#L598)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.5.0/src/huggingface_hub/errors.py#L621)
 
 **Parameters:**
 
@@ -437,7 +441,7 @@ Base exception for sandbox operations (see `huggingface_hub.Sandbox`).
 huggingface_hub.errors.SandboxCommandError(cmd, result)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v2.4.0/src/huggingface_hub/errors.py#L611)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v2.5.0/src/huggingface_hub/errors.py#L634)
 
 **Parameters:**
 
@@ -447,5 +451,5 @@ result : The full `SandboxCommandResult` (exit_code, stdout, stderr, ...).
 
 Raised when a command run in a sandbox exits with a non-zero code.
 
-### Inference types
-https://huggingface.co/docs/huggingface_hub/v2.4.0/package_reference/inference_types.md
+### Inference Endpoints
+https://huggingface.co/docs/huggingface_hub/v2.5.0/package_reference/inference_endpoints.md

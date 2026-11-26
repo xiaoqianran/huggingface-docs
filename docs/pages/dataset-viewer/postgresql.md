@@ -64,5 +64,5 @@ This is useful if you want more control over the data schema or want to predefin
 select ai.load_dataset('rajpurkar/squad', table_name => 'squad', if_table_exists => 'append');
 ```
 
-### Splits and subsets
-https://huggingface.co/docs/dataset-viewer/configs_and_splits.md
+### mlcroissant
+https://huggingface.co/docs/dataset-viewer/mlcroissant.md

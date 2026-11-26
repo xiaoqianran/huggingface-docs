@@ -49,6 +49,15 @@ $ hf [OPTIONS] [COMMAND] [ARGS]...
 * `version`: Print information about the hf version.
 * `webhooks`: Manage webhooks on the Hub.
 
+## Formatting options
+
+Most commands accept these flags. Each command section says whether it does.
+
+* `--format [auto|human|agent|json|quiet]`: Output format. Defaults to 'auto' which picks 'agent' or 'human' based on the terminal.
+* `--json`: JSON output. Equivalent to '--format json'.
+* `-q, --quiet`: Quiet output (one ID per line). Equivalent to '--format quiet'.
+* `--no-truncate`: Do not truncate scalar values in human tables (list/dict columns stay shortened).
+
 ## `hf auth`
 
 Manage authentication (login, logout, etc.).
@@ -68,6 +77,7 @@ $ hf auth [OPTIONS] COMMAND [ARGS]...
 * `list`: List all stored access tokens. [alias: ls]
 * `login`: Login from your browser, or using a token from huggingface.co/settings/tokens.
 * `logout`: Logout from a specific token.
+* `revoke`: Revoke access tokens, e.g. leaked ones.
 * `switch`: Switch between access tokens.
 * `token`: Print the current access token to stdout.
 * `whoami`: Find out which huggingface.co account you are logged in as.
@@ -85,6 +95,8 @@ $ hf auth list [OPTIONS]
 **Options**:
 
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf auth list
@@ -109,6 +121,8 @@ $ hf auth login [OPTIONS]
 * `--add-to-git-credential / --no-add-to-git-credential`: Save to git credential helper. Useful only if you plan to run git commands directly.  [default: no-add-to-git-credential]
 * `--force / --no-force`: Force re-login even if already logged in.  [default: no-force]
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf auth login
@@ -135,9 +149,37 @@ $ hf auth logout [OPTIONS]
 * `--token-name TEXT`: Name of token to logout
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf auth logout
   $ hf auth logout --token-name my-token
+
+Learn more
+  Use `hf <command> --help` for more information about a command.
+  Read the documentation at https://huggingface.co/docs/huggingface_hub/en/guides/cli
+
+### `hf auth revoke`
+
+Revoke access tokens, e.g. leaked ones. No authentication needed: the owner of each token is notified by email.
+
+**Usage**:
+
+```console
+$ hf auth revoke [OPTIONS] TOKENS...
+```
+
+**Arguments**:
+
+* `TOKENS...`: The token(s) to revoke.  [required]
+
+**Options**:
+
+* `--help`: Show this message and exit.
+
+Examples
+  $ hf auth revoke hf_xxx
+  $ hf auth revoke hf_xxx hf_yyy
 
 Learn more
   Use `hf <command> --help` for more information about a command.
@@ -158,6 +200,8 @@ $ hf auth switch [OPTIONS]
 * `--token-name TEXT`: Name of the token to switch to
 * `--add-to-git-credential / --no-add-to-git-credential`: Save to git credential helper. Useful only if you plan to run git commands directly.  [default: no-add-to-git-credential]
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf auth switch
@@ -181,6 +225,8 @@ $ hf auth token [OPTIONS]
 
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf auth token
   $ hf auth token | xargs curl -H 'Authorization: Bearer {}'
@@ -202,6 +248,8 @@ $ hf auth whoami [OPTIONS]
 **Options**:
 
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf auth whoami
@@ -263,6 +311,8 @@ $ hf buckets cp [OPTIONS] SRC [DST]
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf buckets cp hf://buckets/username/my-bucket/config.json config.json
   $ hf buckets cp hf://buckets/username/my-bucket/data.csv data/
@@ -299,6 +349,8 @@ $ hf buckets create [OPTIONS] BUCKET_ID
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf buckets create my-bucket
   $ hf buckets create user/my-bucket
@@ -334,6 +386,8 @@ $ hf buckets delete [OPTIONS] BUCKET_ID
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf buckets delete user/my-bucket
   $ hf buckets delete hf://buckets/user/my-bucket
@@ -362,6 +416,8 @@ $ hf buckets info [OPTIONS] BUCKET_ID
 
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf buckets info user/my-bucket
@@ -396,6 +452,8 @@ $ hf buckets list [OPTIONS] [ARGUMENT]
 * `--search TEXT`: Search query.
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf buckets list
@@ -433,6 +491,8 @@ $ hf buckets move [OPTIONS] FROM_ID TO_ID
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf buckets move user/old-bucket user/new-bucket
   $ hf buckets move user/my-bucket my-org/my-bucket
@@ -468,6 +528,8 @@ $ hf buckets remove [OPTIONS] ARGUMENT
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf buckets remove user/my-bucket/file.txt
   $ hf buckets rm hf://buckets/user/my-bucket/file.txt
@@ -499,6 +561,8 @@ $ hf buckets settings [OPTIONS] BUCKET_ID
 * `--public`: Make the bucket public.
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf buckets settings user/my-bucket --private
@@ -540,6 +604,8 @@ $ hf buckets sync [OPTIONS] [SOURCE] [DEST]
 * `-v, --verbose`: Show detailed logging with reasoning.
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf buckets sync ./data hf://buckets/user/my-bucket
@@ -596,6 +662,8 @@ $ hf cache list [OPTIONS]
 * `--show-warnings / --no-show-warnings`: Show warnings about cache inconsistencies.  [default: no-show-warnings]
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf cache ls
   $ hf cache ls --revisions
@@ -622,6 +690,8 @@ $ hf cache prune [OPTIONS]
 * `-y, --yes`: Skip confirmation prompt.
 * `--dry-run / --no-dry-run`: Preview deletions without removing anything.  [default: no-dry-run]
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf cache prune
@@ -651,6 +721,8 @@ $ hf cache rm [OPTIONS] TARGETS...
 * `-y, --yes`: Skip confirmation prompt.
 * `--dry-run / --no-dry-run`: Preview deletions without removing anything.  [default: no-dry-run]
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf cache rm model/gpt2
@@ -694,6 +766,8 @@ $ hf cache verify [OPTIONS] REPO_ID
 * `--fail-on-extra-files`: Fail if some files exist locally but are not present on the remote revision.
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf cache verify gpt2
@@ -752,6 +826,8 @@ $ hf collections add-item [OPTIONS] COLLECTION_SLUG ITEM_ID ITEM_TYPE:{model|dat
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf collections add-item username/my-collection moonshotai/kimi-k2 model
   $ hf collections add-item username/my-collection Qwen/DeepPlanning dataset --note "Useful dataset"
@@ -784,6 +860,8 @@ $ hf collections create [OPTIONS] TITLE
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf collections create "My Models"
   $ hf collections create "My Models" --description "A collection of my favorite models" --private
@@ -812,6 +890,8 @@ $ hf collections delete [OPTIONS] COLLECTION_SLUG
 * `--missing-ok / --no-missing-ok`: Do not raise an error if the collection doesn't exist.  [default: no-missing-ok]
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf collections delete username/my-collection
@@ -842,6 +922,8 @@ $ hf collections delete-item [OPTIONS] COLLECTION_SLUG ITEM_OBJECT_ID
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 ### `hf collections info`
 
 Get info about a collection on the Hub.
@@ -860,6 +942,8 @@ $ hf collections info [OPTIONS] COLLECTION_SLUG
 
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf collections info username/my-collection-slug
@@ -886,6 +970,8 @@ $ hf collections list [OPTIONS]
 * `--limit INTEGER`: Limit the number of results.  [default: 10]
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf collections ls
@@ -920,6 +1006,8 @@ $ hf collections update [OPTIONS] COLLECTION_SLUG
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf collections update username/my-collection --title "New Title"
   $ hf collections update username/my-collection --description "Updated description"
@@ -950,6 +1038,8 @@ $ hf collections update-item [OPTIONS] COLLECTION_SLUG ITEM_OBJECT_ID
 * `--position INTEGER`: The new position of the item in the collection.
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf collections update-item username/my-collection ITEM_OBJECT_ID --note "Updated note"
@@ -984,6 +1074,8 @@ $ hf cp [OPTIONS] SRC [DST]
 
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf cp hf://username/my-model/config.json
@@ -1045,6 +1137,8 @@ $ hf datasets card [OPTIONS] DATASET_ID
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf datasets card HuggingFaceFW/fineweb
   $ hf datasets card HuggingFaceFW/fineweb --metadata
@@ -1076,6 +1170,8 @@ $ hf datasets info [OPTIONS] DATASET_ID
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf datasets info HuggingFaceFW/fineweb
   $ hf datasets info my-dataset --expand downloads,likes,tags
@@ -1103,6 +1199,8 @@ $ hf datasets leaderboard [OPTIONS] DATASET_ID
 * `--limit INTEGER`: Limit the number of results.  [default: 20]
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf datasets leaderboard SWE-bench/SWE-bench_Verified
@@ -1145,6 +1243,8 @@ $ hf datasets list [OPTIONS] [REPO_ID]
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf datasets ls
   $ hf datasets ls --sort downloads --limit 10
@@ -1179,6 +1279,8 @@ $ hf datasets parquet [OPTIONS] DATASET_ID
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf datasets parquet cfahlgren1/hub-stats
   $ hf datasets parquet cfahlgren1/hub-stats --subset models
@@ -1208,9 +1310,11 @@ $ hf datasets sql [OPTIONS] SQL
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
-  $ hf datasets sql "SELECT COUNT(*) AS rows FROM read_parquet('https://huggingface.co/api/datasets/cfahlgren1/hub-stats/parquet/models/train/0.parquet')"
-  $ hf datasets sql "SELECT * FROM read_parquet('https://huggingface.co/api/datasets/cfahlgren1/hub-stats/parquet/models/train/0.parquet') LIMIT 5" --format json
+  $ hf datasets sql "SELECT COUNT(*) AS rows FROM hf_dataset('cfahlgren1/hub-stats', config:='models')"
+  $ hf datasets sql "SELECT * FROM hf_dataset('cfahlgren1/hub-stats', config:='models') LIMIT 5" --format json
 
 Learn more
   Use `hf <command> --help` for more information about a command.
@@ -1266,6 +1370,8 @@ $ hf discussions close [OPTIONS] REPO_ID NUM
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf discussions close username/my-model 5
   $ hf discussions close username/my-model 5 --comment "Closing as resolved."
@@ -1297,6 +1403,8 @@ $ hf discussions comment [OPTIONS] REPO_ID NUM
 * `--type, --repo-type [model|dataset|space|kernel]`: The type of repository (model, dataset, space, or kernel).  [default: model]
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf discussions comment username/my-model 5 --body "Thanks for reporting!"
@@ -1332,6 +1440,8 @@ $ hf discussions create [OPTIONS] REPO_ID
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf discussions create username/my-model --title "Bug report"
   $ hf discussions create username/my-model --title "Feature request" --body "Please add X"
@@ -1363,6 +1473,8 @@ $ hf discussions diff [OPTIONS] REPO_ID NUM
 * `--type, --repo-type [model|dataset|space|kernel]`: The type of repository (model, dataset, space, or kernel).  [default: model]
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf discussions diff username/my-model 5
@@ -1396,6 +1508,8 @@ $ hf discussions edit [OPTIONS] REPO_ID NUM COMMENT_ID
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf discussions edit username/my-model 5 abc123 --body "Updated comment."
   $ hf discussions edit username/my-model 5 abc123 --body-file fixed.md
@@ -1425,6 +1539,8 @@ $ hf discussions info [OPTIONS] REPO_ID NUM
 * `--type, --repo-type [model|dataset|space|kernel]`: The type of repository (model, dataset, space, or kernel).  [default: model]
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf discussions info username/my-model 5
@@ -1457,6 +1573,8 @@ $ hf discussions list [OPTIONS] REPO_ID
 * `--type, --repo-type [model|dataset|space|kernel]`: The type of repository (model, dataset, space, or kernel).  [default: model]
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf discussions list username/my-model
@@ -1491,6 +1609,8 @@ $ hf discussions merge [OPTIONS] REPO_ID NUM
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf discussions merge username/my-model 5
   $ hf discussions merge username/my-model 5 --comment "Merging, thanks!"
@@ -1521,6 +1641,8 @@ $ hf discussions rename [OPTIONS] REPO_ID NUM NEW_TITLE
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf discussions rename username/my-model 5 "Updated title"
 
@@ -1550,6 +1672,8 @@ $ hf discussions reopen [OPTIONS] REPO_ID NUM
 * `--type, --repo-type [model|dataset|space|kernel]`: The type of repository (model, dataset, space, or kernel).  [default: model]
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf discussions reopen username/my-model 5
@@ -1587,6 +1711,8 @@ $ hf download [OPTIONS] REPO_ID [FILENAMES]...
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--max-workers INTEGER`: Maximum number of workers to use for downloading files. Default is 8.  [default: 8]
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf download meta-llama/Llama-3.2-1B-Instruct
@@ -1672,6 +1798,8 @@ $ hf endpoints catalog deploy [OPTIONS]
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf endpoints catalog deploy --repo meta-llama/Llama-3.2-1B-Instruct
   $ hf endpoints catalog deploy --recipe sizzling-biryani-g4xsi1ac
@@ -1704,6 +1832,8 @@ $ hf endpoints catalog list [OPTIONS]
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf endpoints catalog ls
   $ hf endpoints catalog ls --engine vllm
@@ -1732,6 +1862,8 @@ $ hf endpoints delete [OPTIONS] NAME
 * `--yes`: Skip confirmation prompts.
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf endpoints delete my-endpoint
@@ -1792,6 +1924,8 @@ $ hf endpoints deploy [OPTIONS] NAME
 * `--type [public|authenticated|private]`: Endpoint access type. Defaults to 'authenticated' (token-gated, publicly reachable).
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf endpoints deploy my-endpoint --repo gpt2 --framework pytorch ...
   $ hf endpoints deploy my-endpoint --repo openai/gpt-oss-120b --framework custom --engine vllm --custom-image vllm/vllm-openai:v0.23.0 --tensor-parallel-size 8 ...
@@ -1819,6 +1953,8 @@ $ hf endpoints describe [OPTIONS] NAME
 * `--namespace TEXT`: The namespace associated with the Inference Endpoint. Defaults to the current user's namespace.
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf endpoints describe my-endpoint
@@ -1854,6 +1990,8 @@ $ hf endpoints hardware [OPTIONS]
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf endpoints hardware
   $ hf endpoints hardware --vendor aws --accelerator gpu
@@ -1877,6 +2015,8 @@ $ hf endpoints list [OPTIONS]
 * `--namespace TEXT`: The namespace associated with the Inference Endpoint. Defaults to the current user's namespace.
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf endpoints ls
@@ -1910,6 +2050,8 @@ $ hf endpoints list-catalog [OPTIONS]
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 ### `hf endpoints pause`
 
 Pause an Inference Endpoint.
@@ -1929,6 +2071,8 @@ $ hf endpoints pause [OPTIONS] NAME
 * `--namespace TEXT`: The namespace associated with the Inference Endpoint. Defaults to the current user's namespace.
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf endpoints pause my-endpoint
@@ -1958,6 +2102,8 @@ $ hf endpoints resume [OPTIONS] NAME
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf endpoints resume my-endpoint
 
@@ -1984,6 +2130,8 @@ $ hf endpoints scale-to-zero [OPTIONS] NAME
 * `--namespace TEXT`: The namespace associated with the Inference Endpoint. Defaults to the current user's namespace.
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf endpoints scale-to-zero my-endpoint
@@ -2032,6 +2180,8 @@ $ hf endpoints update [OPTIONS] NAME
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf endpoints update my-endpoint --min-replica 2
   $ hf endpoints update my-endpoint --tensor-parallel-size 8
@@ -2054,6 +2204,8 @@ $ hf env [OPTIONS]
 **Options**:
 
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 ## `hf extensions`
 
@@ -2128,6 +2280,8 @@ $ hf extensions install [OPTIONS] REPO_ID
 * `--force`: Overwrite if already installed.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf extensions install hf-claude
   $ hf extensions install hanouticelina/hf-claude
@@ -2150,6 +2304,8 @@ $ hf extensions list [OPTIONS]
 **Options**:
 
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf extensions list
@@ -2176,6 +2332,8 @@ $ hf extensions remove [OPTIONS] NAME
 
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf extensions remove claude
 
@@ -2196,6 +2354,8 @@ $ hf extensions search [OPTIONS]
 **Options**:
 
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf extensions search
@@ -2221,6 +2381,8 @@ $ hf extensions update [OPTIONS] [NAME]
 **Options**:
 
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf extensions update
@@ -2282,6 +2444,8 @@ $ hf jobs cancel [OPTIONS] JOB_ID
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf jobs cancel 
 
@@ -2312,6 +2476,8 @@ $ hf jobs expose [OPTIONS] JOB_ID [PORTS]...
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf jobs expose  8000
   $ hf jobs expose  8000 --public 9000
@@ -2334,6 +2500,8 @@ $ hf jobs hardware [OPTIONS]
 **Options**:
 
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf jobs hardware
@@ -2361,6 +2529,8 @@ $ hf jobs inspect [OPTIONS] JOB_IDS...
 * `--namespace TEXT`: The namespace where the job will be running. Defaults to the current user's namespace.
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf jobs inspect 
@@ -2392,6 +2562,8 @@ $ hf jobs labels [OPTIONS] JOB_ID
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf jobs labels  --name training-v2
   $ hf jobs labels  --label env=prod --label team=ml
@@ -2405,7 +2577,7 @@ Learn more
 
 List Jobs.
 
-Use `--status` to filter by status (see [JobStage](/docs/huggingface_hub/v2.4.0/en/package_reference/jobs#huggingface_hub.JobStage) for possible values) and `--label` to filter by `key=value`
+Use `--status` to filter by status (see [JobStage](/docs/huggingface_hub/v2.5.0/en/package_reference/jobs#huggingface_hub.JobStage) for possible values) and `--label` to filter by `key=value`
 labels. A Job must match every filter to be listed.
 
 **Usage**:
@@ -2424,6 +2596,8 @@ $ hf jobs list | ls | ps [OPTIONS]
 * `--namespace TEXT`: The namespace where the job will be running. Defaults to the current user's namespace.
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf jobs ls
@@ -2466,6 +2640,8 @@ $ hf jobs logs [OPTIONS] JOB_ID
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf jobs logs 
   $ hf jobs logs -f 
@@ -2496,6 +2672,8 @@ $ hf jobs rerun [OPTIONS] JOB_ID
 * `--namespace TEXT`: The namespace where the job will be running. Defaults to the current user's namespace.
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf jobs rerun 
@@ -2605,6 +2783,8 @@ $ hf jobs scheduled delete [OPTIONS] SCHEDULED_JOB_ID
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf jobs scheduled delete 
 
@@ -2631,6 +2811,8 @@ $ hf jobs scheduled inspect [OPTIONS] SCHEDULED_JOB_IDS...
 * `--namespace TEXT`: The namespace where the job will be running. Defaults to the current user's namespace.
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf jobs scheduled inspect 
@@ -2661,6 +2843,8 @@ $ hf jobs scheduled labels [OPTIONS] SCHEDULED_JOB_ID
 * `--namespace TEXT`: The namespace where the job will be running. Defaults to the current user's namespace.
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf jobs scheduled labels  --name daily-script
@@ -2694,6 +2878,8 @@ $ hf jobs scheduled list | ls | ps [OPTIONS]
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf jobs scheduled ls
   $ hf jobs scheduled ls -a
@@ -2726,6 +2912,8 @@ $ hf jobs scheduled reschedule [OPTIONS] SCHEDULED_JOB_ID SCHEDULE
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf jobs scheduled reschedule  "0 9 * * 1"
 
@@ -2752,6 +2940,8 @@ $ hf jobs scheduled resume [OPTIONS] SCHEDULED_JOB_ID
 * `--namespace TEXT`: The namespace where the job will be running. Defaults to the current user's namespace.
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf jobs scheduled resume 
@@ -2828,6 +3018,8 @@ $ hf jobs scheduled suspend [OPTIONS] SCHEDULED_JOB_ID
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf jobs scheduled suspend 
 
@@ -2854,6 +3046,8 @@ $ hf jobs scheduled trigger [OPTIONS] SCHEDULED_JOB_ID
 * `--namespace TEXT`: The namespace where the job will be running. Defaults to the current user's namespace.
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf jobs scheduled trigger 
@@ -2958,6 +3152,8 @@ $ hf jobs ssh [OPTIONS] JOB_ID
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf jobs ssh 
   $ hf jobs ssh  --dry-run
@@ -2990,6 +3186,8 @@ $ hf jobs stats [OPTIONS] [JOB_IDS]...
 * `--namespace TEXT`: The namespace where the job will be running. Defaults to the current user's namespace.
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf jobs stats
@@ -3101,6 +3299,8 @@ $ hf jobs wait [OPTIONS] JOB_IDS...
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf jobs wait 
   $ hf jobs wait  
@@ -3131,6 +3331,8 @@ $ hf lfs-enable-largefiles [OPTIONS] PATH
 
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 ## `hf lfs-multipart-upload`
 
 Internal git-lfs custom transfer agent for multipart uploads.
@@ -3147,6 +3349,8 @@ $ hf lfs-multipart-upload [OPTIONS]
 **Options**:
 
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 ## `hf models`
 
@@ -3189,6 +3393,8 @@ $ hf models card [OPTIONS] MODEL_ID
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf models card google/gemma-4-31B-it
   $ hf models card google/gemma-4-31B-it --metadata
@@ -3219,6 +3425,8 @@ $ hf models info [OPTIONS] MODEL_ID
 * `--expand TEXT`: Comma-separated properties to return. When used, only the listed properties (and id) are returned. Example: '--expand=downloads,likes,tags'. Valid: author, baseModels, cardData, childrenModelCount, config, createdAt, disabled, downloads, downloadsAllTime, evalResults, gated, gguf, inference, inferenceProviderMapping, lastModified, library_name, likes, mask_token, model-index, pipeline_tag, private, resourceGroup, safetensors, sha, siblings, spaces, tags, transformersInfo, trendingScore, usedStorage, widgetData.
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf models info meta-llama/Llama-3.2-1B-Instruct
@@ -3265,6 +3473,8 @@ $ hf models list [OPTIONS] [REPO_ID]
 * `--revision TEXT`: Git revision id which can be a branch name, a tag, or a commit hash.
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf models ls --sort downloads --limit 10
@@ -3323,6 +3533,8 @@ $ hf papers info [OPTIONS] PAPER_ID
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf papers info 2601.15621
 
@@ -3350,6 +3562,8 @@ $ hf papers list [OPTIONS]
 * `--limit INTEGER`: Limit the number of results.  [default: 50]
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf papers ls
@@ -3382,6 +3596,8 @@ $ hf papers read [OPTIONS] PAPER_ID
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf papers read 2601.15621
 
@@ -3408,6 +3624,8 @@ $ hf papers search [OPTIONS] QUERY
 * `--limit INTEGER`: Limit the number of results.  [default: 20]
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf papers search "vision language"
@@ -3487,6 +3705,8 @@ $ hf repos branch create [OPTIONS] REPO_ID BRANCH
 * `--exist-ok / --no-exist-ok`: If set to True, do not raise an error if branch already exists.  [default: no-exist-ok]
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf repos branch create my-model dev
   $ hf repos branch create my-model dev --revision abc123
@@ -3515,6 +3735,8 @@ $ hf repos branch delete [OPTIONS] REPO_ID BRANCH
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--type, --repo-type [model|dataset|space|kernel]`: The type of repository (model, dataset, space, or kernel).  [default: model]
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf repos branch delete my-model dev
@@ -3548,6 +3770,8 @@ $ hf repos cp [OPTIONS] SRC [DST]
 
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf repos cp hf://username/my-model/config.json config.json
@@ -3599,6 +3823,8 @@ $ hf repos create [OPTIONS] REPO_ID
 * `-v, --volume TEXT`: Mount one or more volumes. Format: hf://[TYPE/]SOURCE:/MOUNT_PATH[:ro]. TYPE is one of: models, datasets, spaces, buckets. TYPE defaults to models if omitted. models, datasets and spaces are always mounted read-only. buckets are read+write by default. E.g. -v hf://org/m:/data or -v hf://datasets/org/ds:/data or -v hf://buckets/org/b:/mnt:ro
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf repos create my-model
   $ hf repos create my-dataset --repo-type dataset --private
@@ -3633,6 +3859,8 @@ $ hf repos delete [OPTIONS] REPO_ID
 * `-y, --yes`: Answer Yes to prompt automatically.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf repos delete my-model
 
@@ -3664,6 +3892,8 @@ $ hf repos delete-files [OPTIONS] REPO_ID PATTERNS...
 * `--create-pr / --no-create-pr`: Whether to create a new Pull Request for these changes.  [default: no-create-pr]
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf repos delete-files my-model file.txt
@@ -3707,6 +3937,8 @@ $ hf repos duplicate [OPTIONS] FROM_ID [TO_ID]
 * `-v, --volume TEXT`: Mount one or more volumes. Format: hf://[TYPE/]SOURCE:/MOUNT_PATH[:ro]. TYPE is one of: models, datasets, spaces, buckets. TYPE defaults to models if omitted. models, datasets and spaces are always mounted read-only. buckets are read+write by default. E.g. -v hf://org/m:/data or -v hf://datasets/org/ds:/data or -v hf://buckets/org/b:/mnt:ro
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf repos duplicate openai/gdpval --type dataset
   $ hf repos duplicate multimodalart/dreambooth-training my-dreambooth --type space --flavor l4x4 --secrets HF_TOKEN --private
@@ -3735,6 +3967,8 @@ $ hf repos list [OPTIONS]
 * `--explore`: Explore your repos as an interactive 3D city.
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf repos ls
@@ -3766,6 +4000,8 @@ $ hf repos move [OPTIONS] FROM_ID TO_ID
 * `--type, --repo-type [model|dataset|space|kernel]`: The type of repository (model, dataset, space, or kernel).  [default: model]
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf repos move old-namespace/my-model new-namespace/my-model
 
@@ -3790,12 +4026,14 @@ $ hf repos settings [OPTIONS] REPO_ID
 **Options**:
 
 * `--gated [auto|manual|false]`: The gated status for the repository.
-* `--private / --no-private`: Whether to create a private repo if repo doesn't exist on the Hub. Ignored if the repo already exists.
-* `--public`: Whether to make the repo public. Ignored if the repo already exists.
-* `--protected`: Whether to make the Space protected (Spaces only). Ignored if the repo already exists.
+* `--private / --no-private`: Make the repo private.
+* `--public`: Make the repo public.
+* `--protected`: Make the Space protected (Spaces only).
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--type, --repo-type [model|dataset|space|kernel]`: The type of repository (model, dataset, space, or kernel).  [default: model]
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf repos settings my-model --private
@@ -3849,6 +4087,8 @@ $ hf repos tag create [OPTIONS] REPO_ID TAG
 * `--type, --repo-type [model|dataset|space|kernel]`: The type of repository (model, dataset, space, or kernel).  [default: model]
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf repos tag create my-model v1.0
   $ hf repos tag create my-model v1.0 -m "First release"
@@ -3879,6 +4119,8 @@ $ hf repos tag delete [OPTIONS] REPO_ID TAG
 * `--type, --repo-type [model|dataset|space|kernel]`: The type of repository (model, dataset, space, or kernel).  [default: model]
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf repos tag delete my-model v1.0
 
@@ -3905,6 +4147,8 @@ $ hf repos tag list [OPTIONS] REPO_ID
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--type, --repo-type [model|dataset|space|kernel]`: The type of repository (model, dataset, space, or kernel).  [default: model]
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf repos tag list my-model
@@ -3958,6 +4202,8 @@ $ hf sandbox cp [OPTIONS] SRC DST
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf sandbox cp data.csv :/data/data.csv
   $ hf sandbox cp :/app/result.json result.json
@@ -3998,14 +4244,19 @@ $ hf sandbox create [OPTIONS] [IMAGE]
 * `-v, --volume TEXT`: Mount one or more volumes. Format: hf://[TYPE/]SOURCE:/MOUNT_PATH[:ro]. TYPE is one of: models, datasets, spaces, buckets. TYPE defaults to models if omitted. models, datasets and spaces are always mounted read-only. buckets are read+write by default. E.g. -v hf://org/m:/data or -v hf://datasets/org/ds:/data or -v hf://buckets/org/b:/mnt:ro
 * `--namespace TEXT`: The namespace where the job will be running. Defaults to the current user's namespace.
 * `--forward-hf-token`: Inject your HF token as HF_TOKEN in the sandbox.
+* `--network TEXT`: Restrict outbound access: 'none' (no network), or a comma-separated allowlist of IP ranges, IPs and hostnames with optional ports (e.g. '10.0.0.0/8,203.0.113.10:443,huggingface.co'). Only TCP is allowed.
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf sandbox create
   $ hf sandbox create ubuntu:24.04
   $ hf sandbox create --flavor a10g-small
   $ hf sandbox create --label controller-run=run-42
+  $ hf sandbox create --network none
+  $ hf sandbox create --network 10.0.0.0/8,huggingface.co
   $ hf sandbox create --pool pool-ab12cd34ef56 --env LOG_LEVEL=debug
 
 Learn more
@@ -4070,6 +4321,8 @@ $ hf sandbox kill [OPTIONS] [SANDBOX_ID]
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf sandbox kill 
   $ hf sandbox kill    # kills a whole shared host (all its sandboxes)
@@ -4123,6 +4376,8 @@ $ hf sandbox pool create [OPTIONS] [IMAGE]
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf sandbox pool create
   $ hf sandbox pool create python:3.12 --flavor cpu-basic
@@ -4153,6 +4408,8 @@ $ hf sandbox pool delete [OPTIONS] POOL_ID
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf sandbox pool delete 
 
@@ -4175,6 +4432,8 @@ $ hf sandbox pool ls [OPTIONS]
 * `--namespace TEXT`: The namespace where the job will be running. Defaults to the current user's namespace.
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf sandbox pool ls
@@ -4223,6 +4482,8 @@ $ hf sandbox process kill [OPTIONS] SANDBOX_ID PID
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf sandbox process kill  
 
@@ -4249,6 +4510,8 @@ $ hf sandbox process ls [OPTIONS] SANDBOX_ID
 * `--namespace TEXT`: The namespace where the job will be running. Defaults to the current user's namespace.
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf sandbox process ls 
@@ -4340,6 +4603,8 @@ $ hf skills add [OPTIONS] [NAME]
 * `--force`: Overwrite existing skills in the destination.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf skills add
   $ hf skills add huggingface-gradio --dest=~/my-skills
@@ -4365,6 +4630,8 @@ $ hf skills list [OPTIONS]
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf skills list
   $ hf skills list --format json
@@ -4387,6 +4654,8 @@ $ hf skills preview [OPTIONS]
 
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 ### `hf skills update`
 
 Update installed Hugging Face marketplace skills.
@@ -4406,6 +4675,8 @@ $ hf skills update [OPTIONS] [NAME]
 * `-g, --global`: Use global skills directories instead of the current project.
 * `--dest PATH`: Update skills in a custom skills directory.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf skills update
@@ -4473,6 +4744,8 @@ $ hf spaces card [OPTIONS] SPACE_ID
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf spaces card mteb/leaderboard
   $ hf spaces card mteb/leaderboard --metadata
@@ -4509,6 +4782,8 @@ $ hf spaces dev-mode [OPTIONS] SPACE_ID
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf spaces dev-mode my-user-name/deepsite
 
@@ -4530,6 +4805,8 @@ $ hf spaces hardware [OPTIONS]
 
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf spaces hardware
@@ -4574,6 +4851,8 @@ $ hf spaces hot-reload [OPTIONS] SPACE_ID [FILENAME]
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf spaces hot-reload username/repo-name app.py     # Open an interactive editor to the remote app.py file
   $ hf spaces hot-reload username/repo-name -f app.py  # Take local version from ./app.py and patch app.py remotely
@@ -4600,9 +4879,11 @@ $ hf spaces info [OPTIONS] SPACE_ID
 **Options**:
 
 * `--revision TEXT`: Git revision id which can be a branch name, a tag, or a commit hash.
-* `--expand TEXT`: Comma-separated properties to return. When used, only the listed properties (and id) are returned. Example: '--expand=likes,tags'. Valid: author, cardData, createdAt, datasets, disabled, lastModified, likes, models, private, region, resourceGroup, runtime, sdk, sha, siblings, subdomain, tags, trendingScore, usedStorage.
+* `--expand TEXT`: Comma-separated properties to return. When used, only the listed properties (and id) are returned. Example: '--expand=likes,tags'. Valid: author, cardData, createdAt, datasets, disabled, lastModified, likes, models, private, region, resourceGroup, runtime, sdk, sha, siblings, subdomain, tags, trendingScore, usedStorage, visibility.
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf spaces info enzostvs/deepsite
@@ -4636,13 +4917,15 @@ $ hf spaces list [OPTIONS] [REPO_ID]
 * `--filter TEXT`: Filter by tags (e.g. 'text-classification'). Can be used multiple times.
 * `--sort [created_at|last_modified|likes|trending_score]`: Sort results.
 * `--limit INTEGER`: Limit the number of results.  [default: 30]
-* `--expand TEXT`: Comma-separated properties to return. When used, only the listed properties (and id) are returned. Example: '--expand=likes,tags'. Valid: author, cardData, createdAt, datasets, disabled, lastModified, likes, models, private, region, resourceGroup, runtime, sdk, sha, siblings, subdomain, tags, trendingScore, usedStorage.
+* `--expand TEXT`: Comma-separated properties to return. When used, only the listed properties (and id) are returned. Example: '--expand=likes,tags'. Valid: author, cardData, createdAt, datasets, disabled, lastModified, likes, models, private, region, resourceGroup, runtime, sdk, sha, siblings, subdomain, tags, trendingScore, usedStorage, visibility.
 * `-h, --human-readable`: Show sizes in human readable format (only for listing files).
 * `--tree`: List files in tree format (only for listing files).
 * `-R, --recursive`: List files recursively (only for listing files).
 * `--revision TEXT`: Git revision id which can be a branch name, a tag, or a commit hash.
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf spaces ls --limit 10
@@ -4682,6 +4965,8 @@ $ hf spaces logs [OPTIONS] SPACE_ID
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf spaces logs username/my-space
   $ hf spaces logs username/my-space --build
@@ -4711,6 +4996,8 @@ $ hf spaces pause [OPTIONS] SPACE_ID
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf spaces pause username/my-space
 
@@ -4737,6 +5024,8 @@ $ hf spaces restart [OPTIONS] SPACE_ID
 * `--factory-reboot`: Rebuild the Space from scratch without using the build cache.
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf spaces restart username/my-space
@@ -4769,6 +5058,8 @@ $ hf spaces search [OPTIONS] QUERY
 * `--limit INTEGER`: Limit the number of results.  [default: 10]
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf spaces search "generate image"
@@ -4820,6 +5111,8 @@ $ hf spaces secrets add [OPTIONS] SPACE_ID
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf spaces secrets add username/my-space -s HF_TOKEN
   $ hf spaces secrets add username/my-space -s OPENAI_API_KEY=sk-... -s ANTHROPIC_API_KEY=sk-...
@@ -4850,6 +5143,8 @@ $ hf spaces secrets delete [OPTIONS] SPACE_ID KEY
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf spaces secrets delete username/my-space HF_TOKEN
   $ hf spaces secrets delete username/my-space HF_TOKEN --yes
@@ -4876,6 +5171,8 @@ $ hf spaces secrets list [OPTIONS] SPACE_ID
 
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf spaces secrets ls username/my-space
@@ -4904,6 +5201,8 @@ $ hf spaces settings [OPTIONS] SPACE_ID
 * `--hardware [cpu-basic|cpu-upgrade|zero-a10g|t4-small|t4-medium|l4x1|l4x4|l40sx1|l40sx4|l40sx8|a10g-small|a10g-large|a10g-largex2|a10g-largex4|a100-large|a100x4|a100x8|rtx-pro-6000|rtx-pro-6000x2|rtx-pro-6000x4|rtx-pro-6000x8]`: Space hardware flavor (e.g. 'cpu-basic', 't4-medium', 'l4x4'). Run 'hf spaces hardware' to list available options.
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf spaces settings username/my-space --sleep-time 300
@@ -4939,6 +5238,8 @@ $ hf spaces ssh [OPTIONS] SPACE_ID
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf spaces ssh username/my-space
   $ hf spaces ssh username/my-space --dry-run
@@ -4966,6 +5267,8 @@ $ hf spaces templates [OPTIONS]
 
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf spaces templates
@@ -5015,6 +5318,8 @@ $ hf spaces variables add [OPTIONS] SPACE_ID
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf spaces variables add username/my-space -e DEBUG=1
   $ hf spaces variables add username/my-space -e MODEL_ID=gpt2 -e MAX_TOKENS=512
@@ -5045,6 +5350,8 @@ $ hf spaces variables delete [OPTIONS] SPACE_ID KEY
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf spaces variables delete username/my-space DEBUG
   $ hf spaces variables delete username/my-space DEBUG --yes
@@ -5071,6 +5378,8 @@ $ hf spaces variables list [OPTIONS] SPACE_ID
 
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf spaces variables ls username/my-space
@@ -5119,6 +5428,8 @@ $ hf spaces volumes delete [OPTIONS] SPACE_ID
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf spaces volumes delete username/my-space
   $ hf spaces volumes delete username/my-space --yes
@@ -5146,6 +5457,8 @@ $ hf spaces volumes list [OPTIONS] SPACE_ID
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf spaces volumes ls username/my-space
 
@@ -5172,6 +5485,8 @@ $ hf spaces volumes set [OPTIONS] SPACE_ID
 * `-v, --volume TEXT`: Mount one or more volumes. Format: hf://[TYPE/]SOURCE:/MOUNT_PATH[:ro]. TYPE is one of: models, datasets, spaces, buckets. TYPE defaults to models if omitted. models, datasets and spaces are always mounted read-only. buckets are read+write by default. E.g. -v hf://org/m:/data or -v hf://datasets/org/ds:/data or -v hf://buckets/org/b:/mnt:ro
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf spaces volumes set username/my-space -v hf://models/username/my-model:/models
@@ -5204,6 +5519,8 @@ $ hf spaces wait [OPTIONS] SPACE_ID
 * `--timeout TEXT`: Max time to wait: int with s (seconds, default), m (minutes), h (hours) or d (days).
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf spaces wait username/my-space
@@ -5248,6 +5565,8 @@ $ hf spaces zero-gpu quota [OPTIONS]
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf spaces zero-gpu quota
   $ hf spaces zero-gpu quota --format json
@@ -5288,6 +5607,8 @@ $ hf sync [OPTIONS] [SOURCE] [DEST]
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 ## `hf update`
 
 Update the `hf` CLI to the latest version.
@@ -5301,6 +5622,8 @@ $ hf update [OPTIONS]
 **Options**:
 
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 ## `hf upload`
 
@@ -5336,6 +5659,8 @@ $ hf upload [OPTIONS] REPO_ID [LOCAL_PATH] [PATH_IN_REPO]
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf upload my-cool-model . .
   $ hf upload Wauplin/my-cool-model ./models/model.safetensors
@@ -5360,6 +5685,8 @@ $ hf version [OPTIONS]
 **Options**:
 
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 ## `hf webhooks`
 
@@ -5410,6 +5737,8 @@ $ hf webhooks create [OPTIONS]
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf webhooks create --url https://example.com/hook --watch model:bert-base-uncased
   $ hf webhooks create --url https://example.com/hook --watch org:HuggingFace --watch model:gpt2 --domain repo
@@ -5440,6 +5769,8 @@ $ hf webhooks delete [OPTIONS] WEBHOOK_ID
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf webhooks delete abc123
   $ hf webhooks delete abc123 --yes
@@ -5467,6 +5798,8 @@ $ hf webhooks disable [OPTIONS] WEBHOOK_ID
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf webhooks disable abc123
 
@@ -5492,6 +5825,8 @@ $ hf webhooks enable [OPTIONS] WEBHOOK_ID
 
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
+
+Also accepts the global [formatting options](#formatting-options).
 
 Examples
   $ hf webhooks enable abc123
@@ -5519,6 +5854,8 @@ $ hf webhooks info [OPTIONS] WEBHOOK_ID
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf webhooks info abc123
 
@@ -5541,6 +5878,8 @@ $ hf webhooks list [OPTIONS]
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
   $ hf webhooks ls
   $ hf webhooks ls --format json
@@ -5552,7 +5891,10 @@ Learn more
 
 ### `hf webhooks update`
 
-Update an existing webhook. Only provided options are changed.
+Update an existing webhook.
+
+Provide the complete watched list, domains and destination, including values that have not changed.
+Provide either --url or --job-id.
 
 Job secrets passed with --secrets replace stored values with the same name; others are kept.
 
@@ -5568,25 +5910,26 @@ $ hf webhooks update [OPTIONS] WEBHOOK_ID
 
 **Options**:
 
+* `--watch TEXT`: Complete list of items to watch, in type:name format. Repeatable.  [required]
+* `--domain [repo|discussion]`: Complete list of domains to watch: repo or discussion. Repeatable.  [required]
 * `--url TEXT`: New URL to send webhook payloads to.
 * `--job-id TEXT`: ID of the source Job to trigger (can be the current one). Required with --secrets / --secrets-file.
-* `--watch TEXT`: New list of items to watch, in 'type:name' format. Repeatable. Replaces the entire existing watched list.
-* `--domain [repo|discussion]`: New list of domains to watch: 'repo' or 'discussion'. Repeatable.
 * `--secret TEXT`: New secret used to sign webhook payloads.
 * `-s, --secrets TEXT`: Set secret environment variables. Prefer `--secrets SECRET` to read the value from your environment (e.g. `--secrets HF_TOKEN` to pass your Hugging Face token); `--secrets SECRET=value` puts the value in your shell history.
 * `--secrets-file TEXT`: Read in a file of secret environment variables. Use `-` to read them from stdin.
 * `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
 * `--help`: Show this message and exit.
 
+Also accepts the global [formatting options](#formatting-options).
+
 Examples
-  $ hf webhooks update abc123 --url https://new-url.com/hook
-  $ hf webhooks update abc123 --watch model:gpt2 --domain repo
-  $ hf webhooks update abc123 --secret newsecret
-  $ hf webhooks update abc123 --job-id 687f911eaea852de79c4a50a --secrets HF_TOKEN
+  $ hf webhooks update abc123 --url https://new-url.com/hook --watch model:gpt2 --domain repo
+  $ hf webhooks update abc123 --url https://example.com/hook --watch user:julien-c --domain repo --secret newsecret
+  $ hf webhooks update abc123 --job-id 687f911eaea852de79c4a50a --watch user:julien-c --domain repo --secrets HF_TOKEN
 
 Learn more
   Use `hf <command> --help` for more information about a command.
   Read the documentation at https://huggingface.co/docs/huggingface_hub/en/guides/cli
 
-### TensorBoard logger
-https://huggingface.co/docs/huggingface_hub/v2.4.0/package_reference/tensorboard.md
+### Cache-system reference
+https://huggingface.co/docs/huggingface_hub/v2.5.0/package_reference/cache.md

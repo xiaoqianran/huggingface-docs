@@ -29,5 +29,5 @@ df = (
 )
 ```
 
-### Get dataset information
-https://huggingface.co/docs/dataset-viewer/info.md
+### DuckDB
+https://huggingface.co/docs/dataset-viewer/duckdb.md

@@ -99,7 +99,7 @@ hf-hello/
 ```toml
 [build-system]
 requires = ["setuptools>=64"]
-build-backend = "setuptools.backends._legacy:_Backend"
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "hf-hello"
@@ -269,5 +269,5 @@ Here are some community extensions you can use as reference:
 | [hanouticelina/hf-claude](https://github.com/hanouticelina/hf-claude) | Shell script | Launch Claude Code with HF Inference Providers |
 | [alvarobartt/hf-mem](https://github.com/alvarobartt/hf-mem) | Python | Estimate inference memory requirements for HF models |
 
-### Manage your Space
-https://huggingface.co/docs/huggingface_hub/v2.4.0/guides/manage-spaces.md
+### Run and manage Jobs
+https://huggingface.co/docs/huggingface_hub/v2.5.0/guides/jobs.md

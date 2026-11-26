@@ -30,5 +30,5 @@ df = (
 )
 ```
 
-### ClickHouse
-https://huggingface.co/docs/dataset-viewer/clickhouse.md
+### Polars
+https://huggingface.co/docs/dataset-viewer/polars.md

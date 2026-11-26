@@ -2,7 +2,8 @@
 
 [mlcroissant](https://github.com/mlcommons/croissant/tree/main/python/mlcroissant) is a library to load datasets from Croissant metadata.
 
-💡 Learn more about how to get the metadata from the dataset viewer API in the [Get Croissant metadata](croissant) guide.
+> [!TIP]
+> 💡 Learn more about how to get the metadata from the dataset viewer API in the [Get Croissant metadata](croissant) guide.
 
 Let's start by parsing the Croissant metadata for the [`tasksource/blog_authorship_corpus`](https://huggingface.co/datasets/tasksource/blog_authorship_corpus) dataset. Be sure to first install `mlcroissant[parquet]` and `GitPython` to be able to load Parquet files over the git+https protocol.
 
@@ -41,5 +42,5 @@ b'Aries'         918.666667
 Name: default/text, dtype: float64
 ```
 
-### cuDF
-https://huggingface.co/docs/dataset-viewer/cudf.md
+### PySpark
+https://huggingface.co/docs/dataset-viewer/pyspark.md

@@ -4,13 +4,14 @@ Before you download a dataset from the Hub, it is helpful to know if a specific 
 
 The API endpoint will return an error for datasets that cannot be loaded with the [🤗 Datasets](https://github.com/huggingface/datasets) library, for example, because the data hasn't been uploaded or the format is not supported.
 
-  The largest datasets are partially supported by the dataset viewer. If they are{" "}
-  streamable, Datasets
-  Server can extract the first 100 rows without downloading the whole dataset.
-  This is especially useful for previewing large datasets where downloading the
-  whole dataset may take hours! See the preview field in the
-  response of /is-valid to check if a dataset is partially
-  supported.
+> [!WARNING]
+> The largest datasets are partially supported by the dataset viewer. If they are{" "}
+> [streamable](https://huggingface.co/docs/datasets/stream), Datasets
+> Server can extract the first 100 rows without downloading the whole dataset.
+> This is especially useful for previewing large datasets where downloading the
+> whole dataset may take hours! See the `preview` field in the
+> response of `/is-valid` to check if a dataset is partially
+> supported.
 
 This guide shows you how to check dataset validity programmatically, but free to try it out with [Postman](https://www.postman.com/huggingface/workspace/hugging-face-apis/request/23242779-17b761d0-b2b8-4638-a4f7-73be9049c324), [RapidAPI](https://rapidapi.com/hugging-face-hugging-face-default/api/hugging-face-datasets-api), or [ReDoc](https://redocly.github.io/redoc/?url=https://datasets-server.huggingface.co/openapi.json#operation/isValidDataset).
 
@@ -18,6 +19,7 @@ This guide shows you how to check dataset validity programmatically, but free to
 
 `/is-valid` checks whether a specific dataset loads without any error. This endpoint's query parameter requires you to specify the name of the dataset:
 
+<inferencesnippet> <python>
 ```python
 import requests
 headers = {"Authorization": f"Bearer {API_TOKEN}"}
@@ -27,7 +29,7 @@ def query():
     return response.json()
 data = query()
 ```
-
+</python> <js>
 ```js
 import fetch from "node-fetch";
 async function query(data) {
@@ -45,12 +47,13 @@ query().then((response) => {
     console.log(JSON.stringify(response));
 });
 ```
-
+</js> <curl>
 ```curl
 curl https://datasets-server.huggingface.co/is-valid?dataset=cornell-movie-review-data/rotten_tomatoes \
         -X GET \
         -H "Authorization: Bearer ${API_TOKEN}"
 ```
+</curl> </inferencesnippet>
 
 The response looks like this if a dataset is valid:
 
@@ -131,8 +134,9 @@ Some cases where a dataset is not valid are:
 - the dataset is private but the owner is not a PRO user or an Enterprise Hub org
 - the dataset contains no data or the data format is not supported
 
-  Remember if a dataset is gated,
-  you'll need to provide your user token to submit a successful query!
+> [!TIP]
+> Remember if a dataset is [gated](./quick_start#private-and-gated-datasets),
+> you'll need to provide your user token to submit a successful query!
 
-### Pandas
-https://huggingface.co/docs/dataset-viewer/pandas.md
+### List splits and subsets
+https://huggingface.co/docs/dataset-viewer/splits.md

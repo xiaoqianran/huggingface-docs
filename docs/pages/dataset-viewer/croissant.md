@@ -12,6 +12,7 @@ This guide shows you how to use [Hugging Face `/croissant` endpoint](https://hug
 
 The `/croissant` endpoint takes the dataset name in the URL, for example for the `ibm/duorc` dataset:
 
+<inferencesnippet> <python>
 ```python
 import requests
 headers = {"Authorization": f"Bearer {API_TOKEN}"}
@@ -21,7 +22,7 @@ def query():
     return response.json()
 data = query()
 ```
-
+</python> <js>
 ```js
 import fetch from "node-fetch";
 async function query(data) {
@@ -39,12 +40,13 @@ query().then((response) => {
     console.log(JSON.stringify(response));
 });
 ```
-
+</js> <curl>
 ```curl
 curl https://huggingface.co/api/datasets/ibm/duorc/croissant \
         -X GET \
         -H "Authorization: Bearer ${API_TOKEN}"
 ```
+</curl> </inferencesnippet>
 
 Under the hood it uses the `https://datasets-server.huggingface.co/croissant-crumbs` endpoint and enriches it with the Hub metadata.
 
@@ -365,5 +367,5 @@ The endpoint response is a [JSON-LD](https://json-ld.org/) containing the metada
 
 To load the dataset, you can use the [mlcroissant](./mlcroissant) library. It provides a simple way to load datasets from Croissant metadata.
 
-### Check dataset validity
-https://huggingface.co/docs/dataset-viewer/valid.md
+### Overview
+https://huggingface.co/docs/dataset-viewer/parquet_process.md

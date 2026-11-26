@@ -2,7 +2,8 @@
 
 [pyspark](https://spark.apache.org/docs/latest/api/python) is the Python interface for Apache Spark, enabling large-scale data processing and real-time analytics in a distributed environment using Python.
 
-For a detailed guide on how to analyze datasets on the Hub with PySpark, check out this [blog](https://huggingface.co/blog/asoria/pyspark-hugging-face-datasets).
+> [!TIP]
+> For a detailed guide on how to analyze datasets on the Hub with PySpark, check out this [blog](https://huggingface.co/blog/asoria/pyspark-hugging-face-datasets).
 
 To start working with Parquet files in PySpark, you'll first need to add the file(s) to a Spark context. Below is an example of how to read a single Parquet file:
 
@@ -54,5 +55,5 @@ df.printSchema()
 
 ```
 
-### Polars
-https://huggingface.co/docs/dataset-viewer/polars.md
+### Splits and subsets
+https://huggingface.co/docs/dataset-viewer/configs_and_splits.md

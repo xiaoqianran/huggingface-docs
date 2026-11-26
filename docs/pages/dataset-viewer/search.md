@@ -2,17 +2,19 @@
 
 The dataset viewer provides a `/search` endpoint for searching words in a dataset.
 
-  Currently, only datasets with Parquet exports
-  are supported so the dataset viewer can index the contents and run the search without
-  downloading the whole dataset.
+> [!WARNING]
+> Currently, only [datasets with Parquet exports](./parquet)
+> are supported so the dataset viewer can index the contents and run the search without
+> downloading the whole dataset.
 
 This guide shows you how to use the dataset viewer's `/search` endpoint to search for a query string.
 Feel free to also try it out with [ReDoc](https://redocly.github.io/redoc/?url=https://datasets-server.huggingface.co/openapi.json#operation/searchRows).
 
 The text is searched in the columns of type `string`, even if the values are nested in a dictionary.
 
-We use [DuckDB](https://duckdb.org/docs/) for [full text search](https://duckdb.org/docs/extensions/full_text_search.html) with the `BM25` (Best Match 25) algorithm. `BM25` is a ranking algorithm for information retrieval and search engines that determines a document’s relevance to a given query and ranks documents based on their relevance scores.
-[`Porter` stemmer](https://tartarus.org/martin/PorterStemmer/) (which assumes English text) is used to reduce words to their root or base form, known as the stem. This process, called stemming, involves removing suffixes and prefixes from words to identify their core meaning. The purpose of a stemmer is to improve search accuracy and efficiency by ensuring that different forms of a word are recognized as the same term.
+> [!TIP]
+> We use [DuckDB](https://duckdb.org/docs/) for [full text search](https://duckdb.org/docs/extensions/full_text_search.html) with the `BM25` (Best Match 25) algorithm. `BM25` is a ranking algorithm for information retrieval and search engines that determines a document’s relevance to a given query and ranks documents based on their relevance scores.
+> [`Porter` stemmer](https://tartarus.org/martin/PorterStemmer/) (which assumes English text) is used to reduce words to their root or base form, known as the stem. This process, called stemming, involves removing suffixes and prefixes from words to identify their core meaning. The purpose of a stemmer is to improve search accuracy and efficiency by ensuring that different forms of a word are recognized as the same term.
 
 The `/search` endpoint accepts five query parameters:
 
@@ -25,6 +27,7 @@ The `/search` endpoint accepts five query parameters:
 
 For example, let's search for the text `"dog"` in the `train` split of the `SelfRC` subset of the `ibm/duorc` dataset, restricting the results to the slice 150-151:
 
+<inferencesnippet> <python>
 ```python
 import requests
 headers = {"Authorization": f"Bearer {API_TOKEN}"}
@@ -34,7 +37,7 @@ def query():
     return response.json()
 data = query()
 ```
-
+</python> <js>
 ```js
 import fetch from "node-fetch";
 async function query(data) {
@@ -52,12 +55,13 @@ query().then((response) => {
     console.log(JSON.stringify(response));
 });
 ```
-
+</js> <curl>
 ```curl
 curl https://datasets-server.huggingface.co/search?dataset=ibm/duorc&config=SelfRC&split=train&query=dog&offset=150&length=2 \
         -X GET \
         -H "Authorization: Bearer ${API_TOKEN}"
 ```
+</curl> </inferencesnippet>
 
 The endpoint response is a JSON containing two keys (same format as [`/rows`](./rows)):
 
@@ -152,3 +156,6 @@ Indeed, the indexing for `/search` can be partial if the dataset is bigger than 
 
 Unlike `/first-rows`, there is currently no truncation in `/search`.
 The `truncated_cells` field is still there but is always empty.
+
+### Filter rows in a dataset
+https://huggingface.co/docs/dataset-viewer/filter.md

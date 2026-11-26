@@ -2,7 +2,8 @@
 
 [ClickHouse](https://clickhouse.com/docs/en/intro) is a fast and efficient column-oriented database for analytical workloads, making it easy to analyze Hub-hosted datasets with SQL. To get started quickly, use [`clickhouse-local`](https://clickhouse.com/docs/en/operations/utilities/clickhouse-local) to run SQL queries from the command line and avoid the need to fully install ClickHouse.
 
-Check this [blog](https://clickhouse.com/blog/query-analyze-hugging-face-datasets-with-clickhouse) for more details about how to analyze datasets on the Hub with ClickHouse.
+> [!TIP]
+> Check this [blog](https://clickhouse.com/blog/query-analyze-hugging-face-datasets-with-clickhouse) for more details about how to analyze datasets on the Hub with ClickHouse.
 
 To start, download and install `clickhouse-local`:
 
@@ -139,5 +140,5 @@ DESC LIMIT(5)
 └───────────┴────────┴────────────────────┘
 ```
 
-### Quickstart
-https://huggingface.co/docs/dataset-viewer/quick_start.md
+### cuDF
+https://huggingface.co/docs/dataset-viewer/cudf.md
