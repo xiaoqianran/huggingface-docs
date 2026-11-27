@@ -10,7 +10,7 @@ Livebook 的一些最令人兴奋的功能包括：
 - **智能单元**：使用 Livebook 的可扩展笔记本单元，只需单击几下即可执行复杂的任务，例如数据操作和运行机器学习模型
 - **Elixir 支持**：使用 Elixir 编程语言的强大功能来编写可扩展到您的机器之外的并发和分布式笔记本
 
-要了解更多信息，请观看此[15-minute video](https://www.youtube.com/watch?v=EhSNXWkji6o)。或访问[Livebook's website](https://livebook.dev/)。或者关注其[Twitter](https://twitter.com/livebookdev)和[blog](https://news.livebook.dev/)以跟上新功能和更新。
+要了解更多信息，请观看此[15-minute video](https://www.youtube.com/watch?v=EhSNXWkji6o)。或访问[Livebook's website](https://livebook.dev/)。或者关注其[Twitter](https://twitter.com/livebookdev)和[blog](https://livebook.dev/blog/)以跟上新功能和更新。
 
 ## 你的第一个 Livebook 空间
 
@@ -30,15 +30,15 @@ Livebook 的一些最令人兴奋的功能包括：
 这将开始使用 Livebook 的 Docker 镜像构建您的空间。空间的可见性必须设置为公开，Livebook 中的智能单元功能才能正常运行。但是，您的 Livebook 实例将受到 Livebook 身份验证的保护。
 
 > [!提示]
-> 智能单元是 Livebook 单元的一种，它提供用于完成特定任务的 UI 组件。任务的代码是根据用户与 UI 的交互自动生成的，从而可以更快地完成高级任务，而无需从头开始编写代码。
+> 智能单元是一种 Livebook 单元，它提供用于完成特定任务的 UI 组件。任务的代码是根据用户与 UI 的交互自动生成的，从而可以更快地完成高级任务，而无需从头开始编写代码。
 
-应用程序构建完成后，转到空间中的“应用程序”选项卡，然后使用您之前设置的密码登录您的 Livebook：
+应用程序构建完成后，转到空间中的“应用程序”选项卡并使用您之前设置的密码登录您的 Livebook：
 
 ![Livebook authentication](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/spaces-livebook-authentication.png)
 
 就是这样！现在您可以开始在您的空间内使用 Livebook。
 
-如果这是您第一次使用 Livebook，您可以在 Livebook 中了解如何将其与交互式笔记本一起使用：
+如果这是您第一次使用 Livebook，您可以在 Livebook 本身中了解如何将其与交互式笔记本一起使用：
 
 ![Livebook's learn notebooks](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/spaces-livebook-learn-section.png)
 

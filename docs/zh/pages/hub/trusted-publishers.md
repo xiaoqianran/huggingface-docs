@@ -7,7 +7,7 @@
 您的 CI 作业使用 CI 提供商提供的短期 OpenID Connect (OIDC) 令牌向 Hugging Face 证明其身份，并作为交换取回短期 Hugging Face 令牌。没有 HF 令牌可以作为秘密存储或轮换。
 
 | |个人访问令牌 |值得信赖的出版商 |
-| ---| ---| ---|
+| --- | --- | --- |
 |终身|直至撤销 | 1小时|
 |存储| CI秘密|没有什么可存储的 |
 |旋转|手册|自动，每次运行 |
@@ -93,7 +93,7 @@ publish:
 - GitLab CI — [⟦T31⟧](https://gitlab.com/coyotte508/publish-to-hf)
 
 ## 两种风格：回购发布者和 CI/CD 身份|风味 |配置于 |你得到什么 |用它来... |
-| ---| ---| ---| ---|
+| --- | --- | --- | --- |
 | **回购受信任的发布者** |存储库的**设置 → 受信任的发布者** |具有**对该一个存储库的写入权限**（或[read-only access](#read-only-repo-publishers)）的令牌|从 CI 发布模型、数据集、空间、内核或存储桶，或提取私有模型 |
 | **帐户 CI/CD 身份** |您的帐户是 [**Authentication settings → CI/CD Access**](https://huggingface.co/settings/authentication#ci-cd-access) |具有 `gated-repos` 范围的只读令牌，如果您选择加入，则加上 `inference-api` |阅读**您有权访问的门控存储库**，使用您的速率限制，并可选择从 CI 调用推理提供程序 |
 
@@ -101,7 +101,7 @@ publish:
 
 ### 从 CI 访问门控存储库
 
-如果您只需要*读取*门控存储库（例如从作业下载模型），请在[**Authentication settings → CI/CD Access**](https://huggingface.co/settings/authentication#ci-cd-access)下的帐户上添加 CI/CD 身份，而不是在特定存储库上添加 CI/CD 身份，然后使用您的 **用户名** 作为资源。
+如果您只需要*读取*门控存储库（例如从作业下载模型），请在您的帐户上的[**Authentication settings → CI/CD Access**](https://huggingface.co/settings/authentication#ci-cd-access)下添加 CI/CD 身份，而不是在特定存储库上添加 CI/CD 身份，然后使用您的**用户名**作为资源。
 
 在 **GitHub Actions** 上，`hf` CLI 会为您进行交换，只需设置 `HF_OIDC_RESOURCE`：
 
@@ -168,7 +168,7 @@ HF_OIDC_ID_TOKEN="$ID_TOKEN" HF_OIDC_RESOURCE="your-hf-username" hf download acm
 ## 支持的 CI 提供商
 
 设置 UI 附带了以下提供商的预设，但任何符合 OIDC 的提供商都可以使用（AWS、GCP、Buildkite、您自己的 IdP，...）。|供应商|发行人 |如何获取ID令牌|
-| ---| ---| ---|
+| --- | --- | --- |
 | **GitHub 操作** | `https://token.actions.githubusercontent.com` |设置`permissions: id-token: write`，然后使用`audience=https://huggingface.co`调用元数据端点。 [Docs](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect)。 |
 | **亚搏体育appGitLab CI** | `https://gitlab.com`（或您的自托管 URL）|在工作中声明`id_tokens: { HF_ID_TOKEN: { aud: https://huggingface.co } }`；阅读`$HF_ID_TOKEN`。 [Docs](https://docs.gitlab.com/ci/yaml/#id_tokens)。 |
 | **圆CI** | `https://oidc.circleci.com/org/<org-uuid>` |使用`$CIRCLE_OIDC_TOKEN_V2`（v2 允许您在项目设置中设置受众）。 [Docs](https://circleci.com/docs/openid-connect-tokens/)。 |
@@ -196,14 +196,14 @@ HF_OIDC_ID_TOKEN="$ID_TOKEN" HF_OIDC_RESOURCE="your-hf-username" hf download acm
 
 **端点：** `POST https://huggingface.co/oauth/token` 与 `Content-Type: application/json`。
 
-不需要客户端身份验证 - OIDC ID 令牌对请求进行身份验证。交换遵循[RFC 8693 — OAuth 2.0 Token Exchange](https://www.rfc-editor.org/rfc/rfc8693.html)。
+不需要客户端身份验证 - OIDC ID 令牌对请求进行身份验证。兑换遵循[RFC 8693 — OAuth 2.0 Token Exchange](https://www.rfc-editor.org/rfc/rfc8693.html)。
 
-**请求正文：**|领域|必填 |价值|
-| ---| ---| ---|
+**请求正文：**|领域 |必填|价值|
+| --- | --- | --- |
 | `grant_type` |是的 | `urn:ietf:params:oauth:grant-type:token-exchange` |
 | `subject_token_type` |是的 | `urn:ietf:params:oauth:token-type:id_token` |
 | `subject_token` |是的 |来自 CI 提供商的原始 OIDC ID 令牌 (JWT)。它的`aud`声称**必须**是`https://huggingface.co`。 |
-| `resource` |是的 |用于用户范围令牌的 Hub 存储库（`namespace/name`、`datasets/namespace/name`、`spaces/namespace/name`、`kernels/namespace/name`、`buckets/namespace/name`）或 Hub **用户名**（无斜杠）。 |
+| `resource` |是的 |用于用户范围令牌的 Hub 存储库（`namespace/name`、`datasets/namespace/name`、`spaces/namespace/name`、`kernels/namespace/name`、`buckets/namespace/name`）或 Hub **用户名**（无斜线）。 |
 
 **成功响应：**
 
@@ -219,7 +219,7 @@ HF_OIDC_ID_TOKEN="$ID_TOKEN" HF_OIDC_RESOURCE="your-hf-username" hf download acm
 **错误** — 带有 OAuth 样式正文的 `400 Bad Request`：
 
 | `error` |为什么 |
-| ---| ---|
+| --- | --- |
 | `invalid_request` |参数丢失/格式错误，或 `resource` 格式错误。 |
 | `invalid_grant` |未找到存储库或用户；没有发行商与该发行人匹配；配置的声明不匹配；签名或观众检查失败；帐户被锁定。 |
 
@@ -229,7 +229,7 @@ HF_OIDC_ID_TOKEN="$ID_TOKEN" HF_OIDC_RESOURCE="your-hf-username" hf download acm
 - **回购代币是回购范围的。** `acme/awesome-model` 的代币不能触及 `acme/anything-else`。推送归因于合成的`[OIDC]`系统用户，并参考原始发行者和主题。来自只读发布者的令牌只能读取该存储库。
 - **用户令牌是只读的。** 默认情况下`gated-repos`范围 - 没有写入，没有私人存储库，没有帐户管理。可选的 `inference-api` 范围添加了推理提供程序调用（记入您的帐户），但仍然没有写入或私有存储库访问权限。
 - **声明完全匹配，或者通过提供商预设需要的前缀**（GitHub 的`workflow_ref`）。没有正则表达式。
-- **审核日志。** 记录添加或删除发布者，并成功交换更新上次使用的时间。
+- **名称声明在首次使用时固定到 ID。** 第一次成功的交换记录每个名称声明背后的不可变 ID（例如 `repository` → `repository_id`），以后的交换必须匹配它。以相同名称重新创建已删除的存储库或组织的人无法使用您的发布商。如果您重新创建自己的 CI 存储库，请删除并重新添加发布者。- **审核日志。** 记录添加或删除发布者，并成功交换更新上次使用的时间。
 
 ## 另请参阅
 

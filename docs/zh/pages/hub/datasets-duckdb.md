@@ -12,7 +12,7 @@
 > 安装详情请访问[installation page](https://duckdb.org/docs/installation)。
 
 > [!提示]
-> 如果您使用 `hf` CLI，则可以直接使用 [⟦T15⟧](/docs/huggingface_hub/package_reference/cli#hf-datasets-sql) 运行 DuckDB 查询，例如`hf datasets sql "FROM 'hf://datasets/ibm/duorc/ParaphraseRC/*.parquet' LIMIT 3"`。门控和私有数据集的身份验证是根据您登录的令牌自动配置的，并且 `--format json` 返回机器可读的输出。
+> 如果您使用 `hf` CLI，则可以直接使用 [⟦T15⟧](/docs/huggingface_hub/package_reference/cli#hf-datasets-sql) 运行 DuckDB 查询，例如`hf datasets sql "SELECT * FROM hf_dataset('stanfordnlp/imdb') LIMIT 3"`。门控和私有数据集的身份验证是根据您登录的令牌自动配置的，并且 `--format json` 返回机器可读的输出。
 
 从版本 `v0.10.3` 开始，DuckDB CLI 包含对通过具有 `hf://` 方案的 URL 访问 Hugging Face Hub 上的数据集的本机支持。以下是您可以利用这个强大工具的一些功能：
 
@@ -36,8 +36,8 @@
 hf://datasets/{my-username}/{my-dataset}/{path_to_file} 
 ```
 
-- **我的用户名**，数据集的用户或组织，例如`ibm`
-- **my-dataset**，数据集名称，例如：`duorc`
+- **我的用户名**，数据集的用户或组织，例如`stanfordnlp`
+- **my-dataset**，数据集名称，例如：`imdb`
 - **path_to_parquet_file**，支持 glob 模式的 parquet 文件路径，例如`**/*.parquet`，查询所有镶木地板文件
 
 > [!提示]
@@ -60,15 +60,16 @@ hf://datasets/{my-username}/{my-dataset}/{path_to_file}
 让我们从一个快速演示开始，查询数据集的所有行：
 
 ```sql
-FROM 'hf://datasets/ibm/duorc/ParaphraseRC/*.parquet' LIMIT 3;
+SELECT * FROM 'hf://datasets/stanfordnlp/imdb/plain_text/*.parquet' LIMIT 3;
 ```
 
-或者使用传统的 SQL 语法：
+或者使用 `hf` [extension](https://huggingface.co/duckdb-extensions) 中的 `hf_dataset()` 函数（DuckDB 2.0+，请参阅下面的[install steps](#save-a-dataset)），它会自动加载正确的文件：
 
 ```sql
-SELECT * FROM 'hf://datasets/ibm/duorc/ParaphraseRC/*.parquet' LIMIT 3;
-```
-在以下部分中，我们将介绍您可以使用 DuckDB 在 Hugging Face 数据集上执行的更复杂的操作。> [!提示]
+SELECT * FROM hf_dataset('stanfordnlp/imdb') LIMIT 3;
+```在以下部分中，我们将介绍您可以使用 DuckDB 在 Hugging Face 数据集上执行的更复杂的操作。
+
+> [!提示]
 > **查询存储桶**：DuckDB 2.0 及更高版本还从 CLI 和每个客户端本地读取 [Storage Buckets](./storage-buckets)：
 > ```sql
 > SELECT * FROM 'hf://buckets/username/my-bucket/data.parquet' LIMIT 10;

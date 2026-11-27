@@ -8,10 +8,10 @@ Hugging Face Spaces 让您可以在几分钟内轻松创建和部署 ML 支持�
 
 ## 创建一个新空间
 
-**要创建新空间**，请访问[Spaces main page](https://huggingface.co/spaces)并单击**创建新空间**。除了为您的空间选择名称、选择可选许可证以及设置空间的 [visibility](#space-visibility)（公共、受保护或私有）之外，系统还会提示您为您的空间选择 **SD​​K**。 Hub 提供三种 SDK 选项：Gradio、Docker 和静态 HTML。如果您选择“Gradio”作为 SDK，您将导航到显示以下页面的新存储库：
+**要创建新空间**，请访问[Spaces main page](https://huggingface.co/spaces)并单击**创建新空间**。除了为您的空间选择名称、选择可选许可证以及设置您的空间的 [visibility](#space-visibility)（公共、受保护或私有）之外，系统还会提示您为您的空间选择 **SD​​K**。 Hub 提供三种 SDK 选项：Gradio、Docker 和静态 HTML。如果您选择“Gradio”作为 SDK，您将导航到显示以下页面的新存储库：
 
 > [!警告]
-> 静态空间对所有人免费。 Gradio 和 Docker Spaces 在计算上运行，需要付费计划才能创建：用于个人帐户的 PRO、用于组织的团队或企业帐户。信誉良好的免费个人帐户仍然可以托管最多 2 个在 [ZeroGPU](./spaces-zerogpu) 上运行的 Gradio Space。在底层，Spaces 将您的代码存储在 git 存储库中，就像模型和数据集存储库一样。因此，我们用于所有 [other repositories on the Hub](./repositories)（`git` 和 `git-xet`）的相同工具也适用于空间。按照与[Getting Started with Repositories](./repositories-getting-started)中相同的流程将文件添加到您的空间。每次推送新的提交时，空间都会自动重建并重新启动。
+> 静态空间对所有人免费。 Gradio 和 Docker Spaces 在计算上运行，需要付费计划才能创建：用于个人帐户的 PRO、用于组织的团队或企业帐户。信誉良好的免费个人帐户仍然可以托管最多 2 个在 [ZeroGPU](./spaces-zerogpu) 上运行的 Gradio Space。在底层，Spaces 将您的代码存储在 git 存储库中，就像模型和数据集存储库一样。因此，我们用于所有 [other repositories on the Hub](./repositories)（`git` 和 `git-xet`）的相同工具也适用于空间。按照与[Getting Started with Repositories](./repositories-getting-started)相同的流程将文件添加到您的空间。每次推送新的提交时，空间都会自动重建并重新启动。
 
 有关创建第一个空间的分步教程，请参阅以下指南：
 * [Creating a Gradio Space](./spaces-sdks-gradio)
@@ -59,7 +59,7 @@ Hugging Face Spaces 让您可以在几分钟内轻松创建和部署 ML 支持�
 | 4x Nvidia A100 | 48 个 vCPU | 568GB| 320GB| 10.00 美元 |
 | 8x Nvidia A100 | 96 个 vCPU | 1136 GB | 1136 GB 640GB| 20.00 美元 |
 
-注意：在 [our pricing page](https://huggingface.co/pricing) 上查找更详细、更全面的定价信息。您是否拥有很棒的空间，但需要帮助支付硬件升级费用？我们热衷于为那些拥有创新空间的人提供帮助，因此请随时使用您空间的_设置_选项卡中的链接申请社区 GPU 拨款，看看您的空间是否符合要求！
+注意：在[our pricing page](https://huggingface.co/pricing)上查找更详细、更全面的定价信息。您是否拥有很棒的空间，但需要帮助支付硬件升级费用？我们热衷于为那些拥有创新空间的人提供帮助，因此请随时使用您空间的_设置_选项卡中的链接申请社区 GPU 拨款，看看您的空间是否符合要求！
 
 请阅读我们关于 [Spaces GPU Upgrades](./spaces-gpus) 和 [Spaces Disk Usage & Storage](./spaces-storage) 的专门部分了解更多信息。
 
@@ -91,7 +91,7 @@ print(os.getenv('MODEL_REPO_ID'))
 如果您想使用另一个演示作为初始模板来构建新演示，则复制空间会很有用。如果您希望有一个单独的升级空间供您快速推理使用，那么重复空间也很有用。如果您想复制一个空间，可以单击该空间右上角的三个点，然后单击“**复制此空间**”。完成此操作后，您将能够更改以下属性：
 
 * 所有者：复制的空间可以位于您的帐户或您具有写入权限的任何组织下
-* Space name
+* 空间名称
 * 可见性：空间默认是私有的。了解有关可见性选项 [here](./repositories-settings#repository-visibility) 的更多信息。
 * 硬件：您可以选择运行空间的硬件。了解有关硬件升级的更多信息[here](./spaces-gpus)。
 * 存储：如果原始仓库使用存储桶，则会提示您配置存储。阅读有关磁盘使用和存储的更多信息[here](./spaces-storage)。
@@ -108,21 +108,32 @@ print(os.getenv('MODEL_REPO_ID'))
 
 ## 内置环境变量在某些情况下，您可能有兴趣以编程方式访问空间作者或存储库名称。当您希望用户复制您的空间时，此功能特别有用。为了解决这个问题，Spaces 在运行时公开了不同的环境变量（另请参见[built-in environment variables in Jobs](./jobs-configuration#built-in-environment-variables)）。给定一个空间[⟦T9⟧](https://huggingface.co/spaces/osanseviero/i-like-flan)：
 
-* `ACCELERATOR`：可用加速器的类型（例如，`t4-medium`、`a10g-small`），或`none`（仅限 CPU 空间）。
+* `HF_SPACE_ID`: `osanseviero/i-like-flan`
+* `HF_SPACE_OWNER`：osanseviero（拥有空间的用户或组织）
+* `HF_SPACE_REPO_NAME`: 我喜欢果馅饼
+* `HF_SPACE_TITLE`：我喜欢果馅饼（自述文件中指定）
+* `HF_SPACE_HOST`: `osanseviero-i-like-flan.hf.space`（后跟空间的自定义域，如果有的话，以逗号分隔）
+* `HF_SPACE_SUBDOMAIN`: `osanseviero-i-like-flan`
+* `HF_SPACE_FLAVOR`：Space 的硬件风格（例如，`cpu-basic`、`t4-small`）。
+* `HF_SPACE_GPU_COUNT`：分配给空间的 GPU 数量：CPU、ZeroGPU 和 Neuron 硬件上的`0`。
+* `HF_SPACE_DISK_GB`：分配给Space的磁盘空间，以GB为单位（例如`50`）。当硬件没有磁盘限制时取消设置。
+* `ACCELERATOR`：设备类型：`cpu`、`gpu`、`zero`（ZeroGPU）或`neuron`。
 * `CPU_CORES`: 4
-* `MEMORY`：15Gi
+* `PYTHON_CPU_COUNT`：4（设置为`CPU_CORES`）。由 `os.cpu_count()` 和 `os.process_cpu_count()` 返回以反映分配给空间的核心。仅限 Python 3.13+：在旧版本上，请改为阅读 `CPU_CORES`。
+* `MEMORY`: `15.0G`
 * `SPACE_AUTHOR_NAME`: 奥桑维罗
 * `SPACE_REPO_NAME`: 我喜欢果馅饼
-* `SPACE_TITLE`：我喜欢果馅饼（自述文件中指定）
-* `SPACE_ID`: `osanseviero/i-like-flan`
-* `SPACE_HOST`: `osanseviero-i-like-flan.hf.space`
+* `SPACE_TITLE`：我喜欢果馅饼（自述文件中指定）* `SPACE_ID`: `osanseviero/i-like-flan`
+* `SPACE_HOST`: `osanseviero-i-like-flan.hf.space`（与`HF_SPACE_HOST`相同的值）
 * `SPACE_CREATOR_USER_ID`: `6032802e1f993496bc14d9e3` - 这是最初创建空间的用户的 ID。如果空间隶属于某个组织，那么这会很有用。您可以通过API调用`https://huggingface.co/api/users/{SPACE_CREATOR_USER_ID}/overview`获取用户信息。
 * `SPACE_SIGNING_SECRET`：您的空间独有的随机秘密，作为秘密公开。它在重新启动、重建和副本中保持不变，因此您可以使用它来签署 cookie、OAuth 状态或 CSRF 令牌等内容。要使用您自己的值，请在您的空间设置中添加一个名为 `SPACE_SIGNING_SECRET` 的密钥。
+
+更喜欢新代码中的 `HF_SPACE_*` 名称：它们反映了乔布斯的 `HF_JOB_*` 名称。 `SPACE_AUTHOR_NAME`、`SPACE_REPO_NAME`、`SPACE_TITLE`、`SPACE_ID` 和 `SPACE_HOST` 继续工作。 `HF_SPACE_*` 变量在 Space 运行时在其容器中设置（静态 Space 无法获取它们），而不是作为 Docker 构建参数传递，并且同名的 Space 变量或密钥会替换它们。保留旧名称：名为 `SPACE_ID`、`SPACE_HOST`、`SPACE_AUTHOR_NAME`、`SPACE_REPO_NAME`、`SPACE_TITLE`、`ACCELERATOR`、`CPU_CORES`、`MEMORY` 的 Space 变量或密钥，或平台设置的其他名称，例如`OMP_NUM_THREADS`、`PYTHON_CPU_COUNT` 或 `HF_DATASETS_TRUST_REMOTE_CODE`，停止空间启动。
 
 如果您的空间启用了[OAuth](./spaces-oauth)，则以下变量也将可用：* `OAUTH_CLIENT_ID`：您的 OAuth 应用程序的客户端 ID（公共）
 * `OAUTH_CLIENT_SECRET`：OAuth 应用程序的客户端密钥（已弃用：使用 PKCE 代替，它不需要令牌交换的密钥）
 * `OAUTH_SCOPES`：OAuth 应用程序可访问的范围。目前，这始终是`"openid profile"`。
-* `OPENID_PROVIDER_URL`：OpenID 提供商的 URL。 OpenID 元数据将在 [⟦T33⟧](https://huggingface.co/.well-known/openid-configuration) 提供。
+* `OPENID_PROVIDER_URL`：OpenID 提供商的 URL。 OpenID 元数据将在 [⟦T76⟧](https://huggingface.co/.well-known/openid-configuration) 提供。
 
 ## 克隆存储库
 

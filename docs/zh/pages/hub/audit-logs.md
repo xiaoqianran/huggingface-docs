@@ -103,26 +103,28 @@ GET https://huggingface.co/api/organizations/{org}/audit-log/export
 - **存储库安全性** — 秘密和变量（单独和批量添加/更新/删除）。
   - **事件（秘密）：** `repo.add_secret`、`repo.update_secret`、`repo.remove_secret`、`repo.add_secrets`、`repo.remove_secrets`
   - **事件（变量）：** `repo.add_variable`、`repo.update_variable`、`repo.remove_variable`、`repo.add_variables`、`repo.remove_variables`
-- **空间配置** — 存储层更改、硬件（风格）更新和睡眠时间调整。
-  - **活动：** `spaces.add_storage`、`spaces.remove_storage`、`spaces.update_hardware`、`spaces.update_sleep_time`
+- **空间配置** — 存储层更改、卷更改、硬件（风格）更新、睡眠时间调整以及启用或禁用 [Dev Mode](./spaces-dev-mode)。
+  - **活动：** `spaces.add_storage`、`spaces.remove_storage`、`spaces.set_volumes`、`spaces.remove_volumes`、`spaces.update_hardware`、`spaces.update_sleep_time`、`spaces.update_dev_mode`
+- **空间 SSH 访问** — 与空间的成功和拒绝的 SSH 连接。每个条目记录是否允许访问以及所使用的 SSH 密钥的指纹。
+  - **活动：** `spaces.ssh_access`
 
-### 资源组
-
-- **资源组管理** — 创建、删除和设置更改。
+### 资源组- **资源组管理** — 创建、删除和设置更改。
   - **活动：** `resource_group.create`、`resource_group.delete`、`resource_group.settings`
 - **资源组成员** — 添加和删除用户以及角色更改。
   - **活动：** `resource_group.add_users`、`resource_group.remove_users`、`resource_group.change_role`
 - **资源组邀请** — 邀请组织外部的用户加入资源组，并撤销这些邀请。
-  - **活动：** `resource_group.invite_user`、`resource_group.invite.revoke`### 作业和预定作业
+  - **活动：** `resource_group.invite_user`、`resource_group.invite.revoke`
 
-- **工作** — 工作岗位的创造（例如在空间上）和取消。
-  - **活动：** `jobs.create`、`jobs.cancel`
+### 作业和预定作业
+
+- **作业** - 作业创建（例如在空间上）、取消、标签更新和公开端口更改。
+  - **活动：** `jobs.create`、`jobs.cancel`、`jobs.update_labels`、`jobs.update_expose`
+- **作业 SSH 访问** — 成功和拒绝的作业 SSH 连接。每个条目记录是否允许访问、身份验证方法（SSH 密钥或访问令牌）以及使用 SSH 密钥时的密钥指纹。
+  - **活动：** `jobs.ssh_access`
 - **计划作业** — 创建、删除、恢复、暂停和触发运行。
   - **活动：** `scheduled_job.create`、`scheduled_job.delete`、`scheduled_job.resume`、`scheduled_job.suspend`、`scheduled_job.run`
 
-### 计费和云集成
-
-- **付款和客户** — 付款方式更新、附加和删除；客户帐户创建。
+### 计费和云集成- **付款和客户** — 付款方式更新、附加和删除；客户帐户创建。
   - **活动：** `billing.update_payment_method`、`billing.create_customer`、`billing.remove_payment_method`
 - **云市场** — AWS 和 GCP 市场链接/取消链接以及市场批准。
   - **活动：** `billing.aws_add`、`billing.aws_remove`、`billing.gcp_add`、`billing.gcp_remove`、`billing.marketplace_approve`
@@ -131,5 +133,7 @@ GET https://huggingface.co/api/organizations/{org}/audit-log/export
 
 ## 事件参考
 
-上面的列表涵盖了审核日志 UI 和导出中显示的每种事件类型。事件名称遵循 `scope.action` 模式；范围包括 `org`、`repo`、`collection`、`spaces`、`resource_group`、`jobs`、`scheduled_job`、`oauth` 和 `billing`。导出操作本身记录为 `org.audit_log.export`，但该事件不包含在默认审核日志视图中。### 图书馆
+上面的列表涵盖了审核日志 UI 和导出中显示的每种事件类型。事件名称遵循 `scope.action` 模式；范围包括 `org`、`repo`、`collection`、`spaces`、`resource_group`、`jobs`、`scheduled_job`、`oauth` 和 `billing`。导出操作本身记录为 `org.audit_log.export`，但该事件不包含在默认审核日志视图中。
+
+### 图书馆
 https://huggingface.co/docs/hub/datasets-libraries.md

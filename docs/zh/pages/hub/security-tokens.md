@@ -39,7 +39,7 @@ model = AutoModel.from_pretrained("private/model", token=access_token)
 ```
 
 > [!警告]
-> 尽量不要泄露您的令牌！尽管您始终可以轮换它，但任何人都可以同时读取或写入您的私人存储库，如果令牌已公开，请参阅[Revoking a leaked token](#revoking-a-leaked-token)。
+> 尽量不要泄露您的令牌！尽管您始终可以轮换它，但任何人都可以同时读取或写入您的私人存储库，如果令牌已公开，请参阅 [Revoking a leaked token](#revoking-a-leaked-token)。
 
 ### 最佳实践
 
@@ -55,7 +55,7 @@ model = AutoModel.from_pretrained("private/model", token=access_token)
 
 ### 对于 CI/CD 管道
 
-如果您只需要从 CI/CD 工作流程（GitHub Actions、GitLab CI、CircleCI 等）进行访问，则可以完全避免将访问令牌存储为 CI 机密。请参阅[Trusted Publishers](./trusted-publishers)，它会在每次运行开始时将 CI 提供商的 OpenID Connect (OIDC) 身份令牌交换为短期 Hub 令牌 - 要么是存储库范围（用于发布模型、数据集、空间或内核，或以只读方式拉取它们），要么是用户范围（用于读取您有权访问的门控存储库并获取帐户的速率限制）。
+如果您只需要从 CI/CD 工作流程（GitHub Actions、GitLab CI、CircleCI 等）进行访问，则可以完全避免将访问令牌存储为 CI 机密。请参阅 [Trusted Publishers](./trusted-publishers)，它会在每次运行开始时将 CI 提供商的 OpenID Connect (OIDC) 身份令牌交换为短期 Hub 令牌 - 要么是存储库范围（用于发布模型、数据集、空间或内核，或以只读方式拉取它们），要么是用户范围（用于读取您有权访问的门控存储库并获取帐户的速率限制）。
 
 ### 对于企业组织
 
@@ -69,9 +69,9 @@ model = AutoModel.from_pretrained("private/model", token=access_token)
 
 ## 撤销泄露的令牌
 
-如果您自己的令牌之一已泄漏，请从您设置的[Access Tokens tab](https://huggingface.co/settings/tokens)中删除或刷新它。
+如果您自己的令牌之一已泄露，请从您设置的[Access Tokens tab](https://huggingface.co/settings/tokens)中删除或刷新它。
 
-如果您发现了其他人的 Hugging Face 访问令牌或 OAuth 令牌，您可以使用 [⟦T8⟧](https://huggingface-openapi.hf.space/#tag/tokens/POST/api/credentials/revoke) 端点使其失效。您不需要对拥有该令牌的帐户或组织拥有任何权限。
+如果您发现了其他人的 Hugging Face 访问令牌或 OAuth 令牌，您可以使用 [⟦T10⟧](https://huggingface-openapi.hf.space/#tag/tokens/POST/api/credentials/revoke) 端点使其失效。您不需要对拥有该令牌的帐户或组织拥有任何权限。
 
 ```bash
 # LEAKED_HF_TOKEN should contain the raw token value to revoke
@@ -80,7 +80,19 @@ curl -X POST "https://huggingface.co/api/credentials/revoke" \
   -d "{\"credentials\": [\"${LEAKED_HF_TOKEN}\"]}"
 ```
 
-您可以在一次调用中传递`credentials`数组中的多个令牌值，这对于批量报告结果的秘密扫描管道来说很方便。每一个与现有令牌匹配的提交令牌都会立即失效，并在所有地方停止工作——与[organization-level revocation](./enterprise-tokens-management#revoking-via-api)不同，它只会切断令牌对单个组织的访问。令牌的所有者会收到电子邮件通知，需要创建新令牌才能恢复访问权限。
+您可以在一次调用中传递`credentials`数组中的多个令牌值，这对于批量报告结果的秘密扫描管道来说很方便。
+
+您还可以使用 `hf` CLI 或 `huggingface_hub` Python 库撤销令牌。两者都不会随请求发送您自己的令牌：
+
+```bash
+hf auth revoke hf_xxxx hf_yyyy
+```
+
+```python
+from huggingface_hub import revoke_tokens
+
+revoke_tokens(["hf_xxxx", "hf_yyyy"])
+```每个提交的与现有令牌匹配的令牌都会立即失效，并在所有地方停止工作——与[organization-level revocation](./enterprise-tokens-management#revoking-via-api)不同，它只会切断令牌对单个组织的访问。令牌的所有者会收到电子邮件通知，需要创建新令牌才能恢复访问权限。
 
 端点还接受通过 [Sign-In with HF](./oauth) 颁发的 OAuth 令牌：访问令牌 (`hf_oauth_...`) 和刷新令牌。每个提交的 OAuth 令牌都会被撤销并停止工作，并且颁发给该令牌的用户会收到电子邮件通知；他们可能需要再次登录该应用程序。撤销刷新令牌也会撤销随其颁发的访问令牌。
 
@@ -116,7 +128,7 @@ curl -X POST "https://huggingface.co/api/credentials/revoke" \
 
 ### 当您的组织需要存储库范围的令牌时（企业组织）
 
-如果您的组织需要存储库范围的令牌，则您的细粒度令牌不能拥有整个组织的存储库权限。请在 **存储库权限** 下选择特定存储库。具有组织范围存储库权限的现有令牌将被拒绝，并在该组织的资源上出现 `403` 错误。参见[Require Repository-Scoped Tokens](./enterprise-tokens-management#require-repository-scoped-tokens)。
+如果您的组织需要存储库范围的令牌，则您的细粒度令牌无法拥有整个组织的存储库权限。请在 **存储库权限** 下选择特定存储库。具有组织范围存储库权限的现有令牌将被拒绝，并在该组织的资源上出现 `403` 错误。参见[Require Repository-Scoped Tokens](./enterprise-tokens-management#require-repository-scoped-tokens)。
 
 ### 在拥抱脸部时使用 MLX
 https://huggingface.co/docs/hub/mlx.md
