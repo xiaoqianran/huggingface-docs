@@ -77,5 +77,5 @@ size of the pretrained classifier, none for weights without one.
 | `cpubone_s0.r224_in1k` | 224 | - | - | 1000 | - | [timm](https://huggingface.co/timm/cpubone_s0.r224_in1k) |
 | `cpubone_t0.r224_in1k` | 224 | - | - | 1000 | - | [timm](https://huggingface.co/timm/cpubone_t0.r224_in1k) |
 
-### EfficientFormer
-https://huggingface.co/docs/timm/v1.0.31/models/efficientformer.md
+### DPN
+https://huggingface.co/docs/timm/v1.0.31/models/dpn.md

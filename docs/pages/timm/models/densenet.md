@@ -82,5 +82,5 @@ other.
 | `densenet121.ra_in1k` | 224 (test 288) | 76.486 | 288 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/densenet121.ra_in1k) |
 | `densenetblur121d.ra_in1k` | 224 (test 288) | 77.320 | 288 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/densenetblur121d.ra_in1k) |
 
-### Xception (legacy)
-https://huggingface.co/docs/timm/v1.0.31/models/xception.md
+### PP-HGNet
+https://huggingface.co/docs/timm/v1.0.31/models/hgnet.md

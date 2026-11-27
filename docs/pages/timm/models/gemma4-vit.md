@@ -67,5 +67,5 @@ size of the pretrained classifier, none for weights without one.
 | `gemma4_vit_570m.gemma4_31b_it` | 768 | - | - | none | apache-2.0 | [timm](https://huggingface.co/timm/gemma4_vit_570m.gemma4_31b_it) |
 | `gemma4_vit_570m_enc.gemma4_31b_it` | 768 | - | - | none | apache-2.0 | [timm](https://huggingface.co/timm/gemma4_vit_570m_enc.gemma4_31b_it) |
 
-### SKNet
-https://huggingface.co/docs/timm/v1.0.31/models/sknet.md
+### GCViT
+https://huggingface.co/docs/timm/v1.0.31/models/gcvit.md

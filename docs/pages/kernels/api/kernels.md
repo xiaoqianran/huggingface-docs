@@ -291,5 +291,5 @@ The following fields are available:
 - `repo_id` (`str`): the Hub repository containing the kernel.
 - `revision` (`Oid`): the commit of the kernel.
 
-### Set up your IDE
-https://huggingface.co/docs/kernels/main/builder/ide-setup.md
+### Building and testing kernels with GitHub Actions
+https://huggingface.co/docs/kernels/main/builder/github-actions.md

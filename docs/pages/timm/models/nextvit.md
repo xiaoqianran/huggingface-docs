@@ -74,5 +74,5 @@ size of the pretrained classifier, none for weights without one.
 | `nextvit_small.bd_ssld_6m_in1k` | 224 | 84.872 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/nextvit_small.bd_ssld_6m_in1k) |
 | `nextvit_small.bd_ssld_6m_in1k_384` | 384 | 85.966 | 384 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/nextvit_small.bd_ssld_6m_in1k_384) |
 
-### EdgeNeXt
-https://huggingface.co/docs/timm/v1.0.31/models/edgenext.md
+### EfficientFormer-V2
+https://huggingface.co/docs/timm/v1.0.31/models/efficientformer-v2.md

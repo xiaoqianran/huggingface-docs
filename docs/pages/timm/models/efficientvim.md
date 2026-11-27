@@ -80,5 +80,5 @@ size of the pretrained classifier, none for weights without one.
 | `efficientvim_m4.e450_in1k` | 256 | - | - | 1000 | mit | [timm](https://huggingface.co/timm/efficientvim_m4.e450_in1k) |
 | `efficientvim_m4_dist.in1k` | 256 | - | - | 1000 | mit | [timm](https://huggingface.co/timm/efficientvim_m4_dist.in1k) |
 
-### CoaT
-https://huggingface.co/docs/timm/v1.0.31/models/coat.md
+### DLA
+https://huggingface.co/docs/timm/v1.0.31/models/dla.md

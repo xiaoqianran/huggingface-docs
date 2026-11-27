@@ -39,5 +39,5 @@ configuration [authentication section](https://huggingface.co/docs/inference-end
 
 You can read the Hugging Face Privacy Policy at: https://huggingface.co/privacy
 
-### FAQs
-https://huggingface.co/docs/inference-endpoints/support/faq.md
+### llama.cpp
+https://huggingface.co/docs/inference-endpoints/engines/llama_cpp.md

@@ -65,5 +65,5 @@ size of the pretrained classifier, none for weights without one.
 | `tnt_s_legacy_patch16_224.in1k` | 224 | 81.512 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/tnt_s_legacy_patch16_224.in1k) |
 | `tnt_s_patch16_224.in1k` | 224 | 81.506 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/tnt_s_patch16_224.in1k) |
 
-### PP-LCNetV2
-https://huggingface.co/docs/timm/v1.0.31/models/lcnetv2.md
+### Hiera
+https://huggingface.co/docs/timm/v1.0.31/models/hiera.md

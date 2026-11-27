@@ -76,5 +76,5 @@ size of the pretrained classifier, none for weights without one.
 | `res2net101d.in1k` | 224 | 81.236 | 224 | 1000 | unknown | [timm](https://huggingface.co/timm/res2net101d.in1k) |
 | `res2next50.in1k` | 224 | 78.238 | 224 | 1000 | unknown | [timm](https://huggingface.co/timm/res2next50.in1k) |
 
-### Swin Transformer V2 (CR)
-https://huggingface.co/docs/timm/v1.0.31/models/swin-transformer-v2-cr.md
+### EfficientFormer
+https://huggingface.co/docs/timm/v1.0.31/models/efficientformer.md

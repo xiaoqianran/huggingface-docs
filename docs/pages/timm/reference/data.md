@@ -330,7 +330,7 @@ The `train.py` options are:
 timm.data.resolve_data_config(args = None, pretrained_cfg = None, model = None, use_test_size = False, verbose = False)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.31/timm/data/config.py#L8)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.31/timm/data/config.py#L10)
 
 #### timm.data.resolve_model_data_config[[timm.data.resolve_model_data_config]]
 
@@ -338,7 +338,7 @@ timm.data.resolve_data_config(args = None, pretrained_cfg = None, model = None, 
 timm.data.resolve_model_data_config(model, args = None, pretrained_cfg = None, use_test_size = False, verbose = False)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.31/timm/data/config.py#L103)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.31/timm/data/config.py#L107)
 
 **Parameters:**
 
@@ -961,5 +961,5 @@ set_epoch(epoch: int)
 
 Update the mixup state for the given epoch.
 
-### Losses
-https://huggingface.co/docs/timm/v1.0.31/reference/loss.md
+### Learning Rate Schedulers
+https://huggingface.co/docs/timm/v1.0.31/reference/schedulers.md

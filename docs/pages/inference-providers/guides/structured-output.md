@@ -70,7 +70,7 @@ from huggingface_hub import InferenceClient
 
 # Initialize the client
 client = InferenceClient(
-    provider="cerebras",  # or use "auto" for automatic selection
+    provider="auto",  # default routing
     api_key=os.environ["HF_TOKEN"],
 )
 
@@ -92,7 +92,7 @@ from typing import List
 
 # Initialize the OpenAI client (works with Inference Providers)
 client = OpenAI(
-    base_url="https://router.huggingface.co/cerebras/v1",
+    base_url="https://router.huggingface.co/v1",
     api_key=os.environ["HF_TOKEN"]
 )
 
@@ -175,10 +175,10 @@ Abstract: The dominant sequence transduction models are based on complex recurre
 or convolutional neural networks that include an encoder and a decoder...
 """
 
-# Generate structured output using Qwen/Qwen3-32B model
+# Generate structured output using thinkingmachines/Inkling-2-Mini model
 # With the OpenAI client, you can use the `response_format` as a pydantic model
 completion = client.beta.chat.completions.parse(
-    model="qwen-3-32b",
+    model="thinkingmachines/Inkling-2-Mini",
     messages=[
         {"role": "system", "content": "Extract paper title and abstract summary."},
         {"role": "user", "content": paper_text}
@@ -253,7 +253,7 @@ def analyze_paper_structured():
     
     # Initialize the client
     client = InferenceClient(
-        provider="cerebras",  # or use "auto" for automatic selection
+        provider="auto",  # default routing
         api_key=os.environ["HF_TOKEN"],
     )
     
@@ -340,7 +340,7 @@ def analyze_paper_structured():
     
     # Initialize the OpenAI client (works with Inference Providers)
     client = OpenAI(
-        base_url="https://router.huggingface.co/cerebras/v1",
+        base_url="https://router.huggingface.co/v1",
         api_key=os.environ["HF_TOKEN"]
     )
     
@@ -375,7 +375,7 @@ def analyze_paper_structured():
     ]
     
     completion = client.beta.chat.completions.parse(
-        model="qwen-3-32b",
+        model="thinkingmachines/Inkling-2-Mini",
         messages=messages,
         response_format=PaperAnalysis,
     )

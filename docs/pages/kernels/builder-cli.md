@@ -347,5 +347,5 @@ Clean generated artifacts
     This document was generated automatically by
     clap-markdown.
 
-### Kernel requirements
-https://huggingface.co/docs/kernels/main/kernel-requirements.md
+### kernels cache ls
+https://huggingface.co/docs/kernels/main/cli-cache.md

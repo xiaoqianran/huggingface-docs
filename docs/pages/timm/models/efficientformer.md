@@ -77,5 +77,5 @@ size of the pretrained classifier, none for weights without one.
 }
 ```
 
-### DenseNet
-https://huggingface.co/docs/timm/v1.0.31/models/densenet.md
+### MLP-Mixer, ResMLP and gMLP
+https://huggingface.co/docs/timm/v1.0.31/models/mlp-mixer.md

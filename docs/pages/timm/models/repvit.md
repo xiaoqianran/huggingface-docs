@@ -92,5 +92,5 @@ size of the pretrained classifier, none for weights without one.
 }
 ```
 
-### DeiT
-https://huggingface.co/docs/timm/v1.0.31/models/deit.md
+### HardCoRe-NAS
+https://huggingface.co/docs/timm/v1.0.31/models/hardcorenas.md

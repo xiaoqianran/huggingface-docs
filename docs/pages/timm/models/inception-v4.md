@@ -59,5 +59,5 @@ size of the pretrained classifier, none for weights without one.
 |---|---:|---:|---:|---:|---|---|
 | `inception_v4.tf_in1k` | 299 | 80.144 | 299 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/inception_v4.tf_in1k) |
 
-### Twins
-https://huggingface.co/docs/timm/v1.0.31/models/twins.md
+### PP-LCNetV2
+https://huggingface.co/docs/timm/v1.0.31/models/lcnetv2.md

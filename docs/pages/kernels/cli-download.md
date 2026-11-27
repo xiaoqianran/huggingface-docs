@@ -53,5 +53,5 @@ Your project directory must contain a `kernels.lock` file. Generate one using
 - [kernels variants](cli-variants) - View kernel variants and compatibility
   decisions
 
-### kernels benchmark
-https://huggingface.co/docs/kernels/main/cli-benchmark.md
+### Talks
+https://huggingface.co/docs/kernels/main/talks.md

@@ -128,5 +128,5 @@ size of the pretrained classifier, none for weights without one.
 | `xcit_tiny_24_p16_224.fb_in1k` | 224 | 79.474 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/xcit_tiny_24_p16_224.fb_in1k) |
 | `xcit_tiny_24_p16_384.fb_dist_in1k` | 384 | 82.580 | 384 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/xcit_tiny_24_p16_384.fb_dist_in1k) |
 
-### ResNetV2 (BiT)
-https://huggingface.co/docs/timm/v1.0.31/models/resnetv2.md
+### EVA
+https://huggingface.co/docs/timm/v1.0.31/models/eva.md

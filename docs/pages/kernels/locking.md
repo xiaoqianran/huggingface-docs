@@ -78,5 +78,5 @@ from kernels import load_kernel
 activation = load_kernel("kernels-community/activation")
 ```
 
-### Projects using kernels
-https://huggingface.co/docs/kernels/main/integrating-kernels.md
+### Install agent skills
+https://huggingface.co/docs/kernels/main/cli-skills.md

@@ -114,5 +114,5 @@ Hosted by [`apple`](https://huggingface.co/apple) on the Hugging Face Hub.
 |---|---:|---:|---:|---:|---|---|
 | `vit_base_mci_224.apple_mclip2_dfndr2b` | 224 | - | - | 512 | apple-amlr | [timm](https://huggingface.co/timm/vit_base_mci_224.apple_mclip2_dfndr2b) |
 
-### RepViT
-https://huggingface.co/docs/timm/v1.0.31/models/repvit.md
+### ResNetV2 (BiT)
+https://huggingface.co/docs/timm/v1.0.31/models/resnetv2.md

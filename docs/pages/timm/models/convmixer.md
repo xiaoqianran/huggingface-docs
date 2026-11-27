@@ -65,5 +65,5 @@ size of the pretrained classifier, none for weights without one.
 | `convmixer_1024_20_ks9_p14.in1k` | 224 | 76.944 | 224 | 1000 | mit | [timm](https://huggingface.co/timm/convmixer_1024_20_ks9_p14.in1k) |
 | `convmixer_1536_20.in1k` | 224 | 81.382 | 224 | 1000 | mit | [timm](https://huggingface.co/timm/convmixer_1536_20.in1k) |
 
-### MetaFormer (PoolFormer, ConvFormer, CAFormer)
-https://huggingface.co/docs/timm/v1.0.31/models/metaformer.md
+### TinyViT
+https://huggingface.co/docs/timm/v1.0.31/models/tiny-vit.md

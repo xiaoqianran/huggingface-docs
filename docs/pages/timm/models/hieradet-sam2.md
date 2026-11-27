@@ -72,5 +72,5 @@ size of the pretrained classifier, none for weights without one.
 | `sam2_hiera_tiny.fb_r896` | 896 | - | - | none | apache-2.0 | [timm](https://huggingface.co/timm/sam2_hiera_tiny.fb_r896) |
 | `sam2_hiera_tiny.fb_r896_2pt1` | 896 | - | - | none | apache-2.0 | [timm](https://huggingface.co/timm/sam2_hiera_tiny.fb_r896_2pt1) |
 
-### VoVNet
-https://huggingface.co/docs/timm/v1.0.31/models/vovnet.md
+### LeViT
+https://huggingface.co/docs/timm/v1.0.31/models/levit.md

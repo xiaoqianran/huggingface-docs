@@ -115,5 +115,5 @@ other.
 | `cs3darknet_focus_s.ra4_e3600_r256_in1k` | 256 (test 320) | 73.158 | 320 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/cs3darknet_focus_s.ra4_e3600_r256_in1k) |
 | `cs3edgenet_x.c2_in1k` | 256 (test 288) | 82.734 | 288 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/cs3edgenet_x.c2_in1k) |
 
-### HardCoRe-NAS
-https://huggingface.co/docs/timm/v1.0.31/models/hardcorenas.md
+### EdgeNeXt
+https://huggingface.co/docs/timm/v1.0.31/models/edgenext.md

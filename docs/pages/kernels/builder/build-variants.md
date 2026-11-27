@@ -121,5 +121,5 @@ or more of the following variants:
 - `torch-tpu`
 - `torch-xpu`
 
-### Why Nix?
-https://huggingface.co/docs/kernels/main/builder/why-nix.md
+### Ship Triton autotune configurations
+https://huggingface.co/docs/kernels/main/builder/triton-autotune.md

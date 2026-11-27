@@ -78,5 +78,5 @@ size of the pretrained classifier, none for weights without one.
 | `cait_xxs36_224.fb_dist_in1k` | 224 | 79.750 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/cait_xxs36_224.fb_dist_in1k) |
 | `cait_xxs36_384.fb_dist_in1k` | 384 | 82.204 | 384 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/cait_xxs36_384.fb_dist_in1k) |
 
-### FastViT
-https://huggingface.co/docs/timm/v1.0.31/models/fastvit.md
+### SHViT
+https://huggingface.co/docs/timm/v1.0.31/models/shvit.md

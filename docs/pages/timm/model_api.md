@@ -283,5 +283,5 @@ optimizer factory without special cases:
 `tests/test_models.py` checks the forward, backward, features, intermediates, classifier reset and pretrained cfg
 parts of the interface for the registered models (the largest are excluded from some tests to keep CI time down).
 
-### Sharing and Loading Models From the Hugging Face Hub
-https://huggingface.co/docs/timm/v1.0.31/hf_hub.md
+### HParams
+https://huggingface.co/docs/timm/v1.0.31/hparams.md

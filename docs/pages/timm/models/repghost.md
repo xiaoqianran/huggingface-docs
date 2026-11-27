@@ -75,5 +75,5 @@ size of the pretrained classifier, none for weights without one.
 | `repghostnet_150.in1k` | 224 | 77.474 | 224 | 1000 | mit | [timm](https://huggingface.co/timm/repghostnet_150.in1k) |
 | `repghostnet_200.in1k` | 224 | 78.802 | 224 | 1000 | mit | [timm](https://huggingface.co/timm/repghostnet_200.in1k) |
 
-### MViTv2
-https://huggingface.co/docs/timm/v1.0.31/models/mvitv2.md
+### ReXNet
+https://huggingface.co/docs/timm/v1.0.31/models/rexnet.md

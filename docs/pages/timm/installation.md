@@ -73,5 +73,5 @@ Again, you can check if `timm` was properly installed with the following command
 python -c "from timm import list_models; print(list_models(pretrained=True)[:5])"
 ```
 
-### Model Families
-https://huggingface.co/docs/timm/v1.0.31/models.md
+### Scripts
+https://huggingface.co/docs/timm/v1.0.31/training_script.md

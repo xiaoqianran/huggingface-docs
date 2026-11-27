@@ -94,5 +94,5 @@ other.
 | `hiera_small_abswin_256.sbb2_pd_e200_in12k` | 256 | - | - | 11821 | apache-2.0 | [timm](https://huggingface.co/timm/hiera_small_abswin_256.sbb2_pd_e200_in12k) |
 | `hiera_small_abswin_256.sbb2_pd_e200_in12k_ft_in1k` | 256 | 84.564 | 256 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/hiera_small_abswin_256.sbb2_pd_e200_in12k_ft_in1k) |
 
-### Sequencer
-https://huggingface.co/docs/timm/v1.0.31/models/sequencer.md
+### PiT
+https://huggingface.co/docs/timm/v1.0.31/models/pit.md

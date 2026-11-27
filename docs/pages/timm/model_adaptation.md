@@ -98,5 +98,5 @@ Without a serializable replacement, export raises an error naming the argument.
 Dropping it silently could reconstruct a different model even when its weights
 load successfully.
 
-### The timm Model API
-https://huggingface.co/docs/timm/v1.0.31/model_api.md
+### Feature Extraction
+https://huggingface.co/docs/timm/v1.0.31/feature_extraction.md

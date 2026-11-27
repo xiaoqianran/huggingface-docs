@@ -82,5 +82,5 @@ other.
 | `xception65.tf_in1k` | 299 | 79.558 | 299 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/xception65.tf_in1k) |
 | `xception71.tf_in1k` | 299 | 79.920 | 299 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/xception71.tf_in1k) |
 
-### EfficientFormer-V2
-https://huggingface.co/docs/timm/v1.0.31/models/efficientformer-v2.md
+### FasterNet
+https://huggingface.co/docs/timm/v1.0.31/models/fasternet.md

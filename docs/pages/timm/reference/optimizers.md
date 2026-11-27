@@ -1269,5 +1269,5 @@ closure (Callable, optional) : A closure that reevaluates the model and returns 
 
 Performs a single optimization step.
 
-### Learning Rate Schedulers
-https://huggingface.co/docs/timm/v1.0.31/reference/schedulers.md
+### iFormer
+https://huggingface.co/docs/timm/v1.0.31/models/iformer.md

@@ -366,5 +366,5 @@ other.
 | `tinynet_d.in1k` | 152 | 66.936 | 152 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/tinynet_d.in1k) |
 | `tinynet_e.in1k` | 106 | 59.874 | 106 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/tinynet_e.in1k) |
 
-### ViTamin
-https://huggingface.co/docs/timm/v1.0.31/models/vitamin.md
+### Swin Transformer
+https://huggingface.co/docs/timm/v1.0.31/models/swin-transformer.md

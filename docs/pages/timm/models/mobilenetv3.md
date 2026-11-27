@@ -174,5 +174,5 @@ Pretrained configs reference [ImageNet-21K Pretraining for the Masses](https://a
 | `tf_mobilenetv3_small_100.in1k` | 224 | 67.922 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/tf_mobilenetv3_small_100.in1k) |
 | `tf_mobilenetv3_small_minimal_100.in1k` | 224 | 62.892 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/tf_mobilenetv3_small_minimal_100.in1k) |
 
-### EfficientViM
-https://huggingface.co/docs/timm/v1.0.31/models/efficientvim.md
+### Aligned Xception
+https://huggingface.co/docs/timm/v1.0.31/models/xception-aligned.md

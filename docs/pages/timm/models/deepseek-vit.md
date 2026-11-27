@@ -85,5 +85,5 @@ Origin: [huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash](https://huggingface.co/
 | `deepseek_vit_412m_align.deepseek_v4_1_flash` | 546 | - | - | none | mit | [timm](https://huggingface.co/timm/deepseek_vit_412m_align.deepseek_v4_1_flash) |
 | `deepseek_vit_412m_enc.deepseek_v4_1_flash` | 546 | - | - | none | mit | [timm](https://huggingface.co/timm/deepseek_vit_412m_enc.deepseek_v4_1_flash) |
 
-### TResNet
-https://huggingface.co/docs/timm/v1.0.31/models/tresnet.md
+### FastViT
+https://huggingface.co/docs/timm/v1.0.31/models/fastvit.md

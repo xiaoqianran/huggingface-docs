@@ -60,5 +60,5 @@ size of the pretrained classifier, none for weights without one.
 |---|---:|---:|---:|---:|---|---|
 | `legacy_xception.tf_in1k` | 299 | 79.058 | 299 | 1000 | apache-2.0 | [original](https://github.com/rwightman/pytorch-image-models/releases/download/v0.1-cadene/xception-43020ad28.pth) |
 
-### NesT
-https://huggingface.co/docs/timm/v1.0.31/models/nest.md
+### HRNet
+https://huggingface.co/docs/timm/v1.0.31/models/hrnet.md

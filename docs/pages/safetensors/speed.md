@@ -88,5 +88,5 @@ The currently shown speedup was gotten on:
 * Driver Version: 460.32.03
 * CUDA Version: 11.2
 
-### Torch shared tensors
-https://huggingface.co/docs/safetensors/main/torch_shared_tensors.md
+### Numpy API[[safetensors.numpy.load_file]]
+https://huggingface.co/docs/safetensors/main/api/numpy.md

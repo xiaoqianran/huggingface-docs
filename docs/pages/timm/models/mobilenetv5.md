@@ -63,5 +63,5 @@ size of the pretrained classifier, none for weights without one.
 |---|---:|---:|---:|---:|---|---|
 | `mobilenetv5_300m.gemma3n` | 768 | - | - | none | gemma | [timm](https://huggingface.co/timm/mobilenetv5_300m.gemma3n) |
 
-### DaViT
-https://huggingface.co/docs/timm/v1.0.31/models/davit.md
+### ConvNeXt
+https://huggingface.co/docs/timm/v1.0.31/models/convnext.md

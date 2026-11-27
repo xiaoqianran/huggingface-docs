@@ -66,5 +66,5 @@ size of the pretrained classifier, none for weights without one.
 | `rdnet_small.nv_in1k` | 224 | 83.658 | 224 | 1000 | apache-2.0 | [naver-ai/rdnet_small.nv_in1k](https://huggingface.co/naver-ai/rdnet_small.nv_in1k) |
 | `rdnet_tiny.nv_in1k` | 224 | 82.814 | 224 | 1000 | apache-2.0 | [naver-ai/rdnet_tiny.nv_in1k](https://huggingface.co/naver-ai/rdnet_tiny.nv_in1k) |
 
-### CSPNeXt
-https://huggingface.co/docs/timm/v1.0.31/models/cspnext.md
+### SKNet
+https://huggingface.co/docs/timm/v1.0.31/models/sknet.md

@@ -78,5 +78,5 @@ size of the pretrained classifier, none for weights without one.
 | `swinv2_cr_small_ns_224.sw_in1k` | 224 | 83.490 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/swinv2_cr_small_ns_224.sw_in1k) |
 | `swinv2_cr_tiny_ns_224.sw_in1k` | 224 | 81.796 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/swinv2_cr_tiny_ns_224.sw_in1k) |
 
-### MaxViT and CoAtNet
-https://huggingface.co/docs/timm/v1.0.31/models/maxxvit.md
+### ConViT
+https://huggingface.co/docs/timm/v1.0.31/models/convit.md

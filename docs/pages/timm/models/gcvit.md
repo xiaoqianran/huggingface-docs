@@ -80,5 +80,5 @@ size of the pretrained classifier, none for weights without one.
 }
 ```
 
-### SwiftFormer
-https://huggingface.co/docs/timm/v1.0.31/models/swiftformer.md
+### Qwen3 ViT
+https://huggingface.co/docs/timm/v1.0.31/models/qwen3-vit.md

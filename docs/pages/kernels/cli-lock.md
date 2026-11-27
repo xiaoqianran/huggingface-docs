@@ -80,5 +80,5 @@ The generated lock file contains:
 - [kernels variants](cli-variants) - View kernel variants and compatibility
   decisions
 
-### Quickstart
-https://huggingface.co/docs/kernels/main/basic-usage.md
+### Layers API Reference
+https://huggingface.co/docs/kernels/main/api/layers.md

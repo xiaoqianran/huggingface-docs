@@ -73,5 +73,5 @@ size of the pretrained classifier, none for weights without one.
 | `vgg19.tv_in1k` | 224 | 72.400 | 224 | 1000 | bsd-3-clause | [timm](https://huggingface.co/timm/vgg19.tv_in1k) |
 | `vgg19_bn.tv_in1k` | 224 | 74.230 | 224 | 1000 | bsd-3-clause | [timm](https://huggingface.co/timm/vgg19_bn.tv_in1k) |
 
-### FocalNet
-https://huggingface.co/docs/timm/v1.0.31/models/focalnet.md
+### EfficientNet
+https://huggingface.co/docs/timm/v1.0.31/models/efficientnet.md

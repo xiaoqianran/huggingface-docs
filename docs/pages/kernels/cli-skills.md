@@ -69,5 +69,5 @@ kernel-builder skills add --claude --codex --opencode
 kernel-builder skills add --dest ~/my-skills --force
 ```
 
-### Environment variables
-https://huggingface.co/docs/kernels/main/env.md
+### kernels versions
+https://huggingface.co/docs/kernels/main/cli-versions.md

@@ -126,5 +126,5 @@ other.
 | `resnetv2_50d_evos.ah_in1k` | 224 (test 288) | 82.024 | 288 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/resnetv2_50d_evos.ah_in1k) |
 | `resnetv2_50d_gn.ah_in1k` | 224 (test 288) | 81.960 | 288 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/resnetv2_50d_gn.ah_in1k) |
 
-### PNASNet
-https://huggingface.co/docs/timm/v1.0.31/models/pnasnet.md
+### ViTamin
+https://huggingface.co/docs/timm/v1.0.31/models/vitamin.md

@@ -100,5 +100,5 @@ size of the pretrained classifier, none for weights without one.
 }
 ```
 
-### MobileNet-V5
-https://huggingface.co/docs/timm/v1.0.31/models/mobilenetv5.md
+### Next-ViT
+https://huggingface.co/docs/timm/v1.0.31/models/nextvit.md

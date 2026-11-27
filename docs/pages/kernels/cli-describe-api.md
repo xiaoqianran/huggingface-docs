@@ -71,5 +71,5 @@ testing-only symbols. Layer attributes recorded as `null` are displayed as
 For kernel metadata, use [kernels info](cli-info). For available build
 variants, use [kernels variants](cli-variants).
 
-### Install agent skills
-https://huggingface.co/docs/kernels/main/cli-skills.md
+### kernels download
+https://huggingface.co/docs/kernels/main/cli-download.md

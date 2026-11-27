@@ -15,5 +15,5 @@ Read the [quick start guide](quickstart) to get up and running with the `timm` l
       >Reference
       Technical descriptions of how timm classes and methods work.
 
-### Quickstart
-https://huggingface.co/docs/timm/v1.0.31/quickstart.md
+### Model Families
+https://huggingface.co/docs/timm/v1.0.31/models.md

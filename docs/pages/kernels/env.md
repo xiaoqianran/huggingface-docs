@@ -48,5 +48,5 @@ Disables kernel mappings for [`layers`](layers).
 
 Disable telemetry.
 
-### Kernels security
-https://huggingface.co/docs/kernels/main/security.md
+### Blog posts
+https://huggingface.co/docs/kernels/main/blog.md

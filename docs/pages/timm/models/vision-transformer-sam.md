@@ -68,5 +68,5 @@ size of the pretrained classifier, none for weights without one.
 | `samvit_huge_patch16.sa1b` | 1024 | - | - | none | apache-2.0 | [timm](https://huggingface.co/timm/samvit_huge_patch16.sa1b) |
 | `samvit_large_patch16.sa1b` | 1024 | - | - | none | apache-2.0 | [timm](https://huggingface.co/timm/samvit_large_patch16.sa1b) |
 
-### SENet (legacy)
-https://huggingface.co/docs/timm/v1.0.31/models/senet.md
+### Swin Transformer V2
+https://huggingface.co/docs/timm/v1.0.31/models/swin-transformer-v2.md

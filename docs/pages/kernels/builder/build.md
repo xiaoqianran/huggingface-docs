@@ -275,5 +275,5 @@ Generating a kernel's public API symbols (`symbols.json`) also requires
 importing the kernel. So, when the `get_kernel` check is disabled, the build
 variants will not contain a `symbols.json` file.
 
-### Build variants
-https://huggingface.co/docs/kernels/main/builder/build-variants.md
+### Why Nix?
+https://huggingface.co/docs/kernels/main/builder/why-nix.md

@@ -88,5 +88,5 @@ size of the pretrained classifier, none for weights without one.
 | `swin_tiny_patch4_window7_224.ms_in22k` | 224 | - | - | 21841 | mit | [timm](https://huggingface.co/timm/swin_tiny_patch4_window7_224.ms_in22k) |
 | `swin_tiny_patch4_window7_224.ms_in22k_ft_in1k` | 224 | 80.966 | 224 | 1000 | mit | [timm](https://huggingface.co/timm/swin_tiny_patch4_window7_224.ms_in22k_ft_in1k) |
 
-### MLP-Mixer, ResMLP and gMLP
-https://huggingface.co/docs/timm/v1.0.31/models/mlp-mixer.md
+### PVTv2
+https://huggingface.co/docs/timm/v1.0.31/models/pvt-v2.md

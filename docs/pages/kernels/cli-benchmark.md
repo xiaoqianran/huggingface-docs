@@ -284,5 +284,5 @@ fail to capture, fall back to eager timing. The mode used is recorded as
 - If `verify_<workload>()` exists and the outputs do not match, the command
   exits with an error.
 
-### kernels versions
-https://huggingface.co/docs/kernels/main/cli-versions.md
+### Installation
+https://huggingface.co/docs/kernels/main/installation.md

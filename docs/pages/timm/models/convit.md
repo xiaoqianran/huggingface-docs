@@ -75,5 +75,5 @@ size of the pretrained classifier, none for weights without one.
 }
 ```
 
-### CSPNet (CSPResNet, CSPDarkNet, DarkNet)
-https://huggingface.co/docs/timm/v1.0.31/models/cspnet.md
+### MViTv2
+https://huggingface.co/docs/timm/v1.0.31/models/mvitv2.md

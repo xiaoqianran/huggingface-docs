@@ -157,5 +157,5 @@ Browse through different kernels compatible with `kernels` from
 A kernel can provide layers in addition to kernel functions. Refer to
 [Layers](./layers) to know more.
 
-### kernels info
-https://huggingface.co/docs/kernels/main/cli-info.md
+### Environment variables
+https://huggingface.co/docs/kernels/main/env.md

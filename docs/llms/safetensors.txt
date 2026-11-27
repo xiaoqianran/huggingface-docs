@@ -2,13 +2,13 @@
 
 ## Docs
 
-- [Safetensors](https://huggingface.co/docs/safetensors/main/index.md)
-- [Speed Comparison](https://huggingface.co/docs/safetensors/main/speed.md)
-- [Torch shared tensors](https://huggingface.co/docs/safetensors/main/torch_shared_tensors.md)
 - [Convert weights to safetensors](https://huggingface.co/docs/safetensors/main/convert-weights.md)
+- [Torch shared tensors](https://huggingface.co/docs/safetensors/main/torch_shared_tensors.md)
+- [Safetensors](https://huggingface.co/docs/safetensors/main/index.md)
 - [Metadata Parsing](https://huggingface.co/docs/safetensors/main/metadata_parsing.md)
-- [Torch API[[safetensors.torch.load_file]]](https://huggingface.co/docs/safetensors/main/api/torch.md)
+- [Speed Comparison](https://huggingface.co/docs/safetensors/main/speed.md)
+- [Numpy API[[safetensors.numpy.load_file]]](https://huggingface.co/docs/safetensors/main/api/numpy.md)
 - [PaddlePaddle API[[safetensors.paddle.load_file]]](https://huggingface.co/docs/safetensors/main/api/paddle.md)
+- [Torch API[[safetensors.torch.load_file]]](https://huggingface.co/docs/safetensors/main/api/torch.md)
 - [Tensorflow API[[safetensors.tensorflow.load_file]]](https://huggingface.co/docs/safetensors/main/api/tensorflow.md)
 - [Flax API[[safetensors.flax.load_file]]](https://huggingface.co/docs/safetensors/main/api/flax.md)
-- [Numpy API[[safetensors.numpy.load_file]]](https://huggingface.co/docs/safetensors/main/api/numpy.md)

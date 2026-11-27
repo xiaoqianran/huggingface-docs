@@ -69,5 +69,5 @@ size of the pretrained classifier, none for weights without one.
 | `starnet_s3.in1k` | 224 | 77.378 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/starnet_s3.in1k) |
 | `starnet_s4.in1k` | 224 | 78.824 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/starnet_s4.in1k) |
 
-### PP-HGNet
-https://huggingface.co/docs/timm/v1.0.31/models/hgnet.md
+### CSPNet (CSPResNet, CSPDarkNet, DarkNet)
+https://huggingface.co/docs/timm/v1.0.31/models/cspnet.md

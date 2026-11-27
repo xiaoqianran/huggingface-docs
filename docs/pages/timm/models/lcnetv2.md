@@ -66,5 +66,5 @@ size of the pretrained classifier, none for weights without one.
 | `lcnetv2_large.paddle_in1k` | 224 | - | - | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/lcnetv2_large.paddle_in1k) |
 | `lcnetv2_small.paddle_in1k` | 224 | - | - | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/lcnetv2_small.paddle_in1k) |
 
-### CPUBone
-https://huggingface.co/docs/timm/v1.0.31/models/cpubone.md
+### HieraDet (SAM 2)
+https://huggingface.co/docs/timm/v1.0.31/models/hieradet-sam2.md

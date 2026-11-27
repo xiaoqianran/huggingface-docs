@@ -729,5 +729,5 @@ Pretrained configs reference [arXiv:2601.17237](https://arxiv.org/abs/2601.17237
 | `vit_huge_patch14_gap_224.in22k_ijepa` | 224 | - | - | none | cc-by-nc-4.0 | [original](https://dl.fbaipublicfiles.com/ijepa/IN22K-vit.h.14-900e.pth.tar) |
 | `vit_huge_patch16_gap_448.in1k_ijepa` | 448 | - | - | none | cc-by-nc-4.0 | [original](https://dl.fbaipublicfiles.com/ijepa/IN1K-vit.h.16-448px-300e.pth.tar) |
 
-### VGG
-https://huggingface.co/docs/timm/v1.0.31/models/vgg.md
+### MobileViT
+https://huggingface.co/docs/timm/v1.0.31/models/mobilevit.md

@@ -72,5 +72,5 @@ size of the pretrained classifier, none for weights without one.
 | `dpn107.mx_in1k` | 224 | 80.166 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/dpn107.mx_in1k) |
 | `dpn131.mx_in1k` | 224 | 79.836 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/dpn131.mx_in1k) |
 
-### RepGhost
-https://huggingface.co/docs/timm/v1.0.31/models/repghost.md
+### Inception-ResNet-v2
+https://huggingface.co/docs/timm/v1.0.31/models/inception-resnet-v2.md

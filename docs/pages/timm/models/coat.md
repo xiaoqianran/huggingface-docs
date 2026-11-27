@@ -74,5 +74,5 @@ size of the pretrained classifier, none for weights without one.
 | `coat_small.in1k` | 224 | 82.378 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/coat_small.in1k) |
 | `coat_tiny.in1k` | 224 | 78.442 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/coat_tiny.in1k) |
 
-### Vision Transformer (relative position)
-https://huggingface.co/docs/timm/v1.0.31/models/vision-transformer-relpos.md
+### Sequencer
+https://huggingface.co/docs/timm/v1.0.31/models/sequencer.md

@@ -62,5 +62,5 @@ size of the pretrained classifier, none for weights without one.
 | `csatv2_21m.sw_r512_in1k` | 512 | - | - | 1000 | - | [timm](https://huggingface.co/timm/csatv2_21m.sw_r512_in1k) |
 | `csatv2_21m.sw_r640_in1k` | 640 | - | - | 1000 | - | [timm](https://huggingface.co/timm/csatv2_21m.sw_r640_in1k) |
 
-### NASNet
-https://huggingface.co/docs/timm/v1.0.31/models/nasnet.md
+### CPUBone
+https://huggingface.co/docs/timm/v1.0.31/models/cpubone.md

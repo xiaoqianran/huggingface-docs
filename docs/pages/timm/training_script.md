@@ -405,5 +405,5 @@ These params will also work well for SE-ResNeXt-50 and SK-ResNeXt-50 and likely 
 ./distributed_train.sh 8 --data-dir /imagenet --model resnext50_32x4d --lr 0.6 --warmup-epochs 5 --epochs 240 --weight-decay 1e-4 --sched cosine --reprob 0.4 --recount 3 --remode pixel --aa rand-m7-mstd0.5-inc1 -b 192 -j 6 --amp --dist-bn reduce
 ```
 
-### Feature Extraction
-https://huggingface.co/docs/timm/v1.0.31/feature_extraction.md
+### Quickstart
+https://huggingface.co/docs/timm/v1.0.31/quickstart.md

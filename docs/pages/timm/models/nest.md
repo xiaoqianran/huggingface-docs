@@ -68,5 +68,5 @@ size of the pretrained classifier, none for weights without one.
 | `nest_small_jx.goog_in1k` | 224 | 83.132 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/nest_small_jx.goog_in1k) |
 | `nest_tiny_jx.goog_in1k` | 224 | 81.428 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/nest_tiny_jx.goog_in1k) |
 
-### CaiT
-https://huggingface.co/docs/timm/v1.0.31/models/cait.md
+### DeiT
+https://huggingface.co/docs/timm/v1.0.31/models/deit.md

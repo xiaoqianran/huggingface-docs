@@ -68,5 +68,5 @@ size of the pretrained classifier, none for weights without one.
 | `inception_next_small.sail_in1k` | 224 | 83.584 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/inception_next_small.sail_in1k) |
 | `inception_next_tiny.sail_in1k` | 224 | 82.508 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/inception_next_tiny.sail_in1k) |
 
-### ResNet
-https://huggingface.co/docs/timm/v1.0.31/models/resnet.md
+### CaiT
+https://huggingface.co/docs/timm/v1.0.31/models/cait.md

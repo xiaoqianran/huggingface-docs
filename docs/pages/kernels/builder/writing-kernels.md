@@ -717,5 +717,5 @@ The card will be filled automatically by the builder when using the
 `build` sub-directory inside the main kernel directory. It will be uploaded as
 `README.md` to the Hub.
 
-### Building and testing kernels with GitHub Actions
-https://huggingface.co/docs/kernels/main/builder/github-actions.md
+### Set up for Metal kernels
+https://huggingface.co/docs/kernels/main/builder/metal.md

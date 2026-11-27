@@ -279,5 +279,5 @@ kernel = get_kernel("your-org/your-kernel", version=1)
 
 Well done! You have now built a custom kernel and published it to the Hub.
 
-### Architecture overview
-https://huggingface.co/docs/kernels/main/builder/design-overview.md
+### Develop locally
+https://huggingface.co/docs/kernels/main/builder/local-dev.md

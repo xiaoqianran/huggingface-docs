@@ -48,5 +48,5 @@ compute kernels available on the Hub.
 Feel free to open a PR enlisting your project to show how `kernels` is leveraged
 there.
 
-### Layers API Reference
-https://huggingface.co/docs/kernels/main/api/layers.md
+### Kernels security
+https://huggingface.co/docs/kernels/main/security.md

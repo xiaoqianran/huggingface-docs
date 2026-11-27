@@ -32,5 +32,5 @@ the Hugging Face Hub platform:
     [XET](https://huggingface.co/docs/hub/xet/index)
   - Visibility into the download stats
 
-### Overview
-https://huggingface.co/docs/kernels/main/cli.md
+### kernels verify-signature
+https://huggingface.co/docs/kernels/main/cli-verify-signature.md

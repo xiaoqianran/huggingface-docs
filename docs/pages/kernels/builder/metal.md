@@ -59,5 +59,5 @@ Toolchain Identifier: com.apple.dt.toolchain.Metal.32023
 Toolchain Search Path: /private/var/run/com.apple.security.cryptexd/mnt/com.apple.MobileAsset.MetalToolchain-v17.2.54.0.mDxgz0
 ```
 
-### Develop locally
-https://huggingface.co/docs/kernels/main/builder/local-dev.md
+### Set up your IDE
+https://huggingface.co/docs/kernels/main/builder/ide-setup.md

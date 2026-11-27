@@ -177,5 +177,5 @@ GEMM is ~1.4× faster than the example's heuristic default (0.50 ms vs. 0.71 ms)
 — on par with cuBLAS for this shape. On an NVIDIA GB10, the same GEMM is ~1.6×
 faster with its tuned configuration (0.43 ms vs. 0.67 ms).
 
-### Nix builder design
-https://huggingface.co/docs/kernels/main/builder/design-nix-builder.md
+### Architecture overview
+https://huggingface.co/docs/kernels/main/builder/design-overview.md

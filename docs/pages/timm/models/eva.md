@@ -355,5 +355,5 @@ Pretrained configs reference [Vision Pretraining for Dense Spatial Perception](h
 }
 ```
 
-### HieraDet (SAM 2)
-https://huggingface.co/docs/timm/v1.0.31/models/hieradet-sam2.md
+### ResNet
+https://huggingface.co/docs/timm/v1.0.31/models/resnet.md

@@ -102,5 +102,5 @@ primaryClass={cs.CV}
 }
 ```
 
-### Aligned Xception
-https://huggingface.co/docs/timm/v1.0.31/models/xception-aligned.md
+### NFNet
+https://huggingface.co/docs/timm/v1.0.31/models/nfnet.md

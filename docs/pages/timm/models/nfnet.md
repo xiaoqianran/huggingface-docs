@@ -126,5 +126,5 @@ other.
 | `eca_nfnet_l2.ra3_in1k` | 320 (test 384) | 84.710 | 384 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/eca_nfnet_l2.ra3_in1k) |
 | `test_nfnet.r160_in1k` | 160 | 47.634 | 160 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/test_nfnet.r160_in1k) |
 
-### TNT
-https://huggingface.co/docs/timm/v1.0.31/models/tnt.md
+### ResNeSt
+https://huggingface.co/docs/timm/v1.0.31/models/resnest.md

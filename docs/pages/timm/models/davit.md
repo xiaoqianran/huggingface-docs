@@ -85,5 +85,5 @@ Hosted by [`microsoft`](https://huggingface.co/microsoft) on the Hugging Face Hu
 | `davit_base_fl.msft_florence2` | 768 | - | - | none | apache-2.0 | [microsoft/Florence-2-base](https://huggingface.co/microsoft/Florence-2-base) |
 | `davit_huge_fl.msft_florence2` | 768 | - | - | none | apache-2.0 | [microsoft/Florence-2-large](https://huggingface.co/microsoft/Florence-2-large) |
 
-### DLA
-https://huggingface.co/docs/timm/v1.0.31/models/dla.md
+### RDNet
+https://huggingface.co/docs/timm/v1.0.31/models/rdnet.md

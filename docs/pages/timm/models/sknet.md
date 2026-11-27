@@ -66,5 +66,5 @@ size of the pretrained classifier, none for weights without one.
 | `skresnet34.ra_in1k` | 224 | 76.956 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/skresnet34.ra_in1k) |
 | `skresnext50_32x4d.ra_in1k` | 224 | 80.168 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/skresnext50_32x4d.ra_in1k) |
 
-### Swin Transformer
-https://huggingface.co/docs/timm/v1.0.31/models/swin-transformer.md
+### NASNet
+https://huggingface.co/docs/timm/v1.0.31/models/nasnet.md

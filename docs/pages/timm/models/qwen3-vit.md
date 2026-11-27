@@ -202,5 +202,5 @@ Origin: [huggingface.co/Qwen/Qwen3.8-Flash-Next](https://huggingface.co/Qwen/Qwe
 | `qwen3_vit_416m_enc.qwen3_8_flash_next` | 768 | - | - | none | qwen-community-1.0 | [timm](https://huggingface.co/timm/qwen3_vit_416m_enc.qwen3_8_flash_next) |
 | `qwen3_vit_416m_merge.qwen3_8_flash_next` | 768 | - | - | none | qwen-community-1.0 | [timm](https://huggingface.co/timm/qwen3_vit_416m_merge.qwen3_8_flash_next) |
 
-### Models
-https://huggingface.co/docs/timm/v1.0.31/reference/models.md
+### VoVNet
+https://huggingface.co/docs/timm/v1.0.31/models/vovnet.md

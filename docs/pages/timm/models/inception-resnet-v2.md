@@ -63,5 +63,5 @@ size of the pretrained classifier, none for weights without one.
 | `inception_resnet_v2.tf_ens_adv_in1k` | 299 | 79.998 | 299 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/inception_resnet_v2.tf_ens_adv_in1k) |
 | `inception_resnet_v2.tf_in1k` | 299 | 80.434 | 299 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/inception_resnet_v2.tf_in1k) |
 
-### ResNeSt
-https://huggingface.co/docs/timm/v1.0.31/models/resnest.md
+### MobileNet-V5
+https://huggingface.co/docs/timm/v1.0.31/models/mobilenetv5.md

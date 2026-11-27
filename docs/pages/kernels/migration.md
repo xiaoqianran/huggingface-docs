@@ -230,5 +230,5 @@ class FastSiluAndMul(nn.Module):
 
 For more information, see the [layer documentation](layers).
 
-### Installation
-https://huggingface.co/docs/kernels/main/installation.md
+### kernels info
+https://huggingface.co/docs/kernels/main/cli-info.md

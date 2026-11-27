@@ -138,5 +138,5 @@ From there, you can set up dashboards, alerts, and reports to monitor endpoint p
 Your organization can sign up for the Team or Enterprise plan [here](https://huggingface.co/enterprise?subscribe=true) 🚀 
 For any questions or feature requests, please email us at api-enterprise@huggingface.co
 
-### Autoscaling
-https://huggingface.co/docs/inference-endpoints/guides/autoscaling.md
+### MCP Server
+https://huggingface.co/docs/inference-endpoints/guides/mcp_server.md

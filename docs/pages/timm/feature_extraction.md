@@ -271,5 +271,5 @@ Pruned params: 35212800
 Feat shape: torch.Size([2, 512, 16, 16])
 ```
 
-### HParams
-https://huggingface.co/docs/timm/v1.0.31/hparams.md
+### Installation
+https://huggingface.co/docs/timm/v1.0.31/installation.md

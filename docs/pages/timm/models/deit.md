@@ -100,5 +100,5 @@ size of the pretrained classifier, none for weights without one.
 | `deit_tiny_distilled_patch16_224.fb_in1k` | 224 | 74.538 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/deit_tiny_distilled_patch16_224.fb_in1k) |
 | `deit_tiny_patch16_224.fb_in1k` | 224 | 72.190 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/deit_tiny_patch16_224.fb_in1k) |
 
-### Hiera
-https://huggingface.co/docs/timm/v1.0.31/models/hiera.md
+### CrossViT
+https://huggingface.co/docs/timm/v1.0.31/models/crossvit.md

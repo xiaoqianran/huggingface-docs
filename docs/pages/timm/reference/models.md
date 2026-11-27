@@ -192,7 +192,7 @@ loading and `features_only`.
 timm.create_model(model_name: str, pretrained: bool = False, pretrained_cfg: typing.Union[str, typing.Dict[str, typing.Any], timm.models._pretrained.PretrainedCfg, NoneType] = None, pretrained_cfg_overlay: typing.Optional[typing.Dict[str, typing.Any]] = None, checkpoint_path: typing.Union[str, pathlib.Path, NoneType] = None, cache_dir: typing.Union[str, pathlib.Path, NoneType] = None, scriptable: typing.Optional[bool] = None, exportable: typing.Optional[bool] = None, no_jit: typing.Optional[bool] = None, **kwargs: typing.Any)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.31/timm/models/_factory.py#L162)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.31/timm/models/_factory.py#L174)
 
 **Parameters:**
 
@@ -428,7 +428,7 @@ timm.models.PretrainedCfg(url: typing.Union[str, typing.Tuple[str, str], NoneTyp
 timm.models.get_model_input_config(model: Module)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.31/timm/models/_input.py#L113)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.31/timm/models/_input.py#L158)
 
 Return the current image channels, nominal size, and fixed-size constraint.
 
@@ -441,7 +441,7 @@ metadata remains in `model.pretrained_cfg` and is never modified here.
 timm.models.get_model_traits(model: Module)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.31/timm/models/_input.py#L101)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.31/timm/models/_input.py#L146)
 
 Return a copy of the model's traits, augmented with current channel and class counts.
 
@@ -455,11 +455,11 @@ Attributes absent from a feature wrapper are omitted.
 timm.models.get_model_args(model: Module, overrides: typing.Optional[typing.Dict[str, typing.Any]] = None)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.31/timm/models/_input.py#L170)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.31/timm/models/_input.py#L215)
 
 Return reconstruction arguments, including supported changes made after construction.
 
-Runtime arguments are excluded by the factory. Drop rates are omitted unless
+Runtime and loader arguments are excluded. Drop rates are omitted unless
 explicitly supplied in overrides. Non-serializable architecture arguments
 require an explicit serializable replacement when exporting.
 
@@ -469,7 +469,7 @@ require an explicit serializable replacement when exporting.
 timm.models.resolve_model_input_args(model_name: str, args: typing.Optional[typing.Dict[str, typing.Any]] = None, **model_kwargs)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.31/timm/models/_factory.py#L123)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.31/timm/models/_factory.py#L135)
 
 Resolve script input requests into arguments for `create_model`.
 
@@ -600,7 +600,7 @@ Resume training from checkpoint.
 timm.models.save_for_hf(model: Module, save_directory: str, model_config: typing.Optional[dict] = None, model_args: typing.Optional[dict] = None, safe_serialization: typing.Union[bool, typing.Literal['both']] = False, data_config: typing.Optional[dict] = None)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.31/timm/models/_hub.py#L449)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.31/timm/models/_hub.py#L463)
 
 Save native weights and their current model and preprocessing configuration.
 
@@ -610,7 +610,7 @@ Save native weights and their current model and preprocessing configuration.
 timm.models.push_to_hf_hub(model: Module, repo_id: str, commit_message: str = 'Add model', token: typing.Optional[str] = None, revision: typing.Optional[str] = None, private: bool = False, create_pr: bool = False, model_config: typing.Optional[dict] = None, model_card: typing.Optional[dict] = None, model_args: typing.Optional[dict] = None, task_name: str = 'image-classification', safe_serialization: typing.Union[bool, typing.Literal['both']] = 'both', data_config: typing.Optional[dict] = None)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.31/timm/models/_hub.py#L480)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.31/timm/models/_hub.py#L494)
 
 **Parameters:**
 
@@ -650,7 +650,7 @@ Registering a name that already exists overwrites the previous registration and 
 timm.models.build_model_with_cfg(model_cls: typing.Union[typing.Type[~ModelT], typing.Callable[..., ~ModelT]], variant: str, pretrained: bool, pretrained_cfg: typing.Optional[typing.Dict] = None, pretrained_cfg_overlay: typing.Optional[typing.Dict] = None, model_cfg: typing.Optional[typing.Any] = None, feature_cfg: typing.Optional[typing.Dict] = None, pretrained_strict: bool = True, pretrained_filter_fn: typing.Optional[typing.Callable] = None, cache_dir: typing.Union[str, pathlib.Path, NoneType] = None, kwargs_filter: typing.Optional[typing.Tuple[str]] = None, pretrained_model_args: typing.Optional[typing.Dict] = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.31/timm/models/_builder.py#L427)
+[Source](https://github.com/huggingface/pytorch-image-models/blob/v1.0.31/timm/models/_builder.py#L410)
 
 **Parameters:**
 

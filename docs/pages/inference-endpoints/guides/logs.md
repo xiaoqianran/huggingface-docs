@@ -30,5 +30,5 @@ The timestamp display defaults to UTC format, ensuring consistent time reference
 The main log display area presents a paginated view of log entries. By default the latest 50 lines are loaded and by clicking the
 "Load More" option you can access additional historical log data.
 
-### Create a Private Endpoint with AWS PrivateLink
-https://huggingface.co/docs/inference-endpoints/guides/private_link.md
+### Foundations
+https://huggingface.co/docs/inference-endpoints/guides/foundations.md

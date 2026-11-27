@@ -68,5 +68,5 @@ size of the pretrained classifier, none for weights without one.
 | `cspnext_tiny.rsb_a1_in1k` | 224 | - | - | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/cspnext_tiny.rsb_a1_in1k) |
 | `cspnext_x.rsb_a1_in1k` | 224 | - | - | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/cspnext_x.rsb_a1_in1k) |
 
-### Vision Transformer (ViT)
-https://huggingface.co/docs/timm/v1.0.31/models/vision-transformer.md
+### MetaFormer (PoolFormer, ConvFormer, CAFormer)
+https://huggingface.co/docs/timm/v1.0.31/models/metaformer.md

@@ -6,7 +6,7 @@
 safetensors.numpy.load_file(filename: typing.Union[str, os.PathLike], backend: str = 'mmap')
 ```
 
-[Source](https://github.com/huggingface/safetensors/blob/main/bindings/python/py_src/safetensors/numpy.py#L128)
+[Source](https://github.com/huggingface/safetensors/blob/main/bindings/python/py_src/safetensors/numpy.py#L116)
 
 **Parameters:**
 
@@ -35,7 +35,7 @@ loaded = load_file(file_path)
 safetensors.numpy.load(data: bytes)
 ```
 
-[Source](https://github.com/huggingface/safetensors/blob/main/bindings/python/py_src/safetensors/numpy.py#L101)
+[Source](https://github.com/huggingface/safetensors/blob/main/bindings/python/py_src/safetensors/numpy.py#L89)
 
 **Parameters:**
 
@@ -65,7 +65,7 @@ loaded = load(data)
 safetensors.numpy.save_file(tensor_dict: typing.Dict[str, numpy.ndarray], filename: typing.Union[str, os.PathLike], metadata: typing.Optional[typing.Dict[str, str]] = None)
 ```
 
-[Source](https://github.com/huggingface/safetensors/blob/main/bindings/python/py_src/safetensors/numpy.py#L64)
+[Source](https://github.com/huggingface/safetensors/blob/main/bindings/python/py_src/safetensors/numpy.py#L55)
 
 **Parameters:**
 
@@ -95,7 +95,7 @@ save_file(tensors, "model.safetensors")
 safetensors.numpy.save(tensor_dict: typing.Dict[str, numpy.ndarray], metadata: typing.Optional[typing.Dict[str, str]] = None)
 ```
 
-[Source](https://github.com/huggingface/safetensors/blob/main/bindings/python/py_src/safetensors/numpy.py#L31)
+[Source](https://github.com/huggingface/safetensors/blob/main/bindings/python/py_src/safetensors/numpy.py#L23)
 
 **Parameters:**
 
@@ -118,3 +118,6 @@ import numpy as np
 tensors = {"embedding": np.zeros((512, 1024)), "attention": np.zeros((256, 256))}
 byte_data = save(tensors)
 ```
+
+### PaddlePaddle API[[safetensors.paddle.load_file]]
+https://huggingface.co/docs/safetensors/main/api/paddle.md

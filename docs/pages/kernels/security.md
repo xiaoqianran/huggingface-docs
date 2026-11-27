@@ -224,5 +224,5 @@ This means that downloading a different revision or build variant of the same
 kernel will not collide with the existing receipt and will be verified as
 expected.
 
-### Lock kernel versions
-https://huggingface.co/docs/kernels/main/locking.md
+### kernels lock
+https://huggingface.co/docs/kernels/main/cli-lock.md

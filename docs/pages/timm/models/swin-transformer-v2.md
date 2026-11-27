@@ -83,5 +83,5 @@ size of the pretrained classifier, none for weights without one.
 | `swinv2_tiny_window8_256.ms_in1k` | 256 | 81.824 | 256 | 1000 | mit | [timm](https://huggingface.co/timm/swinv2_tiny_window8_256.ms_in1k) |
 | `swinv2_tiny_window16_256.ms_in1k` | 256 | 82.828 | 256 | 1000 | mit | [timm](https://huggingface.co/timm/swinv2_tiny_window16_256.ms_in1k) |
 
-### Segment Anything ViT
-https://huggingface.co/docs/timm/v1.0.31/models/vision-transformer-sam.md
+### RepViT
+https://huggingface.co/docs/timm/v1.0.31/models/repvit.md

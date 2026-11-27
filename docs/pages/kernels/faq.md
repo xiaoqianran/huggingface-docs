@@ -48,5 +48,5 @@ information for the kernel being requested.
 
 You can disable this by setting `export HF_HUB_DISABLE_TELEMETRY=yes`.
 
-### Talks
-https://huggingface.co/docs/kernels/main/talks.md
+### Use layers
+https://huggingface.co/docs/kernels/main/layers.md

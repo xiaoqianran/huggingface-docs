@@ -71,5 +71,5 @@ size of the pretrained classifier, none for weights without one.
 | `efficientvit_m4.r224_in1k` | 224 | 74.344 | 224 | 1000 | mit | [timm](https://huggingface.co/timm/efficientvit_m4.r224_in1k) |
 | `efficientvit_m5.r224_in1k` | 224 | 77.092 | 224 | 1000 | mit | [timm](https://huggingface.co/timm/efficientvit_m5.r224_in1k) |
 
-### PVTv2
-https://huggingface.co/docs/timm/v1.0.31/models/pvt-v2.md
+### EfficientViM
+https://huggingface.co/docs/timm/v1.0.31/models/efficientvim.md

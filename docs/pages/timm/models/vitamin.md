@@ -97,6 +97,3 @@ size of the pretrained classifier, none for weights without one.
   year={2024}
 }
 ```
-
-### CSATv2
-https://huggingface.co/docs/timm/v1.0.31/models/csatv2.md

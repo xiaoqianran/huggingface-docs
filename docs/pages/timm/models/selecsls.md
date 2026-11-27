@@ -66,5 +66,5 @@ size of the pretrained classifier, none for weights without one.
 | `selecsls60.in1k` | 224 | 77.974 | 224 | 1000 | cc-by-4.0 | [timm](https://huggingface.co/timm/selecsls60.in1k) |
 | `selecsls60b.in1k` | 224 | 78.410 | 224 | 1000 | cc-by-4.0 | [timm](https://huggingface.co/timm/selecsls60b.in1k) |
 
-### MambaOut
-https://huggingface.co/docs/timm/v1.0.31/models/mambaout.md
+### RepGhost
+https://huggingface.co/docs/timm/v1.0.31/models/repghost.md

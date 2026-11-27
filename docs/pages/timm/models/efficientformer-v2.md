@@ -79,5 +79,5 @@ size of the pretrained classifier, none for weights without one.
 }
 ```
 
-### BYOBNet (GENet, RepVGG, MobileOne, ...)
-https://huggingface.co/docs/timm/v1.0.31/models/byobnet.md
+### LowFormer
+https://huggingface.co/docs/timm/v1.0.31/models/lowformer.md

@@ -118,5 +118,5 @@ Pretrained configs reference [arXiv:2601.17237](https://arxiv.org/abs/2601.17237
 | `naflexvit_base_patch16_par_gap.e300_s576_in1k` | 384 | 83.508 | 384 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/naflexvit_base_patch16_par_gap.e300_s576_in1k) |
 | `naflexvit_base_patch16_parfac_gap.e300_s576_in1k` | 384 | 83.468 | 384 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/naflexvit_base_patch16_parfac_gap.e300_s576_in1k) |
 
-### TinyViT
-https://huggingface.co/docs/timm/v1.0.31/models/tiny-vit.md
+### DenseNet
+https://huggingface.co/docs/timm/v1.0.31/models/densenet.md

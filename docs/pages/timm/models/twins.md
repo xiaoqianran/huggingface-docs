@@ -70,5 +70,5 @@ size of the pretrained classifier, none for weights without one.
 | `twins_svt_large.in1k` | 224 | 83.718 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/twins_svt_large.in1k) |
 | `twins_svt_small.in1k` | 224 | 81.694 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/twins_svt_small.in1k) |
 
-### EfficientNet
-https://huggingface.co/docs/timm/v1.0.31/models/efficientnet.md
+### Vision Transformer (relative position)
+https://huggingface.co/docs/timm/v1.0.31/models/vision-transformer-relpos.md

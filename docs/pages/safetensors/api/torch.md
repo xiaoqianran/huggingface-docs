@@ -6,7 +6,7 @@
 safetensors.torch.load_file(filename: typing.Union[str, os.PathLike], device: typing.Union[str, int] = 'cpu', backend: str = 'mmap')
 ```
 
-[Source](https://github.com/huggingface/safetensors/blob/main/bindings/python/py_src/safetensors/torch.py#L328)
+[Source](https://github.com/huggingface/safetensors/blob/main/bindings/python/py_src/safetensors/torch.py#L322)
 
 **Parameters:**
 
@@ -37,7 +37,7 @@ loaded = load_file(file_path)
 safetensors.torch.load(data: bytes)
 ```
 
-[Source](https://github.com/huggingface/safetensors/blob/main/bindings/python/py_src/safetensors/torch.py#L363)
+[Source](https://github.com/huggingface/safetensors/blob/main/bindings/python/py_src/safetensors/torch.py#L357)
 
 **Parameters:**
 
@@ -67,7 +67,7 @@ loaded = load(data)
 safetensors.torch.save_file(tensors: typing.Dict[str, torch.Tensor], filename: typing.Union[str, os.PathLike], metadata: typing.Optional[typing.Dict[str, str]] = None)
 ```
 
-[Source](https://github.com/huggingface/safetensors/blob/main/bindings/python/py_src/safetensors/torch.py#L288)
+[Source](https://github.com/huggingface/safetensors/blob/main/bindings/python/py_src/safetensors/torch.py#L285)
 
 **Parameters:**
 
@@ -177,5 +177,5 @@ Saves a given torch model to specified filename.
 This method exists specifically to avoid tensor sharing issues which are
 not allowed in `safetensors`. [More information on tensor sharing](../torch_shared_tensors)
 
-### PaddlePaddle API[[safetensors.paddle.load_file]]
-https://huggingface.co/docs/safetensors/main/api/paddle.md
+### Tensorflow API[[safetensors.tensorflow.load_file]]
+https://huggingface.co/docs/safetensors/main/api/tensorflow.md

@@ -371,5 +371,5 @@ Origin: [github.com/facebookresearch/WSL-Images](https://github.com/facebookrese
 | `resnet50.bamboo` | 224 | - | - | none | - | [timm](https://huggingface.co/timm/resnet50.bamboo) |
 | `test_resnet.r160_in1k` | 160 | 41.602 | 160 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/test_resnet.r160_in1k) |
 
-### LowFormer
-https://huggingface.co/docs/timm/v1.0.31/models/lowformer.md
+### CSPNeXt
+https://huggingface.co/docs/timm/v1.0.31/models/cspnext.md

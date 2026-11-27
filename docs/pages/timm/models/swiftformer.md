@@ -79,5 +79,5 @@ size of the pretrained classifier, none for weights without one.
 }
 ```
 
-### MobileViT
-https://huggingface.co/docs/timm/v1.0.31/models/mobilevit.md
+### VGG
+https://huggingface.co/docs/timm/v1.0.31/models/vgg.md

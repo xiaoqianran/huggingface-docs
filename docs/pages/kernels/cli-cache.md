@@ -84,5 +84,5 @@ version-level values describe just the corresponding snapshot.
 - [kernels download](cli-download) - Download locked kernels
 - [Environment variables](env) - Configure cache locations
 
-### kernels describe-api
-https://huggingface.co/docs/kernels/main/cli-describe-api.md
+### Projects using kernels
+https://huggingface.co/docs/kernels/main/integrating-kernels.md

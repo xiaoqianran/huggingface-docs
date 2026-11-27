@@ -144,5 +144,5 @@ other.
 }
 ```
 
-### iFormer
-https://huggingface.co/docs/timm/v1.0.31/models/iformer.md
+### Gemma 4 ViT
+https://huggingface.co/docs/timm/v1.0.31/models/gemma4-vit.md

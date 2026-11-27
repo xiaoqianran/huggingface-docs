@@ -62,5 +62,5 @@ size of the pretrained classifier, none for weights without one.
 | `visformer_small.in1k` | 224 | 82.092 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/visformer_small.in1k) |
 | `visformer_tiny.in1k` | 224 | 78.160 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/visformer_tiny.in1k) |
 
-### EfficientViT (MSRA)
-https://huggingface.co/docs/timm/v1.0.31/models/efficientvit-msra.md
+### CoaT
+https://huggingface.co/docs/timm/v1.0.31/models/coat.md

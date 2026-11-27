@@ -115,5 +115,5 @@ example/a
   decisions
 - [kernels download](cli-download) - Download locked kernels
 
-### CLI reference for kernel-builder
-https://huggingface.co/docs/kernels/main/builder-cli.md
+### Lock kernel versions
+https://huggingface.co/docs/kernels/main/locking.md

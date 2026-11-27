@@ -85,5 +85,5 @@ size of the pretrained classifier, none for weights without one.
 | `mobilevitv2_200.cvnets_in22k_ft_in1k` | 256 | 82.320 | 256 | 1000 | cvnets-license | [timm](https://huggingface.co/timm/mobilevitv2_200.cvnets_in22k_ft_in1k) |
 | `mobilevitv2_200.cvnets_in22k_ft_in1k_384` | 384 | 83.430 | 384 | 1000 | cvnets-license | [timm](https://huggingface.co/timm/mobilevitv2_200.cvnets_in22k_ft_in1k_384) |
 
-### ConViT
-https://huggingface.co/docs/timm/v1.0.31/models/convit.md
+### MaxViT and CoAtNet
+https://huggingface.co/docs/timm/v1.0.31/models/maxxvit.md

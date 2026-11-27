@@ -98,5 +98,5 @@ size of the pretrained classifier, none for weights without one.
 }
 ```
 
-### EVA
-https://huggingface.co/docs/timm/v1.0.31/models/eva.md
+### XCiT
+https://huggingface.co/docs/timm/v1.0.31/models/xcit.md

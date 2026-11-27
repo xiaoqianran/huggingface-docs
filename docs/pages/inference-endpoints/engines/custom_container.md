@@ -617,3 +617,6 @@ Congratulations for making it until the end. 🎉
 A good idea to extend this demo would be to test it out with a completely different model, say an audio model or image generation one.
 
 Happy hacking 🙌
+
+### Create your own transcription app
+https://huggingface.co/docs/inference-endpoints/tutorials/transcription.md

@@ -102,5 +102,5 @@ other.
 | `hrnet_w18_ssld.paddle_in1k` | 224 (test 288) | 82.052 | 288 | 1000 | mit | [timm](https://huggingface.co/timm/hrnet_w18_ssld.paddle_in1k) |
 | `hrnet_w48_ssld.paddle_in1k` | 224 (test 288) | 84.484 | 288 | 1000 | mit | [timm](https://huggingface.co/timm/hrnet_w48_ssld.paddle_in1k) |
 
-### Hybrid Vision Transformer
-https://huggingface.co/docs/timm/v1.0.31/models/vision-transformer-hybrid.md
+### MobileNet-V3
+https://huggingface.co/docs/timm/v1.0.31/models/mobilenetv3.md

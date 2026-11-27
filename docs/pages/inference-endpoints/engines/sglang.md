@@ -52,5 +52,5 @@ if SGLang doesn't have their own implementation of a model.
 
 We also recommend reading the [SGLang documentation](https://docs.sglang.ai/) for more in-depth information.
 
-### llama.cpp
-https://huggingface.co/docs/inference-endpoints/engines/llama_cpp.md
+### Deploy with your own container
+https://huggingface.co/docs/inference-endpoints/engines/custom_container.md

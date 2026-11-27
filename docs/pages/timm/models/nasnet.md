@@ -60,5 +60,5 @@ size of the pretrained classifier, none for weights without one.
 |---|---:|---:|---:|---:|---|---|
 | `nasnetalarge.tf_in1k` | 331 | 82.638 | 331 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/nasnetalarge.tf_in1k) |
 
-### BEiT
-https://huggingface.co/docs/timm/v1.0.31/models/beit.md
+### BYOBNet (GENet, RepVGG, MobileOne, ...)
+https://huggingface.co/docs/timm/v1.0.31/models/byobnet.md

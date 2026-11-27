@@ -76,5 +76,5 @@ size of the pretrained classifier, none for weights without one.
 | `legacy_seresnext50_32x4d.in1k` | 224 | 79.080 | 224 | 1000 | apache-2.0 | [original](https://github.com/rwightman/pytorch-image-models/releases/download/v0.1-weights/legacy_se_resnext50_32x4d-f3651bad.pth) |
 | `legacy_seresnext101_32x4d.in1k` | 224 | 80.274 | 224 | 1000 | apache-2.0 | [original](https://github.com/rwightman/pytorch-image-models/releases/download/v0.1-weights/legacy_se_resnext101_32x4d-37725eac.pth) |
 
-### CrossViT
-https://huggingface.co/docs/timm/v1.0.31/models/crossvit.md
+### Segment Anything ViT
+https://huggingface.co/docs/timm/v1.0.31/models/vision-transformer-sam.md

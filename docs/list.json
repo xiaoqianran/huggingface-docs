@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-26T17:40:00.570079+00:00",
+  "fetchedAt": "2026-11-27T17:23:33.363083+00:00",
   "method": "llms-full-split",
   "ok": 2339,
   "failed": 0,
@@ -5556,7 +5556,7 @@
     },
     {
       "rel": "hub/datasets-duckdb.md",
-      "bytes": 5244,
+      "bytes": 5417,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/datasets-duckdb.md",
       "track": "Hub",
@@ -6312,7 +6312,7 @@
     },
     {
       "rel": "hub/spaces-overview.md",
-      "bytes": 13402,
+      "bytes": 15049,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/spaces-overview.md",
       "track": "Hub",
@@ -6519,7 +6519,7 @@
     },
     {
       "rel": "hub/jobs-configuration.md",
-      "bytes": 24803,
+      "bytes": 27563,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/jobs-configuration.md",
       "track": "Hub",
@@ -7167,7 +7167,7 @@
     },
     {
       "rel": "hub/security-tokens.md",
-      "bytes": 10543,
+      "bytes": 10817,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/security-tokens.md",
       "track": "Hub",
@@ -7212,7 +7212,7 @@
     },
     {
       "rel": "hub/audit-logs.md",
-      "bytes": 10871,
+      "bytes": 11551,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/audit-logs.md",
       "track": "Hub",
@@ -7392,7 +7392,7 @@
     },
     {
       "rel": "hub/trusted-publishers.md",
-      "bytes": 13871,
+      "bytes": 14234,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/trusted-publishers.md",
       "track": "Hub",
@@ -8157,7 +8157,7 @@
     },
     {
       "rel": "inference-endpoints/index.md",
-      "bytes": 5915,
+      "bytes": 5923,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-endpoints/index.md",
       "track": "Inference Endpoints",
@@ -8165,17 +8165,8 @@
       "title": "Inference Endpoints"
     },
     {
-      "rel": "inference-endpoints/quick_start.md",
-      "bytes": 3949,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/inference-endpoints/quick_start.md",
-      "track": "Inference Endpoints",
-      "package": "inference-endpoints",
-      "title": "Quick Start"
-    },
-    {
       "rel": "inference-endpoints/about.md",
-      "bytes": 3514,
+      "bytes": 3500,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-endpoints/about.md",
       "track": "Inference Endpoints",
@@ -8183,8 +8174,17 @@
       "title": "About Inference Endpoints"
     },
     {
+      "rel": "inference-endpoints/quick_start.md",
+      "bytes": 3955,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/inference-endpoints/quick_start.md",
+      "track": "Inference Endpoints",
+      "package": "inference-endpoints",
+      "title": "Quick Start"
+    },
+    {
       "rel": "inference-endpoints/api_reference.md",
-      "bytes": 1187,
+      "bytes": 1150,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-endpoints/api_reference.md",
       "track": "Inference Endpoints",
@@ -8192,44 +8192,8 @@
       "title": "API Reference (Swagger)"
     },
     {
-      "rel": "inference-endpoints/tutorials/embedding.md",
-      "bytes": 4200,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/inference-endpoints/tutorials/embedding.md",
-      "track": "Inference Endpoints",
-      "package": "inference-endpoints",
-      "title": "Build an embedding pipeline with datasets"
-    },
-    {
-      "rel": "inference-endpoints/guides/configuration.md",
-      "bytes": 5129,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/inference-endpoints/guides/configuration.md",
-      "track": "Inference Endpoints",
-      "package": "inference-endpoints",
-      "title": "Configuration"
-    },
-    {
-      "rel": "inference-endpoints/tutorials/chat_bot.md",
-      "bytes": 14664,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/inference-endpoints/tutorials/chat_bot.md",
-      "track": "Inference Endpoints",
-      "package": "inference-endpoints",
-      "title": "Build and deploy your own chat application"
-    },
-    {
-      "rel": "inference-endpoints/tutorials/transcription.md",
-      "bytes": 14237,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/inference-endpoints/tutorials/transcription.md",
-      "track": "Inference Endpoints",
-      "package": "inference-endpoints",
-      "title": "Create your own transcription app"
-    },
-    {
       "rel": "inference-endpoints/guides/logs.md",
-      "bytes": 2052,
+      "bytes": 2016,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-endpoints/guides/logs.md",
       "track": "Inference Endpoints",
@@ -8237,17 +8201,8 @@
       "title": "Runtime Logs"
     },
     {
-      "rel": "inference-endpoints/guides/private_link.md",
-      "bytes": 9378,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/inference-endpoints/guides/private_link.md",
-      "track": "Inference Endpoints",
-      "package": "inference-endpoints",
-      "title": "Create a Private Endpoint with AWS PrivateLink"
-    },
-    {
       "rel": "inference-endpoints/guides/foundations.md",
-      "bytes": 6343,
+      "bytes": 6353,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-endpoints/guides/foundations.md",
       "track": "Inference Endpoints",
@@ -8255,22 +8210,22 @@
       "title": "Foundations"
     },
     {
-      "rel": "inference-endpoints/guides/mcp_server.md",
-      "bytes": 6536,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/inference-endpoints/guides/mcp_server.md",
-      "track": "Inference Endpoints",
-      "package": "inference-endpoints",
-      "title": "MCP Server"
-    },
-    {
       "rel": "inference-endpoints/guides/analytics.md",
-      "bytes": 8125,
+      "bytes": 8123,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-endpoints/guides/analytics.md",
       "track": "Inference Endpoints",
       "package": "inference-endpoints",
       "title": "Analytics and Metrics"
+    },
+    {
+      "rel": "inference-endpoints/guides/mcp_server.md",
+      "bytes": 6528,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/inference-endpoints/guides/mcp_server.md",
+      "track": "Inference Endpoints",
+      "package": "inference-endpoints",
+      "title": "MCP Server"
     },
     {
       "rel": "inference-endpoints/guides/autoscaling.md",
@@ -8280,6 +8235,24 @@
       "track": "Inference Endpoints",
       "package": "inference-endpoints",
       "title": "Autoscaling"
+    },
+    {
+      "rel": "inference-endpoints/guides/configuration.md",
+      "bytes": 6390,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/inference-endpoints/guides/configuration.md",
+      "track": "Inference Endpoints",
+      "package": "inference-endpoints",
+      "title": "Configuration"
+    },
+    {
+      "rel": "inference-endpoints/guides/private_link.md",
+      "bytes": 3023,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/inference-endpoints/guides/private_link.md",
+      "track": "Inference Endpoints",
+      "package": "inference-endpoints",
+      "title": "Create a Private Endpoint with AWS PrivateLink"
     },
     {
       "rel": "inference-endpoints/guides/custom_router.md",
@@ -8292,7 +8265,7 @@
     },
     {
       "rel": "inference-endpoints/guides/security.md",
-      "bytes": 2117,
+      "bytes": 2128,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-endpoints/guides/security.md",
       "track": "Inference Endpoints",
@@ -8300,35 +8273,8 @@
       "title": "Security & Compliance"
     },
     {
-      "rel": "inference-endpoints/support/faq.md",
-      "bytes": 6067,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/inference-endpoints/support/faq.md",
-      "track": "Inference Endpoints",
-      "package": "inference-endpoints",
-      "title": "FAQs"
-    },
-    {
-      "rel": "inference-endpoints/support/pricing.md",
-      "bytes": 10116,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/inference-endpoints/support/pricing.md",
-      "track": "Inference Endpoints",
-      "package": "inference-endpoints",
-      "title": "Pricing"
-    },
-    {
-      "rel": "inference-endpoints/engines/sglang.md",
-      "bytes": 3691,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/inference-endpoints/engines/sglang.md",
-      "track": "Inference Endpoints",
-      "package": "inference-endpoints",
-      "title": "SGLang"
-    },
-    {
       "rel": "inference-endpoints/engines/llama_cpp.md",
-      "bytes": 4953,
+      "bytes": 4963,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-endpoints/engines/llama_cpp.md",
       "track": "Inference Endpoints",
@@ -8336,17 +8282,8 @@
       "title": "llama.cpp"
     },
     {
-      "rel": "inference-endpoints/engines/toolkit.md",
-      "bytes": 10292,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/inference-endpoints/engines/toolkit.md",
-      "track": "Inference Endpoints",
-      "package": "inference-endpoints",
-      "title": "Inference Toolkit"
-    },
-    {
       "rel": "inference-endpoints/engines/tei.md",
-      "bytes": 1952,
+      "bytes": 1978,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-endpoints/engines/tei.md",
       "track": "Inference Endpoints",
@@ -8354,17 +8291,8 @@
       "title": "Text Embeddings Inference (TEI)"
     },
     {
-      "rel": "inference-endpoints/engines/vllm.md",
-      "bytes": 7163,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/inference-endpoints/engines/vllm.md",
-      "track": "Inference Endpoints",
-      "package": "inference-endpoints",
-      "title": "vLLM"
-    },
-    {
       "rel": "inference-endpoints/engines/tgi.md",
-      "bytes": 6209,
+      "bytes": 6171,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-endpoints/engines/tgi.md",
       "track": "Inference Endpoints",
@@ -8372,13 +8300,85 @@
       "title": "Text Generation Inference (TGI)"
     },
     {
+      "rel": "inference-endpoints/engines/vllm.md",
+      "bytes": 7153,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/inference-endpoints/engines/vllm.md",
+      "track": "Inference Endpoints",
+      "package": "inference-endpoints",
+      "title": "vLLM"
+    },
+    {
+      "rel": "inference-endpoints/engines/toolkit.md",
+      "bytes": 10270,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/inference-endpoints/engines/toolkit.md",
+      "track": "Inference Endpoints",
+      "package": "inference-endpoints",
+      "title": "Inference Toolkit"
+    },
+    {
+      "rel": "inference-endpoints/engines/sglang.md",
+      "bytes": 3719,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/inference-endpoints/engines/sglang.md",
+      "track": "Inference Endpoints",
+      "package": "inference-endpoints",
+      "title": "SGLang"
+    },
+    {
       "rel": "inference-endpoints/engines/custom_container.md",
-      "bytes": 22194,
+      "bytes": 22308,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-endpoints/engines/custom_container.md",
       "track": "Inference Endpoints",
       "package": "inference-endpoints",
       "title": "Deploy with your own container"
+    },
+    {
+      "rel": "inference-endpoints/tutorials/transcription.md",
+      "bytes": 14274,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/inference-endpoints/tutorials/transcription.md",
+      "track": "Inference Endpoints",
+      "package": "inference-endpoints",
+      "title": "Create your own transcription app"
+    },
+    {
+      "rel": "inference-endpoints/tutorials/embedding.md",
+      "bytes": 9329,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/inference-endpoints/tutorials/embedding.md",
+      "track": "Inference Endpoints",
+      "package": "inference-endpoints",
+      "title": "Build an embedding pipeline with datasets"
+    },
+    {
+      "rel": "inference-endpoints/tutorials/chat_bot.md",
+      "bytes": 14630,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/inference-endpoints/tutorials/chat_bot.md",
+      "track": "Inference Endpoints",
+      "package": "inference-endpoints",
+      "title": "Build and deploy your own chat application"
+    },
+    {
+      "rel": "inference-endpoints/support/pricing.md",
+      "bytes": 10135,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/inference-endpoints/support/pricing.md",
+      "track": "Inference Endpoints",
+      "package": "inference-endpoints",
+      "title": "Pricing"
+    },
+    {
+      "rel": "inference-endpoints/support/faq.md",
+      "bytes": 6015,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/inference-endpoints/support/faq.md",
+      "track": "Inference Endpoints",
+      "package": "inference-endpoints",
+      "title": "FAQs"
     },
     {
       "rel": "inference-providers/index.md",
@@ -8472,7 +8472,7 @@
     },
     {
       "rel": "inference-providers/guides/structured-output.md",
-      "bytes": 15176,
+      "bytes": 15165,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/guides/structured-output.md",
       "track": "Inference Providers",
@@ -8661,7 +8661,7 @@
     },
     {
       "rel": "kernels/index.md",
-      "bytes": 4991,
+      "bytes": 3432,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/index.md",
       "track": "Kernels",
@@ -8669,71 +8669,8 @@
       "title": "Kernels"
     },
     {
-      "rel": "kernels/layers.md",
-      "bytes": 18025,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/layers.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "Use layers"
-    },
-    {
-      "rel": "kernels/cli-download.md",
-      "bytes": 1444,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/cli-download.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "kernels download"
-    },
-    {
-      "rel": "kernels/cli-benchmark.md",
-      "bytes": 11542,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/cli-benchmark.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "kernels benchmark"
-    },
-    {
-      "rel": "kernels/cli-versions.md",
-      "bytes": 1755,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/cli-versions.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "kernels versions"
-    },
-    {
-      "rel": "kernels/cli-verify-signature.md",
-      "bytes": 2182,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/cli-verify-signature.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "kernels verify-signature"
-    },
-    {
-      "rel": "kernels/why_kernels.md",
-      "bytes": 1772,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/why_kernels.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "Why kernels?"
-    },
-    {
-      "rel": "kernels/cli.md",
-      "bytes": 1037,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/cli.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "Overview"
-    },
-    {
       "rel": "kernels/cli-variants.md",
-      "bytes": 4707,
+      "bytes": 6278,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/cli-variants.md",
       "track": "Kernels",
@@ -8742,7 +8679,7 @@
     },
     {
       "rel": "kernels/migration.md",
-      "bytes": 10665,
+      "bytes": 10661,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/migration.md",
       "track": "Kernels",
@@ -8750,53 +8687,8 @@
       "title": "Migrate from older versions"
     },
     {
-      "rel": "kernels/installation.md",
-      "bytes": 2169,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/installation.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "Installation"
-    },
-    {
-      "rel": "kernels/faq.md",
-      "bytes": 2750,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/faq.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "FAQ"
-    },
-    {
-      "rel": "kernels/talks.md",
-      "bytes": 547,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/talks.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "Talks"
-    },
-    {
-      "rel": "kernels/cli-lock.md",
-      "bytes": 1801,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/cli-lock.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "kernels lock"
-    },
-    {
-      "rel": "kernels/basic-usage.md",
-      "bytes": 6972,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/basic-usage.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "Quickstart"
-    },
-    {
       "rel": "kernels/cli-info.md",
-      "bytes": 3375,
+      "bytes": 3359,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/cli-info.md",
       "track": "Kernels",
@@ -8804,80 +8696,8 @@
       "title": "kernels info"
     },
     {
-      "rel": "kernels/builder-cli.md",
-      "bytes": 11257,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/builder-cli.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "CLI reference for kernel-builder"
-    },
-    {
-      "rel": "kernels/kernel-requirements.md",
-      "bytes": 19822,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/kernel-requirements.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "Kernel requirements"
-    },
-    {
-      "rel": "kernels/blog.md",
-      "bytes": 997,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/blog.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "Blog posts"
-    },
-    {
-      "rel": "kernels/cli-cache.md",
-      "bytes": 4341,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/cli-cache.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "kernels cache ls"
-    },
-    {
-      "rel": "kernels/cli-describe-api.md",
-      "bytes": 2722,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/cli-describe-api.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "kernels describe-api"
-    },
-    {
-      "rel": "kernels/cli-skills.md",
-      "bytes": 3008,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/cli-skills.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "Install agent skills"
-    },
-    {
-      "rel": "kernels/env.md",
-      "bytes": 2254,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/env.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "Environment variables"
-    },
-    {
-      "rel": "kernels/security.md",
-      "bytes": 8744,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/security.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "Kernels security"
-    },
-    {
       "rel": "kernels/locking.md",
-      "bytes": 2652,
+      "bytes": 2641,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/locking.md",
       "track": "Kernels",
@@ -8885,13 +8705,193 @@
       "title": "Lock kernel versions"
     },
     {
+      "rel": "kernels/cli-skills.md",
+      "bytes": 3012,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/cli-skills.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "Install agent skills"
+    },
+    {
+      "rel": "kernels/cli-versions.md",
+      "bytes": 1717,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/cli-versions.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "kernels versions"
+    },
+    {
+      "rel": "kernels/faq.md",
+      "bytes": 2756,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/faq.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "FAQ"
+    },
+    {
+      "rel": "kernels/layers.md",
+      "bytes": 18008,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/layers.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "Use layers"
+    },
+    {
+      "rel": "kernels/cli.md",
+      "bytes": 1030,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/cli.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "Overview"
+    },
+    {
+      "rel": "kernels/basic-usage.md",
+      "bytes": 6976,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/basic-usage.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "Quickstart"
+    },
+    {
+      "rel": "kernels/env.md",
+      "bytes": 2244,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/env.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "Environment variables"
+    },
+    {
+      "rel": "kernels/blog.md",
+      "bytes": 1002,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/blog.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "Blog posts"
+    },
+    {
+      "rel": "kernels/cli-benchmark.md",
+      "bytes": 11538,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/cli-benchmark.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "kernels benchmark"
+    },
+    {
+      "rel": "kernels/installation.md",
+      "bytes": 2201,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/installation.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "Installation"
+    },
+    {
+      "rel": "kernels/kernel-requirements.md",
+      "bytes": 19844,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/kernel-requirements.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "Kernel requirements"
+    },
+    {
+      "rel": "kernels/cli-describe-api.md",
+      "bytes": 2720,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/cli-describe-api.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "kernels describe-api"
+    },
+    {
+      "rel": "kernels/cli-download.md",
+      "bytes": 1424,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/cli-download.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "kernels download"
+    },
+    {
+      "rel": "kernels/talks.md",
+      "bytes": 550,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/talks.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "Talks"
+    },
+    {
+      "rel": "kernels/why_kernels.md",
+      "bytes": 1805,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/why_kernels.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "Why kernels?"
+    },
+    {
+      "rel": "kernels/cli-verify-signature.md",
+      "bytes": 2202,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/cli-verify-signature.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "kernels verify-signature"
+    },
+    {
+      "rel": "kernels/builder-cli.md",
+      "bytes": 11244,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/builder-cli.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "CLI reference for kernel-builder"
+    },
+    {
+      "rel": "kernels/cli-cache.md",
+      "bytes": 4346,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/cli-cache.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "kernels cache ls"
+    },
+    {
       "rel": "kernels/integrating-kernels.md",
-      "bytes": 2360,
+      "bytes": 2354,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/integrating-kernels.md",
       "track": "Kernels",
       "package": "kernels",
       "title": "Projects using kernels"
+    },
+    {
+      "rel": "kernels/security.md",
+      "bytes": 8737,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/security.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "Kernels security"
+    },
+    {
+      "rel": "kernels/cli-lock.md",
+      "bytes": 1810,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/cli-lock.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "kernels lock"
     },
     {
       "rel": "kernels/api/layers.md",
@@ -8904,7 +8904,7 @@
     },
     {
       "rel": "kernels/api/kernels.md",
-      "bytes": 12676,
+      "bytes": 12714,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/api/kernels.md",
       "track": "Kernels",
@@ -8912,13 +8912,22 @@
       "title": "Kernels API Reference"
     },
     {
-      "rel": "kernels/builder/ide-setup.md",
-      "bytes": 6469,
+      "rel": "kernels/builder/github-actions.md",
+      "bytes": 9713,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/builder/ide-setup.md",
+      "url": "https://huggingface.co/docs/kernels/main/builder/github-actions.md",
       "track": "Kernels",
       "package": "kernels",
-      "title": "Set up your IDE"
+      "title": "Building and testing kernels with GitHub Actions"
+    },
+    {
+      "rel": "kernels/builder/writing-kernels.md",
+      "bytes": 26544,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/builder/writing-kernels.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "Write kernels"
     },
     {
       "rel": "kernels/builder/metal.md",
@@ -8930,31 +8939,58 @@
       "title": "Set up for Metal kernels"
     },
     {
-      "rel": "kernels/builder/local-dev.md",
-      "bytes": 3098,
+      "rel": "kernels/builder/ide-setup.md",
+      "bytes": 6468,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/builder/local-dev.md",
+      "url": "https://huggingface.co/docs/kernels/main/builder/ide-setup.md",
       "track": "Kernels",
       "package": "kernels",
-      "title": "Develop locally"
-    },
-    {
-      "rel": "kernels/builder/build.md",
-      "bytes": 9987,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/builder/build.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "Build with Nix"
+      "title": "Set up your IDE"
     },
     {
       "rel": "kernels/builder/build-variants.md",
-      "bytes": 3310,
+      "bytes": 3345,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/builder/build-variants.md",
       "track": "Kernels",
       "package": "kernels",
       "title": "Build variants"
+    },
+    {
+      "rel": "kernels/builder/triton-autotune.md",
+      "bytes": 7112,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/builder/triton-autotune.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "Ship Triton autotune configurations"
+    },
+    {
+      "rel": "kernels/builder/design-overview.md",
+      "bytes": 1490,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/builder/design-overview.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "Architecture overview"
+    },
+    {
+      "rel": "kernels/builder/design-nix-builder.md",
+      "bytes": 4718,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/builder/design-nix-builder.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "Nix builder design"
+    },
+    {
+      "rel": "kernels/builder/build.md",
+      "bytes": 9974,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/builder/build.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "Build with Nix"
     },
     {
       "rel": "kernels/builder/why-nix.md",
@@ -8967,7 +9003,7 @@
     },
     {
       "rel": "kernels/builder/agents-guide.md",
-      "bytes": 10269,
+      "bytes": 10257,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/builder/agents-guide.md",
       "track": "Kernels",
@@ -8975,49 +9011,13 @@
       "title": "Develop kernels with agents"
     },
     {
-      "rel": "kernels/builder/design-overview.md",
-      "bytes": 1504,
+      "rel": "kernels/builder/local-dev.md",
+      "bytes": 3106,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/builder/design-overview.md",
+      "url": "https://huggingface.co/docs/kernels/main/builder/local-dev.md",
       "track": "Kernels",
       "package": "kernels",
-      "title": "Architecture overview"
-    },
-    {
-      "rel": "kernels/builder/triton-autotune.md",
-      "bytes": 7112,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/builder/triton-autotune.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "Ship Triton autotune configurations"
-    },
-    {
-      "rel": "kernels/builder/design-nix-builder.md",
-      "bytes": 4727,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/builder/design-nix-builder.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "Nix builder design"
-    },
-    {
-      "rel": "kernels/builder/writing-kernels.md",
-      "bytes": 26577,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/builder/writing-kernels.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "Write kernels"
-    },
-    {
-      "rel": "kernels/builder/github-actions.md",
-      "bytes": 9712,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/builder/github-actions.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "Building and testing kernels with GitHub Actions"
+      "title": "Develop locally"
     },
     {
       "rel": "kernels/builder/security.md",
@@ -10965,7 +10965,7 @@
     },
     {
       "rel": "safetensors/index.md",
-      "bytes": 4281,
+      "bytes": 1094,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/safetensors/main/index.md",
       "track": "Safetensors",
@@ -10973,26 +10973,8 @@
       "title": "Safetensors"
     },
     {
-      "rel": "safetensors/speed.md",
-      "bytes": 3368,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/safetensors/main/speed.md",
-      "track": "Safetensors",
-      "package": "safetensors",
-      "title": "Speed Comparison"
-    },
-    {
-      "rel": "safetensors/torch_shared_tensors.md",
-      "bytes": 4247,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/safetensors/main/torch_shared_tensors.md",
-      "track": "Safetensors",
-      "package": "safetensors",
-      "title": "Torch shared tensors"
-    },
-    {
       "rel": "safetensors/convert-weights.md",
-      "bytes": 1149,
+      "bytes": 1157,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/safetensors/main/convert-weights.md",
       "track": "Safetensors",
@@ -11000,8 +10982,17 @@
       "title": "Convert weights to safetensors"
     },
     {
+      "rel": "safetensors/torch_shared_tensors.md",
+      "bytes": 7445,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/safetensors/main/torch_shared_tensors.md",
+      "track": "Safetensors",
+      "package": "safetensors",
+      "title": "Torch shared tensors"
+    },
+    {
       "rel": "safetensors/metadata_parsing.md",
-      "bytes": 7051,
+      "bytes": 7023,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/safetensors/main/metadata_parsing.md",
       "track": "Safetensors",
@@ -11009,22 +11000,40 @@
       "title": "Metadata Parsing"
     },
     {
-      "rel": "safetensors/api/torch.md",
-      "bytes": 6929,
+      "rel": "safetensors/speed.md",
+      "bytes": 3377,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/safetensors/main/api/torch.md",
+      "url": "https://huggingface.co/docs/safetensors/main/speed.md",
       "track": "Safetensors",
       "package": "safetensors",
-      "title": "Torch API[[safetensors.torch.load_file]]"
+      "title": "Speed Comparison"
+    },
+    {
+      "rel": "safetensors/api/numpy.md",
+      "bytes": 3768,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/safetensors/main/api/numpy.md",
+      "track": "Safetensors",
+      "package": "safetensors",
+      "title": "Numpy API[[safetensors.numpy.load_file]]"
     },
     {
       "rel": "safetensors/api/paddle.md",
-      "bytes": 4039,
+      "bytes": 4024,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/safetensors/main/api/paddle.md",
       "track": "Safetensors",
       "package": "safetensors",
       "title": "PaddlePaddle API[[safetensors.paddle.load_file]]"
+    },
+    {
+      "rel": "safetensors/api/torch.md",
+      "bytes": 6935,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/safetensors/main/api/torch.md",
+      "track": "Safetensors",
+      "package": "safetensors",
+      "title": "Torch API[[safetensors.torch.load_file]]"
     },
     {
       "rel": "safetensors/api/tensorflow.md",
@@ -11037,21 +11046,12 @@
     },
     {
       "rel": "safetensors/api/flax.md",
-      "bytes": 3705,
+      "bytes": 3601,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/safetensors/main/api/flax.md",
       "track": "Safetensors",
       "package": "safetensors",
       "title": "Flax API[[safetensors.flax.load_file]]"
-    },
-    {
-      "rel": "safetensors/api/numpy.md",
-      "bytes": 3656,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/safetensors/main/api/numpy.md",
-      "track": "Safetensors",
-      "package": "safetensors",
-      "title": "Numpy API[[safetensors.numpy.load_file]]"
     },
     {
       "rel": "smolagents/guided_tour.md",
@@ -11756,24 +11756,6 @@
       "title": "timm"
     },
     {
-      "rel": "timm/quickstart.md",
-      "bytes": 8118,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/quickstart.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "Quickstart"
-    },
-    {
-      "rel": "timm/installation.md",
-      "bytes": 2136,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/installation.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "Installation"
-    },
-    {
       "rel": "timm/models.md",
       "bytes": 25825,
       "source": "llms-full-split",
@@ -11793,7 +11775,7 @@
     },
     {
       "rel": "timm/results.md",
-      "bytes": 4926,
+      "bytes": 4931,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/timm/v1.0.31/results.md",
       "track": "timm",
@@ -11801,22 +11783,13 @@
       "title": "Results"
     },
     {
-      "rel": "timm/training_script.md",
-      "bytes": 31038,
+      "rel": "timm/model_api.md",
+      "bytes": 22628,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/training_script.md",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/model_api.md",
       "track": "timm",
       "package": "timm",
-      "title": "Scripts"
-    },
-    {
-      "rel": "timm/feature_extraction.md",
-      "bytes": 11011,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/feature_extraction.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "Feature Extraction"
+      "title": "The timm Model API"
     },
     {
       "rel": "timm/hparams.md",
@@ -11829,7 +11802,7 @@
     },
     {
       "rel": "timm/model_adaptation.md",
-      "bytes": 4317,
+      "bytes": 4326,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/timm/v1.0.31/model_adaptation.md",
       "track": "timm",
@@ -11837,17 +11810,44 @@
       "title": "Adapt and Export Models"
     },
     {
-      "rel": "timm/model_api.md",
-      "bytes": 22672,
+      "rel": "timm/feature_extraction.md",
+      "bytes": 11021,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/model_api.md",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/feature_extraction.md",
       "track": "timm",
       "package": "timm",
-      "title": "The timm Model API"
+      "title": "Feature Extraction"
+    },
+    {
+      "rel": "timm/installation.md",
+      "bytes": 2138,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/installation.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Installation"
+    },
+    {
+      "rel": "timm/training_script.md",
+      "bytes": 31022,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/training_script.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Scripts"
+    },
+    {
+      "rel": "timm/quickstart.md",
+      "bytes": 8152,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/quickstart.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Quickstart"
     },
     {
       "rel": "timm/hf_hub.md",
-      "bytes": 2085,
+      "bytes": 2094,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/timm/v1.0.31/hf_hub.md",
       "track": "timm",
@@ -11855,890 +11855,8 @@
       "title": "Sharing and Loading Models From the Hugging Face Hub"
     },
     {
-      "rel": "timm/models/pit.md",
-      "bytes": 4227,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/pit.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "PiT"
-    },
-    {
-      "rel": "timm/models/mobilenetv3.md",
-      "bytes": 13310,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/mobilenetv3.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "MobileNet-V3"
-    },
-    {
-      "rel": "timm/models/efficientvim.md",
-      "bytes": 5111,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/efficientvim.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "EfficientViM"
-    },
-    {
-      "rel": "timm/models/coat.md",
-      "bytes": 4242,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/coat.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "CoaT"
-    },
-    {
-      "rel": "timm/models/vision-transformer-relpos.md",
-      "bytes": 5390,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/vision-transformer-relpos.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "Vision Transformer (relative position)"
-    },
-    {
-      "rel": "timm/models/levit.md",
-      "bytes": 5907,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/levit.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "LeViT"
-    },
-    {
-      "rel": "timm/models/mobilenetv5.md",
-      "bytes": 3350,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/mobilenetv5.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "MobileNet-V5"
-    },
-    {
-      "rel": "timm/models/davit.md",
-      "bytes": 4405,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/davit.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "DaViT"
-    },
-    {
-      "rel": "timm/models/dla.md",
-      "bytes": 4688,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/dla.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "DLA"
-    },
-    {
-      "rel": "timm/models/regnet.md",
-      "bytes": 14351,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/regnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "RegNet"
-    },
-    {
-      "rel": "timm/models/shvit.md",
-      "bytes": 3704,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/shvit.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "SHViT"
-    },
-    {
-      "rel": "timm/models/deepseek-vit.md",
-      "bytes": 5078,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/deepseek-vit.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "DeepSeek ViT"
-    },
-    {
-      "rel": "timm/models/tresnet.md",
-      "bytes": 4332,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/tresnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "TResNet"
-    },
-    {
-      "rel": "timm/models/starnet.md",
-      "bytes": 3515,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/starnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "StarNet"
-    },
-    {
-      "rel": "timm/models/hgnet.md",
-      "bytes": 6692,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/hgnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "PP-HGNet"
-    },
-    {
-      "rel": "timm/models/naflexvit.md",
-      "bytes": 7045,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/naflexvit.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "NaFlex ViT"
-    },
-    {
-      "rel": "timm/models/tiny-vit.md",
-      "bytes": 4682,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/tiny-vit.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "TinyViT"
-    },
-    {
-      "rel": "timm/models/gemma4-vit.md",
-      "bytes": 3812,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/gemma4-vit.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "Gemma 4 ViT"
-    },
-    {
-      "rel": "timm/models/sknet.md",
-      "bytes": 3368,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/sknet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "SKNet"
-    },
-    {
-      "rel": "timm/models/swin-transformer.md",
-      "bytes": 6500,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/swin-transformer.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "Swin Transformer"
-    },
-    {
-      "rel": "timm/models/mlp-mixer.md",
-      "bytes": 8157,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/mlp-mixer.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "MLP-Mixer, ResMLP and gMLP"
-    },
-    {
-      "rel": "timm/models/iformer.md",
-      "bytes": 4338,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/iformer.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "iFormer"
-    },
-    {
-      "rel": "timm/models/fasternet.md",
-      "bytes": 4118,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/fasternet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "FasterNet"
-    },
-    {
-      "rel": "timm/models/rexnet.md",
-      "bytes": 4814,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/rexnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "ReXNet"
-    },
-    {
-      "rel": "timm/models/efficientvit-mit.md",
-      "bytes": 6118,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/efficientvit-mit.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "EfficientViT (MIT)"
-    },
-    {
-      "rel": "timm/models/inception-next.md",
-      "bytes": 3807,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/inception-next.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "InceptionNeXt"
-    },
-    {
-      "rel": "timm/models/resnet.md",
-      "bytes": 30802,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/resnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "ResNet"
-    },
-    {
-      "rel": "timm/models/lowformer.md",
-      "bytes": 4907,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/lowformer.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "LowFormer"
-    },
-    {
-      "rel": "timm/models/eva.md",
-      "bytes": 25359,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/eva.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "EVA"
-    },
-    {
-      "rel": "timm/models/hieradet-sam2.md",
-      "bytes": 4237,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/hieradet-sam2.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "HieraDet (SAM 2)"
-    },
-    {
-      "rel": "timm/models/vovnet.md",
-      "bytes": 3896,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/vovnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "VoVNet"
-    },
-    {
-      "rel": "timm/models/xcit.md",
-      "bytes": 10626,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/xcit.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "XCiT"
-    },
-    {
-      "rel": "timm/models/resnetv2.md",
-      "bytes": 8461,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/resnetv2.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "ResNetV2 (BiT)"
-    },
-    {
-      "rel": "timm/models/pnasnet.md",
-      "bytes": 2934,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/pnasnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "PNASNet"
-    },
-    {
-      "rel": "timm/models/inception-v4.md",
-      "bytes": 2934,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/inception-v4.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "Inception-v4"
-    },
-    {
-      "rel": "timm/models/twins.md",
-      "bytes": 3926,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/twins.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "Twins"
-    },
-    {
-      "rel": "timm/models/efficientnet.md",
-      "bytes": 28398,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/efficientnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "EfficientNet"
-    },
-    {
-      "rel": "timm/models/vitamin.md",
-      "bytes": 6137,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/vitamin.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "ViTamin"
-    },
-    {
-      "rel": "timm/models/csatv2.md",
-      "bytes": 3122,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/csatv2.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "CSATv2"
-    },
-    {
-      "rel": "timm/models/nasnet.md",
-      "bytes": 2942,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/nasnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "NASNet"
-    },
-    {
-      "rel": "timm/models/beit.md",
-      "bytes": 6123,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/beit.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "BEiT"
-    },
-    {
-      "rel": "timm/models/xception-aligned.md",
-      "bytes": 4323,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/xception-aligned.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "Aligned Xception"
-    },
-    {
-      "rel": "timm/models/efficientformer-v2.md",
-      "bytes": 4141,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/efficientformer-v2.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "EfficientFormer-V2"
-    },
-    {
-      "rel": "timm/models/byobnet.md",
-      "bytes": 14491,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/byobnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "BYOBNet (GENet, RepVGG, MobileOne, ...)"
-    },
-    {
-      "rel": "timm/models/nfnet.md",
-      "bytes": 6969,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/nfnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "NFNet"
-    },
-    {
-      "rel": "timm/models/tnt.md",
-      "bytes": 3335,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/tnt.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "TNT"
-    },
-    {
-      "rel": "timm/models/lcnetv2.md",
-      "bytes": 3588,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/lcnetv2.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "PP-LCNetV2"
-    },
-    {
-      "rel": "timm/models/cpubone.md",
-      "bytes": 4398,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/cpubone.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "CPUBone"
-    },
-    {
-      "rel": "timm/models/efficientformer.md",
-      "bytes": 3852,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/efficientformer.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "EfficientFormer"
-    },
-    {
-      "rel": "timm/models/densenet.md",
-      "bytes": 4393,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/densenet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "DenseNet"
-    },
-    {
-      "rel": "timm/models/xception.md",
-      "bytes": 3038,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/xception.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "Xception (legacy)"
-    },
-    {
-      "rel": "timm/models/nest.md",
-      "bytes": 3517,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/nest.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "NesT"
-    },
-    {
-      "rel": "timm/models/cait.md",
-      "bytes": 4655,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/cait.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "CaiT"
-    },
-    {
-      "rel": "timm/models/fastvit.md",
-      "bytes": 7109,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/fastvit.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "FastViT"
-    },
-    {
-      "rel": "timm/models/byoanet.md",
-      "bytes": 6123,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/byoanet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "BYOANet (BoTNet, HaloNet, LambdaNet)"
-    },
-    {
-      "rel": "timm/models/nextvit.md",
-      "bytes": 4663,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/nextvit.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "Next-ViT"
-    },
-    {
-      "rel": "timm/models/edgenext.md",
-      "bytes": 4089,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/edgenext.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "EdgeNeXt"
-    },
-    {
-      "rel": "timm/models/selecsls.md",
-      "bytes": 3383,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/selecsls.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "SelecSLS"
-    },
-    {
-      "rel": "timm/models/mambaout.md",
-      "bytes": 5219,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/mambaout.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "MambaOut"
-    },
-    {
-      "rel": "timm/models/inception-resnet-v2.md",
-      "bytes": 3321,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/inception-resnet-v2.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "Inception-ResNet-v2"
-    },
-    {
-      "rel": "timm/models/resnest.md",
-      "bytes": 4101,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/resnest.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "ResNeSt"
-    },
-    {
-      "rel": "timm/models/res2net.md",
-      "bytes": 4352,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/res2net.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "Res2Net"
-    },
-    {
-      "rel": "timm/models/swin-transformer-v2-cr.md",
-      "bytes": 4252,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/swin-transformer-v2-cr.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "Swin Transformer V2 (CR)"
-    },
-    {
-      "rel": "timm/models/maxxvit.md",
-      "bytes": 14120,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/maxxvit.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "MaxViT and CoAtNet"
-    },
-    {
-      "rel": "timm/models/convmixer.md",
-      "bytes": 3390,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/convmixer.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "ConvMixer"
-    },
-    {
-      "rel": "timm/models/metaformer.md",
-      "bytes": 10920,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/metaformer.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "MetaFormer (PoolFormer, ConvFormer, CAFormer)"
-    },
-    {
-      "rel": "timm/models/dpn.md",
-      "bytes": 3851,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/dpn.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "DPN"
-    },
-    {
-      "rel": "timm/models/repghost.md",
-      "bytes": 4169,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/repghost.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "RepGhost"
-    },
-    {
-      "rel": "timm/models/mvitv2.md",
-      "bytes": 4443,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/mvitv2.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "MViTv2"
-    },
-    {
-      "rel": "timm/models/convnext.md",
-      "bytes": 22095,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/convnext.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "ConvNeXt"
-    },
-    {
-      "rel": "timm/models/visformer.md",
-      "bytes": 3194,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/visformer.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "Visformer"
-    },
-    {
-      "rel": "timm/models/efficientvit-msra.md",
-      "bytes": 3966,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/efficientvit-msra.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "EfficientViT (MSRA)"
-    },
-    {
-      "rel": "timm/models/pvt-v2.md",
-      "bytes": 4337,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/pvt-v2.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "PVTv2"
-    },
-    {
-      "rel": "timm/models/hrnet.md",
-      "bytes": 5779,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/hrnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "HRNet"
-    },
-    {
-      "rel": "timm/models/vision-transformer-hybrid.md",
-      "bytes": 6973,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/vision-transformer-hybrid.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "Hybrid Vision Transformer"
-    },
-    {
-      "rel": "timm/models/repvit.md",
-      "bytes": 5203,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/repvit.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "RepViT"
-    },
-    {
-      "rel": "timm/models/deit.md",
-      "bytes": 8252,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/deit.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "DeiT"
-    },
-    {
-      "rel": "timm/models/hiera.md",
-      "bytes": 6090,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/hiera.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "Hiera"
-    },
-    {
-      "rel": "timm/models/sequencer.md",
-      "bytes": 3308,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/sequencer.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "Sequencer"
-    },
-    {
-      "rel": "timm/models/swin-transformer-v2.md",
-      "bytes": 5520,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/swin-transformer-v2.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "Swin Transformer V2"
-    },
-    {
-      "rel": "timm/models/vision-transformer-sam.md",
-      "bytes": 3691,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/vision-transformer-sam.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "Segment Anything ViT"
-    },
-    {
-      "rel": "timm/models/senet.md",
-      "bytes": 5029,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/senet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "SENet (legacy)"
-    },
-    {
-      "rel": "timm/models/crossvit.md",
-      "bytes": 5273,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/crossvit.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "CrossViT"
-    },
-    {
-      "rel": "timm/models/rdnet.md",
-      "bytes": 3722,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/rdnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "RDNet"
-    },
-    {
-      "rel": "timm/models/cspnext.md",
-      "bytes": 3684,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/cspnext.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "CSPNeXt"
-    },
-    {
-      "rel": "timm/models/vision-transformer.md",
-      "bytes": 70260,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/vision-transformer.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "Vision Transformer (ViT)"
-    },
-    {
-      "rel": "timm/models/vgg.md",
-      "bytes": 3995,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/vgg.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "VGG"
-    },
-    {
-      "rel": "timm/models/focalnet.md",
-      "bytes": 4993,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/focalnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "FocalNet"
-    },
-    {
-      "rel": "timm/models/volo.md",
-      "bytes": 4708,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/volo.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "VOLO"
-    },
-    {
-      "rel": "timm/models/inception-v3.md",
-      "bytes": 3377,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/inception-v3.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "Inception-v3"
-    },
-    {
-      "rel": "timm/models/gcvit.md",
-      "bytes": 4304,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/gcvit.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "GCViT"
-    },
-    {
-      "rel": "timm/models/swiftformer.md",
-      "bytes": 4053,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/swiftformer.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "SwiftFormer"
-    },
-    {
-      "rel": "timm/models/mobilevit.md",
-      "bytes": 5905,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/mobilevit.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "MobileViT"
-    },
-    {
-      "rel": "timm/models/convit.md",
-      "bytes": 3739,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/convit.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "ConViT"
-    },
-    {
-      "rel": "timm/models/cspnet.md",
-      "bytes": 6710,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/cspnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "CSPNet (CSPResNet, CSPDarkNet, DarkNet)"
-    },
-    {
-      "rel": "timm/models/hardcorenas.md",
-      "bytes": 3993,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/hardcorenas.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "HardCoRe-NAS"
-    },
-    {
-      "rel": "timm/models/ghostnet.md",
-      "bytes": 4148,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/ghostnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "GhostNet"
-    },
-    {
-      "rel": "timm/models/qwen3-vit.md",
-      "bytes": 12584,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/models/qwen3-vit.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "Qwen3 ViT"
-    },
-    {
       "rel": "timm/reference/models.md",
-      "bytes": 31424,
+      "bytes": 31420,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/timm/v1.0.31/reference/models.md",
       "track": "timm",
@@ -12747,12 +11865,21 @@
     },
     {
       "rel": "timm/reference/data.md",
-      "bytes": 48008,
+      "bytes": 48033,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/timm/v1.0.31/reference/data.md",
       "track": "timm",
       "package": "timm",
       "title": "Data"
+    },
+    {
+      "rel": "timm/reference/schedulers.md",
+      "bytes": 23041,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/reference/schedulers.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Learning Rate Schedulers"
     },
     {
       "rel": "timm/reference/loss.md",
@@ -12765,7 +11892,7 @@
     },
     {
       "rel": "timm/reference/optimizers.md",
-      "bytes": 55652,
+      "bytes": 55629,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/timm/v1.0.31/reference/optimizers.md",
       "track": "timm",
@@ -12773,13 +11900,886 @@
       "title": "Optimization"
     },
     {
-      "rel": "timm/reference/schedulers.md",
-      "bytes": 22970,
+      "rel": "timm/models/iformer.md",
+      "bytes": 4344,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.31/reference/schedulers.md",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/iformer.md",
       "track": "timm",
       "package": "timm",
-      "title": "Learning Rate Schedulers"
+      "title": "iFormer"
+    },
+    {
+      "rel": "timm/models/deepseek-vit.md",
+      "bytes": 5078,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/deepseek-vit.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "DeepSeek ViT"
+    },
+    {
+      "rel": "timm/models/fastvit.md",
+      "bytes": 7109,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/fastvit.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "FastViT"
+    },
+    {
+      "rel": "timm/models/byoanet.md",
+      "bytes": 6127,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/byoanet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "BYOANet (BoTNet, HaloNet, LambdaNet)"
+    },
+    {
+      "rel": "timm/models/senet.md",
+      "bytes": 5055,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/senet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "SENet (legacy)"
+    },
+    {
+      "rel": "timm/models/vision-transformer-sam.md",
+      "bytes": 3710,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/vision-transformer-sam.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Segment Anything ViT"
+    },
+    {
+      "rel": "timm/models/swin-transformer-v2.md",
+      "bytes": 5490,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/swin-transformer-v2.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Swin Transformer V2"
+    },
+    {
+      "rel": "timm/models/repvit.md",
+      "bytes": 5218,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/repvit.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "RepViT"
+    },
+    {
+      "rel": "timm/models/hardcorenas.md",
+      "bytes": 3999,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/hardcorenas.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "HardCoRe-NAS"
+    },
+    {
+      "rel": "timm/models/swiftformer.md",
+      "bytes": 4041,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/swiftformer.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "SwiftFormer"
+    },
+    {
+      "rel": "timm/models/vgg.md",
+      "bytes": 4003,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/vgg.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "VGG"
+    },
+    {
+      "rel": "timm/models/efficientnet.md",
+      "bytes": 28416,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/efficientnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "EfficientNet"
+    },
+    {
+      "rel": "timm/models/swin-transformer.md",
+      "bytes": 6476,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/swin-transformer.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Swin Transformer"
+    },
+    {
+      "rel": "timm/models/pvt-v2.md",
+      "bytes": 4343,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/pvt-v2.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "PVTv2"
+    },
+    {
+      "rel": "timm/models/mambaout.md",
+      "bytes": 5189,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/mambaout.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "MambaOut"
+    },
+    {
+      "rel": "timm/models/volo.md",
+      "bytes": 4696,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/volo.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "VOLO"
+    },
+    {
+      "rel": "timm/models/csatv2.md",
+      "bytes": 3124,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/csatv2.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "CSATv2"
+    },
+    {
+      "rel": "timm/models/cpubone.md",
+      "bytes": 4374,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/cpubone.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "CPUBone"
+    },
+    {
+      "rel": "timm/models/dpn.md",
+      "bytes": 3873,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/dpn.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "DPN"
+    },
+    {
+      "rel": "timm/models/inception-resnet-v2.md",
+      "bytes": 3330,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/inception-resnet-v2.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Inception-ResNet-v2"
+    },
+    {
+      "rel": "timm/models/mobilenetv5.md",
+      "bytes": 3356,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/mobilenetv5.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "MobileNet-V5"
+    },
+    {
+      "rel": "timm/models/convnext.md",
+      "bytes": 22101,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/convnext.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "ConvNeXt"
+    },
+    {
+      "rel": "timm/models/inception-v3.md",
+      "bytes": 3413,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/inception-v3.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Inception-v3"
+    },
+    {
+      "rel": "timm/models/swin-transformer-v2-cr.md",
+      "bytes": 4239,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/swin-transformer-v2-cr.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Swin Transformer V2 (CR)"
+    },
+    {
+      "rel": "timm/models/convit.md",
+      "bytes": 3706,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/convit.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "ConViT"
+    },
+    {
+      "rel": "timm/models/mvitv2.md",
+      "bytes": 4433,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/mvitv2.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "MViTv2"
+    },
+    {
+      "rel": "timm/models/tnt.md",
+      "bytes": 3328,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/tnt.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "TNT"
+    },
+    {
+      "rel": "timm/models/hiera.md",
+      "bytes": 6078,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/hiera.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Hiera"
+    },
+    {
+      "rel": "timm/models/pit.md",
+      "bytes": 4218,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/pit.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "PiT"
+    },
+    {
+      "rel": "timm/models/res2net.md",
+      "bytes": 4336,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/res2net.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Res2Net"
+    },
+    {
+      "rel": "timm/models/efficientformer.md",
+      "bytes": 3871,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/efficientformer.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "EfficientFormer"
+    },
+    {
+      "rel": "timm/models/mlp-mixer.md",
+      "bytes": 8164,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/mlp-mixer.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "MLP-Mixer, ResMLP and gMLP"
+    },
+    {
+      "rel": "timm/models/gemma4-vit.md",
+      "bytes": 3812,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/gemma4-vit.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Gemma 4 ViT"
+    },
+    {
+      "rel": "timm/models/gcvit.md",
+      "bytes": 4300,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/gcvit.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "GCViT"
+    },
+    {
+      "rel": "timm/models/qwen3-vit.md",
+      "bytes": 12581,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/qwen3-vit.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Qwen3 ViT"
+    },
+    {
+      "rel": "timm/models/vovnet.md",
+      "bytes": 3904,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/vovnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "VoVNet"
+    },
+    {
+      "rel": "timm/models/selecsls.md",
+      "bytes": 3383,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/selecsls.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "SelecSLS"
+    },
+    {
+      "rel": "timm/models/repghost.md",
+      "bytes": 4169,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/repghost.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "RepGhost"
+    },
+    {
+      "rel": "timm/models/rexnet.md",
+      "bytes": 4807,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/rexnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "ReXNet"
+    },
+    {
+      "rel": "timm/models/inception-next.md",
+      "bytes": 3803,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/inception-next.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "InceptionNeXt"
+    },
+    {
+      "rel": "timm/models/cait.md",
+      "bytes": 4651,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/cait.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "CaiT"
+    },
+    {
+      "rel": "timm/models/shvit.md",
+      "bytes": 3696,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/shvit.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "SHViT"
+    },
+    {
+      "rel": "timm/models/focalnet.md",
+      "bytes": 5001,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/focalnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "FocalNet"
+    },
+    {
+      "rel": "timm/models/ghostnet.md",
+      "bytes": 4149,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/ghostnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "GhostNet"
+    },
+    {
+      "rel": "timm/models/naflexvit.md",
+      "bytes": 7046,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/naflexvit.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "NaFlex ViT"
+    },
+    {
+      "rel": "timm/models/densenet.md",
+      "bytes": 4381,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/densenet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "DenseNet"
+    },
+    {
+      "rel": "timm/models/hgnet.md",
+      "bytes": 6681,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/hgnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "PP-HGNet"
+    },
+    {
+      "rel": "timm/models/nest.md",
+      "bytes": 3517,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/nest.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "NesT"
+    },
+    {
+      "rel": "timm/models/deit.md",
+      "bytes": 8258,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/deit.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "DeiT"
+    },
+    {
+      "rel": "timm/models/crossvit.md",
+      "bytes": 5288,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/crossvit.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "CrossViT"
+    },
+    {
+      "rel": "timm/models/xception.md",
+      "bytes": 3040,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/xception.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Xception (legacy)"
+    },
+    {
+      "rel": "timm/models/hrnet.md",
+      "bytes": 5752,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/hrnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "HRNet"
+    },
+    {
+      "rel": "timm/models/mobilenetv3.md",
+      "bytes": 13318,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/mobilenetv3.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "MobileNet-V3"
+    },
+    {
+      "rel": "timm/models/xception-aligned.md",
+      "bytes": 4305,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/xception-aligned.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Aligned Xception"
+    },
+    {
+      "rel": "timm/models/fasternet.md",
+      "bytes": 4148,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/fasternet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "FasterNet"
+    },
+    {
+      "rel": "timm/models/vision-transformer.md",
+      "bytes": 70272,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/vision-transformer.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Vision Transformer (ViT)"
+    },
+    {
+      "rel": "timm/models/mobilevit.md",
+      "bytes": 5918,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/mobilevit.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "MobileViT"
+    },
+    {
+      "rel": "timm/models/maxxvit.md",
+      "bytes": 14120,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/maxxvit.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "MaxViT and CoAtNet"
+    },
+    {
+      "rel": "timm/models/visformer.md",
+      "bytes": 3166,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/visformer.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Visformer"
+    },
+    {
+      "rel": "timm/models/coat.md",
+      "bytes": 4197,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/coat.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "CoaT"
+    },
+    {
+      "rel": "timm/models/sequencer.md",
+      "bytes": 3278,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/sequencer.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Sequencer"
+    },
+    {
+      "rel": "timm/models/beit.md",
+      "bytes": 6101,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/beit.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "BEiT"
+    },
+    {
+      "rel": "timm/models/nfnet.md",
+      "bytes": 6977,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/nfnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "NFNet"
+    },
+    {
+      "rel": "timm/models/resnest.md",
+      "bytes": 4105,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/resnest.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "ResNeSt"
+    },
+    {
+      "rel": "timm/models/convmixer.md",
+      "bytes": 3350,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/convmixer.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "ConvMixer"
+    },
+    {
+      "rel": "timm/models/tiny-vit.md",
+      "bytes": 4675,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/tiny-vit.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "TinyViT"
+    },
+    {
+      "rel": "timm/models/pnasnet.md",
+      "bytes": 2922,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/pnasnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "PNASNet"
+    },
+    {
+      "rel": "timm/models/regnet.md",
+      "bytes": 14351,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/regnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "RegNet"
+    },
+    {
+      "rel": "timm/models/davit.md",
+      "bytes": 4409,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/davit.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "DaViT"
+    },
+    {
+      "rel": "timm/models/rdnet.md",
+      "bytes": 3718,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/rdnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "RDNet"
+    },
+    {
+      "rel": "timm/models/sknet.md",
+      "bytes": 3348,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/sknet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "SKNet"
+    },
+    {
+      "rel": "timm/models/nasnet.md",
+      "bytes": 2980,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/nasnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "NASNet"
+    },
+    {
+      "rel": "timm/models/byobnet.md",
+      "bytes": 14495,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/byobnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "BYOBNet (GENet, RepVGG, MobileOne, ...)"
+    },
+    {
+      "rel": "timm/models/tresnet.md",
+      "bytes": 4342,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/tresnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "TResNet"
+    },
+    {
+      "rel": "timm/models/inception-v4.md",
+      "bytes": 2941,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/inception-v4.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Inception-v4"
+    },
+    {
+      "rel": "timm/models/lcnetv2.md",
+      "bytes": 3603,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/lcnetv2.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "PP-LCNetV2"
+    },
+    {
+      "rel": "timm/models/hieradet-sam2.md",
+      "bytes": 4235,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/hieradet-sam2.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "HieraDet (SAM 2)"
+    },
+    {
+      "rel": "timm/models/levit.md",
+      "bytes": 5899,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/levit.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "LeViT"
+    },
+    {
+      "rel": "timm/models/nextvit.md",
+      "bytes": 4683,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/nextvit.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Next-ViT"
+    },
+    {
+      "rel": "timm/models/efficientformer-v2.md",
+      "bytes": 4113,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/efficientformer-v2.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "EfficientFormer-V2"
+    },
+    {
+      "rel": "timm/models/lowformer.md",
+      "bytes": 4909,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/lowformer.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "LowFormer"
+    },
+    {
+      "rel": "timm/models/xcit.md",
+      "bytes": 10610,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/xcit.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "XCiT"
+    },
+    {
+      "rel": "timm/models/eva.md",
+      "bytes": 25342,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/eva.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "EVA"
+    },
+    {
+      "rel": "timm/models/resnet.md",
+      "bytes": 30798,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/resnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "ResNet"
+    },
+    {
+      "rel": "timm/models/cspnext.md",
+      "bytes": 3697,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/cspnext.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "CSPNeXt"
+    },
+    {
+      "rel": "timm/models/metaformer.md",
+      "bytes": 10950,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/metaformer.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "MetaFormer (PoolFormer, ConvFormer, CAFormer)"
+    },
+    {
+      "rel": "timm/models/efficientvit-msra.md",
+      "bytes": 3979,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/efficientvit-msra.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "EfficientViT (MSRA)"
+    },
+    {
+      "rel": "timm/models/efficientvim.md",
+      "bytes": 5109,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/efficientvim.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "EfficientViM"
+    },
+    {
+      "rel": "timm/models/dla.md",
+      "bytes": 4710,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/dla.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "DLA"
+    },
+    {
+      "rel": "timm/models/efficientvit-mit.md",
+      "bytes": 6105,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/efficientvit-mit.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "EfficientViT (MIT)"
+    },
+    {
+      "rel": "timm/models/starnet.md",
+      "bytes": 3547,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/starnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "StarNet"
+    },
+    {
+      "rel": "timm/models/cspnet.md",
+      "bytes": 6703,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/cspnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "CSPNet (CSPResNet, CSPDarkNet, DarkNet)"
+    },
+    {
+      "rel": "timm/models/edgenext.md",
+      "bytes": 4083,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/edgenext.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "EdgeNeXt"
+    },
+    {
+      "rel": "timm/models/twins.md",
+      "bytes": 3965,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/twins.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Twins"
+    },
+    {
+      "rel": "timm/models/vision-transformer-relpos.md",
+      "bytes": 5430,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/vision-transformer-relpos.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Vision Transformer (relative position)"
+    },
+    {
+      "rel": "timm/models/vision-transformer-hybrid.md",
+      "bytes": 6983,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/vision-transformer-hybrid.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Hybrid Vision Transformer"
+    },
+    {
+      "rel": "timm/models/resnetv2.md",
+      "bytes": 8461,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/resnetv2.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "ResNetV2 (BiT)"
+    },
+    {
+      "rel": "timm/models/vitamin.md",
+      "bytes": 6067,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.31/models/vitamin.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "ViTamin"
     },
     {
       "rel": "tokenizers/v1.0.0-rc.5/index.md",
@@ -21108,7 +21108,7 @@
       "toc": 283,
       "found": 282,
       "written": 282,
-      "full_bytes": 1647485
+      "full_bytes": 1653376
     },
     {
       "pkg": "huggingface_hub",
@@ -21122,14 +21122,14 @@
       "toc": 25,
       "found": 25,
       "written": 25,
-      "full_bytes": 183813
+      "full_bytes": 183865
     },
     {
       "pkg": "inference-providers",
       "toc": 51,
       "found": 31,
       "written": 31,
-      "full_bytes": 344794
+      "full_bytes": 344783
     },
     {
       "pkg": "kernels",
@@ -21164,7 +21164,7 @@
       "toc": 10,
       "found": 10,
       "written": 10,
-      "full_bytes": 42210
+      "full_bytes": 42209
     },
     {
       "pkg": "smolagents",
@@ -21192,7 +21192,7 @@
       "toc": 115,
       "found": 115,
       "written": 115,
-      "full_bytes": 1126581
+      "full_bytes": 1126578
     },
     {
       "pkg": "tokenizers",

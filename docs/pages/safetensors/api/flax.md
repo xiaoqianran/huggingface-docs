@@ -118,6 +118,3 @@ from jax import numpy as jnp
 tensors = {"embedding": jnp.zeros((512, 1024)), "attention": jnp.zeros((256, 256))}
 byte_data = save(tensors)
 ```
-
-### Numpy API[[safetensors.numpy.load_file]]
-https://huggingface.co/docs/safetensors/main/api/numpy.md

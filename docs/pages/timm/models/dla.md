@@ -83,5 +83,5 @@ size of the pretrained classifier, none for weights without one.
 | `dla102x2.in1k` | 224 | 79.448 | 224 | 1000 | bsd-3-clause | [timm](https://huggingface.co/timm/dla102x2.in1k) |
 | `dla169.in1k` | 224 | 78.702 | 224 | 1000 | bsd-3-clause | [timm](https://huggingface.co/timm/dla169.in1k) |
 
-### RegNet
-https://huggingface.co/docs/timm/v1.0.31/models/regnet.md
+### EfficientViT (MIT)
+https://huggingface.co/docs/timm/v1.0.31/models/efficientvit-mit.md

@@ -81,5 +81,5 @@ size of the pretrained classifier, none for weights without one.
 | `mambaout_small_rw.sw_e450_in1k` | 224 (test 288) | 84.604 | 288 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/mambaout_small_rw.sw_e450_in1k) |
 | `mambaout_tiny.in1k` | 224 (test 288) | 83.452 | 288 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/mambaout_tiny.in1k) |
 
-### Inception-ResNet-v2
-https://huggingface.co/docs/timm/v1.0.31/models/inception-resnet-v2.md
+### VOLO
+https://huggingface.co/docs/timm/v1.0.31/models/volo.md

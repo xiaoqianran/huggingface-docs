@@ -78,5 +78,5 @@ size of the pretrained classifier, none for weights without one.
 }
 ```
 
-### DeepSeek ViT
-https://huggingface.co/docs/timm/v1.0.31/models/deepseek-vit.md
+### FocalNet
+https://huggingface.co/docs/timm/v1.0.31/models/focalnet.md

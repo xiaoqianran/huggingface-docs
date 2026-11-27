@@ -87,5 +87,5 @@ size of the pretrained classifier, none for weights without one.
 }
 ```
 
-### HRNet
-https://huggingface.co/docs/timm/v1.0.31/models/hrnet.md
+### MambaOut
+https://huggingface.co/docs/timm/v1.0.31/models/mambaout.md

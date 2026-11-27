@@ -100,5 +100,5 @@ other.
 | `hgnet_small.paddle_in1k` | 224 (test 288) | 82.222 | 288 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/hgnet_small.paddle_in1k) |
 | `hgnet_tiny.paddle_in1k` | 224 (test 288) | 80.644 | 288 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/hgnet_tiny.paddle_in1k) |
 
-### NaFlex ViT
-https://huggingface.co/docs/timm/v1.0.31/models/naflexvit.md
+### NesT
+https://huggingface.co/docs/timm/v1.0.31/models/nest.md

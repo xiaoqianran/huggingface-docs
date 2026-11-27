@@ -13,5 +13,5 @@ This page lists blog posts on the Kernels project. See the full list tagged
 
 This page will be kept updated.
 
-### kernels cache ls
-https://huggingface.co/docs/kernels/main/cli-cache.md
+### kernels benchmark
+https://huggingface.co/docs/kernels/main/cli-benchmark.md

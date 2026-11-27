@@ -74,5 +74,5 @@ size of the pretrained classifier, none for weights without one.
 | `ese_vovnet39b.ra_in1k` | 224 (test 288) | 80.378 | 288 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/ese_vovnet39b.ra_in1k) |
 | `ese_vovnet57b.ra4_e3600_r256_in1k` | 256 (test 320) | 83.298 | 320 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/ese_vovnet57b.ra4_e3600_r256_in1k) |
 
-### XCiT
-https://huggingface.co/docs/timm/v1.0.31/models/xcit.md
+### SelecSLS
+https://huggingface.co/docs/timm/v1.0.31/models/selecsls.md

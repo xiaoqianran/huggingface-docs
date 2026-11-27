@@ -65,5 +65,5 @@ size of the pretrained classifier, none for weights without one.
 | `sequencer2d_m.in1k` | 224 | 82.836 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/sequencer2d_m.in1k) |
 | `sequencer2d_s.in1k` | 224 | 82.336 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/sequencer2d_s.in1k) |
 
-### Swin Transformer V2
-https://huggingface.co/docs/timm/v1.0.31/models/swin-transformer-v2.md
+### BEiT
+https://huggingface.co/docs/timm/v1.0.31/models/beit.md

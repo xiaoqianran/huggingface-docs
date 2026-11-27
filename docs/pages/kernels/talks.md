@@ -8,5 +8,5 @@ This page lists talks on the Kernels project, delivered at different events:
 
 This page will be kept updated.
 
-### kernels lock
-https://huggingface.co/docs/kernels/main/cli-lock.md
+### Why kernels?
+https://huggingface.co/docs/kernels/main/why_kernels.md

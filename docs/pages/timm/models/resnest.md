@@ -73,5 +73,5 @@ size of the pretrained classifier, none for weights without one.
 | `resnest200e.in1k` | 320 | 83.880 | 320 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/resnest200e.in1k) |
 | `resnest269e.in1k` | 416 | 84.542 | 416 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/resnest269e.in1k) |
 
-### Res2Net
-https://huggingface.co/docs/timm/v1.0.31/models/res2net.md
+### ConvMixer
+https://huggingface.co/docs/timm/v1.0.31/models/convmixer.md

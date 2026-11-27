@@ -80,5 +80,5 @@ size of the pretrained classifier, none for weights without one.
 | `volo_d5_448.sail_in1k` | 448 | 86.974 | 448 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/volo_d5_448.sail_in1k) |
 | `volo_d5_512.sail_in1k` | 512 | 87.068 | 512 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/volo_d5_512.sail_in1k) |
 
-### Inception-v3
-https://huggingface.co/docs/timm/v1.0.31/models/inception-v3.md
+### CSATv2
+https://huggingface.co/docs/timm/v1.0.31/models/csatv2.md

@@ -73,5 +73,5 @@ size of the pretrained classifier, none for weights without one.
 | `tresnet_xl.miil_in1k` | 224 | 82.060 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/tresnet_xl.miil_in1k) |
 | `tresnet_xl.miil_in1k_448` | 448 | 83.066 | 448 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/tresnet_xl.miil_in1k_448) |
 
-### StarNet
-https://huggingface.co/docs/timm/v1.0.31/models/starnet.md
+### Inception-v4
+https://huggingface.co/docs/timm/v1.0.31/models/inception-v4.md

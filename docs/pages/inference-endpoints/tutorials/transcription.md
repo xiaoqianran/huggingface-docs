@@ -361,5 +361,5 @@ Here are some ways to extend your transcription app:
 - **Custom prompts**: Allow users to customize the summary format and style
 - **Implement Text-to-Speech**: Use a model from the hub to convert your summary to another audio file!
 
-### Runtime Logs
-https://huggingface.co/docs/inference-endpoints/guides/logs.md
+### Build an embedding pipeline with datasets
+https://huggingface.co/docs/inference-endpoints/tutorials/embedding.md

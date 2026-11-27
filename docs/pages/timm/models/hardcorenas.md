@@ -71,5 +71,5 @@ size of the pretrained classifier, none for weights without one.
 | `hardcorenas_e.miil_green_in1k` | 224 | 77.788 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/hardcorenas_e.miil_green_in1k) |
 | `hardcorenas_f.miil_green_in1k` | 224 | 78.100 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/hardcorenas_f.miil_green_in1k) |
 
-### GhostNet
-https://huggingface.co/docs/timm/v1.0.31/models/ghostnet.md
+### SwiftFormer
+https://huggingface.co/docs/timm/v1.0.31/models/swiftformer.md

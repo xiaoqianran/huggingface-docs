@@ -129,5 +129,5 @@ size of the pretrained classifier, none for weights without one.
 | `poolformerv2_s24.sail_in1k` | 224 | 80.746 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/poolformerv2_s24.sail_in1k) |
 | `poolformerv2_s36.sail_in1k` | 224 | 81.576 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/poolformerv2_s36.sail_in1k) |
 
-### DPN
-https://huggingface.co/docs/timm/v1.0.31/models/dpn.md
+### EfficientViT (MSRA)
+https://huggingface.co/docs/timm/v1.0.31/models/efficientvit-msra.md

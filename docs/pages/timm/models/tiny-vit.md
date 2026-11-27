@@ -74,5 +74,5 @@ size of the pretrained classifier, none for weights without one.
 | `tiny_vit_21m_384.dist_in22k_ft_in1k` | 384 | 86.088 | 384 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/tiny_vit_21m_384.dist_in22k_ft_in1k) |
 | `tiny_vit_21m_512.dist_in22k_ft_in1k` | 512 | 86.444 | 512 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/tiny_vit_21m_512.dist_in22k_ft_in1k) |
 
-### Gemma 4 ViT
-https://huggingface.co/docs/timm/v1.0.31/models/gemma4-vit.md
+### PNASNet
+https://huggingface.co/docs/timm/v1.0.31/models/pnasnet.md

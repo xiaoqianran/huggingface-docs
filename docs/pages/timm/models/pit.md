@@ -75,5 +75,5 @@ size of the pretrained classifier, none for weights without one.
 | `pit_xs_224.in1k` | 224 | 78.196 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/pit_xs_224.in1k) |
 | `pit_xs_distilled_224.in1k` | 224 | 79.172 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/pit_xs_distilled_224.in1k) |
 
-### MobileNet-V3
-https://huggingface.co/docs/timm/v1.0.31/models/mobilenetv3.md
+### Res2Net
+https://huggingface.co/docs/timm/v1.0.31/models/res2net.md

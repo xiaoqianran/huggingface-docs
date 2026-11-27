@@ -190,5 +190,5 @@ size of the pretrained classifier, none for weights without one.
 }
 ```
 
-### ConvMixer
-https://huggingface.co/docs/timm/v1.0.31/models/convmixer.md
+### Visformer
+https://huggingface.co/docs/timm/v1.0.31/models/visformer.md

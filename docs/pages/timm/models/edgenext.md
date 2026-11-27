@@ -72,5 +72,5 @@ size of the pretrained classifier, none for weights without one.
 | `edgenext_x_small.in1k` | 256 (test 288) | 75.706 | 288 | 1000 | mit | [timm](https://huggingface.co/timm/edgenext_x_small.in1k) |
 | `edgenext_xx_small.in1k` | 256 (test 288) | 71.886 | 288 | 1000 | mit | [timm](https://huggingface.co/timm/edgenext_xx_small.in1k) |
 
-### SelecSLS
-https://huggingface.co/docs/timm/v1.0.31/models/selecsls.md
+### Twins
+https://huggingface.co/docs/timm/v1.0.31/models/twins.md

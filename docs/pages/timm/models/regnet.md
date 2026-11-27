@@ -199,5 +199,5 @@ Origin: [github.com/facebookresearch/vissl](https://github.com/facebookresearch/
 | `regnety_160.deit_in1k` | 224 (test 288) | 83.704 | 288 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/regnety_160.deit_in1k) |
 | `regnety_160.lion_in12k_ft_in1k` | 224 (test 288) | 86.004 | 288 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/regnety_160.lion_in12k_ft_in1k) |
 
-### SHViT
-https://huggingface.co/docs/timm/v1.0.31/models/shvit.md
+### DaViT
+https://huggingface.co/docs/timm/v1.0.31/models/davit.md

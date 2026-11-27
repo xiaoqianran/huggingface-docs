@@ -53,5 +53,5 @@ $ kernels verify-signature kernels-community/flash-attn2 1
 | `--filter-no-digest` | Skip variants that do not have a digest in the metadata (typically older builds that precede code signing).      |
 | `--filter-unsigned`  | Skip variants that do not have a detached signature (typically older builds that precede code signing).          |
 
-### Why kernels?
-https://huggingface.co/docs/kernels/main/why_kernels.md
+### CLI reference for kernel-builder
+https://huggingface.co/docs/kernels/main/builder-cli.md

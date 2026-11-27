@@ -63,5 +63,5 @@ size of the pretrained classifier, none for weights without one.
 | `inception_v3.tf_in1k` | 299 | 77.866 | 299 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/inception_v3.tf_in1k) |
 | `inception_v3.tv_in1k` | 299 | 77.472 | 299 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/inception_v3.tv_in1k) |
 
-### GCViT
-https://huggingface.co/docs/timm/v1.0.31/models/gcvit.md
+### Swin Transformer V2 (CR)
+https://huggingface.co/docs/timm/v1.0.31/models/swin-transformer-v2-cr.md

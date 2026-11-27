@@ -85,5 +85,5 @@ size of the pretrained classifier, none for weights without one.
 | `efficientvit_l3.r320_in1k` | 320 | 86.230 | 320 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/efficientvit_l3.r320_in1k) |
 | `efficientvit_l3.r384_in1k` | 384 | 86.396 | 384 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/efficientvit_l3.r384_in1k) |
 
-### InceptionNeXt
-https://huggingface.co/docs/timm/v1.0.31/models/inception-next.md
+### StarNet
+https://huggingface.co/docs/timm/v1.0.31/models/starnet.md

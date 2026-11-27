@@ -75,5 +75,5 @@ size of the pretrained classifier, none for weights without one.
 | `ghostnetv2_160.in1k` | 224 | 77.836 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/ghostnetv2_160.in1k) |
 | `ghostnetv3_100.in1k` | 224 | 76.936 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/ghostnetv3_100.in1k) |
 
-### Qwen3 ViT
-https://huggingface.co/docs/timm/v1.0.31/models/qwen3-vit.md
+### NaFlex ViT
+https://huggingface.co/docs/timm/v1.0.31/models/naflexvit.md

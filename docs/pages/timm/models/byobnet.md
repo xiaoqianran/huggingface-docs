@@ -225,5 +225,5 @@ other.
 |---|---:|---:|---:|---:|---|---|
 | `test_byobnet.r160_in1k` | 160 | 45.858 | 160 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/test_byobnet.r160_in1k) |
 
-### NFNet
-https://huggingface.co/docs/timm/v1.0.31/models/nfnet.md
+### TResNet
+https://huggingface.co/docs/timm/v1.0.31/models/tresnet.md

@@ -263,5 +263,5 @@ Autoencoders](https://arxiv.org/abs/2301.00808).
 }
 ```
 
-### Visformer
-https://huggingface.co/docs/timm/v1.0.31/models/visformer.md
+### Inception-v3
+https://huggingface.co/docs/timm/v1.0.31/models/inception-v3.md

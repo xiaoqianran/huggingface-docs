@@ -105,5 +105,5 @@ other.
 | `haloregnetz_b.ra3_in1k` | 224 | 81.058 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/haloregnetz_b.ra3_in1k) |
 | `sehalonet33ts.ra2_in1k` | 256 | 80.976 | 256 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/sehalonet33ts.ra2_in1k) |
 
-### Next-ViT
-https://huggingface.co/docs/timm/v1.0.31/models/nextvit.md
+### SENet (legacy)
+https://huggingface.co/docs/timm/v1.0.31/models/senet.md

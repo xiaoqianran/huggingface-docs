@@ -396,3 +396,6 @@ Decay functions:
 * `power`: 1 - frac ** decay_power, 0.5 == '1-sqrt', 1.0 == 'linear', 2.0 is a 'square' decay
 * `exp`: exponential decay to a fraction `decay_ratio` of the stable value, normalized to reach lr_min
 * a callable `fn(frac) -> factor` for anything else
+
+### Losses
+https://huggingface.co/docs/timm/v1.0.31/reference/loss.md

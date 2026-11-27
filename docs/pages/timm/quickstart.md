@@ -233,5 +233,5 @@ If we check the imagenet labels for the top index, we can see what the model pre
  {'label': 'motor_scooter, scooter', 'value': 0.004942195490002632}]
 ```
 
-### Installation
-https://huggingface.co/docs/timm/v1.0.31/installation.md
+### Sharing and Loading Models From the Hugging Face Hub
+https://huggingface.co/docs/timm/v1.0.31/hf_hub.md

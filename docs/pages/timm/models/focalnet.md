@@ -83,5 +83,5 @@ size of the pretrained classifier, none for weights without one.
 | `focalnet_xlarge_fl3.ms_in22k` | 384 | - | - | 21842 | mit | [timm](https://huggingface.co/timm/focalnet_xlarge_fl3.ms_in22k) |
 | `focalnet_xlarge_fl4.ms_in22k` | 384 | - | - | 21842 | mit | [timm](https://huggingface.co/timm/focalnet_xlarge_fl4.ms_in22k) |
 
-### VOLO
-https://huggingface.co/docs/timm/v1.0.31/models/volo.md
+### GhostNet
+https://huggingface.co/docs/timm/v1.0.31/models/ghostnet.md

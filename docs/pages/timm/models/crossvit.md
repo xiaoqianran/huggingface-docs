@@ -93,5 +93,5 @@ size of the pretrained classifier, none for weights without one.
 }
 ```
 
-### RDNet
-https://huggingface.co/docs/timm/v1.0.31/models/rdnet.md
+### Xception (legacy)
+https://huggingface.co/docs/timm/v1.0.31/models/xception.md

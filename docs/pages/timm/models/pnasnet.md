@@ -60,5 +60,5 @@ size of the pretrained classifier, none for weights without one.
 |---|---:|---:|---:|---:|---|---|
 | `pnasnet5large.tf_in1k` | 331 | 82.814 | 331 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/pnasnet5large.tf_in1k) |
 
-### Inception-v4
-https://huggingface.co/docs/timm/v1.0.31/models/inception-v4.md
+### RegNet
+https://huggingface.co/docs/timm/v1.0.31/models/regnet.md

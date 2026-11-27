@@ -88,5 +88,5 @@ other.
 | `rexnetr_300.sw_in12k` | 224 (test 288) | - | - | 11821 | apache-2.0 | [timm](https://huggingface.co/timm/rexnetr_300.sw_in12k) |
 | `rexnetr_300.sw_in12k_ft_in1k` | 224 (test 288) | 84.582 | 288 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/rexnetr_300.sw_in12k_ft_in1k) |
 
-### EfficientViT (MIT)
-https://huggingface.co/docs/timm/v1.0.31/models/efficientvit-mit.md
+### InceptionNeXt
+https://huggingface.co/docs/timm/v1.0.31/models/inception-next.md

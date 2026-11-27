@@ -24,5 +24,5 @@ and `devShells` for development shells.
 For a deeper look at the design of the Nix builder, see
 [Nix Builder design](./design-nix-builder).
 
-### Ship Triton autotune configurations
-https://huggingface.co/docs/kernels/main/builder/triton-autotune.md
+### Nix builder design
+https://huggingface.co/docs/kernels/main/builder/design-nix-builder.md

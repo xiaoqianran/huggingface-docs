@@ -83,5 +83,5 @@ size of the pretrained classifier, none for weights without one.
 | `vit_srelpos_medium_patch16_224.sw_in1k` | 224 | 82.256 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/vit_srelpos_medium_patch16_224.sw_in1k) |
 | `vit_srelpos_small_patch16_224.sw_in1k` | 224 | 81.108 | 224 | 1000 | apache-2.0 | [timm](https://huggingface.co/timm/vit_srelpos_small_patch16_224.sw_in1k) |
 
-### LeViT
-https://huggingface.co/docs/timm/v1.0.31/models/levit.md
+### Hybrid Vision Transformer
+https://huggingface.co/docs/timm/v1.0.31/models/vision-transformer-hybrid.md

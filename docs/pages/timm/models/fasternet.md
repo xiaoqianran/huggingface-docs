@@ -81,5 +81,5 @@ size of the pretrained classifier, none for weights without one.
 }
 ```
 
-### ReXNet
-https://huggingface.co/docs/timm/v1.0.31/models/rexnet.md
+### Vision Transformer (ViT)
+https://huggingface.co/docs/timm/v1.0.31/models/vision-transformer.md

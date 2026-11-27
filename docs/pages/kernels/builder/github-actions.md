@@ -217,5 +217,5 @@ the
 > Always run `set +x` before exporting `HF_TOKEN` so the token does not leak
 > into the streamed build logs.
 
-### Secure your kernels
-https://huggingface.co/docs/kernels/main/builder/security.md
+### Write kernels
+https://huggingface.co/docs/kernels/main/builder/writing-kernels.md
