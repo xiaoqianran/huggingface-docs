@@ -2061,10 +2061,10 @@
       "translatedAt": "2026-11-24T18:48:17.568Z"
     }
   },
-  "updatedAt": "2026-11-27T17:26:52.502Z",
+  "updatedAt": "2026-11-28T16:06:00.996Z",
   "stats": {
-    "translated": 8,
-    "skipped": 392,
+    "translated": 0,
+    "skipped": 400,
     "failed": 0,
     "total": 400
   }
